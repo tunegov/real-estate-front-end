@@ -2,15 +2,16 @@ import React from 'react';
 import { observer } from 'mobx-react';
 import isBrowser from 'is-browser';
 import TransitionGroup from 'react-transition-group/TransitionGroup';
-import { fadesDown } from '../components/TransitionHOC';
+import { fadesUp } from '../components/TransitionHOC';
 import { initStore } from '../models';
-import LoginForm from '../components/LoginForm';
+import SignUpForm from '../components/forms/SignUpForm';
 import Layout from '../components/layout';
 
-const Form = fadesDown(LoginForm);
+// use higher-order-component for mount animation
+const Form = fadesUp(SignUpForm);
 
 @observer
-class LogIn extends React.Component {
+class SignUp extends React.Component {
   static getInitialProps({ req }) {
     const isServer = !!req;
     return { cookies: req ? req.cookies : null, isServer };
@@ -28,11 +29,11 @@ class LogIn extends React.Component {
     return (
       <Layout currentPath={this.props.url.pathname} UserStore={this.store.UserStore}>
         <TransitionGroup>
-          <Form loginUser={this.store.UserStore.loginUser} />
+          <Form signUpUser={this.store.UserStore.signUpUser} />
         </TransitionGroup>
       </Layout>
     );
   }
 }
 
-export default LogIn;
+export default SignUp;

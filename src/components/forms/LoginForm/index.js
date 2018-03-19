@@ -4,11 +4,11 @@ import debounce from 'debounce';
 import Router from 'next/router';
 import { Form, FormField } from 'react-form';
 import * as emailValidator from 'email-validator';
-import CustomTextFieldWrapper from '../CustomTextFieldWrapper';
-import FormWrapper from '../../sharedStyledComponents/FormWrapper';
-import PrimaryButton from '../../sharedStyledComponents/PrimaryButton';
-import LoginSignUpFormTitle from '../../sharedStyledComponents/LoginSignUpFormTitle';
-import ServerErrorMessage from '../../sharedStyledComponents/ServerErrorMessage';
+import CustomTextFieldWrapper from '../../CustomTextFieldWrapper';
+import FormWrapper from '../../../sharedStyledComponents/FormWrapper';
+import PrimaryButton from '../../../sharedStyledComponents/PrimaryButton';
+import LoginSignUpFormTitle from '../../../sharedStyledComponents/LoginSignUpFormTitle';
+import ServerErrorMessage from '../../../sharedStyledComponents/ServerErrorMessage';
 
 const CustomTextField = FormField(CustomTextFieldWrapper);
 

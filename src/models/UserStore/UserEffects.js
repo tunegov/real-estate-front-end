@@ -9,6 +9,7 @@ const UserEffects = types.model({}).actions(self => ({
   signUpUser: async values => {
     let response;
     let error;
+    let user;
     try {
       const { fullName, email, password } = values;
       const res = await axios({
@@ -33,7 +34,13 @@ const UserEffects = types.model({}).actions(self => ({
 
     if (!error) {
       const jwtData = getCookie('jwtData');
-      const user = JWTPaylodeDecode(jwtData);
+
+      try {
+        user = JWTPaylodeDecode(jwtData);
+      } catch (err) {
+        console.log(err);
+      }
+
       self.setUser(user);
     }
 
@@ -73,6 +80,7 @@ const UserEffects = types.model({}).actions(self => ({
   loginUser: async loginInfo => {
     let response;
     let error;
+    let user;
     try {
       const res = await axios({
         method: 'post',
@@ -95,7 +103,13 @@ const UserEffects = types.model({}).actions(self => ({
 
     if (!error) {
       const jwtData = getCookie('jwtData');
-      const user = JWTPaylodeDecode(jwtData);
+
+      try {
+        user = JWTPaylodeDecode(jwtData);
+      } catch (err) {
+        console.log(err);
+      }
+
       self.setUser(user);
     }
 
@@ -104,12 +118,19 @@ const UserEffects = types.model({}).actions(self => ({
       error,
     };
   },
-  afterCreate: () => {
+  afterCreate: async () => {
+    let jwtData;
     if (isBrowser && !self.isLoggedIn) {
-      const jwtData = getCookie('jwtData');
-      if (!jwtData) return;
-      const user = JWTPaylodeDecode(jwtData);
-      self.setUser(user);
+      const encodedJWTData = getCookie('jwtData');
+      if (!encodedJWTData) return;
+
+      try {
+        jwtData = JWTPaylodeDecode(encodedJWTData);
+      } catch (err) {
+        console.log(err);
+      }
+
+      self.setUser(jwtData);
     } else if (!isBrowser && !self.isLoggedIn) {
       if (!self.jwtData) return;
       self.setUser(self.jwtData);
