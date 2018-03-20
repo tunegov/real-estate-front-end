@@ -1,7 +1,8 @@
 import React from 'react';
 import { observer } from 'mobx-react';
 import debounce from 'debounce';
-import Router, { withRouter } from 'next/router';
+import { withRouter } from 'next/router';
+import { Router } from '../routes';
 import HeaderNav from '../components/HeaderNav';
 
 @observer
@@ -31,7 +32,7 @@ class Header extends React.Component {
       });
     }
 
-    Router.push('/');
+    Router.pushRoute('home');
   };
 
   render() {

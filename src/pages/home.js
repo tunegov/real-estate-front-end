@@ -3,6 +3,7 @@ import { observer } from 'mobx-react';
 import isBrowser from 'is-browser';
 import Layout from '../components/layout';
 import { initStore } from '../models';
+import { Router } from '../routes';
 
 @observer
 class Home extends React.Component {

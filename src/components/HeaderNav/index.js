@@ -3,13 +3,14 @@ import { observer } from 'mobx-react';
 import NProgress from 'nprogress';
 import Router from 'next/router';
 import {
-  HeaderLink as NormalHeaderLink,
+  HeaderLink as LogoAnchor,
   HeaderWrapper,
   HeaderLinkWrapper,
   Logo,
 } from './styledComponents';
+import { Link } from '../../routes';
 import NavLink from '../NavLink';
-import { HeaderLink } from '../NavLink/styledComponents';
+import { HeaderLink as NavAnchor } from '../NavLink/styledComponents';
 
 NProgress.configure({ showSpinner: false });
 NProgress.configure({ trickleSpeed: 100 });
@@ -28,23 +29,21 @@ class HeaderNav extends React.Component {
     if (this.props.isLoggedIn) {
       return (
         <HeaderLinkWrapper>
-          <NavLink href="/app/dashboard" prefetch>
-            <HeaderLink>Dashboard</HeaderLink>
+          <NavLink route="dashboard" prefetch>
+            <NavAnchor>Dashboard</NavAnchor>
           </NavLink>
-          <NavLink>
-            <HeaderLink onClick={this.props.onLogout}>Log Out</HeaderLink>
-          </NavLink>
+          <NavAnchor onClick={this.props.onLogout}>Log Out</NavAnchor>
         </HeaderLinkWrapper>
       );
     }
 
     return (
       <HeaderLinkWrapper>
-        <NavLink href="/sign-up" prefetch>
-          <HeaderLink>Sign Up</HeaderLink>
+        <NavLink route="sign-up" href="/sign-up" prefetch>
+          <NavAnchor>Sign Up</NavAnchor>
         </NavLink>
-        <NavLink href="/log-in" prefetch>
-          <HeaderLink>Log In</HeaderLink>
+        <NavLink route="log-in" href="/log-in" prefetch>
+          <NavAnchor>Log In</NavAnchor>
         </NavLink>
       </HeaderLinkWrapper>
     );
@@ -54,9 +53,9 @@ class HeaderNav extends React.Component {
     return (
       <HeaderWrapper id="header-wrapper">
         <Logo>
-          <NavLink href="/" prefetch>
-            <NormalHeaderLink>Real Estate App Logo</NormalHeaderLink>
-          </NavLink>
+          <Link route="home" prefetch>
+            <LogoAnchor>Real Estate App Logo</LogoAnchor>
+          </Link>
         </Logo>
         {this.renderLinks()}
       </HeaderWrapper>

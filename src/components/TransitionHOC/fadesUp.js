@@ -25,7 +25,7 @@ function fadesUp(Component, options = {}) {
           opacity: 1,
           onComplete: callback,
           delay: options.enterDelay || 0.3,
-          ease: Elastic.easeOut.config(1.5, 0.6)
+          ease: Elastic.easeOut.config(1.5, 0.6),
         }
       );
     }

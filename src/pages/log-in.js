@@ -4,10 +4,12 @@ import isBrowser from 'is-browser';
 import TransitionGroup from 'react-transition-group/TransitionGroup';
 import { fadesDown } from '../components/TransitionHOC';
 import { initStore } from '../models';
-import LoginForm from '../components/forms/LoginForm';
 import Layout from '../components/layout';
+import { Router } from '../routes';
+import SignUpLoginForm from '../containers/SignUpLoginForm';
+import LoginForm from '../components/forms/LoginForm';
 
-const Form = fadesDown(LoginForm);
+const Form = fadesDown(SignUpLoginForm);
 
 @observer
 class LogIn extends React.Component {
@@ -20,6 +22,10 @@ class LogIn extends React.Component {
     super(props);
     this.store = initStore(props.isServer, props.cookies);
 
+    if (this.store.UserStore.isLoggedIn) {
+      Router.pushRoute('home');
+    }
+
     // for debugging only!!!
     if (isBrowser && !window._appStore) window._appStore = this.store;
   }
@@ -28,7 +34,9 @@ class LogIn extends React.Component {
     return (
       <Layout UserStore={this.store.UserStore}>
         <TransitionGroup>
-          <Form loginUser={this.store.UserStore.loginUser} />
+          <Form loginUser={this.store.UserStore.loginUser}>
+            <LoginForm />
+          </Form>
         </TransitionGroup>
       </Layout>
     );

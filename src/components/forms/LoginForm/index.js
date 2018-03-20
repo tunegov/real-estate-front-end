@@ -1,9 +1,8 @@
 import React from 'react';
 import { observer } from 'mobx-react';
-import debounce from 'debounce';
-import Router from 'next/router';
 import { Form, FormField } from 'react-form';
 import * as emailValidator from 'email-validator';
+import { Router } from '../../../routes';
 import CustomTextFieldWrapper from '../../CustomTextFieldWrapper';
 import FormWrapper from '../../../sharedStyledComponents/FormWrapper';
 import PrimaryButton from '../../../sharedStyledComponents/PrimaryButton';
@@ -14,14 +13,6 @@ const CustomTextField = FormField(CustomTextFieldWrapper);
 
 @observer
 class LoginForm extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      errorsFromServer: '',
-    };
-    this.onSubmit = debounce(this.onSubmit, 500, true);
-  }
-
   onSubmitFailure(errs, onSubmitError) {
     console.log(onSubmitError);
   }
@@ -50,7 +41,7 @@ class LoginForm extends React.Component {
       });
     }
 
-    Router.push('/app/dashboard');
+    Router.pushRoute('home');
   };
 
   preValidate = (values, formApi) => {
@@ -84,37 +75,34 @@ class LoginForm extends React.Component {
 
   render() {
     return (
-      <div style={{ padding: '0 20px' }}>
-        {this.state.errorsFromServer ? this.renderServerErrorMessage() : null}
-        <FormWrapper>
-          <LoginSignUpFormTitle>Login</LoginSignUpFormTitle>
-          <Form
-            dontValidateOnMount
-            preValidate={this.preValidate}
-            onSubmit={this.onSubmit}
-            onSubmitFailure={this.onSubmitFailure}
-            validateError={this.errorValidator}
-          >
-            {formApi => (
-              <form onSubmit={formApi.submitForm} id="form1">
-                <CustomTextField
-                  type="email"
-                  field="email"
-                  id="email"
-                  placeholder="Email"
-                />
-                <CustomTextField
-                  type="password"
-                  field="password"
-                  id="password"
-                  placeholder="Password"
-                />
-                <PrimaryButton type="submit" width={100}>Submit</PrimaryButton>
-              </form>
-            )}
-          </Form>
-        </FormWrapper>
-      </div>
+      <FormWrapper>
+        <LoginSignUpFormTitle>Login</LoginSignUpFormTitle>
+        <Form
+          dontValidateOnMount
+          preValidate={this.preValidate}
+          onSubmit={this.props.onSubmit}
+          onSubmitFailure={this.props.onSubmitFailure}
+          validateError={this.errorValidator}
+        >
+          {formApi => (
+            <form onSubmit={formApi.submitForm} id="form1">
+              <CustomTextField
+                type="email"
+                field="email"
+                id="email"
+                placeholder="Email"
+              />
+              <CustomTextField
+                type="password"
+                field="password"
+                id="password"
+                placeholder="Password"
+              />
+              <PrimaryButton type="submit" width={100}>Submit</PrimaryButton>
+            </form>
+          )}
+        </Form>
+      </FormWrapper>
     );
   }
 }

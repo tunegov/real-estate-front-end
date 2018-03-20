@@ -8,7 +8,7 @@ export const HeaderLink = styled.a`
   transition: color 0.1s ease-in-out;
   cursor: pointer;
   padding: 5px 5px;
-  &::after {
+  &:after {
     margin-top: 6px;
     background: #54bab8;
     max-width: ${props => props.active ? '100%' : '0px'};
@@ -24,7 +24,7 @@ export const HeaderLink = styled.a`
   }
   &:hover {
     color: #fff;
-    &::after {
+    &:after {
       right: 10px;
       max-width: 100%;
     }

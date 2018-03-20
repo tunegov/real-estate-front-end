@@ -4,8 +4,10 @@ import isBrowser from 'is-browser';
 import TransitionGroup from 'react-transition-group/TransitionGroup';
 import { fadesUp } from '../components/TransitionHOC';
 import { initStore } from '../models';
-import SignUpForm from '../components/forms/SignUpForm';
 import Layout from '../components/layout';
+import { Router } from '../routes';
+import SignUpLoginForm from '../containers/SignUpLoginForm';
+import SignUpForm from '../components/forms/SignUpForm';
 
 // use higher-order-component for mount animation
 const Form = fadesUp(SignUpForm);
@@ -21,6 +23,10 @@ class SignUp extends React.Component {
     super(props);
     this.store = initStore(props.isServer, props.cookies);
 
+    if (this.store.UserStore.isLoggedIn) {
+      Router.pushRoute('home');
+    }
+
     // for debugging only!!!
     if (isBrowser && !window._appStore) window._appStore = this.store;
   }
@@ -29,7 +35,9 @@ class SignUp extends React.Component {
     return (
       <Layout UserStore={this.store.UserStore}>
         <TransitionGroup>
-          <Form signUpUser={this.store.UserStore.signUpUser} />
+          <Form loginUser={this.store.UserStore.loginUser}>
+            <SignUpForm />
+          </Form>
         </TransitionGroup>
       </Layout>
     );
