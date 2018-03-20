@@ -1,14 +1,15 @@
 import React from 'react';
 import { observer } from 'mobx-react';
-import Link from 'next/link';
 import NProgress from 'nprogress';
 import Router from 'next/router';
 import {
+  HeaderLink as NormalHeaderLink,
   HeaderWrapper,
-  HeaderLink,
   HeaderLinkWrapper,
   Logo,
 } from './styledComponents';
+import NavLink from '../NavLink';
+import { HeaderLink } from '../NavLink/styledComponents';
 
 NProgress.configure({ showSpinner: false });
 NProgress.configure({ trickleSpeed: 100 });
@@ -27,52 +28,35 @@ class HeaderNav extends React.Component {
     if (this.props.isLoggedIn) {
       return (
         <HeaderLinkWrapper>
-          <Link href="/app/dashboard" prefetch>
+          <NavLink href="/app/dashboard" prefetch>
             <HeaderLink>Dashboard</HeaderLink>
-          </Link>
-          <HeaderLink onClick={this.props.onLogout}>Log Out</HeaderLink>
+          </NavLink>
+          <NavLink>
+            <HeaderLink onClick={this.props.onLogout}>Log Out</HeaderLink>
+          </NavLink>
         </HeaderLinkWrapper>
       );
     }
 
-    switch (this.props.currentPath) {
-      case '/sign-up':
-        return (
-          <HeaderLinkWrapper>
-            <Link href="/log-in" prefetch>
-              <HeaderLink>Log In</HeaderLink>
-            </Link>
-          </HeaderLinkWrapper>
-        );
-      case '/log-in':
-        return (
-          <HeaderLinkWrapper>
-            <Link href="/sign-up" prefetch>
-              <HeaderLink>Sign Up</HeaderLink>
-            </Link>
-          </HeaderLinkWrapper>
-        );
-      default:
-        return (
-          <HeaderLinkWrapper>
-            <Link href="/sign-up" prefetch>
-              <HeaderLink>Sign Up</HeaderLink>
-            </Link>
-            <Link href="/log-in" prefetch>
-              <HeaderLink>Log In</HeaderLink>
-            </Link>
-          </HeaderLinkWrapper>
-        );
-    }
+    return (
+      <HeaderLinkWrapper>
+        <NavLink href="/sign-up" prefetch>
+          <HeaderLink>Sign Up</HeaderLink>
+        </NavLink>
+        <NavLink href="/log-in" prefetch>
+          <HeaderLink>Log In</HeaderLink>
+        </NavLink>
+      </HeaderLinkWrapper>
+    );
   };
 
   render() {
     return (
       <HeaderWrapper id="header-wrapper">
         <Logo>
-          <Link href="/" prefetch>
-            <HeaderLink>Real Estate App Logo</HeaderLink>
-          </Link>
+          <NavLink href="/" prefetch>
+            <NormalHeaderLink>Real Estate App Logo</NormalHeaderLink>
+          </NavLink>
         </Logo>
         {this.renderLinks()}
       </HeaderWrapper>

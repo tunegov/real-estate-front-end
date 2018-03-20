@@ -26,7 +26,7 @@ class LogIn extends React.Component {
 
   render() {
     return (
-      <Layout currentPath={this.props.url.pathname} UserStore={this.store.UserStore}>
+      <Layout UserStore={this.store.UserStore}>
         <TransitionGroup>
           <Form loginUser={this.store.UserStore.loginUser} />
         </TransitionGroup>

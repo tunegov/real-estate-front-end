@@ -1,8 +1,7 @@
 import React from 'react';
 import { observer } from 'mobx-react';
-import axios from 'axios';
 import debounce from 'debounce';
-import Router from 'next/router';
+import Router, { withRouter } from 'next/router';
 import HeaderNav from '../components/HeaderNav';
 
 @observer
@@ -39,11 +38,12 @@ class Header extends React.Component {
     return (
       <HeaderNav
         isLoggedIn={this.props.isLoggedIn}
-        currentPath={this.props.currentPath}
         onLogout={this.onLogout}
       />
     );
   }
 }
 
-export default Header;
+// use HOC to access router object inside of component
+// useful for accessing props.router.pathname
+export default withRouter(Header);

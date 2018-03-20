@@ -21,7 +21,7 @@ class Home extends React.Component {
 
   render() {
     return (
-      <Layout currentPath={this.props.url.pathname} UserStore={this.store.UserStore} >
+      <Layout UserStore={this.store.UserStore} >
         <div>
           <h1>We are at home now...</h1>
         </div>

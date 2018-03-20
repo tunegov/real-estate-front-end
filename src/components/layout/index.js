@@ -24,7 +24,7 @@ class Layout extends Component {
         {/* <DevTools position={{ top: 0, left: 30 }} /> */}
         <ThemeProvider theme={themeStyles}>
           <div>
-            <Header currentPath={this.props.currentPath} isLoggedIn={isLoggedIn} logoutUser={logoutUser} />
+            <Header isLoggedIn={isLoggedIn} logoutUser={logoutUser} />
             <AppContentWrapper>
               {this.props.children}
             </AppContentWrapper>
