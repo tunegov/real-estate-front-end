@@ -6,7 +6,7 @@ const compress = require('compression');
 const cookieParser = require('cookie-parser');
 const router = require('./back-end/routes');
 const app = require('./nextExport');
-require('dotenv').config();
+require('./config/keys');
 
 helmet.hsts({
   // ...
