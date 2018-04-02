@@ -23,10 +23,16 @@ class SignUpForm extends React.Component {
   };
 
   errorValidator = values => ({
-    fullName:
-      !values.fullName ||
-        values.fullName.length < 3 ||
-        values.fullName.length > 30
+    firstName:
+      !values.firstName ||
+        values.firstName.length < 3 ||
+        values.firstName.length > 30
+        ? 'Between 3 and 30 characters'
+        : null,
+    lastName:
+      !values.lastName ||
+        values.lastName.length < 3 ||
+        values.lastName.length > 30
         ? 'Between 3 and 30 characters'
         : null,
     email:
@@ -70,9 +76,14 @@ class SignUpForm extends React.Component {
           {formApi => (
             <form onSubmit={formApi.submitForm} id="form1">
               <CustomTextField
-                field="fullName"
-                id="full-name"
-                placeholder="Full Name"
+                field="firstName"
+                id="first-name"
+                placeholder="First Name"
+              />
+              <CustomTextField
+                field="lastName"
+                id="last-name"
+                placeholder="Last Name"
               />
               <CustomTextField
                 type="email"

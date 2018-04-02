@@ -5,7 +5,7 @@ import { Router } from '../routes';
 import ServerErrorMessage from '../sharedStyledComponents/ServerErrorMessage';
 
 @observer
-class LoginForm extends React.Component {
+class SignUpLoginForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -20,11 +20,11 @@ class LoginForm extends React.Component {
   }
 
   onSubmit = async (values, event) => {
-    const { email, password } = values;
+    const formSubmitFuncName = this.props.formType === 'sign-up' ? 'signUpUser' : 'loginUser';
     let res;
 
     try {
-      res = await this.props.loginUser({ email, password });
+      res = await this.props[formSubmitFuncName](values);
     } catch (err) {
       console.log(err);
     }
@@ -62,4 +62,4 @@ class LoginForm extends React.Component {
   }
 }
 
-export default LoginForm;
+export default SignUpLoginForm;

@@ -3,20 +3,23 @@ import createUserStore from './UserStore';
 
 let emittedStore;
 
-export function initStore(isServer, cookies) {
-  const Store = {
+function createStore(cookieJWTData = null) {
+  return {
     UIStore,
     // cookies on server are added to access cookies
     // and create UserStore server-side
-    UserStore: createUserStore(cookies),
+    UserStore: createUserStore(cookieJWTData),
   };
+}
 
+export function initStore(isServer, cookieJWTData = null) {
   if (isServer) {
-    emittedStore = Store;
+    emittedStore = createStore(cookieJWTData);
     return emittedStore;
   }
   if (!emittedStore) {
-    emittedStore = Store;
+    emittedStore = createStore(cookieJWTData);
   }
+
   return emittedStore;
 }

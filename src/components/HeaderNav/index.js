@@ -2,6 +2,7 @@ import React from 'react';
 import { observer } from 'mobx-react';
 import NProgress from 'nprogress';
 import Router from 'next/router';
+import isBrowser from 'is-browser';
 import {
   HeaderLink as LogoAnchor,
   HeaderWrapper,
@@ -14,14 +15,15 @@ import { HeaderLink as NavAnchor } from '../NavLink/styledComponents';
 
 NProgress.configure({ showSpinner: false });
 NProgress.configure({ trickleSpeed: 100 });
-NProgress.configure({ parent: '#header-wrapper' });
 
-Router.onRouteChangeStart = url => {
-  console.log(`Loading: ${url}`);
-  NProgress.start();
-};
-Router.onRouteChangeComplete = () => NProgress.done();
-Router.onRouteChangeError = () => NProgress.done();
+if (isBrowser) {
+  Router.onRouteChangeStart = url => {
+    console.log(`Loading: ${url}`);
+    NProgress.start();
+  };
+  Router.onRouteChangeComplete = () => NProgress.done();
+  Router.onRouteChangeError = () => NProgress.done();
+}
 
 @observer
 class HeaderNav extends React.Component {
