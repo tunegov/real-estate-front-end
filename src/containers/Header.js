@@ -38,6 +38,7 @@ class Header extends React.Component {
   render() {
     return (
       <HeaderNav
+        isApp={this.props.isApp}
         isLoggedIn={this.props.isLoggedIn}
         onLogout={this.onLogout}
       />

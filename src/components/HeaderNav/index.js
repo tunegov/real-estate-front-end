@@ -1,8 +1,5 @@
 import React from 'react';
 import { observer } from 'mobx-react';
-import NProgress from 'nprogress';
-import Router from 'next/router';
-import isBrowser from 'is-browser';
 import {
   HeaderLink as LogoAnchor,
   HeaderWrapper,
@@ -10,20 +7,8 @@ import {
   Logo,
 } from './styledComponents';
 import { Link } from '../../routes';
-import NavLink from '../NavLink';
-import { HeaderLink as NavAnchor } from '../NavLink/styledComponents';
-
-NProgress.configure({ showSpinner: false });
-NProgress.configure({ trickleSpeed: 100 });
-
-if (isBrowser) {
-  Router.onRouteChangeStart = url => {
-    console.log(`Loading: ${url}`);
-    NProgress.start();
-  };
-  Router.onRouteChangeComplete = () => NProgress.done();
-  Router.onRouteChangeError = () => NProgress.done();
-}
+import HeaderNavLink from '../HeaderNavLink';
+import { HeaderLink as NavAnchor } from '../HeaderNavLink/styledComponents';
 
 @observer
 class HeaderNav extends React.Component {
@@ -31,9 +16,9 @@ class HeaderNav extends React.Component {
     if (this.props.isLoggedIn) {
       return (
         <HeaderLinkWrapper>
-          <NavLink route="dashboard" prefetch>
+          <HeaderNavLink route="dashboard" prefetch>
             <NavAnchor>Dashboard</NavAnchor>
-          </NavLink>
+          </HeaderNavLink>
           <NavAnchor onClick={this.props.onLogout}>Log Out</NavAnchor>
         </HeaderLinkWrapper>
       );
@@ -41,19 +26,19 @@ class HeaderNav extends React.Component {
 
     return (
       <HeaderLinkWrapper>
-        <NavLink route="sign-up" href="/sign-up" prefetch>
+        <HeaderNavLink route="sign-up" href="/sign-up" prefetch>
           <NavAnchor>Sign Up</NavAnchor>
-        </NavLink>
-        <NavLink route="log-in" href="/log-in" prefetch>
+        </HeaderNavLink>
+        <HeaderNavLink route="log-in" href="/log-in" prefetch>
           <NavAnchor>Log In</NavAnchor>
-        </NavLink>
+        </HeaderNavLink>
       </HeaderLinkWrapper>
     );
   };
 
   render() {
     return (
-      <HeaderWrapper id="header-wrapper">
+      <HeaderWrapper id="header-wrapper" isApp={this.props.isApp}>
         <Logo>
           <Link route="home" prefetch>
             <LogoAnchor>Real Estate App Logo</LogoAnchor>
