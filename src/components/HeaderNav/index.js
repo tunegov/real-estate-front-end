@@ -5,7 +5,7 @@ import {
   HeaderWrapper,
   HeaderLinkWrapper,
   Logo,
-} from './styledComponents';
+} from '../../sharedStyledComponents/headerStyles';
 import { Link } from '../../routes';
 import HeaderNavLink from '../HeaderNavLink';
 import { HeaderLink as NavAnchor } from '../HeaderNavLink/styledComponents';

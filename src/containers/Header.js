@@ -4,6 +4,7 @@ import debounce from 'debounce';
 import { withRouter } from 'next/router';
 import { Router } from '../routes';
 import HeaderNav from '../components/HeaderNav';
+import AppHeaderNav from '../components/AppHeaderNav';
 
 @observer
 class Header extends React.Component {
@@ -11,8 +12,18 @@ class Header extends React.Component {
     super(props);
     this.state = {
       errorsFromServer: '',
+      appTopBurgerMenuOpen: false,
     };
     this.onLogout = debounce(this.onLogout, 500, true);
+    this.renderTopNav = this.renderTopNav.bind(this);
+    this.onClickBurgerMenu = this.onClickBurgerMenu.bind(this);
+  }
+
+  onClickBurgerMenu() {
+    this.setState({
+      ...this.state,
+      appTopBurgerMenuOpen: !this.state.appTopBurgerMenuOpen,
+    });
   }
 
   onLogout = async () => {
@@ -35,7 +46,20 @@ class Header extends React.Component {
     Router.pushRoute('home');
   };
 
-  render() {
+  renderTopNav() {
+    if (this.props.isApp) {
+      return (
+        <AppHeaderNav
+          appTopBurgerMenuOpen={this.state.appTopBurgerMenuOpen}
+          onClickBurgerMenu={this.onClickBurgerMenu}
+          currentPath={this.props.router.pathname}
+          isApp={this.props.isApp}
+          isLoggedIn={this.props.isLoggedIn}
+          onLogout={this.onLogout}
+        />
+      );
+    }
+
     return (
       <HeaderNav
         isApp={this.props.isApp}
@@ -43,6 +67,10 @@ class Header extends React.Component {
         onLogout={this.onLogout}
       />
     );
+  }
+
+  render() {
+    return this.renderTopNav();
   }
 }
 

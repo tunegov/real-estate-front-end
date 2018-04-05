@@ -1,6 +1,4 @@
-import css from 'styled-jsx/css';
-
-const globalStyles = css.global`
+const globalStyles = `
   html {
     height: 100%;
   }

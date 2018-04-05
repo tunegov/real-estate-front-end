@@ -44,6 +44,8 @@ class Layout extends Component {
           <title>{this.props.title ? this.props.title : 'Real Estate App'}</title>
           {/* Import CSS for nprogress */}
           <link rel="stylesheet" type="text/css" href="/static/nprogress.css" />
+          <link href="https://fonts.googleapis.com/css?family=Alegreya|Alegreya+Sans" rel="stylesheet" />
+          <style dangerouslySetInnerHTML={{ __html: globalStyles }}></style>
         </Head>
         {/* <DevTools position={{ top: 0, left: 30 }} /> */}
         <ThemeProvider theme={themeStyles}>

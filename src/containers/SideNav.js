@@ -13,7 +13,7 @@ class Header extends React.Component {
 
   render() {
     return (
-      <SideNavContainer>That side nav though!!!</SideNavContainer>
+      <SideNavContainer>That side nav though!!!...</SideNavContainer>
     );
   }
 }
