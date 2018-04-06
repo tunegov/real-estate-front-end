@@ -101,7 +101,7 @@ function hyphenate(str) {
 /**
  * Replaces hyphens with spaces. (only hyphens between word chars)
  */
-function unhyphenate(str) {
+export function unhyphenate(str) {
   return str.replace(/(\w)(-)(\w)/g, '$1 $3');
 }
 

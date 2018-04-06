@@ -11,7 +11,7 @@ const normalHeaderSpecificStyles = `
 const appHeaderSpecificStyles = `
   width: calc(100% - 300px);
   background-color: ${theme.accentColor};
-  color: ${theme.lightFontColor}
+  color: ${theme.lightFontColor};
   justify-content: center;
 `;
 

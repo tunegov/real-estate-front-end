@@ -9,7 +9,7 @@ import {
   AppHeaderBellIconWrapper,
 } from '../../sharedStyledComponents/headerStyles';
 import PopupMenu from '../PopupMenu';
-import { capitalize } from '../../utils/stringUtils';
+import { capitalize, unhyphenate } from '../../utils/stringUtils';
 
 @observer
 class AppHeaderNav extends Component {
@@ -23,7 +23,7 @@ class AppHeaderNav extends Component {
           <MenuIcon color="rgba(35,25,25,.58)" size={38} />
           {this.props.appTopBurgerMenuOpen ? <PopupMenu onLogout={this.props.onLogout} /> : null}
         </AppHeaderMenuIconWrapper>
-        <AppHeaderTitle>{capitalize(path)}</AppHeaderTitle>
+        <AppHeaderTitle>{capitalize(unhyphenate(path))}</AppHeaderTitle>
         <AppHeaderBellIconWrapper>
           <BellIcon color="rgba(35,25,25,.58)" size={36} />
         </AppHeaderBellIconWrapper>
