@@ -9,7 +9,7 @@ class SideNavLinkItem extends Component {
     const { iconFontSize, icon: Icon } = this.props;
     let active;
 
-    if (this.props.currentPath.endsWith(this.props.route)) {
+    if (this.props.currentPath.split('/')[2] === this.props.route) {
       active = true;
     } else {
       active = false;

@@ -8,7 +8,7 @@ const globalStyles = `
     min-width: 100%;
     margin: 0;
     -webkit-font-smoothing: antialiased;
-    background-color: #F9F9F9;
+    background-color: #FFF;
   }
   body > div {
     display: flex;

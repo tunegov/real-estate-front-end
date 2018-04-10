@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const SideNavHeaderWrapper = styled.div`
   display: table;
   min-width: 100%;
-  height: 100px;
+  height: 80px;
   background-color: rgba(35,35,35,.58);
   border: none;
   border-bottom: 1px solid #979797;

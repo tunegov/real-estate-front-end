@@ -3,9 +3,9 @@ import { darken } from 'polished';
 
 export const SideNavLinkItemWrapper = styled.div`
   display: table;
-  height: 74px;
+  height: 60px;
   min-width: 100%;
-  font-size: 26px;
+  font-size: 22px;
   color: ${props => darken(0.1, props.theme.lightFontColor)};
   cursor: pointer;
   background-color: ${props => props.active ? darken(0.05, props.theme.primaryColor) : 'initial'};

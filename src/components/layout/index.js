@@ -6,6 +6,7 @@ import NProgress from 'nprogress';
 import Router, { withRouter } from 'next/router';
 import isBrowser from 'is-browser';
 import { ThemeProvider } from 'styled-components';
+import withRoot from '../../lib/withRoot';
 import HeaderNav from '../../containers/Header';
 import SideNav from '../../containers/SideNav';
 import AppContentWrapper from '../../sharedStyledComponents/AppContentWrapper';
@@ -27,12 +28,6 @@ if (isBrowser) {
 
 @observer
 class Layout extends Component {
-  renderNav(willRenderSideNav) {
-    const { isLoggedIn, logoutUser } = this.props.UserStore;
-
-    return willRenderSideNav ? <SideNav /> : <HeaderNav isLoggedIn={isLoggedIn} logoutUser={logoutUser} />;
-  }
-
   render() {
     const { pathname } = this.props.router;
     const { isLoggedIn, logoutUser } = this.props.UserStore;
@@ -45,6 +40,11 @@ class Layout extends Component {
           {/* Import CSS for nprogress */}
           <link rel="stylesheet" type="text/css" href="/static/nprogress.css" />
           <link href="https://fonts.googleapis.com/css?family=Alegreya|Alegreya+Sans" rel="stylesheet" />
+
+          {/* render material ui specific fonts on app pages */}
+          {isApp ? <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" /> : null}
+          {isApp ? <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" /> : null}
+
           <style dangerouslySetInnerHTML={{ __html: globalStyles }}></style>
         </Head>
         {/* <DevTools position={{ top: 0, left: 30 }} /> */}
@@ -59,16 +59,9 @@ class Layout extends Component {
             </HeaderAndAppContentWrapper>
           </Container>
         </ThemeProvider>
-        <style jsx global>{`
-          body { 
-            ${this.props.backgroundColor ? 'background-color: ' + this.props.backgroundColor + ';' : null}
-            ${this.props.backgroundImage ? 'background-image: ' + this.props.backgroundImage + ';' : null}
-          }
-        `}</style>
-        <style jsx global>{globalStyles}</style>
       </div>
     );
   }
 }
 
-export default withRouter(Layout);
+export default withRouter(withRoot(Layout));

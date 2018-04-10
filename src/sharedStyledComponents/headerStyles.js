@@ -1,18 +1,25 @@
 import styled from 'styled-components';
+import { darken, lighten } from 'polished';
 import theme from '../themeStyles';
 
 const normalHeaderSpecificStyles = `
+  height: 60px;
   width: 100%;
   justify-content: flex-end;
   font-size: 14px;
   background-color: ${theme.primaryColor};
+  box-shadow: 0px 2px 14px -1px rgba(0, 0, 0, 0.12);
 `;
 
 const appHeaderSpecificStyles = `
-  width: calc(100% - 300px);
-  background-color: ${theme.accentColor};
-  color: ${theme.lightFontColor};
+  height: 40px;
+  width: calc(100% - 280px);
+  background-color: ${theme.primaryColor};
+  color: ${theme.darkFontColor};
   justify-content: center;
+  background-color: #fff;
+
+  box-shadow: 0px 2px 8px -1px rgba(0, 0, 0, 0.06);
 `;
 
 export const HeaderWrapper = styled.header`
@@ -20,13 +27,11 @@ export const HeaderWrapper = styled.header`
   position: fixed;
   display: flex;
   top: 0;
-  height: 60px;
   padding: 15px 50px;
   font-weight: 800;
   font-family: Helvetica Neue;
   letter-spacing: 1px;
   z-index: 999;
-  box-shadow: 0px 2px 14px -1px rgba(0, 0, 0, 0.12);
   ${props => props.isApp ? appHeaderSpecificStyles : normalHeaderSpecificStyles}
 `;
 
@@ -54,8 +59,10 @@ export const Logo = styled.div`
 `;
 
 export const AppHeaderTitle = styled.div`
-  font-size: 24px;
+  margin-top: -5px;
+  font-size: 18px;
   font-family: ${props => props.theme.sansSerifFont};
+  color: ${props => props.theme.primaryColor};
 `;
 
 export const AppHeaderMenuIconWrapper = styled.div`

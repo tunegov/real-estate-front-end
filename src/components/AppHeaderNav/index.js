@@ -20,12 +20,12 @@ class AppHeaderNav extends Component {
     return (
       <HeaderWrapper isApp={this.props.isApp}>
         <AppHeaderMenuIconWrapper onClick={this.props.onClickBurgerMenu}>
-          <MenuIcon color="rgba(35,25,25,.58)" size={38} />
+          <MenuIcon color="rgba(35,35,35,.8)" size={30} />
           {this.props.appTopBurgerMenuOpen ? <PopupMenu onLogout={this.props.onLogout} /> : null}
         </AppHeaderMenuIconWrapper>
         <AppHeaderTitle>{capitalize(unhyphenate(path))}</AppHeaderTitle>
         <AppHeaderBellIconWrapper>
-          <BellIcon color="rgba(35,25,25,.58)" size={36} />
+          <BellIcon color="rgba(35,35,35,.8)" size={26} />
         </AppHeaderBellIconWrapper>
       </HeaderWrapper>
     );
