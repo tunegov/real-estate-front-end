@@ -1,10 +1,11 @@
 import React from 'react';
 import { observer } from 'mobx-react';
 import isBrowser from 'is-browser';
-import Layout from '../../../components/layout';
+import Layout from '../../../components/Layout';
 import { initStore } from '../../../models';
 import withData from '../../../lib/withData';
 import { Router } from '../../../routes';
+import SubmitDealForm from '../../../containers/SubmitDealForm';
 
 @observer
 class SubmitADeal extends React.Component {
@@ -26,9 +27,10 @@ class SubmitADeal extends React.Component {
   }
 
   render() {
+    const { UserStore } = this.store;
     return (
-      <Layout UserStore={this.store.UserStore}>
-        <h1>We are at the submit a deal page now!</h1>
+      <Layout UserStore={UserStore}>
+        <SubmitDealForm userUUID={UserStore.uuid} />
       </Layout>
     );
   }

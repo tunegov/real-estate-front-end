@@ -1,38 +1,31 @@
 import styled from 'styled-components';
-import { darken } from 'polished';
+import { darken, lighten } from 'polished';
 
 export const SideNavLinkItemWrapper = styled.div`
   display: table;
-  height: 60px;
+  height: 40px;
   min-width: 100%;
-  font-size: 22px;
-  color: ${props => darken(0.1, props.theme.lightFontColor)};
+  padding-left: 15px;
+  padding-right: 15px;
+  font-size: 14px;
+  font-family: Roboto;
+  font-weight: 500;
+  color: rgba(0, 0, 0, 0.87);
   cursor: pointer;
-  background-color: ${props => props.active ? darken(0.05, props.theme.primaryColor) : 'initial'};
-  box-shadow: ${props => props.active ? 'inset 0px 0px 8px 0px rgba(0,0,0,0.75)' : 'none'};
-  transition: color .2s ease-in-out;
+  background-color: ${props => props.active ? 'rgba(0, 0, 0, 0.12) !important' : 'initial'};
   &:hover {
-    color: ${props => props.theme.lightFontColor};
-    background-color: ${props => darken(0.05, props.theme.primaryColor)};
-    box-shadow: inset 0px 0px 8px 0px rgba(0,0,0,0.75);
+    background-color: ${darken(0.05, '#fff')};
   }
 }
 `;
 
 export const SideNavLinkItemAnchor = styled.a`
-vertical-align: middle;
-display: table-cell;
-min-width: 100 %;
-text-decoration: none;
-text-align: center;
-`;
-
-export const TextSpan = styled.span`
-  display: relative;
+  vertical-align: middle;
+  display: table-cell;
+  min-width: 100%;
+  text-decoration: none;
 `;
 
 export const IconWrapper = styled.span`
-  position: relative;
-  top: -3px;
-  left: -15px;
+  margin-right: 10px;
 `;

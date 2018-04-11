@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { observer } from 'mobx-react';
 import { Link } from '../../routes';
-import { SideNavLinkItemWrapper, SideNavLinkItemAnchor, TextSpan, IconWrapper } from './styledComponents';
+import { SideNavLinkItemWrapper, SideNavLinkItemAnchor, IconWrapper } from './styledComponents';
 
 @observer
 class SideNavLinkItem extends Component {
@@ -19,12 +19,10 @@ class SideNavLinkItem extends Component {
       <SideNavLinkItemWrapper active={active}>
         <Link route={this.props.route}>
           <SideNavLinkItemAnchor>
-            <TextSpan>
-              <IconWrapper>
-                {Icon ? <Icon size={iconFontSize || 28} color="#F0F0F0" /> : null}
-              </IconWrapper>
-              {this.props.name}
-            </TextSpan>
+            <IconWrapper>
+              {Icon ? <Icon size={iconFontSize || 22} color="rgba(0, 0, 0, 0.87)" /> : null}
+            </IconWrapper>
+            {this.props.name}
           </SideNavLinkItemAnchor>
         </Link>
       </SideNavLinkItemWrapper>

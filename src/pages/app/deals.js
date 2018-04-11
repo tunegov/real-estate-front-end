@@ -2,7 +2,7 @@ import React from 'react';
 import { observer } from 'mobx-react';
 import isBrowser from 'is-browser';
 import { withStyles } from 'material-ui/styles';
-import Layout from '../../components/layout';
+import Layout from '../../components/Layout';
 import { initStore } from '../../models';
 import withData from '../../lib/withData';
 import { Router, Link } from '../../routes';

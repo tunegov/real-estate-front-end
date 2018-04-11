@@ -7,9 +7,11 @@ import Router, { withRouter } from 'next/router';
 import isBrowser from 'is-browser';
 import { ThemeProvider } from 'styled-components';
 import withRoot from '../../lib/withRoot';
+import HeaderNav from '../../containers/Header';
+import AppContentWrapper from '../../sharedStyledComponents/AppContentWrapper';
 import themeStyles from '../../themeStyles';
 import globalStyles from '../../globalStyles';
-import InnerAppLayout from '../InnerAppLayout';
+import { Container, HeaderAndAppContentWrapper } from './styledComponents';
 
 NProgress.configure({ showSpinner: false });
 NProgress.configure({ trickleSpeed: 100 });
@@ -46,9 +48,14 @@ class Layout extends Component {
         </Head>
         {/* <DevTools position={{ top: 0, left: 30 }} /> */}
         <ThemeProvider theme={themeStyles}>
-          <InnerAppLayout logoutUser={logoutUser}>
-            {this.props.children}
-          </InnerAppLayout>
+          <Container isApp={isApp}>
+            <HeaderAndAppContentWrapper>
+              <HeaderNav isLoggedIn={isLoggedIn} logoutUser={logoutUser} isApp={isApp} />
+              <AppContentWrapper isApp={isApp}>
+                {this.props.children}
+              </AppContentWrapper>
+            </HeaderAndAppContentWrapper>
+          </Container>
         </ThemeProvider>
       </div>
     );
