@@ -31,6 +31,9 @@ const styles = theme => ({
     marginTop: theme.spacing.unit * 2,
     textAlign: 'center',
   },
+  dialogContent: {
+    paddingTop: '32px',
+  },
 });
 
 @observer
@@ -54,10 +57,7 @@ class SubmitDealDialogBox extends Component {
           New Deal
         </DialogTitle>
         <Divider />
-        <DialogContent>
-          <DialogContentText classes={{ root: classes.formSubheader }}>
-            Fill out the information for your new deal.
-          </DialogContentText>
+        <DialogContent classes={{ root: classes.dialogContent }}>
           <SubmitDealForm userUUID={this.props.userUUID} />
         </DialogContent>
         <DialogActions classes={{ root: classes.dialogActions }}>

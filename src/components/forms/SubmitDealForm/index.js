@@ -57,7 +57,7 @@ const styles = theme => ({
     width: '100%',
     textAlign: 'center',
     paddingLeft: '16px',
-    paddingTop: '64px',
+    paddingTop: '82px',
   },
   h3: {
     fontWeight: theme.typography.fontWeightMedium,

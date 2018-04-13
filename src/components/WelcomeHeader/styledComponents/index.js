@@ -13,6 +13,10 @@ export const JumbotronImg = styled.img`
   right: 0;
   top: 0; 
   z-index: -2;
+  height: calc(100vh - 60px);
+  width: 100%;
+  display: block;
+  object-fit: cover;
 `;
 
 export const JumbotronImgOverlay = styled.div`

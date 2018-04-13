@@ -40,7 +40,7 @@ class Layout extends Component {
     };
 
     return (
-      <div>
+      <div style={{ top: 0, bottom: 0, left: 0, right: 0 }}>
         <Head>
           <title>{this.props.title ? this.props.title : 'Real Estate App'}</title>
           {/* Import CSS for nprogress */}

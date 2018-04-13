@@ -9,6 +9,7 @@ const globalStyles = `
     margin: 0;
     -webkit-font-smoothing: antialiased;
     background-color: #FFF;
+    overflow: hidden;
   }
   body > div {
     display: flex;
