@@ -7,4 +7,5 @@ export const Container = styled.div`
 
 export const HeaderAndAppContentWrapper = styled.div`
   width: 100%;
+  height: 100%;
 `;

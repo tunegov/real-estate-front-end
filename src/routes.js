@@ -10,6 +10,10 @@ routes
   .add('client-center', '/app/client-center', 'app/client-center')
   .add('log-in', '/log-in')
   .add('sign-up', '/sign-up')
+  .add('listings', '/listings')
+  .add('new-developments', '/new-developments')
+  .add('roommates', '/roommates')
+  .add('about', '/about')
   .add('submit-a-deal', '/app/deals/submit-a-deal', '/app/deals/submit-a-deal');
 
 module.exports = routes;

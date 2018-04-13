@@ -29,7 +29,7 @@ class Dashboard extends React.Component {
     return (
       <Layout UserStore={this.store.UserStore}>
         <div>
-          <h1>We are at the dashboard now!</h1>
+          <h1>We are at the dashboard now!...</h1>
         </div>
       </Layout>
     );

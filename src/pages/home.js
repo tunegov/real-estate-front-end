@@ -4,6 +4,7 @@ import isBrowser from 'is-browser';
 import Layout from '../components/FrontEndLayout';
 import { initStore } from '../models';
 import withData from '../lib/withData';
+import JumbotronHeader from '../containers/JumbotronHeader';
 
 @observer
 class Home extends React.Component {
@@ -23,9 +24,7 @@ class Home extends React.Component {
   render() {
     return (
       <Layout UserStore={this.store.UserStore} >
-        <div>
-          <h1>We are at home now...</h1>
-        </div>
+        <JumbotronHeader />
       </Layout>
     );
   }

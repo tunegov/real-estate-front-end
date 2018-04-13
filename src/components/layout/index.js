@@ -27,8 +27,17 @@ if (isBrowser) {
 class Layout extends Component {
   render() {
     const { pathname } = this.props.router;
-    const { isLoggedIn, logoutUser } = this.props.UserStore;
+    const { isLoggedIn, logoutUser: logout } = this.props.UserStore;
     const isApp = pathname.startsWith('/app');
+    const logoutUser = () => {
+      const { error } = logout();
+      if (error) {
+        // TODO: add user notification of an logout error
+        console.log(error);
+        return;
+      }
+      Router.pushRoute('home');
+    };
 
     return (
       <div>

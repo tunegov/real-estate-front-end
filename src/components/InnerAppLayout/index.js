@@ -14,6 +14,7 @@ const styles = theme => ({
     alignContent: 'center',
   },
   content: {
+    position: 'relative',
     flexGrow: 1,
     backgroundColor: theme.palette.background.default,
     padding: theme.spacing.unit * 3,
@@ -45,7 +46,7 @@ class ClippedDrawer extends React.Component {
     return (
       <div className={classes.root}>
         <AppTopNav currentPath={currentPath} logoutUser={logoutUser} toggleDrawer={this.toggleDrawer} />
-        <SideNav currentPath={currentPath} drawerOpen={this.state.drawerOpen} toggleDrawer={this.toggleDrawer} />
+        <SideNav currentPath={currentPath} drawerOpen={this.state.drawerOpen} toggleDrawer={this.toggleDrawer} logoutUser={logoutUser} />
         <main className={classes.content}>
           <div className={classes.toolbar} />
           {this.props.children}

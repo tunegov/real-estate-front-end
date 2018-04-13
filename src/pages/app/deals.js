@@ -1,12 +1,11 @@
 import React from 'react';
 import { observer } from 'mobx-react';
 import isBrowser from 'is-browser';
-import { withStyles } from 'material-ui/styles';
 import Layout from '../../components/Layout';
 import { initStore } from '../../models';
 import withData from '../../lib/withData';
-import { Router, Link } from '../../routes';
-import MainBtnAnchor from '../../sharedStyledComponents/MainBtnAnchor';
+import { Router } from '../../routes';
+import DealsContainer from '../../containers/Deals';
 
 @observer
 class Deals extends React.Component {
@@ -25,15 +24,22 @@ class Deals extends React.Component {
 
     // for debugging only!!!
     if (isBrowser && !window._appStore) window._appStore = this.store;
+
+    this.state = {
+      submitDealDialogOpen: false,
+    };
   }
 
+  toggleDialogBoxOpen = () => {
+    this.setState({ ...this.state, submitDealDialogOpen: !this.state.submitDealDialogOpen });
+  };
+
   render() {
+    const { submitDealDialogOpen } = this.state;
+
     return (
       <Layout UserStore={this.store.UserStore}>
-        <Link route="submit-a-deal">
-          <MainBtnAnchor>Submit A Deal</MainBtnAnchor>
-        </Link>
-        <h1>We are at the deals page now!</h1>
+        <DealsContainer submitDealDialogOpen={submitDealDialogOpen} toggleDialogBoxOpen={this.toggleDialogBoxOpen} userUUID={this.store.UserStore.uuid} />
       </Layout>
     );
   }

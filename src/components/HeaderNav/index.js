@@ -3,7 +3,8 @@ import { observer } from 'mobx-react';
 import {
   HeaderLink as LogoAnchor,
   HeaderWrapper,
-  HeaderLinkWrapper,
+  LeftHeaderLinkWrapper,
+  MiddleHeaderLinkWrapper,
   Logo,
 } from '../../sharedStyledComponents/headerStyles';
 import { Link } from '../../routes';
@@ -15,26 +16,43 @@ class HeaderNav extends React.Component {
   renderLinks = () => {
     if (this.props.isLoggedIn) {
       return (
-        <HeaderLinkWrapper>
+        <LeftHeaderLinkWrapper>
           <HeaderNavLink route="dashboard" prefetch>
             <NavAnchor>Dashboard</NavAnchor>
           </HeaderNavLink>
           <NavAnchor onClick={this.props.onLogout}>Log Out</NavAnchor>
-        </HeaderLinkWrapper>
+        </LeftHeaderLinkWrapper>
       );
     }
 
     return (
-      <HeaderLinkWrapper>
+      <LeftHeaderLinkWrapper>
         <HeaderNavLink route="sign-up" href="/sign-up" prefetch>
           <NavAnchor>Sign Up</NavAnchor>
         </HeaderNavLink>
         <HeaderNavLink route="log-in" href="/log-in" prefetch>
           <NavAnchor>Log In</NavAnchor>
         </HeaderNavLink>
-      </HeaderLinkWrapper>
+      </LeftHeaderLinkWrapper>
     );
   };
+
+  renderMiddleLinks = () => (
+    <MiddleHeaderLinkWrapper>
+      <HeaderNavLink route="listings" href="/listings" prefetch>
+        <NavAnchor>Listings</NavAnchor>
+      </HeaderNavLink>
+      <HeaderNavLink route="new-developments" href="/new-developments" prefetch>
+        <NavAnchor>New Developments</NavAnchor>
+      </HeaderNavLink>
+      <HeaderNavLink route="roommates" href="/roommates" prefetch>
+        <NavAnchor>Roommates</NavAnchor>
+      </HeaderNavLink>
+      <HeaderNavLink route="about" href="/about" prefetch>
+        <NavAnchor>About</NavAnchor>
+      </HeaderNavLink>
+    </MiddleHeaderLinkWrapper>
+  );
 
   render() {
     return (
@@ -44,6 +62,7 @@ class HeaderNav extends React.Component {
             <LogoAnchor>Real Estate App Logo</LogoAnchor>
           </Link>
         </Logo>
+        {this.renderMiddleLinks()}
         {this.renderLinks()}
       </HeaderWrapper>
     );

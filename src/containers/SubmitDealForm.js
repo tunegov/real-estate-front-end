@@ -23,6 +23,8 @@ class SubmitDealFormContainer extends Component {
       <Query query={userQuery} variables={{ uuid }}>
         {({ loading, error, data }) => {
           if (loading) return null;
+          // TODO: change the error message to a generic
+          // 'error connecting to server' message
           if (error) return `Error!: ${error}`;
 
           return (

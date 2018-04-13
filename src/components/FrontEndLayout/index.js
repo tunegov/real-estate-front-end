@@ -31,6 +31,7 @@ class Layout extends Component {
     const { pathname } = this.props.router;
     const { isLoggedIn, logoutUser } = this.props.UserStore;
     const isApp = pathname.startsWith('/app');
+    console.log(pathname)
 
     return (
       <div>
@@ -50,7 +51,7 @@ class Layout extends Component {
         <ThemeProvider theme={themeStyles}>
           <Container isApp={isApp}>
             <HeaderAndAppContentWrapper>
-              <HeaderNav isLoggedIn={isLoggedIn} logoutUser={logoutUser} isApp={isApp} />
+              <HeaderNav isLoggedIn={isLoggedIn} logoutUser={logoutUser} />
               <AppContentWrapper isApp={isApp}>
                 {this.props.children}
               </AppContentWrapper>

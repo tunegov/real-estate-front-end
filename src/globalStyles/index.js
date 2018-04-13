@@ -14,15 +14,15 @@ const globalStyles = `
     display: flex;
     min-width: 100%;
   }
-  body > div > div {
+  body > div > #__next {
     display: flex;
     min-width: 100%;
   }
-  body > div > div > div {
+  body > div > #__next > div {
     display: flex;
     min-width: 100%;
   }
-  body > div > div > div > div {
+  body > div > #__next > div > div {
     display: flex;
     min-width: 100%;
   }

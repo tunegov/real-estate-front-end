@@ -1,11 +1,8 @@
 import React, { Component } from 'react';
-import Hidden from 'material-ui/Hidden';
 import IconButton from 'material-ui/IconButton';
 import Tooltip from 'material-ui/Tooltip';
 import MenuIcon from '@material-ui/icons/Menu';
 import HomeIcon from '@material-ui/icons/Home';
-import ExitToAppIcon from '@material-ui/icons/ExitToApp';
-import NotificationIcon from '@material-ui/icons/Notifications';
 import AppBar from 'material-ui/AppBar';
 import Toolbar from 'material-ui/Toolbar';
 import Typography from 'material-ui/Typography';
@@ -28,7 +25,7 @@ const styles = theme => ({
   appBar: {
     zIndex: theme.zIndex.drawer + 1,
     marginLeft: drawerWidth,
-    width: `calc(100% - ${drawerWidth}px)`,
+    width: '100%)',
   },
   [theme.breakpoints.down(theme.breakpoints.values.md)]: {
     appBar: {
@@ -44,17 +41,16 @@ const styles = theme => ({
   toolbar: theme.mixins.toolbar,
   topToolbar: {
     flexDirection: 'row',
-    justifyContent: 'center',
   },
-  menuIcon: {
+  icon: {
     '&:hover': {
       backgroundColor: 'rgba(255,255,255,.1)',
     },
   },
   leftTopNavIconWrapper: {
-    marginRight: 'auto',
+    //marginRight: 'auto',
   },
-  notificationIcon: {
+  iconGroupWrapper: {
     marginLeft: 'auto',
   },
   menuHiddenWrapper: {
@@ -98,36 +94,19 @@ class AppTopNav extends Component {
                 <MenuIcon />
               </IconButton>
             </div>
-            <Tooltip id="tooltip-icon" title="Notifications" enterDelay={200} leaveDelay={200} placement="bottom" PopperProps={{ style: { minWidth: '30px' } }}>
-              <IconButton
-                color="inherit"
-                className={classes.menuIcon}
-              >
-                <NotificationIcon />
-              </IconButton>
-            </Tooltip>
 
           </div>
-          <Typography align="center" variant="title" color="inherit" noWrap>
+          <Typography variant="title" color="inherit" noWrap>
             {capitalize(unhyphenate(path))}
           </Typography>
-          <div className={classes.notificationIcon}>
+          <div className={classes.iconGroupWrapper}>
             <Tooltip id="tooltip-icon" title="Home" enterDelay={200} leaveDelay={200} placement="bottom" PopperProps={{ style: { minWidth: '30px' } }}>
               <IconButton
                 color="inherit"
-                className={classes.menuIcon}
+                className={classes.icon}
                 onClick={() => Router.pushRoute('home')}
               >
                 <HomeIcon />
-              </IconButton>
-            </Tooltip>
-            <Tooltip id="tooltip-icon" title="Log Out" enterDelay={200} leaveDelay={200} placement="bottom" PopperProps={{ style: { minWidth: '30px' } }}>
-              <IconButton
-                color="inherit"
-                className={classes.menuIcon}
-                onClick={logoutUser}
-              >
-                <ExitToAppIcon />
               </IconButton>
             </Tooltip>
           </div>

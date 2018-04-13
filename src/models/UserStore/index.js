@@ -11,7 +11,9 @@ const defaultState = {
 };
 
 const userRoles = [
+  types.literal('super-admin'),
   types.literal('admin'),
+  types.literal('agent'),
   types.literal('user'),
   types.literal(''),
 ];

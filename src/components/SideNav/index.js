@@ -1,54 +1,28 @@
 import React, { Component } from 'react';
 import { observer } from 'mobx-react';
-import Divider from 'material-ui/Divider';
 import Hidden from 'material-ui/Hidden';
 import Drawer from 'material-ui/Drawer';
 import List from 'material-ui/List';
+import Divider from 'material-ui/Divider';
+import IconButton from 'material-ui/IconButton';
+import Tooltip from 'material-ui/Tooltip';
+import ArrowBackIcon from '@material-ui/icons/ArrowBack';
+import NotificationIcon from '@material-ui/icons/Notifications';
 import { withStyles } from 'material-ui/styles';
-import {
-  MdDashboard as DashboardIcon,
-  MdPerson as PersonIcon,
-} from 'react-icons/lib/md';
-import {
-  FaCreditCard as DealsIcon,
-  FaClipboard as InvoicesIcon,
-  FaSlideshare as LeadsIcon,
-} from 'react-icons/lib/fa';
-import ClientCenterIcon from 'react-icons/lib/ti/group';
 import SideNavLinkItem from '../SideNavLinkItem';
+import navLinks from './navItems';
 
 const drawerWidth = 240;
 
-const sideLinks = [
-  { name: 'Dashboard', route: 'dashboard', icon: DashboardIcon },
-  { name: 'Profile', route: 'profile', icon: PersonIcon, iconFontSize: 28 },
-  { name: 'Deals', route: 'deals', icon: DealsIcon },
-  { name: 'Leads', route: 'leads', icon: LeadsIcon },
-  { name: 'Invoices', route: 'invoices', icon: InvoicesIcon, iconFontSize: 20 },
-  { name: 'Client Center', route: 'client-center', icon: ClientCenterIcon, iconFontSize: 24 },
-];
-
-const renderSideLinkComponents = currentPath => (
-  sideLinks.map(item => (
-    <SideNavLinkItem
-      key={item.route}
-      name={item.name}
-      route={item.route}
-      icon={item.icon}
-      iconFontSize={item.iconFontSize}
-      currentPath={currentPath}
-    />
-  ))
-);
-
 const styles = theme => ({
   root: {
+    position: 'relative',
     height: '100%',
   },
   drawerPaper: {
     position: 'relative',
     width: drawerWidth,
-    zIndex: 1400,
+    zIndex: 1,
   },
   tempDrawer: {
     minWidth: '240px',
@@ -56,13 +30,45 @@ const styles = theme => ({
   },
   toolbar: theme.mixins.toolbar,
   topToolbar: {
-    flexDirection: 'row',
+    display: 'flex',
+    flexDirection: 'column',
     justifyContent: 'center',
+    paddingLeft: '5px',
   },
+  list: {
+    paddingTop: 0,
+  },
+  notificationIcon: {
+    position: 'absolute',
+    left: '5px',
+    bottom: '5px',
+  },
+  arrowBackBtn: {
+    marginLeft: 'auto',
+  }
 });
 
 @observer
 class SideNav extends Component {
+  constructor(props) {
+    super(props);
+    this.renderSideLinkComponents = this.renderSideLinkComponents.bind(this);
+  }
+
+  renderSideLinkComponents = currentPath => (
+    navLinks.map(item => (
+      <SideNavLinkItem
+        key={item.route || item.name}
+        name={item.name}
+        route={item.route}
+        icon={item.icon}
+        iconFontSize={item.iconFontSize}
+        currentPath={currentPath}
+        onClick={item.id === 'logout' && this.props.logoutUser}
+      />
+    ))
+  );
+
   render() {
     const { classes, currentPath, drawerOpen, toggleDrawer } = this.props;
 
@@ -82,9 +88,29 @@ class SideNav extends Component {
             }}
             onClose={toggleDrawer}
           >
-            <div className={classes.toolbar} />
+            <div className={`${classes.toolbar} ${classes.topToolbar}`}>
+              <Tooltip id="tooltip-icon" title="Close Sidebar" enterDelay={200} leaveDelay={200} placement="bottom" PopperProps={{ style: { minWidth: '30px' } }}>
+                <IconButton
+                  color="primary"
+                  className={classes.icon}
+                  onClick={toggleDrawer}
+                >
+                  <ArrowBackIcon style={{ fontSize: '28px' }} />
+                </IconButton>
+              </Tooltip>
+            </div>
             <Divider />
-            <List>{renderSideLinkComponents(currentPath)}</List>
+            <List>{this.renderSideLinkComponents(currentPath)}</List>
+            <div className={classes.notificationIcon}>
+              <Tooltip id="tooltip-icon" title="Notifications" enterDelay={200} leaveDelay={200} placement="bottom" PopperProps={{ style: { minWidth: '30px' } }}>
+                <IconButton
+                  color="primary"
+                  className={classes.icon}
+                >
+                  <NotificationIcon />
+                </IconButton>
+              </Tooltip>
+            </div>
           </Drawer>
         </Hidden>
         <Hidden smDown implementation="css">
@@ -95,8 +121,17 @@ class SideNav extends Component {
             }}
           >
             <div className={classes.toolbar} />
-            <Divider />
-            <List>{renderSideLinkComponents(currentPath)}</List>
+            <List>{this.renderSideLinkComponents(currentPath)}</List>
+            <div className={classes.notificationIcon}>
+              <Tooltip id="tooltip-icon" title="Notifications" enterDelay={200} leaveDelay={200} placement="bottom" PopperProps={{ style: { minWidth: '30px' } }}>
+                <IconButton
+                  color="primary"
+                  className={classes.icon}
+                >
+                  <NotificationIcon />
+                </IconButton>
+              </Tooltip>
+            </div>
           </Drawer>
         </Hidden>
       </div>

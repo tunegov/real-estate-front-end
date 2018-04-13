@@ -3,14 +3,14 @@ import styled from 'styled-components';
 export const HeaderLink = styled.a`
   box-sizing: border-box;
   position: relative;
-  color: ${props => props.active ? 'rgba(255,255,255,1);' : '#c8c9ca'};
+  color: ${props => props.active ? 'rgba(255,255,255,1);' : 'rgba(255,255,255,.9)'};
   text-decoration: none;
   transition: color 0.1s ease-in-out;
   cursor: pointer;
   padding: 5px 5px;
   &:after {
     margin-top: 6px;
-    background: #54bab8;
+    background: ${props => props.theme.accentColor};
     max-width: ${props => props.active ? '100%' : '0px'};
     right: ${props => props.active ? '10px' : '0'};
     bottom: 0;

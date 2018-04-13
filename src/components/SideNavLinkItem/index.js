@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { observer } from 'mobx-react';
 import { Link } from '../../routes';
-import { SideNavLinkItemWrapper, SideNavLinkItemAnchor, IconWrapper } from './styledComponents';
+import { SideNavLinkItemWrapper, SideNavLinkItemAnchor, IconWrapper, SideNavLinkItemDiv } from './styledComponents';
 
 @observer
 class SideNavLinkItem extends Component {
   render() {
-    const { iconFontSize, icon: Icon } = this.props;
+    const { onClick, iconFontSize, icon: Icon } = this.props;
     let active;
 
     if (this.props.currentPath.split('/')[2] === this.props.route) {
@@ -15,18 +15,34 @@ class SideNavLinkItem extends Component {
       active = false;
     }
 
-    return (
+    const linkItem = (
       <SideNavLinkItemWrapper active={active}>
         <Link route={this.props.route}>
           <SideNavLinkItemAnchor>
             <IconWrapper>
-              {Icon ? <Icon size={iconFontSize || 22} color="rgba(0, 0, 0, 0.87)" /> : null}
+              {Icon ? <Icon size={iconFontSize || 22} color="primary" /> : null}
             </IconWrapper>
             {this.props.name}
           </SideNavLinkItemAnchor>
         </Link>
       </SideNavLinkItemWrapper>
     );
+
+    const actionItem = (
+      <SideNavLinkItemWrapper active={active} onClick={onClick}>
+        <SideNavLinkItemDiv>
+          <IconWrapper>
+            {Icon ? <Icon size={iconFontSize || 22} color="primary" /> : null}
+          </IconWrapper>
+          {this.props.name}
+        </SideNavLinkItemDiv>
+      </SideNavLinkItemWrapper>
+    );
+
+    if (onClick) {
+      return actionItem;
+    }
+    return linkItem;
   }
 }
 

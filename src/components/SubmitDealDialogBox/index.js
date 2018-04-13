@@ -1,0 +1,76 @@
+import React, { Component } from 'react';
+import { observer } from 'mobx-react';
+import Dialog, {
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
+  withMobileDialog,
+} from 'material-ui/Dialog';
+import Divider from 'material-ui/Divider';
+import { withStyles } from 'material-ui/styles';
+import Button from 'material-ui/Button';
+import SubmitDealForm from '../../containers/SubmitDealForm';
+
+const styles = theme => ({
+  paper: {
+    width: '800px',
+    maxWidth: '800px',
+  },
+  dialogActions: {
+    margin: '8px 0',
+  },
+  formTitle: {
+    padding: 'theme.spacing.unit theme.spacing.unit * 3',
+    textAlign: 'center',
+  },
+  formSubheader: {
+    paddingLeft: theme.spacing.unit * 4,
+    paddingRight: theme.spacing.unit * 4,
+    marginBottom: theme.spacing.unit * 6,
+    marginTop: theme.spacing.unit * 2,
+    textAlign: 'center',
+  },
+});
+
+@observer
+class SubmitDealDialogBox extends Component {
+  render() {
+    const {
+      fullScreen,
+      classes,
+      toggleDialogBoxOpen,
+      submitDealDialogOpen,
+    } = this.props;
+
+    return (
+      <Dialog
+        disableBackdropClick
+        disableEscapeKeyDown
+        open={submitDealDialogOpen}
+        classes={{ paper: classes.paper }}
+      >
+        <DialogTitle id="form-dialog-title" classes={{ root: classes.formTitle }}>
+          New Deal
+        </DialogTitle>
+        <Divider />
+        <DialogContent>
+          <DialogContentText classes={{ root: classes.formSubheader }}>
+            Fill out the information for your new deal.
+          </DialogContentText>
+          <SubmitDealForm userUUID={this.props.userUUID} />
+        </DialogContent>
+        <DialogActions classes={{ root: classes.dialogActions }}>
+          <Button onClick={toggleDialogBoxOpen} color="primary">
+            Cancel
+          </Button>
+          <Button onClick={toggleDialogBoxOpen} color="primary">
+            Submit
+          </Button>
+        </DialogActions>
+      </Dialog>
+    );
+  }
+}
+
+export default withMobileDialog()(withStyles(styles)(SubmitDealDialogBox));
