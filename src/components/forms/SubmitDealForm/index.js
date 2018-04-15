@@ -69,9 +69,24 @@ const radioInputItems = [
   { label: '90%' },
 ];
 
-const selectInputItems = [
+const dealTypeSelectItems = [
   { label: 'Residential Lease' },
   { label: 'Commercial Lease' },
+];
+
+const paymentTypeSelectItems = [
+  { label: 'Check' },
+  { label: 'Credit Card' },
+  { label: 'IOU' },
+];
+
+const managementCobrokeCompanySelectItems = [
+  { label: 'Buger King' },
+  { label: 'Disney Land' },
+  { label: 'Gucci' },
+  { label: 'Alexander the Great' },
+  { label: 'Apple' },
+  { label: 'Amazon' },
 ];
 
 @observer
@@ -154,7 +169,7 @@ class SubmitDealForm extends Component {
                         fullWidth
                         label="Deal Type"
                         name="dealType"
-                        selectInputItems={selectInputItems}
+                        selectInputItems={dealTypeSelectItems}
                       />
                     </div>
                   </Grid>
@@ -192,33 +207,112 @@ class SubmitDealForm extends Component {
                       />
                     </div>
                   </Grid>
-                  <CustomTextField
-                    field="price"
-                    id={uuid()}
-                    label="Rent or Sale Price"
-                    required
-                  />
-                  <br />
-                  <Divider />
-                  <br />
-                  <CustomTextField
-                    field="checkOrTransactionNumber"
-                    id={uuid()}
-                    label="Check/Transaction#"
-                    required
-                  />
-                  <CustomTextField
-                    field="amount"
-                    id={uuid()}
-                    label="amount"
-                    required
-                  />
-                  <CustomTextField
-                    field="subtotal"
-                    id={uuid()}
-                    label="subtotal"
-                    disabled
-                  />
+                  <Grid sm={6} xs={12}>
+                    <div className={classes.formControlWrapper}>
+                      <MaterialCustomSelectInput
+                        field="managementOrCobrokeCompany"
+                        id={uuid()}
+                        required
+                        fullWidth
+                        label="Management Company/Co-Broke Company"
+                        name="managementOrCobrokeCompany"
+                        selectInputItems={managementCobrokeCompanySelectItems}
+                      />
+                    </div>
+                  </Grid>
+                  <Grid sm={6} xs={12}>
+                    <div className={classes.formControlWrapper}>
+                      <CustomTextField
+                        field="price"
+                        id={uuid()}
+                        label="Rent or Sale Price"
+                        required
+                        fullWidth
+                      />
+                    </div>
+                  </Grid>
+
+                  <div className={classes.formSubheading}>
+                    <Typography variant="subheading" classes={{ subheading: classes.h3 }}>{'Client\'s'} Information</Typography>
+                  </div>
+
+                  <Grid sm={6} xs={12}>
+                    <div className={classes.formControlWrapper}>
+                      <CustomTextField
+                        field="clientName"
+                        id={uuid()}
+                        label="Client's Name"
+                        required
+                        fullWidth
+                      />
+                    </div>
+                  </Grid>
+                  <Grid sm={6} xs={12}>
+                    <div className={classes.formControlWrapper}>
+                      <CustomTextField
+                        field="clientEmail"
+                        id={uuid()}
+                        label="Client Email"
+                        required
+                        fullWidth
+                      />
+                    </div>
+                  </Grid>
+
+                  <div className={classes.formSubheading}>
+                    <Typography variant="subheading" classes={{ subheading: classes.h3 }}>Transaction Financials</Typography>
+                  </div>
+
+                  <Grid sm={4} xs={12}>
+                    <div className={classes.formControlWrapper}>
+                      <MaterialCustomSelectInput
+                        field="paymentType"
+                        id={uuid()}
+                        required
+                        fullWidth
+                        label="Payment Type"
+                        name="paymentType"
+                        selectInputItems={paymentTypeSelectItems}
+                      />
+                    </div>
+                  </Grid>
+
+                  <Grid sm={4} xs={12}>
+                    <div className={classes.formControlWrapper}>
+                      <CustomTextField
+                        field="checkOrTransactionNumber"
+                        id={uuid()}
+                        label="Check/Transaction#"
+                        required
+                        fullWidth
+                      />
+                    </div>
+                  </Grid>
+
+                  <Grid sm={4} xs={12}>
+                    <div className={classes.formControlWrapper}>
+                      <CustomTextField
+                        field="amount"
+                        id={uuid()}
+                        label="amount"
+                        required
+                        fullWidth
+                      />
+                    </div>
+                  </Grid>
+
+                  <Grid xs={12}>
+                    <div className={classes.formControlWrapper}>
+                      <CustomTextField
+                        field="subtotal"
+                        id={uuid()}
+                        label="subtotal"
+                        disabled
+                        fullWidth
+                      />
+                    </div>
+                  </Grid>
+
                 </Grid>
               </form>
             )}

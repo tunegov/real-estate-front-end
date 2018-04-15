@@ -52,6 +52,7 @@ class SubmitDealDialogBox extends Component {
         disableEscapeKeyDown
         open={submitDealDialogOpen}
         classes={{ paper: classes.paper }}
+        fullScreen={fullScreen}
       >
         <DialogTitle id="form-dialog-title" classes={{ root: classes.formTitle }}>
           New Deal

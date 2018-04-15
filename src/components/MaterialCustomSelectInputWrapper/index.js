@@ -42,6 +42,13 @@ const styles = theme => ({
 
 @observer
 class MaterialCustomSelectInputWrapper extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      value: props.value,
+    };
+  }
   render() {
     const {
       fieldApi,
