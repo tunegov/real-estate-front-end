@@ -3,6 +3,7 @@ import { observer } from 'mobx-react';
 import { withStyles } from 'material-ui/styles';
 import Radio, { RadioGroup } from 'material-ui/Radio';
 import { FormControl, FormHelperText, FormLabel, FormControlLabel } from 'material-ui/Form';
+import { Field } from 'react-form';
 
 const styles = theme => ({
   container: {
@@ -29,86 +30,86 @@ const styles = theme => ({
   },
   horzontalRadioBtns: {
     flexDirection: 'row',
+    justifyContent: 'center',
   },
 });
 
-@observer
-class MaterialCustomRadioInputWrapper extends React.Component {
-  render() {
-    const {
-      fieldApi,
-      onInput,
-      classes,
-      label,
-      id,
-      disabled,
-      value,
-      fullWidth,
-      required,
-      multiline,
-      className,
-      radioInputItems,
-      horizontal,
-      ...rest
-    } = this.props;
+const MaterialCustomRadioInputWrapper = props => (
+  <Field validate={props.validate} field={props.field}>
+    {fieldApi => {
+      const {
+        onInput,
+        classes,
+        label,
+        id,
+        disabled,
+        fullWidth,
+        required,
+        multiline,
+        field,
+        onBlur,
+        onChange,
+        radioInputItems,
+        horizontal,
+        className,
+        multiple,
+        name,
+        ...rest
+      } = props;
 
-    const {
-      getValue,
-      getError,
-      getWarning,
-      getSuccess,
-      setValue,
-      setTouched,
-      getTouched,
-    } = fieldApi;
+      const {
+        value,
+        error,
+        warning,
+        success,
+        setValue,
+        setTouched,
+        touched,
+      } = fieldApi;
 
-    const error = getError();
-    const warning = getWarning();
-    const success = getSuccess();
-    const touched = getTouched();
+      const renderRadioInputItems = radioInputItems => (
+        radioInputItems.map(item => (
+          <FormControlLabel key={item.label} value={item.value || item.label} disabled={item.disabled} control={<Radio />} label={item.label} />
+        ))
+      );
 
-    const renderRadioInputItems = radioInputItems => (
-      radioInputItems.map(item => (
-        <FormControlLabel key={item.label} value={item.value || item.label} disabled={item.disabled} control={<Radio />} label={item.label} />
-      ))
-    );
-
-    return (
-      <div className={classes.root}>
-        <FormControl
-          component="fieldset"
-          error={error && touched}
-          fullWidth={fullWidth}
-          required={required}
-          className={disabled ? `${classes.formControl} ${classes.disabled} ${className}` : `${classes.formControl} ${className}`}
-        >
-          <FormLabel component="legend">{label}</FormLabel>
-          <RadioGroup
-            aria-label={label}
-            name={`${id}1`}
-            className={`${classes.group} ${horizontal ? classes.horzontalRadioBtns : null}`}
-            value={getValue() || null}
-            onChange={event => {
-              setValue(event.target.value);
-              if (onInput) {
-                onInput(event);
-              }
-            }}
-            onBlur={event => {
-              if (event.target.value || touched) setTouched();
-            }}
-            {...rest}
+      return (
+        <div className={classes.root}>
+          <FormControl
+            component="fieldset"
+            error={error && touched}
+            fullWidth={fullWidth}
+            required={required}
+            className={disabled ? `${classes.formControl} ${classes.disabled} ${className}` : `${classes.formControl} ${className}`}
           >
-            {renderRadioInputItems(radioInputItems)}
-          </RadioGroup>
-          {error && touched ? <FormHelperText>{error}</FormHelperText> : null}
-        </FormControl>
-      </div>
-    );
-  }
-}
+            <FormLabel component="legend">{label}</FormLabel>
+            <RadioGroup
+              aria-label={label}
+              name={`${id}1`}
+              className={`${classes.group} ${horizontal ? classes.horzontalRadioBtns : null}`}
+              value={value || null}
+              onChange={event => {
+                setValue(event.target.value);
+                if (onInput) {
+                  onInput(event);
+                }
+              }}
+              onBlur={event => {
+                if (event.target.value || touched) setTouched();
+              }}
+              {...rest}
+            >
+              {renderRadioInputItems(radioInputItems)}
+            </RadioGroup>
+            {error && touched ? <FormHelperText>{error}</FormHelperText> : null}
+          </FormControl>
+        </div>
+      );
+    }}
+  </Field>
+);
 
-export default withStyles(styles)(MaterialCustomRadioInputWrapper);
+export default withStyles(styles)(observer(MaterialCustomRadioInputWrapper));
 
 /*
 

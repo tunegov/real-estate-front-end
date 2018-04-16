@@ -6,6 +6,7 @@ import Select from 'material-ui/Select';
 import Input, { InputLabel } from 'material-ui/Input';
 import { MenuItem } from 'material-ui/Menu';
 import Chip from 'material-ui/Chip';
+import { Field } from 'react-form';
 
 const styles = theme => ({
   container: {
@@ -40,95 +41,88 @@ const styles = theme => ({
   },
 });
 
-@observer
-class MaterialCustomSelectInputWrapper extends React.Component {
-  constructor(props) {
-    super(props);
+const MaterialCustomSelectInputWrapper = props => (
+  <Field validate={props.validate} field={props.field}>
+    {fieldApi => {
+      const {
+        onInput,
+        classes,
+        label,
+        id,
+        disabled,
+        fullWidth,
+        required,
+        multiline,
+        field,
+        onBlur,
+        onChange,
+        selectInputItems,
+        horizontal,
+        className,
+        multiple,
+        name,
+        ...rest
+      } = props;
 
-    this.state = {
-      value: props.value,
-    };
-  }
-  render() {
-    const {
-      fieldApi,
-      onInput,
-      classes,
-      label,
-      id,
-      disabled,
-      value,
-      fullWidth,
-      required,
-      multiline,
-      className,
-      selectInputItems,
-      horizontal,
-      name,
-      multiple,
-      ...rest
-    } = this.props;
+      const {
+        value,
+        error,
+        warning,
+        success,
+        setValue,
+        setTouched,
+        touched,
+      } = fieldApi;
 
-    const {
-      getValue,
-      getError,
-      getWarning,
-      getSuccess,
-      setValue,
-      setTouched,
-      getTouched,
-    } = fieldApi;
+      const renderSelectInputItems = selectInputItems => (
+        selectInputItems.map(item => (
+          <MenuItem key={item.label} value={item.value || item.label}>{item.label}</MenuItem>
+        ))
+      );
 
-    const error = getError();
-    const warning = getWarning();
-    const success = getSuccess();
-    const touched = getTouched();
-
-    const renderSelectInputItems = selectInputItems => (
-      selectInputItems.map(item => (
-        <MenuItem key={item.label} value={item.value || item.label}>{item.label}</MenuItem>
-      ))
-    );
-
-    return (
-      <FormControl
-        error={error && touched}
-        fullWidth={fullWidth}
-        required={required}
-        className={disabled ?
-          `${classes.formControl} ${classes.disabled} ${className}` :
-          `${classes.formControl} ${className}`}
-      >
-        <InputLabel htmlFor={`${id}-error`}>{label}</InputLabel>
-        <Select
-          value={multiple ? getValue() || [] : getValue() || ''}
-          onChange={event => {
-            setValue(event.target.value);
-            if (onInput) {
-              onInput(event);
-            }
-          }}
-          input={<Input name={name} id={`${id}-helper`} className={classes.input} />}
-          onBlur={event => {
-            if (event.target.value || touched) setTouched();
-          }}
-          multiple={multiple}
-          renderValue={!multiple ? null : selected => (
-            <div className={classes.chips}>
-              {selected.map(value => <Chip key={value} label={value} className={classes.chip} />)}
-            </div>
-          )}
-          {...rest}
+      return (
+        <FormControl
+          error={error && touched}
+          fullWidth={fullWidth}
+          required={required}
+          className={disabled ?
+            `${classes.formControl} ${classes.disabled} ${className}` :
+            `${classes.formControl} ${className}`}
         >
-          {renderSelectInputItems(selectInputItems)}
-        </Select>
-        {error && touched ? <FormHelperText>{error}</FormHelperText> : null}
-      </FormControl>
-    );
-  }
-}
+          <InputLabel htmlFor={`${id}-error`}>{label}</InputLabel>
+          <Select
+            value={multiple ? value || [] : value || ''}
+            onChange={event => {
+              setValue(event.target.value);
+              if (onInput) {
+                onInput(event);
+              }
+            }}
+            input={<Input name={name} id={`${id}-helper`} className={classes.input} />}
+            onBlur={event => {
+              if (event.target.value || touched) setTouched();
+              if (onBlur) {
+                onBlur(event);
+              }
+            }}
+            multiple={multiple}
+            renderValue={!multiple ? null : selected => (
+              <div className={classes.chips}>
+                {selected.map(value => <Chip key={value} label={value} className={classes.chip} />)}
+              </div>
+            )}
+            {...rest}
+          >
+            {renderSelectInputItems(selectInputItems)}
+          </Select>
+          {error && touched ? <FormHelperText>{error}</FormHelperText> : null}
+        </FormControl>
+      );
+    }}
+  </Field>
+);
 
-export default withStyles(styles)(MaterialCustomSelectInputWrapper);
+export default withStyles(styles)(observer(MaterialCustomSelectInputWrapper));
 
 /*
 
@@ -140,4 +134,4 @@ export default withStyles(styles)(MaterialCustomSelectInputWrapper);
           <Message color="green" message={success} />
         ) : null}
 
-        */
+*/

@@ -1,7 +1,6 @@
 import React from 'react';
 import { observer } from 'mobx-react';
 import { withStyles } from 'material-ui/styles';
-import Input, { InputLabel } from 'material-ui/Input';
 import { FormControl, FormHelperText } from 'material-ui/Form';
 import { Field } from 'react-form';
 
@@ -18,18 +17,22 @@ const styles = theme => ({
     marginRight: theme.spacing.unit,
     width: 200,
   },
-  disabled: {
-    cursor: 'not-allowed',
+  input: {
+    width: '0.1px',
+    height: '0.1px',
+    opacity: '0',
+    overflow: 'hidden',
+    position: 'absolute',
+    zIndex: '-1',
   },
 });
 
-const CustomTextFieldWrapper = props => (
+const CustomFileUploadInputWrapper = props => (
   <Field validate={props.validate} field={props.field}>
     {fieldApi => {
       const {
         onInput,
         classes,
-        submittedClasses,
         label,
         id,
         disabled,
@@ -39,8 +42,7 @@ const CustomTextFieldWrapper = props => (
         field,
         onBlur,
         onChange,
-        inputClassName,
-        labelClassName,
+        btnClassName,
         ...rest
       } = props;
 
@@ -56,17 +58,15 @@ const CustomTextFieldWrapper = props => (
 
       return (
         <FormControl
-          className={disabled ? `${classes.formControl} ${classes.disabled}` : classes.formControl}
+          className={classes.formControl}
           error={error && touched}
-          disabled={disabled}
           fullWidth={fullWidth}
           required={required}
         >
-          {label ? <InputLabel htmlFor={id} className={disabled ? `${classes.disabled} ${labelClassName}` : `${labelClassName}`}>{label}</InputLabel> : null}
-          <Input
-            className={disabled ? classes.disabled : null}
-            inputProps={{ className: disabled ? `${classes.disabled} ${inputClassName}` : `${inputClassName}` }}
-            value={value || ''}
+          <label htmlFor={id} className={btnClassName || ''}>{label}</label>
+          <input
+            className={classes.input}
+            type="file"
             id={id}
             onChange={e => {
               setValue(e.target.value);
@@ -80,7 +80,6 @@ const CustomTextFieldWrapper = props => (
                 onBlur(event);
               }
             }}
-            multiline={multiline}
             {...rest}
           />
           {error && touched ? <FormHelperText id={`${id}-error-text`}>{error}</FormHelperText> : null}
@@ -90,7 +89,7 @@ const CustomTextFieldWrapper = props => (
   </Field>
 );
 
-export default withStyles(styles)(observer(CustomTextFieldWrapper));
+export default withStyles(styles)(observer(CustomFileUploadInputWrapper));
 
 /*
 
