@@ -61,6 +61,7 @@ const MaterialCustomSelectInputWrapper = props => (
         className,
         multiple,
         name,
+        validate,
         ...rest
       } = props;
 

@@ -38,6 +38,12 @@ const styles = theme => ({
 
 @observer
 class SubmitDealDialogBox extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      formApi: null,
+    };
+  }
   render() {
     const {
       fullScreen,
@@ -59,13 +65,13 @@ class SubmitDealDialogBox extends Component {
         </DialogTitle>
         <Divider />
         <DialogContent classes={{ root: classes.dialogContent }}>
-          <SubmitDealForm userUUID={this.props.userUUID} />
+          <SubmitDealForm userUUID={this.props.userUUID} getFormApi={formApi => this.setState({ formApi })} />
         </DialogContent>
         <DialogActions classes={{ root: classes.dialogActions }}>
           <Button onClick={toggleDialogBoxOpen} color="primary">
             Cancel
           </Button>
-          <Button onClick={toggleDialogBoxOpen} color="primary">
+          <Button onClick={() => this.state.formApi.submitForm()} color="primary">
             Submit
           </Button>
         </DialogActions>

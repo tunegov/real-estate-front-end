@@ -32,6 +32,9 @@ const styles = theme => ({
     flexDirection: 'row',
     justifyContent: 'center',
   },
+  textAlignCenter: {
+    textAlign: 'center',
+  },
 });
 
 const MaterialCustomRadioInputWrapper = props => (
@@ -54,6 +57,7 @@ const MaterialCustomRadioInputWrapper = props => (
         className,
         multiple,
         name,
+        validate,
         ...rest
       } = props;
 
@@ -101,7 +105,7 @@ const MaterialCustomRadioInputWrapper = props => (
             >
               {renderRadioInputItems(radioInputItems)}
             </RadioGroup>
-            {error && touched ? <FormHelperText>{error}</FormHelperText> : null}
+            {error && touched ? <FormHelperText classes={horizontal ? { root: classes.textAlignCenter } : null}>{error}</FormHelperText> : null}
           </FormControl>
         </div>
       );

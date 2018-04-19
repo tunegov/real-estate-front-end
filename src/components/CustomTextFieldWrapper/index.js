@@ -1,5 +1,6 @@
 import React from 'react';
 import { observer } from 'mobx-react';
+import { Field } from 'react-form';
 import { Input, InputWrapper, FormMessage } from './styledComponents';
 
 // Define a custom message component
@@ -9,51 +10,122 @@ const Message = ({ color, message }) => (
   </div>
 );
 
-@observer
+const numbersOnlyRegex = /^\d+$/;
+
 class CustomTextFieldWrapper extends React.Component {
+  shouldComponentUpdate() {
+    return true;
+  }
+
   render() {
-    const { fieldApi, onInput, ...rest } = this.props;
-
-    const {
-      getValue,
-      getError,
-      getWarning,
-      getSuccess,
-      setValue,
-      setTouched,
-      getTouched,
-    } = fieldApi;
-
-    const error = getError();
-    const warning = getWarning();
-    const success = getSuccess();
-    const touched = getTouched();
-
     return (
-      <InputWrapper>
-        <Input
-          value={getValue() || ''}
-          onInput={event => {
-            setValue(event.target.value);
-            if (onInput) {
-              onInput(event);
-            }
-          }}
-          onBlur={event => {
-            if (event.target.value || touched) setTouched();
-          }}
-          {...rest}
-        />
-        {error && touched ? <Message color="#ef5350" message={error} /> : null}
-        {!error && warning && touched ? (
-          <Message color="orange" message={warning} />
-        ) : null}
-        {!error && !warning && success ? (
-          <Message color="green" message={success} />
-        ) : null}
-      </InputWrapper>
+      <Field validate={this.props.validate} field={this.props.field}>
+        {fieldApi => {
+          const {
+            onInput,
+            field,
+            onBlur,
+            onChange,
+            numbersOnly,
+            ...rest
+          } = this.props;
+
+          const {
+            value,
+            error,
+            warning,
+            success,
+            setValue,
+            setTouched,
+            touched,
+          } = fieldApi;
+
+          return (
+            <InputWrapper>
+              <Input
+                value={value || ''}
+                onChange={e => {
+                  const newValue = e.target.value;
+                  if (numbersOnly && newValue && !numbersOnlyRegex.test(newValue)) {
+                    return;
+                  }
+                  setValue(newValue);
+                  if (onChange) {
+                    onChange(newValue, e);
+                  }
+                }}
+                onBlur={event => {
+                  if (event.target.value || touched) setTouched();
+                }}
+                {...rest}
+              />
+              {error && touched ? <Message color="#ef5350" message={error} /> : null}
+              {!error && warning && touched ? (
+                <Message color="orange" message={warning} />
+              ) : null}
+              {!error && !warning && success ? (
+                <Message color="green" message={success} />
+              ) : null}
+            </InputWrapper>
+          );
+        }}
+      </Field>
     );
   }
 }
 
-export default CustomTextFieldWrapper;
+/*
+const CustomTextFieldWrapper = props => (
+  <Field validate={props.validate} field={props.field}>
+    {fieldApi => {
+      const {
+        onInput,
+        field,
+        onBlur,
+        onChange,
+        ...rest
+      } = props;
+
+      const {
+        value,
+        error,
+        warning,
+        success,
+        setValue,
+        setTouched,
+        touched,
+      } = fieldApi;
+
+      console.log('you')
+
+      return (
+        <InputWrapper>
+          <Input
+            value={value || ''}
+            onChange={e => {
+              console.log(value)
+              setValue(e.target.value);
+              if (onChange) {
+                onChange(e.target.value, e);
+              }
+            }}
+            onBlur={event => {
+              if (event.target.value || touched) setTouched();
+            }}
+            {...rest}
+          />
+          {error && touched ? <Message color="#ef5350" message={error} /> : null}
+          {!error && warning && touched ? (
+            <Message color="orange" message={warning} />
+          ) : null}
+          {!error && !warning && success ? (
+            <Message color="green" message={success} />
+          ) : null}
+        </InputWrapper>
+      );
+    }}
+  </Field>
+);
+*/
+
+export default observer(CustomTextFieldWrapper);

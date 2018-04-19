@@ -1,6 +1,6 @@
 import React from 'react';
 import { observer } from 'mobx-react';
-import { Form, FormField } from 'react-form';
+import { Form } from 'react-form';
 import * as emailValidator from 'email-validator';
 import { Router } from '../../../routes';
 import CustomTextFieldWrapper from '../../CustomTextFieldWrapper';
@@ -9,7 +9,7 @@ import PrimaryButton from '../../../sharedStyledComponents/PrimaryButton';
 import LoginSignUpFormTitle from '../../../sharedStyledComponents/LoginSignUpFormTitle';
 import ServerErrorMessage from '../../../sharedStyledComponents/ServerErrorMessage';
 
-const CustomTextField = FormField(CustomTextFieldWrapper);
+const CustomTextField = CustomTextFieldWrapper;
 
 @observer
 class LoginForm extends React.Component {
@@ -78,11 +78,10 @@ class LoginForm extends React.Component {
       <FormWrapper>
         <LoginSignUpFormTitle>Login</LoginSignUpFormTitle>
         <Form
-          dontValidateOnMount
           preValidate={this.preValidate}
           onSubmit={this.props.onSubmit}
           onSubmitFailure={this.props.onSubmitFailure}
-          validateError={this.errorValidator}
+          validate={this.errorValidator}
         >
           {formApi => (
             <form onSubmit={formApi.submitForm} id="form1">
