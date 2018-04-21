@@ -31,7 +31,6 @@ const validator = values => {
     shouldSendApprovalTextMessageNotificaion: !values.shouldSendApprovalTextMessageNotificaion ? 'This value is required' : null,
     financialsTotal: values.financialsTotal <= 0 ? 'The total amount for this deal must be greater than 0' : null,
     agencyDisclosureForm: !values.agencyDisclosureForm ? 'This value is required and must be either JPEG/JPG or PDF format' : null,
-    contractOrLeaseItems: !values.contractOrLeaseItems ? 'This value is required and must be either JPEG/JPG or PDF format' : null,
   };
 };
 

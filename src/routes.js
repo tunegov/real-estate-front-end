@@ -5,15 +5,14 @@ routes
   .add('dashboard', '/app/dashbaord', 'app/dashboard')
   .add('profile', '/app/profile', 'app/profile')
   .add('deals', '/app/deals', 'app/deals')
-  .add('leads', '/app/leads', 'app/leads')
   .add('invoices', '/app/invoices', 'app/invoices')
-  .add('client-center', '/app/client-center', 'app/client-center')
+  .add('agents', '/app/agents', 'app/agents')
+  .add('admin', '/app/admin', 'app/admin')
   .add('log-in', '/log-in')
   .add('sign-up', '/sign-up')
   .add('listings', '/listings')
   .add('new-developments', '/new-developments')
   .add('roommates', '/roommates')
-  .add('about', '/about')
-  .add('submit-a-deal', '/app/deals/submit-a-deal', '/app/deals/submit-a-deal');
+  .add('about', '/about');
 
 module.exports = routes;

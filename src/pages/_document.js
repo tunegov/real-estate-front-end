@@ -4,6 +4,7 @@ import Document, { Head, Main, NextScript } from 'next/document';
 import { ServerStyleSheet } from 'styled-components';
 import flush from 'styled-jsx/server';
 import JssProvider from 'react-jss/lib/JssProvider';
+import { extractCritical } from 'emotion-server';
 import getPageContext from '../lib/getPageContext';
 
 export default class MyDocument extends Document {
@@ -20,11 +21,13 @@ export default class MyDocument extends Document {
         </JssProvider>
       )
     );
+    const styles = extractCritical(page.html);
     const styleTags = sheet.getStyleElement();
     return {
       ...page,
       pageContext,
       styleTags,
+      ...styles,
       styles: (
         <React.Fragment>
           <style
@@ -36,6 +39,14 @@ export default class MyDocument extends Document {
         </React.Fragment>
       ),
     };
+  }
+
+  constructor(props) {
+    super(props);
+    const { __NEXT_DATA__, ids } = props;
+    if (ids) {
+      __NEXT_DATA__.ids = ids;
+    }
   }
 
   render() {
@@ -55,6 +66,7 @@ export default class MyDocument extends Document {
             }
           />
           <meta name="theme-color" content={pageContext.theme.palette.primary.main} />
+          <style dangerouslySetInnerHTML={{ __html: this.props.css }} />
           {this.props.styleTags}
         </Head>
         <body>

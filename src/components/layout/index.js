@@ -27,7 +27,7 @@ if (isBrowser) {
 class Layout extends Component {
   render() {
     const { pathname } = this.props.router;
-    const { isLoggedIn, logoutUser: logout } = this.props.UserStore;
+    const { isLoggedIn, logoutUser: logout, userRoles } = this.props.UserStore;
     const isApp = pathname.startsWith('/app');
     const logoutUser = () => {
       const { error } = logout();
@@ -55,7 +55,7 @@ class Layout extends Component {
         </Head>
         {/* <DevTools position={{ top: 0, left: 30 }} /> */}
         <ThemeProvider theme={themeStyles}>
-          <InnerAppLayout logoutUser={logoutUser}>
+          <InnerAppLayout logoutUser={logoutUser} userRoles={userRoles}>
             {this.props.children}
           </InnerAppLayout>
         </ThemeProvider>

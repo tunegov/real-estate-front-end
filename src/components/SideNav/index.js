@@ -56,17 +56,22 @@ class SideNav extends Component {
   }
 
   renderSideLinkComponents = currentPath => (
-    navLinks.map(item => (
-      <SideNavLinkItem
-        key={item.route || item.name}
-        name={item.name}
-        route={item.route}
-        icon={item.icon}
-        iconFontSize={item.iconFontSize}
-        currentPath={currentPath}
-        onClick={item.id === 'logout' && this.props.logoutUser}
-      />
-    ))
+    navLinks.map(item => {
+      const isAdmin =
+        this.props.userRoles.includes('admin') || this.props.userRoles.includes('super-admin');
+      if (item.route === 'admin' && !isAdmin) return null;
+      return (
+        <SideNavLinkItem
+          key={item.route || item.name}
+          name={item.name}
+          route={item.route}
+          icon={item.icon}
+          iconFontSize={item.iconFontSize}
+          currentPath={currentPath}
+          onClick={item.id === 'logout' && this.props.logoutUser}
+        />
+      );
+    })
   );
 
   render() {

@@ -1,14 +1,14 @@
 import React from 'react';
 import { observer } from 'mobx-react';
 import isBrowser from 'is-browser';
-import Layout from '../../../components/Layout';
-import { initStore } from '../../../models';
-import withData from '../../../lib/withData';
-import { Router } from '../../../routes';
-import SubmitDealForm from '../../../containers/SubmitDealForm';
+import Layout from '../../components/Layout';
+import { initStore } from '../../models';
+import withData from '../../lib/withData';
+import { Router } from '../../routes';
+import AgentsTableContainer from '../../containers/AgentsTable';
 
 @observer
-class SubmitADeal extends React.Component {
+class AgentsDashboard extends React.Component {
   static getInitialProps({ req }) {
     const isServer = !!req;
     return { cookieJWTData: req && req.cookies ? req.cookies.jwtData : null, isServer };
@@ -27,13 +27,14 @@ class SubmitADeal extends React.Component {
   }
 
   render() {
-    const { UserStore } = this.store;
     return (
-      <Layout UserStore={UserStore}>
-        <SubmitDealForm userUUID={UserStore.uuid} />
+      <Layout UserStore={this.store.UserStore}>
+        <div>
+          <AgentsTableContainer />
+        </div>
       </Layout>
     );
   }
 }
 
-export default withData(SubmitADeal);
+export default withData(AgentsDashboard);

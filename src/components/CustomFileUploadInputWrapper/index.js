@@ -162,6 +162,11 @@ class CustomFileUploadInputWrapper extends React.Component {
                   if (multiple) {
                     if (!files[0]) return;
                     if (!this.isAcceptedFileExtension(files, acceptedFileExtensions, true)) {
+                      setError(`Files must be one of the following types: ${acceptedFileExtensions.join(', ')}`);
+                      if (!touched) setTouched();
+                      setTimeout(() => {
+                        if (!error) setError();
+                      }, 5000);
                       return;
                     }
                     setValue(files[0]);
@@ -172,11 +177,19 @@ class CustomFileUploadInputWrapper extends React.Component {
                     const file = files[0];
                     if (!file) return;
                     if (!this.isAcceptedFileExtension(files, acceptedFileExtensions)) {
+                      setError(`Files must be one of the following types: ${acceptedFileExtensions.join(', ')}`);
+                      if (!touched) setTouched();
+                      setTimeout(() => {
+                        if (!error) setError();
+                      }, 6000);
                       return;
                     }
                     setValue(file);
                     if (customOnChange) {
                       customOnChange(file);
+                    }
+                    if (error) {
+                      setError();
                     }
                   }
                   if (onChange) {

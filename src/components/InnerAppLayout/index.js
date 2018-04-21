@@ -40,13 +40,19 @@ class ClippedDrawer extends React.Component {
   }
 
   render() {
-    const { classes, logoutUser } = this.props;
+    const { classes, logoutUser, userRoles } = this.props;
     const currentPath = this.props.router.pathname;
 
     return (
       <div className={classes.root}>
         <AppTopNav currentPath={currentPath} logoutUser={logoutUser} toggleDrawer={this.toggleDrawer} />
-        <SideNav currentPath={currentPath} drawerOpen={this.state.drawerOpen} toggleDrawer={this.toggleDrawer} logoutUser={logoutUser} />
+        <SideNav
+          currentPath={currentPath}
+          drawerOpen={this.state.drawerOpen}
+          toggleDrawer={this.toggleDrawer}
+          logoutUser={logoutUser}
+          userRoles={userRoles}
+        />
         <main className={classes.content}>
           <div className={classes.toolbar} />
           {this.props.children}
