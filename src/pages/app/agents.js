@@ -28,7 +28,7 @@ class AgentsDashboard extends React.Component {
 
   render() {
     return (
-      <Layout UserStore={this.store.UserStore}>
+      <Layout UserStore={this.store.UserStore} UIStore={this.store.UIStore}>
         <div>
           <AgentsTableContainer />
         </div>

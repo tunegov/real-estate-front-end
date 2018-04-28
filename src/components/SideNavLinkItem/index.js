@@ -6,7 +6,7 @@ import { SideNavLinkItemWrapper, SideNavLinkItemAnchor, IconWrapper, SideNavLink
 @observer
 class SideNavLinkItem extends Component {
   render() {
-    const { onClick, iconFontSize, icon: Icon } = this.props;
+    const { onClick, iconFontSize, icon: Icon, isActionItem } = this.props;
     let active;
 
     if (this.props.currentPath.split('/')[2] === this.props.route) {
@@ -16,7 +16,7 @@ class SideNavLinkItem extends Component {
     }
 
     const linkItem = (
-      <SideNavLinkItemWrapper active={active}>
+      <SideNavLinkItemWrapper active={active} onClick={onClick}>
         <Link route={this.props.route}>
           <SideNavLinkItemAnchor>
             <IconWrapper>
@@ -39,7 +39,7 @@ class SideNavLinkItem extends Component {
       </SideNavLinkItemWrapper>
     );
 
-    if (onClick) {
+    if (isActionItem) {
       return actionItem;
     }
     return linkItem;

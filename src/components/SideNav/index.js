@@ -45,7 +45,10 @@ const styles = theme => ({
   },
   arrowBackBtn: {
     marginLeft: 'auto',
-  }
+    marginRight: '10px',
+    height: '30px',
+    width: '30px',
+  },
 });
 
 @observer
@@ -57,9 +60,6 @@ class SideNav extends Component {
 
   renderSideLinkComponents = currentPath => (
     navLinks.map(item => {
-      const isAdmin =
-        this.props.userRoles.includes('admin') || this.props.userRoles.includes('super-admin');
-      if (item.route === 'admin' && !isAdmin) return null;
       return (
         <SideNavLinkItem
           key={item.route || item.name}
@@ -68,7 +68,11 @@ class SideNav extends Component {
           icon={item.icon}
           iconFontSize={item.iconFontSize}
           currentPath={currentPath}
-          onClick={item.id === 'logout' && this.props.logoutUser}
+          isActionItem={item.id === 'logout'}
+          onClick={() => {
+            if (this.props.drawerOpen) this.props.toggleDrawer(false);
+            if (item.id === 'logout') this.props.logoutUser;
+          }}
         />
       );
     })
@@ -94,13 +98,13 @@ class SideNav extends Component {
             onClose={toggleDrawer}
           >
             <div className={`${classes.toolbar} ${classes.topToolbar}`}>
-              <Tooltip id="tooltip-icon" title="Close Sidebar" enterDelay={200} leaveDelay={200} placement="bottom" PopperProps={{ style: { minWidth: '30px' } }}>
+              <Tooltip id="tooltip-icon" title="Close Sidebar" enterDelay={400} leaveDelay={200} placement="bottom" PopperProps={{ style: { minWidth: '30px' } }}>
                 <IconButton
                   color="primary"
-                  className={classes.icon}
+                  className={`${classes.icon} ${classes.arrowBackBtn}`}
                   onClick={toggleDrawer}
                 >
-                  <ArrowBackIcon style={{ fontSize: '28px' }} />
+                  <ArrowBackIcon style={{ fontSize: '24px' }} />
                 </IconButton>
               </Tooltip>
             </div>

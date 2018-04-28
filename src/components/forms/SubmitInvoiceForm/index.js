@@ -182,6 +182,11 @@ const styles = theme => ({
     borderRadius: '5px 5px 0 0',
     paddingLeft: '10px',
   },
+  alignCenterGrid: {
+    width: '100%',
+    display: 'flex',
+    justifyContent: 'center',
+  },
 });
 
 const radioInputAgentItems = [
@@ -241,7 +246,7 @@ const managementCobrokeCompanySelectItems = [
 ];
 
 @observer
-class SubmitDealForm extends Component {
+class SubmitInvoiceForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -260,6 +265,13 @@ class SubmitDealForm extends Component {
       contractOrLeaseForms,
     } = this.props;
 
+    const agentSelectItems = [
+      { label: `${capitalize(firstName)} ${capitalize(lastName)}` },
+      { label: 'You' },
+      { label: 'Me' },
+      { label: 'Them' },
+    ];
+
     return (
       <div>
         <div className={classes.formWrapper}>
@@ -277,104 +289,39 @@ class SubmitDealForm extends Component {
                 this.isFirstTimeRender = false;
                 // formApi.addValue('contractOrLeaseItems');
                 formApi.setValue('date', `${moment().format('MMMM Do YYYY')}`);
-                formApi.setValue('agent', `${capitalize(firstName)} ${capitalize(lastName)}`);
+                formApi.setValue('agent', [`${capitalize(firstName)} ${capitalize(lastName)}`]);
                 formApi.setValue('paymentsSubtotal', this.props.paymentsTotal);
                 formApi.setValue('deductionsSubtotal', this.props.deductionsTotal);
               }
 
-              const renderRestDeductionItems = () => {
-                if (!formApi.values.deductionItems || !formApi.values.deductionItems.length) return;
-                const deductionItems = formApi.values.deductionItems.map((deductionItem, i) => (
-                  <div className={classes.paymentItemsWrapper} key={i}>
-                    <NestedField field={['deductionItems', i]}>
-                      <Grid item sm={4} xs={12}>
-                        <div className={classes.formControlWrapper}>
-                          <MaterialCustomSelectInput
-                            field="deductionType"
-                            id={uuid()}
-                            fullWidth
-                            label="Deduction Type"
-                            name="deductionType"
-                            required
-                            selectInputItems={deductionTypeSelectItems}
-                            validate={deductionTypeValidator}
-                          />
-                        </div>
-                      </Grid>
-
-                      <Grid item sm={4} xs={12}>
-                        <div className={classes.formControlWrapper}>
-                          <CustomTextField
-                            field="description"
-                            id={uuid()}
-                            label="Description"
-                            fullWidth
-                            required
-                            validate={descriptionValidator}
-                          />
-                        </div>
-                      </Grid>
-
-                      <Grid item sm={4} xs={12}>
-                        <div className={classes.formControlWrapper}>
-                          <CustomTextField
-                            field="amount"
-                            id={uuid()}
-                            label="Amount"
-                            fullWidth
-                            validate={deductionsAmountValidator}
-                            noLetters
-                            required
-                            noNegativeSign
-                            onChangeWithID={this.props.deductionAmountChangeHandler}
-                            isDollarAmount
-                          />
-                        </div>
-                      </Grid>
-                    </NestedField>
-                    <Button
-                      classes={{ root: classes.removePaymentBtn }}
-                      variant="raised"
-                      color="secondary"
-                      onClick={() => formApi.removeValue('deductionItems', i)}
-                      type="button"
-                    >
-                      Remove
-                    </Button>
-                  </div>
-                ));
-                if (this.state.shouldRenderInitialDeductionItem) {
-                  return deductionItems.slice(1);
-                }
-                return deductionItems;
-              };
-
               return (
                 <form onSubmit={formApi.submitForm} id="form1" classes={classes.formRoot}>
                   <Grid container spacing={24}>
-                    <Grid item sm={6} xs={12}>
+                    <div className={`${classes.formControlWrapper} ${classes.alignCenterGrid}`}>
+                      <Grid item xs={12} sm={6}>
+                        <div className={classes.formControlWrapper}>
+                          <CustomTextField
+                            field="date"
+                            id={uuid()}
+                            label="Date"
+                            disabled
+                            value={`${moment().format('MMMM Do YYYY')}`}
+                            fullWidth
+                            required
+                          />
+                        </div>
+                      </Grid>
+                    </div>
+                    <Grid item xs={12}>
                       <div className={classes.formControlWrapper}>
-                        <CustomTextField
-                          field="date"
-                          id={uuid()}
-                          label="Date"
-                          disabled
-                          value={`${moment().format('MMMM Do YYYY')}`}
-                          fullWidth
-                          required
-                        />
-                      </div>
-                    </Grid>
-                    <Grid item sm={6} xs={12}>
-                      <div className={classes.formControlWrapper}>
-                        <CustomTextField
+                        <MaterialCustomSelectInput
                           field="agent"
                           id={uuid()}
                           label="Agent"
-                          disabled
-                          value={`${capitalize(firstName)} ${capitalize(lastName)}`}
+                          multiple
                           fullWidth
                           required
+                          selectInputItems={agentSelectItems}
                         />
                       </div>
                     </Grid>
@@ -390,18 +337,6 @@ class SubmitDealForm extends Component {
                         horizontal
                       />
                     </div>
-
-
-                    <Grid item xs={12}>
-                      <div className={classes.formControlWrapper}>
-                        <CustomTextField
-                          field="leadSource"
-                          id={uuid()}
-                          label="Lead Source"
-                          fullWidth
-                        />
-                      </div>
-                    </Grid>
 
                     <div className={classes.formSubheading}>
                       <Typography variant="subheading" classes={{ subheading: classes.h3 }}>Property Information</Typography>
@@ -485,23 +420,12 @@ class SubmitDealForm extends Component {
                       <Typography variant="subheading" classes={{ subheading: classes.h3 }}>{'Client\'s'} Information</Typography>
                     </div>
 
-                    <Grid item sm={6} xs={12}>
+                    <Grid item xs={12}>
                       <div className={classes.formControlWrapper}>
                         <CustomTextField
                           field="clientName"
                           id={uuid()}
                           label="Client's Name"
-                          required
-                          fullWidth
-                        />
-                      </div>
-                    </Grid>
-                    <Grid item sm={6} xs={12}>
-                      <div className={classes.formControlWrapper}>
-                        <CustomTextField
-                          field="clientEmail"
-                          id={uuid()}
-                          label="Client Email"
                           required
                           fullWidth
                         />
@@ -636,124 +560,12 @@ class SubmitDealForm extends Component {
                       </Button>
                     </Grid>
 
-                    <Grid item xs={12} sm={6}>
-                      <div className={classes.formControlWrapper}>
-                        <CustomTextField
-                          field="paymentsSubtotal"
-                          id={uuid()}
-                          label="Payments Subtotal"
-                          disabled
-                          fullWidth
-                          submittedValue={this.props.paymentsTotal}
-                          formApi={formApi}
-                          convertToLocaleString
-                          isDollarAmount
-                        />
-                      </div>
-                    </Grid>
-
-                    <div className={classes.formMiniHeading2}>
-                      <Typography variant="subheading" classes={{ subheading: classes.h4, root: classes.redText }}>
-                        Deductions:
-                      </Typography>
-                    </div>
-
-                    {this.state.shouldRenderInitialDeductionItem ? (<div className={classes.paymentItemsWrapper}>
-                      <NestedField field={['deductionItems', 0]}>
-                        <Grid item sm={4} xs={12}>
-                          <div className={classes.formControlWrapper}>
-                            <MaterialCustomSelectInput
-                              field="deductionType"
-                              id={uuid()}
-                              fullWidth
-                              label="Deduction Type"
-                              name="deductionType"
-                              required
-                              selectInputItems={deductionTypeSelectItems}
-                              validate={deductionTypeValidator}
-                            />
-                          </div>
-                        </Grid>
-
-                        <Grid item sm={4} xs={12}>
-                          <div className={classes.formControlWrapper}>
-                            <CustomTextField
-                              field="description"
-                              id={uuid()}
-                              label="Description"
-                              fullWidth
-                              required
-                              validate={descriptionValidator}
-                            />
-                          </div>
-                        </Grid>
-
-                        <Grid item sm={4} xs={12}>
-                          <div className={classes.formControlWrapper}>
-                            <CustomTextField
-                              field="amount"
-                              id={uuid()}
-                              label="Amount"
-                              fullWidth
-                              validate={deductionsAmountValidator}
-                              noLetters
-                              required
-                              noNegativeSign
-                              onChangeWithID={this.props.deductionAmountChangeHandler}
-                              isDollarAmount
-                            />
-                          </div>
-                        </Grid>
-                      </NestedField>
-                      <Button
-                        classes={{ root: classes.removePaymentBtn }}
-                        variant="raised"
-                        color="secondary"
-                        onClick={() => {
-                          this.setState({ shouldRenderInitialDeductionItem: false });
-                          formApi.removeValue('deductionItems', 0);
-                        }}
-                        type="button"
-                      >
-                        Remove
-                      </Button>
-                    </div>) : null}
-
-                    {renderRestDeductionItems()}
-                    <Grid item xs={12}>
-                      <Button
-                        classes={{ root: classes.addPaymentBtn }}
-                        variant="raised"
-                        color="primary"
-                        onClick={() => formApi.addValue('deductionItems')}
-                        type="button"
-                      >
-                        Add deduction item
-                      </Button>
-                    </Grid>
-
-                    <Grid item xs={12} sm={6}>
-                      <div className={classes.formControlWrapper}>
-                        <CustomTextField
-                          field="deductionsSubtotal"
-                          id={uuid()}
-                          label="Deductions Subtotal"
-                          disabled
-                          fullWidth
-                          submittedValue={`${this.props.deductionsTotal}`}
-                          formApi={formApi}
-                          convertToLocaleString
-                          isDollarAmount
-                        />
-                      </div>
-                    </Grid>
-
                     <Grid item xs={12}>
                       <div className={classes.formControlWrapper}>
                         <CustomTextField
                           field="financialsTotal"
                           id={uuid()}
-                          label="Final Total"
+                          label="Total"
                           disabled
                           fullWidth
                           labelClassName={classes.finalTotalLabelClass}
@@ -766,89 +578,37 @@ class SubmitDealForm extends Component {
                       </div>
                     </Grid>
 
-                    <div className={classes.formMiniHeading2}>
-                      <Typography variant="subheading" classes={{ subheading: classes.h4 }}>
-                        File Uploads:
-                      </Typography>
+                    <div className={`${classes.formSubheading} ${classes.paddingBottom10}`}>
+                      <Typography variant="subheading" classes={{ subheading: classes.h3 }}>Send To</Typography>
                     </div>
 
                     <Grid item xs={12}>
                       <Divider />
                     </Grid>
 
-                    <Grid item xs={12}>
-                      <div className={classes.fileUploadBtnWrapper}>
-                        <CustomFileUploadInputBtn
-                          field="agencyDisclosureForm"
+                    <Grid item xs={12} sm={6}>
+                      <div className={classes.formControlWrapper}>
+                        <CustomTextField
+                          field="attention"
                           id={uuid()}
-                          label="Upload Agency Disclosure Form*"
-                          btnClassName={classes.uploadBtnClassName}
+                          label="Attention"
                           required
-                          customOnChange={setAgentDisclosureForm}
-                          customState={agentDisclosureForm}
-                          helperInfo="Agency Disclosure Form* (PDF or JPEG/JPG file)"
-                          acceptedFileExtensions={acceptedFileExtensions}
+                          fullWidth
                         />
                       </div>
                     </Grid>
 
-                    <Grid item xs={12}>
-                      <div className={classes.fileUploadBtnWrapper}>
-                        <CustomFileUploadInputBtn
-                          field="contractOrLeaseItems"
+                    <Grid item xs={12} sm={6}>
+                      <div className={classes.formControlWrapper}>
+                        <CustomTextField
+                          field="attentionEmail"
                           id={uuid()}
-                          label="Upload your Contract or Lease items"
-                          btnClassName={classes.uploadBtnClassName}
-                          multiple
-                          customOnChange={setContractOrLeaseForms}
-                          customState={contractOrLeaseForms}
-                          helperInfo="Contract or Lease items (PDF or JPEG/JPG files)"
-                          acceptedFileExtensions={acceptedFileExtensions}
+                          label="Email"
+                          required
+                          fullWidth
                         />
                       </div>
                     </Grid>
-
-                    {/*
-                      {formApi.values.contractOrLeaseItems && formApi.values.contractOrLeaseItems.map((contractOrLeaseItem, i) => (
-                        <Grid item xs={12} key={i} classes={{ typeItem: classes.uploadContractDivWrapper }}>
-                          <div className={classes.fileUploadBtnWrapper2}>
-                            <CustomFileUploadInputBtn
-                              field={['contractOrLeaseItems', i]}
-                              id={uuid()}
-                              label="Upload Contract or Lease"
-                              btnClassName={classes.uploadBtnClassName}
-                            />
-                          </div>
-                          <Button
-                            variant="fab"
-                            color="secondary"
-                            aria-label="add"
-                            size="small"
-                            classes={{ root: classes.smallFileRemoveBtn }}
-                            onClick={() => formApi.removeValue('contractOrLeaseItems', i)}
-                          >
-                            <DeleteIcon />
-                          </Button>
-                        </Grid>
-                      )).slice(1)}
-                    
-
-                    <Grid item xs={12}>
-                      <div className={classes.fileUploadBtnWrapper}>
-                        <Button
-                          variant="fab"
-                          color="primary"
-                          id="contractOrLease"
-                          aria-label="add"
-                          size="small"
-                          classes={{ root: classes.smallFileAddBtn }}
-                          onClick={() => formApi.addValue('contractOrLeaseItems')}
-                        >
-                          <AddIcon />
-                        </Button>
-                      </div>
-                    </Grid>
-                    */}
 
                     <div className={classes.formMiniHeading2}>
                       <Typography variant="subheading" classes={{ subheading: classes.h4 }}>
@@ -860,52 +620,20 @@ class SubmitDealForm extends Component {
                       <Divider />
                     </Grid>
 
-                    <div className={`${classes.formControlWrapper} ${classes.radioInputWrapper}`}>
-                      <MaterialCustomRadioInput
-                        field="agentPaymentType"
-                        id={uuid()}
-                        required
-                        label="How would you like to get paid?"
-                        radioInputItems={radioInputAgentPaymentItems}
-                        horizontal
-                      />
-                    </div>
-
                     <Grid item xs={12}>
                       <div className={classes.formControlWrapper}>
-                        <MaterialCustomSelectInput
-                          field="fundsPaidBy"
+                        <CustomTextField
+                          field="notes"
                           id={uuid()}
-                          required
+                          label="Notes"
                           fullWidth
-                          label="Funds will/have been paid by..."
-                          name="fundsPaidBy"
-                          selectInputItems={fundsPaidBySelectItems}
+                          multiline
+                          placeholder="Leave any notes here..."
                         />
                       </div>
                     </Grid>
 
-                    <div className={`${classes.formControlWrapper} ${classes.radioInputWrapper}`}>
-                      <MaterialCustomRadioInput
-                        field="alreadyTurnedFundsIn"
-                        id={uuid()}
-                        required
-                        label="Have you already deposited or given the funds to us?"
-                        radioInputItems={radioInputYesNoItems}
-                        horizontal
-                      />
-                    </div>
 
-                    <div className={`${classes.formControlWrapper} ${classes.radioInputWrapper}`}>
-                      <MaterialCustomRadioInput
-                        field="shouldSendApprovalTextMessageNotificaion"
-                        id={uuid()}
-                        required
-                        label="Want to recieve a text notification upon deal approval?"
-                        radioInputItems={radioInputYesNoItems}
-                        horizontal
-                      />
-                    </div>
 
                   </Grid>
                 </form>
@@ -919,4 +647,4 @@ class SubmitDealForm extends Component {
   }
 }
 
-export default withStyles(styles)(SubmitDealForm);
+export default withStyles(styles)(SubmitInvoiceForm);

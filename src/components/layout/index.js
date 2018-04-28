@@ -26,9 +26,8 @@ if (isBrowser) {
 @observer
 class Layout extends Component {
   render() {
-    const { pathname } = this.props.router;
-    const { isLoggedIn, logoutUser: logout, userRoles } = this.props.UserStore;
-    const isApp = pathname.startsWith('/app');
+    const { logoutUser: logout, userRoles } = this.props.UserStore;
+    const { isAdminMode, toggleAdminMode } = this.props.UIStore;
     const logoutUser = () => {
       const { error } = logout();
       if (error) {
@@ -47,15 +46,19 @@ class Layout extends Component {
           <link rel="stylesheet" type="text/css" href="/static/nprogress.css" />
           <link href="https://fonts.googleapis.com/css?family=Alegreya|Alegreya+Sans" rel="stylesheet" />
 
-          {/* render material ui specific fonts on app pages */}
-          {isApp ? <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" /> : null}
-          {isApp ? <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" /> : null}
+          <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" />
+          <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
 
           <style dangerouslySetInnerHTML={{ __html: globalStyles }}></style>
         </Head>
         {/* <DevTools position={{ top: 0, left: 30 }} /> */}
         <ThemeProvider theme={themeStyles}>
-          <InnerAppLayout logoutUser={logoutUser} userRoles={userRoles}>
+          <InnerAppLayout
+            logoutUser={logoutUser}
+            userRoles={userRoles}
+            isAdminMode={isAdminMode}
+            toggleAdminMode={toggleAdminMode}
+          >
             {this.props.children}
           </InnerAppLayout>
         </ThemeProvider>

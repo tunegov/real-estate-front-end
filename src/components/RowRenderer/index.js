@@ -36,7 +36,7 @@ class RowRenderer extends React.Component {
     // but we could replace this with anything we liked, cards, images, etc
     // usually though it will just be a matter of wrapping a div, and then calling back through to the grid
     return (
-      <div className={this.getClassName()} style={this.getRowStyle()}>
+      <div className={this.getClassName()}>
         <Row ref={node => this.row = node} {...this.props} />
       </div>
     );

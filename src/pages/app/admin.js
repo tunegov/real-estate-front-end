@@ -5,6 +5,7 @@ import Layout from '../../components/Layout';
 import { initStore } from '../../models';
 import withData from '../../lib/withData';
 import { Router } from '../../routes';
+import AdminContainer from '../../containers/Admin';
 
 @observer
 class AgentsDashboard extends React.Component {
@@ -23,14 +24,15 @@ class AgentsDashboard extends React.Component {
 
     // for debugging only!!!
     if (isBrowser && !window._appStore) window._appStore = this.store;
+
   }
 
   render() {
     return (
-      <Layout UserStore={this.store.UserStore}>
-        <div>
-          <h1>We are at the admin page now!...</h1>
-        </div>
+      <Layout UserStore={this.store.UserStore} UIStore={this.store.UIStore}>
+        <AdminContainer
+          userUUID={this.store.UserStore.uuid}
+        />
       </Layout>
     );
   }

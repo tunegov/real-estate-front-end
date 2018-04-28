@@ -8,12 +8,17 @@ import PhoneNumberFormatter from '../dataTableFormatters/PhoneNumberFormatter';
 import EmailFormatter from '../dataTableFormatters/EmailFormatter';
 import EmptyRowsView from '../EmptyRowsView';
 import MyToolbar from '../Toolbar';
+import ViewFormatter from '../dataTableFormatters/ViewFormatter';
+import RowRenderer from '../RowRenderer';
+import { round } from '../../utils/Math';
 
 
 const chance = new Chance();
 
 let ReactDataGrid;
 let mySelectors;
+let MySingleSelectFilter;
+let MyNumericFilter;
 if (typeof window !== 'undefined') {
   const PropTypes = require('prop-types');
   // next line is only required until ron-react-autocomplete is rebuilt and republished
@@ -22,9 +27,12 @@ if (typeof window !== 'undefined') {
   require('react').createClass = require('create-react-class');
   ReactDataGrid = require('react-data-grid');
   const {
-    Data: { Selectors },
+    Data: { Selectors, },
+    Filters: { SingleSelectFilter, NumericFilter },
   } = require('react-data-grid-addons');
   mySelectors = Selectors;
+  MySingleSelectFilter = SingleSelectFilter;
+  MyNumericFilter = NumericFilter;
 }
 
 const styles = theme => ({
@@ -40,48 +48,83 @@ const styles = theme => ({
 });
 
 @observer
-class AgentsTable extends React.Component {
+class InvoicesTable extends React.Component {
   constructor(props, context) {
     super(props, context);
     this.createRows();
     this._columns = [
       {
-        key: 'agentID',
-        name: 'Agent ID',
+        key: 'invoiceID',
+        name: 'Invoice ID',
         resizable: true,
         locked: true,
         filterable: true,
         sortable: true,
       },
+      { key: 'clientName', name: 'Client Name', resizable: true, filterable: true, sortable: true },
+      { key: 'date', name: 'Date', resizable: true, filterable: true, sortable: true },
       {
-        key: 'photo',
-        name: 'Photo',
-        width: 65,
-        formatter: ProfilePictureFormatter,
-      },
-      { key: 'name', name: 'Name', resizable: true, filterable: true, sortable: true },
-      {
-        key: 'email',
-        name: 'Email',
+        key: 'type',
+        name: 'Type',
         resizable: true,
         filterable: true,
         sortable: true,
-        formatter: EmailFormatter,
+        width: 110,
+        filterRenderer: MySingleSelectFilter,
       },
       {
-        key: 'telephoneNumber',
-        name: 'Telephone Number',
+        key: 'propertyAddress',
+        name: 'Property Address',
         resizable: true,
         filterable: true,
         sortable: true,
-        formatter: PhoneNumberFormatter,
+        width: 150,
       },
       {
-        key: 'region',
-        name: 'Region',
+        key: 'propertyCity',
+        name: 'Property City',
         resizable: true,
         filterable: true,
         sortable: true,
+        width: 110,
+      },
+      {
+        key: 'managementOrCobrokeCompany',
+        name: 'Mgmt/Co-Broke Co.',
+        resizable: true,
+        filterable: true,
+        sortable: true,
+        width: 155,
+      },
+      {
+        key: 'rentOrSalePrice',
+        name: 'Rent/Sale Price',
+        resizable: true,
+        filterable: true,
+        sortable: true,
+        filterRenderer: MyNumericFilter,
+      },
+      {
+        key: 'totalAmount',
+        name: 'Total Amount',
+        resizable: true,
+        filterable: true,
+        sortable: true,
+        filterRenderer: MyNumericFilter,
+      },
+      {
+        key: 'status',
+        name: 'Status',
+        resizable: true,
+        filterable: true,
+        sortable: true,
+        filterRenderer: MySingleSelectFilter,
+      },
+      {
+        key: 'view',
+        name: 'View',
+        formatter: ViewFormatter,
+        width: 55,
       },
     ];
 
@@ -101,13 +144,19 @@ class AgentsTable extends React.Component {
   createRows = numOfRows => {
     const rows = [];
     for (let i = 1; i < numOfRows; i++) {
+      const rentOrSalePrice = chance.dollar().substring(1);
       rows.push({
-        agentID: chance.integer({ min: 1, max: 2000000000 }),
-        photo: { imageURL: faker.image.avatar(), profileURL: '#' },
-        name: chance.name(),
-        email: chance.email(),
-        telephoneNumber: chance.phone(),
-        region: chance.integer({ min: 0, max: 100 }) > 70 ? chance.state({ full: true }) : 'New York',
+        invoiceID: chance.integer({ min: 1, max: 2000000000 }),
+        clientName: chance.name(),
+        date: chance.date({ string: true }),
+        type: chance.bool() === true ? 'Residential' : 'Commercial',
+        propertyAddress: chance.address(),
+        propertyCity: chance.city(),
+        managementOrCobrokeCompany: chance.company(),
+        rentOrSalePrice,
+        totalAmount: round(Number(rentOrSalePrice) + 4250, 2),
+        status: chance.bool() === true ? 'Pending' : 'Approved',
+        view: '#',
       });
     }
     return rows;
@@ -136,8 +185,12 @@ class AgentsTable extends React.Component {
     this.setState({ filters: newFilters });
   };
 
-  onClearFilters = () => {
-    // all filters removed
+  getValidFilterValues = (columnId) => {
+    let values = this.state.rows.map(r => r[columnId]);
+    return values.filter((item, i, a) => { return i === a.indexOf(item); });
+  };
+
+  handleOnClearFilters = () => {
     this.setState({ filters: {} });
   };
 
@@ -156,14 +209,16 @@ class AgentsTable extends React.Component {
             rowsCount={this.getSize()}
             rowHeight={50}
             headerRowHeight={37}
-            toolbar={<MyToolbar tableTitle="Agents" enableFilter />}
+            toolbar={<MyToolbar tableTitle="Invoices" enableFilter />}
             minHeight={this.getSize() ? 600 : 100}
             minColumnWidth={120}
             enableCellSelect
             onGridSort={this.handleGridSort}
             onAddFilter={this.handleFilterChange}
-            onClearFilters={this.onClearFilters}
+            getValidFilterValues={this.getValidFilterValues}
+            onClearFilters={this.handleOnClearFilters}
             rowScrollTimeout={200}
+            rowRenderer={RowRenderer}
             emptyRowsView={EmptyRowsView}
             cellNavigationMode="changeRow"
           /> : null}
@@ -172,4 +227,4 @@ class AgentsTable extends React.Component {
   }
 }
 
-export default withStyles(styles)(AgentsTable);
+export default withStyles(styles)(InvoicesTable);

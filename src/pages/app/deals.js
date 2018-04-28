@@ -38,7 +38,7 @@ class Deals extends React.Component {
     const { submitDealDialogOpen } = this.state;
 
     return (
-      <Layout UserStore={this.store.UserStore}>
+      <Layout UserStore={this.store.UserStore} UIStore={this.store.UIStore}>
         <DealsContainer submitDealDialogOpen={submitDealDialogOpen} toggleDialogBoxOpen={this.toggleDialogBoxOpen} userUUID={this.store.UserStore.uuid} />
       </Layout>
     );

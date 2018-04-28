@@ -10,7 +10,7 @@ const styles = theme => ({
 });
 
 const EmptyRowsView = ({ classes, text }) => (
-  <Typography className={classes.root} variant="headline">{text || 'No data available yet.'}</Typography>
+  <Typography className={classes.root} variant="headline">{text || 'No data available.'}</Typography>
 );
 
 export default withStyles(styles)(EmptyRowsView);

@@ -5,6 +5,7 @@ import Layout from '../../components/Layout';
 import { initStore } from '../../models';
 import withData from '../../lib/withData';
 import { Router } from '../../routes';
+import InvoicesContainer from '../../containers/Invoices';
 
 @observer
 class Invoices extends React.Component {
@@ -27,10 +28,8 @@ class Invoices extends React.Component {
 
   render() {
     return (
-      <Layout UserStore={this.store.UserStore}>
-        <div>
-          <h1>We are at the invoices page now!</h1>
-        </div>
+      <Layout UserStore={this.store.UserStore} UIStore={this.store.UIStore}>
+        <InvoicesContainer userUUID={this.store.UserStore.uuid} />
       </Layout>
     );
   }

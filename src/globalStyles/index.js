@@ -41,9 +41,6 @@ const globalStyles = `
   .tools {
     margin-top: 0 !important;
   }
-  .react-grid-HeaderCell {
-    overflow: hidden !important;
-  }
   .customRow .react-grid-Cell {
     background-color: initial !important;
   }
@@ -55,13 +52,21 @@ const globalStyles = `
     overflow: hidden;
     text-overflow: ellipsis;
   }
-  .oddRow .react-grid-Cell--locked {
+  .oddRow .react-grid-Cell {
     background-color: #fff !important;
   }
-  .evenRow .react-grid-Cell--locked {
+  .evenRow .react-grid-Cell {
     background-color: #ECEBFE !important;
   }
   .react-grid-HeaderCell .form-group input {
+    width: 100%;
+    padding: 5px 10px;
+    font-size: 12px;
+    line-height: 1.5;
+    border-radius: 3px;
+    border: 1px solid #ccc;
+  }
+  .react-grid-HeaderCell input.form-control {
     width: 100%;
     padding: 5px 10px;
     font-size: 12px;
@@ -76,6 +81,9 @@ const globalStyles = `
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+  }
+  .react-grid-HeaderCell > .Select {
+    overflow: initial;
   }
 `;
 

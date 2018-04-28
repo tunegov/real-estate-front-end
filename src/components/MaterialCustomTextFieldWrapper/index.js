@@ -1,7 +1,7 @@
 import React from 'react';
 import { observer } from 'mobx-react';
 import { withStyles } from 'material-ui/styles';
-import Input, { InputLabel } from 'material-ui/Input';
+import Input, { InputLabel, InputAdornment } from 'material-ui/Input';
 import { FormControl, FormHelperText } from 'material-ui/Form';
 import { Field } from 'react-form';
 import uuid from 'uuid/v4';
@@ -78,6 +78,8 @@ class CustomTextFieldWrapper extends React.Component {
             noNegativeSign,
             convertToLocaleString,
             formApi,
+            isDollarAmount,
+            inputRootClassName,
             ...rest
           } = this.props;
 
@@ -104,6 +106,7 @@ class CustomTextFieldWrapper extends React.Component {
                 className={disabled ? classes.disabled : null}
                 inputProps={{ className: disabled ? `${classes.disabled} ${inputClassName}` : `${inputClassName}` }}
                 value={value || ''}
+                classes={inputRootClassName ? { root: inputRootClassName } : null}
                 id={id}
                 onChange={e => {
                   const newValue = e.target.value;
@@ -133,6 +136,7 @@ class CustomTextFieldWrapper extends React.Component {
                   }
                 }}
                 multiline={multiline}
+                startAdornment={isDollarAmount ? <InputAdornment position="start">$</InputAdornment> : null}
                 {...rest}
               />
               {error && touched ? <FormHelperText classes={{ root: classes.redErrorText }} id={`${id}-error-text`}>{error}</FormHelperText> : null}

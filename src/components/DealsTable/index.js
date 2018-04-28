@@ -11,6 +11,8 @@ const chance = new Chance();
 
 let ReactDataGrid;
 let mySelectors;
+let MySingleSelectFilter;
+let MyNumericFilter;
 if (typeof window !== 'undefined') {
   const PropTypes = require('prop-types');
   // next line is only required until ron-react-autocomplete is rebuilt and republished
@@ -20,8 +22,11 @@ if (typeof window !== 'undefined') {
   ReactDataGrid = require('react-data-grid');
   const {
     Data: { Selectors },
+    Filters: { SingleSelectFilter, NumericFilter },
   } = require('react-data-grid-addons');
   mySelectors = Selectors;
+  MySingleSelectFilter = SingleSelectFilter;
+  MyNumericFilter = NumericFilter;
 }
 
 const styles = theme => ({
@@ -42,8 +47,8 @@ class DealsTable extends React.Component {
     super(props, context);
     this._columns = [
       {
-        key: 'id',
-        name: 'ID',
+        key: 'dealID',
+        name: 'Deal ID',
         resizable: true,
         locked: true,
         filterable: true,
@@ -57,6 +62,7 @@ class DealsTable extends React.Component {
         filterable: true,
         sortable: true,
         width: 110,
+        filterRenderer: MySingleSelectFilter,
       },
       { key: 'clientName', name: 'Client Name', resizable: true, filterable: true, sortable: true },
       {
@@ -89,6 +95,7 @@ class DealsTable extends React.Component {
         resizable: true,
         filterable: true,
         sortable: true,
+        filterRenderer: MyNumericFilter,
       },
       {
         key: 'status',
@@ -96,6 +103,7 @@ class DealsTable extends React.Component {
         resizable: true,
         filterable: true,
         sortable: true,
+        filterRenderer: MySingleSelectFilter,
       },
       {
         key: 'view',
@@ -121,7 +129,7 @@ class DealsTable extends React.Component {
     const rows = [];
     for (let i = 1; i < numOfRows; i++) {
       rows.push({
-        id: chance.integer({ min: 1, max: 2000000000 }),
+        dealID: chance.integer({ min: 1, max: 2000000000 }),
         date: chance.date({ string: true }),
         dealType: chance.bool() === true ? 'Residential' : 'Commercial',
         clientName: chance.name(),
@@ -129,7 +137,7 @@ class DealsTable extends React.Component {
         propertyAddress: chance.address(),
         propertyCity: chance.city(),
         managementOrCobrokeCompany: chance.company(),
-        rentOrSalePrice: chance.dollar(),
+        rentOrSalePrice: chance.dollar().substring(1),
         status: chance.bool() === true ? 'Pending' : 'Approved',
         view: '#',
       });
@@ -160,8 +168,12 @@ class DealsTable extends React.Component {
     this.setState({ filters: newFilters });
   };
 
-  onClearFilters = () => {
-    // all filters removed
+  getValidFilterValues = (columnId) => {
+    let values = this.state.rows.map(r => r[columnId]);
+    return values.filter((item, i, a) => { return i === a.indexOf(item); });
+  };
+
+  handleOnClearFilters = () => {
     this.setState({ filters: {} });
   };
 
@@ -187,6 +199,8 @@ class DealsTable extends React.Component {
             enableCellSelect
             onGridSort={this.handleGridSort}
             onAddFilter={this.handleFilterChange}
+            getValidFilterValues={this.getValidFilterValues}
+            onClearFilters={this.handleOnClearFilters}
             onClearFilters={this.onClearFilters}
             rowScrollTimeout={200}
             emptyRowsView={EmptyRowsView}

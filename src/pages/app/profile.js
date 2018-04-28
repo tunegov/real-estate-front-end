@@ -27,7 +27,7 @@ class Profile extends React.Component {
 
   render() {
     return (
-      <Layout UserStore={this.store.UserStore}>
+      <Layout UserStore={this.store.UserStore} UIStore={this.store.UIStore}>
         <div>
           <h1>We are at the profile page now!</h1>
         </div>

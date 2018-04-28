@@ -3,6 +3,7 @@
 import { SheetsRegistry } from 'jss';
 import { createMuiTheme, createGenerateClassName } from 'material-ui/styles';
 import red from 'material-ui/colors/red';
+import blue from 'material-ui/colors/blue';
 import { lighten, darken } from 'polished';
 
 // A theme with custom primary and secondary color.
@@ -15,6 +16,20 @@ const theme = createMuiTheme({
       dark: darken(0.2, '#272A2E'),
     },
     secondary: {
+      light: red[300],
+      main: red[500],
+      dark: red[700],
+    },
+  },
+  custom: {
+    submitBlue: {
+      transparentLightBackground: 'rgba(30,150,243,.2)',
+      light: blue[300],
+      main: blue[500],
+      dark: blue[700],
+    },
+    dangerRed: {
+      transparentLightBackground: 'rgba(244,67,54,.2)',
       light: red[300],
       main: red[500],
       dark: red[700],
