@@ -3,6 +3,7 @@ import { withStyles } from 'material-ui/styles';
 import { withRouter } from 'next/router';
 import SettingsIcon from '@material-ui/icons/Settings';
 import SideNav from '../SideNav';
+import AdminSideNav from '../AdminSideNav';
 import AppTopNav from '../AppTopNav';
 import SettingsDrawer from '../SettingsDrawer';
 import { includesAny, includesAll } from '../../utils/arrayUtils';
@@ -40,6 +41,7 @@ const styles = theme => ({
     border: 'none',
     borderRadius: '5px 0 0 5px',
     outline: 'none',
+    boxShadow: theme.shadows[6],
     '&:hover': {
       cursor: 'pointer',
     },
@@ -50,14 +52,14 @@ class ClippedDrawer extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = { drawerOpen: false, settingsDrawerOpen: false };
+    this.state = { navDrawerOpen: false, settingsDrawerOpen: false };
     this.isAdmin = includesAny(this.props.userRoles, ['admin', 'super-admin']);
     this.onlyRoleIsAdmin = includesAll(['admin', 'super-admin'], this.props.userRoles);
   }
 
-  toggleDrawer = state => {
+  toggleNavDrawer = state => {
     this.setState({
-      drawerOpen: typeof state === 'boolean' ? state : !this.state.drawerOpen,
+      navDrawerOpen: typeof state === 'boolean' ? state : !this.state.navDrawerOpen,
     });
   }
 
@@ -67,6 +69,34 @@ class ClippedDrawer extends React.Component {
     });
   }
 
+  renderSideNav = () => {
+    const { logoutUser, userRoles, isAdminMode } = this.props;
+    const currentPath = this.props.router.pathname;
+    const { onlyRoleIsAdmin } = this;
+    if (isAdminMode || onlyRoleIsAdmin) {
+      return (
+        <AdminSideNav
+          currentPath={currentPath}
+          drawerOpen={this.state.navDrawerOpen}
+          toggleDrawer={this.toggleNavDrawer}
+          logoutUser={logoutUser}
+          userRoles={userRoles}
+          isAdminMode={isAdminMode}
+        />
+      );
+    }
+    return (
+      <SideNav
+        currentPath={currentPath}
+        drawerOpen={this.state.navDrawerOpen}
+        toggleDrawer={this.toggleNavDrawer}
+        logoutUser={logoutUser}
+        userRoles={userRoles}
+        isAdminMode={isAdminMode}
+      />
+    );
+  }
+
   render() {
     const { classes, logoutUser, userRoles, isAdminMode, toggleAdminMode } = this.props;
     const currentPath = this.props.router.pathname;
@@ -74,17 +104,13 @@ class ClippedDrawer extends React.Component {
 
     return (
       <div className={classes.root}>
-        <AppTopNav currentPath={currentPath} logoutUser={logoutUser} toggleDrawer={this.toggleDrawer} />
-        <SideNav
+        <AppTopNav
           currentPath={currentPath}
-          drawerOpen={this.state.drawerOpen}
-          toggleDrawer={this.toggleDrawer}
           logoutUser={logoutUser}
-          userRoles={userRoles}
-          toggleDrawer={this.toggleDrawer}
-          drawerOpen={this.state.drawerOpen}
+          toggleDrawer={this.toggleNavDrawer}
           isAdminMode={isAdminMode}
         />
+        {this.renderSideNav()}
         <main className={classes.content}>
           <div className={classes.toolbar} />
           {this.props.children}
@@ -97,8 +123,10 @@ class ClippedDrawer extends React.Component {
               onlyRoleIsAdmin={this.onlyRoleIsAdmin}
               isAdminMode={isAdminMode}
               toggleDrawer={this.toggleSettingsDrawer}
+              toggleNavDrawer={this.toggleNavDrawer}
               drawerOpen={this.state.settingsDrawerOpen}
               toggleAdminMode={toggleAdminMode}
+              navDrawerOpen={this.state.navDrawerOpen}
             />
           </div>
         </main>

@@ -21,6 +21,8 @@ const styles = theme => ({
   },
   drawerPaper: {
     position: 'relative',
+    paddingBottom: '60px',
+    overflow: 'auto',
     width: drawerWidth,
     zIndex: 1,
   },
@@ -49,15 +51,15 @@ const styles = theme => ({
     height: '30px',
     width: '30px',
   },
+  listRoot: {
+    height: '100%',
+    overflow: 'auto',
+    borderBottom: '1px solid rgba(0,0,0,.2)',
+  },
 });
 
 @observer
 class SideNav extends Component {
-  constructor(props) {
-    super(props);
-    this.renderSideLinkComponents = this.renderSideLinkComponents.bind(this);
-  }
-
   renderSideLinkComponents = currentPath => (
     navLinks.map(item => {
       return (
@@ -66,6 +68,8 @@ class SideNav extends Component {
           name={item.name}
           route={item.route}
           icon={item.icon}
+          iconLeft={item.iconLeft}
+          iconLeftSmall={item.iconLeftSmall}
           iconFontSize={item.iconFontSize}
           currentPath={currentPath}
           isActionItem={item.id === 'logout'}
@@ -109,7 +113,7 @@ class SideNav extends Component {
               </Tooltip>
             </div>
             <Divider />
-            <List>{this.renderSideLinkComponents(currentPath)}</List>
+            <List classes={{ root: classes.listRoot }}>{this.renderSideLinkComponents(currentPath)}</List>
             <div className={classes.notificationIcon}>
               <Tooltip id="tooltip-icon" title="Notifications" enterDelay={200} leaveDelay={200} placement="bottom" PopperProps={{ style: { minWidth: '30px' } }}>
                 <IconButton
@@ -130,7 +134,7 @@ class SideNav extends Component {
             }}
           >
             <div className={classes.toolbar} />
-            <List>{this.renderSideLinkComponents(currentPath)}</List>
+            <List classes={{ root: classes.listRoot }}>{this.renderSideLinkComponents(currentPath)}</List>
             <div className={classes.notificationIcon}>
               <Tooltip id="tooltip-icon" title="Notifications" enterDelay={200} leaveDelay={200} placement="bottom" PopperProps={{ style: { minWidth: '30px' } }}>
                 <IconButton

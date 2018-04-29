@@ -7,6 +7,7 @@ import AppBar from 'material-ui/AppBar';
 import Toolbar from 'material-ui/Toolbar';
 import Typography from 'material-ui/Typography';
 import { withStyles } from 'material-ui/styles';
+import classNames from 'classnames';
 import { observer } from 'mobx-react';
 import { Router } from '../../routes';
 import { capitalize, unhyphenate } from '../../utils/stringUtils';
@@ -66,25 +67,15 @@ const styles = theme => ({
 @observer
 class AppTopNav extends Component {
   render() {
-    const { classes, currentPath } = this.props;
+    const { classes, currentPath, isAdminMode } = this.props;
     const pathArray = currentPath.split('/');
     const path = pathArray[pathArray.length - 1];
-
-    const logoutUser = () => {
-      const { error } = this.props.logoutUser();
-      if (error) {
-        // TODO: add user notification of an logout error
-        console.log(error);
-        return;
-      }
-      Router.pushRoute('home');
-    };
 
     return (
       <AppBar position="absolute" className={classes.appBar}>
         <Toolbar className={classes.topToolbar}>
           <div className={classes.leftTopNavIconWrapper}>
-            <div className={classes.menuHiddenWrapper}>
+            <div className={classNames(!isAdminMode && classes.menuHiddenWrapper)}>
               <IconButton
                 color="inherit"
                 aria-label="open drawer"

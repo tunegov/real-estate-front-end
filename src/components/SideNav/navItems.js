@@ -9,13 +9,13 @@ import {
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import AgentsIcon from '@material-ui/icons/SupervisorAccount';
 
-const sideLinks = [
+export const agentSideLinks = [
   { name: 'Dashboard', route: 'dashboard', icon: DashboardIcon },
-  { name: 'Profile', route: 'profile', icon: PersonIcon, iconFontSize: 28 },
+  { name: 'Profile', route: 'profile', icon: PersonIcon, iconFontSize: 28, iconLeft: '12px' },
   { name: 'Deals', route: 'deals', icon: DealsIcon },
   { name: 'Invoices', route: 'invoices', icon: InvoicesIcon, iconFontSize: 20 },
   { name: 'Agents', route: 'agents', icon: AgentsIcon, iconFontSize: 24 },
   { name: 'Log Out', icon: ExitToAppIcon, id: 'logout' },
 ];
 
-export default sideLinks;
+export default agentSideLinks;

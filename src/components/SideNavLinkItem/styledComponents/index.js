@@ -10,18 +10,22 @@ export const SideNavLinkItemWrapper = styled.div`
   font-size: 16px;
   font-family: Roboto;
   font-weight: 500;
-  color: rgba(0, 0, 0, 0.87);
+  color: ${props => props.isAdminLinks ? '#fff' : 'rgba(0, 0, 0, 0.87)'};
   cursor: pointer;
   background-color: ${props => props.active ? 'rgba(0, 0, 0, 0.12) !important' : 'initial'};
+  transition: color .3s ease-in-out;
   &:hover {
-    background-color: ${darken(0.05, '#fff')};
+    background-color: ${props => props.isAdminLinks ? 'rgba(0, 0, 0, 0.1)' : darken(0.05, '#fff')};
   }
 }
 `;
 
 export const SideNavLinkItemAnchor = styled.a`
-  display: relative;
-  padding-left: 50px;
+  display: flex !important;
+  height: 100%;
+  flex-direction: column;
+  justify-content: center;
+  padding-left: ${props => props.isAdminLinks ? '40px' : '50px'};
   vertical-align: middle;
   display: table-cell;
   min-width: 100%;
@@ -29,8 +33,11 @@ export const SideNavLinkItemAnchor = styled.a`
 `;
 
 export const SideNavLinkItemDiv = styled.div`
-  display: relative;
-  padding-left: 50px;
+  display: flex !important;
+  height: 100%;
+  flex-direction: column;
+  justify-content: center;
+  padding-left: ${props => props.isAdminLinks ? '40px' : '50px'};
   vertical-align: middle;
   display: table-cell;
   min-width: 100%;
@@ -40,5 +47,8 @@ export const SideNavLinkItemDiv = styled.div`
 export const IconWrapper = styled.span`
   margin-right: 35px;
   position: absolute;
-  left: 15px;
+  left: ${props => props.iconLeft ? props.iconLeft : '15px'};
+  @media screen and (max-width: 600px) {
+    left: ${props => props.isAdminLinks ? props.iconLeftSmall ? props.iconLeftSmall : '8px' : '15px'};
+  }
 `;

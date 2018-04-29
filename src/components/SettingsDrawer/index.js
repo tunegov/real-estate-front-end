@@ -95,6 +95,7 @@ const styles = theme => ({
     color: '#fff',
     border: 'none',
     borderRadius: '5px 0 0 5px',
+    boxShadow: theme.shadows[6],
     outline: 'none',
     '&:hover': {
       cursor: 'pointer',
@@ -118,6 +119,8 @@ class SettingsDrawer extends Component {
       toggleAdminMode,
       isAdmin,
       onlyRoleIsAdmin,
+      navDrawerOpen,
+      toggleNavDrawer,
     } = this.props;
     return (
       <div className={classes.root}>
@@ -151,7 +154,12 @@ class SettingsDrawer extends Component {
                     <Switch
                       color="secondary"
                       checked={isAdminMode}
-                      onChange={toggleAdminMode}
+                      onChange={() => {
+                        if (navDrawerOpen) {
+                          toggleNavDrawer(false);
+                        }
+                        toggleAdminMode();
+                      }}
                     />
                   </div>
                 </div>
