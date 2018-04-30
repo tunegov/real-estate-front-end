@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import { observer } from 'mobx-react';
-import Hidden from 'material-ui/Hidden';
 import Drawer from 'material-ui/Drawer';
 import List from 'material-ui/List';
-import Divider from 'material-ui/Divider';
 import IconButton from 'material-ui/IconButton';
 import Tooltip from 'material-ui/Tooltip';
 import classNames from 'classnames';
@@ -50,7 +48,7 @@ const styles = theme => ({
     left: '7px',
     bottom: '5px',
     '@media screen and (max-width: 600px)': {
-      left: '5px',
+      left: '4px',
     },
   },
   arrowBackBtn: {
@@ -90,6 +88,7 @@ const styles = theme => ({
 class AdminSideNav extends Component {
   renderSideLinkComponents = currentPath => {
     return navLinks.map(item => {
+      const type = item.type || 'link';
       return (
         <SideNavLinkItem
           key={item.route || item.name}
@@ -103,6 +102,7 @@ class AdminSideNav extends Component {
           isActionItem={!item.route}
           isAdminLinks
           onClick={() => {
+            if (type === 'management') this.props.toggleManagementModal(item.routeBase);
             if (this.props.drawerOpen) this.props.toggleDrawer(false);
             if (item.id === 'logout') this.props.logoutUser();
           }}

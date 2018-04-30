@@ -1,14 +1,13 @@
 import React from 'react';
 import { observer } from 'mobx-react';
 import isBrowser from 'is-browser';
-import Layout from '../../components/Layout';
-import { initStore } from '../../models';
-import withData from '../../lib/withData';
-import { Router } from '../../routes';
-import DashboardContainer from '../../containers/Dashboard';
+import Layout from '../../../../components/Layout';
+import { initStore } from '../../../../models';
+import withData from '../../../../lib/withData';
+import { Router } from '../../../../routes';
 
 @observer
-class Dashboard extends React.Component {
+class AdminViewAgents extends React.Component {
   static getInitialProps({ req }) {
     const isServer = !!req;
     return { cookieJWTData: req && req.cookies ? req.cookies.jwtData : null, isServer };
@@ -29,10 +28,12 @@ class Dashboard extends React.Component {
   render() {
     return (
       <Layout UserStore={this.store.UserStore} UIStore={this.store.UIStore}>
-        <DashboardContainer userUUID={this.store.UserStore.uuid} />
+        <div>
+          <h1>We will now view all agents!...</h1>
+        </div>
       </Layout>
     );
   }
 }
 
-export default withData(Dashboard);
+export default withData(AdminViewAgents);

@@ -12,7 +12,7 @@ import AgentsIcon from '@material-ui/icons/SupervisorAccount';
 import AdminsIcon from '@material-ui/icons/RecentActors';
 
 export const adminSideLinks = [
-  { name: 'Admin Dashboard', route: 'dashboard', icon: DashboardIcon },
+  { name: 'Admin Dashboard', route: 'admin-dashboard', icon: DashboardIcon },
   {
     name: 'Profile',
     route: 'profile',
@@ -21,11 +21,11 @@ export const adminSideLinks = [
     iconLeft: '12px',
     iconLeftSmall: '5px',
   },
-  { name: 'Deals', id: 'manage-deals', icon: DealsIcon },
-  { name: 'Invoices', id: 'manage-invoices', icon: InvoicesIcon, iconFontSize: 20 },
-  { name: 'Agents', id: 'manage-agents', icon: AgentsIcon, iconFontSize: 24 },
-  { name: 'Users', id: 'manage-users', icon: UsersIcon, iconFontSize: 24 },
-  { name: 'Admins', id: 'manage-admins', icon: AdminsIcon, iconFontSize: 24 },
+  { name: 'Deals', type: 'management', routeBase: 'deals', icon: DealsIcon },
+  { name: 'Invoices', type: 'management', routeBase: 'invoices', icon: InvoicesIcon, iconFontSize: 20 },
+  { name: 'Agents', type: 'management', routeBase: 'agents', icon: AgentsIcon, iconFontSize: 24 },
+  { name: 'Users', type: 'management', routeBase: 'users', icon: UsersIcon, iconFontSize: 24 },
+  { name: 'Admins', type: 'management', routeBase: 'admin', icon: AdminsIcon, iconFontSize: 24 },
   { name: 'Log Out', icon: ExitToAppIcon, id: 'logout' },
 ];
 

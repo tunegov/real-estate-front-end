@@ -7,6 +7,8 @@ import AdminSideNav from '../AdminSideNav';
 import AppTopNav from '../AppTopNav';
 import SettingsDrawer from '../SettingsDrawer';
 import { includesAny, includesAll } from '../../utils/arrayUtils';
+import AdminCRUDManagementDialog from '../AdminCRUDManagementDialog';
+import CreateAgentDialogBox from '../CreateAgentDialogBox';
 
 const styles = theme => ({
   root: {
@@ -23,6 +25,7 @@ const styles = theme => ({
     backgroundColor: theme.palette.background.default,
     padding: theme.spacing.unit * 3,
     minWidth: 0, // So the Typography noWrap works
+    overflow: 'auto',
   },
   toolbar: theme.mixins.toolbar,
   topToolbar: {
@@ -52,7 +55,13 @@ class ClippedDrawer extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = { navDrawerOpen: false, settingsDrawerOpen: false };
+    this.state = {
+      navDrawerOpen: false,
+      settingsDrawerOpen: false,
+      managementModalOpen: false,
+      managementModalCurrentRoute: null,
+      createAgentModalOpen: false,
+    };
     this.isAdmin = includesAny(this.props.userRoles, ['admin', 'super-admin']);
     this.onlyRoleIsAdmin = includesAll(['admin', 'super-admin'], this.props.userRoles);
   }
@@ -69,11 +78,26 @@ class ClippedDrawer extends React.Component {
     });
   }
 
+  toggleManagementModal = routeBase => {
+    const { managementModalOpen } = this.state;
+    this.setState({
+      managementModalOpen: !managementModalOpen,
+      managementModalCurrentRoute: !managementModalOpen ? routeBase : null,
+    });
+  }
+
+  toggleCreateAgentModal = state => {
+    const { createAgentModalOpen } = this.state;
+    this.setState({
+      createAgentModalOpen: typeof state === 'boolean' ? state : !createAgentModalOpen,
+    });
+  }
+
   renderSideNav = () => {
-    const { logoutUser, userRoles, isAdminMode } = this.props;
+    const { logoutUser, userRoles, adminMenuOn } = this.props;
     const currentPath = this.props.router.pathname;
     const { onlyRoleIsAdmin } = this;
-    if (isAdminMode || onlyRoleIsAdmin) {
+    if (adminMenuOn || onlyRoleIsAdmin) {
       return (
         <AdminSideNav
           currentPath={currentPath}
@@ -81,7 +105,8 @@ class ClippedDrawer extends React.Component {
           toggleDrawer={this.toggleNavDrawer}
           logoutUser={logoutUser}
           userRoles={userRoles}
-          isAdminMode={isAdminMode}
+          adminMenuOn={adminMenuOn}
+          toggleManagementModal={this.toggleManagementModal}
         />
       );
     }
@@ -92,15 +117,25 @@ class ClippedDrawer extends React.Component {
         toggleDrawer={this.toggleNavDrawer}
         logoutUser={logoutUser}
         userRoles={userRoles}
-        isAdminMode={isAdminMode}
+        adminMenuOn={adminMenuOn}
       />
     );
   }
 
   render() {
-    const { classes, logoutUser, userRoles, isAdminMode, toggleAdminMode } = this.props;
+    const {
+      classes,
+      logoutUser,
+      userRoles,
+      adminMenuOn,
+      toggleAdminMenu,
+      toggleFullScreenLoader,
+    } = this.props;
     const currentPath = this.props.router.pathname;
     const { isAdmin } = this;
+    const { managementModalCurrentRoute, managementModalOpen, createAgentModalOpen } = this.state;
+    const managementModalType = managementModalCurrentRoute ?
+      managementModalCurrentRoute.split('-').pop() : null;
 
     return (
       <div className={classes.root}>
@@ -108,7 +143,7 @@ class ClippedDrawer extends React.Component {
           currentPath={currentPath}
           logoutUser={logoutUser}
           toggleDrawer={this.toggleNavDrawer}
-          isAdminMode={isAdminMode}
+          adminMenuOn={adminMenuOn}
         />
         {this.renderSideNav()}
         <main className={classes.content}>
@@ -121,15 +156,27 @@ class ClippedDrawer extends React.Component {
             <SettingsDrawer
               isAdmin={isAdmin}
               onlyRoleIsAdmin={this.onlyRoleIsAdmin}
-              isAdminMode={isAdminMode}
+              adminMenuOn={adminMenuOn}
               toggleDrawer={this.toggleSettingsDrawer}
               toggleNavDrawer={this.toggleNavDrawer}
               drawerOpen={this.state.settingsDrawerOpen}
-              toggleAdminMode={toggleAdminMode}
+              toggleAdminMenu={toggleAdminMenu}
               navDrawerOpen={this.state.navDrawerOpen}
+              toggleFullScreenLoader={toggleFullScreenLoader}
             />
           </div>
         </main>
+        <AdminCRUDManagementDialog
+          open={managementModalOpen}
+          managementModalCurrentRoute={managementModalCurrentRoute}
+          managementModalType={managementModalType}
+          toggleManagementModal={this.toggleManagementModal}
+          toggleCreateAgentModal={this.toggleCreateAgentModal}
+        />
+        <CreateAgentDialogBox
+          open={createAgentModalOpen}
+          toggleCreateAgentModal={this.toggleCreateAgentModal}
+        />
       </div>
     );
   }

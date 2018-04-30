@@ -130,6 +130,8 @@ class CustomFileUploadInputWrapper extends React.Component {
             customState,
             helperInfo,
             acceptedFileExtensions,
+            input,
+            getInput,
             ...rest
           } = props;
 
@@ -157,6 +159,7 @@ class CustomFileUploadInputWrapper extends React.Component {
                 type="file"
                 id={id}
                 multiple={multiple}
+                ref={input => getInput && getInput(input)}
                 onChange={e => {
                   const { files } = e.target;
                   if (multiple) {

@@ -67,7 +67,7 @@ const styles = theme => ({
 @observer
 class AppTopNav extends Component {
   render() {
-    const { classes, currentPath, isAdminMode } = this.props;
+    const { classes, currentPath, adminMenuOn } = this.props;
     const pathArray = currentPath.split('/');
     const path = pathArray[pathArray.length - 1];
 
@@ -75,7 +75,7 @@ class AppTopNav extends Component {
       <AppBar position="absolute" className={classes.appBar}>
         <Toolbar className={classes.topToolbar}>
           <div className={classes.leftTopNavIconWrapper}>
-            <div className={classNames(!isAdminMode && classes.menuHiddenWrapper)}>
+            <div className={classNames(!adminMenuOn && classes.menuHiddenWrapper)}>
               <IconButton
                 color="inherit"
                 aria-label="open drawer"

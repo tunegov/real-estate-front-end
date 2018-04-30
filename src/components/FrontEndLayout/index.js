@@ -27,11 +27,15 @@ if (isBrowser) {
 
 @observer
 class Layout extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {};
+  }
+
   render() {
     const { pathname } = this.props.router;
     const { isLoggedIn, logoutUser } = this.props.UserStore;
     const isApp = pathname.startsWith('/app');
-    console.log(pathname)
 
     return (
       <div>
@@ -40,10 +44,6 @@ class Layout extends Component {
           {/* Import CSS for nprogress */}
           <link rel="stylesheet" type="text/css" href="/static/nprogress.css" />
           <link href="https://fonts.googleapis.com/css?family=Alegreya|Alegreya+Sans" rel="stylesheet" />
-
-          {/* render material ui specific fonts on app pages */}
-          {isApp ? <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" /> : null}
-          {isApp ? <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" /> : null}
 
           <style dangerouslySetInnerHTML={{ __html: globalStyles }}></style>
         </Head>

@@ -7,6 +7,7 @@ import Typography from 'material-ui/Typography';
 import Divider from 'material-ui/Divider';
 import Switch from 'material-ui/Switch';
 import SettingsIcon from '@material-ui/icons/Settings';
+import { Router } from '../../routes';
 
 const drawerWidth = 340;
 
@@ -115,8 +116,8 @@ class SettingsDrawer extends Component {
       classes,
       drawerOpen,
       toggleDrawer,
-      isAdminMode,
-      toggleAdminMode,
+      adminMenuOn,
+      toggleAdminMenu,
       isAdmin,
       onlyRoleIsAdmin,
       navDrawerOpen,
@@ -149,16 +150,16 @@ class SettingsDrawer extends Component {
             <div className={classes.listWrapper}>
               {isAdmin && !onlyRoleIsAdmin ? (
                 <div className={classes.listItem}>
-                  <div className={classes.listItemLabel}>AdminMode:</div>
+                  <div className={classes.listItemLabel}>Admin Menu:</div>
                   <div className={classes.listItemLabelItem}>
                     <Switch
                       color="secondary"
-                      checked={isAdminMode}
+                      checked={adminMenuOn}
                       onChange={() => {
                         if (navDrawerOpen) {
                           toggleNavDrawer(false);
                         }
-                        toggleAdminMode();
+                        toggleAdminMenu();
                       }}
                     />
                   </div>

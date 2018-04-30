@@ -10,6 +10,11 @@ import withRoot from '../../lib/withRoot';
 import themeStyles from '../../themeStyles';
 import globalStyles from '../../globalStyles';
 import InnerAppLayout from '../InnerAppLayout';
+import FullScreenLoader from '../FullScreenLoader';
+import { initStore } from '../../models';
+
+const store = initStore();
+const { UIStore } = store;
 
 NProgress.configure({ showSpinner: false });
 NProgress.configure({ trickleSpeed: 100 });
@@ -19,15 +24,31 @@ if (isBrowser) {
     NProgress.start();
   };
 
-  Router.onRouteChangeComplete = () => NProgress.done();
+  Router.onRouteChangeComplete = () => {
+    if (UIStore.fullScreenLoaderOn) {
+      UIStore.toggleFullScreenLoader(false);
+    }
+    NProgress.done();
+  };
   Router.onRouteChangeError = () => NProgress.done();
 }
 
 @observer
 class Layout extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {};
+  }
+
   render() {
     const { logoutUser: logout, userRoles } = this.props.UserStore;
-    const { isAdminMode, toggleAdminMode } = this.props.UIStore;
+    const {
+      adminMenuOn,
+      toggleAdminMenu,
+      fullScreenLoaderOn,
+      fullScreenLoaderText,
+      toggleFullScreenLoader,
+    } = this.props.UIStore;
     const logoutUser = () => {
       const { error } = logout();
       if (error) {
@@ -56,12 +77,17 @@ class Layout extends Component {
           <InnerAppLayout
             logoutUser={logoutUser}
             userRoles={userRoles}
-            isAdminMode={isAdminMode}
-            toggleAdminMode={toggleAdminMode}
+            adminMenuOn={adminMenuOn}
+            toggleAdminMenu={toggleAdminMenu}
+            toggleFullScreenLoader={toggleFullScreenLoader}
           >
             {this.props.children}
           </InnerAppLayout>
         </ThemeProvider>
+        <FullScreenLoader
+          open={fullScreenLoaderOn}
+          text={fullScreenLoaderText}
+        />
       </div>
     );
   }
