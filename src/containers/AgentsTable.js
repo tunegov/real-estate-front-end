@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import { observer } from 'mobx-react';
 import { withStyles } from 'material-ui/styles';
-import { RiseLoader } from 'react-spinners';
+import { BounceLoader } from 'react-spinners';
 import AgentsTable from '../components/AgentsTable';
+
+const Loader = BounceLoader;
 
 const styles = theme => ({
   progress: {
@@ -37,11 +39,16 @@ class AgentsTableContainer extends Component {
     const { classes, ...rest } = this.props;
     return (
       <div>
-        {/*
-        <div className={classes.progressWrapper}>
-          <RiseLoader className={classes.progress} loading={true} />
-        </div>
-      */}
+        {
+          tableIsLoading ? (
+            <div style={{ display: 'flex', justifyContent: 'center' }}>
+              <Loader
+                color="#f44336"
+                loading
+              />
+            </div>
+          ) : null
+        }
         <AgentsTable {...rest} onMount={() => this.setState({ tableIsLoading: false })} />
       </div>
     );

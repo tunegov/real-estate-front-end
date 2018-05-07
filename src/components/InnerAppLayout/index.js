@@ -18,6 +18,7 @@ const styles = theme => ({
     position: 'relative',
     display: 'flex',
     alignContent: 'center',
+    fontFamily: theme.typography.fontFamily,
   },
   content: {
     position: 'relative',

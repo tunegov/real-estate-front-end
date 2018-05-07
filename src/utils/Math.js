@@ -1,4 +1,5 @@
 export const round = (number, precision) => {
+  if (!number) return 0;
   const shift = (number, precision, reverseShift) => {
     if (reverseShift) {
       precision = -precision;

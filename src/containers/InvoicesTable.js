@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import { observer } from 'mobx-react';
-import { RiseLoader } from 'react-spinners';
 import { withStyles } from 'material-ui/styles';
+import { BounceLoader } from 'react-spinners';
 import InvoicesTable from '../components/InvoicesTable';
+
+const Loader = BounceLoader;
 
 const styles = theme => ({
   progress: {
@@ -38,11 +40,16 @@ class InvoicesTableContainer extends Component {
     const { classes, ...rest } = this.props;
     return (
       <div>
-        {/*
-        <div className={classes.progressWrapper}>
-          <RiseLoader className={classes.progress} loading={true} />
-        </div>
-      */}
+        {
+          tableIsLoading ? (
+            <div style={{ display: 'flex', justifyContent: 'center' }}>
+              <Loader
+                color="#f44336"
+                loading
+              />
+            </div>
+          ) : null
+        }
         <InvoicesTable {...rest} onMount={() => this.setState({ tableIsLoading: false })} />
       </div>
     );

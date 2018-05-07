@@ -114,7 +114,7 @@ class DealsTable extends React.Component {
     ];
 
     this.state = {
-      rows: this.createRows(1000),
+      rows: this.createRows(150),
       filters: {},
       sortColumn: null,
       sortDirection: null,

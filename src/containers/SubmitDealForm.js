@@ -2,7 +2,10 @@ import React, { Component } from 'react';
 import { observer } from 'mobx-react';
 import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
+import { BounceLoader } from 'react-spinners';
 import SubmitDealForm from '../components/forms/SubmitDealForm';
+
+const Loader = BounceLoader;
 
 export const userQuery = gql`
   query user($uuid: String!) {
@@ -103,7 +106,14 @@ class SubmitDealFormContainer extends Component {
     return (
       <Query query={userQuery} variables={{ uuid }}>
         {({ loading, error, data }) => {
-          if (loading) return null;
+          if (loading) return (
+            <div style={{ display: 'flex', justifyContent: 'center' }}>
+              <Loader
+                color="#f44336"
+                loading
+              />
+            </div>
+          );
           // TODO: change the error message to a generic
           // 'error connecting to server' message
           if (error) return `Error!: ${error}`;

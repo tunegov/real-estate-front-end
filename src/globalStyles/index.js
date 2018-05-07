@@ -13,6 +13,7 @@ const globalStyles = `
   body > :first-child {
     display: flex;
     min-width: 100%;
+    max-width: 100%;
     position: absolute;
     top: 0;
     bottom: 0;

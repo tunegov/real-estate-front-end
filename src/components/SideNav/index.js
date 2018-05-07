@@ -25,6 +25,8 @@ const styles = theme => ({
     overflow: 'auto',
     width: drawerWidth,
     zIndex: 1,
+    backgroundColor: theme.palette.primary.main,
+    color: '#fff',
   },
   tempDrawer: {
     minWidth: '240px',
@@ -50,11 +52,22 @@ const styles = theme => ({
     marginRight: '10px',
     height: '30px',
     width: '30px',
+    '&:hover': {
+      backgroundColor: 'rgba(255,255,255,.1)',
+    },
   },
   listRoot: {
     height: '100%',
     overflow: 'auto',
-    borderBottom: '1px solid rgba(0,0,0,.2)',
+    borderBottom: '1px solid rgba(255,255,255,.2)',
+  },
+  icon: {
+    '&:hover': {
+      backgroundColor: 'rgba(255,255,255,.1)',
+    },
+  },
+  topDivider: {
+    backgroundColor: 'rgba(255,255,255,.2)',
   },
 });
 
@@ -104,7 +117,7 @@ class SideNav extends Component {
             <div className={`${classes.toolbar} ${classes.topToolbar}`}>
               <Tooltip id="tooltip-icon" title="Close Sidebar" enterDelay={400} leaveDelay={200} placement="bottom" PopperProps={{ style: { minWidth: '30px' } }}>
                 <IconButton
-                  color="primary"
+                  color="inherit"
                   className={`${classes.icon} ${classes.arrowBackBtn}`}
                   onClick={toggleDrawer}
                 >
@@ -112,12 +125,12 @@ class SideNav extends Component {
                 </IconButton>
               </Tooltip>
             </div>
-            <Divider />
+            <Divider classes={{ root: classes.topDivider }} />
             <List classes={{ root: classes.listRoot }}>{this.renderSideLinkComponents(currentPath)}</List>
             <div className={classes.notificationIcon}>
               <Tooltip id="tooltip-icon" title="Notifications" enterDelay={200} leaveDelay={200} placement="bottom" PopperProps={{ style: { minWidth: '30px' } }}>
                 <IconButton
-                  color="primary"
+                  color="inherit"
                   className={classes.icon}
                 >
                   <NotificationIcon />
@@ -138,7 +151,7 @@ class SideNav extends Component {
             <div className={classes.notificationIcon}>
               <Tooltip id="tooltip-icon" title="Notifications" enterDelay={200} leaveDelay={200} placement="bottom" PopperProps={{ style: { minWidth: '30px' } }}>
                 <IconButton
-                  color="primary"
+                  color="inherit"
                   className={classes.icon}
                 >
                   <NotificationIcon />

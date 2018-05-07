@@ -7,17 +7,18 @@ import GraphIcon from '@material-ui/icons/Equalizer';
 import { observer } from 'mobx-react';
 import SubmitDealDialogBox from '../components/SubmitDealDialogBox';
 import DealsTableContainer from './DealsTable';
+import DealsSummaryDealDialogBox from '../components/DealsSummaryDealDialogBox';
 
 const styles = theme => ({
   addDealBtn: {
-    marginLeft: '25px',
   },
   dealsSummaryBtn: {
     marginLeft: '25px',
     backgroundColor: '#2995F3',
+    color: '#fff',
     '&:hover': {
       backgroundColor: '#2380D1',
-    }
+    },
   },
   wrapper: {
     position: 'relative',
@@ -25,23 +26,44 @@ const styles = theme => ({
   buttonsWrapper: {
     display: 'flex',
     marginBottom: '25px',
+    justifyContent: 'center',
   },
 });
 
 @observer
 class Deals extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      submitDealDialogOpen: false,
+      dealsSummaryDialogBoxOpen: false,
+    };
+  }
+
+  toggleAddDealDialogBox = () => {
+    this.setState({ submitDealDialogOpen: !this.state.submitDealDialogOpen });
+  };
+
+  toggleDealsSummaryDialogBox = () => {
+    this.setState({ dealsSummaryDialogBoxOpen: !this.state.dealsSummaryDialogBoxOpen });
+  };
+
   render() {
-    const { classes, submitDealDialogOpen, toggleDialogBoxOpen } = this.props;
+    const { classes, userUUID } = this.props;
+    const { submitDealDialogOpen, dealsSummaryDialogBoxOpen } = this.state;
+    const { toggleAddDealDialogBox, toggleDealsSummaryDialogBox } = this;
+
 
     return (
       <div className={classes.wrapper}>
-        <div className={classes.addDealBtn}>
+        <div>
           <div className={classes.buttonsWrapper}>
             <Button
               variant="raised"
               color="secondary"
               aria-label="add"
-              onClick={toggleDialogBoxOpen}
+              onClick={toggleAddDealDialogBox}
               classes={{ root: classes.addDealBtn }}
             >
               <AddIcon />
@@ -49,8 +71,7 @@ class Deals extends Component {
             </Button>
             <Button
               variant="raised"
-              color="secondary"
-              onClick={() => console.log("deals summary button clicked")}
+              onClick={toggleDealsSummaryDialogBox}
               classes={{ root: classes.dealsSummaryBtn }}
             >
               <GraphIcon />
@@ -59,11 +80,16 @@ class Deals extends Component {
           </div>
           <SubmitDealDialogBox
             submitDealDialogOpen={submitDealDialogOpen}
-            toggleDialogBoxOpen={toggleDialogBoxOpen}
-            userUUID={this.props.userUUID}
+            toggleDialogBoxOpen={toggleAddDealDialogBox}
+            userUUID={userUUID}
           />
         </div>
         <DealsTableContainer />
+        <DealsSummaryDealDialogBox
+          toggleDealsSummaryDialogBox={toggleDealsSummaryDialogBox}
+          dealsSummaryDialogBoxOpen={dealsSummaryDialogBoxOpen}
+          userUUID={userUUID}
+        />
       </div>
     );
   }

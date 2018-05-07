@@ -9,15 +9,8 @@ import SubmitInvoiceDialogBox from '../components/SubmitInvoiceDialogBox';
 import InvoicesTableContainer from './InvoicesTable';
 
 const styles = theme => ({
-  addDealBtn: {
-    marginLeft: '25px',
-  },
-  dealsSummaryBtn: {
-    marginLeft: '25px',
-    backgroundColor: '#2995F3',
-    '&:hover': {
-      backgroundColor: '#2380D1',
-    }
+  submitInvoiceBtn: {
+
   },
   wrapper: {
     position: 'relative',
@@ -25,6 +18,7 @@ const styles = theme => ({
   buttonsWrapper: {
     display: 'flex',
     marginBottom: '25px',
+    justifyContent: 'center',
   },
 });
 
@@ -47,14 +41,14 @@ class Invoices extends Component {
 
     return (
       <div className={classes.wrapper}>
-        <div className={classes.addDealBtn}>
+        <div>
           <div className={classes.buttonsWrapper}>
             <Button
               variant="raised"
               color="secondary"
               aria-label="add"
               onClick={this.toggleDialogBoxOpen}
-              classes={{ root: classes.addDealBtn }}
+              classes={{ root: classes.submitInvoiceBtn }}
             >
               <AddIcon />
               Submit an Invoice

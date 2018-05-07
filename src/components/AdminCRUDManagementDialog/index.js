@@ -72,7 +72,7 @@ class AdminCRUDManagementDialog extends Component {
           );
         }
         return (
-          <Link route={`/app/admin/${managementModalCurrentRoute}/${item.route}`}>
+          <Link route={`/app/admin/${managementModalCurrentRoute}/${item.route}`} key={item.route || item.name}>
             <a className={classes.anchor}>
               <ListItem button onClick={() => toggleManagementModal()} key={item.route || item.name}>
                 <div className={classes.listItemContentWrapper}>

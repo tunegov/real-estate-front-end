@@ -67,7 +67,6 @@ export default class MyDocument extends Document {
           />
           <meta name="theme-color" content={pageContext.theme.palette.primary.main} />
           <style dangerouslySetInnerHTML={{ __html: this.props.css }} />
-          <link rel="stylesheet" href="/_next/static/style.css" />
           {this.props.styleTags}
         </Head>
         <body>

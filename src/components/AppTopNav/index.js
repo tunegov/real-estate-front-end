@@ -27,29 +27,30 @@ const styles = theme => ({
     zIndex: theme.zIndex.drawer + 1,
     marginLeft: drawerWidth,
     width: '100%)',
+    boxShadow: theme.shadows[3],
   },
   [theme.breakpoints.down(theme.breakpoints.values.md)]: {
     appBar: {
       width: '100%',
     },
   },
-  content: {
-    flexGrow: 1,
-    backgroundColor: theme.palette.background.default,
-    padding: theme.spacing.unit * 3,
-    minWidth: 0, // So the Typography noWrap works
-  },
   toolbar: theme.mixins.toolbar,
   topToolbar: {
+    backgroundColor: '#fff',
+    color: 'rgba(0,0,0,.87)',
     flexDirection: 'row',
   },
   icon: {
     '&:hover': {
-      backgroundColor: 'rgba(255,255,255,.1)',
+      backgroundColor: 'rgba(0,0,0,.1)',
     },
   },
+  iconRoot: {
+    width: '40px',
+    height: '40px',
+  },
   leftTopNavIconWrapper: {
-    //marginRight: 'auto',
+    marginRight: '10px',
   },
   iconGroupWrapper: {
     marginLeft: 'auto',
@@ -61,6 +62,11 @@ const styles = theme => ({
     menuHiddenWrapper: {
       display: 'none',
     },
+  },
+  uppercase: {
+    marginRight: '5px',
+    fontSize: '1.1rem',
+    textTransform: 'uppercase',
   },
 });
 
@@ -74,6 +80,9 @@ class AppTopNav extends Component {
     return (
       <AppBar position="absolute" className={classes.appBar}>
         <Toolbar className={classes.topToolbar}>
+          <Typography variant="title" color="inherit" noWrap>
+            <span className={classes.uppercase}>{capitalize(unhyphenate(path))}</span>
+          </Typography>
           <div className={classes.leftTopNavIconWrapper}>
             <div className={classNames(!adminMenuOn && classes.menuHiddenWrapper)}>
               <IconButton
@@ -81,15 +90,13 @@ class AppTopNav extends Component {
                 aria-label="open drawer"
                 className={classes.menuIcon}
                 onClick={this.props.toggleDrawer}
+                classes={{ root: classes.iconRoot }}
               >
                 <MenuIcon />
               </IconButton>
             </div>
 
           </div>
-          <Typography variant="title" color="inherit" noWrap>
-            {capitalize(unhyphenate(path))}
-          </Typography>
           <div className={classes.iconGroupWrapper}>
             <Tooltip id="tooltip-icon" title="Home" enterDelay={200} leaveDelay={200} placement="bottom" PopperProps={{ style: { minWidth: '30px' } }}>
               <IconButton

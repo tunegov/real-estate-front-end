@@ -10,12 +10,12 @@ export const SideNavLinkItemWrapper = styled.div`
   font-size: 16px;
   font-family: Roboto;
   font-weight: 500;
-  color: ${props => props.isAdminLinks ? '#fff' : 'rgba(0, 0, 0, 0.87)'};
+  color: ${props => props.isAdminLinks ? '#fff' : 'inherit'};
   cursor: pointer;
-  background-color: ${props => props.active ? 'rgba(0, 0, 0, 0.12) !important' : 'initial'};
+  background-color: ${props => props.active ? 'rgba(255, 255, 255, 0.15) !important' : 'initial'};
   transition: color .3s ease-in-out;
   &:hover {
-    background-color: ${props => props.isAdminLinks ? 'rgba(0, 0, 0, 0.1)' : darken(0.05, '#fff')};
+    background-color: ${props => props.isAdminLinks ? 'rgba(0, 0, 0, 0.1)' : 'rgba(255, 255, 255, 0.1)'};
   }
 }
 `;

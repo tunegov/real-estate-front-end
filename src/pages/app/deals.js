@@ -24,22 +24,12 @@ class Deals extends React.Component {
 
     // for debugging only!!!
     if (isBrowser && !window._appStore) window._appStore = this.store;
-
-    this.state = {
-      submitDealDialogOpen: false,
-    };
   }
 
-  toggleDialogBoxOpen = () => {
-    this.setState({ ...this.state, submitDealDialogOpen: !this.state.submitDealDialogOpen });
-  };
-
   render() {
-    const { submitDealDialogOpen } = this.state;
-
     return (
       <Layout UserStore={this.store.UserStore} UIStore={this.store.UIStore}>
-        <DealsContainer submitDealDialogOpen={submitDealDialogOpen} toggleDialogBoxOpen={this.toggleDialogBoxOpen} userUUID={this.store.UserStore.uuid} />
+        <DealsContainer userUUID={this.store.UserStore.uuid} />
       </Layout>
     );
   }

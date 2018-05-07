@@ -2,10 +2,6 @@ import React from 'react';
 import { observer } from 'mobx-react';
 import { withStyles } from 'material-ui/styles';
 import Chance from 'chance';
-import faker from 'faker';
-import ProfilePictureFormatter from '../dataTableFormatters/ProfilePictureFormatter';
-import PhoneNumberFormatter from '../dataTableFormatters/PhoneNumberFormatter';
-import EmailFormatter from '../dataTableFormatters/EmailFormatter';
 import EmptyRowsView from '../EmptyRowsView';
 import MyToolbar from '../Toolbar';
 import ViewFormatter from '../dataTableFormatters/ViewFormatter';
@@ -51,7 +47,6 @@ const styles = theme => ({
 class InvoicesTable extends React.Component {
   constructor(props, context) {
     super(props, context);
-    this.createRows();
     this._columns = [
       {
         key: 'invoiceID',
@@ -129,7 +124,7 @@ class InvoicesTable extends React.Component {
     ];
 
     this.state = {
-      rows: this.createRows(1000),
+      rows: this.createRows(150),
       filters: {},
       sortColumn: null,
       sortDirection: null,

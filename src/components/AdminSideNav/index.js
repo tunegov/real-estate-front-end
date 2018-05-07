@@ -67,6 +67,9 @@ const styles = theme => ({
     [theme.breakpoints.up('sm')]: {
       width: theme.spacing.unit * 6.8,
     },
+    '&:hover': {
+      width: drawerWidth,
+    },
   },
   notificationIconBtn: {
     height: '40px',
