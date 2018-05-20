@@ -34,7 +34,7 @@ const styles = theme => ({
     justifyContent: 'center',
   },
   settingsBtn: {
-    position: 'absolute',
+    position: 'fixed',
     bottom: '10px',
     right: '0',
     height: '40px',

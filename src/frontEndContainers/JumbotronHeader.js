@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import WelcomeHeader from '../components/WelcomeHeader';
+import WelcomeHeader from '../frontEndComponents/WelcomeHeader';
 
 class JumbotronHeader extends Component {
   render() {

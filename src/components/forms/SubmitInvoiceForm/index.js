@@ -58,6 +58,7 @@ const styles = theme => ({
     paddingLeft: theme.spacing.unit * 4,
     paddingRight: theme.spacing.unit * 4,
     textAlign: 'center',
+    overflow: 'hidden',
   },
   formRoot: {
     flexGrow: 1,

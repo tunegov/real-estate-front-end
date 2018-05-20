@@ -21,6 +21,7 @@ const styles = theme => ({
   },
   formControl: {
     margin: theme.spacing.unit,
+    marginLeft: 0,
     minWidth: 120,
   },
   fullWidth: {

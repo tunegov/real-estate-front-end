@@ -1,5 +1,7 @@
 import React from 'react';
 import { observer } from 'mobx-react';
+import { withStyles } from 'material-ui/styles';
+import { darken } from 'polished';
 import {
   HeaderLink as LogoAnchor,
   HeaderWrapper,
@@ -11,9 +13,33 @@ import { Link } from '../../routes';
 import HeaderNavLink from '../HeaderNavLink';
 import { HeaderLink as NavAnchor } from '../HeaderNavLink/styledComponents';
 
+const styles = theme => ({
+  signUpLink: {
+    display: 'flex',
+    height: '100%',
+    padding: '5px',
+    color: '#fff',
+    backgroundColor: '#D0021B',
+    borderRadius: '2px',
+    transition: 'background-color .2s ease-in-out',
+    '&:hover': {
+      backgroundColor: darken(0.05, '#D0021B'),
+    },
+  },
+  anchor: {
+    textDecoration: 'none',
+  },
+  loginWrapper: {
+    display: 'flex',
+    marginRight: '5px',
+  },
+});
+
 @observer
+@withStyles(styles)
 class HeaderNav extends React.Component {
   renderLinks = () => {
+    const { classes } = this.props;
     if (this.props.isLoggedIn) {
       return (
         <LeftHeaderLinkWrapper>
@@ -27,12 +53,16 @@ class HeaderNav extends React.Component {
 
     return (
       <LeftHeaderLinkWrapper>
-        <HeaderNavLink route="sign-up" href="/sign-up" prefetch>
-          <NavAnchor>Sign Up</NavAnchor>
-        </HeaderNavLink>
-        <HeaderNavLink route="log-in" href="/log-in" prefetch>
-          <NavAnchor>Log In</NavAnchor>
-        </HeaderNavLink>
+        <span className={classes.loginWrapper}>
+          <HeaderNavLink route="log-in" href="/log-in" prefetch>
+            <NavAnchor>Log In</NavAnchor>
+          </HeaderNavLink>
+        </span>
+        <Link route="sign-up" href="/sign-up" prefetch>
+          <a className={classes.anchor}>
+            <span className={classes.signUpLink}>Sign Up</span>
+          </a>
+        </Link>
       </LeftHeaderLinkWrapper>
     );
   };

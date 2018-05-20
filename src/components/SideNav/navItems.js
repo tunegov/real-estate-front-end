@@ -8,6 +8,7 @@ import {
 } from 'react-icons/lib/fa';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import AgentsIcon from '@material-ui/icons/SupervisorAccount';
+import ListingsIcon from '@material-ui/icons/Assignment';
 
 export const agentSideLinks = [
   { name: 'Dashboard', route: 'dashboard', icon: DashboardIcon },
@@ -15,6 +16,7 @@ export const agentSideLinks = [
   { name: 'Deals', route: 'deals', icon: DealsIcon },
   { name: 'Invoices', route: 'invoices', icon: InvoicesIcon, iconFontSize: 20 },
   { name: 'Agents', route: 'agents', icon: AgentsIcon, iconFontSize: 24 },
+  { name: 'Listings', route: 'listings', icon: ListingsIcon },
   { name: 'Log Out', icon: ExitToAppIcon, id: 'logout' },
 ];
 

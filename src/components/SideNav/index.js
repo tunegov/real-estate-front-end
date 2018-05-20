@@ -88,7 +88,7 @@ class SideNav extends Component {
           isActionItem={item.id === 'logout'}
           onClick={() => {
             if (this.props.drawerOpen) this.props.toggleDrawer(false);
-            if (item.id === 'logout') this.props.logoutUser;
+            if (item.id === 'logout') this.props.logoutUser();
           }}
         />
       );

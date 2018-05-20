@@ -1,7 +1,7 @@
 import React from 'react';
 import { observer } from 'mobx-react';
 import isBrowser from 'is-browser';
-import Layout from '../components/FrontEndLayout';
+import Layout from '../frontEndComponents/FrontEndLayout';
 import { initStore } from '../models';
 import withData from '../lib/withData';
 

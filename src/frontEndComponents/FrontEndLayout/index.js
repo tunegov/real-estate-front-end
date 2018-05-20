@@ -7,7 +7,7 @@ import Router, { withRouter } from 'next/router';
 import isBrowser from 'is-browser';
 import { ThemeProvider } from 'styled-components';
 import withRoot from '../../lib/withRoot';
-import HeaderNav from '../../containers/Header';
+import HeaderNav from '../../frontEndContainers/Header';
 import AppContentWrapper from '../../sharedStyledComponents/AppContentWrapper';
 import themeStyles from '../../themeStyles';
 import globalStyles from '../../globalStyles';
@@ -44,7 +44,7 @@ class Layout extends Component {
           {/* Import CSS for nprogress */}
           <link rel="stylesheet" type="text/css" href="/static/nprogress.css" />
           <link href="https://fonts.googleapis.com/css?family=Alegreya|Alegreya+Sans" rel="stylesheet" />
-
+          <link href="https://fonts.googleapis.com/css?family=Playfair+Display|Raleway" rel="stylesheet" />
           <style dangerouslySetInnerHTML={{ __html: globalStyles }}></style>
         </Head>
         {/* <DevTools position={{ top: 0, left: 30 }} /> */}

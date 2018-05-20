@@ -3,7 +3,7 @@ import { observer } from 'mobx-react';
 import debounce from 'debounce';
 import { withRouter } from 'next/router';
 import { Router } from '../routes';
-import HeaderNav from '../components/HeaderNav';
+import HeaderNav from '../frontEndComponents/HeaderNav';
 
 @observer
 class Header extends React.Component {
@@ -14,11 +14,9 @@ class Header extends React.Component {
       appTopBurgerMenuOpen: false,
     };
     this.onLogout = debounce(this.onLogout, 500, true);
-    this.renderTopNav = this.renderTopNav.bind(this);
-    this.onClickBurgerMenu = this.onClickBurgerMenu.bind(this);
   }
 
-  onClickBurgerMenu() {
+  onClickBurgerMenu = () => {
     this.setState({
       ...this.state,
       appTopBurgerMenuOpen: !this.state.appTopBurgerMenuOpen,
@@ -45,7 +43,7 @@ class Header extends React.Component {
     Router.pushRoute('home');
   };
 
-  renderTopNav() {
+  render() {
     return (
       <HeaderNav
         isApp={this.props.isApp}
@@ -53,10 +51,6 @@ class Header extends React.Component {
         onLogout={this.onLogout}
       />
     );
-  }
-
-  render() {
-    return this.renderTopNav();
   }
 }
 

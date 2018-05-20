@@ -12,23 +12,11 @@ class AgentOfTheMonthContainer extends Component {
   constructor(props) {
     super(props);
 
-    this._commercialNumbersAgent = {
-      name: chance.name(),
-      photoURL: faker.image.avatar(),
-      profileURL: '#',
-      statItem: chance.integer({ min: 5, max: 10 }),
-    };
     this._commercialDollarsAgent = {
       name: chance.name(),
       photoURL: faker.image.avatar(),
       profileURL: '#',
       statItem: chance.integer({ min: 1000000, max: 8000000 }),
-    };
-    this._residentialNumbersAgent = {
-      name: chance.name(),
-      photoURL: faker.image.avatar(),
-      profileURL: '#',
-      statItem: chance.integer({ min: 18, max: 40 }),
     };
     this._residentialDollarsAgent = {
       name: chance.name(),
@@ -36,22 +24,34 @@ class AgentOfTheMonthContainer extends Component {
       profileURL: '#',
       statItem: chance.integer({ min: 1000000, max: 8000000 }),
     };
+    this._rentalsDollarsAgent = {
+      name: chance.name(),
+      photoURL: faker.image.avatar(),
+      profileURL: '#',
+      statItem: chance.integer({ min: 1000000, max: 8000000 }),
+    };
+    this._numbersAgent = {
+      name: chance.name(),
+      photoURL: faker.image.avatar(),
+      profileURL: '#',
+      statItem: chance.integer({ min: 40, max: 120 }),
+    };
   }
 
   render() {
     const { userUUID } = this.props;
     const {
       _residentialDollarsAgent,
-      _residentialNumbersAgent,
       _commercialDollarsAgent,
-      _commercialNumbersAgent,
+      _rentalsDollarsAgent,
+      _numbersAgent,
     } = this;
     return (
       <AgentOfTheMonth
         residentialDollarsAgent={_residentialDollarsAgent}
-        residentialNumbersAgent={_residentialNumbersAgent}
         commercialDollarsAgent={_commercialDollarsAgent}
-        commercialNumbersAgent={_commercialNumbersAgent}
+        rentalsDollarsAgent={_rentalsDollarsAgent}
+        numbersAgent={_numbersAgent}
       />
     );
   }

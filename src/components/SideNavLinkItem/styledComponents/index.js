@@ -2,11 +2,8 @@ import styled from 'styled-components';
 import { darken, lighten } from 'polished';
 
 export const SideNavLinkItemWrapper = styled.div`
-  display: table;
   height: 45px;
   min-width: 100%;
-  padding-left: 15px;
-  padding-right: 15px;
   font-size: 16px;
   font-family: Roboto;
   font-weight: 500;
@@ -25,7 +22,8 @@ export const SideNavLinkItemAnchor = styled.a`
   height: 100%;
   flex-direction: column;
   justify-content: center;
-  padding-left: ${props => props.isAdminLinks ? '40px' : '50px'};
+  padding-right: 15px;
+  padding-left: ${props => props.isAdminLinks ? '55px' : '65px'};
   vertical-align: middle;
   display: table-cell;
   min-width: 100%;
@@ -37,7 +35,8 @@ export const SideNavLinkItemDiv = styled.div`
   height: 100%;
   flex-direction: column;
   justify-content: center;
-  padding-left: ${props => props.isAdminLinks ? '40px' : '50px'};
+  padding-right: 15px;
+  padding-left: ${props => props.isAdminLinks ? '55px' : '65px'};
   vertical-align: middle;
   display: table-cell;
   min-width: 100%;

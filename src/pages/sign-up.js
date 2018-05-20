@@ -4,7 +4,7 @@ import isBrowser from 'is-browser';
 import TransitionGroup from 'react-transition-group/TransitionGroup';
 import { fadesUp } from '../components/TransitionHOC';
 import { initStore } from '../models';
-import Layout from '../components/FrontEndLayout';
+import Layout from '../frontEndComponents/FrontEndLayout';
 import { Router } from '../routes';
 import SignUpLoginForm from '../containers/SignUpLoginForm';
 import SignUpForm from '../components/forms/SignUpForm';

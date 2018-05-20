@@ -17,6 +17,7 @@ const styles = theme => ({
   },
   formControl: {
     margin: theme.spacing.unit,
+    marginLeft: 0,
   },
   textField: {
     marginLeft: theme.spacing.unit,

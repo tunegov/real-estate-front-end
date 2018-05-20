@@ -13,6 +13,7 @@ import classNames from 'classnames';
 import Divider from 'material-ui/Divider';
 import Typography from 'material-ui/Typography';
 import List, { ListItem, ListItemText } from 'material-ui/List';
+import classnames from 'classnames';
 import ExpansionPanel, {
   ExpansionPanelSummary,
   ExpansionPanelDetails,
@@ -32,6 +33,9 @@ const styles = theme => ({
     fontSize: '.94rem',
     fontWeight: 500,
     color: 'rgba(0,0,0,.7)',
+  },
+  lightHeading: {
+    color: '#fff',
   },
   statNumberBoxWrapper: {
     backgroundColor: '#fff',
@@ -61,7 +65,16 @@ const styles = theme => ({
     display: 'flex',
     flexDirection: 'column',
     // paddingTop: '20px',
-    // height: '256px',
+    maxHeight: '256px',
+    // backgroundColor: '#fff',
+    borderRadius: '5px',
+    boxShadow: theme.shadows[1],
+  },
+  companyAlertsWrapper: {
+    display: 'flex',
+    flexDirection: 'column',
+    // paddingTop: '20px',
+    maxHeight: '256px',
     // backgroundColor: '#fff',
     borderRadius: '5px',
     boxShadow: theme.shadows[1],
@@ -94,6 +107,24 @@ const styles = theme => ({
     color: 'rgba(0,0,0,.7)',
     borderRadius: '0 0 5px 5px',
   },
+  companyAlertsExpansionWrapper: {
+    backgroundColor: 'inherit',
+    color: 'inherit',
+  },
+  normalExpansionSummary: {
+    minHeight: '48px',
+    maxHeight: '48px',
+  },
+  darkExpansionSummary: {
+    minHeight: '48px',
+    maxHeight: '48px',
+    backgroundColor: theme.palette.secondary.dark,
+    color: '#fff',
+  },
+  expansionSummaryExpanded: {
+    minHeight: '48px',
+    maxHeight: '48px',
+  },
 });
 
 const mapSizesToProps = ({ width }) => ({
@@ -114,7 +145,19 @@ class AgentDashboard extends Component {
       );
     }
     return (
-      <div className={classes.companyNewsPlaceHolder}>No news currently available...</div>
+      <div className={classes.companyNewsPlaceHolder}>There is currently no news available...</div>
+    );
+  }
+
+  renderCompanyAlerts = () => {
+    const { alertItems, classes } = this.props;
+    if (alertItems && alertItems.length) {
+      return (
+        <List></List>
+      );
+    }
+    return (
+      <div className={classes.companyNewsPlaceHolder}>There are currently no alerts available...</div>
     );
   }
 
@@ -129,16 +172,18 @@ class AgentDashboard extends Component {
             <div>Company Alerts</div>
           </Grid>
           */}
-          <Grid item xs={12} lg={8}>
-            <div className={classes.agentOfTheMonthContent}>
-              <AgentOfTheMonthContainer userUUID={userUUID} />
-            </div>
-          </Grid>
-          <Grid item xs={12} lg={4}>
+
+          <Grid item xs={12} lg={6}>
             <div className={classNames(classes.companyNewsWrapper)}>
               <ExpansionPanel defaultExpanded={newsItems && newsItems.length}>
-                <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-                  <Typography className={classes.heading}>Company News</Typography>
+                <ExpansionPanelSummary
+                  classes={{
+                    root: classes.normalExpansionSummary,
+                    expanded: classes.expansionSummaryExpanded,
+                  }}
+                  expandIcon={<ExpandMoreIcon />}
+                >
+                  <Typography color="inherit" className={classes.heading}>Company News</Typography>
                 </ExpansionPanelSummary>
                 <ExpansionPanelDetails>
                   {this.renderCompanyNews()}
@@ -146,6 +191,26 @@ class AgentDashboard extends Component {
               </ExpansionPanel>
             </div>
           </Grid>
+
+          <Grid item xs={12} lg={6}>
+            <div className={classNames(classes.companyAlertsWrapper)}>
+              <ExpansionPanel classes={{ root: classes.companyNewsExpansionWrapper }} defaultExpanded={newsItems && newsItems.length}>
+                <ExpansionPanelSummary
+                  classes={{
+                    root: classes.darkExpansionSummary,
+                    expanded: classes.expansionSummaryExpanded,
+                  }}
+                  expandIcon={<ExpandMoreIcon />}
+                >
+                  <Typography color="inherit" className={classnames(classes.heading, classes.lightHeading)}>Company Alerts</Typography>
+                </ExpansionPanelSummary>
+                <ExpansionPanelDetails>
+                  {this.renderCompanyAlerts()}
+                </ExpansionPanelDetails>
+              </ExpansionPanel>
+            </div>
+          </Grid>
+
           <Grid item xs={12}><Divider /></Grid>
 
           <Grid item xs={12}>
@@ -195,6 +260,12 @@ class AgentDashboard extends Component {
                   </Grid>
                 </ExpansionPanelDetails>
               </ExpansionPanel>
+            </div>
+          </Grid>
+
+          <Grid item xs={12} lg={12}>
+            <div className={classes.agentOfTheMonthContent}>
+              <AgentOfTheMonthContainer userUUID={userUUID} />
             </div>
           </Grid>
 

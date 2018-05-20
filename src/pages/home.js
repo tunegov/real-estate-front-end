@@ -1,10 +1,12 @@
 import React from 'react';
 import { observer } from 'mobx-react';
 import isBrowser from 'is-browser';
-import Layout from '../components/FrontEndLayout';
+import Layout from '../frontEndComponents/FrontEndLayout';
 import { initStore } from '../models';
 import withData from '../lib/withData';
-import JumbotronHeader from '../containers/JumbotronHeader';
+import JumbotronHeader from '../frontEndContainers/JumbotronHeader';
+import HowItWorksSection from '../frontEndComponents/HowItWorksSection';
+import FeaturedPropertySection from '../frontEndComponents/FeaturedPropertySection';
 
 @observer
 class Home extends React.Component {
@@ -25,6 +27,8 @@ class Home extends React.Component {
     return (
       <Layout UserStore={this.store.UserStore} >
         <JumbotronHeader />
+        <HowItWorksSection />
+        <FeaturedPropertySection />
       </Layout>
     );
   }

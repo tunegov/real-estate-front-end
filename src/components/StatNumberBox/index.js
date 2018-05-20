@@ -20,6 +20,13 @@ const styles = theme => ({
     fontSize: '40px',
     lineHeight: '40px',
     fontWeight: '300',
+    whiteSpace: 'nowrap',
+    overflow: 'hidden',
+    textOverflow: 'ellipsis',
+    padding: '0 10px',
+    [theme.breakpoints.down('sm')]: {
+      fontSize: '32px',
+    },
   },
   boxInfo: {
     display: 'flex',
@@ -43,12 +50,22 @@ const styles = theme => ({
     fontSize: '12px',
     color: '#636c72',
     borderRadius: '10px',
+    whiteSpace: 'nowrap',
+    overflow: 'hidden',
+    textOverflow: 'ellipsis',
+    [theme.breakpoints.down('xs')]: {
+      fontSize: '10px',
+    },
   },
   boxBottom: {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
     height: '50%',
+    whiteSpace: 'nowrap',
+    overflow: 'hidden',
+    textOverflow: 'ellipsis',
+    padding: '0 10px',
   },
 });
 
