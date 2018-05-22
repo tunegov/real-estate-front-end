@@ -10,6 +10,7 @@ const validator = values => {
     dealType: !values.dealType ? 'This value is required' : null,
     propertyAddress: !values.propertyAddress ? 'This value is required' : null,
     city: !values.city ? 'This value is required' : null,
+    state: !values.state ? 'This value is required' : null,
     apartmentNumber: !values.apartmentNumber ? 'This value is required' : null,
     managementOrCobrokeCompany: !values.managementOrCobrokeCompany ? 'This value is required' : null,
     price: !values.price || !dollarAmountOnlyRegex.test(values.price) ? 'This value is required and must be a dollar amount' : null,
@@ -19,6 +20,7 @@ const validator = values => {
         values.clientName.length > 80
         ? 'Between 3 and 80 characters'
         : null,
+    clientPhoneNumber: !values.clientPhoneNumber ? 'This value is required' : null,
     shouldSendApprovalTextMessageNotificaion: !values.shouldSendApprovalTextMessageNotificaion ? 'This value is required' : null,
     financialsTotal: values.financialsTotal <= 0 ? 'The total amount for this invoice must be greater than 0' : null,
     attention: !values.attention ? 'This value is required' : null,

@@ -13,6 +13,9 @@
   "author": "Damien Gresham",
   "license": "ISC",
   "dependencies": {
+    "@devexpress/dx-react-core": "^1.2.0",
+    "@devexpress/dx-react-grid": "^1.2.0",
+    "@devexpress/dx-react-grid-material-ui": "^1.2.0",
     "@material-ui/icons": "^1.0.0-beta.42",
     "@material/slider": "^0.35.0",
     "@nivo/bar": "^0.33.0",
@@ -61,6 +64,7 @@
     "nuka-carousel": "^4.1.0",
     "nw-react-slider": "^2.0.1",
     "polished": "^1.9.0",
+    "randomstring": "^1.1.5",
     "rc-slider": "^8.6.1",
     "react": "^16.3.1",
     "react-apollo": "^2.1.3",

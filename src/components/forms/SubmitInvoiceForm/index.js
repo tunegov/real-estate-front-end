@@ -206,8 +206,10 @@ const radioInputYesNoItems = [
 ];
 
 const dealTypeSelectItems = [
-  { label: 'Residential Lease' },
-  { label: 'Commercial Lease' },
+  { label: 'Residential Rental' },
+  { label: 'Residential Sale' },
+  { label: 'Commercial Rental' },
+  { label: 'Commercial Sale' },
 ];
 
 const fundsPaidBySelectItems = [
@@ -223,7 +225,6 @@ const paymentTypeSelectItems = [
   { label: 'Check' },
   { label: 'Money Order' },
   { label: 'Wire' },
-  { label: 'Cash' },
   { label: 'Owner Pays (OP)' },
 ];
 
@@ -298,46 +299,32 @@ class SubmitInvoiceForm extends Component {
               return (
                 <form onSubmit={formApi.submitForm} id="form1" classes={classes.formRoot}>
                   <Grid container spacing={24}>
-                    <div className={`${classes.formControlWrapper} ${classes.alignCenterGrid}`}>
-                      <Grid item xs={12} sm={6}>
-                        <div className={classes.formControlWrapper}>
-                          <CustomTextField
-                            field="date"
-                            id={uuid()}
-                            label="Date"
-                            disabled
-                            value={`${moment().format('MMMM Do YYYY')}`}
-                            fullWidth
-                            required
-                          />
-                        </div>
-                      </Grid>
-                    </div>
-                    <Grid item xs={12}>
+                    <Grid item sm={6} xs={12}>
                       <div className={classes.formControlWrapper}>
-                        <MaterialCustomSelectInput
-                          field="agent"
+                        <CustomTextField
+                          field="date"
                           id={uuid()}
-                          label="Agent"
-                          multiple
+                          label="Date"
+                          disabled
+                          value={`${moment().format('MMMM Do YYYY')}`}
                           fullWidth
                           required
-                          selectInputItems={agentSelectItems}
                         />
                       </div>
                     </Grid>
-
-
-                    <div className={`${classes.formControlWrapper} ${classes.radioInputWrapper}`}>
-                      <MaterialCustomRadioInput
-                        field="agentType"
-                        id={uuid()}
-                        required
-                        label="Agent Type"
-                        radioInputItems={radioInputAgentItems}
-                        horizontal
-                      />
-                    </div>
+                    <Grid item sm={6} xs={12}>
+                      <div className={classes.formControlWrapper}>
+                        <CustomTextField
+                          field="agent"
+                          id={uuid()}
+                          label="Agent"
+                          disabled
+                          value={`${capitalize(firstName)} ${capitalize(lastName)}`}
+                          fullWidth
+                          required
+                        />
+                      </div>
+                    </Grid>
 
                     <div className={classes.formSubheading}>
                       <Typography variant="subheading" classes={{ subheading: classes.h3 }}>Property Information</Typography>
@@ -365,6 +352,18 @@ class SubmitInvoiceForm extends Component {
                           label="Property Address"
                           required
                           fullWidth
+                        />
+                      </div>
+                    </Grid>
+                    <Grid item sm={6} xs={12}>
+                      <div className={classes.formControlWrapper}>
+                        <CustomTextField
+                          field="state"
+                          id={uuid()}
+                          label="State"
+                          required
+                          fullWidth
+                          disabled
                         />
                       </div>
                     </Grid>
@@ -403,7 +402,7 @@ class SubmitInvoiceForm extends Component {
                         />
                       </div>
                     </Grid>
-                    <Grid item sm={6} xs={12}>
+                    <Grid item xs={12}>
                       <div className={classes.formControlWrapper}>
                         <CustomTextField
                           field="price"
@@ -421,12 +420,24 @@ class SubmitInvoiceForm extends Component {
                       <Typography variant="subheading" classes={{ subheading: classes.h3 }}>{'Client\'s'} Information</Typography>
                     </div>
 
-                    <Grid item xs={12}>
+                    <Grid item xs={12} sm={6}>
                       <div className={classes.formControlWrapper}>
                         <CustomTextField
                           field="clientName"
                           id={uuid()}
                           label="Client's Name"
+                          required
+                          fullWidth
+                        />
+                      </div>
+                    </Grid>
+
+                    <Grid item xs={12} sm={6}>
+                      <div className={classes.formControlWrapper}>
+                        <CustomTextField
+                          field="clientPhoneNumber"
+                          id={uuid()}
+                          label="Client's Phone Number"
                           required
                           fullWidth
                         />
@@ -557,7 +568,7 @@ class SubmitInvoiceForm extends Component {
                         onClick={() => formApi.addValue('paymentItems')}
                         type="button"
                       >
-                        Add payment item
+                        Add invoice item
                       </Button>
                     </Grid>
 

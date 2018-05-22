@@ -13,6 +13,7 @@ export const userQuery = gql`
       firstName
       lastName
       roles
+      agent
     }
   }
 `;
@@ -106,6 +107,7 @@ class SubmitDealFormContainer extends Component {
     return (
       <Query query={userQuery} variables={{ uuid }}>
         {({ loading, error, data }) => {
+          console.log(data)
           if (loading) return (
             <div style={{ display: 'flex', justifyContent: 'center' }}>
               <Loader

@@ -185,12 +185,13 @@ const styles = theme => ({
 });
 
 const radioInputAgentItems = [
+  { label: '60%' },
+  { label: '70%' },
   { label: '80%' },
-  { label: '90%' },
 ];
 
 const radioInputAgentPaymentItems = [
-  { label: 'Ill pick up the check' },
+  { label: "I'll pick up the check" },
   { label: 'Please ACH me' },
 ];
 
@@ -200,17 +201,18 @@ const radioInputYesNoItems = [
 ];
 
 const dealTypeSelectItems = [
-  { label: 'Residential Lease' },
-  { label: 'Commercial Lease' },
+  { label: 'Residential Rental' },
+  { label: 'Residential Sale' },
+  { label: 'Commercial Rental' },
+  { label: 'Commercial Sale' },
 ];
 
 const fundsPaidBySelectItems = [
   { label: 'Bringing a ckeck to the office' },
   { label: 'Remote deposit to Chase account' },
   { label: 'Check or "OP" mailed to office' },
-  { label: 'Cridit card payment' },
+  { label: 'Credit card payment' },
   { label: 'Client wired funds' },
-  { label: 'Commision advance' },
 ];
 
 const paymentTypeSelectItems = [
@@ -252,6 +254,7 @@ class SubmitDealForm extends Component {
 
   render() {
     const { firstName, lastName } = this.props.user;
+    console.log(this.props.user);
     const {
       classes,
       setAgentDisclosureForm,
@@ -280,6 +283,8 @@ class SubmitDealForm extends Component {
                 formApi.setValue('agent', `${capitalize(firstName)} ${capitalize(lastName)}`);
                 formApi.setValue('paymentsSubtotal', this.props.paymentsTotal);
                 formApi.setValue('deductionsSubtotal', this.props.deductionsTotal);
+                // formApi.setValue('agentType', agentType);
+                // formApi.setValue('state', agentState);
               }
 
               const renderRestDeductionItems = () => {
@@ -387,6 +392,7 @@ class SubmitDealForm extends Component {
                         required
                         label="Agent Type"
                         radioInputItems={radioInputAgentItems}
+                        disabled
                         horizontal
                       />
                     </div>
@@ -435,6 +441,18 @@ class SubmitDealForm extends Component {
                     <Grid item sm={6} xs={12}>
                       <div className={classes.formControlWrapper}>
                         <CustomTextField
+                          field="state"
+                          id={uuid()}
+                          label="State"
+                          required
+                          fullWidth
+                          disabled
+                        />
+                      </div>
+                    </Grid>
+                    <Grid item sm={6} xs={12}>
+                      <div className={classes.formControlWrapper}>
+                        <CustomTextField
                           field="city"
                           id={uuid()}
                           label="City"
@@ -467,7 +485,7 @@ class SubmitDealForm extends Component {
                         />
                       </div>
                     </Grid>
-                    <Grid item sm={6} xs={12}>
+                    <Grid item xs={12}>
                       <div className={classes.formControlWrapper}>
                         <CustomTextField
                           field="price"

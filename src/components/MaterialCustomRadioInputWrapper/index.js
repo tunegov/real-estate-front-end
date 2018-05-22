@@ -4,6 +4,7 @@ import { withStyles } from 'material-ui/styles';
 import Radio, { RadioGroup } from 'material-ui/Radio';
 import { FormControl, FormHelperText, FormLabel, FormControlLabel } from 'material-ui/Form';
 import { Field } from 'react-form';
+import classnames from 'classnames';
 
 const styles = theme => ({
   container: {
@@ -73,7 +74,14 @@ const MaterialCustomRadioInputWrapper = props => (
 
       const renderRadioInputItems = radioInputItems => (
         radioInputItems.map(item => (
-          <FormControlLabel key={item.label} value={item.value || item.label} disabled={item.disabled} control={<Radio />} label={item.label} />
+          <FormControlLabel
+            key={item.label}
+            value={item.value || item.label}
+            disabled={item.disabled}
+            classes={{ root: classnames(disabled && classes.disabled) }}
+            control={<Radio />}
+            label={item.label}
+          />
         ))
       );
 
@@ -85,12 +93,18 @@ const MaterialCustomRadioInputWrapper = props => (
             fullWidth={fullWidth}
             required={required}
             className={disabled ? `${classes.formControl} ${classes.disabled} ${className}` : `${classes.formControl} ${className}`}
+            disabled={disabled}
           >
             <FormLabel component="legend">{label}</FormLabel>
             <RadioGroup
               aria-label={label}
               name={`${id}1`}
-              className={`${classes.group} ${horizontal ? classes.horzontalRadioBtns : null}`}
+              className={
+                classnames(
+                  classes.group,
+                  horizontal && classes.horzontalRadioBtns
+                )
+              }
               value={value || null}
               onChange={event => {
                 setValue(event.target.value);
