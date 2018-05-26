@@ -105,7 +105,7 @@ class AdminSideNav extends Component {
           isActionItem={!item.route}
           isAdminLinks
           onClick={() => {
-            if (type === 'management') this.props.toggleManagementModal(item.routeBase);
+            if (type === 'management') this.props.toggleManagementModal(item.routeBase, item.subType);
             if (this.props.drawerOpen) this.props.toggleDrawer(false);
             if (item.id === 'logout') this.props.logoutUser();
           }}

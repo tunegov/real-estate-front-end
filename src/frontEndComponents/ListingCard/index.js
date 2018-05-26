@@ -12,6 +12,7 @@ const styles = theme => ({
     fontFamily: theme.frontEnd.typography.fontFamily.sansSerif2,
     fontSize: '0.9rem',
     transition: 'transform .2s ease-in-out',
+    color: 'rgba(0,0,0,.7)',
     '&:hover': {
       transform: 'scale(1.02,1.02)',
     }

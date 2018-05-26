@@ -4,11 +4,21 @@ import { withStyles } from 'material-ui/styles';
 import { DotLoader } from 'react-spinners';
 import Chance from 'chance';
 import isBrowser from 'is-browser';
-import DealsTable from '../components/DealsTable';
+import AdminAreaDealsTable from '../components/AdminAreaDealsTable';
 
 const chance = new Chance();
 
 const Loader = DotLoader;
+
+const returnAgentType = number => {
+  if (number < 33) {
+    return 60
+  } else if (number < 66) {
+    return 70
+  } else {
+    return 80
+  }
+}
 
 const styles = theme => ({
   root: {
@@ -40,6 +50,8 @@ const styles = theme => ({
 const columns = [
   { name: 'dealID', title: 'Deal ID' },
   { name: 'date', title: 'Date' },
+  { name: 'agentName', title: 'Agent Name' },
+  { name: 'agentType', title: 'Agent Type' },
   { name: 'dealType', title: 'Deal Type' },
   { name: 'clientName', title: 'Client Name' },
   { name: 'clientEmail', title: 'Client Email' },
@@ -47,6 +59,9 @@ const columns = [
   { name: 'propertyCity', title: 'Property City' },
   { name: 'managementOrCobrokeCompany', title: 'Mgmt/Co-Broke Co.' },
   { name: 'rentOrSalePrice', title: 'Rent/Sale Price' },
+  { name: 'deductionsTotal', title: 'Deductions Total' },
+  { name: 'paymentsTotal', title: 'Payments Total' },
+  { name: 'netPaymentsTotal', title: 'Net Payments Total' },
   { name: 'status', title: 'Status' },
   { name: 'view', title: 'View' },
 ];
@@ -67,13 +82,19 @@ class DealsTableContainer extends Component {
       rows.push({
         dealID: chance.integer({ min: 1, max: 2000000000 }),
         date: chance.date({ string: true }),
+        agentName: chance.name(),
+        agentType: returnAgentType(chance.integer({ min: 0, max: 100 })),
         dealType: chance.bool() === true ? 'Residential' : 'Commercial',
         clientName: chance.name(),
         clientEmail: chance.email(),
         propertyAddress: chance.address(),
         propertyCity: chance.city(),
+        propertyState: chance.integer({ min: 0, max: 100 }) > 70 ? chance.state({ full: true }) : 'New York',
         managementOrCobrokeCompany: chance.company(),
         rentOrSalePrice: '$' + Number(chance.dollar().substring(1)).toLocaleString(),
+        deductionsTotal: '$' + Number(chance.dollar().substring(1)).toLocaleString(),
+        paymentsTotal: '$' + Number(chance.dollar().substring(1)).toLocaleString(),
+        netPaymentsTotal: '$' + Number(chance.dollar().substring(1)).toLocaleString(),
         status: chance.bool() === true ? 'Pending' : 'Approved',
         view: '#',
       });
@@ -83,7 +104,7 @@ class DealsTableContainer extends Component {
 
   render() {
     const { tableIsLoading, rows } = this.state;
-    const { classes, ...rest } = this.props;
+    const { classes, small, ...rest } = this.props;
     return (
       <div className={classes.root}>
         {
@@ -96,8 +117,9 @@ class DealsTableContainer extends Component {
             </div>
           ) : null
         }
-        <DealsTable
+        <AdminAreaDealsTable
           {...rest}
+          small={small}
           onMount={() => tableIsLoading ? this.setState({ tableIsLoading: false }) : null}
           columns={columns}
           rows={rows}

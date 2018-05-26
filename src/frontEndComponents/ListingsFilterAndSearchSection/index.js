@@ -23,8 +23,8 @@ class ListingsFilterAndSearchSection extends Component {
     const { classes, onSearchInputChange, getInput, value, onSearchKeyDown, onSearchKeyUp } = this.props;
     return (
       <div className={classes.root}>
-        <MainListingFilters />
         <FineGrainListingFilters />
+        {/* <MainListingFilters /> */}
       </div>
     );
   }

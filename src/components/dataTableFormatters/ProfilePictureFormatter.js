@@ -6,8 +6,8 @@ import { Link } from '../../routes';
 
 const styles = theme => ({
   wrapper: {
-    width: '90%',
-    height: '90%',
+    width: '38px',
+    height: '38px',
     marginLeft: 'auto',
     marginRight: 'auto',
     boxSizing: 'border-box',
@@ -17,6 +17,7 @@ const styles = theme => ({
     display: 'block',
     objectFit: 'cover',
     cursor: 'pointer',
+    borderRadius: '50%',
   },
 });
 
@@ -39,22 +40,24 @@ class ProfilePictureFormatter extends React.Component {
     const { classes } = this.props;
 
     return (
-      <Tooltip
+      imageURL ? <Tooltip
         title="Click to view profile"
         enterDelay={400}
         leaveDelay={100}
       >
         <div className={classes.wrapper}>
           <Link route={profileURL || '#'}>
-            <img
-              className={classes.image}
-              ref={imgItem => this._imgItem = imgItem}
-              src={imageURL}
-              alt={imageAltText || 'unable to laod profile picture'}
-            />
+            <a>
+              <img
+                className={classes.image}
+                ref={imgItem => this._imgItem = imgItem}
+                src={imageURL}
+                alt={imageAltText || 'unable to load profile picture'}
+              />
+            </a>
           </Link>
         </div>
-      </Tooltip>
+      </Tooltip> : null
     );
   }
 }

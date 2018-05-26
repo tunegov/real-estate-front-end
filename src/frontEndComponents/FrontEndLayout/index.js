@@ -51,7 +51,11 @@ class Layout extends Component {
         <ThemeProvider theme={themeStyles}>
           <Container isApp={isApp}>
             <HeaderAndAppContentWrapper>
-              <HeaderNav isLoggedIn={isLoggedIn} logoutUser={logoutUser} />
+              <HeaderNav
+                isLoggedIn={isLoggedIn}
+                logoutUser={logoutUser}
+                headerBoxShadowOff={this.props.headerBoxShadowOff}
+              />
               <AppContentWrapper isApp={isApp}>
                 {this.props.children}
               </AppContentWrapper>

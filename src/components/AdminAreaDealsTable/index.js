@@ -3,22 +3,36 @@ import { withStyles } from 'material-ui/styles';
 import withSizes from 'react-sizes';
 import isBrowser from 'is-browser';
 import {
-  SortingState, FilteringState, SearchState,
-  IntegratedFiltering, IntegratedSorting,
+  SortingState,
+  FilteringState,
+  SearchState,
+  IntegratedFiltering,
+  IntegratedSorting,
   PagingState,
   IntegratedPaging,
-  DataTypeProvider,
+  SelectionState,
+  IntegratedSelection,
 } from '@devexpress/dx-react-grid';
 import {
   Grid,
-  VirtualTable, TableHeaderRow, TableFilterRow, TableColumnResizing, DragDropProvider, TableColumnReordering, Toolbar, SearchPanel, PagingPanel,
+  VirtualTable,
+  TableHeaderRow,
+  TableFilterRow,
+  TableColumnResizing,
+  TableSelection,
+  DragDropProvider, TableColumnReordering,
+  Toolbar,
+  SearchPanel,
+  PagingPanel,
+  ColumnChooser,
+  TableColumnVisibility,
 } from '@devexpress/dx-react-grid-material-ui';
+import SelectFilterCell from '../../utils/backEndTableUtils/SelectFilterCell';
+import { compareDate, compareNumber } from '../../utils/backEndTableUtils/tableSortingUtils';
 import Cell from '../../utils/backEndTableUtils/DefaultVirtualTableCell';
 import TableComponent from '../../utils/backEndTableUtils/TableComponent';
 import TableContainerComponent from '../../utils/backEndTableUtils/TableContainerComponent';
 import NoDataCellComponent from '../../utils/backEndTableUtils/NoDataCellComponent';
-import ProfilePictureFormatter from '../dataTableFormatters/ProfilePictureFormatter';
-import ViewFormatter from '../dataTableFormatters/ViewFormatter';
 
 
 const styles = theme => ({
@@ -43,7 +57,7 @@ const styles = theme => ({
   },
   myTableContainer: {
     minHeight: '300px',
-    height: 'calc(100vh - 245px) !important',
+    height: 'calc(100vh - 310px) !important',
     // maxHeight: '800px',
   },
   myNoDataCellComponent: {
@@ -52,30 +66,64 @@ const styles = theme => ({
 });
 
 const sortingStateColumnExtensions = [
-  { columnName: 'photo', sortingEnabled: false },
-  { columnName: 'view', sortingEnabled: false },
-];
-
-const filteringStateColumnExtensions = [
-  { columnName: 'photo', filteringEnabled: false },
+  { columnName: 'dealID', sortingEnabled: false },
   { columnName: 'view', filteringEnabled: false },
 ];
 
-const getRowId = row => row.email;
+const filteringStateColumnExtensions = [
+  { columnName: 'view', filteringEnabled: false },
+];
+
+const getRowId = row => row.dealID;
+
+const statusSelectInputItems = [
+  { label: '' },
+  { label: 'Pending' },
+  { label: 'Approved' },
+];
 
 const FilterCell = props => {
+  if (props.column.name === 'status') {
+    return <SelectFilterCell selectInputItems={statusSelectInputItems} {...props} />;
+  }
   return <TableFilterRow.Cell {...props} />;
 };
 
+const integratedSortingColumnExtensions = [
+  { columnName: 'date', compare: compareDate },
+  { columnName: 'rentOrSalePrice', compare: compareNumber },
+  { columnName: 'deductionsTotal', compare: compareNumber },
+  { columnName: 'paymentsTotal', compare: compareNumber },
+  { columnName: 'netPaymentsTotal', compare: compareNumber },
+];
+
 const defaultColumnWidths = [
-  { columnName: 'photo', width: 95 },
-  { columnName: 'name', width: 150 },
-  { columnName: 'email', width: 160 },
-  { columnName: 'areaOfFocus', width: 150 },
-  { columnName: 'mobileNumber', width: 150 },
-  { columnName: 'companyNumberAndExt', width: 180 },
-  { columnName: 'region', width: 140 },
-  { columnName: 'view', width: 120 },
+  { columnName: 'dealID', width: 120 },
+  { columnName: 'date', width: 120 },
+  { columnName: 'agentName', width: 120 },
+  { columnName: 'agentType', width: 120 },
+  { columnName: 'dealType', width: 120 },
+  { columnName: 'clientName', width: 140 },
+  { columnName: 'clientEmail', width: 140 },
+  { columnName: 'propertyAddress', width: 140 },
+  { columnName: 'propertyCity', width: 120 },
+  { columnName: 'propertyState', width: 120 },
+  { columnName: 'managementOrCobrokeCompany', width: 160 },
+  { columnName: 'rentOrSalePrice', width: 110 },
+  { columnName: 'deductionsTotal', width: 110 },
+  { columnName: 'paymentsTotal', width: 110 },
+  { columnName: 'netPaymentsTotal', width: 110 },
+  { columnName: 'status', width: 120 },
+  { columnName: 'view', width: 80 },
+];
+
+const defaultHiddenColumnNames = [
+  'deductionsTotal',
+  'paymentsTotal',
+  'netPaymentsTotal',
+  'propertyState',
+  'clientEmail',
+  'managementOrCobrokeCompany',
 ];
 
 const pageSizes = [5, 10, 15, 20, 50, 100, 0];
@@ -87,47 +135,16 @@ const mapSizesToProps = ({ width }) => ({
   lgViewport: width < 1280,
 });
 
-const PhotoFormatter = ({ value }) => (
-  <ProfilePictureFormatter
-    value={value}
-  />
-);
-
-const PhotoTypeProvider = props => (
-  <DataTypeProvider
-    formatterComponent={PhotoFormatter}
-    {...props}
-  />
-);
-
-const ViewCellFormatter = ({ value }) => (
-  <ViewFormatter
-    profileURL={value}
-  />
-);
-
-const ViewTypeProvider = props => (
-  <DataTypeProvider
-    formatterComponent={ViewCellFormatter}
-    {...props}
-  />
-);
-
-const TableContainerComponentWrapperBase = ({ classes, ...restProps }) => (
-  <TableContainerComponent {...restProps} className={classes.myTableContainer} />
-);
-
-const TableContainerComponentWrapper = withStyles(styles)(TableContainerComponentWrapperBase);
-
 @withStyles(styles)
 @withSizes(mapSizesToProps)
-class AgentsTable extends Component {
+class DealsTable extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
       pageSize: 10,
       currentPage: 0,
+      selection: [],
     };
   }
 
@@ -147,8 +164,13 @@ class AgentsTable extends Component {
     document.getElementById('myTableContainer').scrollTop = 0;
   }
 
+  changeSelection = selection => {
+    this.setState({ selection });
+  };
+
   render() {
     const { classes, columns, rows } = this.props;
+    const { selection } = this.state;
     return (
       <div className={classes.root}>
         <Grid
@@ -156,21 +178,18 @@ class AgentsTable extends Component {
           columns={columns}
           getRowId={getRowId}
         >
-          <PhotoTypeProvider
-            for={['photo']}
-          />
-          <ViewTypeProvider
-            for={['view']}
-          />
-
           <DragDropProvider />
           <SearchState />
           <FilteringState
             columnExtensions={filteringStateColumnExtensions}
           />
           <SortingState
-            defaultSorting={[{ columnName: 'name', direction: 'asc' }]}
+            defaultSorting={[{ columnName: 'date', direction: 'desc' }]}
             columnExtensions={sortingStateColumnExtensions}
+          />
+          <SelectionState
+            selection={selection}
+            onSelectionChange={this.changeSelection}
           />
           <PagingState
             currentPage={this.state.currentPage}
@@ -181,15 +200,19 @@ class AgentsTable extends Component {
 
           <IntegratedFiltering />
 
-          <IntegratedSorting />
+          <IntegratedSorting
+            columnExtensions={integratedSortingColumnExtensions}
+          />
+
+          <IntegratedSelection />
 
           <IntegratedPaging />
 
 
           <VirtualTable
-            height={isBrowser ? window.innerHeight - 245 : undefined}
+            height={isBrowser ? window.innerHeight - 310 : undefined}
             tableComponent={TableComponent}
-            containerComponent={TableContainerComponentWrapper}
+            containerComponent={TableContainerComponent}
             cellComponent={Cell}
             noDataCellComponent={NoDataCellComponent}
           />
@@ -202,7 +225,16 @@ class AgentsTable extends Component {
           <Toolbar />
           <SearchPanel />
 
+          <TableColumnVisibility
+            defaultHiddenColumnNames={defaultHiddenColumnNames}
+          />
+          <ColumnChooser />
+
           <TableHeaderRow showSortingControls />
+          <TableSelection
+            showSelectAll
+            highlightRow
+          />
           <PagingPanel
             pageSizes={pageSizes}
           />
@@ -212,4 +244,4 @@ class AgentsTable extends Component {
   }
 }
 
-export default AgentsTable;
+export default DealsTable;

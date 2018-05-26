@@ -89,7 +89,7 @@ class Listings extends React.Component {
     const { onSubmitSearch } = this;
 
     return (
-      <Layout UserStore={this.store.UserStore}>
+      <Layout UserStore={this.store.UserStore} headerBoxShadowOff>
         <div>
           <ListingsFilterAndSearchSection onSubmit={onSubmitSearch} />
           <MapAndListingsSection listings={listings} />

@@ -41,10 +41,6 @@ app
 
     server.use(router);
 
-    process.on('unhandledRejection', (reason, p) => {
-      console.error(`Unhandled Rejection at: Promise: ${p} - ${reason}`);
-    });
-
     server.listen(server.get('port'), err => {
       if (err) throw err;
       console.log(`> Ready on port http://${server.get('host')}:${server.get('port')}`);

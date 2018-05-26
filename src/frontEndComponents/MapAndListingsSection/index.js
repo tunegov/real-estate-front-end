@@ -7,7 +7,7 @@ import ListingsMap from '../../frontEndContainers/ListingsMap';
 
 const styles = theme => ({
   root: {
-    height: 'calc(100vh - 162px)',
+    height: 'calc(100vh - 106px)',
     fontFamily: theme.frontEnd.typography.fontFamily.sansSerif,
     backgroundColor: '#fff',
   },

@@ -17,7 +17,8 @@ export const HeaderWrapper = styled.header`
   justify-content: flex-end;
   font-size: 14px;
   background-color: ${theme.primaryColor};
-  box-shadow: 0px 2px 14px -1px rgba(0, 0, 0, 0.12);
+  box-shadow: ${props => props.headerBoxShadowOff ? 'none' : '0px 2px 14px -1px rgba(0, 0, 0, 0.12)'};
+  border-bottom: ${props => props.headerBoxShadowOff ? '1px solid rgba(255,255,255,.1)' : 'none'};
 `;
 
 export const HeaderLink = styled.a`

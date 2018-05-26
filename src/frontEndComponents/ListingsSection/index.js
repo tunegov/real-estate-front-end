@@ -3,6 +3,7 @@ import { observer } from 'mobx-react';
 import { withStyles } from 'material-ui/styles';
 import Grid from 'material-ui/Grid';
 import Chance from 'chance';
+import Select from 'react-select';
 import ListingCard from '../ListingCard';
 
 const chance = new Chance();
@@ -12,11 +13,18 @@ const styles = theme => ({
     height: '100%',
     width: '100%',
     backgroundColor: '#fff',
+    color: 'rgba(0,0,0,.7)',
   },
   lisingsOptions: {
+    display: 'flex',
+    paddingLeft: '15px',
+    paddingRight: '15px',
+    justifyContent: 'center',
+    alignItems: 'center',
     height: '48px',
     width: '100%',
-    backgroundColor: 'rgba(0,0,0,.7)',
+    fontSize: '0.9rem',
+    backgroundColor: 'rgb(244, 245, 249)',
   },
   listingsWrapper: {
     padding: '20px',
@@ -32,6 +40,39 @@ const containerComponent = ({ children, ...props }) => (
     {...props}>{children}
   </div>
 );
+
+const selectStyles = {
+  container: (base, state) => ({
+    ...base,
+    width: '200px',
+    cursor: 'pointer',
+    minHeight: '30px !important',
+    height: '30px !important',
+  }),
+  control: (base, state) => ({
+    ...base,
+    cursor: 'pointer',
+    minHeight: '30px !important',
+    height: '30px !important',
+    backgroundColor: '#fff',
+  }),
+  option: (styles, { data, isDisabled, isFocused, isSelected }) => {
+    return {
+      ...styles,
+      cursor: isDisabled ? 'not-allowed' : 'pointer',
+      borderRadius: '4px',
+    };
+  },
+};
+
+const sortingTypes = [
+  { value: 'defaultSort', label: 'Default Sort' },
+  { value: 'priceLowToHigh', label: 'Price - Low to High' },
+  { value: 'priceHighToLow', label: 'Price - High to How' },
+  { value: 'listedDate', label: 'Listed Date- Most Recent' },
+  { value: 'neighborhood', label: 'Neighborhood - A to Z' },
+  { value: 'address', label: 'Address - A to Z' },
+];
 
 @observer
 @withStyles(styles)
@@ -75,10 +116,20 @@ class ListingsSection extends Component {
   )
 
   render() {
-    const { classes, listings } = this.props;
+    const { classes, listings, setSortingType } = this.props;
     return (
       <div className={classes.root}>
-        <div className={classes.lisingsOptions}></div>
+        <div className={classes.lisingsOptions}>
+          <Select
+            defaultValue={sortingTypes[0]}
+            styles={selectStyles}
+            options={sortingTypes}
+            placeholder="Sort..."
+            blurInputOnSelect
+            isSearchable={false}
+            onInputChange={setSortingType}
+          />
+        </div>
         <div className={classes.listingsWrapper}>
           <Grid container spacing={24} component={containerComponent}>
             {this.renderListings(listings)}

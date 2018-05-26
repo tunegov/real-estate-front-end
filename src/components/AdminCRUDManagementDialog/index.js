@@ -34,22 +34,67 @@ const styles = {
 
 @observer
 class AdminCRUDManagementDialog extends Component {
-  managementItems = [
-    {
-      name: 'Create',
-      route: 'create',
-      icon: AddIcon,
-      onClick: this.props.toggleCreateAgentModal,
-    },
-    { name: 'View All', route: 'view', icon: ViewIcon },
-  ]
+  managementItems = {
+    agents: [
+      {
+        name: 'Create',
+        route: 'create',
+        icon: AddIcon,
+        onClick: this.props.toggleCreateAgentModal,
+      },
+      { name: 'View All', route: 'view', type: 'link', icon: ViewIcon },
+    ],
+    users: [
+      {
+        name: 'Create',
+        route: 'create',
+        icon: AddIcon,
+        onClick: this.props.toggleCreateAgentModal,
+      },
+      { name: 'View All', route: 'view', type: 'link', icon: ViewIcon },
+    ],
+    admin: [
+      {
+        name: 'Create',
+        route: 'create',
+        icon: AddIcon,
+        onClick: this.props.toggleCreateAgentModal,
+      },
+      { name: 'View All', route: 'view', type: 'link', icon: ViewIcon },
+    ],
+    deals: [
+      { name: 'View All', route: 'view', type: 'link', icon: ViewIcon },
+    ],
+    invoices: [
+      { name: 'View All', route: 'view', type: 'link', icon: ViewIcon },
+    ],
+  }
 
   renderManagementLinks = items => {
     const { classes } = this.props;
-    const { toggleManagementModal, managementModalCurrentRoute } = this.props;
+    const { toggleManagementModal, managementModalCurrentRoute, managementModalCurrentType } = this.props;
+    const renderItems = items[managementModalCurrentType] || [];
     return (
-      items.map(item => {
+      renderItems.map(item => {
         const Icon = item.icon;
+        if (item.type === 'link') {
+          return (
+            <Link route={`/app/admin-area/${managementModalCurrentRoute}/${item.route}`} key={item.route || item.name}>
+              <a className={classes.anchor}>
+                <ListItem button onClick={() => toggleManagementModal()} key={item.route || item.name}>
+                  <div className={classes.listItemContentWrapper}>
+                    <ListItemAvatar>
+                      <Avatar className={classes.avatar}>
+                        <Icon />
+                      </Avatar>
+                    </ListItemAvatar>
+                    <ListItemText classes={{ root: classes.listItemTextWrapper }} primary={item.name} />
+                  </div>
+                </ListItem>
+              </a>
+            </Link>
+          );
+        }
         if (item.onClick && typeof item.onClick === 'function') {
           return (
             <ListItem
@@ -71,22 +116,7 @@ class AdminCRUDManagementDialog extends Component {
             </ListItem>
           );
         }
-        return (
-          <Link route={`/app/admin/${managementModalCurrentRoute}/${item.route}`} key={item.route || item.name}>
-            <a className={classes.anchor}>
-              <ListItem button onClick={() => toggleManagementModal()} key={item.route || item.name}>
-                <div className={classes.listItemContentWrapper}>
-                  <ListItemAvatar>
-                    <Avatar className={classes.avatar}>
-                      <Icon />
-                    </Avatar>
-                  </ListItemAvatar>
-                  <ListItemText classes={{ root: classes.listItemTextWrapper }} primary={item.name} />
-                </div>
-              </ListItem>
-            </a>
-          </Link>
-        );
+
       })
     );
   }

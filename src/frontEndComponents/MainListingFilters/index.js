@@ -9,7 +9,6 @@ const styles = theme => ({
   root: {
     display: 'flex',
     height: '56px',
-    width: '100%',
     justifyContent: 'center',
     alignItems: 'center',
     fontSize: '0.9rem',
@@ -49,10 +48,15 @@ const selectStyles = {
     ...base,
     width: '200px',
     cursor: 'pointer',
+    minHeight: '30px !important',
+    height: '30px !important',
   }),
   control: (base, state) => ({
     ...base,
     cursor: 'pointer',
+    minHeight: '30px !important',
+    height: '30px !important',
+    backgroundColor: 'inherit',
   }),
   option: (styles, { data, isDisabled, isFocused, isSelected }) => {
     return {

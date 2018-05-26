@@ -2,6 +2,8 @@ import React from 'react';
 import { withStyles } from 'material-ui/styles';
 import { observer } from 'mobx-react';
 import EyeIcon from '@material-ui/icons/RemoveRedEye';
+import Tooltip from 'material-ui/Tooltip';
+import { Link } from '../../routes';
 
 const styles = theme => ({
   wrapper: {
@@ -17,14 +19,22 @@ const styles = theme => ({
 @observer
 class VeiwFormatter extends React.Component {
   render() {
-    const email = this.props.value;
-    const { classes } = this.props;
+    const { classes, profileURL } = this.props;
 
     return (
-
-      <div className={classes.wrapper}>
-        <EyeIcon />
-      </div>
+      <Tooltip
+        title="Click to view profile"
+        enterDelay={400}
+        leaveDelay={100}
+      >
+        <Link route={profileURL || '#'}>
+          <a>
+            <div className={classes.wrapper}>
+              <EyeIcon />
+            </div>
+          </a>
+        </Link>
+      </Tooltip>
     );
   }
 }

@@ -1,134 +1,117 @@
-import React from 'react';
-import { observer } from 'mobx-react';
+import React, { Component } from 'react';
 import { withStyles } from 'material-ui/styles';
-import Chance from 'chance';
-import EmptyRowsView from '../EmptyRowsView';
-import MyToolbar from '../Toolbar';
-import ViewFormatter from '../dataTableFormatters/ViewFormatter';
-import RowRenderer from '../RowRenderer';
-import { round } from '../../utils/Math';
+import withSizes from 'react-sizes';
+import isBrowser from 'is-browser';
+import {
+  SortingState, FilteringState, SearchState,
+  IntegratedFiltering, IntegratedSorting,
+  PagingState,
+  IntegratedPaging,
+} from '@devexpress/dx-react-grid';
+import {
+  Grid,
+  VirtualTable, TableHeaderRow, TableFilterRow, TableColumnResizing, DragDropProvider, TableColumnReordering, Toolbar, SearchPanel, PagingPanel,
+} from '@devexpress/dx-react-grid-material-ui';
+import SelectFilterCell from '../../utils/backEndTableUtils/SelectFilterCell';
+import { compareDate, compareNumber } from '../../utils/backEndTableUtils/tableSortingUtils';
+import Cell from '../../utils/backEndTableUtils/DefaultVirtualTableCell';
+import TableComponent from '../../utils/backEndTableUtils/TableComponent';
+import TableContainerComponent from '../../utils/backEndTableUtils/TableContainerComponent';
+import NoDataCellComponent from '../../utils/backEndTableUtils/NoDataCellComponent';
 
-
-const chance = new Chance();
-
-let ReactDataGrid;
-let mySelectors;
-let MySingleSelectFilter;
-let MyNumericFilter;
-if (typeof window !== 'undefined') {
-  const PropTypes = require('prop-types');
-  // next line is only required until ron-react-autocomplete is rebuilt and republished
-  PropTypes.component = PropTypes.element;
-  require('react').PropTypes = PropTypes;
-  require('react').createClass = require('create-react-class');
-  ReactDataGrid = require('react-data-grid');
-  const {
-    Data: { Selectors, },
-    Filters: { SingleSelectFilter, NumericFilter },
-  } = require('react-data-grid-addons');
-  mySelectors = Selectors;
-  MySingleSelectFilter = SingleSelectFilter;
-  MyNumericFilter = NumericFilter;
-}
 
 const styles = theme => ({
-  gridWrapper: {
+  root: {
     boxShadow: theme.shadows[1],
-    fontFamily: theme.typography.fontFamily,
-    borderRadius: '8px',
-    overflow: 'hidden',
-    '& > :first-child': {
-      width: '100% !important',
+    backgroundColor: '#fff',
+    borderRadius: '3px',
+    '& [class^="Pager-pager-"]': {
+      borderTop: '1px solid rgba(224, 224, 224, 1)',
     },
+  },
+  cell: {
+    width: '100%',
+    paddingLeft: theme.spacing.unit,
+    paddingRight: theme.spacing.unit,
+  },
+  input: {
+    width: '100%',
+  },
+  myTable: {
+
+  },
+  myTableContainer: {
+    minHeight: '300px',
+    height: 'calc(100vh - 310px) !important',
+    // maxHeight: '800px',
+  },
+  myNoDataCellComponent: {
+    borderBottom: 'none !important',
   },
 });
 
-@observer
-class InvoicesTable extends React.Component {
-  constructor(props, context) {
-    super(props, context);
-    this._columns = [
-      {
-        key: 'invoiceID',
-        name: 'Invoice ID',
-        resizable: true,
-        locked: true,
-        filterable: true,
-        sortable: true,
-      },
-      { key: 'clientName', name: 'Client Name', resizable: true, filterable: true, sortable: true },
-      { key: 'date', name: 'Date', resizable: true, filterable: true, sortable: true },
-      {
-        key: 'type',
-        name: 'Type',
-        resizable: true,
-        filterable: true,
-        sortable: true,
-        width: 110,
-        filterRenderer: MySingleSelectFilter,
-      },
-      {
-        key: 'propertyAddress',
-        name: 'Property Address',
-        resizable: true,
-        filterable: true,
-        sortable: true,
-        width: 150,
-      },
-      {
-        key: 'propertyCity',
-        name: 'Property City',
-        resizable: true,
-        filterable: true,
-        sortable: true,
-        width: 110,
-      },
-      {
-        key: 'managementOrCobrokeCompany',
-        name: 'Mgmt/Co-Broke Co.',
-        resizable: true,
-        filterable: true,
-        sortable: true,
-        width: 155,
-      },
-      {
-        key: 'rentOrSalePrice',
-        name: 'Rent/Sale Price',
-        resizable: true,
-        filterable: true,
-        sortable: true,
-        filterRenderer: MyNumericFilter,
-      },
-      {
-        key: 'totalAmount',
-        name: 'Total Amount',
-        resizable: true,
-        filterable: true,
-        sortable: true,
-        filterRenderer: MyNumericFilter,
-      },
-      {
-        key: 'status',
-        name: 'Status',
-        resizable: true,
-        filterable: true,
-        sortable: true,
-        filterRenderer: MySingleSelectFilter,
-      },
-      {
-        key: 'view',
-        name: 'View',
-        formatter: ViewFormatter,
-        width: 55,
-      },
-    ];
+const sortingStateColumnExtensions = [
+  { columnName: 'dealID', sortingEnabled: false },
+  { columnName: 'view', filteringEnabled: false },
+];
+
+const filteringStateColumnExtensions = [
+  { columnName: 'view', filteringEnabled: false },
+];
+
+const getRowId = row => row.dealID;
+
+const statusSelectInputItems = [
+  { label: '' },
+  { label: 'Pending' },
+  { label: 'Approved' },
+];
+
+const FilterCell = props => {
+  if (props.column.name === 'status') {
+    return <SelectFilterCell selectInputItems={statusSelectInputItems} {...props} />;
+  }
+  return <TableFilterRow.Cell {...props} />;
+};
+
+const integratedSortingColumnExtensions = [
+  { columnName: 'date', compare: compareDate },
+  { columnName: 'rentOrSalePrice', compare: compareNumber },
+];
+
+const defaultColumnWidths = [
+  { columnName: 'invoiceID', width: 120 },
+  { columnName: 'date', width: 120 },
+  { columnName: 'type', width: 120 },
+  { columnName: 'clientName', width: 140 },
+  { columnName: 'clientPhoneNumber', width: 140 },
+  { columnName: 'propertyAddress', width: 140 },
+  { columnName: 'propertyCity', width: 120 },
+  { columnName: 'managementOrCobrokeCompany', width: 160 },
+  { columnName: 'rentOrSalePrice', width: 100 },
+  { columnName: 'totalAmount', width: 100 },
+  { columnName: 'status', width: 120 },
+  { columnName: 'view', width: 80 },
+];
+
+const pageSizes = [5, 10, 15, 20, 50, 100, 0];
+
+const mapSizesToProps = ({ width }) => ({
+  xsViewport: width < 412,
+  smViewport: width < 600,
+  mdViewport: width < 960,
+  lgViewport: width < 1280,
+});
+
+@withStyles(styles)
+@withSizes(mapSizesToProps)
+class InvoicesTable extends Component {
+  constructor(props) {
+    super(props);
 
     this.state = {
-      rows: this.createRows(150),
-      filters: {},
-      sortColumn: null,
-      sortDirection: null,
-      tableIsLoading: true,
+      pageSize: 10,
+      currentPage: 0,
     };
   }
 
@@ -136,90 +119,76 @@ class InvoicesTable extends React.Component {
     if (this.props.onMount) this.props.onMount();
   }
 
-  createRows = numOfRows => {
-    const rows = [];
-    for (let i = 1; i < numOfRows; i++) {
-      const rentOrSalePrice = chance.dollar().substring(1);
-      rows.push({
-        invoiceID: chance.integer({ min: 1, max: 2000000000 }),
-        clientName: chance.name(),
-        date: chance.date({ string: true }),
-        type: chance.bool() === true ? 'Residential' : 'Commercial',
-        propertyAddress: chance.address(),
-        propertyCity: chance.city(),
-        managementOrCobrokeCompany: chance.company(),
-        rentOrSalePrice,
-        totalAmount: round(Number(rentOrSalePrice) + 4250, 2),
-        status: chance.bool() === true ? 'Pending' : 'Approved',
-        view: '#',
-      });
+  changePageSize = pageSize => {
+    this.setState({ pageSize });
+    if (this.state.pageSize < pageSize) {
+      document.getElementById('myTableContainer').scrollTop = 0;
     }
-    return rows;
-  };
+  }
 
-  getRows = () => (
-    mySelectors.getRows(this.state)
-  );
-
-  getSize = () => (
-    this.getRows().length
-  );
-
-  rowGetter = rowIdx => {
-    const rows = this.getRows();
-    return rows[rowIdx];
-  };
-
-  handleFilterChange = filter => {
-    const newFilters = Object.assign({}, this.state.filters);
-    if (filter.filterTerm) {
-      newFilters[filter.column.key] = filter;
-    } else {
-      delete newFilters[filter.column.key];
-    }
-    this.setState({ filters: newFilters });
-  };
-
-  getValidFilterValues = (columnId) => {
-    let values = this.state.rows.map(r => r[columnId]);
-    return values.filter((item, i, a) => { return i === a.indexOf(item); });
-  };
-
-  handleOnClearFilters = () => {
-    this.setState({ filters: {} });
-  };
-
-  handleGridSort = (sortColumn, sortDirection) => {
-    this.setState({ sortColumn, sortDirection });
-  };
+  currentPageChange = currentPage => {
+    this.setState({ currentPage });
+    document.getElementById('myTableContainer').scrollTop = 0;
+  }
 
   render() {
-    const { classes } = this.props;
+    const { classes, columns, rows } = this.props;
     return (
-      <div className={classes.gridWrapper}>
-        {typeof window !== 'undefined' ?
-          <ReactDataGrid
-            columns={this._columns}
-            rowGetter={this.rowGetter}
-            rowsCount={this.getSize()}
-            rowHeight={50}
-            headerRowHeight={37}
-            toolbar={<MyToolbar tableTitle="Invoices" enableFilter />}
-            minHeight={this.getSize() ? 600 : 100}
-            minColumnWidth={120}
-            enableCellSelect
-            onGridSort={this.handleGridSort}
-            onAddFilter={this.handleFilterChange}
-            getValidFilterValues={this.getValidFilterValues}
-            onClearFilters={this.handleOnClearFilters}
-            rowScrollTimeout={200}
-            rowRenderer={RowRenderer}
-            emptyRowsView={EmptyRowsView}
-            cellNavigationMode="changeRow"
-          /> : null}
+      <div className={classes.root}>
+        <Grid
+          rows={rows}
+          columns={columns}
+          getRowId={getRowId}
+        >
+          <DragDropProvider />
+          <SearchState />
+          <FilteringState
+            columnExtensions={filteringStateColumnExtensions}
+          />
+          <SortingState
+            defaultSorting={[{ columnName: 'date', direction: 'desc' }]}
+            columnExtensions={sortingStateColumnExtensions}
+          />
+          <PagingState
+            currentPage={this.state.currentPage}
+            pageSize={this.state.pageSize}
+            onPageSizeChange={this.changePageSize}
+            onCurrentPageChange={this.currentPageChange}
+          />
+
+          <IntegratedFiltering />
+
+          <IntegratedSorting
+            columnExtensions={integratedSortingColumnExtensions}
+          />
+
+          <IntegratedPaging />
+
+
+          <VirtualTable
+            height={isBrowser ? window.innerHeight - 310 : undefined}
+            tableComponent={TableComponent}
+            containerComponent={TableContainerComponent}
+            cellComponent={Cell}
+            noDataCellComponent={NoDataCellComponent}
+          />
+          <TableColumnReordering defaultOrder={columns.map(column => column.name)} />
+          <TableColumnResizing
+            defaultColumnWidths={defaultColumnWidths}
+          />
+
+          <TableFilterRow cellComponent={FilterCell} />
+          <Toolbar />
+          <SearchPanel />
+
+          <TableHeaderRow showSortingControls />
+          <PagingPanel
+            pageSizes={pageSizes}
+          />
+        </Grid>
       </div>
     );
   }
 }
 
-export default withStyles(styles)(InvoicesTable);
+export default InvoicesTable;

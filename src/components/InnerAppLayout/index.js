@@ -39,7 +39,7 @@ const styles = theme => ({
     right: '0',
     height: '40px',
     width: '40px',
-    zIndex: 1,
+    zIndex: 10,
     backgroundColor: 'rgba(0,0,0,.6)',
     color: '#fff',
     border: 'none',
@@ -61,6 +61,7 @@ class ClippedDrawer extends React.Component {
       settingsDrawerOpen: false,
       managementModalOpen: false,
       managementModalCurrentRoute: null,
+      managementModalCurrentType: null,
       createAgentModalOpen: false,
     };
     this.isAdmin = includesAny(this.props.userRoles, ['admin', 'super-admin']);
@@ -79,11 +80,12 @@ class ClippedDrawer extends React.Component {
     });
   }
 
-  toggleManagementModal = routeBase => {
+  toggleManagementModal = (routeBase, subtype) => {
     const { managementModalOpen } = this.state;
     this.setState({
       managementModalOpen: !managementModalOpen,
       managementModalCurrentRoute: !managementModalOpen ? routeBase : null,
+      managementModalCurrentType: !managementModalOpen ? subtype : null,
     });
   }
 
@@ -134,7 +136,12 @@ class ClippedDrawer extends React.Component {
     } = this.props;
     const currentPath = this.props.router.pathname;
     const { isAdmin } = this;
-    const { managementModalCurrentRoute, managementModalOpen, createAgentModalOpen } = this.state;
+    const {
+      managementModalCurrentRoute,
+      managementModalOpen,
+      createAgentModalOpen,
+      managementModalCurrentType,
+    } = this.state;
     const managementModalType = managementModalCurrentRoute ?
       managementModalCurrentRoute.split('-').pop() : null;
 
@@ -147,7 +154,7 @@ class ClippedDrawer extends React.Component {
           adminMenuOn={adminMenuOn}
         />
         {this.renderSideNav()}
-        <main className={classes.content}>
+        <main className={classes.content} id="inner-app-content">
           <div className={classes.toolbar} />
           {this.props.children}
           <div className={classes.drawerWrapper}>
@@ -164,6 +171,7 @@ class ClippedDrawer extends React.Component {
               toggleAdminMenu={toggleAdminMenu}
               navDrawerOpen={this.state.navDrawerOpen}
               toggleFullScreenLoader={toggleFullScreenLoader}
+              managementModalCurrentType={this.state.managementModalCurrentType}
             />
           </div>
         </main>
@@ -173,6 +181,7 @@ class ClippedDrawer extends React.Component {
           managementModalType={managementModalType}
           toggleManagementModal={this.toggleManagementModal}
           toggleCreateAgentModal={this.toggleCreateAgentModal}
+          managementModalCurrentType={managementModalCurrentType}
         />
         <CreateAgentDialogBox
           open={createAgentModalOpen}

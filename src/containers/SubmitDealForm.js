@@ -13,7 +13,6 @@ export const userQuery = gql`
       firstName
       lastName
       roles
-      agent
     }
   }
 `;

@@ -63,6 +63,7 @@ const MaterialCustomSelectInputWrapper = props => (
         multiple,
         name,
         validate,
+        SelectDisplayProps,
         ...rest
       } = props;
 
@@ -94,6 +95,7 @@ const MaterialCustomSelectInputWrapper = props => (
           <InputLabel htmlFor={`${id}-error`}>{label}</InputLabel>
           <Select
             value={multiple ? value || [] : value || ''}
+            SelectDisplayProps={SelectDisplayProps || { style: { backgroundColor: 'inherit' } }}
             onChange={event => {
               setValue(event.target.value);
               if (onInput) {

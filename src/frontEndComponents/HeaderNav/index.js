@@ -85,8 +85,9 @@ class HeaderNav extends React.Component {
   );
 
   render() {
+    const { headerBoxShadowOff } = this.props;
     return (
-      <HeaderWrapper id="header-wrapper" isApp={this.props.isApp}>
+      <HeaderWrapper id="header-wrapper" isApp={this.props.isApp} headerBoxShadowOff>
         <Logo>
           <Link route="home" prefetch>
             <LogoAnchor>Real Estate App Logo</LogoAnchor>

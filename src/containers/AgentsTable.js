@@ -1,12 +1,19 @@
 import React, { Component } from 'react';
 import { observer } from 'mobx-react';
 import { withStyles } from 'material-ui/styles';
-import { BounceLoader } from 'react-spinners';
+import { DotLoader } from 'react-spinners';
+import Chance from 'chance';
+import faker from 'faker';
 import AgentsTable from '../components/AgentsTable';
 
-const Loader = BounceLoader;
+const chance = new Chance();
+
+const Loader = DotLoader;
 
 const styles = theme => ({
+  root: {
+    position: 'relative',
+  },
   progress: {
     margin: theme.spacing.unit * 2,
     marginRight: 'auto',
@@ -15,16 +22,31 @@ const styles = theme => ({
   },
   progressWrapper: {
     position: 'absolute',
-    top: 'calc(48% + 60px)',
-    left: '48%',
-    textAlign: 'center',
-    '& > :first-child': {
-      marginLeft: 'auto',
-      marginRight: 'auto',
-    },
+    top: 0,
+    bottom: 0,
+    left: 0,
+    right: 0,
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    flexDirection: 'column',
+    padding: '60px 20px',
+    borderRadius: '3px',
+    backgroundColor: '#fff',
+    zIndex: 2,
   },
 });
 
+const columns = [
+  { name: 'photo', title: 'Photo' },
+  { name: 'name', title: 'Name' },
+  { name: 'email', title: 'Email' },
+  { name: 'areaOfFocus', title: 'Area of Focus' },
+  { name: 'mobileNumber', title: 'Mobile Number' },
+  { name: 'companyNumberAndExt', title: 'Company Number/Extension' },
+  { name: 'region', title: 'Region' },
+  { name: 'view', title: 'View Profile' },
+];
 
 @observer
 class AgentsTableContainer extends Component {
@@ -32,16 +54,35 @@ class AgentsTableContainer extends Component {
     super(props);
     this.state = {
       tableIsLoading: true,
+      rows: this.createRows(2780),
     };
   }
+
+  createRows = numOfRows => {
+    const rows = [];
+    for (let i = 0; i < numOfRows; i++) {
+      rows.push({
+        photo: { imageURL: faker.image.avatar(), profileURL: '#' },
+        name: chance.name(),
+        email: chance.email(),
+        areaOfFocus: 'none',
+        mobileNumber: chance.phone(),
+        companyNumberAndExt: `${chance.phone()} x${chance.integer({ min: 1, max: 999 })}`,
+        region: chance.integer({ min: 0, max: 100 }) > 70 ? chance.state({ full: true }) : 'New York',
+        view: '#',
+      });
+    }
+    return rows;
+  };
+
   render() {
-    const { tableIsLoading } = this.state;
+    const { tableIsLoading, rows } = this.state;
     const { classes, ...rest } = this.props;
     return (
-      <div>
+      <div className={classes.root}>
         {
           tableIsLoading ? (
-            <div style={{ display: 'flex', justifyContent: 'center' }}>
+            <div className={classes.progressWrapper} style={{ display: 'flex', justifyContent: 'center' }}>
               <Loader
                 color="#f44336"
                 loading
@@ -49,7 +90,12 @@ class AgentsTableContainer extends Component {
             </div>
           ) : null
         }
-        <AgentsTable {...rest} onMount={() => this.setState({ tableIsLoading: false })} />
+        <AgentsTable
+          {...rest}
+          onMount={() => tableIsLoading ? this.setState({ tableIsLoading: false }) : null}
+          columns={columns}
+          rows={rows}
+        />
       </div>
     );
   }

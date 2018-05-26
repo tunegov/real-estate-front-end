@@ -1,6 +1,7 @@
 const globalStyles = `
   html {
     height: 100%;
+    overflow: hidden;
   }
   body {
     position: relative;
