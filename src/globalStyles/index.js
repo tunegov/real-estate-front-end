@@ -87,6 +87,10 @@ const globalStyles = `
   .react-grid-HeaderCell > .Select {
     overflow: initial;
   }
+  #__next > div {
+    max-width: 100%;
+    width: 100%;
+  }
 `;
 
 export default globalStyles;

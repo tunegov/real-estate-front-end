@@ -12,6 +12,7 @@ import {
   IntegratedPaging,
   SelectionState,
   IntegratedSelection,
+  DataTypeProvider,
 } from '@devexpress/dx-react-grid';
 import {
   Grid,
@@ -33,6 +34,7 @@ import Cell from '../../utils/backEndTableUtils/DefaultVirtualTableCell';
 import TableComponent from '../../utils/backEndTableUtils/TableComponent';
 import TableContainerComponent from '../../utils/backEndTableUtils/TableContainerComponent';
 import NoDataCellComponent from '../../utils/backEndTableUtils/NoDataCellComponent';
+import ViewFormatter from '../dataTableFormatters/ViewFormatter';
 
 
 const styles = theme => ({
@@ -57,8 +59,12 @@ const styles = theme => ({
   },
   myTableContainer: {
     minHeight: '300px',
-    height: 'calc(100vh - 310px) !important',
+    height: 'calc(100vh - 384px) !important',
     // maxHeight: '800px',
+  },
+  myTableContainerSmallViewPort: {
+    minHeight: '300px',
+    height: 'calc(100vh - 445px) !important',
   },
   myNoDataCellComponent: {
     borderBottom: 'none !important',
@@ -126,6 +132,19 @@ const defaultHiddenColumnNames = [
   'managementOrCobrokeCompany',
 ];
 
+const ViewCellFormatter = ({ value }) => (
+  <ViewFormatter
+    profileURL={value}
+  />
+);
+
+const ViewTypeProvider = props => (
+  <DataTypeProvider
+    formatterComponent={ViewCellFormatter}
+    {...props}
+  />
+);
+
 const pageSizes = [5, 10, 15, 20, 50, 100, 0];
 
 const mapSizesToProps = ({ width }) => ({
@@ -169,7 +188,7 @@ class DealsTable extends Component {
   };
 
   render() {
-    const { classes, columns, rows } = this.props;
+    const { classes, columns, rows, lgViewport } = this.props;
     const { selection } = this.state;
     return (
       <div className={classes.root}>
@@ -178,6 +197,11 @@ class DealsTable extends Component {
           columns={columns}
           getRowId={getRowId}
         >
+
+          <ViewTypeProvider
+            for={['view']}
+          />
+
           <DragDropProvider />
           <SearchState />
           <FilteringState
@@ -210,9 +234,14 @@ class DealsTable extends Component {
 
 
           <VirtualTable
-            height={isBrowser ? window.innerHeight - 310 : undefined}
+            height={isBrowser ? window.innerHeight - 384 : undefined}
             tableComponent={TableComponent}
-            containerComponent={TableContainerComponent}
+            containerComponent={props => (
+              <TableContainerComponent
+                className={lgViewport ? classes.myTableContainerSmallViewPort : classes.myTableContainer}
+                {...props}
+              />
+            )}
             cellComponent={Cell}
             noDataCellComponent={NoDataCellComponent}
           />

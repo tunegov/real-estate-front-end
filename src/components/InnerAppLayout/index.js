@@ -2,6 +2,8 @@ import React from 'react';
 import { withStyles } from 'material-ui/styles';
 import { withRouter } from 'next/router';
 import SettingsIcon from '@material-ui/icons/Settings';
+import MomentUtils from 'material-ui-pickers/utils/moment-utils';
+import MuiPickersUtilsProvider from 'material-ui-pickers/utils/MuiPickersUtilsProvider';
 import SideNav from '../SideNav';
 import AdminSideNav from '../AdminSideNav';
 import AppTopNav from '../AppTopNav';
@@ -12,6 +14,7 @@ import CreateAgentDialogBox from '../CreateAgentDialogBox';
 
 const styles = theme => ({
   root: {
+    maxHeight: '100%',
     flexGrow: 1,
     zIndex: 1,
     overflow: 'hidden',
@@ -146,48 +149,50 @@ class ClippedDrawer extends React.Component {
       managementModalCurrentRoute.split('-').pop() : null;
 
     return (
-      <div className={classes.root}>
-        <AppTopNav
-          currentPath={currentPath}
-          logoutUser={logoutUser}
-          toggleDrawer={this.toggleNavDrawer}
-          adminMenuOn={adminMenuOn}
-        />
-        {this.renderSideNav()}
-        <main className={classes.content} id="inner-app-content">
-          <div className={classes.toolbar} />
-          {this.props.children}
-          <div className={classes.drawerWrapper}>
-            <button className={classes.settingsBtn} onClick={this.toggleSettingsDrawer}>
-              <SettingsIcon />
-            </button>
-            <SettingsDrawer
-              isAdmin={isAdmin}
-              onlyRoleIsAdmin={this.onlyRoleIsAdmin}
-              adminMenuOn={adminMenuOn}
-              toggleDrawer={this.toggleSettingsDrawer}
-              toggleNavDrawer={this.toggleNavDrawer}
-              drawerOpen={this.state.settingsDrawerOpen}
-              toggleAdminMenu={toggleAdminMenu}
-              navDrawerOpen={this.state.navDrawerOpen}
-              toggleFullScreenLoader={toggleFullScreenLoader}
-              managementModalCurrentType={this.state.managementModalCurrentType}
-            />
-          </div>
-        </main>
-        <AdminCRUDManagementDialog
-          open={managementModalOpen}
-          managementModalCurrentRoute={managementModalCurrentRoute}
-          managementModalType={managementModalType}
-          toggleManagementModal={this.toggleManagementModal}
-          toggleCreateAgentModal={this.toggleCreateAgentModal}
-          managementModalCurrentType={managementModalCurrentType}
-        />
-        <CreateAgentDialogBox
-          open={createAgentModalOpen}
-          toggleCreateAgentModal={this.toggleCreateAgentModal}
-        />
-      </div>
+      <MuiPickersUtilsProvider utils={MomentUtils}>
+        <div className={classes.root}>
+          <AppTopNav
+            currentPath={currentPath}
+            logoutUser={logoutUser}
+            toggleDrawer={this.toggleNavDrawer}
+            adminMenuOn={adminMenuOn}
+          />
+          {this.renderSideNav()}
+          <main className={classes.content} id="inner-app-content">
+            <div className={classes.toolbar} />
+            {this.props.children}
+            <div className={classes.drawerWrapper}>
+              <button className={classes.settingsBtn} onClick={this.toggleSettingsDrawer}>
+                <SettingsIcon />
+              </button>
+              <SettingsDrawer
+                isAdmin={isAdmin}
+                onlyRoleIsAdmin={this.onlyRoleIsAdmin}
+                adminMenuOn={adminMenuOn}
+                toggleDrawer={this.toggleSettingsDrawer}
+                toggleNavDrawer={this.toggleNavDrawer}
+                drawerOpen={this.state.settingsDrawerOpen}
+                toggleAdminMenu={toggleAdminMenu}
+                navDrawerOpen={this.state.navDrawerOpen}
+                toggleFullScreenLoader={toggleFullScreenLoader}
+                managementModalCurrentType={this.state.managementModalCurrentType}
+              />
+            </div>
+          </main>
+          <AdminCRUDManagementDialog
+            open={managementModalOpen}
+            managementModalCurrentRoute={managementModalCurrentRoute}
+            managementModalType={managementModalType}
+            toggleManagementModal={this.toggleManagementModal}
+            toggleCreateAgentModal={this.toggleCreateAgentModal}
+            managementModalCurrentType={managementModalCurrentType}
+          />
+          <CreateAgentDialogBox
+            open={createAgentModalOpen}
+            toggleCreateAgentModal={this.toggleCreateAgentModal}
+          />
+        </div>
+      </MuiPickersUtilsProvider>
     );
   }
 }

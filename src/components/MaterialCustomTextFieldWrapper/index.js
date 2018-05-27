@@ -52,7 +52,19 @@ class CustomTextFieldWrapper extends React.Component {
     return null;
   }
 
+  returnStartAdornment = () => {
+    const { isDollarAmount, isPercentAmount } = this.props;
+    if (isDollarAmount) {
+      return <InputAdornment position="start">$</InputAdornment>
+    } else if (isPercentAmount) {
+      return <InputAdornment position="start">%</InputAdornment>
+    }
+    return null;
+  }
+
   render() {
+    const { returnStartAdornment } = this;
+
     return (
       <Field validate={this.props.validate} field={this.props.field}>
         {fieldApi => {
@@ -81,6 +93,7 @@ class CustomTextFieldWrapper extends React.Component {
             formApi,
             isDollarAmount,
             inputRootClassName,
+            isPercentAmount,
             ...rest
           } = this.props;
 
@@ -137,7 +150,7 @@ class CustomTextFieldWrapper extends React.Component {
                   }
                 }}
                 multiline={multiline}
-                startAdornment={isDollarAmount ? <InputAdornment position="start">$</InputAdornment> : null}
+                startAdornment={returnStartAdornment()}
                 {...rest}
               />
               {error && touched ? <FormHelperText classes={{ root: classes.redErrorText }} id={`${id}-error-text`}>{error}</FormHelperText> : null}

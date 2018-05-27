@@ -265,6 +265,7 @@ class SubmitInvoiceForm extends Component {
       setContractOrLeaseForms,
       agentDisclosureForm,
       contractOrLeaseForms,
+      subtractPaymentValueFromState,
     } = this.props;
 
     const agentSelectItems = [
@@ -553,7 +554,15 @@ class SubmitInvoiceForm extends Component {
                           classes={{ root: classes.removePaymentBtn }}
                           variant="raised"
                           color="secondary"
-                          onClick={() => formApi.removeValue('paymentItems', i)}
+                          onClick={() => {
+                            const amount = Number(formApi.values.paymentItems[i].amount);
+
+                            if (amount) {
+                              subtractPaymentValueFromState(amount);
+                            }
+
+                            formApi.removeValue('paymentItems', i);
+                          }}
                           type="button"
                         >
                           Remove

@@ -7,6 +7,7 @@ import {
   IntegratedFiltering, IntegratedSorting,
   PagingState,
   IntegratedPaging,
+  DataTypeProvider,
 } from '@devexpress/dx-react-grid';
 import {
   Grid,
@@ -18,6 +19,7 @@ import Cell from '../../utils/backEndTableUtils/DefaultVirtualTableCell';
 import TableComponent from '../../utils/backEndTableUtils/TableComponent';
 import TableContainerComponent from '../../utils/backEndTableUtils/TableContainerComponent';
 import NoDataCellComponent from '../../utils/backEndTableUtils/NoDataCellComponent';
+import ViewFormatter from '../dataTableFormatters/ViewFormatter';
 
 
 const styles = theme => ({
@@ -94,6 +96,19 @@ const defaultColumnWidths = [
   { columnName: 'view', width: 80 },
 ];
 
+const ViewCellFormatter = ({ value }) => (
+  <ViewFormatter
+    profileURL={value}
+  />
+);
+
+const ViewTypeProvider = props => (
+  <DataTypeProvider
+    formatterComponent={ViewCellFormatter}
+    {...props}
+  />
+);
+
 const pageSizes = [5, 10, 15, 20, 50, 100, 0];
 
 const mapSizesToProps = ({ width }) => ({
@@ -140,6 +155,11 @@ class InvoicesTable extends Component {
           columns={columns}
           getRowId={getRowId}
         >
+
+          <ViewTypeProvider
+            for={['view']}
+          />
+
           <DragDropProvider />
           <SearchState />
           <FilteringState

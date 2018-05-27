@@ -75,7 +75,7 @@ class AppTopNav extends Component {
   render() {
     const { classes, currentPath, adminMenuOn } = this.props;
     const pathArray = currentPath.split('/');
-    const path = pathArray[pathArray.length - 1];
+    const path = pathArray[pathArray.length - 1] === 'view' ? pathArray[pathArray.length - 2] : pathArray[pathArray.length - 1];
 
     return (
       <AppBar position="absolute" className={classes.appBar}>

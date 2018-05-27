@@ -23,7 +23,7 @@ class VeiwFormatter extends React.Component {
 
     return (
       <Tooltip
-        title="Click to view profile"
+        title="Click to view"
         enterDelay={400}
         leaveDelay={100}
       >

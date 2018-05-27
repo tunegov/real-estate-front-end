@@ -254,13 +254,14 @@ class SubmitDealForm extends Component {
 
   render() {
     const { firstName, lastName } = this.props.user;
-    console.log(this.props.user);
     const {
       classes,
       setAgentDisclosureForm,
       setContractOrLeaseForms,
       agentDisclosureForm,
       contractOrLeaseForms,
+      subtractPaymentValueFromState,
+      subtractDeductionValueFromState,
     } = this.props;
 
     return (
@@ -276,6 +277,7 @@ class SubmitDealForm extends Component {
             }}
           >
             {formApi => {
+              console.log(formApi.values)
               if (this.isFirstTimeRender) {
                 this.isFirstTimeRender = false;
                 // formApi.addValue('contractOrLeaseItems');
@@ -341,7 +343,14 @@ class SubmitDealForm extends Component {
                       classes={{ root: classes.removePaymentBtn }}
                       variant="raised"
                       color="secondary"
-                      onClick={() => formApi.removeValue('deductionItems', i)}
+                      onClick={() => {
+                        const amount = Number(formApi.values.deductionItems[i].amount);
+
+                        if (amount) {
+                          subtractDeductionValueFromState(amount);
+                        }
+                        formApi.removeValue('deductionItems', i)
+                      }}
                       type="button"
                     >
                       Remove
@@ -635,7 +644,15 @@ class SubmitDealForm extends Component {
                           classes={{ root: classes.removePaymentBtn }}
                           variant="raised"
                           color="secondary"
-                          onClick={() => formApi.removeValue('paymentItems', i)}
+                          onClick={() => {
+                            const amount = Number(formApi.values.paymentItems[i].amount);
+
+                            if (amount) {
+                              subtractPaymentValueFromState(amount);
+                            }
+
+                            formApi.removeValue('paymentItems', i);
+                          }}
                           type="button"
                         >
                           Remove
@@ -729,6 +746,11 @@ class SubmitDealForm extends Component {
                         color="secondary"
                         onClick={() => {
                           this.setState({ shouldRenderInitialDeductionItem: false });
+                          const amount = Number(formApi.values.deductionItems[0].amount);
+
+                          if (amount) {
+                            subtractDeductionValueFromState(amount);
+                          }
                           formApi.removeValue('deductionItems', 0);
                         }}
                         type="button"

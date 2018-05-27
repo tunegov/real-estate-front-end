@@ -29,11 +29,10 @@ class SubmitDealFormContainer extends Component {
       total: 0,
       contractOrLeaseForms: [],
       agentDisclosureForm: null,
+      permanentPaymentSubtractions: 0,
+      permanentDeductionSubtractions: 0,
     };
   }
-
-  totalPayments = 0;
-  totalDeductions = 0;
 
   paymentAmountChangeHandler = (id, value) => {
     value = Number(value);
@@ -49,7 +48,7 @@ class SubmitDealFormContainer extends Component {
     value = Number(value);
     const deductionsTotal = this.getTotalDeductionsAmount({ id, value: value || 0 });
     this.setState({
-      deductionAmountItems: { ...this.state.deductionsItems, [id]: value || 0 },
+      deductionAmountItems: { ...this.state.deductionAmountItems, [id]: value || 0 },
       deductionsTotal,
       total: this.state.paymentsTotal - deductionsTotal,
     });
@@ -57,30 +56,54 @@ class SubmitDealFormContainer extends Component {
 
   getTotalPaymentsAmount = newItem => {
     let total = 0;
-    const { paymentAmountItems } = this.state;
+    const { paymentAmountItems, permanentPaymentSubtractions } = this.state;
+
     Object.keys(paymentAmountItems)
       .filter(itemID => newItem ? itemID !== newItem.id : true)
       .forEach(key => {
-        total += paymentAmountItems[key].value;
+        total += paymentAmountItems[key];
       });
 
-    if (newItem) total += newItem.value;
+    if (newItem && newItem.value) total += newItem.value;
 
-    return total;
+    return total - permanentPaymentSubtractions;
   }
 
   getTotalDeductionsAmount = newItem => {
     let total = 0;
-    const { deductionAmountItems } = this.state;
+    const { deductionAmountItems, permanentDeductionSubtractions } = this.state;
+
     Object.keys(deductionAmountItems)
       .filter(itemID => newItem ? itemID !== newItem.id : true)
       .forEach(key => {
-        total += deductionAmountItems[key].value;
+        total += deductionAmountItems[key];
       });
 
-    if (newItem) total += newItem.value;
+    if (newItem && newItem.value) total += newItem.value;
 
-    return total;
+    return total - permanentDeductionSubtractions;
+  }
+
+  subtractPaymentValueFromState = payment => {
+    const paymentsTotal =
+      this.getTotalPaymentsAmount() - payment;
+
+    this.setState({
+      permanentPaymentSubtractions: this.state.permanentPaymentSubtractions + payment,
+      paymentsTotal,
+      total: paymentsTotal - this.state.deductionsTotal,
+    });
+  }
+
+  subtractDeductionValueFromState = deduction => {
+    const deductionsTotal =
+      this.getTotalDeductionsAmount() - deduction;
+
+    this.setState({
+      permanentDeductionSubtractions: this.state.permanentDeductionSubtractions + deduction,
+      deductionsTotal,
+      total: this.state.paymentsTotal - deductionsTotal,
+    });
   }
 
   setAgentDisclosureForm = file => {
@@ -132,6 +155,8 @@ class SubmitDealFormContainer extends Component {
               contractOrLeaseForms={contractOrLeaseForms}
               paymentAmountChangeHandler={this.paymentAmountChangeHandler}
               deductionAmountChangeHandler={this.deductionAmountChangeHandler}
+              subtractPaymentValueFromState={this.subtractPaymentValueFromState}
+              subtractDeductionValueFromState={this.subtractDeductionValueFromState}
               {...rest}
             />
           );

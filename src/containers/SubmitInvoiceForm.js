@@ -27,6 +27,7 @@ class SubmitInvoiceFormContainer extends Component {
       total: 0,
       contractOrLeaseForms: [],
       agentDisclosureForm: null,
+      permanentPaymentSubtractions: 0,
     };
   }
 
@@ -44,16 +45,28 @@ class SubmitInvoiceFormContainer extends Component {
 
   getTotalPaymentsAmount = newItem => {
     let total = 0;
-    const { paymentAmountItems } = this.state;
+    const { paymentAmountItems, permanentPaymentSubtractions } = this.state;
+
     Object.keys(paymentAmountItems)
       .filter(itemID => newItem ? itemID !== newItem.id : true)
       .forEach(key => {
-        total += paymentAmountItems[key].value;
+        total += paymentAmountItems[key];
       });
 
-    if (newItem) total += newItem.value;
+    if (newItem && newItem.value) total += newItem.value;
 
-    return total;
+    return total - permanentPaymentSubtractions;
+  }
+
+  subtractPaymentValueFromState = payment => {
+    const paymentsTotal =
+      this.getTotalPaymentsAmount() - payment;
+
+    this.setState({
+      permanentPaymentSubtractions: this.state.permanentPaymentSubtractions + payment,
+      paymentsTotal,
+      total: paymentsTotal,
+    });
   }
 
   setAgentDisclosureForm = file => {
@@ -104,6 +117,7 @@ class SubmitInvoiceFormContainer extends Component {
               contractOrLeaseForms={contractOrLeaseForms}
               paymentAmountChangeHandler={this.paymentAmountChangeHandler}
               deductionAmountChangeHandler={this.deductionAmountChangeHandler}
+              subtractPaymentValueFromState={this.subtractPaymentValueFromState}
               {...rest}
             />
           );

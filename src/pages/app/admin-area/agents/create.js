@@ -5,7 +5,7 @@ import Layout from '../../../../components/Layout';
 import { initStore } from '../../../../models';
 import withData from '../../../../lib/withData';
 import { Router } from '../../../../routes';
-import CreateAgentContainer from '../../../../containers/CreateAgent';
+import CreateAgentContainer from '../../../../containers/CreateAgentForm';
 
 @observer
 class CreateAgent extends React.Component {
