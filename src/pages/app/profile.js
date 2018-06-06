@@ -5,12 +5,17 @@ import Layout from '../../components/Layout';
 import { initStore } from '../../models';
 import withData from '../../lib/withData';
 import { Router } from '../../routes';
+import ProfileContainer from '../../containers/Profile';
 
 @observer
 class Profile extends React.Component {
-  static getInitialProps({ req }) {
+  static getInitialProps({ req, query }) {
     const isServer = !!req;
-    return { cookieJWTData: req && req.cookies ? req.cookies.jwtData : null, isServer };
+    return {
+      cookieJWTData: req && req.cookies ? req.cookies.jwtData : null,
+      isServer,
+      profileID: query.id,
+    };
   }
 
   constructor(props) {
@@ -26,11 +31,10 @@ class Profile extends React.Component {
   }
 
   render() {
+    const { profileID } = this.props;
     return (
       <Layout UserStore={this.store.UserStore} UIStore={this.store.UIStore}>
-        <div>
-          <h1>We are at the profile page now!</h1>
-        </div>
+        <ProfileContainer UUID={profileID || this.store.UserStore.uuid} />
       </Layout>
     );
   }

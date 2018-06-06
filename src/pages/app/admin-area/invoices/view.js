@@ -1,13 +1,15 @@
 import React from 'react';
 import { observer } from 'mobx-react';
 import isBrowser from 'is-browser';
+import 'react-dates/initialize';
 import Layout from '../../../../components/Layout';
 import { initStore } from '../../../../models';
 import withData from '../../../../lib/withData';
 import { Router } from '../../../../routes';
+import AdminAreaInvoicesContainer from '../../../../containers/AdminAreaInvoicesContainer';
 
 @observer
-class AdminViewAgents extends React.Component {
+class Invoices extends React.Component {
   static getInitialProps({ req }) {
     const isServer = !!req;
     return { cookieJWTData: req && req.cookies ? req.cookies.jwtData : null, isServer };
@@ -28,12 +30,10 @@ class AdminViewAgents extends React.Component {
   render() {
     return (
       <Layout UserStore={this.store.UserStore} UIStore={this.store.UIStore}>
-        <div>
-          <h1>We will now view all invoices...</h1>
-        </div>
+        <AdminAreaInvoicesContainer userUUID={this.store.UserStore.uuid} />
       </Layout>
     );
   }
 }
 
-export default withData(AdminViewAgents);
+export default withData(Invoices);

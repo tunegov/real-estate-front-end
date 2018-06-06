@@ -1,7 +1,7 @@
 /* eslint-disable no-underscore-dangle */
 
 import { SheetsRegistry } from 'react-jss';
-import { createMuiTheme, createGenerateClassName } from 'material-ui/styles';
+import { createMuiTheme, createGenerateClassName } from '@material-ui/core/styles';
 import red from 'material-ui/colors/red';
 import blue from 'material-ui/colors/blue';
 import { lighten, darken } from 'polished';

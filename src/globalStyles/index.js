@@ -1,7 +1,6 @@
 const globalStyles = `
   html {
     height: 100%;
-    overflow: hidden;
   }
   body {
     position: relative;
@@ -9,7 +8,7 @@ const globalStyles = `
     min-width: 100%;
     margin: 0;
     -webkit-font-smoothing: antialiased;
-    background-color: #FFF;
+    background-color: #fafafa;
   }
   body > :first-child {
     display: flex;

@@ -57,6 +57,7 @@ const columns = [
   { name: 'clientEmail', title: 'Client Email' },
   { name: 'propertyAddress', title: 'Property Address' },
   { name: 'propertyCity', title: 'Property City' },
+  { name: 'propertyState', title: 'Property State' },
   { name: 'managementOrCobrokeCompany', title: 'Mgmt/Co-Broke Co.' },
   { name: 'rentOrSalePrice', title: 'Rent/Sale Price' },
   { name: 'deductionsTotal', title: 'Deductions Total' },

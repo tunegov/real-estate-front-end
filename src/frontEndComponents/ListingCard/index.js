@@ -4,6 +4,7 @@ import { withStyles } from 'material-ui/styles';
 import HeartOutlineIcon from '@material-ui/icons/FavoriteBorder';
 import HeartIcon from '@material-ui/icons/Favorite';
 import { capitalize } from '../../utils/stringUtils';
+import { Link } from '../../routes';
 
 const styles = theme => ({
   root: {
@@ -15,7 +16,7 @@ const styles = theme => ({
     color: 'rgba(0,0,0,.7)',
     '&:hover': {
       transform: 'scale(1.02,1.02)',
-    }
+    },
   },
   imageWrapper: {
     position: 'relative',
@@ -76,7 +77,6 @@ const styles = theme => ({
   },
 });
 
-
 @observer
 @withStyles(styles)
 class ListingCard extends Component {
@@ -96,9 +96,11 @@ class ListingCard extends Component {
       sqFootage,
       isStudio,
       type,
+      id,
+      imageHeight,
     } = this.props;
 
-    const displayType = (dealType) => {
+    const displayType = dealType => {
       if (!dealType) return;
 
       const iType = dealType.split(' ')[1];
@@ -110,19 +112,21 @@ class ListingCard extends Component {
       const monthsWord = monthsOfFreeRent >= 2 ? 'Months' : 'Month';
       if (isNoFee && monthsOfFreeRent) {
         return (
-          <div className={classes.noFeeWrapper}>No Fee {` & ${monthsOfFreeRent} ${monthsWord} Free Rent`}</div>
+          <div className={classes.noFeeWrapper}>
+            No Fee {` & ${monthsOfFreeRent} ${monthsWord} Free Rent`}
+          </div>
         );
       }
 
       if (isNoFee) {
-        return (
-          <div className={classes.noFeeWrapper}>No Fee</div>
-        );
+        return <div className={classes.noFeeWrapper}>No Fee</div>;
       }
 
       if (monthsOfFreeRent) {
         return (
-          <div className={classes.noFeeWrapper}>{`${monthsOfFreeRent} ${monthsWord} Free Rent`}</div>
+          <div
+            className={classes.noFeeWrapper}
+          >{`${monthsOfFreeRent} ${monthsWord} Free Rent`}</div>
         );
       }
 
@@ -132,27 +136,49 @@ class ListingCard extends Component {
     const dealType = displayType(type);
 
     return (
-      <div className={classes.root}>
-        <div className={classes.imageWrapper}>
-          <img src={featuredPhotoURL} alt="listing" className={classes.image} />
-          {renderNoticeTag()}
-        </div>
+      <Link route="listing" params={{ id }}>
+        <div className={classes.root}>
+          <div
+            className={classes.imageWrapper}
+            style={imageHeight ? { height: `${imageHeight}px` } : undefined}
+          >
+            <img
+              src={featuredPhotoURL}
+              alt="listing"
+              className={classes.image}
+            />
+            {renderNoticeTag()}
+          </div>
 
-        <div className={classes.infoContentWrapper}>
-          <div className={classes.addressWrapper}>{address}</div>
-          <div className={classes.neighborhoodWrapper}>{dealType ? `${dealType} | ` : null} {neighborhood}</div>
-          <div className={classes.priceWrapper}>${price ? price.toLocaleString() : null}</div>
-          <div className={classes.miscInfo}>{isStudio ? 'Studio' : `${beds} BD`} | {`${baths} BA`}</div>
-        </div>
+          <div className={classes.infoContentWrapper}>
+            <div className={classes.addressWrapper}>{address}</div>
+            <div className={classes.neighborhoodWrapper}>
+              {dealType ? `${dealType} | ` : null} {neighborhood}
+            </div>
+            <div className={classes.priceWrapper}>
+              ${price ? price.toLocaleString() : null}
+            </div>
+            <div className={classes.miscInfo}>
+              {isStudio ? 'Studio' : `${beds} BD`} | {`${baths} BA`}
+            </div>
+          </div>
 
-        <div className={classes.footer}>
-          {
-            isLiked ?
-              <HeartIcon color="inherit" classes={{ root: classes.heartIcon }} /> :
-              <HeartOutlineIcon color="inherit" classes={{ root: classes.heartIcon }} />
-          } Favorite
+          <div className={classes.footer}>
+            {isLiked ? (
+              <HeartIcon
+                color="inherit"
+                classes={{ root: classes.heartIcon }}
+              />
+            ) : (
+              <HeartOutlineIcon
+                color="inherit"
+                classes={{ root: classes.heartIcon }}
+              />
+            )}{' '}
+            Favorite
+          </div>
         </div>
-      </div>
+      </Link>
     );
   }
 }

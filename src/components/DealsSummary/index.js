@@ -94,47 +94,47 @@ const styles = theme => ({
 
 const dealData = [
   {
-    "id": "Res. Sales",
-    "label": "Res. Sales",
-    "value": 227,
+    id: 'Res. Sales',
+    label: 'Res. Sales',
+    value: 227,
   },
   {
-    "id": "Res. Rentals",
-    "label": "Res. Rentals",
-    "value": 133,
+    id: 'Res. Rentals',
+    label: 'Res. Rentals',
+    value: 133,
   },
   {
-    "id": "Com. Sales",
-    "label": "Com. Sales",
-    "value": 434,
+    id: 'Com. Sales',
+    label: 'Com. Sales',
+    value: 434,
   },
   {
-    "id": "Com. Rentals",
-    "label": "Com. Rentals",
-    "value": 67,
+    id: 'Com. Rentals',
+    label: 'Com. Rentals',
+    value: 67,
   },
 ];
 
 const dealDollarData = [
   {
-    "id": "Res. Sales",
-    "label": "Res. Sales",
-    "value": 22700,
+    id: 'Res. Sales',
+    label: 'Res. Sales',
+    value: 22700,
   },
   {
-    "id": "Res. Rentals",
-    "label": "Res. Rentals",
-    "value": 13300,
+    id: 'Res. Rentals',
+    label: 'Res. Rentals',
+    value: 13300,
   },
   {
-    "id": "Com. Sales",
-    "label": "Com. Sales",
-    "value": 4340,
+    id: 'Com. Sales',
+    label: 'Com. Sales',
+    value: 4340,
   },
   {
-    "id": "Com. Rentals",
-    "label": "Com. Rentals",
-    "value": 6700,
+    id: 'Com. Rentals',
+    label: 'Com. Rentals',
+    value: 6700,
   },
 ];
 
@@ -206,10 +206,14 @@ const generateYearlyDollarDealsData = () => {
 
   years.forEach(year => {
     data[year] = {
-      'Com. Sales': round(chance.integer({ min: 0, max: 35000000 }) / 1000000, 2) || 0.001,
-      'Com. Rentals': round(chance.integer({ min: 0, max: 35000000 }) / 1000000, 2) || 0.001,
-      'Res. Sales': round(chance.integer({ min: 0, max: 35000000 }) / 1000000, 2) || 0.001,
-      'Res. Rentals': round(chance.integer({ min: 0, max: 3500000 }) / 1000000, 2) || 0.001,
+      'Com. Sales':
+        round(chance.integer({ min: 0, max: 35000000 }) / 1000000, 2) || 0.001,
+      'Com. Rentals':
+        round(chance.integer({ min: 0, max: 35000000 }) / 1000000, 2) || 0.001,
+      'Res. Sales':
+        round(chance.integer({ min: 0, max: 35000000 }) / 1000000, 2) || 0.001,
+      'Res. Rentals':
+        round(chance.integer({ min: 0, max: 3500000 }) / 1000000, 2) || 0.001,
     };
   });
 
@@ -236,42 +240,39 @@ const generateMonthlyDollarDealsData = () => {
 
   months.forEach(month => {
     data[month] = {
-      'Com. Sales': round(chance.integer({ min: 0, max: 3000000 }) / 1000000, 2) || 0.001,
-      'Com. Rentals': round(chance.integer({ min: 0, max: 3000000 }) / 1000000, 2) || 0.001,
-      'Res. Sales': round(chance.integer({ min: 0, max: 3000000 }) / 1000000, 2) || 0.001,
-      'Res. Rentals': round(chance.integer({ min: 0, max: 300000 }) / 1000000, 2) || 0.001,
+      'Com. Sales':
+        round(chance.integer({ min: 0, max: 3000000 }) / 1000000, 2) || 0.001,
+      'Com. Rentals':
+        round(chance.integer({ min: 0, max: 3000000 }) / 1000000, 2) || 0.001,
+      'Res. Sales':
+        round(chance.integer({ min: 0, max: 3000000 }) / 1000000, 2) || 0.001,
+      'Res. Rentals':
+        round(chance.integer({ min: 0, max: 300000 }) / 1000000, 2) || 0.001,
     };
   });
 
   return data;
 };
 
-const generateMonthlyDealsBarData = data => (
-  Object.keys(data).map(month => (
-    {
-      month,
-      'Com. Sales': data[month]['Com. Sales'],
-      'Com. Rentals': data[month]['Com. Rentals'],
-      'Res. Sales': data[month]['Res. Sales'],
-      'Res. Rentals': data[month]['Res. Rentals'],
-    }
-  ))
-);
+const generateMonthlyDealsBarData = data =>
+  Object.keys(data).map(month => ({
+    month,
+    'Com. Sales': data[month]['Com. Sales'],
+    'Com. Rentals': data[month]['Com. Rentals'],
+    'Res. Sales': data[month]['Res. Sales'],
+    'Res. Rentals': data[month]['Res. Rentals'],
+  }));
 
 const generateMonthlyDealsLineData = data => {
   const types = ['Com. Sales', 'Com. Rentals', 'Res. Sales', 'Res. Rentals'];
 
-  return types.map(id => (
-    {
-      id,
-      data: Object.keys(data).map(month => (
-        {
-          x: month,
-          y: data[month][id],
-        }
-      )),
-    }
-  ));
+  return types.map(id => ({
+    id,
+    data: Object.keys(data).map(month => ({
+      x: month,
+      y: data[month][id],
+    })),
+  }));
 };
 
 const mapSizesToProps = ({ width }) => ({
@@ -292,17 +293,33 @@ class AgentDashboard extends Component {
     this._yearlyDealsNumberData = generateYearlyNumberDealsData();
     this._yearlyDealsDollarData = generateYearlyDollarDealsData();
 
-    this._monthlyDealsDollarBarData = generateMonthlyDealsBarData(this._monthlyDealsDollarData);
-    this._monthlyDealsNumberBarData = generateMonthlyDealsBarData(this._monthlyDealsNumberData);
+    this._monthlyDealsDollarBarData = generateMonthlyDealsBarData(
+      this._monthlyDealsDollarData
+    );
+    this._monthlyDealsNumberBarData = generateMonthlyDealsBarData(
+      this._monthlyDealsNumberData
+    );
 
-    this._monthlyDealsDollarLineData = generateMonthlyDealsLineData(this._monthlyDealsDollarData);
-    this._monthlyDealsNumberLineData = generateMonthlyDealsLineData(this._monthlyDealsNumberData);
+    this._monthlyDealsDollarLineData = generateMonthlyDealsLineData(
+      this._monthlyDealsDollarData
+    );
+    this._monthlyDealsNumberLineData = generateMonthlyDealsLineData(
+      this._monthlyDealsNumberData
+    );
 
-    this._yearlyDealsDollarBarData = generateMonthlyDealsBarData(this._yearlyDealsDollarData);
-    this._yearlyDealsNumberBarData = generateMonthlyDealsBarData(this._yearlyDealsNumberData);
+    this._yearlyDealsDollarBarData = generateMonthlyDealsBarData(
+      this._yearlyDealsDollarData
+    );
+    this._yearlyDealsNumberBarData = generateMonthlyDealsBarData(
+      this._yearlyDealsNumberData
+    );
 
-    this._yearlyDealsDollarLineData = generateMonthlyDealsLineData(this._yearlyDealsDollarData);
-    this._yearlyDealsNumberLineData = generateMonthlyDealsLineData(this._yearlyDealsNumberData);
+    this._yearlyDealsDollarLineData = generateMonthlyDealsLineData(
+      this._yearlyDealsDollarData
+    );
+    this._yearlyDealsNumberLineData = generateMonthlyDealsLineData(
+      this._yearlyDealsNumberData
+    );
 
     this.state = {
       monthlyDealsNumberLineGraphOn: true,
@@ -320,37 +337,39 @@ class AgentDashboard extends Component {
     this.setState({
       monthlyDealsNumberLineGraphOn: !this.state.monthlyDealsNumberLineGraphOn,
     });
-  }
+  };
 
   toggleMonthlyDealsDollarLineGraph = () => {
     this.setState({
       monthlyDealsDollarLineGraphOn: !this.state.monthlyDealsDollarLineGraphOn,
     });
-  }
+  };
 
   toggleMonthlyDealsDollarOrNum = () => {
     this.setState({
-      monthlyDealsDollarOrNum: this.state.monthlyDealsDollarOrNum === 'dollar' ? 'number' : 'dollar',
+      monthlyDealsDollarOrNum:
+        this.state.monthlyDealsDollarOrNum === 'dollar' ? 'number' : 'dollar',
     });
-  }
+  };
 
   toggleTotalDealsPieDollarOrNum = () => {
     this.setState({
-      totalDealsPieDollarOrNum: this.state.totalDealsPieDollarOrNum === 'dollar' ? 'number' : 'dollar',
+      totalDealsPieDollarOrNum:
+        this.state.totalDealsPieDollarOrNum === 'dollar' ? 'number' : 'dollar',
     });
-  }
+  };
 
   toggleYearlyDealsNumberGraph = () => {
     this.setState({
       yearlyDealsNumberGraphOn: !this.state.yearlyDealsNumberGraphOn,
     });
-  }
+  };
 
   toggleYearlyDealsDollarGraph = () => {
     this.setState({
       yearlyDealsDollarGraphOn: !this.state.yearlyDealsDollarGraphOn,
     });
-  }
+  };
 
   barGraphLayout = () => {
     const { lgViewport, mdViewport, smViewport } = this.props;
@@ -358,11 +377,12 @@ class AgentDashboard extends Component {
       return 'horizontal';
     } else if (mdViewport) {
       return 'vertical';
-    } if (lgViewport) {
+    }
+    if (lgViewport) {
       return 'vertical';
     }
     return 'horizontal';
-  }
+  };
 
   dollarBarGraphAxis = (axis, isYear) => {
     const { lgViewport, mdViewport, smViewport } = this.props;
@@ -371,7 +391,8 @@ class AgentDashboard extends Component {
         return isYear ? 'Year' : 'Month';
       } else if (mdViewport) {
         return 'Gross Dollar Amount ($ Millions)';
-      } if (lgViewport) {
+      }
+      if (lgViewport) {
         return 'Gross Dollar Amount ($ Millions)';
       }
       return isYear ? 'Year' : 'Month';
@@ -381,11 +402,12 @@ class AgentDashboard extends Component {
       return 'Gross Dollar Amount ($ Millions)';
     } else if (mdViewport) {
       return isYear ? 'Year' : 'Month';
-    } if (lgViewport) {
+    }
+    if (lgViewport) {
       return isYear ? 'Year' : 'Month';
     }
     return 'Gross Dollar Amount ($ Millions)';
-  }
+  };
 
   numberBarGraphAxis = (axis, isYear) => {
     const { lgViewport, mdViewport, smViewport } = this.props;
@@ -394,7 +416,8 @@ class AgentDashboard extends Component {
         return isYear ? 'Year' : 'Month';
       } else if (mdViewport) {
         return 'Number of Deals';
-      } if (lgViewport) {
+      }
+      if (lgViewport) {
         return 'Number of Deals';
       }
       return isYear ? 'Year' : 'Month';
@@ -404,21 +427,25 @@ class AgentDashboard extends Component {
       return 'Number of Deals';
     } else if (mdViewport) {
       return isYear ? 'Year' : 'Month';
-    } if (lgViewport) {
+    }
+    if (lgViewport) {
       return isYear ? 'Year' : 'Month';
     }
     return 'Number of Deals';
-  }
+  };
 
   render() {
     const { classes, smViewport, xsViewport } = this.props;
-    const { totalDealsPieDollarOrNum, yearlyDealsDollarGraphOn, yearlyDealsNumberGraphOn } = this.state;
+    const {
+      totalDealsPieDollarOrNum,
+      yearlyDealsDollarGraphOn,
+      yearlyDealsNumberGraphOn,
+    } = this.state;
     const borderRadiusStyle = { borderRadius: 2 };
 
     return (
       <div className={classes.root}>
         <Grid container spacing={16}>
-
           <Grid item xs={12} md={6}>
             <StatNumberBox
               icon={DollarIcon}
@@ -437,15 +464,22 @@ class AgentDashboard extends Component {
           </Grid>
 
           <Grid item xs={12}>
-            <div className={classes.graphWrapper} style={{ fontSize: xsViewport ? '11px' : '12px' }}>
+            <div
+              className={classes.graphWrapper}
+              style={{ fontSize: xsViewport ? '11px' : '12px' }}
+            >
               <div className={classes.graphTitle}>Total Deals</div>
               <ResponsivePie
-                data={totalDealsPieDollarOrNum === 'number' ? dealData : dealDollarData}
+                data={
+                  totalDealsPieDollarOrNum === 'number'
+                    ? dealData
+                    : dealDollarData
+                }
                 margin={{
-                  "top": 70,
-                  "right": 80,
-                  "bottom": 120,
-                  "left": 80
+                  top: 70,
+                  right: 80,
+                  bottom: 120,
+                  left: 80,
                 }}
                 innerRadius={0.7}
                 padAngle={0.7}
@@ -468,15 +502,15 @@ class AgentDashboard extends Component {
                 motionDamping={15}
                 legends={[
                   {
-                    "anchor": "bottom",
-                    "direction": "row",
-                    "translateY": 56,
-                    "itemWidth": smViewport ? 85 : 100,
-                    "itemHeight": 14,
-                    "symbolSize": 14,
-                    "symbolShape": "circle",
+                    anchor: 'bottom',
+                    direction: 'row',
+                    translateY: 56,
+                    itemWidth: smViewport ? 85 : 100,
+                    itemHeight: 14,
+                    symbolSize: 14,
+                    symbolShape: 'circle',
                     itemDirection: 'top-to-bottom',
-                  }
+                  },
                 ]}
               />
               <div className={classes.graphControlsWrapper}>
@@ -493,7 +527,7 @@ class AgentDashboard extends Component {
                     inactive: {
                       base: 'rgb(65,66,68)',
                       hover: 'rgb(95,96,98)',
-                    }
+                    },
                   }}
                   inactiveLabel="Num"
                   activeLabel="$"
@@ -504,7 +538,10 @@ class AgentDashboard extends Component {
           </Grid>
 
           <Grid item xs={12} lg={6}>
-            <div className={classes.graphWrapper2} style={{ fontSize: xsViewport ? '11px' : '12px' }}>
+            <div
+              className={classes.graphWrapper2}
+              style={{ fontSize: xsViewport ? '11px' : '12px' }}
+            >
               <div className={classes.graphTitle}>Net Commissions ($)</div>
               <div className={classes.graphControlsWrapper}>
                 <span className={classes.graphControlsLabel}>Controls:</span>
@@ -521,7 +558,7 @@ class AgentDashboard extends Component {
                       inactive: {
                         base: 'rgb(65,66,68)',
                         hover: 'rgb(95,96,98)',
-                      }
+                      },
                     }}
                     inactiveLabel="Line"
                     activeLabel="Bar"
@@ -540,66 +577,79 @@ class AgentDashboard extends Component {
                     inactive: {
                       base: 'rgb(65,66,68)',
                       hover: 'rgb(95,96,98)',
-                    }
+                    },
                   }}
                   inactiveLabel="Month"
                   activeLabel="Year"
                   onToggle={this.toggleYearlyDealsDollarGraph}
                 />
               </div>
-              {this.state.monthlyDealsDollarLineGraphOn ? <ResponsiveLine
-                data={!yearlyDealsDollarGraphOn ? this._monthlyDealsDollarLineData : this._yearlyDealsDollarLineData}
-                curve="catmullRom"
-                enableArea
-                margin={{
-                  top: 60,
-                  right: smViewport ? 40 : 110,
-                  bottom: smViewport ? 130 : 80,
-                  left: 60,
-                }}
-                minY="auto"
-                axisBottom={{
-                  orient: 'bottom',
-                  tickSize: 5,
-                  tickPadding: 5,
-                  tickRotation: 0,
-                  legend: !yearlyDealsDollarGraphOn ? 'Month' : 'Year',
-                  legendOffset: 36,
-                  legendPosition: 'center',
-                }}
-                axisLeft={{
-                  orient: 'left',
-                  tickSize: 5,
-                  tickPadding: 5,
-                  tickRotation: 0,
-                  legend: 'Net Dollar Amount ($ Millions)',
-                  legendOffset: -40,
-                  legendPosition: 'center',
-                }}
-                dotSize={10}
-                dotColor="inherit:darker(0.3)"
-                dotBorderWidth={2}
-                dotBorderColor="#ffffff"
-                dotLabel="y"
-                dotLabelYOffset={-12}
-                animate
-                motionStiffness={90}
-                motionDamping={15}
-                legends={[
-                  {
-                    anchor: smViewport ? 'bottom' : 'bottom-right',
-                    direction: smViewport ? 'row' : 'column',
-                    translateX: smViewport ? undefined : 118,
-                    translateY: smViewport ? 76 : -40,
-                    itemWidth: smViewport ? 80 : 100,
-                    itemHeight: 20,
-                    itemsSpacing: smViewport ? 2 : 10,
-                    symbolSize: 12,
-                    itemDirection: smViewport ? 'top-to-bottom' : undefined,
+              {this.state.monthlyDealsDollarLineGraphOn ? (
+                <ResponsiveLine
+                  data={
+                    !yearlyDealsDollarGraphOn
+                      ? this._monthlyDealsDollarLineData
+                      : this._yearlyDealsDollarLineData
                   }
-                ]}
-              /> : <ResponsiveBar
-                  data={yearlyDealsDollarGraphOn ? this._yearlyDealsDollarBarData : this._monthlyDealsDollarBarData}
+                  colors="dark2"
+                  curve="catmullRom"
+                  enableArea
+                  margin={{
+                    top: 60,
+                    right: smViewport ? 40 : 110,
+                    bottom: smViewport ? 130 : 80,
+                    left: 60,
+                  }}
+                  minY="auto"
+                  axisBottom={{
+                    orient: 'bottom',
+                    tickSize: 5,
+                    tickPadding: 5,
+                    tickRotation: 0,
+                    legend: !yearlyDealsDollarGraphOn ? 'Month' : 'Year',
+                    legendOffset: 36,
+                    legendPosition: 'center',
+                  }}
+                  axisLeft={{
+                    orient: 'left',
+                    tickSize: 5,
+                    tickPadding: 5,
+                    tickRotation: 0,
+                    legend: 'Net Dollar Amount ($ Millions)',
+                    legendOffset: -40,
+                    legendPosition: 'center',
+                  }}
+                  dotSize={10}
+                  dotColor="inherit:darker(0.3)"
+                  dotBorderWidth={2}
+                  dotBorderColor="#ffffff"
+                  dotLabel="y"
+                  dotLabelYOffset={-12}
+                  animate
+                  motionStiffness={90}
+                  motionDamping={15}
+                  legends={[
+                    {
+                      anchor: smViewport ? 'bottom' : 'bottom-right',
+                      direction: smViewport ? 'row' : 'column',
+                      translateX: smViewport ? undefined : 118,
+                      translateY: smViewport ? 76 : -40,
+                      itemWidth: smViewport ? 80 : 100,
+                      itemHeight: 20,
+                      itemsSpacing: smViewport ? 2 : 10,
+                      symbolSize: 12,
+                      itemDirection: smViewport ? 'top-to-bottom' : undefined,
+                    },
+                  ]}
+                />
+              ) : (
+                <ResponsiveBar
+                  data={
+                    yearlyDealsDollarGraphOn
+                      ? this._yearlyDealsDollarBarData
+                      : this._monthlyDealsDollarBarData
+                  }
+                  colors="dark2"
                   groupMode="grouped"
                   maxValue="auto"
                   layout={this.barGraphLayout()}
@@ -611,47 +661,46 @@ class AgentDashboard extends Component {
                   ]}
                   indexBy="month"
                   margin={{
-                    "top": 50,
-                    "right": smViewport ? 40 : 130,
+                    top: 50,
+                    right: smViewport ? 40 : 130,
                     bottom: smViewport ? 130 : 80,
-                    "left": 60
+                    left: 60,
                   }}
                   padding={0.3}
-                  colors="nivo"
                   colorBy="id"
                   defs={[
                     {
-                      "id": "dots",
-                      "type": "patternDots",
-                      "background": "inherit",
-                      "color": "#38bcb2",
-                      "size": 4,
-                      "padding": 1,
-                      "stagger": true
+                      id: 'dots',
+                      type: 'patternDots',
+                      background: 'inherit',
+                      color: '#38bcb2',
+                      size: 4,
+                      padding: 1,
+                      stagger: true,
                     },
                     {
-                      "id": "lines",
-                      "type": "patternLines",
-                      "background": "inherit",
-                      "color": "#eed312",
-                      "rotation": -45,
-                      "lineWidth": 6,
-                      "spacing": 10
-                    }
+                      id: 'lines',
+                      type: 'patternLines',
+                      background: 'inherit',
+                      color: '#eed312',
+                      rotation: -45,
+                      lineWidth: 6,
+                      spacing: 10,
+                    },
                   ]}
                   fill={[
                     {
-                      "match": {
-                        "id": "fries"
+                      match: {
+                        id: 'fries',
                       },
-                      "id": "dots"
+                      id: 'dots',
                     },
                     {
-                      "match": {
-                        "id": "sandwich"
+                      match: {
+                        id: 'sandwich',
                       },
-                      "id": "lines"
-                    }
+                      id: 'lines',
+                    },
                   ]}
                   borderColor="inherit:darker(1.6)"
                   axisBottom={{
@@ -659,7 +708,9 @@ class AgentDashboard extends Component {
                     tickSize: 5,
                     tickPadding: 5,
                     tickRotation: 0,
-                    legend: yearlyDealsDollarGraphOn ? this.dollarBarGraphAxis('bottom', true) : this.dollarBarGraphAxis('bottom'),
+                    legend: yearlyDealsDollarGraphOn
+                      ? this.dollarBarGraphAxis('bottom', true)
+                      : this.dollarBarGraphAxis('bottom'),
                     legendPosition: 'center',
                     legendOffset: 36,
                   }}
@@ -668,7 +719,9 @@ class AgentDashboard extends Component {
                     tickSize: 5,
                     tickPadding: 5,
                     tickRotation: 0,
-                    legend: yearlyDealsDollarGraphOn ? this.dollarBarGraphAxis('left', true) : this.dollarBarGraphAxis('left'),
+                    legend: yearlyDealsDollarGraphOn
+                      ? this.dollarBarGraphAxis('left', true)
+                      : this.dollarBarGraphAxis('left'),
                     legendPosition: 'center',
                     legendOffset: -40,
                   }}
@@ -691,14 +744,18 @@ class AgentDashboard extends Component {
                       itemsSpacing: smViewport ? 2 : 10,
                       symbolSize: 12,
                       itemDirection: smViewport ? 'top-to-bottom' : undefined,
-                    }
+                    },
                   ]}
-                />}
+                />
+              )}
             </div>
           </Grid>
 
           <Grid item xs={12} lg={6}>
-            <div className={classes.graphWrapper2} style={{ fontSize: xsViewport ? '11px' : '12px' }}>
+            <div
+              className={classes.graphWrapper2}
+              style={{ fontSize: xsViewport ? '11px' : '12px' }}
+            >
               <div className={classes.graphTitle}>Number of Deals (#)</div>
               <div className={classes.graphControlsWrapper}>
                 <span className={classes.graphControlsLabel}>Controls:</span>
@@ -715,7 +772,7 @@ class AgentDashboard extends Component {
                       inactive: {
                         base: 'rgb(65,66,68)',
                         hover: 'rgb(95,96,98)',
-                      }
+                      },
                     }}
                     inactiveLabel="Line"
                     activeLabel="Bar"
@@ -734,66 +791,79 @@ class AgentDashboard extends Component {
                     inactive: {
                       base: 'rgb(65,66,68)',
                       hover: 'rgb(95,96,98)',
-                    }
+                    },
                   }}
                   inactiveLabel="Month"
                   activeLabel="Year"
                   onToggle={this.toggleYearlyDealsNumberGraph}
                 />
               </div>
-              {this.state.monthlyDealsNumberLineGraphOn ? <ResponsiveLine
-                data={!yearlyDealsNumberGraphOn ? this._monthlyDealsNumberLineData : this._yearlyDealsNumberLineData}
-                curve="catmullRom"
-                enableArea
-                margin={{
-                  top: 60,
-                  right: smViewport ? 40 : 110,
-                  bottom: smViewport ? 130 : 80,
-                  left: 60,
-                }}
-                minY="auto"
-                axisBottom={{
-                  orient: 'bottom',
-                  tickSize: 5,
-                  tickPadding: 5,
-                  tickRotation: 0,
-                  legend: !yearlyDealsNumberGraphOn ? 'Month' : 'Year',
-                  legendOffset: 36,
-                  legendPosition: 'center',
-                }}
-                axisLeft={{
-                  orient: 'left',
-                  tickSize: 5,
-                  tickPadding: 5,
-                  tickRotation: 0,
-                  legend: 'Number of Deals',
-                  legendOffset: -40,
-                  legendPosition: 'center',
-                }}
-                dotSize={10}
-                dotColor="inherit:darker(0.3)"
-                dotBorderWidth={2}
-                dotBorderColor="#ffffff"
-                dotLabel="y"
-                dotLabelYOffset={-12}
-                animate
-                motionStiffness={90}
-                motionDamping={15}
-                legends={[
-                  {
-                    anchor: smViewport ? 'bottom' : 'bottom-right',
-                    direction: smViewport ? 'row' : 'column',
-                    translateX: smViewport ? undefined : 118,
-                    translateY: smViewport ? 76 : -40,
-                    itemWidth: smViewport ? 80 : 100,
-                    itemHeight: 20,
-                    itemsSpacing: smViewport ? 2 : 10,
-                    symbolSize: 12,
-                    itemDirection: smViewport ? 'top-to-bottom' : undefined,
+              {this.state.monthlyDealsNumberLineGraphOn ? (
+                <ResponsiveLine
+                  data={
+                    !yearlyDealsNumberGraphOn
+                      ? this._monthlyDealsNumberLineData
+                      : this._yearlyDealsNumberLineData
                   }
-                ]}
-              /> : <ResponsiveBar
-                  data={yearlyDealsNumberGraphOn ? this._yearlyDealsNumberBarData : this._monthlyDealsNumberBarData}
+                  colors="dark2"
+                  curve="catmullRom"
+                  enableArea
+                  margin={{
+                    top: 60,
+                    right: smViewport ? 40 : 110,
+                    bottom: smViewport ? 130 : 80,
+                    left: 60,
+                  }}
+                  minY="auto"
+                  axisBottom={{
+                    orient: 'bottom',
+                    tickSize: 5,
+                    tickPadding: 5,
+                    tickRotation: 0,
+                    legend: !yearlyDealsNumberGraphOn ? 'Month' : 'Year',
+                    legendOffset: 36,
+                    legendPosition: 'center',
+                  }}
+                  axisLeft={{
+                    orient: 'left',
+                    tickSize: 5,
+                    tickPadding: 5,
+                    tickRotation: 0,
+                    legend: 'Number of Deals',
+                    legendOffset: -40,
+                    legendPosition: 'center',
+                  }}
+                  dotSize={10}
+                  dotColor="inherit:darker(0.3)"
+                  dotBorderWidth={2}
+                  dotBorderColor="#ffffff"
+                  dotLabel="y"
+                  dotLabelYOffset={-12}
+                  animate
+                  motionStiffness={90}
+                  motionDamping={15}
+                  legends={[
+                    {
+                      anchor: smViewport ? 'bottom' : 'bottom-right',
+                      direction: smViewport ? 'row' : 'column',
+                      translateX: smViewport ? undefined : 118,
+                      translateY: smViewport ? 76 : -40,
+                      itemWidth: smViewport ? 80 : 100,
+                      itemHeight: 20,
+                      itemsSpacing: smViewport ? 2 : 10,
+                      symbolSize: 12,
+                      itemDirection: smViewport ? 'top-to-bottom' : undefined,
+                    },
+                  ]}
+                />
+              ) : (
+                <ResponsiveBar
+                  data={
+                    yearlyDealsNumberGraphOn
+                      ? this._yearlyDealsNumberBarData
+                      : this._monthlyDealsNumberBarData
+                  }
+                  colors="dark2"
                   groupMode="grouped"
                   maxValue="auto"
                   layout={this.barGraphLayout()}
@@ -805,47 +875,46 @@ class AgentDashboard extends Component {
                   ]}
                   indexBy="month"
                   margin={{
-                    "top": 50,
-                    "right": smViewport ? 40 : 130,
+                    top: 50,
+                    right: smViewport ? 40 : 130,
                     bottom: smViewport ? 130 : 80,
-                    "left": 60
+                    left: 60,
                   }}
                   padding={0.3}
-                  colors="nivo"
                   colorBy="id"
                   defs={[
                     {
-                      "id": "dots",
-                      "type": "patternDots",
-                      "background": "inherit",
-                      "color": "#38bcb2",
-                      "size": 4,
-                      "padding": 1,
-                      "stagger": true
+                      id: 'dots',
+                      type: 'patternDots',
+                      background: 'inherit',
+                      color: '#38bcb2',
+                      size: 4,
+                      padding: 1,
+                      stagger: true,
                     },
                     {
-                      "id": "lines",
-                      "type": "patternLines",
-                      "background": "inherit",
-                      "color": "#eed312",
-                      "rotation": -45,
-                      "lineWidth": 6,
-                      "spacing": 10
-                    }
+                      id: 'lines',
+                      type: 'patternLines',
+                      background: 'inherit',
+                      color: '#eed312',
+                      rotation: -45,
+                      lineWidth: 6,
+                      spacing: 10,
+                    },
                   ]}
                   fill={[
                     {
-                      "match": {
-                        "id": "fries"
+                      match: {
+                        id: 'fries',
                       },
-                      "id": "dots"
+                      id: 'dots',
                     },
                     {
-                      "match": {
-                        "id": "sandwich"
+                      match: {
+                        id: 'sandwich',
                       },
-                      "id": "lines"
-                    }
+                      id: 'lines',
+                    },
                   ]}
                   borderColor="inherit:darker(1.6)"
                   axisBottom={{
@@ -853,7 +922,9 @@ class AgentDashboard extends Component {
                     tickSize: 5,
                     tickPadding: 5,
                     tickRotation: 0,
-                    legend: yearlyDealsNumberGraphOn ? this.numberBarGraphAxis('bottom', true) : this.numberBarGraphAxis('bottom'),
+                    legend: yearlyDealsNumberGraphOn
+                      ? this.numberBarGraphAxis('bottom', true)
+                      : this.numberBarGraphAxis('bottom'),
                     legendPosition: 'center',
                     legendOffset: 36,
                   }}
@@ -862,7 +933,9 @@ class AgentDashboard extends Component {
                     tickSize: 5,
                     tickPadding: 5,
                     tickRotation: 0,
-                    legend: yearlyDealsNumberGraphOn ? this.numberBarGraphAxis('left', true) : this.numberBarGraphAxis('left'),
+                    legend: yearlyDealsNumberGraphOn
+                      ? this.numberBarGraphAxis('left', true)
+                      : this.numberBarGraphAxis('left'),
                     legendPosition: 'center',
                     legendOffset: -40,
                   }}
@@ -885,9 +958,10 @@ class AgentDashboard extends Component {
                       itemsSpacing: smViewport ? 2 : 10,
                       symbolSize: 12,
                       itemDirection: smViewport ? 'top-to-bottom' : undefined,
-                    }
+                    },
                   ]}
-                />}
+                />
+              )}
             </div>
           </Grid>
         </Grid>

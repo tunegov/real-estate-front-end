@@ -5,6 +5,7 @@ import Layout from '../../../../components/Layout';
 import { initStore } from '../../../../models';
 import withData from '../../../../lib/withData';
 import { Router } from '../../../../routes';
+import AdminAreaAgentsContainer from '../../../../containers/AdminAreaAgentsContainer';
 
 @observer
 class AdminViewAgents extends React.Component {
@@ -28,9 +29,7 @@ class AdminViewAgents extends React.Component {
   render() {
     return (
       <Layout UserStore={this.store.UserStore} UIStore={this.store.UIStore}>
-        <div>
-          <h1>We will now view all agents!...</h1>
-        </div>
+        <AdminAreaAgentsContainer userUUID={this.store.UserStore.uuid} />
       </Layout>
     );
   }

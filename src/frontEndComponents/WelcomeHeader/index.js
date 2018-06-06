@@ -9,7 +9,7 @@ import { Link } from 'react-scroll'
 const styles = theme => ({
   root: {
     position: 'relative',
-    height: '100%',
+    height: 'calc(100vh - 60px)',
     width: '100%',
     backgroundImage: 'url(/static/images/breather-red.jpg)',
     backgroundPosition: 'center',

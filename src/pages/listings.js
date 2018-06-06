@@ -28,6 +28,7 @@ const listings = [
     monthsOfFreeRent: 0,
     sqFootage: 6339,
     type: 'Residential Rental',
+    id: 'jxj595h9f5i5fj',
   },
   {
     featuredPhotoURL: `http://picsum.photos/314/234/?random?${chance.integer({ min: 1, max: 1000 })}`,
@@ -46,6 +47,7 @@ const listings = [
     monthsOfFreeRent: 1,
     sqFootage: 5225,
     type: 'Residential Rental',
+    id: 'o3j9dn9un3nj3',
   },
   {
     featuredPhotoURL: `http://picsum.photos/314/234/?random?${chance.integer({ min: 1, max: 1000 })}`,
@@ -64,6 +66,7 @@ const listings = [
     monthsOfFreeRent: 2,
     sqFootage: 5225,
     type: 'Residential Rental',
+    id: 'cinoervtoi4in',
   },
 ];
 @observer

@@ -6,6 +6,7 @@ import GraphIcon from '@material-ui/icons/Equalizer';
 import SearchIcon from '@material-ui/icons/Search';
 import { observer } from 'mobx-react';
 import moment from 'moment';
+import isBrowser from 'is-browser';
 import Grid from 'material-ui/Grid';
 import { DatePicker } from 'material-ui-pickers';
 import TextField from 'material-ui/TextField';
@@ -63,6 +64,11 @@ const styles = theme => ({
     justifyContent: 'center',
     marginTop: '10px',
   },
+  submitBtnWrapper2: {
+    display: 'flex',
+    justifyContent: 'center',
+    marginTop: '2px',
+  },
   searchBoxHeader: {
     marginBottom: '20px',
   },
@@ -71,7 +77,7 @@ const styles = theme => ({
   },
   heading: {
     display: 'flex',
-    justifyCOntent: 'center',
+    justifyContent: 'center',
     alignItems: 'center',
     width: '100%',
     color: 'rgba(0,0,0,.7)',
@@ -104,13 +110,17 @@ class AdminAreaDealsContainer extends Component {
   constructor(props) {
     super(props);
 
+    const today = moment();
+
     this.state = {
       dealsSummaryDialogBoxOpen: false,
-      startDate: moment().subtract(1, 'months').format('YYYY-MM-DD'),
-      endDate: moment().format('YYYY-MM-DD'),
+      startDate: moment().subtract(1, 'months'),
+      endDate: today,
       fineGrainSearchType: '',
       fineGrainSearchValue: '',
       currentSearchType: searchTypes.dateRange,
+      maxDate: today,
+      minDate: moment('2018-04-01'),
     };
   }
 
@@ -118,17 +128,17 @@ class AdminAreaDealsContainer extends Component {
     this.setState({ dealsSummaryDialogBoxOpen: !this.state.dealsSummaryDialogBoxOpen });
   };
 
-  onStartDateCHange = ({ target }) => {
-    const date = target.value;
-    if (moment(date).isAfter(moment())) return;
-    if (moment(date).isAfter(this.state.endDate)) return;
+  onStartDateCHange = date => {
+    if (!date) this.setState({ startDate: date });
+    if (date.isAfter(moment())) return;
+    if (date.isAfter(this.state.endDate)) return;
     this.setState({ startDate: date });
   }
 
-  onEndDateCHange = ({ target }) => {
-    const date = target.value;
-    if (moment(date).isAfter(moment())) return;
-    if (moment(date).isBefore(this.state.startDate)) return;
+  onEndDateCHange = date => {
+    if (!date) this.setState({ endDate: date });
+    if (date.isAfter(moment())) return;
+    if (date.isBefore(this.state.startDate)) return;
     this.setState({ endDate: date });
   }
 
@@ -197,31 +207,42 @@ class AdminAreaDealsContainer extends Component {
                       <Grid item xs={12} sm={6}>
                         <div className={classes.formControlWrapperCenter}>
 
-                          <DatePicker
+                          {isBrowser ? <DatePicker
                             value={startDate}
                             onChange={onStartDateCHange}
                             clearable
+                            label="Start Day"
                             className={classes.textField}
+                            minDate={this.state.minDate}
+                            maxDate={this.state.endDate || this.state.maxDate}
                             disableFuture
-                            maxDateMessage="Date must be less than today and range end date"
-                          />
+                            format="MMM Do YYYY"
+                            InputLabelProps={{
+                              shrink: true,
+                            }}
+                            maxDateMessage="Date must be less than today"
+                          /> : null}
 
 
                         </div>
                       </Grid>
                       <Grid item xs={12} sm={6}>
                         <div className={classes.formControlWrapperCenter}>
-                          <TextField
-                            id="endDate"
-                            label="End Day"
-                            type="date"
+                          {isBrowser ? <DatePicker
                             value={endDate}
                             onChange={onEndDateCHange}
+                            clearable
+                            label="End Day"
                             className={classes.textField}
+                            disableFuture
+                            format="MMM Do YYYY"
+                            minDate={startDate || this.state.minDate}
+                            maxDate={this.state.maxDate}
                             InputLabelProps={{
                               shrink: true,
                             }}
-                          />
+                            maxDateMessage="Date must be less than today"
+                          /> : null}
                         </div>
                       </Grid>
                       <Grid item xs={12}>
@@ -280,7 +301,7 @@ class AdminAreaDealsContainer extends Component {
                         </div>
                       </Grid>
                       <Grid item xs={12}>
-                        <div className={classes.submitBtnWrapper}>
+                        <div className={classes.submitBtnWrapper2}>
                           <Button
                             variant="raised"
                             onClick={onSpecificSearch}

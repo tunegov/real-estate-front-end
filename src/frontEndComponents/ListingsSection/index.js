@@ -35,9 +35,8 @@ const styles = theme => ({
 });
 
 const containerComponent = ({ children, ...props }) => (
-  <div
-    style={{ height: '100%', overflow: 'auto' }}
-    {...props}>{children}
+  <div style={{ height: '100%', overflow: 'auto' }} {...props}>
+    {children}
   </div>
 );
 
@@ -77,7 +76,7 @@ const sortingTypes = [
 @observer
 @withStyles(styles)
 class ListingsSection extends Component {
-  renderListings = listingItems => (
+  renderListings = listingItems =>
     listingItems.map(listingItem => {
       const {
         featuredPhotoURL,
@@ -92,6 +91,7 @@ class ListingsSection extends Component {
         monthsOfFreeRent,
         sqFootage,
         type,
+        id,
       } = listingItem;
 
       return (
@@ -109,11 +109,11 @@ class ListingsSection extends Component {
             monthsOfFreeRent={monthsOfFreeRent}
             sqFootage={sqFootage}
             type={type}
+            id={id}
           />
         </Grid>
       );
-    })
-  )
+    });
 
   render() {
     const { classes, listings, setSortingType } = this.props;
@@ -132,7 +132,7 @@ class ListingsSection extends Component {
         </div>
         <div className={classes.listingsWrapper}>
           <Grid container spacing={24} component={containerComponent}>
-            {this.renderListings(listings)}
+            {listings && this.renderListings(listings)}
           </Grid>
         </div>
       </div>

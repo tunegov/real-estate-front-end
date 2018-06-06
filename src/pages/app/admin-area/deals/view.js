@@ -2,8 +2,6 @@ import React from 'react';
 import { observer } from 'mobx-react';
 import isBrowser from 'is-browser';
 import 'react-dates/initialize';
-import 'react-date-range/dist/styles.css'; // main style file
-import 'react-date-range/dist/theme/default.css'; // theme css file
 import Layout from '../../../../components/Layout';
 import { initStore } from '../../../../models';
 import withData from '../../../../lib/withData';
