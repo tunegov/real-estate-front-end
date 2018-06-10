@@ -10,29 +10,46 @@ import CloseIcon from '@material-ui/icons/Close';
 import Input from 'buildo-react-components/lib/Input';
 import TextareaAutosize from 'react-textarea-autosize';
 import Tooltip from 'material-ui/Tooltip';
-import {
-  FaFacebook,
-  FaTwitter,
-  FaCopy,
-  FaPencil,
-  FaClose,
-  FaCheck,
-} from 'react-icons/lib/fa';
+import { FaFacebook, FaTwitter, FaInstagram } from 'react-icons/lib/fa';
+import ListingsSection from './ListingsSection';
+import { capitalize } from '../../utils/stringUtils';
 
 const styles = theme => ({
   root: {
     position: 'relative',
     display: 'flex',
+    flexDirection: 'column',
+    padding: '10px 20px 20px 20px',
+    color: 'rgba(0,0,0,.8)',
+  },
+  mainSection: {
+    position: 'relative',
+    display: 'flex',
+    maxWidth: 1400,
     padding: '40px 20px 20px 20px',
     color: 'rgba(0,0,0,.8)',
+    [theme.breakpoints.down('xs')]: {
+      flexDirection: 'column',
+    },
+    [theme.breakpoints.down('sm')]: {
+      padding: '40px 5px 20px 5px',
+    },
   },
   leftColumnWrapper: {
     marginRight: '40px',
+    width: '375px',
+    [theme.breakpoints.down('xs')]: {
+      width: '100%',
+    },
+    [theme.breakpoints.down('sm')]: {
+      marginRight: '30px',
+    },
   },
   rightColumnWrapper: {
     width: '100%',
   },
   name: {
+    marginTop: '0',
     marginBottom: '5px',
   },
   title: {
@@ -41,20 +58,36 @@ const styles = theme => ({
     marginBottom: '30px',
   },
   profilePicWrapper: {
+    position: 'relative',
     marginBottom: '25px',
-    width: '325px',
-    height: '400px',
+    minWidth: '220px',
+    width: '100%',
+    paddingTop: '100%',
+    backgroundColor: '#fff',
+    border: '1px solid rgba(0,0,0,.4)',
+    [theme.breakpoints.down('sm')]: {
+      fontSize: '1rem',
+    },
   },
   profilePic: {
-    width: '100%',
+    position: 'absolute',
+    top: 5,
+    left: 5,
+    bottom: 5,
+    right: 5,
     display: 'block',
     objectFit: 'cover',
+    width: 'calc(100% - 10px)',
+    height: 'calc(100% - 10px)',
   },
   detailsWrapper: {
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
     fontSize: '1.1rem',
+    [theme.breakpoints.down('sm')]: {
+      fontSize: '1rem',
+    },
   },
   details: {
     display: 'flex',
@@ -64,7 +97,7 @@ const styles = theme => ({
   },
   detailsTitle: {
     display: 'inline-block',
-    fontWeight: '500',
+    fontWeight: '600',
     marginBottom: '8px',
   },
   detailsInfo: {
@@ -77,8 +110,8 @@ const styles = theme => ({
     },
   },
   descriptionTitle: {
-    fontSize: '1.1rem',
-    fontWeight: '500',
+    fontSize: '1.2rem',
+    fontWeight: '600',
     marginBottom: '10px',
   },
   socialMediaWrapper: {
@@ -117,48 +150,11 @@ const styles = theme => ({
       color: 'rgba(0,0,0,.8)',
     },
   },
-  editBtn: {
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    height: '34px',
-    width: '34px',
-    border: 'none',
-    borderRadius: '50%',
-    fontSize: '1rem',
-    color: '#fff',
-    backgroundColor: theme.palette.primary.main,
-    boxShadow: theme.shadows[2],
-    zIndex: '2',
-    cursor: 'pointer',
-    outline: 'none',
-    transition: 'transform .2s ease-in-out',
-    '&:hover': {
-      transform: 'scale(1.1,1.1)',
+  descriptionDetails: {
+    fontSize: '1.1rem',
+    [theme.breakpoints.down('sm')]: {
+      fontSize: '.95rem',
     },
-  },
-  editBtnsWrapper: {
-    display: 'flex',
-    position: 'absolute',
-    top: '-13px',
-    right: '-13px',
-  },
-  cancelBtn: {
-    backgroundColor: theme.palette.secondary.main,
-    marginRight: '8px',
-  },
-  saveBtn: {
-    backgroundColor: '#4CAF50',
-  },
-  descriptionDetailsInput: {
-    padding: '10px',
-    width: '100%',
-    fontSize: '1rem',
-    color: 'rgba(0,0,0,.8)',
-    borderRadius: '3px',
-    lineHeight: '1.4rem',
-    borderColor: 'rgba(0,0,0,.1)',
-    boxShadow: `inset ${theme.shadows[1]}`,
   },
   detailsInfoInput: {
     padding: '0',
@@ -173,13 +169,6 @@ const styles = theme => ({
       boxShadow: `inset ${theme.shadows[1]}`,
     },
   },
-  close: {
-    width: theme.spacing.unit * 4,
-    height: theme.spacing.unit * 4,
-  },
-  snackBar: {
-    transform: 'translate(0px, -25px)',
-  },
 });
 
 @withStyles(styles)
@@ -191,107 +180,12 @@ class Profile extends Component {
     this.state = {
       open: false,
       Transition: null,
-      tooltipOpen: false,
     };
   }
 
-  handleClick = () => {
-    this.setState({ open: true });
-  };
-
-  handleClose = (event, reason) => {
-    if (reason === 'clickaway') {
-      return;
-    }
-
-    this.setState({ open: false });
-  };
-
-  onFacebookShareClick = e => {
-    if (e.preventDefault) e.preventDefault();
-
-    const URL = encodeURI(`${window.location.href}`);
-
-    const windowInnerWidth = window.innerWidth;
-    const windowInnerHeight = window.innerHeight;
-
-    const width = windowInnerWidth < 550 ? windowInnerWidth * 0.9 : 550;
-    const height = windowInnerHeight < 450 ? windowInnerHeight * 0.7 : 450;
-
-    const halfHeight = height / 2;
-    const halfWidth = width / 2;
-
-    const left = windowInnerWidth / 2 - halfWidth;
-    const top = windowInnerHeight / 2 - halfHeight;
-
-    const href = `https://www.facebook.com/sharer/sharer.php?u=${URL}`;
-    window.open(
-      href,
-      'Facebook',
-      `height=${height},width=${width},resizable=1,top=${top},left=${left},scrollbars=yes`
-    );
-  };
-
-  onTwitterShareClick = e => {
-    if (e.preventDefault) e.preventDefault();
-
-    const text = 'I found a great new real estate listing!';
-    const finalText = encodeURI(text);
-    const hashTags = encodeURI(
-      `real estate,listing,${this.props.neighborhood},home`
-    );
-    const URL = encodeURI(`${window.location.href}`);
-
-    const windowInnerWidth = window.innerWidth;
-    const windowInnerHeight = window.innerHeight;
-
-    const width = windowInnerWidth < 550 ? windowInnerWidth * 0.9 : 550;
-    const height = windowInnerHeight < 450 ? windowInnerHeight * 0.7 : 450;
-
-    const halfHeight = height / 2;
-    const halfWidth = width / 2;
-
-    const left = windowInnerWidth / 2 - halfWidth;
-    const top = windowInnerHeight / 2 - halfHeight;
-
-    const href = `https://twitter.com/intent/tweet/?text=${finalText}&url=${URL}&hashtags=${hashTags}`;
-    window.open(
-      href,
-      'Facebook',
-      `height=${height},width=${width},resizable=1,top=${top},left=${left},scrollbars=yes`
-    );
-  };
-
-  onCopyToClipboard = e => {
-    if (e.preventDefault) e.preventDefault();
-    const URL = `${window.location.href}`;
-
-    const el = document.createElement('textarea');
-    el.value = URL;
-    el.setAttribute('readonly', '');
-    el.style.position = 'absolute';
-    el.style.left = '-9999px';
-    document.body.appendChild(el);
-    el.select();
-    document.execCommand('copy');
-    document.body.removeChild(el);
-    this.handleTooltipOpen();
-  };
-
-  handleTooltipClose = () => {
-    if (this.state.tooltipOpen) this.setState({ tooltipOpen: false });
-  };
-
-  handleTooltipOpen = () => {
-    this.setState({ tooltipOpen: true });
-    setTimeout(() => {
-      if (this.state.tooltipOpen) this.setState({ tooltipOpen: false });
-    }, 3000);
-  };
-
   render() {
     const {
-      user,
+      agent,
       classes,
       enterEditingMode,
       cancelEditingMode,
@@ -310,93 +204,94 @@ class Profile extends Component {
       mobileNumber,
       officeNumber,
       region,
-    } = user;
+      instagramURL,
+      twitterURL,
+      facebookURL,
+    } = agent;
 
     return (
       <div className={classes.root}>
-        <div className={classes.leftColumnWrapper}>
-          <div className={classes.profilePicWrapper}>
-            <img
-              className={classes.profilePic}
-              src={profilePhotoURL}
-              alt="Agent"
-            />
-          </div>
+        <div className={classes.mainSection}>
+          <div className={classes.leftColumnWrapper}>
+            <div className={classes.profilePicWrapper}>
+              <img
+                className={classes.profilePic}
+                src={profilePhotoURL}
+                alt="Agent"
+              />
+            </div>
 
-          <div className={classes.detailsWrapper}>
-            <div className={classNames(classes.email, classes.details)}>
-              <div className={classes.detailsTitle}>Email</div>
-              <div className={classes.detailsInfo}>{email}</div>
-            </div>
-            <div className={classNames(classes.mobile, classes.details)}>
-              <div className={classes.detailsTitle}>Office</div>
-              <div className={classes.detailsInfo}>{officeNumber}</div>
-            </div>
-            <div className={classNames(classes.mobile, classes.details)}>
-              <div className={classes.detailsTitle}>Mobile</div>
-              {isEditing ? (
-                <Input
-                  className={classes.detailsInfoInput}
-                  placeholder="Your mobile numer..."
-                  defaultValue={mobileNumber}
-                  onChange={setMobileNumber}
-                />
-              ) : (
+            <div className={classes.detailsWrapper}>
+              <div className={classNames(classes.email, classes.details)}>
+                <div className={classes.detailsTitle}>Email</div>
+                <div className={classes.detailsInfo}>{email}</div>
+              </div>
+              <div className={classNames(classes.mobile, classes.details)}>
+                <div className={classes.detailsTitle}>Office</div>
+                <div className={classes.detailsInfo}>{officeNumber}</div>
+              </div>
+              <div className={classNames(classes.mobile, classes.details)}>
+                <div className={classes.detailsTitle}>Mobile</div>
                 <div className={classes.detailsInfo}>{mobileNumber}</div>
-              )}
-            </div>
-            <div className={classNames(classes.region, classes.details)}>
-              <div className={classes.detailsTitle}>Region</div>
-              <div className={classes.detailsInfo}>{region}</div>
-            </div>
+              </div>
+              <div className={classNames(classes.region, classes.details)}>
+                <div className={classes.detailsTitle}>Region</div>
+                <div className={classes.detailsInfo}>{region}</div>
+              </div>
 
-            <div className={classes.socialMediaWrapper}>
-              <div className={classes.socialMediaTitle}>Share:</div>
-              <div className={classes.socialMediaItemsWrapper}>
-                <button
-                  onClick={this.onFacebookShareClick}
-                  className={classes.socialMediaItemWrapper}
-                >
-                  <FaFacebook />
-                </button>
-                <button
-                  onClick={this.onTwitterShareClick}
-                  className={classes.socialMediaItemWrapper}
-                >
-                  <FaTwitter />
-                </button>
-                <Tooltip
-                  title="Copied!"
-                  id="tooltip-copy"
-                  open={this.state.tooltipOpen}
-                  enterDelay={100}
-                  leaveDelay={100}
-                  placement="top"
-                >
-                  <button
-                    onClick={this.onCopyToClipboard}
-                    className={classes.socialMediaItemWrapper}
-                  >
-                    <FaCopy />
-                  </button>
-                </Tooltip>
+              <div className={classes.socialMediaWrapper}>
+                {facebookURL || twitterURL || instagramURL ? (
+                  <div className={classes.socialMediaTitle}>Social Media:</div>
+                ) : null}
+                <div className={classes.socialMediaItemsWrapper}>
+                  {facebookURL ? (
+                    <a
+                      href={facebookURL}
+                      target="_blank"
+                      className={classes.socialMediaItemWrapper}
+                    >
+                      <FaFacebook />
+                    </a>
+                  ) : null}
+                  {twitterURL ? (
+                    <a
+                      href={twitterURL}
+                      target="_blank"
+                      className={classes.socialMediaItemWrapper}
+                    >
+                      <FaTwitter />
+                    </a>
+                  ) : null}
+                  {instagramURL ? (
+                    <a
+                      href={instagramURL}
+                      target="_blank"
+                      className={classes.socialMediaItemWrapper}
+                    >
+                      <FaInstagram />
+                    </a>
+                  ) : null}
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className={classes.rightColumnWrapper}>
+            <div>
+              <h1 className={classes.name}>{name}</h1>
+              <small className={classes.title}>{title}</small>
+              <div className={classes.descriptionWrapper}>
+                <div className={classes.descriptionTitle}>
+                  About {capitalize(name.split(' ')[0])}
+                </div>
+                <FormattedText className={classes.descriptionDetails}>
+                  {description}
+                </FormattedText>
               </div>
             </div>
           </div>
         </div>
-        <div className={classes.rightColumnWrapper}>
-          <div>
-            <h1 className={classes.name}>{name}</h1>
-            <small className={classes.title}>{title}</small>
-            <div className={classes.descriptionWrapper}>
-              <div className={classes.descriptionTitle}>
-                About {name.split(' ')[0]}
-              </div>
-              <FormattedText className={classes.descriptionDetails}>
-                {description}
-              </FormattedText>
-            </div>
-          </div>
+        <div>
+          <ListingsSection />
         </div>
       </div>
     );

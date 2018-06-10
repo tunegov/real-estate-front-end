@@ -2,6 +2,7 @@ import React from 'react';
 import { observer } from 'mobx-react';
 import { withStyles } from 'material-ui/styles';
 import Grid from 'material-ui/Grid';
+import Lightbox from 'react-images';
 import InfoBar from './InfoBar';
 import ContactCard from './ContactCard';
 import DescriptionSection from './DescriptionSection';
@@ -66,13 +67,56 @@ const styles = theme => ({
 @withStyles(styles)
 @observer
 class Listing extends React.Component {
+  state = {
+    lightboxIsOpen: false,
+    currentLightBoxIndex: 0,
+  };
+
+  lightboxImages = this.props.listing.images.map(image => ({
+    src: image.URL,
+  }));
+
+  openLightBox = index => {
+    this.setState({
+      lightboxIsOpen: true,
+      currentLightBoxIndex: index,
+    });
+  };
+
+  closeLightbox = () => {
+    this.setState({ lightboxIsOpen: false });
+  };
+
+  onClickPrev = () => {
+    const { currentLightBoxIndex } = this.state;
+
+    this.setState({
+      currentLightBoxIndex: currentLightBoxIndex - 1,
+    });
+  };
+
+  onClickNext = () => {
+    const { currentLightBoxIndex } = this.state;
+
+    this.setState({
+      currentLightBoxIndex: currentLightBoxIndex + 1,
+    });
+  };
+
   renderListingImages = images => {
     const { classes } = this.props;
 
-    return images.map(({ URL }) => (
-      <img className={classes.image} src={URL} alt="listing images" />
+    return images.map(({ URL }, index) => (
+      <img
+        onClick={() => this.openLightBox(index)}
+        className={classes.image}
+        src={URL}
+        alt="listing images"
+        key={URL}
+      />
     ));
   };
+
   render() {
     const { classes, listing, listingAgent, relatedListings } = this.props;
     const { description, neighborhood } = listing;
@@ -121,6 +165,15 @@ class Listing extends React.Component {
             </Grid>
           </Grid>
         </div>
+        <Lightbox
+          images={this.lightboxImages}
+          isOpen={this.state.lightboxIsOpen}
+          onClose={this.closeLightbox}
+          onClickPrev={this.onClickPrev}
+          onClickNext={this.onClickNext}
+          currentImage={this.state.currentLightBoxIndex}
+          backdropClosesModal
+        />
       </div>
     );
   }

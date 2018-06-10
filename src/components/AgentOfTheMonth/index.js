@@ -8,9 +8,7 @@ import classNames from 'classnames';
 import { Link } from '../../routes';
 
 const styles = theme => ({
-  root: {
-
-  },
+  root: {},
   agentBoxWrapper: {
     position: 'relative',
     display: 'flex',
@@ -22,6 +20,7 @@ const styles = theme => ({
     borderRadius: '5px',
     cursor: 'pointer',
   },
+  /*
   sales: {
     background: 'linear-gradient(45deg, #9e1f1f 0%,#c11f1f 14%,#ffffff 14%,#ffffff 100%)',
     [theme.breakpoints.only('sm')]: {
@@ -34,6 +33,7 @@ const styles = theme => ({
       background: `linear-gradient(45deg, ${darken(0.1, '#9e1f1f')} 0%, ${darken(0.1, '#c11f1f')} 13%,#ffffff 13%,#ffffff 100%)`,
     },
   },
+  */
   profilePhotoWrapper: {
     position: 'absolute',
     height: '60%',
@@ -107,7 +107,6 @@ class AgentOfTheMonth extends Component {
     return (
       <div className={classes.root}>
         <Grid container spacing={16}>
-
           <Grid item xs={12} md={6}>
             <Tooltip
               title="Click to view profile"
@@ -116,19 +115,26 @@ class AgentOfTheMonth extends Component {
               id="tooltip-residentialDollarsAgent"
             >
               <Link route={residentialDollarsAgent.profileURL || '#'}>
-                <div className={classNames(classes.agentBoxWrapper, classes.sales)}>
+                <div
+                  className={classNames(classes.agentBoxWrapper, classes.sales)}
+                >
                   <span className={classes.label}>Agent of the Quarter</span>
-
 
                   <div className={classes.contentWrapper}>
                     <div className={classes.profilePhotoWrapper}>
-                      <img className={classes.image} src={residentialDollarsAgent.photoURL} />
+                      <img
+                        className={classes.image}
+                        src={residentialDollarsAgent.photoURL}
+                      />
                     </div>
 
-
                     <div className={classes.infoWrapper}>
-                      <div className={classes.agentName}>{residentialDollarsAgent.name}</div>
-                      <div className={classes.agentAwardTitle}>- Gross Residential Sales</div>
+                      <div className={classes.agentName}>
+                        {residentialDollarsAgent.name}
+                      </div>
+                      <div className={classes.agentAwardTitle}>
+                        - Gross Residential Sales
+                      </div>
                       <div className={classes.stat}>
                         Seles: ${residentialDollarsAgent.statItem.toLocaleString()}
                       </div>
@@ -147,24 +153,31 @@ class AgentOfTheMonth extends Component {
               id="tooltip-commercialDollarsAgent"
             >
               <Link route={commercialDollarsAgent.profileURL || '#'}>
-                <div className={classNames(classes.agentBoxWrapper, classes.sales)}>
+                <div
+                  className={classNames(classes.agentBoxWrapper, classes.sales)}
+                >
                   <span className={classes.label}>Agent of the Quarter</span>
 
                   <div className={classes.contentWrapper}>
                     <div className={classes.profilePhotoWrapper}>
-                      <img className={classes.image} src={commercialDollarsAgent.photoURL} />
+                      <img
+                        className={classes.image}
+                        src={commercialDollarsAgent.photoURL}
+                      />
                     </div>
 
-
                     <div className={classes.infoWrapper}>
-                      <div className={classes.agentName}>{commercialDollarsAgent.name}</div>
-                      <div className={classes.agentAwardTitle}>- Gross Commercial Sales</div>
+                      <div className={classes.agentName}>
+                        {commercialDollarsAgent.name}
+                      </div>
+                      <div className={classes.agentAwardTitle}>
+                        - Gross Commercial Sales
+                      </div>
                       <div className={classes.stat}>
                         Sales: ${commercialDollarsAgent.statItem.toLocaleString()}
                       </div>
                     </div>
                   </div>
-
                 </div>
               </Link>
             </Tooltip>
@@ -178,24 +191,31 @@ class AgentOfTheMonth extends Component {
               id="tooltip-residentialDollarsAgent"
             >
               <Link route={rentalsDollarsAgent.profileURL || '#'}>
-                <div className={classNames(classes.agentBoxWrapper, classes.other)}>
+                <div
+                  className={classNames(classes.agentBoxWrapper, classes.other)}
+                >
                   <span className={classes.label}>Agent of the Quarter</span>
 
                   <div className={classes.contentWrapper}>
                     <div className={classes.profilePhotoWrapper}>
-                      <img className={classes.image} src={rentalsDollarsAgent.photoURL} />
+                      <img
+                        className={classes.image}
+                        src={rentalsDollarsAgent.photoURL}
+                      />
                     </div>
 
-
                     <div className={classes.infoWrapper}>
-                      <div className={classes.agentName}>{rentalsDollarsAgent.name}</div>
-                      <div className={classes.agentAwardTitle}>- Gross Rentals Amount</div>
+                      <div className={classes.agentName}>
+                        {rentalsDollarsAgent.name}
+                      </div>
+                      <div className={classes.agentAwardTitle}>
+                        - Gross Rentals Amount
+                      </div>
                       <div className={classes.stat}>
                         Amount: ${rentalsDollarsAgent.statItem.toLocaleString()}
                       </div>
                     </div>
                   </div>
-
                 </div>
               </Link>
             </Tooltip>
@@ -209,29 +229,35 @@ class AgentOfTheMonth extends Component {
               id="tooltip-commercialNumbersAgent"
             >
               <Link route={numbersAgent.profileURL || '#'}>
-                <div className={classNames(classes.agentBoxWrapper, classes.other)}>
+                <div
+                  className={classNames(classes.agentBoxWrapper, classes.other)}
+                >
                   <span className={classes.label}>Agent of the Quarter</span>
 
                   <div className={classes.contentWrapper}>
                     <div className={classes.profilePhotoWrapper}>
-                      <img className={classes.image} src={numbersAgent.photoURL} />
+                      <img
+                        className={classes.image}
+                        src={numbersAgent.photoURL}
+                      />
                     </div>
 
-
                     <div className={classes.infoWrapper}>
-                      <div className={classes.agentName}>{numbersAgent.name}</div>
-                      <div className={classes.agentAwardTitle}>- Total Deals</div>
+                      <div className={classes.agentName}>
+                        {numbersAgent.name}
+                      </div>
+                      <div className={classes.agentAwardTitle}>
+                        - Total Deals
+                      </div>
                       <div className={classes.stat}>
                         Deals: {numbersAgent.statItem.toLocaleString()}
                       </div>
                     </div>
                   </div>
-
                 </div>
               </Link>
             </Tooltip>
           </Grid>
-
         </Grid>
       </div>
     );

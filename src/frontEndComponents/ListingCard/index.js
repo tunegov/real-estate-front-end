@@ -3,12 +3,13 @@ import { observer } from 'mobx-react';
 import { withStyles } from 'material-ui/styles';
 import HeartOutlineIcon from '@material-ui/icons/FavoriteBorder';
 import HeartIcon from '@material-ui/icons/Favorite';
+import classnames from 'classnames';
 import { capitalize } from '../../utils/stringUtils';
 import { Link } from '../../routes';
 
 const styles = theme => ({
   root: {
-    height: '400px',
+    minHeight: '400px',
     width: '100%',
     fontFamily: theme.frontEnd.typography.fontFamily.sansSerif2,
     fontSize: '0.9rem',
@@ -38,22 +39,28 @@ const styles = theme => ({
   },
   addressWrapper: {
     fontWeight: 600,
-    marginBottom: '3px',
+    marginBottom: '15px',
+    textAlign: 'center',
+    cursor: 'pointer',
   },
   neighborhoodWrapper: {
     fontSize: '0.8rem',
     color: 'rgba(0,0,0,.7)',
-    marginBottom: '15px',
+    marginBottom: '5px',
+    textAlign: 'center',
   },
   priceWrapper: {
     marginBottom: '8px',
+    textAlign: 'center',
   },
   miscInfo: {
     fontSize: '0.7rem',
+    textAlign: 'center',
   },
   footer: {
     display: 'flex',
     alignItems: 'center',
+    justifyContent: 'center',
     height: '40px',
     paddingLeft: '15px',
     paddingRight: '15px',
@@ -97,7 +104,7 @@ class ListingCard extends Component {
       isStudio,
       type,
       id,
-      imageHeight,
+      imageWrapperClassName,
     } = this.props;
 
     const displayType = dealType => {
@@ -136,49 +143,47 @@ class ListingCard extends Component {
     const dealType = displayType(type);
 
     return (
-      <Link route="listing" params={{ id }}>
-        <div className={classes.root}>
-          <div
-            className={classes.imageWrapper}
-            style={imageHeight ? { height: `${imageHeight}px` } : undefined}
-          >
+      <div className={classes.root}>
+        <div
+          className={classnames(classes.imageWrapper, imageWrapperClassName)}
+        >
+          <Link route="listing" params={{ id }}>
             <img
               src={featuredPhotoURL}
               alt="listing"
               className={classes.image}
             />
-            {renderNoticeTag()}
-          </div>
+          </Link>
+          {renderNoticeTag()}
+        </div>
 
-          <div className={classes.infoContentWrapper}>
+        <div className={classes.infoContentWrapper}>
+          <Link route="listing" params={{ id }}>
             <div className={classes.addressWrapper}>{address}</div>
-            <div className={classes.neighborhoodWrapper}>
-              {dealType ? `${dealType} | ` : null} {neighborhood}
-            </div>
-            <div className={classes.priceWrapper}>
-              ${price ? price.toLocaleString() : null}
-            </div>
-            <div className={classes.miscInfo}>
-              {isStudio ? 'Studio' : `${beds} BD`} | {`${baths} BA`}
-            </div>
+          </Link>
+          <div className={classes.neighborhoodWrapper}>
+            {dealType ? `${dealType} | ` : null} {neighborhood}
           </div>
-
-          <div className={classes.footer}>
-            {isLiked ? (
-              <HeartIcon
-                color="inherit"
-                classes={{ root: classes.heartIcon }}
-              />
-            ) : (
-              <HeartOutlineIcon
-                color="inherit"
-                classes={{ root: classes.heartIcon }}
-              />
-            )}{' '}
-            Favorite
+          <div className={classes.priceWrapper}>
+            ${price ? price.toLocaleString() : null}
+          </div>
+          <div className={classes.miscInfo}>
+            {isStudio ? 'Studio' : `${beds} BD`} | {`${baths} BA`}
           </div>
         </div>
-      </Link>
+
+        <div className={classes.footer}>
+          {isLiked ? (
+            <HeartIcon color="inherit" classes={{ root: classes.heartIcon }} />
+          ) : (
+            <HeartOutlineIcon
+              color="inherit"
+              classes={{ root: classes.heartIcon }}
+            />
+          )}{' '}
+          Favorite
+        </div>
+      </div>
     );
   }
 }

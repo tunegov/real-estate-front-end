@@ -75,16 +75,24 @@ class AppTopNav extends Component {
   render() {
     const { classes, currentPath, adminMenuOn } = this.props;
     const pathArray = currentPath.split('/');
-    const path = pathArray[pathArray.length - 1] === 'view' ? pathArray[pathArray.length - 2] : pathArray[pathArray.length - 1];
+    const type = pathArray[pathArray.length - 1];
+    const path =
+      pathArray[pathArray.length - 1] === 'view' || 'new'
+        ? type + ' ' + pathArray[pathArray.length - 2]
+        : pathArray[pathArray.length - 1];
 
     return (
       <AppBar position="absolute" className={classes.appBar}>
         <Toolbar className={classes.topToolbar}>
           <Typography variant="title" color="inherit" noWrap>
-            <span className={classes.uppercase}>{capitalize(unhyphenate(path))}</span>
+            <span className={classes.uppercase}>
+              {capitalize(unhyphenate(path))}
+            </span>
           </Typography>
           <div className={classes.leftTopNavIconWrapper}>
-            <div className={classNames(!adminMenuOn && classes.menuHiddenWrapper)}>
+            <div
+              className={classNames(!adminMenuOn && classes.menuHiddenWrapper)}
+            >
               <IconButton
                 color="inherit"
                 aria-label="open drawer"
@@ -95,10 +103,16 @@ class AppTopNav extends Component {
                 <MenuIcon />
               </IconButton>
             </div>
-
           </div>
           <div className={classes.iconGroupWrapper}>
-            <Tooltip id="tooltip-icon" title="Home" enterDelay={200} leaveDelay={200} placement="bottom" PopperProps={{ style: { minWidth: '30px' } }}>
+            <Tooltip
+              id="tooltip-icon"
+              title="Home"
+              enterDelay={200}
+              leaveDelay={200}
+              placement="bottom"
+              PopperProps={{ style: { minWidth: '30px' } }}
+            >
               <IconButton
                 color="inherit"
                 className={classes.icon}

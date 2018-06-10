@@ -10,7 +10,7 @@ const description = `Lorem ipsum dolor amet beard cray man braid, taxidermy vape
 
 Blue bottle street art taiyaki selfies listicle yr. Selvage ugh selfies unicorn, leggings snackwave cardigan forage kogi literally mixtape. Ennui meditation yuccie paleo yr occupy beard bitters sriracha before they sold out. Sartorial authentic wayfarers typewriter, chia chartreuse cold-pressed etsy pour-over intelligentsia swag literally pinterest fingerstache. Unicorn jianbing helvetica tattooed umami irony pabst 8-bit etsy deep v trust fund hashtag. IPhone green juice jean shorts neutra four loko meggings tattooed etsy.
 
-Skateboard polaroid humblebrag jianbing cardigan af. Tofu tacos actually, roof party vape semiotics four loko woke kickstarter retro. Echo park venmo skateboard fixie wayfarers, mustache vape bushwick pork belly gentrify keytar lomo hoodie poutine. Plaid church-key ennui VHS, succulents health goth bespoke irony pop-up coloring book craft beer beard. Bitters thundercats ramps master cleanse poutine direct trade pickled af live-edge seitan affogato leggings. Pop-up kickstarter mumblecore vinyl.`
+Skateboard polaroid humblebrag jianbing cardigan af. Tofu tacos actually, roof party vape semiotics four loko woke kickstarter retro. Echo park venmo skateboard fixie wayfarers, mustache vape bushwick pork belly gentrify keytar lomo hoodie poutine. Plaid church-key ennui VHS, succulents health goth bespoke irony pop-up coloring book craft beer beard. Bitters thundercats ramps master cleanse poutine direct trade pickled af live-edge seitan affogato leggings. Pop-up kickstarter mumblecore vinyl.`;
 
 @observer
 class ProfileContainer extends Component {
@@ -28,7 +28,10 @@ class ProfileContainer extends Component {
   }
 
   createUser = () => ({
-    profilePhotoURL: `http://picsum.photos/325/400/?random?${chance.integer({ min: 1, max: 1000 })}`,
+    profilePhotoURL: `http://picsum.photos/325/325/?random?${chance.integer({
+      min: 1,
+      max: 1000,
+    })}`,
     name: chance.name(),
     email: chance.email(),
     title: 'Licensed Real Estate Salesperson',
@@ -36,14 +39,17 @@ class ProfileContainer extends Component {
     officeNumber: `${chance.phone()} x${chance.integer({ min: 1, max: 999 })}`,
     areaOfFocus: 'none',
     mobileNumber: chance.phone(),
-    region: chance.integer({ min: 0, max: 100 }) > 70 ? chance.state({ full: true }) : 'New York',
-  })
+    region:
+      chance.integer({ min: 0, max: 100 }) > 70
+        ? chance.state({ full: true })
+        : 'New York',
+  });
 
   enterEditingMode = () => {
     this.setState({
       isEditing: true,
     });
-  }
+  };
 
   cancelEditingMode = () => {
     this.setState({
@@ -52,7 +58,7 @@ class ProfileContainer extends Component {
         ...this.state.user,
       },
     });
-  }
+  };
 
   setDescription = description => {
     this.setState({
@@ -61,7 +67,7 @@ class ProfileContainer extends Component {
         description,
       },
     });
-  }
+  };
 
   setMobileNumber = mobileNumber => {
     this.setState({
@@ -70,7 +76,7 @@ class ProfileContainer extends Component {
         mobileNumber,
       },
     });
-  }
+  };
 
   saveUser = () => {
     this.setState({
@@ -82,7 +88,7 @@ class ProfileContainer extends Component {
         ...this.state.user,
       },
     });
-  }
+  };
 
   undoSave = () => {
     this.setState({
@@ -93,7 +99,7 @@ class ProfileContainer extends Component {
         ...this.state.previousSavedUser,
       },
     });
-  }
+  };
 
   render() {
     const { user, uuid, isEditing, profileEdited } = this.state;

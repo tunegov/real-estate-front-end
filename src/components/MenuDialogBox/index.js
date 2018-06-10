@@ -32,63 +32,31 @@ const styles = {
 };
 
 @observer
-class AdminCRUDManagementDialog extends Component {
-  managementItems = {
-    agents: [
-      {
-        name: 'Create',
-        icon: AddIcon,
-        onClick: this.props.toggleCreateAgentModal,
-      },
-      { name: 'View All', route: 'view', type: 'link', icon: ViewIcon },
-    ],
-    users: [{ name: 'View All', route: 'view', type: 'link', icon: ViewIcon }],
-    admin: [
-      {
-        name: 'Create',
-        route: 'create',
-        icon: AddIcon,
-        onClick: this.props.toggleCreateAgentModal,
-      },
-      { name: 'View All', route: 'view', type: 'link', icon: ViewIcon },
-    ],
-    deals: [{ name: 'View All', route: 'view', type: 'link', icon: ViewIcon }],
-    invoices: [
-      { name: 'View All', route: 'view', type: 'link', icon: ViewIcon },
-    ],
-  };
-
-  renderManagementLinks = items => {
+class MenuDialoBox extends Component {
+  renderLinks = renderItems => {
+    renderItems = renderItems || [];
     const { classes } = this.props;
-    const {
-      toggleManagementModal,
-      managementModalCurrentRoute,
-      managementModalCurrentType,
-    } = this.props;
-    const renderItems = items[managementModalCurrentType] || [];
+    const { toggleSideNavModal, toggleSideNavModalClosed } = this.props;
 
     return renderItems.map(item => {
       const Icon = item.icon;
       if (item.type === 'link') {
         return (
-          <Link
-            route={`/app/admin-area/${managementModalCurrentRoute}/${
-              item.route
-            }`}
-            key={item.route || item.name}
-          >
+          <Link route={item.route} key={item.route || item.name}>
             <a className={classes.anchor}>
               <ListItem
                 button
-                onClick={() => toggleManagementModal()}
+                onClick={() => toggleSideNavModalClosed()}
                 key={item.route || item.name}
               >
                 <div className={classes.listItemContentWrapper}>
-                  <ListItemAvatar>
-                    <Avatar className={classes.avatar}>
-                      <Icon />
-                    </Avatar>
-                  </ListItemAvatar>
+                  {Icon ? (
+                    <ListItemAvatar>
+                      <Avatar className={classes.avatar}>
+                        <Icon />
+                      </Avatar>
+                    </ListItemAvatar>
+                  ) : null}
                   <ListItemText
                     classes={{ root: classes.listItemTextWrapper }}
                     primary={item.name}
@@ -105,16 +73,18 @@ class AdminCRUDManagementDialog extends Component {
             button
             onClick={() => {
               item.onClick();
-              toggleManagementModal();
+              toggleSideNavModalClosed();
             }}
             key={item.route || item.name}
           >
             <div className={classes.listItemContentWrapper}>
-              <ListItemAvatar>
-                <Avatar className={classes.avatar}>
-                  <Icon />
-                </Avatar>
-              </ListItemAvatar>
+              {Icon ? (
+                <ListItemAvatar>
+                  <Avatar className={classes.avatar}>
+                    <Icon />
+                  </Avatar>
+                </ListItemAvatar>
+              ) : null}
               <ListItemText
                 classes={{ root: classes.listItemTextWrapper }}
                 primary={item.name}
@@ -125,38 +95,37 @@ class AdminCRUDManagementDialog extends Component {
       }
     });
   };
+
   render() {
     const {
       classes,
       onClose,
       selectedValue,
-      toggleManagementModal,
-      managementModalType,
+      toggleSideNavModal,
       open,
+      title,
+      linkItems,
+      toggleSideNavModalClosed,
     } = this.props;
-
-    this.managementModalType = managementModalType
-      ? capitalize(managementModalType)
-      : this.managementModalType;
 
     return (
       <Dialog
-        onClose={toggleManagementModal}
-        aria-labelledby="simple-dialog-title"
+        onClose={toggleSideNavModalClosed}
+        aria-labelledby="side-nav-dialog-box"
         open={open}
       >
         <DialogTitle
           classes={{ root: classes.title }}
-          id="simple-dialog-title"
-        >{`Manage ${
-          this.managementModalType ? this.managementModalType : ''
-        }`}</DialogTitle>
+          id="side-nav-dialog-box-title"
+        >
+          {title}
+        </DialogTitle>
         <div>
-          <List>{this.renderManagementLinks(this.managementItems)}</List>
+          <List>{this.renderLinks(linkItems)}</List>
         </div>
       </Dialog>
     );
   }
 }
 
-export default withStyles(styles)(AdminCRUDManagementDialog);
+export default withStyles(styles)(MenuDialoBox);

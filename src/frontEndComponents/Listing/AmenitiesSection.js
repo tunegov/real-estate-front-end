@@ -1,7 +1,6 @@
 import React from 'react';
 import { observer } from 'mobx-react';
 import { withStyles } from 'material-ui/styles';
-import classnames from 'classnames';
 
 const styles = theme => ({
   root: {
@@ -26,6 +25,13 @@ const styles = theme => ({
   },
   description: {
     lineHeight: '1.6rem',
+  },
+  myIcon: {
+    height: 90,
+    marginRight: 30,
+    '&last-of-type': {
+      marginRight: 0,
+    },
   },
 });
 
@@ -54,6 +60,16 @@ class AmenitiesSection extends React.Component {
         <div className={classes.descriptionTitle}>Amenities</div>
         <div className={classes.description}>
           {this.renderAmenities(amenities)}
+          <img src="/static/icons/balcony.svg" className={classes.myIcon} />
+          <img src="/static/icons/gym.svg" className={classes.myIcon} />
+          <img
+            src="/static/icons/securitysystem.svg"
+            className={classes.myIcon}
+          />
+          <img
+            src="/static/icons/virtualdoorman.svg"
+            className={classes.myIcon}
+          />
         </div>
       </div>
     );

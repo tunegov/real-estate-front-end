@@ -12,11 +12,17 @@ import ListingsIcon from '@material-ui/icons/Assignment';
 
 export const agentSideLinks = [
   { name: 'Dashboard', route: 'dashboard', icon: DashboardIcon },
-  { name: 'Profile', route: 'profile', icon: PersonIcon, iconFontSize: 28, iconLeft: '12px' },
+  {
+    name: 'Profile',
+    route: 'profile',
+    icon: PersonIcon,
+    iconFontSize: 28,
+    iconLeft: '12px',
+  },
   { name: 'Deals', route: 'deals', icon: DealsIcon },
   { name: 'Invoices', route: 'invoices', icon: InvoicesIcon, iconFontSize: 20 },
   { name: 'Agents', route: 'agents', icon: AgentsIcon, iconFontSize: 24 },
-  { name: 'Listings', route: 'listings', icon: ListingsIcon },
+  { name: 'Listings', icon: ListingsIcon, id: 'listings' },
   { name: 'Log Out', icon: ExitToAppIcon, id: 'logout' },
 ];
 

@@ -11,6 +11,7 @@ import SettingsDrawer from '../SettingsDrawer';
 import { includesAny, includesAll } from '../../utils/arrayUtils';
 import AdminCRUDManagementDialog from '../AdminCRUDManagementDialog';
 import CreateAgentDialogBox from '../CreateAgentDialogBox';
+import MenuDialogBox from '../MenuDialogBox';
 
 const styles = theme => ({
   root: {
@@ -66,22 +67,46 @@ class ClippedDrawer extends React.Component {
       managementModalCurrentRoute: null,
       managementModalCurrentType: null,
       createAgentModalOpen: false,
+      menuDialogBoxOpen: false,
+      menuDialogBoxTitle: null,
+      menuDialogBoxLinkItems: null,
     };
     this.isAdmin = includesAny(this.props.userRoles, ['admin', 'super-admin']);
-    this.onlyRoleIsAdmin = includesAll(['admin', 'super-admin'], this.props.userRoles);
+    this.onlyRoleIsAdmin = includesAll(
+      ['admin', 'super-admin'],
+      this.props.userRoles
+    );
   }
 
   toggleNavDrawer = state => {
     this.setState({
-      navDrawerOpen: typeof state === 'boolean' ? state : !this.state.navDrawerOpen,
+      navDrawerOpen:
+        typeof state === 'boolean' ? state : !this.state.navDrawerOpen,
     });
-  }
+  };
+
+  toggleMenuDialogBoxOpen = (title, linkItems) => {
+    this.setState({
+      menuDialogBoxOpen: true,
+      menuDialogBoxTitle: title,
+      menuDialogBoxLinkItems: linkItems,
+    });
+  };
+
+  toggleMenuDialogBoxClosed = () => {
+    this.setState({
+      menuDialogBoxOpen: false,
+      menuDialogBoxTitle: null,
+      menuDialogBoxLinkItems: null,
+    });
+  };
 
   toggleSettingsDrawer = state => {
     this.setState({
-      settingsDrawerOpen: typeof state === 'boolean' ? state : !this.state.settingsDrawerOpen,
+      settingsDrawerOpen:
+        typeof state === 'boolean' ? state : !this.state.settingsDrawerOpen,
     });
-  }
+  };
 
   toggleManagementModal = (routeBase, subtype) => {
     const { managementModalOpen } = this.state;
@@ -90,14 +115,15 @@ class ClippedDrawer extends React.Component {
       managementModalCurrentRoute: !managementModalOpen ? routeBase : null,
       managementModalCurrentType: !managementModalOpen ? subtype : null,
     });
-  }
+  };
 
   toggleCreateAgentModal = state => {
     const { createAgentModalOpen } = this.state;
     this.setState({
-      createAgentModalOpen: typeof state === 'boolean' ? state : !createAgentModalOpen,
+      createAgentModalOpen:
+        typeof state === 'boolean' ? state : !createAgentModalOpen,
     });
-  }
+  };
 
   renderSideNav = () => {
     const { logoutUser, userRoles, adminMenuOn } = this.props;
@@ -113,6 +139,7 @@ class ClippedDrawer extends React.Component {
           userRoles={userRoles}
           adminMenuOn={adminMenuOn}
           toggleManagementModal={this.toggleManagementModal}
+          toggleMenuDialogBoxOpen={this.toggleMenuDialogBoxOpen}
         />
       );
     }
@@ -124,9 +151,10 @@ class ClippedDrawer extends React.Component {
         logoutUser={logoutUser}
         userRoles={userRoles}
         adminMenuOn={adminMenuOn}
+        toggleMenuDialogBoxOpen={this.toggleMenuDialogBoxOpen}
       />
     );
-  }
+  };
 
   render() {
     const {
@@ -144,9 +172,13 @@ class ClippedDrawer extends React.Component {
       managementModalOpen,
       createAgentModalOpen,
       managementModalCurrentType,
+      menuDialogBoxOpen,
+      menuDialogBoxTitle,
+      menuDialogBoxLinkItems,
     } = this.state;
-    const managementModalType = managementModalCurrentRoute ?
-      managementModalCurrentRoute.split('-').pop() : null;
+    const managementModalType = managementModalCurrentRoute
+      ? managementModalCurrentRoute.split('-').pop()
+      : null;
 
     return (
       <MuiPickersUtilsProvider utils={MomentUtils}>
@@ -162,7 +194,10 @@ class ClippedDrawer extends React.Component {
             <div className={classes.toolbar} />
             {this.props.children}
             <div className={classes.drawerWrapper}>
-              <button className={classes.settingsBtn} onClick={this.toggleSettingsDrawer}>
+              <button
+                className={classes.settingsBtn}
+                onClick={this.toggleSettingsDrawer}
+              >
                 <SettingsIcon />
               </button>
               <SettingsDrawer
@@ -175,7 +210,9 @@ class ClippedDrawer extends React.Component {
                 toggleAdminMenu={toggleAdminMenu}
                 navDrawerOpen={this.state.navDrawerOpen}
                 toggleFullScreenLoader={toggleFullScreenLoader}
-                managementModalCurrentType={this.state.managementModalCurrentType}
+                managementModalCurrentType={
+                  this.state.managementModalCurrentType
+                }
               />
             </div>
           </main>
@@ -190,6 +227,13 @@ class ClippedDrawer extends React.Component {
           <CreateAgentDialogBox
             open={createAgentModalOpen}
             toggleCreateAgentModal={this.toggleCreateAgentModal}
+          />
+          <MenuDialogBox
+            open={menuDialogBoxOpen}
+            title={menuDialogBoxTitle}
+            toggleSideNavModal={this.toggleMenuDialogBoxOpen}
+            linkItems={menuDialogBoxLinkItems}
+            toggleSideNavModalClosed={this.toggleMenuDialogBoxClosed}
           />
         </div>
       </MuiPickersUtilsProvider>

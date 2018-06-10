@@ -6,11 +6,14 @@ const compress = require('compression');
 const cookieParser = require('cookie-parser');
 const router = require('./back-end/routes');
 const app = require('./nextExport');
+const preRouter = require('./back-end/preRouter');
 require('./config/keys');
 
 helmet.hsts({
   // ...
-  setIf() { return process.env.NODE_ENV === 'production'; },
+  setIf() {
+    return process.env.NODE_ENV === 'production';
+  },
 });
 
 // morgan logging function
@@ -39,11 +42,15 @@ app
 
     server.use(morgan('dev', { skip: skipMiscLogging }));
 
+    server.use(preRouter);
+
     server.use(router);
 
     server.listen(server.get('port'), err => {
       if (err) throw err;
-      console.log(`> Ready on port http://${server.get('host')}:${server.get('port')}`);
+      console.log(
+        `> Ready on port http://${server.get('host')}:${server.get('port')}`
+      );
     });
   })
   .catch(ex => {

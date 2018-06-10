@@ -9,6 +9,8 @@ import Tooltip from 'material-ui/Tooltip';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import NotificationIcon from '@material-ui/icons/Notifications';
 import { withStyles } from 'material-ui/styles';
+import AddIcon from '@material-ui/icons/Add';
+import ViewIcon from '@material-ui/icons/RemoveRedEye';
 import SideNavLinkItem from '../SideNavLinkItem';
 import navLinks from './navItems';
 
@@ -73,7 +75,24 @@ const styles = theme => ({
 
 @observer
 class SideNav extends Component {
-  renderSideLinkComponents = currentPath => (
+  sideNavListingsDialogItems = [
+    {
+      name: 'Create a Listing',
+      route: 'create-listing',
+      type: 'link',
+      icon: AddIcon,
+      onClick: this.props.toggleMenuDialogBoxClosed,
+    },
+    {
+      name: 'View Listings',
+      route: 'listings',
+      type: 'link',
+      icon: ViewIcon,
+      onClick: this.props.toggleMenuDialogBoxClosed,
+    },
+  ];
+
+  renderSideLinkComponents = currentPath =>
     navLinks.map(item => {
       return (
         <SideNavLinkItem
@@ -85,15 +104,20 @@ class SideNav extends Component {
           iconLeftSmall={item.iconLeftSmall}
           iconFontSize={item.iconFontSize}
           currentPath={currentPath}
-          isActionItem={item.id === 'logout'}
+          isActionItem={!item.route}
           onClick={() => {
             if (this.props.drawerOpen) this.props.toggleDrawer(false);
             if (item.id === 'logout') this.props.logoutUser();
+            if (item.id === 'listings') {
+              this.props.toggleMenuDialogBoxOpen(
+                'Listings',
+                this.sideNavListingsDialogItems
+              );
+            }
           }}
         />
       );
-    })
-  );
+    });
 
   render() {
     const { classes, currentPath, drawerOpen, toggleDrawer } = this.props;
@@ -115,7 +139,14 @@ class SideNav extends Component {
             onClose={toggleDrawer}
           >
             <div className={`${classes.toolbar} ${classes.topToolbar}`}>
-              <Tooltip id="tooltip-icon" title="Close Sidebar" enterDelay={400} leaveDelay={200} placement="bottom" PopperProps={{ style: { minWidth: '30px' } }}>
+              <Tooltip
+                id="tooltip-icon"
+                title="Close Sidebar"
+                enterDelay={400}
+                leaveDelay={200}
+                placement="bottom"
+                PopperProps={{ style: { minWidth: '30px' } }}
+              >
                 <IconButton
                   color="inherit"
                   className={`${classes.icon} ${classes.arrowBackBtn}`}
@@ -126,13 +157,19 @@ class SideNav extends Component {
               </Tooltip>
             </div>
             <Divider classes={{ root: classes.topDivider }} />
-            <List classes={{ root: classes.listRoot }}>{this.renderSideLinkComponents(currentPath)}</List>
+            <List classes={{ root: classes.listRoot }}>
+              {this.renderSideLinkComponents(currentPath)}
+            </List>
             <div className={classes.notificationIcon}>
-              <Tooltip id="tooltip-icon" title="Notifications" enterDelay={200} leaveDelay={200} placement="bottom" PopperProps={{ style: { minWidth: '30px' } }}>
-                <IconButton
-                  color="inherit"
-                  className={classes.icon}
-                >
+              <Tooltip
+                id="tooltip-icon"
+                title="Notifications"
+                enterDelay={200}
+                leaveDelay={200}
+                placement="bottom"
+                PopperProps={{ style: { minWidth: '30px' } }}
+              >
+                <IconButton color="inherit" className={classes.icon}>
                   <NotificationIcon />
                 </IconButton>
               </Tooltip>
@@ -147,13 +184,19 @@ class SideNav extends Component {
             }}
           >
             <div className={classes.toolbar} />
-            <List classes={{ root: classes.listRoot }}>{this.renderSideLinkComponents(currentPath)}</List>
+            <List classes={{ root: classes.listRoot }}>
+              {this.renderSideLinkComponents(currentPath)}
+            </List>
             <div className={classes.notificationIcon}>
-              <Tooltip id="tooltip-icon" title="Notifications" enterDelay={200} leaveDelay={200} placement="bottom" PopperProps={{ style: { minWidth: '30px' } }}>
-                <IconButton
-                  color="inherit"
-                  className={classes.icon}
-                >
+              <Tooltip
+                id="tooltip-icon"
+                title="Notifications"
+                enterDelay={200}
+                leaveDelay={200}
+                placement="bottom"
+                PopperProps={{ style: { minWidth: '30px' } }}
+              >
+                <IconButton color="inherit" className={classes.icon}>
                   <NotificationIcon />
                 </IconButton>
               </Tooltip>

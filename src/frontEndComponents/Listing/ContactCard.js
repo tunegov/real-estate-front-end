@@ -2,7 +2,7 @@ import React from 'react';
 import { observer } from 'mobx-react';
 import { withStyles } from 'material-ui/styles';
 import classnames from 'classnames';
-import { FaFacebook, FaTwitter, FaCopy } from 'react-icons/lib/fa';
+import { FaFacebook, FaTwitter, FaInstagram, FaCopy } from 'react-icons/lib/fa';
 import Tooltip from 'material-ui/Tooltip';
 import { Link } from '../../routes';
 
@@ -49,6 +49,7 @@ const styles = theme => ({
     marginBottom: '35px',
   },
   defaultBtn: {
+    display: 'block',
     width: '100%',
     padding: '10px 10px',
     marginBottom: 20,
@@ -57,10 +58,14 @@ const styles = theme => ({
     color: 'rgba(0,0,0,.7)',
     cursor: 'pointer',
     transition: 'color .2s ease-in-out, border-color .2s ease-in-out',
+    textDecoration: 'none',
     '&:hover': {
       color: 'rgba(0,0,0,.8)',
       borderColor: theme.palette.primary.main,
     },
+    outline: 'none',
+    fontSize: '.7rem',
+    textAlign: 'center',
   },
   defaultBtnLast: {
     marginBottom: 0,
@@ -69,6 +74,7 @@ const styles = theme => ({
     color: 'rgba(0,0,0,.3) !important',
     borderColor: 'rgba(0,0,0,.1) !important',
     cursor: 'not-allowed',
+    outline: 'none',
   },
   shareTitle: {
     marginBottom: 20,
@@ -109,6 +115,10 @@ const styles = theme => ({
     '&:hover': {
       borderColor: 'rgba(0,0,0,.9)',
       color: 'rgba(0,0,0,.8)',
+    },
+    [theme.breakpoints.down('xs')]: {
+      width: '45px',
+      height: '45px',
     },
   },
 });
@@ -230,16 +240,18 @@ class ContactCard extends React.Component {
           </div>
         </div>
         <div className={classes.btnsWrapper}>
-          <button className={classes.defaultBtn}> Schedule a Tour</button>
-          <button
-            className={classnames(
-              classes.defaultBtn,
-              classes.defaultBtnLast,
-              !canApplyOnline && classes.disabledBtn
-            )}
-          >
-            Apply
-          </button>
+          <button className={classes.defaultBtn}>Contact Agent</button>
+          <Link route="apply" params={{ listingID }}>
+            <a
+              className={classnames(
+                classes.defaultBtn,
+                classes.defaultBtnLast,
+                !canApplyOnline && classes.disabledBtn
+              )}
+            >
+              Apply
+            </a>
+          </Link>
         </div>
         <div className={classes.shareTitle}>Share</div>
         <div className={classes.socialMediaWrapper}>
@@ -257,7 +269,7 @@ class ContactCard extends React.Component {
               <FaTwitter />
             </button>
             <Tooltip
-              title="Copied!"
+              title={this.state.tooltipOpen ? 'Copied!' : 'Copy'}
               id="tooltip-copy"
               open={this.state.tooltipOpen}
               enterDelay={100}

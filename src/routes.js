@@ -7,6 +7,7 @@ routes
   .add('deals', '/app/deals', 'app/deals')
   .add('invoices', '/app/invoices', 'app/invoices')
   .add('agents', '/app/agents', 'app/agents')
+  .add('create-listing', '/app/listing/new', '/app/listing/new')
   .add(
     'admin-dashboard',
     '/app/admin-area/dashboard',
@@ -45,8 +46,9 @@ routes
   .add('listings', '/listings')
   .add('listing', '/listing')
   .add('agent', '/agent')
+  .add('agents-front-end', '/agents', '/agents')
   .add('new-developments', '/new-developments')
-  .add('roommates', '/roommates')
+  .add('apply', '/apply')
   .add('about', '/about');
 
 module.exports = routes;

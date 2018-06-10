@@ -17,18 +17,13 @@ class ProfileContainer extends Component {
   constructor(props) {
     super(props);
 
-    const user = this.createUser();
-
     this.state = {
-      user: user,
-      isEditing: false,
-      tempUser: user,
-      previousSavedUser: user,
+      agent: this.createAgent(),
     };
   }
 
-  createUser = () => ({
-    profilePhotoURL: `http://picsum.photos/325/400/?random?${chance.integer({
+  createAgent = () => ({
+    profilePhotoURL: `http://picsum.photos/325/325/?random?${chance.integer({
       min: 1,
       max: 1000,
     })}`,
@@ -46,18 +41,12 @@ class ProfileContainer extends Component {
   });
 
   render() {
-    const { user, uuid } = this.state;
-    const {
-      toggleEditingMode,
-      toggleProfileEdited,
-      setMobileNumber,
-      setDescription,
-      enterEditingMode,
-      cancelEditingMode,
-      saveUser,
-      undoSave,
-    } = this;
-    return <Profile user={user} />;
+    const { agent } = this.state;
+    const { agentID } = this.props;
+
+    // grab the agent info and listings using this agentID
+
+    return <Profile agent={agent} />;
   }
 }
 
