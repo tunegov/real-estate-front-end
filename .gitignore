@@ -1,6 +1,6 @@
 # environment variables
 .env
-keys.js
+keys_dev.js
 
 # OS X
 .DS_Store

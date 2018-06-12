@@ -140,7 +140,7 @@ class ListingContainer extends React.Component {
       id: 'jxj595h9f5i5fj',
       commercialOrResidential: 'residential',
       rentalOrSale: 'rental',
-      canApplyOnline: true,
+      cantApplyOnline: false,
       listingID: chance.integer({ min: 100000, max: 999999 }),
       images: [
         {

@@ -19,8 +19,27 @@ const createFakeAgents = num => {
 class ApplicationContainer extends React.Component {
   state = {
     listingAgents: createFakeAgents(30),
+    formValues: null,
+    isFullApplication: true,
   };
-  onSubmit = () => {};
+
+  onSubmit = formValues => {
+    this.setState({
+      formValues,
+    });
+  };
+
+  setFullApplication = () => {
+    if (!this.state.isFullApplication) {
+      this.setState({ isFullApplication: true });
+    }
+  };
+
+  setCreditCheckApplication = () => {
+    if (this.state.isFullApplication) {
+      this.setState({ isFullApplication: false });
+    }
+  };
 
   render() {
     const { listingID, listingAgents } = this.props;
@@ -28,6 +47,9 @@ class ApplicationContainer extends React.Component {
       <Application
         listingAgents={this.state.listingAgents}
         onSubmit={this.onSubmit}
+        isFullApplication={this.state.isFullApplication}
+        setFullApplication={this.setFullApplication}
+        setCreditCheckApplication={this.setCreditCheckApplication}
       />
     );
   }

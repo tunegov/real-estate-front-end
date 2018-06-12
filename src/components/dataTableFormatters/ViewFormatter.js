@@ -22,12 +22,8 @@ class VeiwFormatter extends React.Component {
     const { classes, profileURL } = this.props;
 
     return (
-      <Tooltip
-        title="Click to view"
-        enterDelay={400}
-        leaveDelay={100}
-      >
-        <Link route={profileURL || '#'}>
+      <Tooltip title="Click to view" enterDelay={400} leaveDelay={100}>
+        <Link route="agent" params={{ id: profileURL }}>
           <a>
             <div className={classes.wrapper}>
               <EyeIcon />

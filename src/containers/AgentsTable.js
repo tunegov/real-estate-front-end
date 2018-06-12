@@ -67,9 +67,15 @@ class AgentsTableContainer extends Component {
         email: chance.email(),
         areaOfFocus: 'none',
         mobileNumber: chance.phone(),
-        companyNumberAndExt: `${chance.phone()} x${chance.integer({ min: 1, max: 999 })}`,
-        region: chance.integer({ min: 0, max: 100 }) > 70 ? chance.state({ full: true }) : 'New York',
-        view: '#',
+        companyNumberAndExt: `${chance.phone()} x${chance.integer({
+          min: 1,
+          max: 999,
+        })}`,
+        region:
+          chance.integer({ min: 0, max: 100 }) > 70
+            ? chance.state({ full: true })
+            : 'New York',
+        view: chance.integer({ min: 100000, max: 999999 }),
       });
     }
     return rows;
@@ -80,19 +86,19 @@ class AgentsTableContainer extends Component {
     const { classes, ...rest } = this.props;
     return (
       <div className={classes.root}>
-        {
-          tableIsLoading ? (
-            <div className={classes.progressWrapper} style={{ display: 'flex', justifyContent: 'center' }}>
-              <Loader
-                color="#f44336"
-                loading
-              />
-            </div>
-          ) : null
-        }
+        {tableIsLoading ? (
+          <div
+            className={classes.progressWrapper}
+            style={{ display: 'flex', justifyContent: 'center' }}
+          >
+            <Loader color="#f44336" loading />
+          </div>
+        ) : null}
         <AgentsTable
           {...rest}
-          onMount={() => tableIsLoading ? this.setState({ tableIsLoading: false }) : null}
+          onMount={() =>
+            tableIsLoading ? this.setState({ tableIsLoading: false }) : null
+          }
           columns={columns}
           rows={rows}
         />

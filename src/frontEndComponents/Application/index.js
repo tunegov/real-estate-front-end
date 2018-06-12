@@ -1,7 +1,12 @@
 import React from 'react';
 import { observer } from 'mobx-react';
 import { withStyles } from 'material-ui/styles';
-import ApplicationForm from '../ApplicationForm';
+import { Button } from 'antd';
+import classnames from 'classnames';
+import FullApplicationForm from '../ApplicationForm';
+import CreditCheckApplicationForm from '../CreditCheckApplicationForm';
+
+const ButtonGroup = Button.Group;
 
 const styles = theme => ({
   root: {
@@ -23,18 +28,66 @@ const styles = theme => ({
   formWrapper: {
     padding: '20px 20px',
   },
+  applicationTypeBtnsWrapper: {
+    display: 'flex',
+    justifyContent: 'center',
+  },
+  activePrimaryToggleBtn: {
+    backgroundColor: '#1890ff !important',
+    borderColor: '#1890ff !important',
+    color: '#fff !important',
+    '&:hover': {
+      backgroundColor: '#1890ff',
+      borderColor: '#1890ff',
+      color: '#fff',
+    },
+  },
 });
 
 @withStyles(styles)
 @observer
 class Application extends React.Component {
   render() {
-    const { onSubmit, classes, listingAgents } = this.props;
+    const {
+      onSubmit,
+      classes,
+      listingAgents,
+      setFullApplication,
+      setCreditCheckApplication,
+      isFullApplication,
+    } = this.props;
     return (
       <div className={classes.root}>
         <div className={classes.titleSection}>Apply</div>
+        <div className={classes.applicationTypeBtnsWrapper}>
+          <ButtonGroup>
+            <Button
+              className={classnames(
+                isFullApplication ? classes.activePrimaryToggleBtn : null
+              )}
+              onClick={setFullApplication}
+            >
+              Full Application
+            </Button>
+            <Button
+              className={classnames(
+                !isFullApplication ? classes.activePrimaryToggleBtn : null
+              )}
+              onClick={setCreditCheckApplication}
+            >
+              Credit Check Only
+            </Button>
+          </ButtonGroup>
+        </div>
         <div className={classes.formWrapper}>
-          <ApplicationForm listingAgents={listingAgents} />
+          {isFullApplication ? (
+            <FullApplicationForm
+              listingAgents={listingAgents}
+              onSubmit={onSubmit}
+            />
+          ) : (
+            <CreditCheckApplicationForm onSubmit={onSubmit} />
+          )}
         </div>
       </div>
     );

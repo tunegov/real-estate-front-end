@@ -77,32 +77,43 @@ const MaterialCustomSelectInputWrapper = props => (
         touched,
       } = fieldApi;
 
-      const renderSelectInputItems = selectInputItems => (
+      const renderSelectInputItems = selectInputItems =>
         selectInputItems.map(item => (
-          <MenuItem key={item.label} value={item.value || item.label}>{item.label}</MenuItem>
-        ))
-      );
+          <MenuItem key={item.label} value={item.value || item.label}>
+            {item.label}
+          </MenuItem>
+        ));
 
       return (
         <FormControl
           error={error && touched}
           fullWidth={fullWidth}
           required={required}
-          className={disabled ?
-            `${classes.formControl} ${classes.disabled} ${className}` :
-            `${classes.formControl} ${className}`}
+          className={
+            disabled
+              ? `${classes.formControl} ${classes.disabled} ${className}`
+              : `${classes.formControl} ${className}`
+          }
         >
           <InputLabel htmlFor={`${id}-error`}>{label}</InputLabel>
           <Select
             value={multiple ? value || [] : value || ''}
-            SelectDisplayProps={SelectDisplayProps || { style: { backgroundColor: 'inherit' } }}
+            SelectDisplayProps={
+              SelectDisplayProps || { style: { backgroundColor: 'inherit' } }
+            }
             onChange={event => {
               setValue(event.target.value);
               if (onInput) {
                 onInput(event);
               }
             }}
-            input={<Input name={name} id={`${id}-helper`} className={classes.input} />}
+            input={
+              <Input
+                name={name}
+                id={`${id}-helper`}
+                className={classes.input}
+              />
+            }
             onBlur={event => {
               if (event.target.value || touched) setTouched();
               if (onBlur) {
@@ -110,11 +121,21 @@ const MaterialCustomSelectInputWrapper = props => (
               }
             }}
             multiple={multiple}
-            renderValue={!multiple ? null : selected => (
-              <div className={classes.chips}>
-                {selected.map(value => <Chip key={value} label={value} className={classes.chip} />)}
-              </div>
-            )}
+            renderValue={
+              !multiple
+                ? null
+                : selected => (
+                    <div className={classes.chips}>
+                      {selected.map(value => (
+                        <Chip
+                          key={value}
+                          label={value}
+                          className={classes.chip}
+                        />
+                      ))}
+                    </div>
+                  )
+            }
             {...rest}
           >
             {renderSelectInputItems(selectInputItems)}

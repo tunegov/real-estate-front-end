@@ -33,7 +33,9 @@ export default class MyDocument extends Document {
           <style
             id="jss-server-side"
             // eslint-disable-next-line react/no-danger
-            dangerouslySetInnerHTML={{ __html: pageContext.sheetsRegistry.toString() }}
+            dangerouslySetInnerHTML={{
+              __html: pageContext.sheetsRegistry.toString(),
+            }}
           />
           {flush() || null}
         </React.Fragment>
@@ -65,7 +67,11 @@ export default class MyDocument extends Document {
               'minimum-scale=1, width=device-width, height=device-height'
             }
           />
-          <meta name="theme-color" content={pageContext.theme.palette.primary.main} />
+          <meta
+            name="theme-color"
+            content={pageContext.theme.palette.primary.main}
+          />
+          <link rel="stylesheet" href="/_next/static/style.css" />
           <style dangerouslySetInnerHTML={{ __html: this.props.css }} />
           {this.props.styleTags}
         </Head>

@@ -213,7 +213,7 @@ class ContactCard extends React.Component {
   };
 
   render() {
-    const { classes, listingAgent, listingID, canApplyOnline } = this.props;
+    const { classes, listingAgent, listingID, cantApplyOnline } = this.props;
     const { profilePhotoURL, name, officeNumber, agentID } = listingAgent;
 
     return (
@@ -246,7 +246,7 @@ class ContactCard extends React.Component {
               className={classnames(
                 classes.defaultBtn,
                 classes.defaultBtnLast,
-                !canApplyOnline && classes.disabledBtn
+                cantApplyOnline && classes.disabledBtn
               )}
             >
               Apply

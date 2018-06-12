@@ -1,7 +1,5 @@
 {
-  "presets": [
-    "next/babel"
-  ],
+  "presets": ["next/babel"],
   "plugins": [
     "transform-decorators-legacy",
     [
@@ -10,6 +8,13 @@
         "ssr": true,
         "displayName": true,
         "preprocess": false
+      }
+    ],
+    [
+      "import",
+      {
+        "libraryName": "antd",
+        "style": "css"
       }
     ]
   ]

@@ -7,12 +7,14 @@ export const SideNavLinkItemWrapper = styled.div`
   font-size: 16px;
   font-family: Roboto;
   font-weight: 500;
-  color: ${props => props.isAdminLinks ? '#fff' : 'inherit'};
+  color: ${props => (props.isAdminLinks ? '#fff' : 'inherit')};
   cursor: pointer;
-  background-color: ${props => props.active ? 'rgba(255, 255, 255, 0.15) !important' : 'initial'};
+  background-color: ${props =>
+    props.active ? 'rgba(255, 255, 255, 0.15) !important' : 'initial'};
   transition: color .3s ease-in-out;
   &:hover {
-    background-color: ${props => props.isAdminLinks ? 'rgba(0, 0, 0, 0.1)' : 'rgba(255, 255, 255, 0.1)'};
+    background-color: ${props =>
+      props.isAdminLinks ? 'rgba(0, 0, 0, 0.1)' : 'rgba(255, 255, 255, 0.1)'};
   }
 }
 `;
@@ -23,11 +25,15 @@ export const SideNavLinkItemAnchor = styled.a`
   flex-direction: column;
   justify-content: center;
   padding-right: 15px;
-  padding-left: ${props => props.isAdminLinks ? '55px' : '65px'};
+  padding-left: ${props => (props.isAdminLinks ? '55px' : '65px')};
   vertical-align: middle;
   display: table-cell;
   min-width: 100%;
   text-decoration: none;
+  color: #fff;
+  &:hover {
+    color: #fff !important;
+  }
 `;
 
 export const SideNavLinkItemDiv = styled.div`
@@ -36,7 +42,7 @@ export const SideNavLinkItemDiv = styled.div`
   flex-direction: column;
   justify-content: center;
   padding-right: 15px;
-  padding-left: ${props => props.isAdminLinks ? '55px' : '65px'};
+  padding-left: ${props => (props.isAdminLinks ? '55px' : '65px')};
   vertical-align: middle;
   display: table-cell;
   min-width: 100%;
@@ -46,8 +52,13 @@ export const SideNavLinkItemDiv = styled.div`
 export const IconWrapper = styled.span`
   margin-right: 35px;
   position: absolute;
-  left: ${props => props.iconLeft ? props.iconLeft : '15px'};
+  left: ${props => (props.iconLeft ? props.iconLeft : '15px')};
   @media screen and (max-width: 600px) {
-    left: ${props => props.isAdminLinks ? props.iconLeftSmall ? props.iconLeftSmall : '8px' : '15px'};
+    left: ${props =>
+      props.isAdminLinks
+        ? props.iconLeftSmall
+          ? props.iconLeftSmall
+          : '8px'
+        : '15px'};
   }
 `;

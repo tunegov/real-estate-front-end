@@ -141,7 +141,7 @@ class Listing extends React.Component {
                 listingAgent={listingAgent}
                 neighborhood={neighborhood}
                 listingID={listing.listingID}
-                canApplyOnline={listing.canApplyOnline}
+                cantApplyOnline={listing.cantApplyOnline}
               />
             </Grid>
 
