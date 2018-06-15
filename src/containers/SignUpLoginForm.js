@@ -20,7 +20,8 @@ class SignUpLoginForm extends React.Component {
   }
 
   onSubmit = async (values, event) => {
-    const formSubmitFuncName = this.props.formType === 'sign-up' ? 'signUpUser' : 'loginUser';
+    const formSubmitFuncName =
+      this.props.formType === 'sign-up' ? 'signUpCustomer' : 'loginUser';
     let res;
 
     try {
@@ -36,6 +37,7 @@ class SignUpLoginForm extends React.Component {
       });
       return;
     }
+
     if (this.state.errorsFromServer) {
       this.setState({
         ...this.state,
@@ -49,14 +51,18 @@ class SignUpLoginForm extends React.Component {
   renderServerErrorMessage = () => (
     <ServerErrorMessage>{`Error: ${
       this.state.errorsFromServer
-      }`}</ServerErrorMessage>
+    }`}</ServerErrorMessage>
   );
 
   render() {
     return (
       <div style={{ padding: '0 20px' }}>
         {this.state.errorsFromServer ? this.renderServerErrorMessage() : null}
-        {React.cloneElement(this.child, { ...this.props, onSubmit: this.onSubmit, onSubmitFailure: this.onSubmitFailure })}
+        {React.cloneElement(this.child, {
+          ...this.props,
+          onSubmit: this.onSubmit,
+          onSubmitFailure: this.onSubmitFailure,
+        })}
       </div>
     );
   }

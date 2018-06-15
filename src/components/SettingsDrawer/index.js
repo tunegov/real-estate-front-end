@@ -116,10 +116,7 @@ class SettingsDrawer extends Component {
       classes,
       drawerOpen,
       toggleDrawer,
-      adminMenuOn,
-      toggleAdminMenu,
       isAdmin,
-      onlyRoleIsAdmin,
       navDrawerOpen,
       toggleNavDrawer,
     } = this.props;
@@ -139,35 +136,25 @@ class SettingsDrawer extends Component {
           onClose={toggleDrawer}
         >
           <div className={classes.scrollableWrapper}>
-            <button className={classes.closeIcon} onClick={this.props.toggleDrawer}>
+            <button
+              className={classes.closeIcon}
+              onClick={this.props.toggleDrawer}
+            >
               <CloseIcon classes={{ root: classes.iconRoot }} />
             </button>
-            <Typography variant="subheading" classes={{ root: classes.header }}>Settings</Typography>
+            <Typography variant="subheading" classes={{ root: classes.header }}>
+              Settings
+            </Typography>
             <Typography variant="caption" classes={{ root: classes.header }}>
               Change your back-end settings here
             </Typography>
             <Divider />
-            <div className={classes.listWrapper}>
-              {isAdmin && !onlyRoleIsAdmin ? (
-                <div className={classes.listItem}>
-                  <div className={classes.listItemLabel}>Admin Menu:</div>
-                  <div className={classes.listItemLabelItem}>
-                    <Switch
-                      color="secondary"
-                      checked={adminMenuOn}
-                      onChange={() => {
-                        if (navDrawerOpen) {
-                          toggleNavDrawer(false);
-                        }
-                        toggleAdminMenu();
-                      }}
-                    />
-                  </div>
-                </div>
-              ) : null}
-            </div>
+            <div className={classes.listWrapper} />
           </div>
-          <button className={classes.settingsBtn} onClick={this.props.toggleDrawer}>
+          <button
+            className={classes.settingsBtn}
+            onClick={this.props.toggleDrawer}
+          >
             <SettingsIcon />
           </button>
         </Drawer>

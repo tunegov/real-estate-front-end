@@ -3,11 +3,11 @@ import { GraphQLClient } from 'graphql-request';
 const endpoint = '/api/graphql';
 
 const query = `
-    mutation registerUser($input: RegisterUserInput!) {
-      registerUser(input: $input) {
-        user {
+    mutation registerCustomer($input: RegisterCustomerInput!) {
+      registerCustomer(input: $input) {
+        customer {
           uuid
-          roles
+          role
         }
         wasSuccessful
         userErrors {
@@ -20,7 +20,7 @@ const query = `
 
 const client = new GraphQLClient(endpoint, { credentials: 'same-origin' });
 
-async function signUpUser(self, values) {
+async function signUpCustomer(self, values) {
   let res;
   let response;
   let error;
@@ -48,18 +48,19 @@ async function signUpUser(self, values) {
   }
 
   const { registerUser: data } = res;
-  const { user } = data;
+  const { customer } = data;
 
   if (!data.wasSuccessful) {
-    finalResponseObj.error =
-      data.userErrors.length ? data.userErrors[0].message : data.otherError;
+    finalResponseObj.error = data.userErrors.length
+      ? data.userErrors[0].message
+      : data.otherError;
   }
 
   if (!finalResponseObj.error) {
-    self.setUser(user);
+    self.setUser(customer);
   }
 
   return finalResponseObj;
 }
 
-export default signUpUser;
+export default signUpCustomer;

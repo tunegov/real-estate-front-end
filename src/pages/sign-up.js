@@ -17,7 +17,10 @@ const Form = fadesUp(SignUpLoginForm);
 class SignUp extends React.Component {
   static getInitialProps({ req }) {
     const isServer = !!req;
-    return { cookieJWTData: req && req.cookies ? req.cookies.jwtData : null, isServer };
+    return {
+      cookieJWTData: req && req.cookies ? req.cookies.jwtData : null,
+      isServer,
+    };
   }
 
   constructor(props) {
@@ -36,7 +39,10 @@ class SignUp extends React.Component {
     return (
       <Layout UserStore={this.store.UserStore}>
         <TransitionGroup>
-          <Form signUpUser={this.store.UserStore.signUpUser} formType="sign-up">
+          <Form
+            signUpCustomer={this.store.UserStore.signUpCustomer}
+            formType="sign-up"
+          >
             <SignUpForm />
           </Form>
         </TransitionGroup>

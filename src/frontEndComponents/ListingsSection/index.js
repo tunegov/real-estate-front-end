@@ -95,7 +95,7 @@ class ListingsSection extends Component {
       } = listingItem;
 
       return (
-        <Grid item xs={12} md={6}>
+        <Grid key={id} item xs={12} md={6}>
           <ListingCard
             featuredPhotoURL={featuredPhotoURL}
             otherPhotoURLs={otherPhotoURLs}

@@ -7,7 +7,7 @@ const query = `
       loginUser(input: $input) {
         user {
           uuid
-          roles
+          role
         }
         wasSuccessful
         userErrors {
@@ -49,8 +49,9 @@ async function loginUser(self, values) {
   const { user } = data;
 
   if (!data.wasSuccessful) {
-    finalResponseObj.error =
-      data.userErrors.length ? data.userErrors[0].message : data.otherError;
+    finalResponseObj.error = data.userErrors.length
+      ? data.userErrors[0].message
+      : data.otherError;
   }
 
   if (!finalResponseObj.error) {

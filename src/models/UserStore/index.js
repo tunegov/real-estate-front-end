@@ -5,7 +5,7 @@ import { JWTPaylodeDecode } from '../../utils/jwtUtils';
 import getCookie from '../../utils/getCookie';
 
 const defaultState = {
-  userRoles: [''],
+  userRole: '',
   isLoggedIn: false,
   uuid: '',
 };
@@ -14,13 +14,13 @@ const userRoles = [
   types.literal('super-admin'),
   types.literal('admin'),
   types.literal('agent'),
-  types.literal('user'),
+  types.literal('customer'),
   types.literal(''),
 ];
 
 const UserStore = types
   .model('User', {
-    userRoles: types.array(types.union(...userRoles)),
+    userRole: types.union(...userRoles),
     isLoggedIn: types.boolean,
     uuid: types.string,
     serverJWTData: types.optional(types.frozen, null),
@@ -29,12 +29,12 @@ const UserStore = types
     setUser: userObject => {
       if (!userObject) return;
       self.isLoggedIn = true;
-      self.userRoles = userObject.roles;
+      self.userRole = userObject.roles;
       self.uuid = userObject.uuid;
     },
     unsetUser: () => {
       self.isLoggedIn = false;
-      self.userRoles = [''];
+      self.userRole = '';
       self.uuid = '';
     },
     afterCreate: async () => {
@@ -56,11 +56,13 @@ const UserStore = types
       }
     },
   }))
-  .views(self => ({
+  .views(self => ({}));
 
-  }));
-
-const Store = types.compose('Store', UserStore, UserEffects);
+const Store = types.compose(
+  'Store',
+  UserStore,
+  UserEffects
+);
 
 function createStore(cookieJWTData) {
   if (!isBrowser && cookieJWTData) {

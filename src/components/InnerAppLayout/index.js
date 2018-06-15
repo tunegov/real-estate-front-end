@@ -60,7 +60,7 @@ const styles = theme => ({
   },
 });
 
-class ClippedDrawer extends React.Component {
+class InnerAppLayout extends React.Component {
   constructor(props) {
     super(props);
 
@@ -75,11 +75,9 @@ class ClippedDrawer extends React.Component {
       menuDialogBoxTitle: null,
       menuDialogBoxLinkItems: null,
     };
-    this.isAdmin = includesAny(this.props.userRoles, ['admin', 'super-admin']);
-    this.onlyRoleIsAdmin = includesAll(
-      ['admin', 'super-admin'],
-      this.props.userRoles
-    );
+
+    const { userRole } = this.props;
+    this.isAdmin = userRole === 'admin' || userRole === 'super-admin';
   }
 
   toggleNavDrawer = state => {
@@ -130,18 +128,16 @@ class ClippedDrawer extends React.Component {
   };
 
   renderSideNav = () => {
-    const { logoutUser, userRoles, adminMenuOn } = this.props;
+    const { logoutUser, userRole } = this.props;
     const currentPath = this.props.router.pathname;
-    const { onlyRoleIsAdmin } = this;
-    if (adminMenuOn || onlyRoleIsAdmin) {
+
+    if (this.isAdmin) {
       return (
         <AdminSideNav
           currentPath={currentPath}
           drawerOpen={this.state.navDrawerOpen}
           toggleDrawer={this.toggleNavDrawer}
           logoutUser={logoutUser}
-          userRoles={userRoles}
-          adminMenuOn={adminMenuOn}
           toggleManagementModal={this.toggleManagementModal}
           toggleMenuDialogBoxOpen={this.toggleMenuDialogBoxOpen}
         />
@@ -153,8 +149,6 @@ class ClippedDrawer extends React.Component {
         drawerOpen={this.state.navDrawerOpen}
         toggleDrawer={this.toggleNavDrawer}
         logoutUser={logoutUser}
-        userRoles={userRoles}
-        adminMenuOn={adminMenuOn}
         toggleMenuDialogBoxOpen={this.toggleMenuDialogBoxOpen}
       />
     );
@@ -164,9 +158,7 @@ class ClippedDrawer extends React.Component {
     const {
       classes,
       logoutUser,
-      userRoles,
-      adminMenuOn,
-      toggleAdminMenu,
+      userRole,
       toggleFullScreenLoader,
     } = this.props;
     const currentPath = this.props.router.pathname;
@@ -191,7 +183,7 @@ class ClippedDrawer extends React.Component {
             currentPath={currentPath}
             logoutUser={logoutUser}
             toggleDrawer={this.toggleNavDrawer}
-            adminMenuOn={adminMenuOn}
+            isAdmin={isAdmin}
           />
           {this.renderSideNav()}
           <main className={classes.content} id="inner-app-content">
@@ -206,12 +198,9 @@ class ClippedDrawer extends React.Component {
               </button>
               <SettingsDrawer
                 isAdmin={isAdmin}
-                onlyRoleIsAdmin={this.onlyRoleIsAdmin}
-                adminMenuOn={adminMenuOn}
                 toggleDrawer={this.toggleSettingsDrawer}
                 toggleNavDrawer={this.toggleNavDrawer}
                 drawerOpen={this.state.settingsDrawerOpen}
-                toggleAdminMenu={toggleAdminMenu}
                 navDrawerOpen={this.state.navDrawerOpen}
                 toggleFullScreenLoader={toggleFullScreenLoader}
                 managementModalCurrentType={
@@ -245,4 +234,4 @@ class ClippedDrawer extends React.Component {
   }
 }
 
-export default withRouter(withStyles(styles)(ClippedDrawer));
+export default withRouter(withStyles(styles)(InnerAppLayout));

@@ -25,8 +25,9 @@ class ApplicationContainer extends React.Component {
     paymentFormSubmitInProgress: false,
     paymentModalVisible: false,
     cardElementComplete: false,
-    paymentFormApi: null,
   };
+
+  paymentFormApi = null;
 
   onSubmitApplication = formValues => {
     this.setState({
@@ -38,7 +39,7 @@ class ApplicationContainer extends React.Component {
   onSubmitPaymentForm = e => {
     if (e.preventDefault) e.preventDefault();
 
-    this.state.paymentFormApi.validateFields(async (err, values) => {
+    this.paymentFormApi.validateFields(async (err, values) => {
       if (!this.state.cardElementComplete) return;
       if (this.state.paymentFormSubmitInProgress) return;
 
@@ -95,9 +96,7 @@ class ApplicationContainer extends React.Component {
   };
 
   getPaymentFormApi = paymentFormApi => {
-    this.setState({
-      paymentFormApi,
-    });
+    this.paymentFormApi = paymentFormApi;
   };
 
   render() {

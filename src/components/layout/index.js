@@ -41,10 +41,8 @@ class Layout extends Component {
   }
 
   render() {
-    const { logoutUser: logout, userRoles } = this.props.UserStore;
+    const { logoutUser: logout, userRole } = this.props.UserStore;
     const {
-      adminMenuOn,
-      toggleAdminMenu,
       fullScreenLoaderOn,
       fullScreenLoaderText,
       toggleFullScreenLoader,
@@ -87,9 +85,7 @@ class Layout extends Component {
         <ThemeProvider theme={themeStyles}>
           <InnerAppLayout
             logoutUser={logoutUser}
-            userRoles={userRoles}
-            adminMenuOn={adminMenuOn}
-            toggleAdminMenu={toggleAdminMenu}
+            userRole={userRole}
             toggleFullScreenLoader={toggleFullScreenLoader}
           >
             {this.props.children}
