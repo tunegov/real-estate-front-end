@@ -62,15 +62,26 @@ class Layout extends Component {
     return (
       <div style={{ top: 0, bottom: 0, left: 0, right: 0 }}>
         <Head>
-          <title>{this.props.title ? this.props.title : 'Real Estate App'}</title>
+          <title>
+            {this.props.title ? this.props.title : 'Real Estate App'}
+          </title>
           {/* Import CSS for nprogress */}
-          <link rel="stylesheet" type="text/css" href="/static/nprogress.css" />
-          <link href="https://fonts.googleapis.com/css?family=Alegreya|Alegreya+Sans" rel="stylesheet" />
+          <link
+            rel="stylesheet"
+            type="text/css"
+            href="/static/css/vendor/nprogress.css"
+          />
 
-          <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" />
-          <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+          <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/css?family=Roboto:300,400,500"
+          />
+          <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/icon?family=Material+Icons"
+          />
 
-          <style dangerouslySetInnerHTML={{ __html: globalStyles }}></style>
+          <style dangerouslySetInnerHTML={{ __html: globalStyles }} />
         </Head>
         {/* <DevTools position={{ top: 0, left: 30 }} /> */}
         <ThemeProvider theme={themeStyles}>

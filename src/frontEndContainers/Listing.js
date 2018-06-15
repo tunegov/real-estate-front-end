@@ -20,6 +20,7 @@ class ListingContainer extends React.Component {
       listing: this.createListing(),
       listingAgent: this.createListingAgent(),
       relatedListings: this.createRelatedListings(),
+      contactAgentModalOpen: false,
     };
   }
   createRelatedListings = () => [
@@ -229,6 +230,23 @@ class ListingContainer extends React.Component {
     agentID: chance.integer({ min: 100000, max: 999999 }),
   });
 
+  toggleContactAgentModalOpen = () => {
+    this.setState({
+      contactAgentModalOpen: true,
+    });
+  };
+
+  toggleContactAgentModalClosed = () => {
+    this.setState({
+      contactAgentModalOpen: false,
+    });
+  };
+
+  onSubmitContactAgentForm = values => {
+    console.log('Contact agent form submitted');
+    console.log(values);
+  };
+
   render() {
     const { listingID } = this.props;
     return (
@@ -237,6 +255,10 @@ class ListingContainer extends React.Component {
         listingAgent={this.state.listingAgent}
         listingID={this.state.listing.id}
         relatedListings={this.state.relatedListings}
+        contactAgentModalOpen={this.state.contactAgentModalOpen}
+        toggleContactAgentModalOpen={this.toggleContactAgentModalOpen}
+        toggleContactAgentModalClosed={this.toggleContactAgentModalClosed}
+        onSubmitContactAgentForm={this.onSubmitContactAgentForm}
       />
     );
   }

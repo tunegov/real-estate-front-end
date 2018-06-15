@@ -9,6 +9,7 @@ import DescriptionSection from './DescriptionSection';
 import AmenitiesSection from './AmenitiesSection';
 import MapSection from './MapSection';
 import ListingsSection from './ListingsSection';
+import ContactAgentModal from './ContactAgentModal';
 
 const styles = theme => ({
   root: {
@@ -20,9 +21,9 @@ const styles = theme => ({
     flexWrap: 'wrap',
     justifyContent: 'space-around',
     overflow: 'hidden',
-    backgroundColor: theme.palette.background.paper,
     height: '400px',
     width: '100%',
+    backgroundColor: '#000',
   },
   gridList: {
     display: 'flex',
@@ -118,7 +119,16 @@ class Listing extends React.Component {
   };
 
   render() {
-    const { classes, listing, listingAgent, relatedListings } = this.props;
+    const {
+      classes,
+      listing,
+      listingAgent,
+      relatedListings,
+      contactAgentModalOpen,
+      toggleContactAgentModalOpen,
+      toggleContactAgentModalClosed,
+      onSubmitContactAgentForm,
+    } = this.props;
     const { description, neighborhood } = listing;
     const { renderListingImages } = this;
 
@@ -142,6 +152,7 @@ class Listing extends React.Component {
                 neighborhood={neighborhood}
                 listingID={listing.listingID}
                 cantApplyOnline={listing.cantApplyOnline}
+                toggleContactAgentModalOpen={toggleContactAgentModalOpen}
               />
             </Grid>
 
@@ -173,6 +184,15 @@ class Listing extends React.Component {
           onClickNext={this.onClickNext}
           currentImage={this.state.currentLightBoxIndex}
           backdropClosesModal
+        />
+
+        <ContactAgentModal
+          contactAgentModalOpen={contactAgentModalOpen}
+          toggleContactAgentModalOpen={toggleContactAgentModalOpen}
+          toggleContactAgentModalClosed={toggleContactAgentModalClosed}
+          agentName={listingAgent.name}
+          listingAddress={listing.address}
+          onSubmit={onSubmitContactAgentForm}
         />
       </div>
     );

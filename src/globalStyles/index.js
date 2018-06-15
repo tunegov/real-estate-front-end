@@ -14,6 +14,7 @@ const globalStyles = `
     display: flex;
     min-width: 100%;
     max-width: 100%;
+    max-height: 100%;
     position: absolute;
   }
   body > :first-child > #__next {

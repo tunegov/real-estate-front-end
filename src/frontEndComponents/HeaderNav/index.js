@@ -75,9 +75,6 @@ class HeaderNav extends React.Component {
       <HeaderNavLink route="new-developments" href="/new-developments" prefetch>
         <NavAnchor>New Developments</NavAnchor>
       </HeaderNavLink>
-      <HeaderNavLink route="roommates" href="/roommates" prefetch>
-        <NavAnchor>Roommates</NavAnchor>
-      </HeaderNavLink>
       <HeaderNavLink route="about" href="/about" prefetch>
         <NavAnchor>About</NavAnchor>
       </HeaderNavLink>
@@ -87,7 +84,11 @@ class HeaderNav extends React.Component {
   render() {
     const { headerBoxShadowOff } = this.props;
     return (
-      <HeaderWrapper id="header-wrapper" isApp={this.props.isApp} headerBoxShadowOff>
+      <HeaderWrapper
+        id="header-wrapper"
+        isApp={this.props.isApp}
+        headerBoxShadowOff
+      >
         <Logo>
           <Link route="home" prefetch>
             <LogoAnchor>Real Estate App Logo</LogoAnchor>

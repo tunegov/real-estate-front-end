@@ -121,6 +121,12 @@ const styles = theme => ({
       height: '45px',
     },
   },
+  facebook: {
+    color: '#3B5998',
+  },
+  twitter: {
+    color: '#1da1f2',
+  },
 });
 
 @withStyles(styles)
@@ -213,7 +219,13 @@ class ContactCard extends React.Component {
   };
 
   render() {
-    const { classes, listingAgent, listingID, cantApplyOnline } = this.props;
+    const {
+      classes,
+      listingAgent,
+      listingID,
+      cantApplyOnline,
+      toggleContactAgentModalOpen,
+    } = this.props;
     const { profilePhotoURL, name, officeNumber, agentID } = listingAgent;
 
     return (
@@ -240,7 +252,12 @@ class ContactCard extends React.Component {
           </div>
         </div>
         <div className={classes.btnsWrapper}>
-          <button className={classes.defaultBtn}>Contact Agent</button>
+          <button
+            className={classes.defaultBtn}
+            onClick={toggleContactAgentModalOpen}
+          >
+            Contact Agent
+          </button>
           <Link route="apply" params={{ listingID }}>
             <a
               className={classnames(
@@ -255,18 +272,26 @@ class ContactCard extends React.Component {
         </div>
         <div className={classes.shareTitle}>Share</div>
         <div className={classes.socialMediaWrapper}>
-          <div className={classes.socialMediaItemsWrapper}>
+          <div
+            className={classnames(
+              classes.socialMediaItemsWrapper,
+              classes.facebook
+            )}
+          >
             <button
               onClick={this.onFacebookShareClick}
               className={classes.socialMediaItemWrapper}
             >
-              <FaFacebook />
+              <FaFacebook className={classes.facebook} />
             </button>
             <button
               onClick={this.onTwitterShareClick}
-              className={classes.socialMediaItemWrapper}
+              className={classnames(
+                classes.socialMediaItemWrapper,
+                classes.twittter
+              )}
             >
-              <FaTwitter />
+              <FaTwitter className={classes.twitter} />
             </button>
             <Tooltip
               title={this.state.tooltipOpen ? 'Copied!' : 'Copy'}

@@ -101,6 +101,7 @@
     "react-signature-canvas": "^1.0.0-alpha.1",
     "react-sizes": "^1.0.3",
     "react-spinners": "^0.3.2",
+    "react-stripe-elements": "^2.0.0",
     "react-textarea-autosize": "^6.1.0",
     "react-toggle-button": "^2.2.0",
     "react-tooltip": "^3.5.0",

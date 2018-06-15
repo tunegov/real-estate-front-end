@@ -45,7 +45,7 @@ export const adminSideLinks = [
     iconFontSize: 24,
   },
   {
-    name: 'Users',
+    name: 'Customers',
     type: 'management',
     subType: 'users',
     routeBase: 'users',

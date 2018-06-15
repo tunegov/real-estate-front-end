@@ -77,7 +77,7 @@ class AppTopNav extends Component {
     const pathArray = currentPath.split('/');
     const type = pathArray[pathArray.length - 1];
     const path =
-      pathArray[pathArray.length - 1] === 'view' || 'new'
+      type === 'view' || type === 'new'
         ? type + ' ' + pathArray[pathArray.length - 2]
         : pathArray[pathArray.length - 1];
 

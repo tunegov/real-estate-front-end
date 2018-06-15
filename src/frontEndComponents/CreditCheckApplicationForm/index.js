@@ -85,15 +85,10 @@ class ApplicationForm extends React.Component {
   state = {
     signatureURL: '',
     signatureError: false,
-    photoIDFileList: [],
-    paystub1FileList: [],
-    paystub2FileList: [],
-    bankStatment1FileList: [],
-    bankStatment2FileList: [],
-    taxReturnFileList: [],
-    employmentLetterFileList: [],
-    additionalFilesFileList: [],
   };
+
+  formSubmitted = false;
+
   componentDidMount() {
     // To disabled submit button at the beginning.
     this.props.form.validateFields();
@@ -102,7 +97,10 @@ class ApplicationForm extends React.Component {
   handleSubmit = e => {
     const { onSubmit } = this.props;
     e.preventDefault();
+
     this.props.form.validateFields((err, values) => {
+      this.formSubmitted = true;
+
       if (!this.state.signatureURL) {
         this.setState({
           signatureError: true,
@@ -111,8 +109,6 @@ class ApplicationForm extends React.Component {
       }
 
       if (!err) {
-        console.log('Received values of form: ', values);
-
         if (this.state.signatureError) {
           this.setState({
             signatureError: false,
@@ -129,6 +125,12 @@ class ApplicationForm extends React.Component {
     });
   };
 
+  agentsOptions = this.props.listingAgents.map((agent, i) => (
+    <Option key={i} value={agent}>
+      {agent}
+    </Option>
+  ));
+
   render() {
     const { classes } = this.props;
     const {
@@ -140,27 +142,40 @@ class ApplicationForm extends React.Component {
     } = this.props.form;
 
     const firstNameError =
-      isFieldTouched('firstName') && getFieldError('firstName');
+      (isFieldTouched('firstName') || this.formSubmitted) &&
+      getFieldError('firstName');
     const lastNameError =
-      isFieldTouched('lastName') && getFieldError('lastName');
-    const emailError = isFieldTouched('email') && getFieldError('email');
+      (isFieldTouched('lastName') || this.formSubmitted) &&
+      getFieldError('lastName');
+    const emailError =
+      (isFieldTouched('email') || this.formSubmitted) && getFieldError('email');
     const phoneNumberError =
-      isFieldTouched('phoneNumber') && getFieldError('phoneNumber');
+      (isFieldTouched('phoneNumber') || this.formSubmitted) &&
+      getFieldError('phoneNumber');
     const dateOfBirthError =
-      isFieldTouched('dateOfBirth') && getFieldError('dateOfBirth');
+      (isFieldTouched('dateOfBirth') || this.formSubmitted) &&
+      getFieldError('dateOfBirth');
     const socialSecurityNumError =
-      isFieldTouched('socialSecurityNum') && getFieldError('socialSecurityNum');
+      (isFieldTouched('socialSecurityNum') || this.formSubmitted) &&
+      getFieldError('socialSecurityNum');
     const applicantStreetAddressError =
-      isFieldTouched('applicantStreetAddress') &&
+      (isFieldTouched('applicantStreetAddress') || this.formSubmitted) &&
       getFieldError('applicantStreetAddress');
     const applicantCityError =
-      isFieldTouched('applicantCity') && getFieldError('applicantCity');
+      (isFieldTouched('applicantCity') || this.formSubmitted) &&
+      getFieldError('applicantCity');
     const applicantStateError =
-      isFieldTouched('applicantState') && getFieldError('applicantState');
+      (isFieldTouched('applicantState') || this.formSubmitted) &&
+      getFieldError('applicantState');
     const applicantZipCodeError =
-      isFieldTouched('applicantZipCode') && getFieldError('applicantZipCode');
+      (isFieldTouched('applicantZipCode') || this.formSubmitted) &&
+      getFieldError('applicantZipCode');
     const applicantCountryError =
-      isFieldTouched('applicantCountry') && getFieldError('applicantCountry');
+      (isFieldTouched('applicantCountry') || this.formSubmitted) &&
+      getFieldError('applicantCountry');
+
+    const agentError =
+      (isFieldTouched('agent') || this.formSubmitted) && getFieldError('agent');
 
     return (
       <div className={classes.root}>
@@ -316,6 +331,37 @@ class ApplicationForm extends React.Component {
                     className="ant-input"
                     placeholder="SSN"
                   />
+                )}
+              </FormItem>
+            </Grid>
+
+            <Grid item xs={12}>
+              <FormItem
+                validateStatus={agentError ? 'error' : ''}
+                help={agentError || ''}
+                label="My Agent"
+              >
+                {getFieldDecorator('agent', {
+                  rules: [
+                    {
+                      required: true,
+                      message: "Please input your agent's name!",
+                    },
+                  ],
+                })(
+                  <Select
+                    autocomplete="off"
+                    showSearch
+                    optionFilterProp="children"
+                    filterOption={(input, option) =>
+                      option.props.children
+                        .toLowerCase()
+                        .indexOf(input.toLowerCase()) >= 0
+                    }
+                    placeholder="My Agent"
+                  >
+                    {this.agentsOptions}
+                  </Select>
                 )}
               </FormItem>
             </Grid>
@@ -510,29 +556,28 @@ class ApplicationForm extends React.Component {
               )}
 
             <Grid item xs={12}>
-              {this.sigCanvas &&
-                !this.sigCanvas.isEmpty() && (
-                  <div className={classes.signatureBtnsWrapper}>
-                    <FormItem>
-                      <Button
-                        type="danger"
-                        onClick={() => {
-                          if (this.sigCanvas) {
-                            this.sigCanvas.clear();
-                          }
+              {this.state.signatureURL && (
+                <div className={classes.signatureBtnsWrapper}>
+                  <FormItem>
+                    <Button
+                      type="danger"
+                      onClick={() => {
+                        if (this.sigCanvas) {
+                          this.sigCanvas.clear();
+                        }
 
-                          if (this.state.signatureURL) {
-                            this.setState({
-                              signatureURL: '',
-                            });
-                          }
-                        }}
-                      >
-                        Clear
-                      </Button>
-                    </FormItem>
-                  </div>
-                )}
+                        if (this.state.signatureURL) {
+                          this.setState({
+                            signatureURL: '',
+                          });
+                        }
+                      }}
+                    >
+                      Clear
+                    </Button>
+                  </FormItem>
+                </div>
+              )}
               {!this.state.signatureURL && (
                 <div className={classes.signatureBtnsWrapper}>
                   <FormItem>
@@ -556,11 +601,7 @@ class ApplicationForm extends React.Component {
 
             <Grid item xs={12}>
               <FormItem>
-                <Button
-                  type="primary"
-                  htmlType="submit"
-                  disabled={hasErrors(getFieldsError())}
-                >
+                <Button type="primary" htmlType="submit">
                   Submit
                 </Button>
               </FormItem>

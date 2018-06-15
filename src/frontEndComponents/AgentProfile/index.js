@@ -169,6 +169,12 @@ const styles = theme => ({
       boxShadow: `inset ${theme.shadows[1]}`,
     },
   },
+  facebook: {
+    color: '#3B5998',
+  },
+  twitter: {
+    color: '#1da1f2',
+  },
 });
 
 @withStyles(styles)
@@ -250,7 +256,7 @@ class Profile extends Component {
                       target="_blank"
                       className={classes.socialMediaItemWrapper}
                     >
-                      <FaFacebook />
+                      <FaFacebook className={classes.facebook} />
                     </a>
                   ) : null}
                   {twitterURL ? (
@@ -259,7 +265,7 @@ class Profile extends Component {
                       target="_blank"
                       className={classes.socialMediaItemWrapper}
                     >
-                      <FaTwitter />
+                      <FaTwitter className={classes.twitter} />
                     </a>
                   ) : null}
                   {instagramURL ? (

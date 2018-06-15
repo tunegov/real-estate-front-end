@@ -31,6 +31,8 @@ const styles = theme => ({
     padding: theme.spacing.unit * 3,
     minWidth: 0, // So the Typography noWrap works
     overflow: 'auto',
+    backgroundImage: 'url("/static/backgrounds/background2.svg")',
+    backgroundRepeat: 'repeat',
   },
   toolbar: theme.mixins.toolbar,
   topToolbar: {
@@ -38,6 +40,8 @@ const styles = theme => ({
     justifyContent: 'center',
   },
   settingsBtn: {
+    display: 'flex',
+    justifyContent: 'center',
     position: 'fixed',
     bottom: '10px',
     right: '0',

@@ -1,6 +1,7 @@
 import React from 'react';
 import { observer } from 'mobx-react';
 import Chance from 'chance';
+import { injectStripe } from 'react-stripe-elements';
 import Application from '../frontEndComponents/Application';
 
 const chance = new Chance();
@@ -21,11 +22,51 @@ class ApplicationContainer extends React.Component {
     listingAgents: createFakeAgents(30),
     formValues: null,
     isFullApplication: true,
+    paymentFormSubmitInProgress: false,
+    paymentModalVisible: false,
+    cardElementComplete: false,
+    paymentFormApi: null,
   };
 
-  onSubmit = formValues => {
+  onSubmitApplication = formValues => {
     this.setState({
       formValues,
+      paymentModalVisible: true,
+    });
+  };
+
+  onSubmitPaymentForm = e => {
+    if (e.preventDefault) e.preventDefault();
+
+    this.state.paymentFormApi.validateFields(async (err, values) => {
+      if (!this.state.cardElementComplete) return;
+      if (this.state.paymentFormSubmitInProgress) return;
+
+      if (!err) {
+        this.setState({ paymentFormSubmitInProgress: true });
+
+        console.log(values);
+
+        const {
+          applicantCountry,
+          cardOwnerName,
+          paymentAddress,
+          paymentAddressCity,
+          paymentAddressState,
+        } = values;
+
+        console.log(this.state.formValues);
+
+        const stripeToken = await this.props.stripe.createToken({
+          name: cardOwnerName,
+          address_line1: paymentAddress,
+          address_city: paymentAddressCity,
+          address_state: paymentAddressState,
+          address_country: applicantCountry,
+        });
+
+        console.log(stripeToken);
+      }
     });
   };
 
@@ -41,18 +82,43 @@ class ApplicationContainer extends React.Component {
     }
   };
 
+  handleClosePaymentModal = () => {
+    this.setState({
+      paymentModalVisible: false,
+    });
+  };
+
+  cardElementOnChange = ({ complete }) => {
+    this.setState({
+      cardElementComplete: complete,
+    });
+  };
+
+  getPaymentFormApi = paymentFormApi => {
+    this.setState({
+      paymentFormApi,
+    });
+  };
+
   render() {
-    const { listingID, listingAgents } = this.props;
+    const { listingID, listingAgents, submit } = this.props;
     return (
       <Application
         listingAgents={this.state.listingAgents}
-        onSubmit={this.onSubmit}
+        onSubmit={this.onSubmitApplication}
+        onSubmitPaymentForm={this.onSubmitPaymentForm}
         isFullApplication={this.state.isFullApplication}
         setFullApplication={this.setFullApplication}
         setCreditCheckApplication={this.setCreditCheckApplication}
+        paymentFormSubmitInProgress={this.state.paymentFormSubmitInProgress}
+        paymentModalVisible={this.state.paymentModalVisible}
+        cardElementOnChange={this.cardElementOnChange}
+        cardElementComplete={this.state.cardElementComplete}
+        handleClosePaymentModal={this.handleClosePaymentModal}
+        getPaymentFormApi={this.getPaymentFormApi}
       />
     );
   }
 }
 
-export default ApplicationContainer;
+export default injectStripe(ApplicationContainer);

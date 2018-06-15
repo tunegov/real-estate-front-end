@@ -20,6 +20,7 @@ import {
 import InputMask from 'react-input-mask';
 import SignatureCanvas from 'react-signature-canvas';
 import { states, countries } from '../../utils/constants';
+import legalWording from './legal';
 import '../../static/css/property-application.css';
 
 const { TabPane } = Tabs;
@@ -63,6 +64,9 @@ const styles = theme => ({
   redColor: {
     color: '#f5222d',
   },
+  legalSection: {
+    fontSize: '.9rem',
+  },
 });
 
 const FormItem = Form.Item;
@@ -98,6 +102,9 @@ class ApplicationForm extends React.Component {
     employmentLetterFileList: [],
     additionalFilesFileList: [],
   };
+
+  formSubmitted = false;
+
   componentDidMount() {
     // To disabled submit button at the beginning.
     this.props.form.validateFields();
@@ -106,15 +113,22 @@ class ApplicationForm extends React.Component {
   handleSubmit = e => {
     const { onSubmit } = this.props;
     e.preventDefault();
+
     this.props.form.validateFields((err, values) => {
-      if (!this.state.signatureURL) {
+      this.formSubmitted = true;
+
+      if (!this.state.signatureURL && !this.state.photoIDFileList.length) {
+        this.setState({
+          signatureError: true,
+          photoIDUploadError: true,
+        });
+        return;
+      } else if (!this.state.signatureURL) {
         this.setState({
           signatureError: true,
         });
         return;
-      }
-
-      if (!this.state.photoIDFileList.length) {
+      } else if (!this.state.photoIDFileList.length) {
         this.setState({
           photoIDUploadError: true,
         });
@@ -122,17 +136,9 @@ class ApplicationForm extends React.Component {
       }
 
       if (!err) {
-        console.log('Received values of form: ', values);
-
         if (this.state.signatureError) {
           this.setState({
             signatureError: false,
-          });
-        }
-
-        if (this.state.photoIDUploadError) {
-          this.setState({
-            photoIDUploadError: false,
           });
         }
 
@@ -154,8 +160,10 @@ class ApplicationForm extends React.Component {
     });
   };
 
-  agentsOptions = this.props.listingAgents.map(agent => (
-    <Option value={agent}>{agent}</Option>
+  agentsOptions = this.props.listingAgents.map((agent, i) => (
+    <Option key={i} value={agent}>
+      {agent}
+    </Option>
   ));
 
   photoIDUploadBtnProps = () => ({
@@ -169,11 +177,21 @@ class ApplicationForm extends React.Component {
           photoIDFileList: newFileList,
         };
       });
+      this.setState(() => ({
+        photoIDUploadError: true,
+      }));
     },
     beforeUpload: file => {
       this.setState(({ photoIDFileList }) => ({
         photoIDFileList: [...photoIDFileList, file],
       }));
+
+      if (this.state.photoIDUploadError) {
+        this.setState(() => ({
+          photoIDUploadError: false,
+        }));
+      }
+
       return false;
     },
     fileList: this.state.photoIDFileList,
@@ -326,6 +344,24 @@ class ApplicationForm extends React.Component {
     fileList: this.state.additionalFilesFileList,
   });
 
+  submitBtnDisabled = () => {
+    const { getFieldsError } = this.props.form;
+
+    if (this.state.photoIDFileList[0] && this.state.photoIDUploadError) {
+      return true;
+    }
+
+    if (hasErrors(getFieldsError())) {
+      return true;
+    }
+
+    if (!this.state.signatureURL) {
+      return true;
+    }
+
+    return false;
+  };
+
   render() {
     const { classes } = this.props;
     const {
@@ -337,134 +373,162 @@ class ApplicationForm extends React.Component {
     } = this.props.form;
 
     const firstNameError =
-      isFieldTouched('firstName') && getFieldError('firstName');
+      (isFieldTouched('firstName') || this.formSubmitted) &&
+      getFieldError('firstName');
     const lastNameError =
-      isFieldTouched('lastName') && getFieldError('lastName');
-    const emailError = isFieldTouched('email') && getFieldError('email');
+      (isFieldTouched('lastName') || this.formSubmitted) &&
+      getFieldError('lastName');
+    const emailError =
+      (isFieldTouched('email') || this.formSubmitted) && getFieldError('email');
     const phoneNumberError =
-      isFieldTouched('phoneNumber') && getFieldError('phoneNumber');
+      (isFieldTouched('phoneNumber') || this.formSubmitted) &&
+      getFieldError('phoneNumber');
     const dateOfBirthError =
-      isFieldTouched('dateOfBirth') && getFieldError('dateOfBirth');
+      (isFieldTouched('dateOfBirth') || this.formSubmitted) &&
+      getFieldError('dateOfBirth');
     const socialSecurityNumError =
-      isFieldTouched('socialSecurityNum') && getFieldError('socialSecurityNum');
+      (isFieldTouched('socialSecurityNum') || this.formSubmitted) &&
+      getFieldError('socialSecurityNum');
     const applicantStreetAddressError =
-      isFieldTouched('applicantStreetAddress') &&
+      (isFieldTouched('applicantStreetAddress') || this.formSubmitted) &&
       getFieldError('applicantStreetAddress');
     const applicantCityError =
-      isFieldTouched('applicantCity') && getFieldError('applicantCity');
+      (isFieldTouched('applicantCity') || this.formSubmitted) &&
+      getFieldError('applicantCity');
     const applicantStateError =
-      isFieldTouched('applicantState') && getFieldError('applicantState');
+      (isFieldTouched('applicantState') || this.formSubmitted) &&
+      getFieldError('applicantState');
     const applicantZipCodeError =
-      isFieldTouched('applicantZipCode') && getFieldError('applicantZipCode');
+      (isFieldTouched('applicantZipCode') || this.formSubmitted) &&
+      getFieldError('applicantZipCode');
     const applicantCountryError =
-      isFieldTouched('applicantCountry') && getFieldError('applicantCountry');
+      (isFieldTouched('applicantCountry') || this.formSubmitted) &&
+      getFieldError('applicantCountry');
     const applicantLandlordError =
-      isFieldTouched('applicantLandlord') && getFieldError('applicantLandlord');
+      (isFieldTouched('applicantLandlord') || this.formSubmitted) &&
+      getFieldError('applicantLandlord');
     const applicantLandlordPhoneNumberError =
-      isFieldTouched('applicantLandlordPhoneNumber') &&
+      (isFieldTouched('applicantLandlordPhoneNumber') || this.formSubmitted) &&
       getFieldError('applicantLandlordPhoneNumber');
     const currentEmployer1Error =
-      isFieldTouched('currentEmployer1') && getFieldError('currentEmployer1');
+      (isFieldTouched('currentEmployer1') || this.formSubmitted) &&
+      getFieldError('currentEmployer1');
     const currentJobTitle1Error =
-      isFieldTouched('currentJobTitle1') && getFieldError('currentJobTitle1');
+      (isFieldTouched('currentJobTitle1') || this.formSubmitted) &&
+      getFieldError('currentJobTitle1');
     const currentEmployerAddress1Error =
-      isFieldTouched('currentEmployerAddress1') &&
+      (isFieldTouched('currentEmployerAddress1') || this.formSubmitted) &&
       getFieldError('currentEmployerAddress1');
     const currentEmployerPhoneNumber1Error =
-      isFieldTouched('currentEmployerPhoneNumber1') &&
+      (isFieldTouched('currentEmployerPhoneNumber1') || this.formSubmitted) &&
       getFieldError('currentEmployerPhoneNumber1');
     const currentEmployerEmploymentLength1Error =
-      isFieldTouched('currentEmployerEmploymentLength1') &&
+      (isFieldTouched('currentEmployerEmploymentLength1') ||
+        this.formSubmitted) &&
       getFieldError('currentEmployerEmploymentLength1');
     const currentEmployerContactName1Error =
-      isFieldTouched('currentEmployerContactName1') &&
+      (isFieldTouched('currentEmployerContactName1') || this.formSubmitted) &&
       getFieldError('currentEmployerContactName1');
     const currentEmployerContactNumber1Error =
-      isFieldTouched('currentEmployerContactNumber1') &&
+      (isFieldTouched('currentEmployerContactNumber1') || this.formSubmitted) &&
       getFieldError('currentEmployerContactNumber1');
     const currentEmployerAnnualCompensation1Error =
-      isFieldTouched('currentEmployerAnnualCompensation1') &&
+      (isFieldTouched('currentEmployerAnnualCompensation1') ||
+        this.formSubmitted) &&
       getFieldError('currentEmployerAnnualCompensation1');
     const currentEmployerContactEmail1Error =
-      isFieldTouched('currentEmployerContactEmail1') &&
+      (isFieldTouched('currentEmployerContactEmail1') || this.formSubmitted) &&
       getFieldError('currentEmployerContactEmail1');
 
     const currentEmployer2Error =
-      isFieldTouched('currentEmployer2') && getFieldError('currentEmployer2');
+      (isFieldTouched('currentEmployer2') || this.formSubmitted) &&
+      getFieldError('currentEmployer2');
     const currentJobTitle2Error =
-      isFieldTouched('currentJobTitle2') && getFieldError('currentJobTitle2');
+      (isFieldTouched('currentJobTitle2') || this.formSubmitted) &&
+      getFieldError('currentJobTitle2');
     const currentEmployerAddress2Error =
-      isFieldTouched('currentEmployerAddress2') &&
+      (isFieldTouched('currentEmployerAddress2') || this.formSubmitted) &&
       getFieldError('currentEmployerAddress2');
     const currentEmployerPhoneNumber2Error =
-      isFieldTouched('currentEmployerPhoneNumber2') &&
+      (isFieldTouched('currentEmployerPhoneNumber2') || this.formSubmitted) &&
       getFieldError('currentEmployerPhoneNumber2');
     const currentEmployerEmploymentLength2Error =
-      isFieldTouched('currentEmployerEmploymentLength2') &&
+      (isFieldTouched('currentEmployerEmploymentLength2') ||
+        this.formSubmitted) &&
       getFieldError('currentEmployerEmploymentLength2');
     const currentEmployerContactName2Error =
-      isFieldTouched('currentEmployerContactName2') &&
+      (isFieldTouched('currentEmployerContactName2') || this.formSubmitted) &&
       getFieldError('currentEmployerContactName2');
     const currentEmployerContactNumber2Error =
-      isFieldTouched('currentEmployerContactNumber2') &&
+      (isFieldTouched('currentEmployerContactNumber2') || this.formSubmitted) &&
       getFieldError('currentEmployerContactNumber2');
     const currentEmployerAnnualCompensation2Error =
-      isFieldTouched('currentEmployerAnnualCompensation2') &&
+      (isFieldTouched('currentEmployerAnnualCompensation2') ||
+        this.formSubmitted) &&
       getFieldError('currentEmployerAnnualCompensation2');
     const currentEmployerContactEmail2Error =
-      isFieldTouched('currentEmployerContactEmail2') &&
+      (isFieldTouched('currentEmployerContactEmail2') || this.formSubmitted) &&
       getFieldError('currentEmployerContactEmail2');
 
     const previousEmployerError =
-      isFieldTouched('previousEmployer') && getFieldError('previousEmployer');
+      (isFieldTouched('previousEmployer') || this.formSubmitted) &&
+      getFieldError('previousEmployer');
     const previousJobTitleError =
-      isFieldTouched('previousJobTitle') && getFieldError('previousJobTitle');
+      (isFieldTouched('previousJobTitle') || this.formSubmitted) &&
+      getFieldError('previousJobTitle');
     const previousEmployerAddressError =
-      isFieldTouched('previousEmployerAddress') &&
+      (isFieldTouched('previousEmployerAddress') || this.formSubmitted) &&
       getFieldError('previousEmployerAddress');
     const previousEmployerPhoneNumberError =
-      isFieldTouched('previousEmployerPhoneNumber') &&
+      (isFieldTouched('previousEmployerPhoneNumber') || this.formSubmitted) &&
       getFieldError('previousEmployerPhoneNumber');
     const previousEmployerEmploymentLengthError =
-      isFieldTouched('previousEmployerEmploymentLength') &&
+      (isFieldTouched('previousEmployerEmploymentLength') ||
+        this.formSubmitted) &&
       getFieldError('previousEmployerEmploymentLength');
     const previousEmployerContactNameError =
-      isFieldTouched('previousEmployerContactName') &&
+      (isFieldTouched('previousEmployerContactName') || this.formSubmitted) &&
       getFieldError('previousEmployerContactName');
     const previousEmployerContactNumberError =
-      isFieldTouched('previousEmployerContactNumber') &&
+      (isFieldTouched('previousEmployerContactNumber') || this.formSubmitted) &&
       getFieldError('previousEmployerContactNumber');
     const previousEmployerAnnualCompensationError =
-      isFieldTouched('previousEmployerAnnualCompensation') &&
+      (isFieldTouched('previousEmployerAnnualCompensation') ||
+        this.formSubmitted) &&
       getFieldError('previousEmployerAnnualCompensation');
     const previousEmployerContactEmailError =
-      isFieldTouched('previousEmployerContactEmail') &&
+      (isFieldTouched('previousEmployerContactEmail') || this.formSubmitted) &&
       getFieldError('previousEmployerContactEmail');
     const emergencyContactError =
-      isFieldTouched('emergencyContact') && getFieldError('emergencyContact');
+      (isFieldTouched('emergencyContact') || this.formSubmitted) &&
+      getFieldError('emergencyContact');
     const emergencyContactPhoneNumberError =
-      isFieldTouched('emergencyContactPhoneNumber') &&
+      (isFieldTouched('emergencyContactPhoneNumber') || this.formSubmitted) &&
       getFieldError('emergencyContactPhoneNumber');
     const emergencyContactEmailError =
-      isFieldTouched('emergencyContactEmail') &&
+      (isFieldTouched('emergencyContactEmail') || this.formSubmitted) &&
       getFieldError('emergencyContactEmail');
     const emergencyContactAddressError =
-      isFieldTouched('emergencyContactAddress') &&
+      (isFieldTouched('emergencyContactAddress') || this.formSubmitted) &&
       getFieldError('emergencyContactAddress');
     const targetMoveInDateError =
-      isFieldTouched('targetMoveInDate') && getFieldError('targetMoveInDate');
+      (isFieldTouched('targetMoveInDate') || this.formSubmitted) &&
+      getFieldError('targetMoveInDate');
     const expectedMoveOutDateError =
-      isFieldTouched('expectedMoveOutDate') &&
+      (isFieldTouched('expectedMoveOutDate') || this.formSubmitted) &&
       getFieldError('expectedMoveOutDate');
     const monthlyRentError =
-      isFieldTouched('monthlyRent') && getFieldError('monthlyRent');
+      (isFieldTouched('monthlyRent') || this.formSubmitted) &&
+      getFieldError('monthlyRent');
     const propertyAddressError =
-      isFieldTouched('propertyAddress') && getFieldError('propertyAddress');
+      (isFieldTouched('propertyAddress') || this.formSubmitted) &&
+      getFieldError('propertyAddress');
     const propertyApartmentNumberError =
-      isFieldTouched('propertyApartmentNumber') &&
+      (isFieldTouched('propertyApartmentNumber') || this.formSubmitted) &&
       getFieldError('propertyApartmentNumber');
 
-    const agentError = isFieldTouched('agent') && getFieldError('agent');
+    const agentError =
+      (isFieldTouched('agent') || this.formSubmitted) && getFieldError('agent');
 
     return (
       <div className={classes.root}>
@@ -590,7 +654,8 @@ class ApplicationForm extends React.Component {
                 {getFieldDecorator('expectedMoveOutDate', {
                   rules: [
                     {
-                      message: 'Please input your move out date!',
+                      required: false,
+                      message: 'Please input your expected move out date!',
                     },
                   ],
                 })(
@@ -1851,7 +1916,11 @@ class ApplicationForm extends React.Component {
             </Grid>
 
             <Grid item xs={12} sm={6} md={3}>
-              <Upload {...this.photoIDUploadBtnProps()}>
+              <Upload
+                {...this.photoIDUploadBtnProps()}
+                onChange={this.photoIDUploadChange}
+                accept=".jpg, .jpeg, .png, .pdf"
+              >
                 <Button
                   className={classes.uploadBtn}
                   style={{
@@ -1867,7 +1936,7 @@ class ApplicationForm extends React.Component {
               {this.state.photoIDUploadError && (
                 <div className="ant-form-item-control has-error">
                   <div className="ant-form-explain">
-                    Please input upload an image of your Photo ID above!
+                    Please input upload an image of your Photo ID!
                   </div>
                 </div>
               )}
@@ -1934,6 +2003,10 @@ class ApplicationForm extends React.Component {
             </Grid>
 
             <Grid item xs={12}>
+              <div className={classes.legalSection}>{legalWording}</div>
+            </Grid>
+
+            <Grid item xs={12}>
               <Divider>Signature</Divider>
             </Grid>
 
@@ -1976,36 +2049,35 @@ class ApplicationForm extends React.Component {
                     style={{ marginTop: '-30px' }}
                   >
                     <div className="ant-form-explain">
-                      Please input you signature above!
+                      Please sign and set your signature above!
                     </div>
                   </div>
                 </Grid>
               )}
 
             <Grid item xs={12}>
-              {this.sigCanvas &&
-                !this.sigCanvas.isEmpty() && (
-                  <div className={classes.signatureBtnsWrapper}>
-                    <FormItem>
-                      <Button
-                        type="danger"
-                        onClick={() => {
-                          if (this.sigCanvas) {
-                            this.sigCanvas.clear();
-                          }
+              {this.state.signatureURL && (
+                <div className={classes.signatureBtnsWrapper}>
+                  <FormItem>
+                    <Button
+                      type="danger"
+                      onClick={() => {
+                        if (this.sigCanvas) {
+                          this.sigCanvas.clear();
+                        }
 
-                          if (this.state.signatureURL) {
-                            this.setState({
-                              signatureURL: '',
-                            });
-                          }
-                        }}
-                      >
-                        Clear
-                      </Button>
-                    </FormItem>
-                  </div>
-                )}
+                        if (this.state.signatureURL) {
+                          this.setState({
+                            signatureURL: '',
+                          });
+                        }
+                      }}
+                    >
+                      Clear
+                    </Button>
+                  </FormItem>
+                </div>
+              )}
               {!this.state.signatureURL && (
                 <div className={classes.signatureBtnsWrapper}>
                   <FormItem>
@@ -2029,11 +2101,7 @@ class ApplicationForm extends React.Component {
 
             <Grid item xs={12}>
               <FormItem>
-                <Button
-                  type="primary"
-                  htmlType="submit"
-                  disabled={hasErrors(getFieldsError())}
-                >
+                <Button type="primary" htmlType="submit">
                   Submit
                 </Button>
               </FormItem>

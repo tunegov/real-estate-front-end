@@ -23,7 +23,20 @@ import AgentOfTheMonthContainer from '../../containers/AgentOfTheMonth';
 
 const chance = new Chance();
 
-const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+const months = [
+  'January',
+  'February',
+  'March',
+  'April',
+  'May',
+  'June',
+  'July',
+  'August',
+  'September',
+  'October',
+  'November',
+  'December',
+];
 
 const styles = theme => ({
   root: {
@@ -140,26 +153,26 @@ class AgentDashboard extends Component {
   renderCompanyNews = () => {
     const { newsItems, classes } = this.props;
     if (newsItems && newsItems.length) {
-      return (
-        <List></List>
-      );
+      return <List />;
     }
     return (
-      <div className={classes.companyNewsPlaceHolder}>There is currently no news available...</div>
+      <div className={classes.companyNewsPlaceHolder}>
+        There is currently no news available...
+      </div>
     );
-  }
+  };
 
   renderCompanyAlerts = () => {
     const { alertItems, classes } = this.props;
     if (alertItems && alertItems.length) {
-      return (
-        <List></List>
-      );
+      return <List />;
     }
     return (
-      <div className={classes.companyNewsPlaceHolder}>There are currently no alerts available...</div>
+      <div className={classes.companyNewsPlaceHolder}>
+        There are currently no alerts available...
+      </div>
     );
-  }
+  };
 
   render() {
     const { classes, userUUID, newsItems } = this.props;
@@ -183,7 +196,9 @@ class AgentDashboard extends Component {
                   }}
                   expandIcon={<ExpandMoreIcon />}
                 >
-                  <Typography color="inherit" className={classes.heading}>Company News</Typography>
+                  <Typography color="inherit" className={classes.heading}>
+                    Company News
+                  </Typography>
                 </ExpansionPanelSummary>
                 <ExpansionPanelDetails>
                   {this.renderCompanyNews()}
@@ -194,7 +209,10 @@ class AgentDashboard extends Component {
 
           <Grid item xs={12} lg={6}>
             <div className={classNames(classes.companyAlertsWrapper)}>
-              <ExpansionPanel classes={{ root: classes.companyNewsExpansionWrapper }} defaultExpanded={newsItems && newsItems.length}>
+              <ExpansionPanel
+                classes={{ root: classes.companyNewsExpansionWrapper }}
+                defaultExpanded={newsItems && newsItems.length}
+              >
                 <ExpansionPanelSummary
                   classes={{
                     root: classes.darkExpansionSummary,
@@ -202,7 +220,15 @@ class AgentDashboard extends Component {
                   }}
                   expandIcon={<ExpandMoreIcon />}
                 >
-                  <Typography color="inherit" className={classnames(classes.heading, classes.lightHeading)}>Company Alerts</Typography>
+                  <Typography
+                    color="inherit"
+                    className={classnames(
+                      classes.heading,
+                      classes.lightHeading
+                    )}
+                  >
+                    Company Alerts
+                  </Typography>
                 </ExpansionPanelSummary>
                 <ExpansionPanelDetails>
                   {this.renderCompanyAlerts()}
@@ -211,13 +237,17 @@ class AgentDashboard extends Component {
             </div>
           </Grid>
 
-          <Grid item xs={12}><Divider /></Grid>
+          <Grid item xs={12}>
+            <Divider />
+          </Grid>
 
           <Grid item xs={12}>
             <div className={classes.expansionPanelWrapper}>
               <ExpansionPanel defaultExpanded>
                 <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-                  <Typography className={classes.heading}>Personal Stats</Typography>
+                  <Typography className={classes.heading}>
+                    Personal Stats
+                  </Typography>
                 </ExpansionPanelSummary>
                 <ExpansionPanelDetails>
                   <Grid container spacing={16}>
@@ -236,7 +266,9 @@ class AgentDashboard extends Component {
                         icon={DollarIcon}
                         iconClass={classes.statBoxMoneyIcon}
                         stat={'$1,579,790' || '$0'}
-                        statTitle={`${months[currentDate.month()]} - Net Commissions`}
+                        statTitle={`${
+                          months[currentDate.month()]
+                        } - Net Commissions`}
                       />
                     </Grid>
                     <Grid item xs={12} sm={6}>
@@ -245,7 +277,9 @@ class AgentDashboard extends Component {
                         icon={StarIcon}
                         iconClass={classes.statBoxStarIcon}
                         stat={'7' || '$0'}
-                        statTitle={`${months[currentDate.month()]} - Number of Deals`}
+                        statTitle={`${
+                          months[currentDate.month()]
+                        } - Number of Deals`}
                       />
                     </Grid>
                     <Grid item xs={12} sm={6}>
@@ -268,9 +302,7 @@ class AgentDashboard extends Component {
               <AgentOfTheMonthContainer userUUID={userUUID} />
             </div>
           </Grid>
-
         </Grid>
-
       </div>
     );
   }
