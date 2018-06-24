@@ -145,7 +145,7 @@ class ContactAgentModal extends React.Component {
         )}
         okText="Submit"
       >
-        <Form layout="vertical" onSubmit={this.handleSubmit}>
+        <Form layout="horizontal" onSubmit={this.handleSubmit}>
           <Grid container spacing={16}>
             <Grid item xs={12} sm={6}>
               <FormItem

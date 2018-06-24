@@ -108,41 +108,35 @@ class AgentOfTheMonth extends Component {
       <div className={classes.root}>
         <Grid container spacing={16}>
           <Grid item xs={12} md={6}>
-            <Tooltip
-              title="Click to view profile"
-              enterDelay={300}
-              leaveDelay={100}
-              id="tooltip-residentialDollarsAgent"
-            >
-              <Link route={residentialDollarsAgent.profileURL || '#'}>
-                <div
-                  className={classNames(classes.agentBoxWrapper, classes.sales)}
-                >
-                  <span className={classes.label}>Agent of the Quarter</span>
+            <Link route={residentialDollarsAgent.profileURL || '#'}>
+              <div
+                className={classNames(classes.agentBoxWrapper, classes.sales)}
+              >
+                <span className={classes.label}>Agent of the Quarter</span>
 
-                  <div className={classes.contentWrapper}>
-                    <div className={classes.profilePhotoWrapper}>
-                      <img
-                        className={classes.image}
-                        src={residentialDollarsAgent.photoURL}
-                      />
+                <div className={classes.contentWrapper}>
+                  <div className={classes.profilePhotoWrapper}>
+                    <img
+                      className={classes.image}
+                      src={residentialDollarsAgent.photoURL}
+                      alt={residentialDollarsAgent.name}
+                    />
+                  </div>
+
+                  <div className={classes.infoWrapper}>
+                    <div className={classes.agentName}>
+                      {residentialDollarsAgent.name}
                     </div>
-
-                    <div className={classes.infoWrapper}>
-                      <div className={classes.agentName}>
-                        {residentialDollarsAgent.name}
-                      </div>
-                      <div className={classes.agentAwardTitle}>
-                        - Gross Residential Sales
-                      </div>
-                      <div className={classes.stat}>
-                        Seles: ${residentialDollarsAgent.statItem.toLocaleString()}
-                      </div>
+                    <div className={classes.agentAwardTitle}>
+                      - Gross Residential Sales
+                    </div>
+                    <div className={classes.stat}>
+                      Seles: ${residentialDollarsAgent.statItem.toLocaleString()}
                     </div>
                   </div>
                 </div>
-              </Link>
-            </Tooltip>
+              </div>
+            </Link>
           </Grid>
 
           <Grid item xs={12} md={6}>
@@ -163,6 +157,7 @@ class AgentOfTheMonth extends Component {
                       <img
                         className={classes.image}
                         src={commercialDollarsAgent.photoURL}
+                        alt={commercialDollarsAgent.name}
                       />
                     </div>
 
@@ -201,6 +196,7 @@ class AgentOfTheMonth extends Component {
                       <img
                         className={classes.image}
                         src={rentalsDollarsAgent.photoURL}
+                        alt={rentalsDollarsAgent.name}
                       />
                     </div>
 
@@ -239,6 +235,7 @@ class AgentOfTheMonth extends Component {
                       <img
                         className={classes.image}
                         src={numbersAgent.photoURL}
+                        alt={numbersAgent.name}
                       />
                     </div>
 

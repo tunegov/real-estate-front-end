@@ -105,7 +105,6 @@ class AdminSideNav extends Component {
           isActionItem={!item.route}
           isAdminLinks
           onClick={() => {
-            if (type === 'management') this.props.toggleManagementModal(item.routeBase, item.subType);
             if (this.props.drawerOpen) this.props.toggleDrawer(false);
             if (item.id === 'logout') this.props.logoutUser();
           }}
@@ -122,11 +121,16 @@ class AdminSideNav extends Component {
         <Drawer
           variant="permanent"
           classes={{
-            paper: classNames(classes.drawerPaper, !drawerOpen && classes.drawerPaperClose),
+            paper: classNames(
+              classes.drawerPaper,
+              !drawerOpen && classes.drawerPaperClose
+            ),
           }}
         >
           <div className={classes.toolbar} />
-          <List classes={{ root: classes.listRoot }}>{this.renderSideLinkComponents(currentPath)}</List>
+          <List classes={{ root: classes.listRoot }}>
+            {this.renderSideLinkComponents(currentPath)}
+          </List>
           <div className={classes.notificationIcon}>
             <Tooltip
               id="tooltip-icon"

@@ -19,11 +19,22 @@ const styles = theme => ({
 @observer
 class VeiwFormatter extends React.Component {
   render() {
-    const { classes, profileURL } = this.props;
+    const { classes } = this.props;
+    const { id, route, onClick, type } = this.props.value;
+
+    if (type === 'action' && onClick) {
+      return (
+        <Tooltip title="Click to view" enterDelay={400} leaveDelay={100}>
+          <div className={classes.wrapper}>
+            <EyeIcon onClick={onClick} />
+          </div>
+        </Tooltip>
+      );
+    }
 
     return (
       <Tooltip title="Click to view" enterDelay={400} leaveDelay={100}>
-        <Link route="agent" params={{ id: profileURL }}>
+        <Link route={route} params={{ id }}>
           <a>
             <div className={classes.wrapper}>
               <EyeIcon />

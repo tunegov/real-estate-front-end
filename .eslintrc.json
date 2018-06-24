@@ -7,10 +7,7 @@
     "jest": true,
     "es6": true
   },
-  "plugins": [
-    "react",
-    "jsx-a11y"
-  ],
+  "plugins": ["react", "jsx-a11y"],
   "parserOptions": {
     "ecmaVersion": 6,
     "sourceType": "module",
@@ -24,19 +21,10 @@
     "react/sort-comp": 0,
     "no-param-reassign": 0,
     "react/jsx-closing-bracket-location": 0,
-    "arrow-parens": [
-      "error",
-      "as-needed"
-    ],
-    "arrow-body-style": [
-      2,
-      "as-needed"
-    ],
+    "arrow-parens": ["error", "as-needed"],
+    "arrow-body-style": [2, "as-needed"],
     "class-methods-use-this": 0,
-    "comma-dangle": [
-      2,
-      "always-multiline"
-    ],
+    "comma-dangle": [2, "always-multiline"],
     "no-return-assign": 0,
     "function-paren-newline": 0,
     "no-underscore-dangle": 0,
@@ -73,10 +61,7 @@
     "no-use-before-define": 0,
     "prefer-template": 2,
     "react/forbid-prop-types": 0,
-    "react/jsx-first-prop-new-line": [
-      2,
-      "multiline"
-    ],
+    "react/jsx-first-prop-new-line": [2, "multiline"],
     "react/jsx-filename-extension": 0,
     "react/jsx-no-target-blank": 0,
     "react/require-default-props": 0,

@@ -5,12 +5,16 @@ import Layout from '../../../../components/Layout';
 import { initStore } from '../../../../models';
 import withData from '../../../../lib/withData';
 import { Router } from '../../../../routes';
+import AdminAreaAdminContainer from '../../../../containers/AdminAreaAdminContainer';
 
 @observer
 class AdminViewAgents extends React.Component {
   static getInitialProps({ req }) {
     const isServer = !!req;
-    return { cookieJWTData: req && req.cookies ? req.cookies.jwtData : null, isServer };
+    return {
+      cookieJWTData: req && req.cookies ? req.cookies.jwtData : null,
+      isServer,
+    };
   }
 
   constructor(props) {
@@ -28,9 +32,7 @@ class AdminViewAgents extends React.Component {
   render() {
     return (
       <Layout UserStore={this.store.UserStore} UIStore={this.store.UIStore}>
-        <div>
-          <h1>We will now view all admin!...</h1>
-        </div>
+        <AdminAreaAdminContainer userUUID={this.store.UserStore.uuid} />
       </Layout>
     );
   }

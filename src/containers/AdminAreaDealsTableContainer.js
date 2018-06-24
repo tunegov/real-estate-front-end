@@ -12,13 +12,13 @@ const Loader = DotLoader;
 
 const returnAgentType = number => {
   if (number < 33) {
-    return 60
+    return 60;
   } else if (number < 66) {
-    return 70
+    return 70;
   } else {
-    return 80
+    return 80;
   }
-}
+};
 
 const styles = theme => ({
   root: {
@@ -90,14 +90,21 @@ class DealsTableContainer extends Component {
         clientEmail: chance.email(),
         propertyAddress: chance.address(),
         propertyCity: chance.city(),
-        propertyState: chance.integer({ min: 0, max: 100 }) > 70 ? chance.state({ full: true }) : 'New York',
+        propertyState:
+          chance.integer({ min: 0, max: 100 }) > 70
+            ? chance.state({ full: true })
+            : 'New York',
         managementOrCobrokeCompany: chance.company(),
-        rentOrSalePrice: '$' + Number(chance.dollar().substring(1)).toLocaleString(),
-        deductionsTotal: '$' + Number(chance.dollar().substring(1)).toLocaleString(),
-        paymentsTotal: '$' + Number(chance.dollar().substring(1)).toLocaleString(),
-        netPaymentsTotal: '$' + Number(chance.dollar().substring(1)).toLocaleString(),
+        rentOrSalePrice:
+          '$' + Number(chance.dollar().substring(1)).toLocaleString(),
+        deductionsTotal:
+          '$' + Number(chance.dollar().substring(1)).toLocaleString(),
+        paymentsTotal:
+          '$' + Number(chance.dollar().substring(1)).toLocaleString(),
+        netPaymentsTotal:
+          '$' + Number(chance.dollar().substring(1)).toLocaleString(),
         status: chance.bool() === true ? 'Pending' : 'Approved',
-        view: '#',
+        view: { type: 'action', onClick: () => {}, id: '#' },
       });
     }
     return rows;
@@ -108,20 +115,25 @@ class DealsTableContainer extends Component {
     const { classes, small, ...rest } = this.props;
     return (
       <div className={classes.root}>
-        {
-          tableIsLoading ? (
-            <div className={classes.progressWrapper} style={{ display: 'flex', justifyContent: 'center' }}>
-              <Loader
-                color="#f44336"
-                loading
-              />
-            </div>
-          ) : null
-        }
+        {tableIsLoading ? (
+          <div
+            className={classes.progressWrapper}
+            style={{
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              height: 'calc(100vh - 180px)',
+            }}
+          >
+            <Loader color="#f44336" loading />
+          </div>
+        ) : null}
         <AdminAreaDealsTable
           {...rest}
           small={small}
-          onMount={() => tableIsLoading ? this.setState({ tableIsLoading: false }) : null}
+          onMount={() =>
+            tableIsLoading ? this.setState({ tableIsLoading: false }) : null
+          }
           columns={columns}
           rows={rows}
         />

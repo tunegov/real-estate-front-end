@@ -12,6 +12,7 @@ import AppContentWrapper from '../../sharedStyledComponents/AppContentWrapper';
 import themeStyles from '../../themeStyles';
 import globalStyles from '../../globalStyles';
 import { Container, HeaderAndAppContentWrapper } from './styledComponents';
+import { admin, superAdmin } from '../../constants/userTypes';
 
 NProgress.configure({ showSpinner: false });
 NProgress.configure({ trickleSpeed: 100 });
@@ -34,8 +35,8 @@ class Layout extends Component {
 
   render() {
     const { pathname } = this.props.router;
-    const { isLoggedIn, logoutUser } = this.props.UserStore;
-    const isApp = pathname.startsWith('/app');
+    const { isLoggedIn, logoutUser, userRole } = this.props.UserStore;
+    const isAdmin = userRole === admin || userRole === superAdmin;
 
     return (
       <div>
@@ -61,16 +62,15 @@ class Layout extends Component {
         </Head>
         {/* <DevTools position={{ top: 0, left: 30 }} /> */}
         <ThemeProvider theme={themeStyles}>
-          <Container isApp={isApp}>
+          <Container>
             <HeaderAndAppContentWrapper>
               <HeaderNav
                 isLoggedIn={isLoggedIn}
                 logoutUser={logoutUser}
                 headerBoxShadowOff={this.props.headerBoxShadowOff}
+                isAdmin={isAdmin}
               />
-              <AppContentWrapper isApp={isApp}>
-                {this.props.children}
-              </AppContentWrapper>
+              <AppContentWrapper>{this.props.children}</AppContentWrapper>
             </HeaderAndAppContentWrapper>
           </Container>
         </ThemeProvider>

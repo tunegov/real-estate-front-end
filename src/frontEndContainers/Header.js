@@ -21,7 +21,7 @@ class Header extends React.Component {
       ...this.state,
       appTopBurgerMenuOpen: !this.state.appTopBurgerMenuOpen,
     });
-  }
+  };
 
   onLogout = async () => {
     const res = await this.props.logoutUser();
@@ -46,7 +46,7 @@ class Header extends React.Component {
   render() {
     return (
       <HeaderNav
-        isApp={this.props.isApp}
+        isAdmin={this.props.isAdmin}
         isLoggedIn={this.props.isLoggedIn}
         onLogout={this.onLogout}
       />

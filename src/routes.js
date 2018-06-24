@@ -25,10 +25,14 @@ routes
   )
   .add(
     'create-user',
-    '/app/admin-area/users/create',
-    'app/admin-area/users/create'
+    '/app/admin-area/customers/create',
+    'app/admin-area/customers/create'
   )
-  .add('view-users', '/app/admin-area/users/view', 'app/admin-area/users/view')
+  .add(
+    'view-customers',
+    '/app/admin-area/customers/view',
+    'app/admin-area/customers/view'
+  )
   .add(
     'create-admin',
     '/app/admin-area/admin/create',

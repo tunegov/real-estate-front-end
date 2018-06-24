@@ -7,12 +7,12 @@ import SubmitInvoiceForm from '../components/forms/SubmitInvoiceForm';
 
 const Loader = BounceLoader;
 
-export const userQuery = gql`
-  query user($uuid: String!) {
-    user(uuid: $uuid) {
+export const agentQuery = gql`
+  query agent($uuid: String!) {
+    agent(uuid: $uuid) {
       firstName
       lastName
-      roles
+      role
     }
   }
 `;
@@ -35,20 +35,26 @@ class SubmitInvoiceFormContainer extends Component {
 
   paymentAmountChangeHandler = (id, value) => {
     value = Number(value);
-    const paymentsTotal = this.getTotalPaymentsAmount({ id, value: value || 0 });
+    const paymentsTotal = this.getTotalPaymentsAmount({
+      id,
+      value: value || 0,
+    });
     this.setState({
-      paymentAmountItems: { ...this.state.paymentAmountItems, [id]: value || 0 },
+      paymentAmountItems: {
+        ...this.state.paymentAmountItems,
+        [id]: value || 0,
+      },
       paymentsTotal,
       total: paymentsTotal,
     });
-  }
+  };
 
   getTotalPaymentsAmount = newItem => {
     let total = 0;
     const { paymentAmountItems, permanentPaymentSubtractions } = this.state;
 
     Object.keys(paymentAmountItems)
-      .filter(itemID => newItem ? itemID !== newItem.id : true)
+      .filter(itemID => (newItem ? itemID !== newItem.id : true))
       .forEach(key => {
         total += paymentAmountItems[key];
       });
@@ -56,18 +62,18 @@ class SubmitInvoiceFormContainer extends Component {
     if (newItem && newItem.value) total += newItem.value;
 
     return total - permanentPaymentSubtractions;
-  }
+  };
 
   subtractPaymentValueFromState = payment => {
-    const paymentsTotal =
-      this.getTotalPaymentsAmount() - payment;
+    const paymentsTotal = this.getTotalPaymentsAmount() - payment;
 
     this.setState({
-      permanentPaymentSubtractions: this.state.permanentPaymentSubtractions + payment,
+      permanentPaymentSubtractions:
+        this.state.permanentPaymentSubtractions + payment,
       paymentsTotal,
       total: paymentsTotal,
     });
-  }
+  };
 
   setAgentDisclosureForm = file => {
     this.setState({ agentDisclosureForm: file });
@@ -78,28 +84,26 @@ class SubmitInvoiceFormContainer extends Component {
     this.setState({ contractOrLeaseForms: fileArray });
   };
 
-  onSubmit(values) {
+  onSubmit = values => {
     const { contractOrLeaseForms, agentDisclosureForm } = this.state;
     console.log(values);
     console.log(agentDisclosureForm);
     console.log(contractOrLeaseForms);
-  }
+  };
 
   render() {
     const { userUUID: uuid, ...rest } = this.props;
     const { agentDisclosureForm, contractOrLeaseForms } = this.state;
 
     return (
-      <Query query={userQuery} variables={{ uuid }}>
+      <Query query={agentQuery} variables={{ uuid }}>
         {({ loading, error, data }) => {
-          if (loading) return (
-            <div style={{ display: 'flex', justifyContent: 'center' }}>
-              <Loader
-                color="#f44336"
-                loading
-              />
-            </div>
-          );
+          if (loading)
+            return (
+              <div style={{ display: 'flex', justifyContent: 'center' }}>
+                <Loader color="#f44336" loading />
+              </div>
+            );
           // TODO: change the error message to a generic
           // 'error connecting to server' message
           if (error) return `Error!: ${error}`;
@@ -109,7 +113,7 @@ class SubmitInvoiceFormContainer extends Component {
               paymentsTotal={`${this.state.paymentsTotal}`}
               deductionsTotal={`${this.state.deductionsTotal}`}
               total={this.state.total}
-              user={data.user}
+              agent={data.agent}
               onSubmit={this.onSubmit}
               setAgentDisclosureForm={this.setAgentDisclosureForm}
               setContractOrLeaseForms={this.setContractOrLeaseForms}

@@ -127,13 +127,15 @@ const styles = theme => ({
   uploadBtnClassName: {
     color: '#fff',
     backgroundColor: '#272A2E',
-    boxShadow: '0px 1px 5px 0px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 3px 1px -2px rgba(0, 0, 0, 0.12)',
+    boxShadow:
+      '0px 1px 5px 0px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 3px 1px -2px rgba(0, 0, 0, 0.12)',
     padding: '8px 16px',
     minWidth: '88px',
     fontSize: '0.875rem',
     boxSizing: 'border-box',
     minHeight: '36px',
-    transition: 'background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
+    transition:
+      'background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
     lineHeight: '1.4em',
     fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
     fontWeight: '500',
@@ -143,9 +145,7 @@ const styles = theme => ({
     '&:hover': {
       backgroundColor: '#000',
     },
-    addUploadBtnClassName: {
-
-    },
+    addUploadBtnClassName: {},
   },
   fileUploadBtnWrapper2: {
     display: 'inline-block',
@@ -156,7 +156,8 @@ const styles = theme => ({
     minWidth: '40px',
     minHeight: '40px',
     backgroundColor: '#2995F3',
-    transition: 'background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
+    transition:
+      'background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
     '&:hover': {
       backgroundColor: '#2483D6',
     },
@@ -190,20 +191,14 @@ const styles = theme => ({
   },
 });
 
-const radioInputAgentItems = [
-  { label: '80%' },
-  { label: '90%' },
-];
+const radioInputAgentItems = [{ label: '80%' }, { label: '90%' }];
 
 const radioInputAgentPaymentItems = [
   { label: 'Ill pick up the check' },
   { label: 'Please ACH me' },
 ];
 
-const radioInputYesNoItems = [
-  { label: 'Yes' },
-  { label: 'No' },
-];
+const radioInputYesNoItems = [{ label: 'Yes' }, { label: 'No' }];
 
 const dealTypeSelectItems = [
   { label: 'Residential Rental' },
@@ -258,7 +253,7 @@ class SubmitInvoiceForm extends Component {
   isFirstTimeRender = true;
 
   render() {
-    const { firstName, lastName } = this.props.user;
+    const { firstName, lastName } = this.props.agent;
     const {
       classes,
       setAgentDisclosureForm,
@@ -292,13 +287,22 @@ class SubmitInvoiceForm extends Component {
                 this.isFirstTimeRender = false;
                 // formApi.addValue('contractOrLeaseItems');
                 formApi.setValue('date', `${moment().format('MMMM Do YYYY')}`);
-                formApi.setValue('agent', [`${capitalize(firstName)} ${capitalize(lastName)}`]);
+                formApi.setValue('agent', [
+                  `${capitalize(firstName)} ${capitalize(lastName)}`,
+                ]);
                 formApi.setValue('paymentsSubtotal', this.props.paymentsTotal);
-                formApi.setValue('deductionsSubtotal', this.props.deductionsTotal);
+                formApi.setValue(
+                  'deductionsSubtotal',
+                  this.props.deductionsTotal
+                );
               }
 
               return (
-                <form onSubmit={formApi.submitForm} id="form1" classes={classes.formRoot}>
+                <form
+                  onSubmit={formApi.submitForm}
+                  id="form1"
+                  classes={classes.formRoot}
+                >
                   <Grid container spacing={24}>
                     <Grid item sm={6} xs={12}>
                       <div className={classes.formControlWrapper}>
@@ -320,7 +324,9 @@ class SubmitInvoiceForm extends Component {
                           id={uuid()}
                           label="Agent"
                           disabled
-                          value={`${capitalize(firstName)} ${capitalize(lastName)}`}
+                          value={`${capitalize(firstName)} ${capitalize(
+                            lastName
+                          )}`}
                           fullWidth
                           required
                         />
@@ -328,7 +334,12 @@ class SubmitInvoiceForm extends Component {
                     </Grid>
 
                     <div className={classes.formSubheading}>
-                      <Typography variant="subheading" classes={{ subheading: classes.h3 }}>Property Information</Typography>
+                      <Typography
+                        variant="subheading"
+                        classes={{ subheading: classes.h3 }}
+                      >
+                        Property Information
+                      </Typography>
                     </div>
 
                     <Grid item sm={6} xs={12}>
@@ -418,7 +429,12 @@ class SubmitInvoiceForm extends Component {
                     </Grid>
 
                     <div className={classes.formSubheading}>
-                      <Typography variant="subheading" classes={{ subheading: classes.h3 }}>{'Client\'s'} Information</Typography>
+                      <Typography
+                        variant="subheading"
+                        classes={{ subheading: classes.h3 }}
+                      >
+                        {"Client's"} Information
+                      </Typography>
                     </div>
 
                     <Grid item xs={12} sm={6}>
@@ -445,12 +461,27 @@ class SubmitInvoiceForm extends Component {
                       </div>
                     </Grid>
 
-                    <div className={`${classes.formSubheading} ${classes.paddingBottom10}`}>
-                      <Typography variant="subheading" classes={{ subheading: classes.h3 }}>Transaction Financials</Typography>
+                    <div
+                      className={`${classes.formSubheading} ${
+                        classes.paddingBottom10
+                      }`}
+                    >
+                      <Typography
+                        variant="subheading"
+                        classes={{ subheading: classes.h3 }}
+                      >
+                        Transaction Financials
+                      </Typography>
                     </div>
 
                     <div className={classes.formMiniHeading}>
-                      <Typography variant="subheading" classes={{ subheading: classes.h4, root: classes.greenText }}>
+                      <Typography
+                        variant="subheading"
+                        classes={{
+                          subheading: classes.h4,
+                          root: classes.greenText,
+                        }}
+                      >
                         Paid:
                       </Typography>
                     </div>
@@ -495,80 +526,89 @@ class SubmitInvoiceForm extends Component {
                             validate={paymentAmountValidator}
                             noLetters
                             noNegativeSign
-                            onChangeWithID={this.props.paymentAmountChangeHandler}
+                            onChangeWithID={
+                              this.props.paymentAmountChangeHandler
+                            }
                             isDollarAmount
                           />
                         </div>
                       </Grid>
                     </NestedField>
 
-                    {formApi.values.paymentItems && formApi.values.paymentItems.map((paymentItems, i) => (
-                      <div className={classes.paymentItemsWrapper} key={i}>
-                        <NestedField field={['paymentItems', i]}>
-                          <Grid item sm={4} xs={12}>
-                            <div className={classes.formControlWrapper}>
-                              <MaterialCustomSelectInput
-                                field="paymentType"
-                                id={uuid()}
-                                required
-                                fullWidth
-                                label="Payment Type"
-                                name="paymentType"
-                                selectInputItems={paymentTypeSelectItems}
-                                validate={paymentTypeValidator}
-                              />
-                            </div>
-                          </Grid>
+                    {formApi.values.paymentItems &&
+                      formApi.values.paymentItems
+                        .map((paymentItems, i) => (
+                          <div className={classes.paymentItemsWrapper} key={i}>
+                            <NestedField field={['paymentItems', i]}>
+                              <Grid item sm={4} xs={12}>
+                                <div className={classes.formControlWrapper}>
+                                  <MaterialCustomSelectInput
+                                    field="paymentType"
+                                    id={uuid()}
+                                    required
+                                    fullWidth
+                                    label="Payment Type"
+                                    name="paymentType"
+                                    selectInputItems={paymentTypeSelectItems}
+                                    validate={paymentTypeValidator}
+                                  />
+                                </div>
+                              </Grid>
 
-                          <Grid item sm={4} xs={12}>
-                            <div className={classes.formControlWrapper}>
-                              <CustomTextField
-                                field="checkOrTransactionNumber"
-                                id={uuid()}
-                                label="Check/Transaction#"
-                                required
-                                fullWidth
-                                validate={checkOrTransactionNumberValidator}
-                              />
-                            </div>
-                          </Grid>
+                              <Grid item sm={4} xs={12}>
+                                <div className={classes.formControlWrapper}>
+                                  <CustomTextField
+                                    field="checkOrTransactionNumber"
+                                    id={uuid()}
+                                    label="Check/Transaction#"
+                                    required
+                                    fullWidth
+                                    validate={checkOrTransactionNumberValidator}
+                                  />
+                                </div>
+                              </Grid>
 
-                          <Grid item sm={4} xs={12}>
-                            <div className={classes.formControlWrapper}>
-                              <CustomTextField
-                                field="amount"
-                                id={uuid()}
-                                label="Amount"
-                                required
-                                fullWidth
-                                validate={paymentAmountValidator}
-                                noLetters
-                                noNegativeSign
-                                onChangeWithID={this.props.paymentAmountChangeHandler}
-                                isDollarAmount
-                              />
-                            </div>
-                          </Grid>
-                        </NestedField>
-                        <Button
-                          classes={{ root: classes.removePaymentBtn }}
-                          variant="raised"
-                          color="secondary"
-                          onClick={() => {
-                            const amount = Number(formApi.values.paymentItems[i].amount);
+                              <Grid item sm={4} xs={12}>
+                                <div className={classes.formControlWrapper}>
+                                  <CustomTextField
+                                    field="amount"
+                                    id={uuid()}
+                                    label="Amount"
+                                    required
+                                    fullWidth
+                                    validate={paymentAmountValidator}
+                                    noLetters
+                                    noNegativeSign
+                                    onChangeWithID={
+                                      this.props.paymentAmountChangeHandler
+                                    }
+                                    isDollarAmount
+                                  />
+                                </div>
+                              </Grid>
+                            </NestedField>
+                            <Button
+                              classes={{ root: classes.removePaymentBtn }}
+                              variant="raised"
+                              color="secondary"
+                              onClick={() => {
+                                const amount = Number(
+                                  formApi.values.paymentItems[i].amount
+                                );
 
-                            if (amount) {
-                              subtractPaymentValueFromState(amount);
-                            }
+                                if (amount) {
+                                  subtractPaymentValueFromState(amount);
+                                }
 
-                            formApi.removeValue('paymentItems', i);
-                          }}
-                          type="button"
-                        >
-                          Remove
-                        </Button>
-                      </div>
-                    )).slice(1)}
+                                formApi.removeValue('paymentItems', i);
+                              }}
+                              type="button"
+                            >
+                              Remove
+                            </Button>
+                          </div>
+                        ))
+                        .slice(1)}
                     <Grid item xs={12}>
                       <Button
                         classes={{ root: classes.addPaymentBtn }}
@@ -599,8 +639,17 @@ class SubmitInvoiceForm extends Component {
                       </div>
                     </Grid>
 
-                    <div className={`${classes.formSubheading} ${classes.paddingBottom10}`}>
-                      <Typography variant="subheading" classes={{ subheading: classes.h3 }}>Send To</Typography>
+                    <div
+                      className={`${classes.formSubheading} ${
+                        classes.paddingBottom10
+                      }`}
+                    >
+                      <Typography
+                        variant="subheading"
+                        classes={{ subheading: classes.h3 }}
+                      >
+                        Send To
+                      </Typography>
                     </div>
 
                     <Grid item xs={12}>
@@ -632,7 +681,10 @@ class SubmitInvoiceForm extends Component {
                     </Grid>
 
                     <div className={classes.formMiniHeading2}>
-                      <Typography variant="subheading" classes={{ subheading: classes.h4 }}>
+                      <Typography
+                        variant="subheading"
+                        classes={{ subheading: classes.h4 }}
+                      >
                         Other:
                       </Typography>
                     </div>
@@ -653,12 +705,8 @@ class SubmitInvoiceForm extends Component {
                         />
                       </div>
                     </Grid>
-
-
-
                   </Grid>
                 </form>
-
               );
             }}
           </Form>

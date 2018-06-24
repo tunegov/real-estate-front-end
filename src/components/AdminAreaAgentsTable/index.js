@@ -3,15 +3,28 @@ import { withStyles } from 'material-ui/styles';
 import withSizes from 'react-sizes';
 import isBrowser from 'is-browser';
 import {
-  SortingState, FilteringState, SearchState,
-  IntegratedFiltering, IntegratedSorting,
+  SortingState,
+  FilteringState,
+  SearchState,
+  IntegratedFiltering,
+  IntegratedSorting,
   PagingState,
   IntegratedPaging,
   DataTypeProvider,
 } from '@devexpress/dx-react-grid';
 import {
   Grid,
-  VirtualTable, TableHeaderRow, TableFilterRow, TableColumnResizing, DragDropProvider, TableColumnReordering, Toolbar, SearchPanel, PagingPanel,
+  VirtualTable,
+  TableHeaderRow,
+  TableFilterRow,
+  TableColumnResizing,
+  DragDropProvider,
+  TableColumnReordering,
+  Toolbar,
+  SearchPanel,
+  PagingPanel,
+  TableColumnVisibility,
+  ColumnChooser,
 } from '@devexpress/dx-react-grid-material-ui';
 import Cell from '../../utils/backEndTableUtils/DefaultVirtualTableCell';
 import TableComponent from '../../utils/backEndTableUtils/TableComponent';
@@ -19,7 +32,6 @@ import TableContainerComponent from '../../utils/backEndTableUtils/TableContaine
 import NoDataCellComponent from '../../utils/backEndTableUtils/NoDataCellComponent';
 import ProfilePictureFormatter from '../dataTableFormatters/ProfilePictureFormatter';
 import ViewFormatter from '../dataTableFormatters/ViewFormatter';
-
 
 const styles = theme => ({
   root: {
@@ -38,17 +50,11 @@ const styles = theme => ({
   input: {
     width: '100%',
   },
-  myTable: {
-
-  },
+  myTable: {},
   myTableContainer: {
     minHeight: '300px',
-    height: 'calc(100vh - 318px) !important',
+    height: 'calc(100vh - 310px) !important',
     // maxHeight: '800px',
-  },
-  myTableContainerSmallViewPort: {
-    minHeight: '300px',
-    height: 'calc(100vh - 380px) !important',
   },
   myNoDataCellComponent: {
     borderBottom: 'none !important',
@@ -67,11 +73,10 @@ const filteringStateColumnExtensions = [
 
 const getRowId = row => row.email;
 
-const FilterCell = props => {
-  return <TableFilterRow.Cell {...props} />;
-};
+const FilterCell = props => <TableFilterRow.Cell {...props} />;
 
 const defaultColumnWidths = [
+  { columnName: 'agentID', width: 120 },
   { columnName: 'realEstateLicenseNumber', width: 140 },
   { columnName: 'photo', width: 95 },
   { columnName: 'name', width: 150 },
@@ -79,9 +84,13 @@ const defaultColumnWidths = [
   { columnName: 'areaOfFocus', width: 150 },
   { columnName: 'mobileNumber', width: 150 },
   { columnName: 'companyNumberAndExt', width: 180 },
-  { columnName: 'region', width: 140 },
+  { columnName: 'branch', width: 140 },
+  { columnName: 'state', width: 150 },
+  { columnName: 'lastLoginTimestamp', width: 180 },
   { columnName: 'view', width: 120 },
 ];
+
+const defaultHiddenColumnNames = ['lastLoginTimestamp', 'state', 'agentID'];
 
 const pageSizes = [5, 10, 15, 20, 50, 100, 0];
 
@@ -92,37 +101,28 @@ const mapSizesToProps = ({ width }) => ({
   lgViewport: width < 1280,
 });
 
-const PhotoFormatter = ({ value }) => (
-  <ProfilePictureFormatter
-    value={value}
-  />
-);
+const PhotoFormatter = ({ value }) => <ProfilePictureFormatter value={value} />;
 
 const PhotoTypeProvider = props => (
-  <DataTypeProvider
-    formatterComponent={PhotoFormatter}
-    {...props}
-  />
+  <DataTypeProvider formatterComponent={PhotoFormatter} {...props} />
 );
 
-const ViewCellFormatter = ({ value }) => (
-  <ViewFormatter
-    profileURL={value}
-  />
-);
+const ViewCellFormatter = ({ value }) => <ViewFormatter value={value} />;
 
 const ViewTypeProvider = props => (
-  <DataTypeProvider
-    formatterComponent={ViewCellFormatter}
-    {...props}
-  />
+  <DataTypeProvider formatterComponent={ViewCellFormatter} {...props} />
 );
 
 const TableContainerComponentWrapperBase = ({ classes, ...restProps }) => (
-  <TableContainerComponent {...restProps} className={classes.myTableContainer} />
+  <TableContainerComponent
+    {...restProps}
+    className={classes.myTableContainer}
+  />
 );
 
-const TableContainerComponentWrapper = withStyles(styles)(TableContainerComponentWrapperBase);
+const TableContainerComponentWrapper = withStyles(styles)(
+  TableContainerComponentWrapperBase
+);
 
 @withStyles(styles)
 @withSizes(mapSizesToProps)
@@ -145,34 +145,24 @@ class AdminAreaAgentsTable extends Component {
     if (this.state.pageSize < pageSize) {
       document.getElementById('myTableContainer').scrollTop = 0;
     }
-  }
+  };
 
   currentPageChange = currentPage => {
     this.setState({ currentPage });
     document.getElementById('myTableContainer').scrollTop = 0;
-  }
+  };
 
   render() {
     const { classes, columns, rows, lgViewport } = this.props;
     return (
       <div className={classes.root}>
-        <Grid
-          rows={rows}
-          columns={columns}
-          getRowId={getRowId}
-        >
-          <PhotoTypeProvider
-            for={['photo']}
-          />
-          <ViewTypeProvider
-            for={['view']}
-          />
+        <Grid rows={rows} columns={columns} getRowId={getRowId}>
+          <PhotoTypeProvider for={['photo']} />
+          <ViewTypeProvider for={['view']} />
 
           <DragDropProvider />
           <SearchState />
-          <FilteringState
-            columnExtensions={filteringStateColumnExtensions}
-          />
+          <FilteringState columnExtensions={filteringStateColumnExtensions} />
           <SortingState
             defaultSorting={[{ columnName: 'name', direction: 'asc' }]}
             columnExtensions={sortingStateColumnExtensions}
@@ -190,32 +180,38 @@ class AdminAreaAgentsTable extends Component {
 
           <IntegratedPaging />
 
-
           <VirtualTable
-            height={isBrowser ? window.innerHeight - 318 : undefined}
+            height={isBrowser ? window.innerHeight - 310 : undefined}
             tableComponent={TableComponent}
             containerComponent={props => (
               <TableContainerComponent
-                className={lgViewport ? classes.myTableContainerSmallViewPort : classes.myTableContainer}
+                className={
+                  lgViewport
+                    ? classes.myTableContainerSmallViewPort
+                    : classes.myTableContainer
+                }
                 {...props}
               />
             )}
             cellComponent={Cell}
             noDataCellComponent={NoDataCellComponent}
           />
-          <TableColumnReordering defaultOrder={columns.map(column => column.name)} />
-          <TableColumnResizing
-            defaultColumnWidths={defaultColumnWidths}
+          <TableColumnReordering
+            defaultOrder={columns.map(column => column.name)}
           />
+          <TableColumnResizing defaultColumnWidths={defaultColumnWidths} />
 
           <TableFilterRow cellComponent={FilterCell} />
           <Toolbar />
           <SearchPanel />
 
-          <TableHeaderRow showSortingControls />
-          <PagingPanel
-            pageSizes={pageSizes}
+          <TableColumnVisibility
+            defaultHiddenColumnNames={defaultHiddenColumnNames}
           />
+
+          <ColumnChooser />
+          <TableHeaderRow showSortingControls />
+          <PagingPanel pageSizes={pageSizes} />
         </Grid>
       </div>
     );

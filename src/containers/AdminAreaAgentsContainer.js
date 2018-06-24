@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { withStyles } from 'material-ui/styles';
 import Button from 'material-ui/Button';
 import Typography from 'material-ui/Typography';
-import GraphIcon from '@material-ui/icons/Equalizer';
+import AddIcon from '@material-ui/icons/Add';
 import SearchIcon from '@material-ui/icons/Search';
 import { observer } from 'mobx-react';
 import moment from 'moment';
@@ -16,14 +16,41 @@ import ExpansionPanel, {
 } from 'material-ui/ExpansionPanel';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import CheckCircleIcon from '@material-ui/icons/CheckCircle';
+import gql from 'graphql-tag';
+import { Query } from 'react-apollo';
+import { DotLoader } from 'react-spinners';
+import Snackbar from 'material-ui/Snackbar';
+import IconButton from 'material-ui/IconButton';
+import CloseIcon from '@material-ui/icons/Close';
+import CreateAgentDialogBox from '../components/CreateAgentDialogBox';
 import MaterialCustomSelectInput from '../components/MaterialCustomSelectInput';
 import AdminAreaAgentsTableContainer from './AdminAreaAgentsTableContainer';
 
+const Loader = DotLoader;
+
+const agentsQuery = gql`
+  query agents {
+    agents {
+      uuid
+      firstName
+      lastName
+      email
+      role
+      agent {
+        profilePicURL
+        branch
+        state
+        mobileNumber
+        officeNumber
+        realEstateLicenseNumber
+      }
+    }
+  }
+`;
+
 const styles = theme => ({
-  addDealBtn: {
-  },
+  addDealBtn: {},
   dealsSummaryBtn: {
-    marginLeft: '25px',
     backgroundColor: '#2995F3',
     color: '#fff',
     '&:hover': {
@@ -112,202 +139,134 @@ class AdminAreaDealsContainer extends Component {
     const today = moment();
 
     this.state = {
-      dealsSummaryDialogBoxOpen: false,
-      startDate: moment().subtract(1, 'months'),
-      endDate: today,
-      fineGrainSearchType: '',
-      fineGrainSearchValue: '',
-      currentSearchType: searchTypes.dateRange,
-      maxDate: today,
-      minDate: moment('2018-04-01'),
+      createAgentModalOpen: false,
+      snackbarOpen: false,
+      snackbarText: '',
+      snackbarUndoFunction: null,
     };
   }
 
-  toggleDealsSummaryDialogBox = () => {
-    this.setState({ dealsSummaryDialogBoxOpen: !this.state.dealsSummaryDialogBoxOpen });
+  toggleCreateAgentModal = state => {
+    const { createAgentModalOpen } = this.state;
+    this.setState({
+      createAgentModalOpen:
+        typeof state === 'boolean' ? state : !createAgentModalOpen,
+    });
   };
 
-  onStartDateCHange = date => {
-    if (!date) this.setState({ startDate: date });
-    if (date.isAfter(moment())) return;
-    if (date.isAfter(this.state.endDate)) return;
-    this.setState({ startDate: date });
-  }
+  confirmAgentCreated = () => {
+    this.setState({
+      createAgentModalOpen: false,
+      snackbarOpen: true,
+      snackbarText: 'Agent created successfully',
+    });
+  };
 
-  onEndDateCHange = date => {
-    if (!date) this.setState({ endDate: date });
-    if (date.isAfter(moment())) return;
-    if (date.isBefore(this.state.startDate)) return;
-    this.setState({ endDate: date });
-  }
-
-  onDateRangeSearch = () => {
-    const { currentSearchType } = this.state;
-
-    if (currentSearchType !== searchTypes.dateRange) {
-      this.setState({ currentSearchType: searchTypes.dateRange });
-    }
-  }
-
-  onSpecificSearch = () => {
-    const { currentSearchType } = this.state;
-
-    if (currentSearchType !== searchTypes.specific) {
-      this.setState({ currentSearchType: searchTypes.specific });
-    }
-  }
+  handleCloseSnackbar = () => {
+    this.setState({
+      snackbarOpen: false,
+      snackbarUndoFunction: null,
+    });
+  };
 
   render() {
     const { classes } = this.props;
-    const {
-      startDate, endDate,
-      fineGrainSearchType,
-      fineGrainSearchValue,
-      currentSearchType,
-    } = this.state;
-    const {
-      onStartDateCHange,
-      onEndDateCHange,
-      onDateRangeSearch,
-      onSpecificSearch,
-    } = this;
-
+    const { createAgentModalOpen } = this.state;
 
     return (
-      <div className={classes.wrapper}>
-        <div className={classes.searchWrapper}>
-          <Grid container spacing={16}>
-            <Grid item xs={12} lg={6}>
-              <ExpansionPanel>
-                <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-                  <Typography align="center" color="inherit" className={classes.heading}>
-                    Search Deals By: Date Range (Default)
-                    {currentSearchType === searchTypes.dateRange ? <CheckCircleIcon classes={{ root: classes.checkIcon }} /> : null}
-                  </Typography>
-                </ExpansionPanelSummary>
-                <ExpansionPanelDetails>
-                  <div className={classes.tableFormWrapper}>
-                    <Grid container spacing={16}>
-                      <Grid item xs={12} sm={6}>
-                        <div className={classes.formControlWrapperCenter}>
+      <Query query={agentsQuery}>
+        {({ loading, error, data }) => {
+          console.log(data);
+          if (loading)
+            return (
+              <div
+                style={{
+                  display: 'flex',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  height: 'calc(100vh - 110px)',
+                }}
+              >
+                <Loader color="#f44336" loading />
+              </div>
+            );
+          // TODO: change the error message to a generic
+          // 'error connecting to server' message
+          if (error) return `Error!: ${error}`;
 
-                          {isBrowser ? <DatePicker
-                            value={startDate}
-                            onChange={onStartDateCHange}
-                            clearable
-                            label="Start Day"
-                            className={classes.textField}
-                            minDate={this.state.minDate}
-                            maxDate={this.state.endDate || this.state.maxDate}
-                            disableFuture
-                            format="MMM Do YYYY"
-                            InputLabelProps={{
-                              shrink: true,
-                            }}
-                            maxDateMessage="Date must be less than today"
-                          /> : null}
+          return (
+            <div className={classes.wrapper}>
+              <div>
+                <div className={classes.buttonsWrapper}>
+                  <Button
+                    variant="raised"
+                    onClick={this.toggleCreateAgentModal}
+                    classes={{ root: classes.dealsSummaryBtn }}
+                  >
+                    <AddIcon />
+                    Create Agent
+                  </Button>
+                </div>
+              </div>
 
+              <AdminAreaAgentsTableContainer agents={data.agents} />
 
-                        </div>
-                      </Grid>
-                      <Grid item xs={12} sm={6}>
-                        <div className={classes.formControlWrapperCenter}>
-                          {isBrowser ? <DatePicker
-                            value={endDate}
-                            onChange={onEndDateCHange}
-                            clearable
-                            label="End Day"
-                            className={classes.textField}
-                            disableFuture
-                            format="MMM Do YYYY"
-                            minDate={startDate || this.state.minDate}
-                            maxDate={this.state.maxDate}
-                            InputLabelProps={{
-                              shrink: true,
-                            }}
-                            maxDateMessage="Date must be less than today"
-                          /> : null}
-                        </div>
-                      </Grid>
-                      <Grid item xs={12}>
-                        <div className={classes.submitBtnWrapper}>
-                          <Button
-                            variant="raised"
-                            onClick={onDateRangeSearch}
-                            color="secondary"
-                          >
-                            <SearchIcon />
-                            Search
-                          </Button>
-                        </div>
-                      </Grid>
-                    </Grid>
+              <CreateAgentDialogBox
+                open={createAgentModalOpen}
+                toggleCreateAgentModal={this.toggleCreateAgentModal}
+              />
 
-                  </div>
-                </ExpansionPanelDetails>
-              </ExpansionPanel>
-            </Grid>
-
-            <Grid item xs={12} lg={6}>
-              <ExpansionPanel>
-                <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-                  <Typography align="center" color="inherit" className={classes.heading}>
-                    Search Deals By: Other
-                    {currentSearchType === searchTypes.specific ? <CheckCircleIcon classes={{ root: classes.checkIcon }} /> : null}
-                  </Typography>
-                </ExpansionPanelSummary>
-                <ExpansionPanelDetails>
-                  <div className={classes.tableFormWrapper}>
-                    <Grid container spacing={16}>
-                      <Grid item xs={12} sm={6}>
-                        <div className={classes.formControlWrapperCenter}>
-                          <MaterialCustomSelectInput
-                            className={classes.selectInput}
-                            value={fineGrainSearchType || undefined}
-                            onChange={({ target }) => this.setState({ fineGrainSearchType: target.value })}
-                            placeholder="Search Type..."
-                            label="Search Type"
-                            inputProps={{}}
-                            selectInputItems={selectInputItems}
-                          />
-                        </div>
-                      </Grid>
-                      <Grid item xs={12} sm={6}>
-                        <div className={classes.formControlWrapperCenter}>
-                          <TextField
-                            id="fineGrainSearchValue"
-                            label="Search Item..."
-                            type="text"
-                            value={fineGrainSearchValue}
-                            onChange={({ target }) => this.setState({ fineGrainSearchValue: target.value })}
-                            className={classes.textField}
-                          />
-                        </div>
-                      </Grid>
-                      <Grid item xs={12}>
-                        <div className={classes.submitBtnWrapper2}>
-                          <Button
-                            variant="raised"
-                            onClick={onSpecificSearch}
-                            color="secondary"
-                          >
-                            <SearchIcon />
-                            Search
-                          </Button>
-                        </div>
-                      </Grid>
-                    </Grid>
-
-                  </div>
-                </ExpansionPanelDetails>
-              </ExpansionPanel>
-            </Grid>
-
-          </Grid>
-        </div>
-
-        <AdminAreaAgentsTableContainer />
-      </div>
+              <Snackbar
+                classes={{ root: classes.snackBar }}
+                anchorOrigin={{
+                  vertical: 'top',
+                  horizontal: 'center',
+                }}
+                open={this.state.snackbarOpen}
+                autoHideDuration={6000}
+                onClose={this.handleCloseSnackbar}
+                contentProps={{
+                  'aria-describedby': 'snackbar-id',
+                }}
+                message={
+                  <span id="snackbar-id">{this.state.snackbarText}</span>
+                }
+                action={[
+                  this.snackbarUndoFunction ? (
+                    <Button
+                      key="undo"
+                      color="secondary"
+                      size="small"
+                      onClick={() => {
+                        this.handleCloseSnackbar();
+                        if (
+                          this.state.snackbarUndoFunction &&
+                          typeof snackbarUndoFunction === 'function'
+                        ) {
+                          this.snackbarUndoFunction();
+                        }
+                      }}
+                    >
+                      UNDO
+                    </Button>
+                  ) : (
+                    undefined
+                  ),
+                  <IconButton
+                    key="close"
+                    aria-label="Close"
+                    color="inherit"
+                    className={classes.close}
+                    onClick={this.handleCloseSnackbar}
+                  >
+                    <CloseIcon />
+                  </IconButton>,
+                ]}
+              />
+            </div>
+          );
+        }}
+      </Query>
     );
   }
 }

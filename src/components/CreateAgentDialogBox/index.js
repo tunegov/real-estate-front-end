@@ -6,10 +6,12 @@ import Dialog, {
   DialogTitle,
   withMobileDialog,
 } from 'material-ui/Dialog';
+import { Icon } from 'antd';
 import Divider from 'material-ui/Divider';
 import { withStyles } from 'material-ui/styles';
 import Button from 'material-ui/Button';
 import CreateAgentForm from '../../containers/CreateAgentForm';
+import { AppContext } from '../../AppGlobalStateProvider';
 
 const styles = theme => ({
   paper: {
@@ -32,6 +34,9 @@ const styles = theme => ({
   },
   dialogContent: {
     paddingTop: '32px',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
   },
   saveDraftBtn: {
     marginRight: 'auto',
@@ -48,15 +53,13 @@ class CreateAgentDialogBox extends Component {
     super(props);
     this.state = {
       formApi: null,
+      submittingForm: false,
     };
   }
+
   render() {
-    const {
-      fullScreen,
-      classes,
-      toggleCreateAgentModal,
-      open,
-    } = this.props;
+    const { fullScreen, classes, toggleCreateAgentModal, open } = this.props;
+    const { submittingForm } = this.state;
 
     return (
       <Dialog
@@ -66,19 +69,43 @@ class CreateAgentDialogBox extends Component {
         classes={{ paper: classes.paper }}
         fullScreen={fullScreen}
       >
-        <DialogTitle id="form-dialog-title" classes={{ root: classes.formTitle }}>
+        <DialogTitle
+          id="form-dialog-title"
+          classes={{ root: classes.formTitle }}
+        >
           Add New Agent
         </DialogTitle>
         <Divider />
-        <DialogContent classes={{ root: classes.dialogContent }}>
-          <CreateAgentForm userUUID={this.props.userUUID} getFormApi={formApi => this.setState({ formApi })} />
+        <DialogContent
+          classes={{ root: classes.dialogContent }}
+          id="formDialog"
+        >
+          <AppContext.Consumer>
+            {context => (
+              <CreateAgentForm
+                userUUID={this.props.userUUID}
+                setIsSubmittingForm={this.setIsSubmittingForm}
+                setNotSubmittingForm={this.setNotSubmittingForm}
+                getFormApi={formApi => this.setState({ formApi })}
+                createAgent={context.UserStore.createAgent}
+                setAgentProfilePic={context.UserStore.setAgentProfilePic}
+              />
+            )}
+          </AppContext.Consumer>
         </DialogContent>
         <DialogActions classes={{ root: classes.dialogActions }}>
           <Button onClick={toggleCreateAgentModal} color="primary">
             Cancel
           </Button>
-          <Button onClick={() => this.state.formApi.submitForm()} color="primary">
-            Submit
+          <Button
+            onClick={() => this.state.formApi.submitForm()}
+            color="primary"
+            disabled={submittingForm ? true : false}
+          >
+            Submit{' '}
+            {submittingForm ? (
+              <Icon type="loading" style={{ color: '#fff' }} />
+            ) : null}
           </Button>
         </DialogActions>
       </Dialog>
@@ -87,4 +114,3 @@ class CreateAgentDialogBox extends Component {
 }
 
 export default withMobileDialog()(withStyles(styles)(CreateAgentDialogBox));
-

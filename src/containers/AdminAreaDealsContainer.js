@@ -21,10 +21,7 @@ import AdminAreaDealsTableContainer from './AdminAreaDealsTableContainer';
 import DealsSummaryDealDialogBox from '../components/DealsSummaryDealDialogBox';
 
 const styles = theme => ({
-  addDealBtn: {
-  },
   dealsSummaryBtn: {
-    marginLeft: '25px',
     backgroundColor: '#2995F3',
     color: '#fff',
     '&:hover': {
@@ -125,7 +122,9 @@ class AdminAreaDealsContainer extends Component {
   }
 
   toggleDealsSummaryDialogBox = () => {
-    this.setState({ dealsSummaryDialogBoxOpen: !this.state.dealsSummaryDialogBoxOpen });
+    this.setState({
+      dealsSummaryDialogBoxOpen: !this.state.dealsSummaryDialogBoxOpen,
+    });
   };
 
   onStartDateCHange = date => {
@@ -133,14 +132,14 @@ class AdminAreaDealsContainer extends Component {
     if (date.isAfter(moment())) return;
     if (date.isAfter(this.state.endDate)) return;
     this.setState({ startDate: date });
-  }
+  };
 
   onEndDateCHange = date => {
     if (!date) this.setState({ endDate: date });
     if (date.isAfter(moment())) return;
     if (date.isBefore(this.state.startDate)) return;
     this.setState({ endDate: date });
-  }
+  };
 
   onDateRangeSearch = () => {
     const { currentSearchType } = this.state;
@@ -148,7 +147,7 @@ class AdminAreaDealsContainer extends Component {
     if (currentSearchType !== searchTypes.dateRange) {
       this.setState({ currentSearchType: searchTypes.dateRange });
     }
-  }
+  };
 
   onSpecificSearch = () => {
     const { currentSearchType } = this.state;
@@ -156,13 +155,14 @@ class AdminAreaDealsContainer extends Component {
     if (currentSearchType !== searchTypes.specific) {
       this.setState({ currentSearchType: searchTypes.specific });
     }
-  }
+  };
 
   render() {
     const { classes } = this.props;
     const {
       dealsSummaryDialogBoxOpen,
-      startDate, endDate,
+      startDate,
+      endDate,
       fineGrainSearchType,
       fineGrainSearchValue,
       currentSearchType,
@@ -174,7 +174,6 @@ class AdminAreaDealsContainer extends Component {
       onDateRangeSearch,
       onSpecificSearch,
     } = this;
-
 
     return (
       <div className={classes.wrapper}>
@@ -196,9 +195,15 @@ class AdminAreaDealsContainer extends Component {
             <Grid item xs={12} lg={6}>
               <ExpansionPanel>
                 <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-                  <Typography align="center" color="inherit" className={classes.heading}>
+                  <Typography
+                    align="center"
+                    color="inherit"
+                    className={classes.heading}
+                  >
                     Search Deals By: Date Range (Default)
-                    {currentSearchType === searchTypes.dateRange ? <CheckCircleIcon classes={{ root: classes.checkIcon }} /> : null}
+                    {currentSearchType === searchTypes.dateRange ? (
+                      <CheckCircleIcon classes={{ root: classes.checkIcon }} />
+                    ) : null}
                   </Typography>
                 </ExpansionPanelSummary>
                 <ExpansionPanelDetails>
@@ -206,43 +211,44 @@ class AdminAreaDealsContainer extends Component {
                     <Grid container spacing={16}>
                       <Grid item xs={12} sm={6}>
                         <div className={classes.formControlWrapperCenter}>
-
-                          {isBrowser ? <DatePicker
-                            value={startDate}
-                            onChange={onStartDateCHange}
-                            clearable
-                            label="Start Day"
-                            className={classes.textField}
-                            minDate={this.state.minDate}
-                            maxDate={this.state.endDate || this.state.maxDate}
-                            disableFuture
-                            format="MMM Do YYYY"
-                            InputLabelProps={{
-                              shrink: true,
-                            }}
-                            maxDateMessage="Date must be less than today"
-                          /> : null}
-
-
+                          {isBrowser ? (
+                            <DatePicker
+                              value={startDate}
+                              onChange={onStartDateCHange}
+                              clearable
+                              label="Start Day"
+                              className={classes.textField}
+                              minDate={this.state.minDate}
+                              maxDate={this.state.endDate || this.state.maxDate}
+                              disableFuture
+                              format="MMM Do YYYY"
+                              InputLabelProps={{
+                                shrink: true,
+                              }}
+                              maxDateMessage="Date must be less than today"
+                            />
+                          ) : null}
                         </div>
                       </Grid>
                       <Grid item xs={12} sm={6}>
                         <div className={classes.formControlWrapperCenter}>
-                          {isBrowser ? <DatePicker
-                            value={endDate}
-                            onChange={onEndDateCHange}
-                            clearable
-                            label="End Day"
-                            className={classes.textField}
-                            disableFuture
-                            format="MMM Do YYYY"
-                            minDate={startDate || this.state.minDate}
-                            maxDate={this.state.maxDate}
-                            InputLabelProps={{
-                              shrink: true,
-                            }}
-                            maxDateMessage="Date must be less than today"
-                          /> : null}
+                          {isBrowser ? (
+                            <DatePicker
+                              value={endDate}
+                              onChange={onEndDateCHange}
+                              clearable
+                              label="End Day"
+                              className={classes.textField}
+                              disableFuture
+                              format="MMM Do YYYY"
+                              minDate={startDate || this.state.minDate}
+                              maxDate={this.state.maxDate}
+                              InputLabelProps={{
+                                shrink: true,
+                              }}
+                              maxDateMessage="Date must be less than today"
+                            />
+                          ) : null}
                         </div>
                       </Grid>
                       <Grid item xs={12}>
@@ -258,7 +264,6 @@ class AdminAreaDealsContainer extends Component {
                         </div>
                       </Grid>
                     </Grid>
-
                   </div>
                 </ExpansionPanelDetails>
               </ExpansionPanel>
@@ -267,9 +272,15 @@ class AdminAreaDealsContainer extends Component {
             <Grid item xs={12} lg={6}>
               <ExpansionPanel>
                 <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-                  <Typography align="center" color="inherit" className={classes.heading}>
+                  <Typography
+                    align="center"
+                    color="inherit"
+                    className={classes.heading}
+                  >
                     Search Deals By: Other
-                    {currentSearchType === searchTypes.specific ? <CheckCircleIcon classes={{ root: classes.checkIcon }} /> : null}
+                    {currentSearchType === searchTypes.specific ? (
+                      <CheckCircleIcon classes={{ root: classes.checkIcon }} />
+                    ) : null}
                   </Typography>
                 </ExpansionPanelSummary>
                 <ExpansionPanelDetails>
@@ -280,7 +291,11 @@ class AdminAreaDealsContainer extends Component {
                           <MaterialCustomSelectInput
                             className={classes.selectInput}
                             value={fineGrainSearchType || undefined}
-                            onChange={({ target }) => this.setState({ fineGrainSearchType: target.value })}
+                            onChange={({ target }) =>
+                              this.setState({
+                                fineGrainSearchType: target.value,
+                              })
+                            }
                             placeholder="Search Type..."
                             label="Search Type"
                             inputProps={{}}
@@ -295,7 +310,11 @@ class AdminAreaDealsContainer extends Component {
                             label="Search Item..."
                             type="text"
                             value={fineGrainSearchValue}
-                            onChange={({ target }) => this.setState({ fineGrainSearchValue: target.value })}
+                            onChange={({ target }) =>
+                              this.setState({
+                                fineGrainSearchValue: target.value,
+                              })
+                            }
                             className={classes.textField}
                           />
                         </div>
@@ -313,12 +332,10 @@ class AdminAreaDealsContainer extends Component {
                         </div>
                       </Grid>
                     </Grid>
-
                   </div>
                 </ExpansionPanelDetails>
               </ExpansionPanel>
             </Grid>
-
           </Grid>
         </div>
 

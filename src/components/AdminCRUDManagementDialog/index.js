@@ -42,7 +42,9 @@ class AdminCRUDManagementDialog extends Component {
       },
       { name: 'View All', route: 'view', type: 'link', icon: ViewIcon },
     ],
-    users: [{ name: 'View All', route: 'view', type: 'link', icon: ViewIcon }],
+    customers: [
+      { name: 'View All', route: 'view', type: 'link', icon: ViewIcon },
+    ],
     admin: [
       {
         name: 'Create',

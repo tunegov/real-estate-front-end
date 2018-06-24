@@ -29,7 +29,7 @@ const UserStore = types
     setUser: userObject => {
       if (!userObject) return;
       self.isLoggedIn = true;
-      self.userRole = userObject.roles;
+      self.userRole = userObject.role;
       self.uuid = userObject.uuid;
     },
     unsetUser: () => {

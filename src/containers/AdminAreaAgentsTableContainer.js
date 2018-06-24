@@ -1,14 +1,12 @@
 import React, { Component } from 'react';
 import { observer } from 'mobx-react';
 import { withStyles } from 'material-ui/styles';
-import { DotLoader } from 'react-spinners';
 import Chance from 'chance';
 import faker from 'faker';
+import moment from 'moment';
 import AdminAreaAgentsTable from '../components/AdminAreaAgentsTable';
 
 const chance = new Chance();
-
-const Loader = DotLoader;
 
 const styles = theme => ({
   root: {
@@ -38,6 +36,7 @@ const styles = theme => ({
 });
 
 const columns = [
+  { name: 'agentID', title: 'Agent ID' },
   { name: 'realEstateLicenseNumber', title: 'RE License Number' },
   { name: 'photo', title: 'Photo' },
   { name: 'name', title: 'Name' },
@@ -45,7 +44,9 @@ const columns = [
   { name: 'areaOfFocus', title: 'Area of Focus' },
   { name: 'mobileNumber', title: 'Mobile Number' },
   { name: 'companyNumberAndExt', title: 'Company Number/Extension' },
-  { name: 'region', title: 'Region' },
+  { name: 'branch', title: 'Branch' },
+  { name: 'state', title: 'State' },
+  { name: 'lastLoginTimestamp', title: 'Last Login Time' },
   { name: 'view', title: 'View Profile' },
 ];
 
@@ -55,25 +56,53 @@ class AdminAreaAgentsTableContainer extends Component {
     super(props);
     this.state = {
       tableIsLoading: true,
-      rows: this.createRows(2780),
+      rows: this.createRows(this.props.agents),
     };
   }
 
-  createRows = numOfRows => {
+  createRows = agents => {
     const rows = [];
-    for (let i = 0; i < numOfRows; i++) {
+    agents.forEach(agent => {
+      const {
+        agent: agentPart,
+        firstName,
+        lastName,
+        email,
+        uuid,
+        lastLoginTimestamp,
+      } = agent;
+      const {
+        areaOfFocus,
+        state,
+        realEstateLicenseNumber,
+        profilePicURL,
+        officeNumber,
+        mobileNumber,
+        branch,
+      } = agentPart;
       rows.push({
-        realEstateLicenseNumber: chance.integer({ min: 1, max: 2000000000 }),
-        photo: { imageURL: faker.image.avatar(), profileURL: '#' },
-        name: chance.name(),
-        email: chance.email(),
-        areaOfFocus: 'none',
-        mobileNumber: chance.phone(),
-        companyNumberAndExt: `${chance.phone()} x${chance.integer({ min: 1, max: 999 })}`,
-        region: chance.integer({ min: 0, max: 100 }) > 70 ? chance.state({ full: true }) : 'New York',
-        view: '#',
+        agentID: uuid,
+        realEstateLicenseNumber: realEstateLicenseNumber,
+        photo: {
+          imageURL: profilePicURL,
+          id: uuid,
+        },
+        name: `${firstName} ${lastName}`,
+        email,
+        areaOfFocus: areaOfFocus || 'none',
+        mobileNumber,
+        companyNumberAndExt: officeNumber,
+        branch,
+        state,
+        lastLoginTimestamp: lastLoginTimestamp
+          ? moment(lastLoginTimestamp).format('MM/DD/YYYY, h:mm:ss a')
+          : '',
+        view: {
+          route: 'agent',
+          id: uuid,
+        },
       });
-    }
+    });
     return rows;
   };
 
@@ -82,19 +111,11 @@ class AdminAreaAgentsTableContainer extends Component {
     const { classes, ...rest } = this.props;
     return (
       <div className={classes.root}>
-        {
-          tableIsLoading ? (
-            <div className={classes.progressWrapper} style={{ display: 'flex', justifyContent: 'center' }}>
-              <Loader
-                color="#f44336"
-                loading
-              />
-            </div>
-          ) : null
-        }
         <AdminAreaAgentsTable
           {...rest}
-          onMount={() => tableIsLoading ? this.setState({ tableIsLoading: false }) : null}
+          onMount={() =>
+            tableIsLoading ? this.setState({ tableIsLoading: false }) : null
+          }
           columns={columns}
           rows={rows}
         />

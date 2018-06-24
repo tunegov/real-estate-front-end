@@ -2,7 +2,12 @@ import React from 'react';
 import { observer } from 'mobx-react';
 import { withStyles } from 'material-ui/styles';
 import Radio, { RadioGroup } from 'material-ui/Radio';
-import { FormControl, FormHelperText, FormLabel, FormControlLabel } from 'material-ui/Form';
+import {
+  FormControl,
+  FormHelperText,
+  FormLabel,
+  FormControlLabel,
+} from 'material-ui/Form';
 import { Field } from 'react-form';
 import classnames from 'classnames';
 
@@ -72,7 +77,7 @@ const MaterialCustomRadioInputWrapper = props => (
         touched,
       } = fieldApi;
 
-      const renderRadioInputItems = radioInputItems => (
+      const renderRadioInputItems = radioInputItems =>
         radioInputItems.map(item => (
           <FormControlLabel
             key={item.label}
@@ -82,8 +87,7 @@ const MaterialCustomRadioInputWrapper = props => (
             control={<Radio />}
             label={item.label}
           />
-        ))
-      );
+        ));
 
       return (
         <div className={classes.root}>
@@ -92,19 +96,28 @@ const MaterialCustomRadioInputWrapper = props => (
             error={error && touched}
             fullWidth={fullWidth}
             required={required}
-            className={disabled ? `${classes.formControl} ${classes.disabled} ${className}` : `${classes.formControl} ${className}`}
+            className={
+              disabled
+                ? `${classes.formControl} ${classes.disabled} ${className}`
+                : `${classes.formControl} ${className}`
+            }
             disabled={disabled}
           >
-            <FormLabel component="legend">{label}</FormLabel>
+            <FormLabel
+              component="legend"
+              className={classnames(
+                horizontal ? classes.textAlignCenter : undefined
+              )}
+            >
+              {label}
+            </FormLabel>
             <RadioGroup
               aria-label={label}
               name={`${id}1`}
-              className={
-                classnames(
-                  classes.group,
-                  horizontal && classes.horzontalRadioBtns
-                )
-              }
+              className={classnames(
+                classes.group,
+                horizontal && classes.horzontalRadioBtns
+              )}
               value={value || null}
               onChange={event => {
                 setValue(event.target.value);
@@ -119,7 +132,13 @@ const MaterialCustomRadioInputWrapper = props => (
             >
               {renderRadioInputItems(radioInputItems)}
             </RadioGroup>
-            {error && touched ? <FormHelperText classes={horizontal ? { root: classes.textAlignCenter } : null}>{error}</FormHelperText> : null}
+            {error && touched ? (
+              <FormHelperText
+                classes={horizontal ? { root: classes.textAlignCenter } : null}
+              >
+                {error}
+              </FormHelperText>
+            ) : null}
           </FormControl>
         </div>
       );

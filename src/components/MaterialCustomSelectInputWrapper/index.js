@@ -79,7 +79,10 @@ const MaterialCustomSelectInputWrapper = props => (
 
       const renderSelectInputItems = selectInputItems =>
         selectInputItems.map(item => (
-          <MenuItem key={item.label} value={item.value || item.label}>
+          <MenuItem
+            key={item.key || item.label}
+            value={item.value || item.label}
+          >
             {item.label}
           </MenuItem>
         ));
@@ -103,6 +106,9 @@ const MaterialCustomSelectInputWrapper = props => (
             }
             onChange={event => {
               setValue(event.target.value);
+              if (onChange) {
+                onChange(event.target.value);
+              }
               if (onInput) {
                 onInput(event);
               }

@@ -8,10 +8,8 @@ import SideNav from '../SideNav';
 import AdminSideNav from '../AdminSideNav';
 import AppTopNav from '../AppTopNav';
 import SettingsDrawer from '../SettingsDrawer';
-import { includesAny, includesAll } from '../../utils/arrayUtils';
-import AdminCRUDManagementDialog from '../AdminCRUDManagementDialog';
-import CreateAgentDialogBox from '../CreateAgentDialogBox';
 import MenuDialogBox from '../MenuDialogBox';
+import { admin, superAdmin } from '../../constants/userTypes';
 
 const styles = theme => ({
   root: {
@@ -31,8 +29,6 @@ const styles = theme => ({
     padding: theme.spacing.unit * 3,
     minWidth: 0, // So the Typography noWrap works
     overflow: 'auto',
-    backgroundImage: 'url("/static/backgrounds/background2.svg")',
-    backgroundRepeat: 'repeat',
   },
   toolbar: theme.mixins.toolbar,
   topToolbar: {
@@ -58,6 +54,9 @@ const styles = theme => ({
       cursor: 'pointer',
     },
   },
+  snackBar: {
+    marginTop: 25,
+  },
 });
 
 class InnerAppLayout extends React.Component {
@@ -70,14 +69,13 @@ class InnerAppLayout extends React.Component {
       managementModalOpen: false,
       managementModalCurrentRoute: null,
       managementModalCurrentType: null,
-      createAgentModalOpen: false,
       menuDialogBoxOpen: false,
       menuDialogBoxTitle: null,
       menuDialogBoxLinkItems: null,
     };
 
     const { userRole } = this.props;
-    this.isAdmin = userRole === 'admin' || userRole === 'super-admin';
+    this.isAdmin = userRole === admin || userRole === superAdmin;
   }
 
   toggleNavDrawer = state => {
@@ -107,23 +105,6 @@ class InnerAppLayout extends React.Component {
     this.setState({
       settingsDrawerOpen:
         typeof state === 'boolean' ? state : !this.state.settingsDrawerOpen,
-    });
-  };
-
-  toggleManagementModal = (routeBase, subtype) => {
-    const { managementModalOpen } = this.state;
-    this.setState({
-      managementModalOpen: !managementModalOpen,
-      managementModalCurrentRoute: !managementModalOpen ? routeBase : null,
-      managementModalCurrentType: !managementModalOpen ? subtype : null,
-    });
-  };
-
-  toggleCreateAgentModal = state => {
-    const { createAgentModalOpen } = this.state;
-    this.setState({
-      createAgentModalOpen:
-        typeof state === 'boolean' ? state : !createAgentModalOpen,
     });
   };
 
@@ -160,6 +141,7 @@ class InnerAppLayout extends React.Component {
       logoutUser,
       userRole,
       toggleFullScreenLoader,
+      createAgent,
     } = this.props;
     const currentPath = this.props.router.pathname;
     const { isAdmin } = this;
@@ -209,18 +191,6 @@ class InnerAppLayout extends React.Component {
               />
             </div>
           </main>
-          <AdminCRUDManagementDialog
-            open={managementModalOpen}
-            managementModalCurrentRoute={managementModalCurrentRoute}
-            managementModalType={managementModalType}
-            toggleManagementModal={this.toggleManagementModal}
-            toggleCreateAgentModal={this.toggleCreateAgentModal}
-            managementModalCurrentType={managementModalCurrentType}
-          />
-          <CreateAgentDialogBox
-            open={createAgentModalOpen}
-            toggleCreateAgentModal={this.toggleCreateAgentModal}
-          />
           <MenuDialogBox
             open={menuDialogBoxOpen}
             title={menuDialogBoxTitle}

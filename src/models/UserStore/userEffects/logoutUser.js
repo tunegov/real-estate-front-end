@@ -1,6 +1,5 @@
 import { GraphQLClient } from 'graphql-request';
-
-const endpoint = '/api/graphql';
+import graphQLEndpoint from '../../../constants/graphQLEndpoint';
 
 const query = `
     mutation logoutUser {
@@ -11,7 +10,9 @@ const query = `
     }
   `;
 
-const client = new GraphQLClient(endpoint, { credentials: 'same-origin' });
+const client = new GraphQLClient(graphQLEndpoint, {
+  credentials: 'same-origin',
+});
 
 async function logoutUser(self) {
   let res;

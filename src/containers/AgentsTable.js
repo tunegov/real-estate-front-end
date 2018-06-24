@@ -38,6 +38,7 @@ const styles = theme => ({
 });
 
 const columns = [
+  { name: 'agentID', title: 'Agent ID' },
   { name: 'photo', title: 'Photo' },
   { name: 'name', title: 'Name' },
   { name: 'email', title: 'Email' },
@@ -62,7 +63,11 @@ class AgentsTableContainer extends Component {
     const rows = [];
     for (let i = 0; i < numOfRows; i++) {
       rows.push({
-        photo: { imageURL: faker.image.avatar(), profileURL: '#' },
+        agentID: chance.integer({ min: 100000, max: 999999 }),
+        photo: {
+          imageURL: faker.image.avatar(),
+          id: chance.integer({ min: 100000, max: 999999 }),
+        },
         name: chance.name(),
         email: chance.email(),
         areaOfFocus: 'none',
@@ -75,7 +80,10 @@ class AgentsTableContainer extends Component {
           chance.integer({ min: 0, max: 100 }) > 70
             ? chance.state({ full: true })
             : 'New York',
-        view: chance.integer({ min: 100000, max: 999999 }),
+        view: {
+          route: 'agent',
+          id: chance.integer({ min: 100000, max: 999999 }),
+        },
       });
     }
     return rows;

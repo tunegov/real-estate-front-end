@@ -5,6 +5,7 @@ import Input, { InputLabel, InputAdornment } from 'material-ui/Input';
 import { FormControl, FormHelperText } from 'material-ui/Form';
 import { Field } from 'react-form';
 import uuid from 'uuid/v4';
+import debounce from '../../utils/debounce';
 
 const numbersOnlyRegex = /^\d+$/;
 const noLettersRegex = /^[^a-zA-Z]+$/;
@@ -43,9 +44,13 @@ class CustomTextFieldWrapper extends React.Component {
 
   static getDerivedStateFromProps(nextProps, prevState) {
     const { convertToLocaleString } = nextProps;
-    if (nextProps.formApi && nextProps.submittedValue !== prevState.submittedValue) {
-      const val = convertToLocaleString ?
-        Number(nextProps.submittedValue).toLocaleString() : nextProps.submittedValue;
+    if (
+      nextProps.formApi &&
+      nextProps.submittedValue !== prevState.submittedValue
+    ) {
+      const val = convertToLocaleString
+        ? Number(nextProps.submittedValue).toLocaleString()
+        : nextProps.submittedValue;
       nextProps.formApi.setValue(nextProps.field, val);
       return { submittedValue: nextProps.submittedValue };
     }
@@ -55,12 +60,12 @@ class CustomTextFieldWrapper extends React.Component {
   returnStartAdornment = () => {
     const { isDollarAmount, isPercentAmount } = this.props;
     if (isDollarAmount) {
-      return <InputAdornment position="start">$</InputAdornment>
+      return <InputAdornment position="start">$</InputAdornment>;
     } else if (isPercentAmount) {
-      return <InputAdornment position="start">%</InputAdornment>
+      return <InputAdornment position="start">%</InputAdornment>;
     }
     return null;
-  }
+  };
 
   render() {
     const { returnStartAdornment } = this;
@@ -94,6 +99,8 @@ class CustomTextFieldWrapper extends React.Component {
             isDollarAmount,
             inputRootClassName,
             isPercentAmount,
+            requiresDefaultOnChange,
+            isInputMasked,
             ...rest
           } = this.props;
 
@@ -107,38 +114,94 @@ class CustomTextFieldWrapper extends React.Component {
             touched,
           } = fieldApi;
 
+          const returnValue = () => {
+            if (isInputMasked) {
+              return undefined;
+            } else {
+              return value || '';
+            }
+          };
+
           return (
             <FormControl
-              className={disabled ? `${classes.formControl} ${classes.disabled}` : classes.formControl}
+              className={
+                disabled
+                  ? `${classes.formControl} ${classes.disabled}`
+                  : classes.formControl
+              }
               error={error && touched}
               disabled={disabled}
               fullWidth={fullWidth}
               required={required}
             >
-              {label ? <InputLabel htmlFor={id} className={disabled ? `${classes.disabled} ${labelClassName}` : `${labelClassName}`}>{label}</InputLabel> : null}
+              {label ? (
+                <InputLabel
+                  htmlFor={id}
+                  className={
+                    disabled
+                      ? `${classes.disabled} ${labelClassName}`
+                      : `${labelClassName}`
+                  }
+                >
+                  {label}
+                </InputLabel>
+              ) : null}
               <Input
+                inputRef={ref => (this._input = ref)}
                 className={disabled ? classes.disabled : null}
-                inputProps={{ className: disabled ? `${classes.disabled} ${inputClassName}` : `${inputClassName}` }}
-                value={value || ''}
-                classes={inputRootClassName ? { root: inputRootClassName } : null}
+                inputProps={{
+                  className: disabled
+                    ? `${classes.disabled} ${inputClassName}`
+                    : `${inputClassName}`,
+                }}
+                value={returnValue()}
+                classes={
+                  inputRootClassName ? { root: inputRootClassName } : null
+                }
                 id={id}
+                onInput={
+                  isInputMasked
+                    ? debounce(() => {
+                        if (this._input) {
+                          setValue(this._input.value);
+                        }
+                      }, 250)
+                    : undefined
+                }
                 onChange={e => {
                   const newValue = e.target.value;
-                  if (numbersOnly && newValue && !numbersOnlyRegex.test(newValue)) {
+                  if (
+                    numbersOnly &&
+                    newValue &&
+                    !numbersOnlyRegex.test(newValue)
+                  ) {
                     return;
                   }
+
                   if (noLetters && newValue && !noLettersRegex.test(newValue)) {
                     return;
                   }
-                  if (noNegativeSign && newValue && !noNegativeSignRegex.test(newValue)) {
+
+                  if (
+                    noNegativeSign &&
+                    newValue &&
+                    !noNegativeSignRegex.test(newValue)
+                  ) {
                     return;
                   }
-                  if (submittedValue != 0 && !submittedValue) {
+
+                  if (!isInputMasked) {
                     setValue(newValue);
                   }
+
                   if (onChange && typeof onChange === 'function') {
-                    onChange(newValue, e);
+                    if (requiresDefaultOnChange) {
+                      onChange(e, setValue);
+                    } else {
+                      onChange(newValue, setValue, e);
+                    }
                   }
+
                   if (onChangeWithID && typeof onChangeWithID === 'function') {
                     onChangeWithID(this.state.id, newValue, e);
                   }
@@ -153,7 +216,14 @@ class CustomTextFieldWrapper extends React.Component {
                 startAdornment={returnStartAdornment()}
                 {...rest}
               />
-              {error && touched ? <FormHelperText classes={{ root: classes.redErrorText }} id={`${id}-error-text`}>{error}</FormHelperText> : null}
+              {error && touched ? (
+                <FormHelperText
+                  classes={{ root: classes.redErrorText }}
+                  id={`${id}-error-text`}
+                >
+                  {error}
+                </FormHelperText>
+              ) : null}
             </FormControl>
           );
         }}

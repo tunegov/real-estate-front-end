@@ -12,6 +12,8 @@ import globalStyles from '../../globalStyles';
 import InnerAppLayout from '../InnerAppLayout';
 import FullScreenLoader from '../FullScreenLoader';
 import { initStore } from '../../models';
+import { admin, superAdmin } from '../../constants/userTypes';
+import { AppProvider } from '../../AppGlobalStateProvider';
 
 const store = initStore();
 const { UIStore } = store;
@@ -41,12 +43,15 @@ class Layout extends Component {
   }
 
   render() {
-    const { logoutUser: logout, userRole } = this.props.UserStore;
+    const { UIStore, UserStore } = this.props;
+
+    const { logoutUser: logout, userRole } = UserStore;
+    const isAdmin = userRole === admin || userRole === superAdmin;
     const {
       fullScreenLoaderOn,
       fullScreenLoaderText,
       toggleFullScreenLoader,
-    } = this.props.UIStore;
+    } = UIStore;
     const logoutUser = () => {
       const { error } = logout();
       if (error) {
@@ -82,19 +87,22 @@ class Layout extends Component {
           <style dangerouslySetInnerHTML={{ __html: globalStyles }} />
         </Head>
         {/* <DevTools position={{ top: 0, left: 30 }} /> */}
-        <ThemeProvider theme={themeStyles}>
-          <InnerAppLayout
-            logoutUser={logoutUser}
-            userRole={userRole}
-            toggleFullScreenLoader={toggleFullScreenLoader}
-          >
-            {this.props.children}
-          </InnerAppLayout>
-        </ThemeProvider>
-        <FullScreenLoader
-          open={fullScreenLoaderOn}
-          text={fullScreenLoaderText}
-        />
+        <AppProvider UserStore={UserStore} UIStore={UIStore}>
+          <ThemeProvider theme={themeStyles}>
+            <InnerAppLayout
+              logoutUser={logoutUser}
+              userRole={userRole}
+              toggleFullScreenLoader={toggleFullScreenLoader}
+              isAdmin={isAdmin}
+            >
+              {this.props.children}
+            </InnerAppLayout>
+          </ThemeProvider>
+          <FullScreenLoader
+            open={fullScreenLoaderOn}
+            text={fullScreenLoaderText}
+          />
+        </AppProvider>
       </div>
     );
   }

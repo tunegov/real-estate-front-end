@@ -21,7 +21,8 @@ import {
   TableFilterRow,
   TableColumnResizing,
   TableSelection,
-  DragDropProvider, TableColumnReordering,
+  DragDropProvider,
+  TableColumnReordering,
   Toolbar,
   SearchPanel,
   PagingPanel,
@@ -29,13 +30,15 @@ import {
   TableColumnVisibility,
 } from '@devexpress/dx-react-grid-material-ui';
 import SelectFilterCell from '../../utils/backEndTableUtils/SelectFilterCell';
-import { compareDate, compareNumber } from '../../utils/backEndTableUtils/tableSortingUtils';
+import {
+  compareDate,
+  compareNumber,
+} from '../../utils/backEndTableUtils/tableSortingUtils';
 import Cell from '../../utils/backEndTableUtils/DefaultVirtualTableCell';
 import TableComponent from '../../utils/backEndTableUtils/TableComponent';
 import TableContainerComponent from '../../utils/backEndTableUtils/TableContainerComponent';
 import NoDataCellComponent from '../../utils/backEndTableUtils/NoDataCellComponent';
 import ViewFormatter from '../dataTableFormatters/ViewFormatter';
-
 
 const styles = theme => ({
   root: {
@@ -54,9 +57,7 @@ const styles = theme => ({
   input: {
     width: '100%',
   },
-  myTable: {
-
-  },
+  myTable: {},
   myTableContainer: {
     minHeight: '300px',
     height: 'calc(100vh - 318px) !important',
@@ -90,7 +91,9 @@ const statusSelectInputItems = [
 
 const FilterCell = props => {
   if (props.column.name === 'status') {
-    return <SelectFilterCell selectInputItems={statusSelectInputItems} {...props} />;
+    return (
+      <SelectFilterCell selectInputItems={statusSelectInputItems} {...props} />
+    );
   }
   return <TableFilterRow.Cell {...props} />;
 };
@@ -125,17 +128,10 @@ const defaultHiddenColumnNames = [
   'managementOrCobrokeCompany',
 ];
 
-const ViewCellFormatter = ({ value }) => (
-  <ViewFormatter
-    profileURL={value}
-  />
-);
+const ViewCellFormatter = ({ value }) => <ViewFormatter value={value} />;
 
 const ViewTypeProvider = props => (
-  <DataTypeProvider
-    formatterComponent={ViewCellFormatter}
-    {...props}
-  />
+  <DataTypeProvider formatterComponent={ViewCellFormatter} {...props} />
 );
 
 const pageSizes = [5, 10, 15, 20, 50, 100, 0];
@@ -169,12 +165,12 @@ class InvoicesTable extends Component {
     if (this.state.pageSize < pageSize) {
       document.getElementById('myTableContainer').scrollTop = 0;
     }
-  }
+  };
 
   currentPageChange = currentPage => {
     this.setState({ currentPage });
     document.getElementById('myTableContainer').scrollTop = 0;
-  }
+  };
 
   changeSelection = selection => {
     this.setState({ selection });
@@ -185,21 +181,12 @@ class InvoicesTable extends Component {
     const { selection } = this.state;
     return (
       <div className={classes.root}>
-        <Grid
-          rows={rows}
-          columns={columns}
-          getRowId={getRowId}
-        >
-
-          <ViewTypeProvider
-            for={['view']}
-          />
+        <Grid rows={rows} columns={columns} getRowId={getRowId}>
+          <ViewTypeProvider for={['view']} />
 
           <DragDropProvider />
           <SearchState />
-          <FilteringState
-            columnExtensions={filteringStateColumnExtensions}
-          />
+          <FilteringState columnExtensions={filteringStateColumnExtensions} />
           <SortingState
             defaultSorting={[{ columnName: 'date', direction: 'desc' }]}
             columnExtensions={sortingStateColumnExtensions}
@@ -225,23 +212,26 @@ class InvoicesTable extends Component {
 
           <IntegratedPaging />
 
-
           <VirtualTable
             height={isBrowser ? window.innerHeight - 318 : undefined}
             tableComponent={TableComponent}
             containerComponent={props => (
               <TableContainerComponent
-                className={lgViewport ? classes.myTableContainerSmallViewPort : classes.myTableContainer}
+                className={
+                  lgViewport
+                    ? classes.myTableContainerSmallViewPort
+                    : classes.myTableContainer
+                }
                 {...props}
               />
             )}
             cellComponent={Cell}
             noDataCellComponent={NoDataCellComponent}
           />
-          <TableColumnReordering defaultOrder={columns.map(column => column.name)} />
-          <TableColumnResizing
-            defaultColumnWidths={defaultColumnWidths}
+          <TableColumnReordering
+            defaultOrder={columns.map(column => column.name)}
           />
+          <TableColumnResizing defaultColumnWidths={defaultColumnWidths} />
 
           <TableFilterRow cellComponent={FilterCell} />
           <Toolbar />
@@ -253,13 +243,8 @@ class InvoicesTable extends Component {
           <ColumnChooser />
 
           <TableHeaderRow showSortingControls />
-          <TableSelection
-            showSelectAll
-            highlightRow
-          />
-          <PagingPanel
-            pageSizes={pageSizes}
-          />
+          <TableSelection showSelectAll highlightRow />
+          <PagingPanel pageSizes={pageSizes} />
         </Grid>
       </div>
     );

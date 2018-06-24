@@ -39,11 +39,14 @@ const styles = theme => ({
 @withStyles(styles)
 class HeaderNav extends React.Component {
   renderLinks = () => {
-    const { classes } = this.props;
+    const { classes, isAdmin } = this.props;
     if (this.props.isLoggedIn) {
       return (
         <LeftHeaderLinkWrapper>
-          <HeaderNavLink route="dashboard" prefetch>
+          <HeaderNavLink
+            route={isAdmin ? 'admin-dashboard' : 'dashboard'}
+            prefetch
+          >
             <NavAnchor>Dashboard</NavAnchor>
           </HeaderNavLink>
           <NavAnchor onClick={this.props.onLogout}>Log Out</NavAnchor>
@@ -72,7 +75,7 @@ class HeaderNav extends React.Component {
       <HeaderNavLink route="listings" href="/listings" prefetch>
         <NavAnchor>Listings</NavAnchor>
       </HeaderNavLink>
-      <HeaderNavLink route="new-developments" href="/new-developments" prefetch>
+      <HeaderNavLink route="listings" href="/listings" prefetch>
         <NavAnchor>New Developments</NavAnchor>
       </HeaderNavLink>
       <HeaderNavLink route="about" href="/about" prefetch>
@@ -84,11 +87,7 @@ class HeaderNav extends React.Component {
   render() {
     const { headerBoxShadowOff } = this.props;
     return (
-      <HeaderWrapper
-        id="header-wrapper"
-        isApp={this.props.isApp}
-        headerBoxShadowOff
-      >
+      <HeaderWrapper id="header-wrapper" headerBoxShadowOff>
         <Logo>
           <Link route="home" prefetch>
             <LogoAnchor>Real Estate App Logo</LogoAnchor>
