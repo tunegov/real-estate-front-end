@@ -1,11 +1,34 @@
 import React from 'react';
 import { observer } from 'mobx-react';
 import isBrowser from 'is-browser';
+import gql from 'graphql-tag';
+import { Query } from 'react-apollo';
+import { DotLoader } from 'react-spinners';
 import Layout from '../../components/Layout';
 import { initStore } from '../../models';
 import withData from '../../lib/withData';
 import { Router } from '../../routes';
 import ProfileContainer from '../../containers/Profile';
+const Loader = DotLoader;
+
+const agentQuery = gql`
+  query agent($uuid: String!) {
+    agent(uuid: $uuid) {
+      firstName
+      lastName
+      role
+      email
+      role
+      agent {
+        profilePicURL
+        mobileNumber
+        officeNumber
+        branch
+        profileDescription
+      }
+    }
+  }
+`;
 
 @observer
 class Profile extends React.Component {
@@ -34,7 +57,47 @@ class Profile extends React.Component {
     const { profileID } = this.props;
     return (
       <Layout UserStore={this.store.UserStore} UIStore={this.store.UIStore}>
-        <ProfileContainer UUID={profileID || this.store.UserStore.uuid} />
+        <Query
+          query={agentQuery}
+          variables={{ uuid: profileID || this.store.UserStore.uuid }}
+        >
+          {({ loading, error, data }) => {
+            if (loading)
+              return (
+                <div
+                  style={{
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    height: '546px',
+                    boxShadow:
+                      '0px 1px 3px 0px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 2px 1px -1px rgba(0, 0, 0, 0.12)',
+                  }}
+                >
+                  <Loader color="#f44336" loading />
+                </div>
+              );
+            // TODO: change the error message to a generic
+            // 'error connecting to server' message
+            if (error) return `Error!: ${error}`;
+
+            if (!data || !data.agent)
+              return (
+                <div style={{ textAlign: 'center', fontSize: '1.2rem' }}>
+                  AGENT NOT NOTFOUND
+                </div>
+              );
+
+            return (
+              <ProfileContainer
+                agent={data.agent}
+                uuid={profileID || this.store.UserStore.uuid}
+                currentUserRole={this.store.UserStore.userRole}
+                currentUserUUID={this.store.UserStore.uuid}
+              />
+            );
+          }}
+        </Query>
       </Layout>
     );
   }

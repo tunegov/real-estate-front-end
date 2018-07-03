@@ -20,6 +20,7 @@ const styles = theme => ({
     objectFit: 'cover',
     cursor: 'pointer',
     borderRadius: '50%',
+    background: 'linear-gradient(45deg, #45484d 0%,#000000 100%)',
   },
   noImagePlaceholder: {
     display: 'flex',
@@ -29,7 +30,7 @@ const styles = theme => ({
     height: '100%',
     cursor: 'pointer',
     borderRadius: '50%',
-    backgroundColor: '#000',
+    background: 'linear-gradient(45deg, #45484d 0%,#000000 100%)',
     color: '#fff',
   },
 });
@@ -64,9 +65,9 @@ class ProfilePictureFormatter extends React.Component {
           leaveDelay={100}
         >
           <div className={classes.wrapper}>
-            <Link route="agent" params={{ id }}>
+            <Link route="profile" params={{ id }}>
               <a>
-                <div className={classes.noImagePlaceholder}>?</div>
+                <div className={classes.noImagePlaceholder} />
               </a>
             </Link>
           </div>
@@ -77,7 +78,7 @@ class ProfilePictureFormatter extends React.Component {
     return (
       <Tooltip title="Click to view profile" enterDelay={400} leaveDelay={100}>
         <div className={classes.wrapper}>
-          <Link route="agent" params={{ id }}>
+          <Link route="profile" params={{ id }}>
             <a>
               <LazyLoad height={38} offset={100} once>
                 <img

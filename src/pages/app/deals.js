@@ -11,7 +11,10 @@ import DealsContainer from '../../containers/Deals';
 class Deals extends React.Component {
   static getInitialProps({ req }) {
     const isServer = !!req;
-    return { cookieJWTData: req && req.cookies ? req.cookies.jwtData : null, isServer };
+    return {
+      cookieJWTData: req && req.cookies ? req.cookies.jwtData : null,
+      isServer,
+    };
   }
 
   constructor(props) {
@@ -29,7 +32,10 @@ class Deals extends React.Component {
   render() {
     return (
       <Layout UserStore={this.store.UserStore} UIStore={this.store.UIStore}>
-        <DealsContainer userUUID={this.store.UserStore.uuid} />
+        <DealsContainer
+          userUUID={this.store.UserStore.uuid}
+          userRole={this.store.UserStore.userRole}
+        />
       </Layout>
     );
   }

@@ -5,7 +5,11 @@ import { DotLoader } from 'react-spinners';
 import Chance from 'chance';
 import isBrowser from 'is-browser';
 import InvoicesTable from '../components/InvoicesTable';
+import moment from 'moment';
+import Papa from 'papaparse';
+import { capitalize } from '../utils/stringUtils';
 import { round } from '../utils/Math';
+import debounce from '../utils/debounce';
 
 const chance = new Chance();
 
@@ -59,52 +63,108 @@ class InvoicesTableContainer extends Component {
     super(props);
     this.state = {
       tableIsLoading: true,
-      rows: this.createRows(2780),
     };
   }
 
-  createRows = numOfRows => {
-    const rows = [];
-    for (let i = 0; i < numOfRows; i++) {
-      const rentOrSalePrice = chance.dollar().substring(1);
-      rows.push({
-        invoiceID: chance.integer({ min: 1, max: 2000000000 }),
-        date: chance.date({ string: true }),
-        type: chance.bool() === true ? 'Residential' : 'Commercial',
-        clientName: chance.name(),
-        clientPhoneNumber: chance.phone(),
-        propertyAddress: chance.address(),
-        propertyCity: chance.city(),
-        managementOrCobrokeCompany: chance.company(),
-        rentOrSalePrice: '$' + Number(rentOrSalePrice).toLocaleString(),
-        totalAmount: '$' + round(Number(rentOrSalePrice) + 4250, 2).toLocaleString(),
-        status: chance.bool() === true ? 'Pending' : 'Approved',
-        view: '#',
-      });
+  createRows = () => {
+    return this.props.invoices.map(invoice => {
+      const {
+        invoiceID,
+        date,
+        invoiceType,
+        clientName,
+        clientPhoneNumber,
+        propertyAddress,
+        city,
+        managementOrCobrokeCompany,
+        price,
+        total,
+        status,
+      } = invoice;
+
+      return {
+        invoiceID,
+        date: moment(date).format('MM/DD/YYYY'),
+        type: invoiceType,
+        clientName,
+        clientPhoneNumber,
+        propertyAddress,
+        propertyCity: city,
+        managementOrCobrokeCompany,
+        rentOrSalePrice: `$${Number(price).toLocaleString()}`,
+        status: capitalize(status),
+        totalAmount: `$${Number(total).toLocaleString()}`,
+        view: {
+          type: 'action',
+          onClick: () =>
+            debounce(
+              this.props.openInvoicesViewDialogBox.bind(
+                null,
+                invoiceID,
+                status
+              ),
+              1000,
+              true
+            )(),
+        },
+      };
+    });
+  };
+
+  convertInvoicesToCSV = () => {
+    const { invoices } = this.props;
+
+    const csvContent = Papa.unparse(
+      invoices.map(invoice => ({
+        ...invoice,
+        date: moment(invoice.date).format('MM/DD/YYYY'),
+      })),
+      {
+        header: true,
+      }
+    );
+
+    if (this._csvLink) {
+      this._csvLink.setAttribute(
+        'href',
+        `data:text/csv;charset=utf-8,${encodeURIComponent(csvContent)}`
+      );
+      this._csvLink.setAttribute('download', 'invoices_data.csv');
+      this._csvLink.click();
     }
-    return rows;
   };
 
   render() {
-    const { tableIsLoading, rows } = this.state;
-    const { classes, ...rest } = this.props;
+    const { tableIsLoading } = this.state;
+    const { classes, invoices, ...rest } = this.props;
     return (
       <div className={classes.root}>
-        {
-          tableIsLoading ? (
-            <div className={classes.progressWrapper} style={{ display: 'flex', justifyContent: 'center' }}>
-              <Loader
-                color="#f44336"
-                loading
-              />
-            </div>
-          ) : null
-        }
+        {tableIsLoading ? (
+          <div
+            className={classes.progressWrapper}
+            style={{ display: 'flex', justifyContent: 'center' }}
+          >
+            <Loader color="#f44336" loading />
+          </div>
+        ) : null}
         <InvoicesTable
           {...rest}
-          onMount={() => tableIsLoading ? this.setState({ tableIsLoading: false }) : null}
+          convertInvoicesToCSV={this.convertInvoicesToCSV}
+          onMount={() =>
+            tableIsLoading ? this.setState({ tableIsLoading: false }) : null
+          }
           columns={columns}
-          rows={rows}
+          rows={this.createRows()}
+        />
+        <a
+          href="#"
+          id="csvLink"
+          ref={ref => (this._csvLink = ref)}
+          style={{
+            visibility: 'hidden',
+            position: 'absolute',
+            poniterEvents: 'none',
+          }}
         />
       </div>
     );

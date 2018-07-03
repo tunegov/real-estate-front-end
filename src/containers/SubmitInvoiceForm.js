@@ -4,15 +4,21 @@ import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
 import { BounceLoader } from 'react-spinners';
 import SubmitInvoiceForm from '../components/forms/SubmitInvoiceForm';
+import submitInvoice from '../effects/invoices/submitInvoice';
+import { capitalize } from '../utils/stringUtils';
 
 const Loader = BounceLoader;
 
-export const agentQuery = gql`
+const agentQuery = gql`
   query agent($uuid: String!) {
     agent(uuid: $uuid) {
       firstName
       lastName
       role
+      agent {
+        state
+        agentType
+      }
     }
   }
 `;
@@ -23,11 +29,14 @@ class SubmitInvoiceFormContainer extends Component {
     super(props);
     this.state = {
       paymentAmountItems: {},
-      paymentsTotal: 0,
       total: 0,
-      contractOrLeaseForms: [],
-      agentDisclosureForm: null,
       permanentPaymentSubtractions: 0,
+      choosingMgmtCoBrokeCompany: false,
+      newMgmtOrCobrokeCompany: '',
+      hasSetNewMgmtOrCobrokeCompany: false,
+      addedManagementCompanies: [],
+      formSubmissionBegun: false,
+      submittingFormToServer: false,
     };
   }
 
@@ -44,7 +53,6 @@ class SubmitInvoiceFormContainer extends Component {
         ...this.state.paymentAmountItems,
         [id]: value || 0,
       },
-      paymentsTotal,
       total: paymentsTotal,
     });
   };
@@ -70,30 +78,93 @@ class SubmitInvoiceFormContainer extends Component {
     this.setState({
       permanentPaymentSubtractions:
         this.state.permanentPaymentSubtractions + payment,
-      paymentsTotal,
       total: paymentsTotal,
     });
   };
 
-  setAgentDisclosureForm = file => {
-    this.setState({ agentDisclosureForm: file });
+  handleMgmtOrCobrokeCompanyChange = event => {
+    this.setState({
+      newMgmtOrCobrokeCompany: event.target.value,
+    });
   };
 
-  setContractOrLeaseForms = filesObject => {
-    const fileArray = Object.keys(filesObject).map(key => filesObject[key]);
-    this.setState({ contractOrLeaseForms: fileArray });
+  toggleChoosingMgmtCoBrokeCompany = bool => {
+    const { choosingMgmtCoBrokeCompany } = this.state;
+    this.setState({
+      choosingMgmtCoBrokeCompany:
+        typeof bool === 'boolean' ? bool : !choosingMgmtCoBrokeCompany,
+      newMgmtOrCobrokeCompany: '',
+    });
+  };
+
+  setHasSetNewMgmtOrCobrokeCompany = bool => {
+    const { addedManagementCompanies, newMgmtOrCobrokeCompany } = this.state;
+    this.setState({
+      choosingMgmtCoBrokeCompany: false,
+      hasSetNewMgmtOrCobrokeCompany: true,
+      newMgmtOrCobrokeCompany: '',
+      addedManagementCompanies: [
+        ...addedManagementCompanies,
+        capitalize(newMgmtOrCobrokeCompany.trim()),
+      ],
+    });
   };
 
   onSubmit = values => {
-    const { contractOrLeaseForms, agentDisclosureForm } = this.state;
-    console.log(values);
-    console.log(agentDisclosureForm);
-    console.log(contractOrLeaseForms);
+    this.props.setFormSubmitted();
+
+    const { addedManagementCompanies, total } = this.state;
+
+    const returnObject = {
+      ...values,
+      addedManagementCompanies,
+      total,
+    };
+
+    delete returnObject.date;
+    delete returnObject.agent;
+    delete returnObject.agentType;
+    delete returnObject.state;
+    delete returnObject.financialsTotal;
+
+    returnObject.price = Number(returnObject.price);
+    returnObject.paymentItems = returnObject.paymentItems.map(item => ({
+      ...item,
+      amount: Number(item.amount),
+    }));
+
+    this.setState({
+      formSubmissionBegun: true,
+      submittingFormToServer: true,
+    });
+
+    submitInvoice(returnObject)
+      .then(res => {
+        let failed = false;
+
+        if (res.otherError) {
+          console.log(res.otherError);
+          failed = true;
+        }
+
+        if (res.userErrors.length) {
+          res.userErrors.forEach(error => console.log(error));
+          failed = true;
+        }
+
+        if (!failed) {
+          this.props.setInvoiceSuccessfullySubmitted(res.invoice);
+        }
+      })
+      .catch(err => {
+        console.log(err);
+      });
+
+    console.log(returnObject);
   };
 
   render() {
     const { userUUID: uuid, ...rest } = this.props;
-    const { agentDisclosureForm, contractOrLeaseForms } = this.state;
 
     return (
       <Query query={agentQuery} variables={{ uuid }}>
@@ -110,19 +181,27 @@ class SubmitInvoiceFormContainer extends Component {
 
           return (
             <SubmitInvoiceForm
-              paymentsTotal={`${this.state.paymentsTotal}`}
               deductionsTotal={`${this.state.deductionsTotal}`}
               total={this.state.total}
               agent={data.agent}
               onSubmit={this.onSubmit}
-              setAgentDisclosureForm={this.setAgentDisclosureForm}
-              setContractOrLeaseForms={this.setContractOrLeaseForms}
-              agentDisclosureForm={agentDisclosureForm}
-              contractOrLeaseForms={contractOrLeaseForms}
               paymentAmountChangeHandler={this.paymentAmountChangeHandler}
-              deductionAmountChangeHandler={this.deductionAmountChangeHandler}
               subtractPaymentValueFromState={this.subtractPaymentValueFromState}
+              addedManagementCompanies={this.state.addedManagementCompanies}
+              newMgmtOrCobrokeCompany={this.state.newMgmtOrCobrokeCompany}
+              setHasSetNewMgmtOrCobrokeCompany={
+                this.setHasSetNewMgmtOrCobrokeCompany
+              }
+              toggleChoosingMgmtCoBrokeCompany={
+                this.toggleChoosingMgmtCoBrokeCompany
+              }
+              handleMgmtOrCobrokeCompanyChange={
+                this.handleMgmtOrCobrokeCompanyChange
+              }
+              choosingMgmtCoBrokeCompany={this.state.choosingMgmtCoBrokeCompany}
               {...rest}
+              formSubmissionBegun={this.state.formSubmissionBegun}
+              submittingFormToServer={this.state.submittingFormToServer}
             />
           );
         }}

@@ -2,26 +2,44 @@ import React, { Component } from 'react';
 import { withStyles } from 'material-ui/styles';
 import withSizes from 'react-sizes';
 import isBrowser from 'is-browser';
+import Tooltip from 'material-ui/Tooltip';
 import {
-  SortingState, FilteringState, SearchState,
-  IntegratedFiltering, IntegratedSorting,
+  SortingState,
+  FilteringState,
+  SearchState,
+  IntegratedFiltering,
+  IntegratedSorting,
   PagingState,
   IntegratedPaging,
+  DataTypeProvider,
 } from '@devexpress/dx-react-grid';
 import {
   Grid,
-  VirtualTable, TableHeaderRow, TableFilterRow, TableColumnResizing, DragDropProvider, TableColumnReordering, Toolbar, SearchPanel, PagingPanel,
+  VirtualTable,
+  TableHeaderRow,
+  TableFilterRow,
+  TableColumnResizing,
+  DragDropProvider,
+  TableColumnReordering,
+  Toolbar,
+  SearchPanel,
+  PagingPanel,
 } from '@devexpress/dx-react-grid-material-ui';
+import { MdFileDownload } from 'react-icons/lib/md';
 import SelectFilterCell from '../../utils/backEndTableUtils/SelectFilterCell';
-import { compareDate, compareNumber } from '../../utils/backEndTableUtils/tableSortingUtils';
+import {
+  compareDate,
+  compareNumber,
+} from '../../utils/backEndTableUtils/tableSortingUtils';
 import Cell from '../../utils/backEndTableUtils/DefaultVirtualTableCell';
 import TableComponent from '../../utils/backEndTableUtils/TableComponent';
 import TableContainerComponent from '../../utils/backEndTableUtils/TableContainerComponent';
 import NoDataCellComponent from '../../utils/backEndTableUtils/NoDataCellComponent';
-
+import ViewFormatter from '../dataTableFormatters/ViewFormatter';
 
 const styles = theme => ({
   root: {
+    position: 'relative',
     boxShadow: theme.shadows[1],
     backgroundColor: '#fff',
     borderRadius: '3px',
@@ -37,9 +55,7 @@ const styles = theme => ({
   input: {
     width: '100%',
   },
-  myTable: {
-
-  },
+  myTable: {},
   myTableContainer: {
     minHeight: '300px',
     height: 'calc(100vh - 310px) !important',
@@ -47,6 +63,32 @@ const styles = theme => ({
   },
   myNoDataCellComponent: {
     borderBottom: 'none !important',
+  },
+  editBtnsWrapper: {
+    display: 'flex',
+    position: 'absolute',
+    top: '-13px',
+    left: '-13px',
+  },
+  downloadCSVBtn: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: '34px',
+    width: '34px',
+    border: 'none',
+    borderRadius: '50%',
+    fontSize: '1rem',
+    color: '#fff',
+    backgroundColor: '#646d64',
+    boxShadow: theme.shadows[2],
+    zIndex: '2',
+    cursor: 'pointer',
+    outline: 'none',
+    transition: 'transform .2s ease-in-out',
+    '&:hover': {
+      transform: 'scale(1.1,1.1)',
+    },
   },
 });
 
@@ -69,7 +111,9 @@ const statusSelectInputItems = [
 
 const FilterCell = props => {
   if (props.column.name === 'status') {
-    return <SelectFilterCell selectInputItems={statusSelectInputItems} {...props} />;
+    return (
+      <SelectFilterCell selectInputItems={statusSelectInputItems} {...props} />
+    );
   }
   return <TableFilterRow.Cell {...props} />;
 };
@@ -102,6 +146,12 @@ const mapSizesToProps = ({ width }) => ({
   lgViewport: width < 1280,
 });
 
+const ViewCellFormatter = ({ value }) => <ViewFormatter value={value} />;
+
+const ViewTypeProvider = props => (
+  <DataTypeProvider formatterComponent={ViewCellFormatter} {...props} />
+);
+
 @withStyles(styles)
 @withSizes(mapSizesToProps)
 class DealsTable extends Component {
@@ -123,27 +173,22 @@ class DealsTable extends Component {
     if (this.state.pageSize < pageSize) {
       document.getElementById('myTableContainer').scrollTop = 0;
     }
-  }
+  };
 
   currentPageChange = currentPage => {
     this.setState({ currentPage });
     document.getElementById('myTableContainer').scrollTop = 0;
-  }
+  };
 
   render() {
-    const { classes, columns, rows } = this.props;
+    const { classes, columns, rows, convertDealsToCSV } = this.props;
     return (
       <div className={classes.root}>
-        <Grid
-          rows={rows}
-          columns={columns}
-          getRowId={getRowId}
-        >
+        <Grid rows={rows} columns={columns} getRowId={getRowId}>
+          <ViewTypeProvider for={['view']} />
           <DragDropProvider />
           <SearchState />
-          <FilteringState
-            columnExtensions={filteringStateColumnExtensions}
-          />
+          <FilteringState columnExtensions={filteringStateColumnExtensions} />
           <SortingState
             defaultSorting={[{ columnName: 'date', direction: 'desc' }]}
             columnExtensions={sortingStateColumnExtensions}
@@ -163,7 +208,6 @@ class DealsTable extends Component {
 
           <IntegratedPaging />
 
-
           <VirtualTable
             height={isBrowser ? window.innerHeight - 310 : undefined}
             tableComponent={TableComponent}
@@ -171,20 +215,35 @@ class DealsTable extends Component {
             cellComponent={Cell}
             noDataCellComponent={NoDataCellComponent}
           />
-          <TableColumnReordering defaultOrder={columns.map(column => column.name)} />
-          <TableColumnResizing
-            defaultColumnWidths={defaultColumnWidths}
+          <TableColumnReordering
+            defaultOrder={columns.map(column => column.name)}
           />
+          <TableColumnResizing defaultColumnWidths={defaultColumnWidths} />
 
           <TableFilterRow cellComponent={FilterCell} />
           <Toolbar />
           <SearchPanel />
 
           <TableHeaderRow showSortingControls />
-          <PagingPanel
-            pageSizes={pageSizes}
-          />
+          <PagingPanel pageSizes={pageSizes} />
         </Grid>
+
+        {rows && rows.length ? (
+          <Tooltip
+            title="Download table as CSV file."
+            enterDelay={300}
+            leaveDelay={100}
+          >
+            <span className={classes.editBtnsWrapper}>
+              <button
+                className={classes.downloadCSVBtn}
+                onClick={convertDealsToCSV}
+              >
+                <MdFileDownload />
+              </button>
+            </span>
+          </Tooltip>
+        ) : null}
       </div>
     );
   }

@@ -4,7 +4,11 @@ import { withStyles } from 'material-ui/styles';
 import { DotLoader } from 'react-spinners';
 import Chance from 'chance';
 import isBrowser from 'is-browser';
+import moment from 'moment';
+import Papa from 'papaparse';
 import DealsTable from '../components/DealsTable';
+import { capitalize } from '../utils/stringUtils';
+import debounce from '../utils/debounce';
 
 const chance = new Chance();
 
@@ -57,50 +61,103 @@ class DealsTableContainer extends Component {
     super(props);
     this.state = {
       tableIsLoading: true,
-      rows: this.createRows(2780),
     };
   }
 
-  createRows = numOfRows => {
-    const rows = [];
-    for (let i = 0; i < numOfRows; i++) {
-      rows.push({
-        dealID: chance.integer({ min: 1, max: 2000000000 }),
-        date: chance.date({ string: true }),
-        dealType: chance.bool() === true ? 'Residential' : 'Commercial',
-        clientName: chance.name(),
-        clientEmail: chance.email(),
-        propertyAddress: chance.address(),
-        propertyCity: chance.city(),
-        managementOrCobrokeCompany: chance.company(),
-        rentOrSalePrice: '$' + Number(chance.dollar().substring(1)).toLocaleString(),
-        status: chance.bool() === true ? 'Pending' : 'Approved',
-        view: '#',
-      });
+  createRows = () => {
+    return this.props.deals.map(deal => {
+      const {
+        dealID,
+        date,
+        agentID,
+        dealType,
+        clientName,
+        clientEmail,
+        propertyAddress,
+        city,
+        managementOrCobrokeCompany,
+        price,
+        status,
+      } = deal;
+
+      return {
+        dealID,
+        date: moment(date).format('MM/DD/YYYY'),
+        dealType,
+        clientName,
+        clientEmail,
+        propertyAddress,
+        propertyCity: city,
+        managementOrCobrokeCompany,
+        rentOrSalePrice: `$${Number(price).toLocaleString()}`,
+        status: capitalize(status),
+        view: {
+          type: 'action',
+          onClick: () =>
+            debounce(
+              this.props.openDealsViewDialogBox.bind(null, dealID, status),
+              1000,
+              true
+            )(),
+        },
+      };
+    });
+  };
+
+  convertDealsToCSV = () => {
+    const { deals } = this.props;
+
+    const csvContent = Papa.unparse(
+      deals.map(deal => ({
+        ...deal,
+        date: moment(deal.date).format('MM/DD/YYYY'),
+      })),
+      {
+        header: true,
+      }
+    );
+
+    if (this._csvLink) {
+      this._csvLink.setAttribute(
+        'href',
+        `data:text/csv;charset=utf-8,${encodeURIComponent(csvContent)}`
+      );
+      this._csvLink.setAttribute('download', 'deals_data.csv');
+      this._csvLink.click();
     }
-    return rows;
   };
 
   render() {
-    const { tableIsLoading, rows } = this.state;
-    const { classes, ...rest } = this.props;
+    const { tableIsLoading } = this.state;
+    const { classes, deals, ...rest } = this.props;
     return (
       <div className={classes.root}>
-        {
-          tableIsLoading ? (
-            <div className={classes.progressWrapper} style={{ display: 'flex', justifyContent: 'center' }}>
-              <Loader
-                color="#f44336"
-                loading
-              />
-            </div>
-          ) : null
-        }
+        {tableIsLoading ? (
+          <div
+            className={classes.progressWrapper}
+            style={{ display: 'flex', justifyContent: 'center' }}
+          >
+            <Loader color="#f44336" loading />
+          </div>
+        ) : null}
         <DealsTable
           {...rest}
-          onMount={() => tableIsLoading ? this.setState({ tableIsLoading: false }) : null}
+          convertDealsToCSV={this.convertDealsToCSV}
+          onMount={() =>
+            tableIsLoading ? this.setState({ tableIsLoading: false }) : null
+          }
           columns={columns}
-          rows={rows}
+          rows={this.createRows()}
+        />
+        <a
+          href="#"
+          id="csvLink"
+          ref={ref => (this._csvLink = ref)}
+          style={{
+            visibility: 'hidden',
+            position: 'absolute',
+            poniterEvents: 'none',
+          }}
         />
       </div>
     );

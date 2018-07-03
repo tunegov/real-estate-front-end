@@ -478,6 +478,7 @@ class CreateAgentForm extends Component {
                               required
                               type="tel"
                               isInputMasked
+                              mask="(999) 999-9999 \x999"
                               {...props}
                             />
                           )}
@@ -500,6 +501,7 @@ class CreateAgentForm extends Component {
                               required
                               type="tel"
                               isInputMasked
+                              mask="(999) 999-9999"
                               {...props}
                             />
                           )}

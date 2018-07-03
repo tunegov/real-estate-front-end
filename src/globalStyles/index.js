@@ -1,8 +1,10 @@
 const globalStyles = `
   html {
     height: 100%;
+    overflow: hidden;
   }
   body {
+    overflow: auto;
     position: relative;
     min-height: 100%;
     min-width: 100%;
@@ -88,6 +90,9 @@ const globalStyles = `
   #__next > div {
     max-width: 100%;
     width: 100%;
+  }
+  thead[class^="MuiTableHead"] > tr th:hover div[class^="TableHeaderCell-resizeHandleLine"] {
+    background-color: #64b5f6;
   }
 `;
 

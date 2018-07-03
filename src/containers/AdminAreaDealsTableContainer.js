@@ -4,7 +4,10 @@ import { withStyles } from 'material-ui/styles';
 import { DotLoader } from 'react-spinners';
 import Chance from 'chance';
 import isBrowser from 'is-browser';
+import moment from 'moment';
 import AdminAreaDealsTable from '../components/AdminAreaDealsTable';
+import debounce from '../utils/debounce';
+import { capitalize } from '../utils/stringUtils';
 
 const chance = new Chance();
 
@@ -73,41 +76,61 @@ class DealsTableContainer extends Component {
     super(props);
     this.state = {
       tableIsLoading: true,
-      rows: this.createRows(2780),
     };
   }
 
-  createRows = numOfRows => {
-    const rows = [];
-    for (let i = 0; i < numOfRows; i++) {
-      rows.push({
-        dealID: chance.integer({ min: 1, max: 2000000000 }),
-        date: chance.date({ string: true }),
-        agentName: chance.name(),
-        agentType: returnAgentType(chance.integer({ min: 0, max: 100 })),
-        dealType: chance.bool() === true ? 'Residential' : 'Commercial',
-        clientName: chance.name(),
-        clientEmail: chance.email(),
-        propertyAddress: chance.address(),
-        propertyCity: chance.city(),
-        propertyState:
-          chance.integer({ min: 0, max: 100 }) > 70
-            ? chance.state({ full: true })
-            : 'New York',
-        managementOrCobrokeCompany: chance.company(),
-        rentOrSalePrice:
-          '$' + Number(chance.dollar().substring(1)).toLocaleString(),
-        deductionsTotal:
-          '$' + Number(chance.dollar().substring(1)).toLocaleString(),
-        paymentsTotal:
-          '$' + Number(chance.dollar().substring(1)).toLocaleString(),
-        netPaymentsTotal:
-          '$' + Number(chance.dollar().substring(1)).toLocaleString(),
-        status: chance.bool() === true ? 'Pending' : 'Approved',
-        view: { type: 'action', onClick: () => {}, id: '#' },
-      });
-    }
-    return rows;
+  createRows = () => {
+    return this.props.deals.map(deal => {
+      const {
+        dealID,
+        date,
+        agentName,
+        agentType,
+        leadSource,
+        dealType,
+        propertyAddress,
+        state,
+        city,
+        apartmentNumber,
+        managementOrCobrokeCompany,
+        price,
+        clientName,
+        clientEmail,
+        paymentsTotal,
+        deductionsTotal,
+        total,
+        agentNotes,
+        status,
+      } = deal;
+
+      return {
+        dealID,
+        date: moment(date).format('MM/DD/YYYY'),
+        agentName,
+        agentType,
+        dealType,
+        clientName,
+        clientEmail,
+        propertyAddress,
+        propertyCity: city,
+        propertyState: state,
+        managementOrCobrokeCompany,
+        rentOrSalePrice: `$${Number(price).toLocaleString()}`,
+        deductionsTotal: `$${Number(deductionsTotal).toLocaleString()}`,
+        paymentsTotal: `$${Number(paymentsTotal).toLocaleString()}`,
+        netPaymentsTotal: `$${Number(total).toLocaleString()}`,
+        status: capitalize(status),
+        view: {
+          type: 'action',
+          onClick: () =>
+            debounce(
+              this.props.openDealsViewDialogBox.bind(null, dealID, status),
+              1000,
+              true
+            )(),
+        },
+      };
+    });
   };
 
   render() {
@@ -135,7 +158,7 @@ class DealsTableContainer extends Component {
             tableIsLoading ? this.setState({ tableIsLoading: false }) : null
           }
           columns={columns}
-          rows={rows}
+          rows={this.createRows()}
         />
       </div>
     );

@@ -75,7 +75,6 @@ const FilterCell = props => <TableFilterRow.Cell {...props} />;
 
 const defaultColumnWidths = [
   { columnName: 'adminID', width: 140 },
-  { columnName: 'photo', width: 95 },
   { columnName: 'name', width: 150 },
   { columnName: 'email', width: 160 },
   { columnName: 'mobileNumber', width: 150 },

@@ -29,7 +29,7 @@ const styles = theme => ({
   },
   formControl: {
     margin: theme.spacing.unit * 3,
-    marginBottom: -(theme.spacing.unit * 2),
+    marginBottom: theme.spacing.unit,
   },
   group: {
     margin: `${theme.spacing.unit}px 0`,
@@ -44,7 +44,7 @@ const styles = theme => ({
 });
 
 const MaterialCustomRadioInputWrapper = props => (
-  <Field validate={props.validate} field={props.field}>
+  <Field validate={props.validate} field={props.field} {...props}>
     {fieldApi => {
       const {
         onInput,

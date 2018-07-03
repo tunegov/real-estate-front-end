@@ -10,6 +10,9 @@ import Dialog, {
 import Divider from 'material-ui/Divider';
 import { withStyles } from 'material-ui/styles';
 import Button from 'material-ui/Button';
+import Snackbar from 'material-ui/Snackbar';
+import IconButton from 'material-ui/IconButton';
+import CloseIcon from '@material-ui/icons/Close';
 import SubmitInvoiceForm from '../../containers/SubmitInvoiceForm';
 
 const styles = theme => ({
@@ -41,6 +44,15 @@ const styles = theme => ({
       backgroundColor: theme.custom.submitBlue.transparentLightBackground,
     },
   },
+  snackBar: {
+    marginBottom: '60px',
+    '@media (max-height: 500px)': {
+      marginBottom: '50px',
+    },
+    '@media (max-height: 390px)': {
+      marginBottom: '30px',
+    },
+  },
 });
 
 @observer
@@ -49,14 +61,38 @@ class SubmitInvoiceDialogBox extends Component {
     super(props);
     this.state = {
       formApi: null,
+      formSubmitted: false,
+      snackbarOpen: false,
+      snackbarText: '',
+      snackbarUndoFunction: null,
     };
   }
+
+  setFormSubmitted = () => {
+    this.setState({ formSubmitted: true });
+  };
+
+  toggleSnackbarOpen = text => {
+    this.setState({
+      snackbarOpen: true,
+      snackbarText: text,
+    });
+  };
+
+  handleCloseSnackbar = () => {
+    this.setState({
+      snackbarOpen: false,
+      snackbarUndoFunction: null,
+    });
+  };
+
   render() {
     const {
       fullScreen,
       classes,
       toggleDialogBoxOpen,
       submitInvoiceDialogOpen,
+      setInvoiceSuccessfullySubmitted,
     } = this.props;
 
     return (
@@ -67,24 +103,104 @@ class SubmitInvoiceDialogBox extends Component {
         classes={{ paper: classes.paper }}
         fullScreen={fullScreen}
       >
-        <DialogTitle id="form-dialog-title" classes={{ root: classes.formTitle }}>
+        <DialogTitle
+          id="form-dialog-title"
+          classes={{ root: classes.formTitle }}
+        >
           Add Invoice
         </DialogTitle>
         <Divider />
         <DialogContent classes={{ root: classes.dialogContent }}>
-          <SubmitInvoiceForm userUUID={this.props.userUUID} getFormApi={formApi => this.setState({ formApi })} />
+          <SubmitInvoiceForm
+            userUUID={this.props.userUUID}
+            getFormApi={formApi => this.setState({ formApi })}
+            setFormSubmitted={this.setFormSubmitted}
+            setInvoiceSuccessfullySubmitted={setInvoiceSuccessfullySubmitted}
+          />
+
+          <Snackbar
+            classes={{ root: classes.snackBar }}
+            anchorOrigin={{
+              vertical: 'bottom',
+              horizontal: 'center',
+            }}
+            open={this.state.snackbarOpen}
+            autoHideDuration={4000}
+            onClose={this.handleCloseSnackbar}
+            message={<span id="snackbar-id">{this.state.snackbarText}</span>}
+            action={[
+              this.snackbarUndoFunction ? (
+                <Button
+                  key="undo"
+                  color="secondary"
+                  size="small"
+                  onClick={() => {
+                    this.handleCloseSnackbar();
+                    if (
+                      this.state.snackbarUndoFunction &&
+                      typeof snackbarUndoFunction === 'function'
+                    ) {
+                      this.snackbarUndoFunction();
+                    }
+                  }}
+                >
+                  UNDO
+                </Button>
+              ) : (
+                undefined
+              ),
+              <IconButton
+                key="close"
+                aria-label="Close"
+                color="inherit"
+                className={classes.close}
+                onClick={this.handleCloseSnackbar}
+              >
+                <CloseIcon />
+              </IconButton>,
+            ]}
+          />
         </DialogContent>
-        <DialogActions classes={{ root: classes.dialogActions }}>
-          <Button onClick={toggleDialogBoxOpen} color="primary" classes={{ root: classes.saveDraftBtn }}>
-            Save as Draft
-          </Button>
-          <Button onClick={toggleDialogBoxOpen} color="primary">
-            Cancel
-          </Button>
-          <Button onClick={() => this.state.formApi.submitForm()} color="primary">
-            Submit
-          </Button>
-        </DialogActions>
+        {!this.state.formSubmitted ? (
+          <DialogActions classes={{ root: classes.dialogActions }}>
+            {/*
+              <Button
+                onClick={toggleDialogBoxOpen}
+                color="primary"
+                classes={{ root: classes.saveDraftBtn }}
+              >
+                Save as Draft
+              </Button>
+            */}
+            <Button onClick={toggleDialogBoxOpen} color="primary">
+              Cancel
+            </Button>
+            <Button
+              onClick={() => {
+                const errors = this.state.formApi.getError();
+                let errorCount;
+                console.log(this.state.formApi.getError());
+                if (errors) {
+                  errorCount = Object.keys(this.state.formApi.getError())
+                    .length;
+                }
+
+                if (errorCount) {
+                  this.toggleSnackbarOpen(
+                    `Please correct ${errorCount} form error${
+                      errorCount > 1 ? 's' : ''
+                    }`
+                  );
+                }
+
+                this.state.formApi.submitForm();
+              }}
+              color="primary"
+            >
+              Submit
+            </Button>
+          </DialogActions>
+        ) : null}
       </Dialog>
     );
   }

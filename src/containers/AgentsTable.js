@@ -1,14 +1,35 @@
 import React, { Component } from 'react';
 import { observer } from 'mobx-react';
 import { withStyles } from 'material-ui/styles';
-import { DotLoader } from 'react-spinners';
 import Chance from 'chance';
 import faker from 'faker';
+import gql from 'graphql-tag';
+import { Query } from 'react-apollo';
+import { DotLoader } from 'react-spinners';
 import AgentsTable from '../components/AgentsTable';
 
 const chance = new Chance();
 
 const Loader = DotLoader;
+
+const agentsQuery = gql`
+  query agents {
+    agents {
+      uuid
+      firstName
+      lastName
+      email
+      role
+      agent {
+        profilePicURL
+        branch
+        mobileNumber
+        officeNumber
+        areaOfFocus
+      }
+    }
+  }
+`;
 
 const styles = theme => ({
   root: {
@@ -45,7 +66,7 @@ const columns = [
   { name: 'areaOfFocus', title: 'Area of Focus' },
   { name: 'mobileNumber', title: 'Mobile Number' },
   { name: 'companyNumberAndExt', title: 'Company Number/Extension' },
-  { name: 'region', title: 'Region' },
+  { name: 'branch', title: 'Branch' },
   { name: 'view', title: 'View Profile' },
 ];
 
@@ -55,37 +76,52 @@ class AgentsTableContainer extends Component {
     super(props);
     this.state = {
       tableIsLoading: true,
-      rows: this.createRows(2780),
     };
   }
 
-  createRows = numOfRows => {
+  createRows = agents => {
     const rows = [];
-    for (let i = 0; i < numOfRows; i++) {
+    agents.forEach(agent => {
+      const {
+        agent: agentPart,
+        firstName,
+        lastName,
+        email,
+        uuid,
+        lastLoginTimestamp,
+      } = agent;
+      const {
+        areaOfFocus,
+        state,
+        realEstateLicenseNumber,
+        profilePicURL,
+        officeNumber,
+        mobileNumber,
+        branch,
+      } = agentPart;
       rows.push({
-        agentID: chance.integer({ min: 100000, max: 999999 }),
+        agentID: uuid,
+        realEstateLicenseNumber: realEstateLicenseNumber,
         photo: {
-          imageURL: faker.image.avatar(),
-          id: chance.integer({ min: 100000, max: 999999 }),
+          imageURL: profilePicURL,
+          id: uuid,
         },
-        name: chance.name(),
-        email: chance.email(),
-        areaOfFocus: 'none',
-        mobileNumber: chance.phone(),
-        companyNumberAndExt: `${chance.phone()} x${chance.integer({
-          min: 1,
-          max: 999,
-        })}`,
-        region:
-          chance.integer({ min: 0, max: 100 }) > 70
-            ? chance.state({ full: true })
-            : 'New York',
+        name: `${firstName} ${lastName}`,
+        email,
+        areaOfFocus: areaOfFocus || 'none',
+        mobileNumber,
+        companyNumberAndExt: officeNumber,
+        branch,
+        state,
+        lastLoginTimestamp: lastLoginTimestamp
+          ? moment(lastLoginTimestamp).format('MM/DD/YYYY, h:mm:ss a')
+          : '',
         view: {
-          route: 'agent',
-          id: chance.integer({ min: 100000, max: 999999 }),
+          route: 'profile',
+          id: uuid,
         },
       });
-    }
+    });
     return rows;
   };
 
@@ -93,24 +129,52 @@ class AgentsTableContainer extends Component {
     const { tableIsLoading, rows } = this.state;
     const { classes, ...rest } = this.props;
     return (
-      <div className={classes.root}>
-        {tableIsLoading ? (
-          <div
-            className={classes.progressWrapper}
-            style={{ display: 'flex', justifyContent: 'center' }}
-          >
-            <Loader color="#f44336" loading />
-          </div>
-        ) : null}
-        <AgentsTable
-          {...rest}
-          onMount={() =>
-            tableIsLoading ? this.setState({ tableIsLoading: false }) : null
-          }
-          columns={columns}
-          rows={rows}
-        />
-      </div>
+      <Query query={agentsQuery}>
+        {({ loading, error, data }) => {
+          console.log(data);
+          if (loading)
+            return (
+              <div
+                style={{
+                  display: 'flex',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  height: 'calc(100vh - 110px)',
+                  boxShadow:
+                    '0px 1px 3px 0px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 2px 1px -1px rgba(0, 0, 0, 0.12)',
+                }}
+              >
+                <Loader color="#f44336" loading />
+              </div>
+            );
+          // TODO: change the error message to a generic
+          // 'error connecting to server' message
+          if (error) return `Error!: ${error}`;
+
+          return (
+            <div className={classes.root}>
+              {tableIsLoading ? (
+                <div
+                  className={classes.progressWrapper}
+                  style={{ display: 'flex', justifyContent: 'center' }}
+                >
+                  <Loader color="#f44336" loading />
+                </div>
+              ) : null}
+              <AgentsTable
+                {...rest}
+                onMount={() =>
+                  tableIsLoading
+                    ? this.setState({ tableIsLoading: false })
+                    : null
+                }
+                columns={columns}
+                rows={this.createRows(data.agents)}
+              />
+            </div>
+          );
+        }}
+      </Query>
     );
   }
 }

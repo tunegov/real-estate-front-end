@@ -3,8 +3,9 @@ import { GraphQLClient } from 'graphql-request';
 import graphQLEndpoint from '../../../../constants/graphQLEndpoint';
 
 const query = `
-    mutation setAgentProfilePic($input: setAgentProfilePicInput!) {
+    mutation setAgentProfilePic($input: SetAgentProfilePicInput!) {
       setAgentProfilePic(input: $input) {
+        url
         wasSuccessful
         otherError
       }
@@ -28,6 +29,7 @@ const setAgentProfilePic = (agentID, fileName) => {
   };
 
   const finalResponseObj = {
+    url: null,
     error,
   };
 
@@ -40,6 +42,8 @@ const setAgentProfilePic = (agentID, fileName) => {
 
       if (!data.wasSuccessful) {
         finalResponseObj.error = data.otherError;
+      } else {
+        finalResponseObj.url = data.url;
       }
 
       return finalResponseObj;

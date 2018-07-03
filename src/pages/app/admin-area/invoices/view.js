@@ -12,7 +12,10 @@ import AdminAreaInvoicesContainer from '../../../../containers/AdminAreaInvoices
 class Invoices extends React.Component {
   static getInitialProps({ req }) {
     const isServer = !!req;
-    return { cookieJWTData: req && req.cookies ? req.cookies.jwtData : null, isServer };
+    return {
+      cookieJWTData: req && req.cookies ? req.cookies.jwtData : null,
+      isServer,
+    };
   }
 
   constructor(props) {
@@ -30,7 +33,10 @@ class Invoices extends React.Component {
   render() {
     return (
       <Layout UserStore={this.store.UserStore} UIStore={this.store.UIStore}>
-        <AdminAreaInvoicesContainer userUUID={this.store.UserStore.uuid} />
+        <AdminAreaInvoicesContainer
+          userUUID={this.store.UserStore.uuid}
+          userRole={this.store.UserStore.userRole}
+        />
       </Layout>
     );
   }

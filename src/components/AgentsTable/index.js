@@ -83,7 +83,7 @@ const defaultColumnWidths = [
   { columnName: 'areaOfFocus', width: 150 },
   { columnName: 'mobileNumber', width: 150 },
   { columnName: 'companyNumberAndExt', width: 180 },
-  { columnName: 'region', width: 140 },
+  { columnName: 'branch', width: 140 },
   { columnName: 'view', width: 120 },
 ];
 

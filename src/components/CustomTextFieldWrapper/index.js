@@ -19,7 +19,11 @@ class CustomTextFieldWrapper extends React.Component {
 
   render() {
     return (
-      <Field validate={this.props.validate} field={this.props.field}>
+      <Field
+        validate={this.props.validate}
+        field={this.props.field}
+        {...this.props}
+      >
         {fieldApi => {
           const {
             onInput,
@@ -46,7 +50,11 @@ class CustomTextFieldWrapper extends React.Component {
                 value={value || ''}
                 onChange={e => {
                   const newValue = e.target.value;
-                  if (numbersOnly && newValue && !numbersOnlyRegex.test(newValue)) {
+                  if (
+                    numbersOnly &&
+                    newValue &&
+                    !numbersOnlyRegex.test(newValue)
+                  ) {
                     return;
                   }
                   setValue(newValue);
@@ -59,7 +67,9 @@ class CustomTextFieldWrapper extends React.Component {
                 }}
                 {...rest}
               />
-              {error && touched ? <Message color="#ef5350" message={error} /> : null}
+              {error && touched ? (
+                <Message color="#ef5350" message={error} />
+              ) : null}
               {!error && warning && touched ? (
                 <Message color="orange" message={warning} />
               ) : null}

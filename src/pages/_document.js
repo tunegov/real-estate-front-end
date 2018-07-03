@@ -71,7 +71,11 @@ export default class MyDocument extends Document {
             name="theme-color"
             content={pageContext.theme.palette.primary.main}
           />
-          <link rel="stylesheet" href="/_next/static/style.css" />
+          <link
+            rel="stylesheet"
+            type="text/css"
+            href="/_next/static/style.css"
+          />
           <script id="stripe-js" src="https://js.stripe.com/v3/" async />
           <style dangerouslySetInnerHTML={{ __html: this.props.css }} />
           {this.props.styleTags}

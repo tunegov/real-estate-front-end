@@ -13,6 +13,7 @@ import AdminsIcon from '@material-ui/icons/RecentActors';
 
 export const adminSideLinks = [
   { name: 'Admin Dashboard', route: 'admin-dashboard', icon: DashboardIcon },
+  /*
   {
     name: 'Profile',
     route: 'profile',
@@ -21,6 +22,7 @@ export const adminSideLinks = [
     iconLeft: '12px',
     iconLeftSmall: '5px',
   },
+  */
   {
     name: 'Deals',
     route: 'view-deals',
@@ -38,12 +40,14 @@ export const adminSideLinks = [
     icon: AgentsIcon,
     iconFontSize: 24,
   },
+  /*
   {
     name: 'Customers',
     route: 'view-customers',
     icon: UsersIcon,
     iconFontSize: 24,
   },
+  */
   {
     name: 'Admin',
     route: 'view-admin',

@@ -4,8 +4,11 @@ import { withStyles } from 'material-ui/styles';
 import { DotLoader } from 'react-spinners';
 import Chance from 'chance';
 import isBrowser from 'is-browser';
+import moment from 'moment';
 import AdminAreaInvoicesTable from '../components/AdminAreaInvoicesTable';
+import { capitalize } from '../utils/stringUtils';
 import { round } from '../utils/Math';
+import debounce from '../utils/debounce';
 
 const chance = new Chance();
 
@@ -71,37 +74,58 @@ class InvoicesTableContainer extends Component {
     super(props);
     this.state = {
       tableIsLoading: true,
-      rows: this.createRows(2780),
     };
   }
 
-  createRows = numOfRows => {
-    const rows = [];
-    for (let i = 0; i < numOfRows; i++) {
-      const rentOrSalePrice = chance.dollar().substring(1);
-      rows.push({
-        invoiceID: chance.integer({ min: 1, max: 2000000000 }),
-        date: chance.date({ string: true }),
-        agentName: chance.name(),
-        agentType: returnAgentType(chance.integer({ min: 0, max: 100 })),
-        dealType: chance.bool() === true ? 'Residential' : 'Commercial',
-        clientName: chance.name(),
-        clientPhoneNumber: chance.phone(),
-        propertyAddress: chance.address(),
-        propertyCity: chance.city(),
-        propertyState:
-          chance.integer({ min: 0, max: 100 }) > 70
-            ? chance.state({ full: true })
-            : 'New York',
-        managementOrCobrokeCompany: chance.company(),
-        rentOrSalePrice: '$' + Number(rentOrSalePrice).toLocaleString(),
-        totalAmount:
-          '$' + round(Number(rentOrSalePrice) + 4250, 2).toLocaleString(),
-        status: chance.bool() === true ? 'Pending' : 'Approved',
-        view: { type: 'action', onClick: () => {} },
-      });
-    }
-    return rows;
+  createRows = () => {
+    return this.props.invoices.map(invoice => {
+      const {
+        invoiceID,
+        date,
+        invoiceType,
+        clientName,
+        agentType,
+        agentName,
+        clientPhoneNumber,
+        propertyAddress,
+        city,
+        state,
+        managementOrCobrokeCompany,
+        price,
+        total,
+        status,
+      } = invoice;
+
+      return {
+        invoiceID,
+        date: moment(date).format('MM/DD/YYYY'),
+        dealType: invoiceType,
+        clientName,
+        clientPhoneNumber,
+        agentType,
+        agentName,
+        propertyAddress,
+        propertyCity: city,
+        propertyState: state,
+        managementOrCobrokeCompany,
+        rentOrSalePrice: `$${Number(price).toLocaleString()}`,
+        status: capitalize(status),
+        totalAmount: `$${Number(total).toLocaleString()}`,
+        view: {
+          type: 'action',
+          onClick: () =>
+            debounce(
+              this.props.openInvoicesViewDialogBox.bind(
+                null,
+                invoiceID,
+                status
+              ),
+              1000,
+              true
+            )(),
+        },
+      };
+    });
   };
 
   render() {
@@ -129,7 +153,7 @@ class InvoicesTableContainer extends Component {
             tableIsLoading ? this.setState({ tableIsLoading: false }) : null
           }
           columns={columns}
-          rows={rows}
+          rows={this.createRows()}
         />
       </div>
     );

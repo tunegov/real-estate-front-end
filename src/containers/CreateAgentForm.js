@@ -18,6 +18,7 @@ class CreateAgentContainer extends Component {
       uplodingImageProgress: 0,
       isUploadingImage: false,
       formSubmitedSuccessfully: false,
+      imageBlob: null,
     };
   }
 
@@ -57,13 +58,14 @@ class CreateAgentContainer extends Component {
       // drawn on another canvas, or added to the DOM.
       const canvas = this._profilePicEditor.getImage();
 
-      this.setState({ loadingSetImg: true });
-
-      this.setState({
-        imageFileConfirmed: true,
-        confirmedImageDataURL: canvas.toDataURL(),
+      canvas.toBlob(blob => {
+        this.setState({
+          imageBlob: blob,
+          imageFileConfirmed: true,
+          loadingSetImg: true,
+          confirmedImageDataURL: URL.createObjectURL(blob),
+        });
       });
-
       // If you want the image resized to the canvas size (also a HTMLCanvasElement)
       // const canvasScaled = this._profilePicEditor.getImageScaledToCanvas();
     }
@@ -109,7 +111,7 @@ class CreateAgentContainer extends Component {
 
       if (signedURL) {
         axios
-          .put(signedURL, this.state.imageFile, {
+          .put(signedURL, this.state.imageBlob, {
             headers: {
               'Content-Type': this.state.imageFile.type,
             },

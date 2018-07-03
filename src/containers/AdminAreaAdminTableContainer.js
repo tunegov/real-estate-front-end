@@ -37,7 +37,6 @@ const styles = theme => ({
 
 const columns = [
   { name: 'adminID', title: 'Admin ID' },
-  { name: 'photo', title: 'Photo' },
   { name: 'name', title: 'Name' },
   { name: 'email', title: 'Email' },
   { name: 'mobileNumber', title: 'Mobile Number' },

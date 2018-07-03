@@ -10,6 +10,8 @@ import uuid from 'uuid/v4';
 import Grid from 'material-ui/Grid';
 import AddIcon from '@material-ui/icons/Add';
 import DeleteIcon from '@material-ui/icons/Delete';
+import TextField from 'material-ui/TextField';
+import { Icon } from 'antd';
 import MaterialCustomTextFieldWrapper from '../../MaterialCustomTextFieldWrapper';
 import MaterialCustomRadioInputWrapper from '../../MaterialCustomRadioInputWrapper';
 import MaterialCustomSelectInputWrapper from '../../MaterialCustomSelectInputWrapper';
@@ -23,6 +25,7 @@ import validators, {
   descriptionValidator,
   deductionsAmountValidator,
 } from './formValidation';
+import CustomInputMask from '../../CustomInputMask';
 
 const CustomTextField = MaterialCustomTextFieldWrapper;
 const MaterialCustomRadioInput = MaterialCustomRadioInputWrapper;
@@ -35,6 +38,10 @@ const styles = theme => ({
   container: {
     display: 'flex',
     flexWrap: 'wrap',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
+    height: '100%',
     padding: theme.spacing.unit * 3,
     backgroundColor: '#fff',
     borderRadius: '5px',
@@ -61,6 +68,8 @@ const styles = theme => ({
     overflow: 'hidden',
   },
   formRoot: {
+    paddingBottom: 10,
+    overflow: 'hidden',
     flexGrow: 1,
     justifyContent: 'center',
   },
@@ -189,9 +198,39 @@ const styles = theme => ({
     display: 'flex',
     justifyContent: 'center',
   },
+  formSubmittingWrapper: {
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: '100%',
+  },
+  progressBarWrapper: {
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: '100%',
+  },
+  progressBar: {
+    width: '25%',
+  },
+  progressBarExplanation: {
+    marginTop: '20px',
+    fontSize: '1.1rem',
+  },
+  ManagementOrCobrokeCompanyTextField: {
+    width: '100%',
+    margin: 8,
+    marginLeft: 0,
+  },
 });
 
-const radioInputAgentItems = [{ label: '80%' }, { label: '90%' }];
+const radioInputAgentItems = [
+  { label: '60%', value: '60' },
+  { label: '70%', value: '70' },
+  { label: '80%', value: '80' },
+];
 
 const radioInputAgentPaymentItems = [
   { label: 'Ill pick up the check' },
@@ -200,7 +239,7 @@ const radioInputAgentPaymentItems = [
 
 const radioInputYesNoItems = [{ label: 'Yes' }, { label: 'No' }];
 
-const dealTypeSelectItems = [
+const invoiceTypeSelectItems = [
   { label: 'Residential Rental' },
   { label: 'Residential Sale' },
   { label: 'Commercial Rental' },
@@ -223,25 +262,6 @@ const paymentTypeSelectItems = [
   { label: 'Owner Pays (OP)' },
 ];
 
-const deductionTypeSelectItems = [
-  { label: 'Deal Fee' },
-  { label: 'Dues' },
-  { label: '3rd Party Check' },
-  { label: 'Processing Fee' },
-  { label: 'Payment' },
-  { label: 'Agent Split' },
-  { label: 'Other' },
-];
-
-const managementCobrokeCompanySelectItems = [
-  { label: 'Private Landlord' },
-  { label: 'Disney Land' },
-  { label: 'Gucci' },
-  { label: 'Alexander the Great' },
-  { label: 'Apple' },
-  { label: 'Amazon' },
-];
-
 @observer
 class SubmitInvoiceForm extends Component {
   constructor(props) {
@@ -252,8 +272,29 @@ class SubmitInvoiceForm extends Component {
   }
   isFirstTimeRender = true;
 
+  componentDidMount() {
+    if (this.props.setInitialContainerState && this.props.submittedInvoice) {
+      this.props.setInitialContainerState({
+        total: this.props.submittedInvoice.total,
+      });
+    }
+  }
+
   render() {
-    const { firstName, lastName } = this.props.agent;
+    let firstName;
+    let lastName;
+    let agentPart;
+    let agentType;
+    let state;
+
+    if (this.props.agent) {
+      firstName = this.props.agent.firstName;
+      lastName = this.props.agent.lastName;
+      agentPart = this.props.agent.agentPart;
+      agentType = this.props.agent.agent.agentType;
+      state = this.props.agent.agent.state;
+    }
+
     const {
       classes,
       setAgentDisclosureForm,
@@ -261,47 +302,137 @@ class SubmitInvoiceForm extends Component {
       agentDisclosureForm,
       contractOrLeaseForms,
       subtractPaymentValueFromState,
+      choosingMgmtCoBrokeCompany,
+      toggleChoosingMgmtCoBrokeCompany,
+      handleMgmtOrCobrokeCompanyChange,
+      setHasSetNewMgmtOrCobrokeCompany,
+      newMgmtOrCobrokeCompany,
+      addedManagementCompanies,
+      formSubmissionBegun,
+      submittingFormToServer,
+      submittedInvoice,
+      isEditingInvoice,
+      isViewType,
     } = this.props;
 
-    const agentSelectItems = [
-      { label: `${capitalize(firstName)} ${capitalize(lastName)}` },
-      { label: 'You' },
-      { label: 'Me' },
-      { label: 'Them' },
+    let managementCobrokeCompanyItems = [
+      'Private Landlord',
+      'Disney Land',
+      'Gucci',
+      'Alexander the Great',
+      'Apple',
+      'Amazon',
     ];
 
+    let managementCobrokeCompanySelectItems = managementCobrokeCompanyItems.map(
+      company => ({ label: company })
+    );
+
+    managementCobrokeCompanySelectItems = managementCobrokeCompanySelectItems
+      ? [
+          ...managementCobrokeCompanySelectItems,
+          ...addedManagementCompanies.map(company => ({ label: company })),
+          { label: 'Add a new item...' },
+        ]
+      : [];
+
+    let finalDefaultValues;
+
+    if (submittedInvoice) {
+      const {
+        agentNotes,
+        agentType,
+        agentName,
+        city,
+        clientPhoneNumber,
+        clientName,
+        date,
+        invoiceType,
+        managementOrCobrokeCompany,
+        propertyAddress,
+        shouldSendApprovalTextMessageNotification,
+        state,
+        price,
+        paymentItems,
+        apartmentNumber,
+        total,
+        attention,
+        attentionEmail,
+      } = submittedInvoice;
+      finalDefaultValues = {
+        agent: agentName,
+        agentNotes,
+        agentType,
+        city,
+        apartmentNumber,
+        clientPhoneNumber,
+        clientName,
+        date: moment(date).format('MMMM Do YYYY'),
+        invoiceType,
+        managementOrCobrokeCompany,
+        propertyAddress,
+        shouldSendApprovalTextMessageNotification,
+        state,
+        price,
+        paymentItems: paymentItems.map(
+          ({ paymentType, checkOrTransactionNumber, amount }) => ({
+            paymentType,
+            checkOrTransactionNumber,
+            amount,
+          })
+        ),
+        financialsTotal: total ? total.toLocaleString() : '0',
+        attention,
+        attentionEmail,
+      };
+    }
+
     return (
-      <div>
-        <div className={classes.formWrapper}>
+      <div className={classes.formWrapper}>
+        {!formSubmissionBegun ? (
           <Form
+            defaultValues={
+              !finalDefaultValues && this.props.agent
+                ? {
+                    date: `${moment().format('MMMM Do YYYY')}`,
+                    agentType: `${this.props.agent.agent.agentType}`,
+                    state: this.props.agent.agent.state,
+                    agent: `${capitalize(
+                      this.props.agent.firstName
+                    )} ${capitalize(this.props.agent.lastName)}`,
+                    financialsTotal: this.props.total,
+                  }
+                : finalDefaultValues
+            }
             preValidate={this.preValidate}
             onSubmit={this.props.onSubmit}
             onSubmitFailure={this.props.onSubmitFailure}
             validate={validators}
+            validateOnMount
             getApi={formApi => {
               this.props.getFormApi(formApi);
             }}
           >
             {formApi => {
+              /*
               if (this.isFirstTimeRender) {
                 this.isFirstTimeRender = false;
-                // formApi.addValue('contractOrLeaseItems');
                 formApi.setValue('date', `${moment().format('MMMM Do YYYY')}`);
-                formApi.setValue('agent', [
-                  `${capitalize(firstName)} ${capitalize(lastName)}`,
-                ]);
-                formApi.setValue('paymentsSubtotal', this.props.paymentsTotal);
                 formApi.setValue(
-                  'deductionsSubtotal',
-                  this.props.deductionsTotal
+                  'agent',
+                  `${capitalize(firstName)} ${capitalize(lastName)}`
                 );
+                formApi.setValue('agentType', `${agentType}`);
+                formApi.setValue('state', state);
+                formApi.setValue('financialsTotal', this.props.total);
               }
+              */
 
               return (
                 <form
                   onSubmit={formApi.submitForm}
                   id="form1"
-                  classes={classes.formRoot}
+                  className={classes.formRoot}
                 >
                   <Grid container spacing={24}>
                     <Grid item sm={6} xs={12}>
@@ -311,7 +442,6 @@ class SubmitInvoiceForm extends Component {
                           id={uuid()}
                           label="Date"
                           disabled
-                          value={`${moment().format('MMMM Do YYYY')}`}
                           fullWidth
                           required
                         />
@@ -324,14 +454,27 @@ class SubmitInvoiceForm extends Component {
                           id={uuid()}
                           label="Agent"
                           disabled
-                          value={`${capitalize(firstName)} ${capitalize(
-                            lastName
-                          )}`}
                           fullWidth
                           required
                         />
                       </div>
                     </Grid>
+
+                    <div
+                      className={`${classes.formControlWrapper} ${
+                        classes.radioInputWrapper
+                      }`}
+                    >
+                      <MaterialCustomRadioInput
+                        field="agentType"
+                        id={uuid()}
+                        required
+                        label="Agent Type"
+                        radioInputItems={radioInputAgentItems}
+                        disabled
+                        horizontal
+                      />
+                    </div>
 
                     <div className={classes.formSubheading}>
                       <Typography
@@ -345,13 +488,14 @@ class SubmitInvoiceForm extends Component {
                     <Grid item sm={6} xs={12}>
                       <div className={classes.formControlWrapper}>
                         <MaterialCustomSelectInput
-                          field="dealType"
+                          field="invoiceType"
                           id={uuid()}
                           required
                           fullWidth
-                          label="Deal Type"
-                          name="dealType"
-                          selectInputItems={dealTypeSelectItems}
+                          label="Invoice Type"
+                          name="invoiceType"
+                          selectInputItems={invoiceTypeSelectItems}
+                          disabled={submittedInvoice && !isEditingInvoice}
                         />
                       </div>
                     </Grid>
@@ -364,6 +508,7 @@ class SubmitInvoiceForm extends Component {
                           label="Property Address"
                           required
                           fullWidth
+                          disabled={submittedInvoice && !isEditingInvoice}
                         />
                       </div>
                     </Grid>
@@ -387,6 +532,7 @@ class SubmitInvoiceForm extends Component {
                           label="City"
                           required
                           fullWidth
+                          disabled={submittedInvoice && !isEditingInvoice}
                         />
                       </div>
                     </Grid>
@@ -398,22 +544,101 @@ class SubmitInvoiceForm extends Component {
                           label="Apartment Number"
                           required
                           fullWidth
+                          disabled={submittedInvoice && !isEditingInvoice}
                         />
                       </div>
                     </Grid>
-                    <Grid item sm={6} xs={12}>
-                      <div className={classes.formControlWrapper}>
-                        <MaterialCustomSelectInput
-                          field="managementOrCobrokeCompany"
-                          id={uuid()}
-                          required
-                          fullWidth
-                          label="Management/Co-Broke Company"
-                          name="managementOrCobrokeCompany"
-                          selectInputItems={managementCobrokeCompanySelectItems}
-                        />
-                      </div>
-                    </Grid>
+                    {!choosingMgmtCoBrokeCompany ? (
+                      <Grid item sm={6} xs={12}>
+                        <div className={classes.formControlWrapper}>
+                          <MaterialCustomSelectInput
+                            field="managementOrCobrokeCompany"
+                            id={uuid()}
+                            required
+                            fullWidth
+                            label="Management/Co-Broke Company"
+                            name="managementOrCobrokeCompany"
+                            onChange={value => {
+                              if (value === 'Add a new item...') {
+                                toggleChoosingMgmtCoBrokeCompany(true);
+                              }
+                            }}
+                            selectInputItems={
+                              managementCobrokeCompanySelectItems
+                            }
+                            disabled={submittedInvoice && !isEditingInvoice}
+                          />
+                        </div>
+                      </Grid>
+                    ) : (
+                      <Grid item sm={6} xs={12}>
+                        <div className={classes.formControlWrapper}>
+                          <TextField
+                            id="newManagementOrCobrokeCompany"
+                            label="Add Mgmt/Co-broke Company..."
+                            value={newMgmtOrCobrokeCompany}
+                            className={
+                              classes.ManagementOrCobrokeCompanyTextField
+                            }
+                            onChange={handleMgmtOrCobrokeCompanyChange}
+                            margin="normal"
+                          />
+                        </div>
+                        <Button
+                          classes={{ root: classes.removePaymentBtn }}
+                          variant="raised"
+                          color="secondary"
+                          style={{ marginLeft: '0' }}
+                          onClick={() => {
+                            toggleChoosingMgmtCoBrokeCompany(false);
+                            formApi.setValue('managementOrCobrokeCompany', '');
+                          }}
+                          type="button"
+                        >
+                          Cancel
+                        </Button>
+                        <Button
+                          classes={{ root: classes.addPaymentBtn }}
+                          variant="raised"
+                          color="primary"
+                          style={{ marginLeft: '10px', marginTop: '5px' }}
+                          onClick={() => {
+                            const trimmedItem = newMgmtOrCobrokeCompany.trim();
+                            if (!newMgmtOrCobrokeCompany || !trimmedItem)
+                              return;
+
+                            const items = [
+                              ...managementCobrokeCompanyItems,
+                              ...addedManagementCompanies,
+                            ];
+
+                            const regex = new RegExp(trimmedItem, 'i');
+
+                            const match = items.filter(item =>
+                              item.match(regex)
+                            );
+
+                            if (match.length) {
+                              toggleChoosingMgmtCoBrokeCompany(false);
+                              formApi.setValue(
+                                'managementOrCobrokeCompany',
+                                match[0]
+                              );
+                              return;
+                            }
+
+                            setHasSetNewMgmtOrCobrokeCompany();
+                            formApi.setValue(
+                              'managementOrCobrokeCompany',
+                              capitalize(newMgmtOrCobrokeCompany)
+                            );
+                          }}
+                          type="button"
+                        >
+                          Add Item
+                        </Button>
+                      </Grid>
+                    )}
                     <Grid item xs={12}>
                       <div className={classes.formControlWrapper}>
                         <CustomTextField
@@ -424,6 +649,7 @@ class SubmitInvoiceForm extends Component {
                           fullWidth
                           noLetters
                           isDollarAmount
+                          disabled={submittedInvoice && !isEditingInvoice}
                         />
                       </div>
                     </Grid>
@@ -445,19 +671,42 @@ class SubmitInvoiceForm extends Component {
                           label="Client's Name"
                           required
                           fullWidth
+                          disabled={submittedInvoice && !isEditingInvoice}
                         />
                       </div>
                     </Grid>
 
-                    <Grid item xs={12} sm={6}>
+                    <Grid item xs={12} md={6}>
                       <div className={classes.formControlWrapper}>
-                        <CustomTextField
-                          field="clientPhoneNumber"
-                          id={uuid()}
-                          label="Client's Phone Number"
-                          required
-                          fullWidth
-                        />
+                        <CustomInputMask
+                          mask="(999) 999-9999"
+                          maskChar={null}
+                          placeholder="Client's Phone Number"
+                          disabled={submittedInvoice && !isEditingInvoice}
+                          defaultValue={
+                            isViewType && submittedInvoice
+                              ? submittedInvoice.clientPhoneNumber
+                              : undefined
+                          }
+                        >
+                          {props => (
+                            <CustomTextField
+                              field="clientPhoneNumber"
+                              id={uuid()}
+                              label="Client's Phone Number"
+                              fullWidth
+                              required
+                              type="tel"
+                              isInputMasked
+                              requiresDefaultOnChange
+                              mask="(999) 999-9999"
+                              {...props}
+                              disabledStyle={
+                                submittedInvoice && !isEditingInvoice
+                              }
+                            />
+                          )}
+                        </CustomInputMask>
                       </div>
                     </Grid>
 
@@ -498,6 +747,7 @@ class SubmitInvoiceForm extends Component {
                             name="paymentType"
                             selectInputItems={paymentTypeSelectItems}
                             validate={paymentTypeValidator}
+                            disabled={submittedInvoice && !isEditingInvoice}
                           />
                         </div>
                       </Grid>
@@ -511,6 +761,7 @@ class SubmitInvoiceForm extends Component {
                             required
                             fullWidth
                             validate={checkOrTransactionNumberValidator}
+                            disabled={submittedInvoice && !isEditingInvoice}
                           />
                         </div>
                       </Grid>
@@ -530,6 +781,7 @@ class SubmitInvoiceForm extends Component {
                               this.props.paymentAmountChangeHandler
                             }
                             isDollarAmount
+                            disabled={submittedInvoice && !isEditingInvoice}
                           />
                         </div>
                       </Grid>
@@ -551,6 +803,9 @@ class SubmitInvoiceForm extends Component {
                                     name="paymentType"
                                     selectInputItems={paymentTypeSelectItems}
                                     validate={paymentTypeValidator}
+                                    disabled={
+                                      submittedInvoice && !isEditingInvoice
+                                    }
                                   />
                                 </div>
                               </Grid>
@@ -564,6 +819,9 @@ class SubmitInvoiceForm extends Component {
                                     required
                                     fullWidth
                                     validate={checkOrTransactionNumberValidator}
+                                    disabled={
+                                      submittedInvoice && !isEditingInvoice
+                                    }
                                   />
                                 </div>
                               </Grid>
@@ -583,6 +841,9 @@ class SubmitInvoiceForm extends Component {
                                       this.props.paymentAmountChangeHandler
                                     }
                                     isDollarAmount
+                                    disabled={
+                                      submittedInvoice && !isEditingInvoice
+                                    }
                                   />
                                 </div>
                               </Grid>
@@ -603,6 +864,7 @@ class SubmitInvoiceForm extends Component {
                                 formApi.removeValue('paymentItems', i);
                               }}
                               type="button"
+                              disabled={submittedInvoice && !isEditingInvoice}
                             >
                               Remove
                             </Button>
@@ -616,6 +878,7 @@ class SubmitInvoiceForm extends Component {
                         color="primary"
                         onClick={() => formApi.addValue('paymentItems')}
                         type="button"
+                        disabled={submittedInvoice && !isEditingInvoice}
                       >
                         Add invoice item
                       </Button>
@@ -664,6 +927,7 @@ class SubmitInvoiceForm extends Component {
                           label="Attention"
                           required
                           fullWidth
+                          disabled={submittedInvoice && !isEditingInvoice}
                         />
                       </div>
                     </Grid>
@@ -674,8 +938,10 @@ class SubmitInvoiceForm extends Component {
                           field="attentionEmail"
                           id={uuid()}
                           label="Email"
+                          type="email"
                           required
                           fullWidth
+                          disabled={submittedInvoice && !isEditingInvoice}
                         />
                       </div>
                     </Grid>
@@ -693,15 +959,32 @@ class SubmitInvoiceForm extends Component {
                       <Divider />
                     </Grid>
 
+                    <div
+                      className={`${classes.formControlWrapper} ${
+                        classes.radioInputWrapper
+                      }`}
+                    >
+                      <MaterialCustomRadioInput
+                        field="shouldSendApprovalTextMessageNotification"
+                        id={uuid()}
+                        required
+                        label="Want to recieve a text notification upon invoice approval?"
+                        radioInputItems={radioInputYesNoItems}
+                        horizontal
+                        disabled={submittedInvoice && !isEditingInvoice}
+                      />
+                    </div>
+
                     <Grid item xs={12}>
                       <div className={classes.formControlWrapper}>
                         <CustomTextField
-                          field="notes"
+                          field="agentNotes"
                           id={uuid()}
                           label="Notes"
                           fullWidth
                           multiline
                           placeholder="Leave any notes here..."
+                          disabled={submittedInvoice && !isEditingInvoice}
                         />
                       </div>
                     </Grid>
@@ -710,7 +993,16 @@ class SubmitInvoiceForm extends Component {
               );
             }}
           </Form>
-        </div>
+        ) : null}
+
+        {submittingFormToServer ? (
+          <div className={classes.formSubmittingWrapper}>
+            <Icon type="loading" style={{ color: '#000', fontSize: '4rem' }} />
+            <div className={classes.progressBarExplanation}>
+              Submitting form...
+            </div>
+          </div>
+        ) : null}
       </div>
     );
   }

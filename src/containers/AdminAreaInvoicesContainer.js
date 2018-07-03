@@ -14,14 +14,24 @@ import ExpansionPanel, {
   ExpansionPanelSummary,
   ExpansionPanelDetails,
 } from 'material-ui/ExpansionPanel';
+import gql from 'graphql-tag';
+import { Query } from 'react-apollo';
+import { DotLoader } from 'react-spinners';
+import Snackbar from 'material-ui/Snackbar';
+import IconButton from 'material-ui/IconButton';
+import CloseIcon from '@material-ui/icons/Close';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 import MaterialCustomSelectInput from '../components/MaterialCustomSelectInput';
 import AdminAreaInvoicesTableContainer from './AdminAreaInvoicesTableContainer';
+import ViewInvoiceDialogBox from '../components/ViewInvoiceDialogBox';
+import deleteInvoice from '../effects/invoices/deleteInvoice';
+import acceptInvoice from '../effects/invoices/acceptInvoice';
+
+const Loader = DotLoader;
 
 const styles = theme => ({
-  addDealBtn: {
-  },
+  addDealBtn: {},
   dealsSummaryBtn: {
     marginLeft: '25px',
     backgroundColor: '#2995F3',
@@ -104,6 +114,27 @@ const searchTypes = {
   specific: 'specific',
 };
 
+const invoicesQuery = gql`
+  query allInvoices {
+    allInvoices {
+      invoiceID
+      date
+      agentType
+      agentName
+      invoiceType
+      clientName
+      clientPhoneNumber
+      propertyAddress
+      city
+      state
+      managementOrCobrokeCompany
+      price
+      total
+      status
+    }
+  }
+`;
+
 @observer
 class AdminAreaDealsContainer extends Component {
   constructor(props) {
@@ -120,11 +151,18 @@ class AdminAreaDealsContainer extends Component {
       currentSearchType: searchTypes.dateRange,
       maxDate: today,
       minDate: moment('2018-04-01'),
+      invoicesViewDialogBoxOpen: false,
+      viewingInvoiceID: '',
+      viewingInvoiceStatus: '',
+      deletedInvoiceIDS: [],
+      acceptedInvoiceIDS: [],
     };
   }
 
   toggleDealsSummaryDialogBox = () => {
-    this.setState({ dealsSummaryDialogBoxOpen: !this.state.dealsSummaryDialogBoxOpen });
+    this.setState({
+      dealsSummaryDialogBoxOpen: !this.state.dealsSummaryDialogBoxOpen,
+    });
   };
 
   onStartDateCHange = date => {
@@ -132,14 +170,14 @@ class AdminAreaDealsContainer extends Component {
     if (date.isAfter(moment())) return;
     if (date.isAfter(this.state.endDate)) return;
     this.setState({ startDate: date });
-  }
+  };
 
   onEndDateCHange = date => {
     if (!date) this.setState({ endDate: date });
     if (date.isAfter(moment())) return;
     if (date.isBefore(this.state.startDate)) return;
     this.setState({ endDate: date });
-  }
+  };
 
   onDateRangeSearch = () => {
     const { currentSearchType } = this.state;
@@ -147,7 +185,7 @@ class AdminAreaDealsContainer extends Component {
     if (currentSearchType !== searchTypes.dateRange) {
       this.setState({ currentSearchType: searchTypes.dateRange });
     }
-  }
+  };
 
   onSpecificSearch = () => {
     const { currentSearchType } = this.state;
@@ -155,27 +193,96 @@ class AdminAreaDealsContainer extends Component {
     if (currentSearchType !== searchTypes.specific) {
       this.setState({ currentSearchType: searchTypes.specific });
     }
-  }
+  };
+
+  handleCloseSnackbar = invoice => {
+    this.setState({
+      snackbarOpen: false,
+      snackbarUndoFunction: null,
+    });
+  };
+
+  openInvoicesViewDialogBox = (invoiceID, status) => {
+    this.setState({
+      invoicesViewDialogBoxOpen: true,
+      viewingInvoiceID: invoiceID,
+      viewingInvoiceStatus: status,
+    });
+  };
+
+  closeInvoicesViewDialogBox = () => {
+    this.setState({
+      invoicesViewDialogBoxOpen: false,
+      viewingInvoiceID: '',
+      viewingInvoiceStatus: '',
+    });
+  };
+
+  deleteInvoice = invoiceID => {
+    deleteInvoice(invoiceID)
+      .then(res => {
+        if (res.error) {
+          console.log(res.error);
+          return;
+        }
+
+        this.setState({
+          snackbarOpen: true,
+          snackbarText: 'Invoice deleted successfully!',
+          invoicesViewDialogBoxOpen: false,
+          deletedInvoiceIDS: [...this.state.deletedInvoiceIDS, invoiceID],
+        });
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
+
+  acceptInvoice = invoiceID => {
+    acceptInvoice(invoiceID)
+      .then(res => {
+        if (res.error) {
+          console.log(res.error);
+          return;
+        }
+
+        this.setState({
+          snackbarOpen: true,
+          snackbarText: 'Invoice accepted successfully!',
+          invoicesViewDialogBoxOpen: false,
+          acceptedInvoiceIDS: [...this.state.acceptedInvoiceIDS, invoiceID],
+        });
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
 
   render() {
-    const { classes } = this.props;
+    const { classes, userRole } = this.props;
     const {
-      startDate, endDate,
+      startDate,
+      endDate,
       fineGrainSearchType,
       fineGrainSearchValue,
       currentSearchType,
+      invoicesViewDialogBoxOpen,
+      viewingInvoiceID,
+      viewingInvoiceStatus,
+      deletedInvoiceIDS,
     } = this.state;
     const {
       onStartDateCHange,
       onEndDateCHange,
       onDateRangeSearch,
       onSpecificSearch,
+      openInvoicesViewDialogBox,
+      closeInvoicesViewDialogBox,
     } = this;
-
 
     return (
       <div className={classes.wrapper}>
-        <div className={classes.searchWrapper}>
+        {/*<div className={classes.searchWrapper}>
           <Grid container spacing={16}>
             <Grid item xs={12} lg={6}>
               <ExpansionPanel>
@@ -304,9 +411,127 @@ class AdminAreaDealsContainer extends Component {
             </Grid>
 
           </Grid>
-        </div>
+                          </div>*/}
 
-        <AdminAreaInvoicesTableContainer />
+        <Query query={invoicesQuery}>
+          {({ loading, error, data }) => {
+            if (loading)
+              return (
+                <div
+                  style={{
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    height: 'calc(100vh - 110px)',
+                    boxShadow:
+                      '0px 1px 3px 0px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 2px 1px -1px rgba(0, 0, 0, 0.12)',
+                  }}
+                >
+                  <Loader color="#f44336" loading />
+                </div>
+              );
+            // TODO: change the error message to a generic
+            // 'error connecting to server' message
+            if (error) return `Error!: ${error}`;
+
+            const intInvoices = {};
+
+            if (error) return `Error!: ${error}`;
+
+            const allInvoices = data.allInvoices;
+
+            allInvoices.forEach(invoice => {
+              intInvoices[invoice.invoiceID] = invoice;
+            });
+
+            let uniqueInvoices = [];
+
+            Object.keys(intInvoices).forEach(key => {
+              uniqueInvoices.push(intInvoices[key]);
+            });
+
+            uniqueInvoices = uniqueInvoices
+              .filter(
+                invoice =>
+                  !this.state.deletedInvoiceIDS.includes(invoice.invoiceID)
+              )
+              .map(invoice => {
+                if (this.state.acceptedInvoiceIDS.includes(invoice.invoiceID)) {
+                  return { ...invoice, status: 'accepted' };
+                } else {
+                  return invoice;
+                }
+              });
+
+            return (
+              <div className={classes.wrapper}>
+                <ViewInvoiceDialogBox
+                  invoicesViewDialogBoxOpen={invoicesViewDialogBoxOpen}
+                  closeInvoicesViewDialogBox={closeInvoicesViewDialogBox}
+                  viewingInvoiceID={viewingInvoiceID}
+                  viewingInvoiceStatus={viewingInvoiceStatus}
+                  toggleSnackbarOpen={this.toggleSnackbarOpen}
+                  acceptInvoice={this.acceptInvoice}
+                  setInvoiceSuccessfullySubmitted={
+                    this.setInvoiceSuccessfullyEditted
+                  }
+                  userRole={this.props.userRole}
+                  deleteInvoice={this.deleteInvoice}
+                />
+
+                <AdminAreaInvoicesTableContainer
+                  invoices={uniqueInvoices}
+                  openInvoicesViewDialogBox={openInvoicesViewDialogBox}
+                />
+
+                <Snackbar
+                  classes={{ root: classes.snackBar }}
+                  anchorOrigin={{
+                    vertical: 'top',
+                    horizontal: 'center',
+                  }}
+                  open={this.state.snackbarOpen}
+                  autoHideDuration={4000}
+                  onClose={this.handleCloseSnackbar}
+                  message={
+                    <span id="snackbar-id">{this.state.snackbarText}</span>
+                  }
+                  action={[
+                    this.snackbarUndoFunction ? (
+                      <Button
+                        key="undo"
+                        color="secondary"
+                        size="small"
+                        onClick={() => {
+                          this.handleCloseSnackbar();
+                          if (
+                            this.state.snackbarUndoFunction &&
+                            typeof snackbarUndoFunction === 'function'
+                          ) {
+                            this.snackbarUndoFunction();
+                          }
+                        }}
+                      >
+                        UNDO
+                      </Button>
+                    ) : (
+                      undefined
+                    ),
+                    <IconButton
+                      key="close"
+                      aria-label="Close"
+                      color="inherit"
+                      className={classes.close}
+                      onClick={this.handleCloseSnackbar}
+                    >
+                      <CloseIcon />
+                    </IconButton>,
+                  ]}
+                />
+              </div>
+            );
+          }}
+        </Query>
       </div>
     );
   }

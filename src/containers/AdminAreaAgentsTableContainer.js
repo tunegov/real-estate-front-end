@@ -98,7 +98,7 @@ class AdminAreaAgentsTableContainer extends Component {
           ? moment(lastLoginTimestamp).format('MM/DD/YYYY, h:mm:ss a')
           : '',
         view: {
-          route: 'agent',
+          route: 'profile',
           id: uuid,
         },
       });

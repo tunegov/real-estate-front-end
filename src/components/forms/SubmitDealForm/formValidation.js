@@ -11,10 +11,6 @@ const validator = values => {
     propertyAddress: !values.propertyAddress ? 'This value is required' : null,
     city: !values.city ? 'This value is required' : null,
     state: !values.state ? 'This value is required' : null,
-    otherAgents:
-      !values.otherAgents || !values.otherAgents.length
-        ? 'This value is required'
-        : null,
     apartmentNumber: !values.apartmentNumber ? 'This value is required' : null,
     managementOrCobrokeCompany: !values.managementOrCobrokeCompany
       ? 'This value is required'
@@ -42,18 +38,21 @@ const validator = values => {
     alreadyTurnedFundsIn: !values.alreadyTurnedFundsIn
       ? 'This value is required'
       : null,
-    shouldSendApprovalTextMessageNotificaion: !values.shouldSendApprovalTextMessageNotificaion
+    shouldSendApprovalTextMessageNotification: !values.shouldSendApprovalTextMessageNotification
       ? 'This value is required'
       : null,
     financialsTotal:
       values.financialsTotal <= 0
         ? 'The total amount for this deal must be greater than 0'
         : null,
-    agencyDisclosureForm: !values.agencyDisclosureForm
-      ? 'This value is required and must be either JPEG/JPG or PDF format'
-      : null,
   };
 };
+
+export const agencyDisclosureFormValidator = value => ({
+  error: !value
+    ? 'This value is required and must be either JPEG/JPG or PDF format'
+    : null,
+});
 
 export const paymentTypeValidator = value => ({
   error: !value ? 'This value is required' : null,

@@ -60,13 +60,15 @@ const styles = theme => ({
   myTable: {},
   myTableContainer: {
     minHeight: '300px',
-    height: 'calc(100vh - 318px) !important',
+    height: 'calc(100vh - 246px) !important',
     // maxHeight: '800px',
   },
+  /*
   myTableContainerSmallViewPort: {
     minHeight: '300px',
-    height: 'calc(100vh - 380px) !important',
+    height: 'calc(100vh - 310px) !important',
   },
+  */
   myNoDataCellComponent: {
     borderBottom: 'none !important',
   },
@@ -81,7 +83,7 @@ const filteringStateColumnExtensions = [
   { columnName: 'view', filteringEnabled: false },
 ];
 
-const getRowId = row => row.dealID;
+const getRowId = row => row.invoiceID;
 
 const statusSelectInputItems = [
   { label: '' },
@@ -106,17 +108,17 @@ const integratedSortingColumnExtensions = [
 const defaultColumnWidths = [
   { columnName: 'invoiceID', width: 120 },
   { columnName: 'date', width: 120 },
-  { columnName: 'agentName', width: 120 },
+  { columnName: 'agentName', width: 130 },
   { columnName: 'agentType', width: 120 },
   { columnName: 'dealType', width: 120 },
   { columnName: 'clientName', width: 140 },
   { columnName: 'clientPhoneNumber', width: 140 },
   { columnName: 'propertyAddress', width: 140 },
-  { columnName: 'propertyCity', width: 120 },
+  { columnName: 'propertyCity', width: 130 },
   { columnName: 'propertyState', width: 120 },
   { columnName: 'managementOrCobrokeCompany', width: 160 },
   { columnName: 'rentOrSalePrice', width: 100 },
-  { columnName: 'totalAmount', width: 100 },
+  { columnName: 'totalAmount', width: 120 },
   { columnName: 'status', width: 120 },
   { columnName: 'view', width: 80 },
 ];
@@ -191,10 +193,6 @@ class InvoicesTable extends Component {
             defaultSorting={[{ columnName: 'date', direction: 'desc' }]}
             columnExtensions={sortingStateColumnExtensions}
           />
-          <SelectionState
-            selection={selection}
-            onSelectionChange={this.changeSelection}
-          />
           <PagingState
             currentPage={this.state.currentPage}
             pageSize={this.state.pageSize}
@@ -208,12 +206,10 @@ class InvoicesTable extends Component {
             columnExtensions={integratedSortingColumnExtensions}
           />
 
-          <IntegratedSelection />
-
           <IntegratedPaging />
 
           <VirtualTable
-            height={isBrowser ? window.innerHeight - 318 : undefined}
+            height={isBrowser ? window.innerHeight - 246 : undefined}
             tableComponent={TableComponent}
             containerComponent={props => (
               <TableContainerComponent
@@ -243,7 +239,6 @@ class InvoicesTable extends Component {
           <ColumnChooser />
 
           <TableHeaderRow showSortingControls />
-          <TableSelection showSelectAll highlightRow />
           <PagingPanel pageSizes={pageSizes} />
         </Grid>
       </div>

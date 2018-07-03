@@ -3,13 +3,24 @@ import { withStyles } from 'material-ui/styles';
 import { withRouter } from 'next/router';
 import SettingsIcon from '@material-ui/icons/Settings';
 import MomentUtils from 'material-ui-pickers/utils/moment-utils';
+import Snackbar from 'material-ui/Snackbar';
+import { Icon } from 'antd';
 import MuiPickersUtilsProvider from 'material-ui-pickers/utils/MuiPickersUtilsProvider';
+import isBrowser from 'is-browser';
 import SideNav from '../SideNav';
 import AdminSideNav from '../AdminSideNav';
 import AppTopNav from '../AppTopNav';
 import SettingsDrawer from '../SettingsDrawer';
 import MenuDialogBox from '../MenuDialogBox';
 import { admin, superAdmin } from '../../constants/userTypes';
+
+let Offline = () => null;
+
+if (isBrowser) {
+  const { Offline: OfflineComp } = require('react-detect-offline');
+
+  Offline = OfflineComp;
+}
 
 const styles = theme => ({
   root: {
@@ -55,7 +66,10 @@ const styles = theme => ({
     },
   },
   snackBar: {
-    marginTop: 25,
+    marginTop: 10,
+  },
+  noConnectionSpinner: {
+    marginLeft: 10,
   },
 });
 
@@ -66,8 +80,6 @@ class InnerAppLayout extends React.Component {
     this.state = {
       navDrawerOpen: false,
       settingsDrawerOpen: false,
-      managementModalOpen: false,
-      managementModalCurrentRoute: null,
       managementModalCurrentType: null,
       menuDialogBoxOpen: false,
       menuDialogBoxTitle: null,
@@ -136,27 +148,14 @@ class InnerAppLayout extends React.Component {
   };
 
   render() {
-    const {
-      classes,
-      logoutUser,
-      userRole,
-      toggleFullScreenLoader,
-      createAgent,
-    } = this.props;
+    const { classes, logoutUser, toggleFullScreenLoader } = this.props;
     const currentPath = this.props.router.pathname;
     const { isAdmin } = this;
     const {
-      managementModalCurrentRoute,
-      managementModalOpen,
-      createAgentModalOpen,
-      managementModalCurrentType,
       menuDialogBoxOpen,
       menuDialogBoxTitle,
       menuDialogBoxLinkItems,
     } = this.state;
-    const managementModalType = managementModalCurrentRoute
-      ? managementModalCurrentRoute.split('-').pop()
-      : null;
 
     return (
       <MuiPickersUtilsProvider utils={MomentUtils}>
@@ -199,6 +198,29 @@ class InnerAppLayout extends React.Component {
             toggleSideNavModalClosed={this.toggleMenuDialogBoxClosed}
           />
         </div>
+        {isBrowser && (
+          <Offline>
+            <Snackbar
+              classes={{ root: classes.snackBar }}
+              anchorOrigin={{
+                vertical: 'top',
+                horizontal: 'center',
+              }}
+              open={true}
+              onClose={this.handleCloseSnackbar}
+              message={
+                <span id="snackbar-id">
+                  Internet connection currently unavailable
+                  <Icon
+                    className={classes.noConnectionSpinner}
+                    type="loading"
+                    style={{ color: '#fff' }}
+                  />
+                </span>
+              }
+            />
+          </Offline>
+        )}
       </MuiPickersUtilsProvider>
     );
   }

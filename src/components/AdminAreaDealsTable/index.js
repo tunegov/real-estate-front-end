@@ -60,7 +60,7 @@ const styles = theme => ({
   myTable: {},
   myTableContainer: {
     minHeight: '300px',
-    height: 'calc(100vh - 384px) !important',
+    height: 'calc(100vh - 310px) !important',
     // maxHeight: '800px',
   },
   myTableContainerSmallViewPort: {
@@ -198,10 +198,6 @@ class DealsTable extends Component {
             defaultSorting={[{ columnName: 'date', direction: 'desc' }]}
             columnExtensions={sortingStateColumnExtensions}
           />
-          <SelectionState
-            selection={selection}
-            onSelectionChange={this.changeSelection}
-          />
           <PagingState
             currentPage={this.state.currentPage}
             pageSize={this.state.pageSize}
@@ -215,12 +211,10 @@ class DealsTable extends Component {
             columnExtensions={integratedSortingColumnExtensions}
           />
 
-          <IntegratedSelection />
-
           <IntegratedPaging />
 
           <VirtualTable
-            height={isBrowser ? window.innerHeight - 384 : undefined}
+            height={isBrowser ? window.innerHeight - 310 : undefined}
             tableComponent={TableComponent}
             containerComponent={props => (
               <TableContainerComponent
@@ -250,7 +244,6 @@ class DealsTable extends Component {
           <ColumnChooser />
 
           <TableHeaderRow showSortingControls />
-          <TableSelection showSelectAll highlightRow />
           <PagingPanel pageSizes={pageSizes} />
         </Grid>
       </div>

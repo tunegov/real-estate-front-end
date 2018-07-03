@@ -11,6 +11,11 @@ import Grid from 'material-ui/Grid';
 import TextField from 'material-ui/TextField';
 import AddIcon from '@material-ui/icons/Add';
 import DeleteIcon from '@material-ui/icons/Delete';
+import CircularProgressbar from 'react-circular-progressbar';
+import 'react-circular-progressbar/dist/styles.css';
+import { Icon } from 'antd';
+import Lightbox from 'react-images';
+import EyeIcon from '@material-ui/icons/RemoveRedEye';
 import MaterialCustomTextFieldWrapper from '../../MaterialCustomTextFieldWrapper';
 import MaterialCustomRadioInputWrapper from '../../MaterialCustomRadioInputWrapper';
 import MaterialCustomSelectInputWrapper from '../../MaterialCustomSelectInputWrapper';
@@ -23,6 +28,7 @@ import validators, {
   deductionTypeValidator,
   descriptionValidator,
   deductionsAmountValidator,
+  agencyDisclosureFormValidator,
 } from './formValidation';
 
 const CustomTextField = MaterialCustomTextFieldWrapper;
@@ -36,6 +42,10 @@ const styles = theme => ({
   container: {
     display: 'flex',
     flexWrap: 'wrap',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
+    height: '100%',
     padding: theme.spacing.unit * 3,
     backgroundColor: '#fff',
     borderRadius: '5px',
@@ -61,8 +71,10 @@ const styles = theme => ({
     textAlign: 'center',
   },
   formRoot: {
+    paddingBottom: 10,
     flexGrow: 1,
     justifyContent: 'center',
+    overflow: 'hidden',
   },
   radioInputWrapper: {
     marginLeft: 'auto',
@@ -176,6 +188,22 @@ const styles = theme => ({
     top: '5px',
     marginLeft: '6px',
   },
+  smallFileViewBtn: {
+    width: '35px',
+    height: '35px',
+    minWidth: '35px',
+    minHeight: '35px',
+    position: 'absolute',
+    backgroundColor: '#008000',
+    top: '8px',
+    marginLeft: '6px',
+    color: '#fff',
+    transition:
+      'background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
+    '&:hover': {
+      backgroundColor: '#067706',
+    },
+  },
   uploadContractDivWrapper: {
     position: 'relative',
   },
@@ -195,12 +223,39 @@ const styles = theme => ({
     margin: 8,
     marginLeft: 0,
   },
+  progressBarWrapper: {
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: '100%',
+  },
+  formSubmittingWrapper: {
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: '100%',
+  },
+  progressBar: {
+    width: '25%',
+  },
+  progressBarExplanation: {
+    marginTop: '20px',
+    fontSize: '1.1rem',
+  },
+  gridContainer: {
+    marginBottom: 0,
+  },
+  viewIcon: {
+    fontSize: '1.2rem',
+  },
 });
 
 const radioInputAgentItems = [
-  { label: '60%' },
-  { label: '70%' },
-  { label: '80%' },
+  { label: '60%', value: '60' },
+  { label: '70%', value: '70' },
+  { label: '80%', value: '80' },
 ];
 
 const radioInputAgentPaymentItems = [
@@ -240,7 +295,7 @@ const deductionTypeSelectItems = [
   { label: 'Processing Fee' },
   { label: 'Payment' },
   { label: 'Agent Split' },
-  { label: 'Other' },
+  { label: 'Add a new item...' },
 ];
 
 @observer
@@ -249,18 +304,82 @@ class SubmitDealForm extends Component {
     super(props);
     this.state = {
       shouldRenderInitialDeductionItem: true,
+      lightboxIsOpen: false,
+      currentLightBoxIndex: 0,
+      lightboxType: 'agencyDisclosure',
     };
   }
   isFirstTimeRender = true;
 
+  componentDidMount() {
+    if (this.props.setInitialContainerState && this.props.submittedDeal) {
+      this.props.setInitialContainerState({
+        paymentsTotal: this.props.submittedDeal.paymentsTotal,
+        deductionsTotal: this.props.submittedDeal.deductionsTotal,
+        total: this.props.submittedDeal.total,
+      });
+    }
+  }
+
+  returnAgencyDisclosureURL = () => {
+    if (!this.props.submittedDeal) return [];
+
+    if (this.props.submittedDeal.agencyDisclosureForm) {
+      return [
+        {
+          src: this.props.submittedDeal.agencyDisclosureForm,
+        },
+      ];
+    }
+  };
+
+  returnContractLeaseURLS = () => {
+    if (!this.props.submittedDeal) return [];
+
+    if (this.props.submittedDeal.contractOrLeaseForms) {
+      return this.props.submittedDeal.contractOrLeaseForms.map(url => ({
+        src: url,
+      }));
+    }
+  };
+
+  openContractLeaseLightBox = () => {
+    this.setState({
+      lightboxIsOpen: true,
+      currentLightBoxIndex: 0,
+      lightboxType: 'contractLease',
+    });
+  };
+
+  openAgencyDisclosureLightBox = () => {
+    this.setState({
+      lightboxIsOpen: true,
+      currentLightBoxIndex: 0,
+      lightboxType: 'agencyDisclosure',
+    });
+  };
+
+  closeLightbox = () => {
+    this.setState({ lightboxIsOpen: false });
+  };
+
+  onClickPrev = () => {
+    const { currentLightBoxIndex } = this.state;
+
+    this.setState({
+      currentLightBoxIndex: currentLightBoxIndex - 1,
+    });
+  };
+
+  onClickNext = () => {
+    const { currentLightBoxIndex } = this.state;
+
+    this.setState({
+      currentLightBoxIndex: currentLightBoxIndex + 1,
+    });
+  };
+
   render() {
-    const {
-      firstName,
-      lastName,
-      uuid: agentUUID,
-      agent: agentPart,
-    } = this.props.agent;
-    const { agentType, state } = agentPart;
     const {
       classes,
       setAgencyDisclosureForm,
@@ -274,8 +393,17 @@ class SubmitDealForm extends Component {
       handleMgmtOrCobrokeCompanyChange,
       setHasSetNewMgmtOrCobrokeCompany,
       newMgmtOrCobrokeCompany,
-      addedMgmtCompanies,
+      addedManagementCompanies,
       agents,
+      uplodingFileProgress,
+      isUploadingFile,
+      uplodingFileText,
+      formSubmissionBegun,
+      submittingFormToServer,
+      submittedDeal,
+      isEditingDeal,
+      isViewType,
+      agentUUID,
       onSubmit,
     } = this.props;
 
@@ -289,12 +417,27 @@ class SubmitDealForm extends Component {
     ];
 
     const agentsSelectItems = agents
-      .filter(agent => agent.uuid !== agentUUID)
+      .filter(agent => (agentUUID ? agent.uuid !== agentUUID : agent))
       .map(({ firstName, lastName, uuid }) => ({
         label: `${firstName} ${lastName} (Agent ID - ${uuid})`,
         key: uuid,
         value: uuid,
       }));
+
+    if (isViewType && submittedDeal && submittedDeal.otherAgents.length) {
+      const nonAvailableAgentUUIDS = [];
+      const agentUUIDS = agents.map(agent => agent.uuid);
+
+      submittedDeal.otherAgents.forEach(agent => {
+        if (!agentUUIDS.includes(agent.agentID)) {
+          agentsSelectItems.push({
+            label: `${agent.agentName} (Agent ID - ${agent.agentID})`,
+            key: agent.agentID,
+            value: agent.agentID,
+          });
+        }
+      });
+    }
 
     let managementCobrokeCompanySelectItems = managementCobrokeCompanyItems.map(
       company => ({ label: company })
@@ -303,18 +446,114 @@ class SubmitDealForm extends Component {
     managementCobrokeCompanySelectItems = managementCobrokeCompanySelectItems
       ? [
           ...managementCobrokeCompanySelectItems,
-          ...addedMgmtCompanies.map(company => ({ label: company })),
-          { label: 'Other' },
+          ...addedManagementCompanies.map(company => ({ label: company })),
+          { label: 'Add a new item...' },
         ]
       : [];
 
+    /*
+      const {
+        firstName,
+        lastName,
+        uuid: agentUUID,
+        agent: agentPart,
+      } = this.props.agent;
+      const { agentType, state } = agentPart;
+      */
+
+    let finalDefaultValues;
+
+    if (submittedDeal) {
+      console.log(submittedDeal);
+      const {
+        agentNotes,
+        agentType,
+        agentName,
+        alreadyTurnedFundsIn,
+        city,
+        clientEmail,
+        clientName,
+        date,
+        dealType,
+        otherAgents,
+        leadSource,
+        managementOrCobrokeCompany,
+        propertyAddress,
+        shouldSendApprovalTextMessageNotification,
+        state,
+        fundsPaidBy,
+        agentPaymentType,
+        price,
+        paymentsTotal,
+        deductionsTotal,
+        paymentItems,
+        deductionItems,
+        apartmentNumber,
+        total,
+      } = submittedDeal;
+      finalDefaultValues = {
+        agent: agentName,
+        agentNotes,
+        agentType,
+        otherAgents: otherAgents.map(agent => agent.agentID),
+        alreadyTurnedFundsIn,
+        city,
+        apartmentNumber,
+        clientEmail,
+        clientName,
+        date: moment(date).format('MMMM Do YYYY'),
+        dealType,
+        leadSource,
+        agentPaymentType,
+        managementOrCobrokeCompany,
+        propertyAddress,
+        shouldSendApprovalTextMessageNotification,
+        state,
+        fundsPaidBy,
+        price,
+        paymentItems: paymentItems.map(
+          ({ paymentType, checkOrTransactionNumber, amount }) => ({
+            paymentType,
+            checkOrTransactionNumber,
+            amount,
+          })
+        ),
+        deductionItems: deductionItems.map(
+          ({ deductionType, description, amount }) => ({
+            deductionType,
+            description,
+            amount,
+          })
+        ),
+        paymentsSubtotal: paymentsTotal ? paymentsTotal.toLocaleString() : '0',
+        deductionsSubtotal: deductionsTotal
+          ? deductionsTotal.toLocaleString()
+          : '0',
+        financialsTotal: total ? total.toLocaleString() : '0',
+      };
+    }
+
     return (
-      <div>
-        <div className={classes.formWrapper}>
+      <div className={classes.formWrapper}>
+        {!formSubmissionBegun ? (
           <Form
+            defaultValues={
+              !finalDefaultValues && this.props.agent
+                ? {
+                    date: `${moment().format('MMMM Do YYYY')}`,
+                    agentType: `${this.props.agent.agent.agentType}`,
+                    state: this.props.agent.agent.state,
+                    agent: `${capitalize(
+                      this.props.agent.firstName
+                    )} ${capitalize(this.props.agent.lastName)}`,
+                    paymentsSubtotal: this.props.paymentsTotal,
+                    deductionsSubtotal: this.props.deductionsTotal,
+                  }
+                : finalDefaultValues
+            }
             preValidate={this.preValidate}
+            validateOnMount
             onSubmit={values => {
-              console.log('wuuuut');
               if (onSubmit) {
                 onSubmit(values);
               }
@@ -330,12 +569,11 @@ class SubmitDealForm extends Component {
               console.log(formApi.errors);
               console.log(formApi.values);
               console.log(formApi.values.deductionItems);
-              */
+              
               if (this.isFirstTimeRender) {
                 this.isFirstTimeRender = false;
-                // formApi.addValue('contractOrLeaseItems');
                 formApi.setValue('date', `${moment().format('MMMM Do YYYY')}`);
-                formApi.setValue('agentType', `${agentType}%`);
+                formApi.setValue('agentType', `${agentType}`);
                 formApi.setValue('state', state);
                 formApi.setValue(
                   'agent',
@@ -346,9 +584,8 @@ class SubmitDealForm extends Component {
                   'deductionsSubtotal',
                   this.props.deductionsTotal
                 );
-                // formApi.setValue('agentType', agentType);
-                // formApi.setValue('state', agentState);
               }
+              */
 
               const renderRestDeductionItems = () => {
                 if (
@@ -371,6 +608,7 @@ class SubmitDealForm extends Component {
                               required
                               selectInputItems={deductionTypeSelectItems}
                               validate={deductionTypeValidator}
+                              disabled={submittedDeal && !isEditingDeal}
                             />
                           </div>
                         </Grid>
@@ -384,6 +622,7 @@ class SubmitDealForm extends Component {
                               fullWidth
                               required
                               validate={descriptionValidator}
+                              disabled={submittedDeal && !isEditingDeal}
                             />
                           </div>
                         </Grid>
@@ -403,6 +642,7 @@ class SubmitDealForm extends Component {
                                 this.props.deductionAmountChangeHandler
                               }
                               isDollarAmount
+                              disabled={submittedDeal && !isEditingDeal}
                             />
                           </div>
                         </Grid>
@@ -438,7 +678,7 @@ class SubmitDealForm extends Component {
                 <form
                   onSubmit={formApi.submitForm}
                   id="form1"
-                  classes={classes.formRoot}
+                  className={classes.formRoot}
                 >
                   <Grid container spacing={24}>
                     <Grid item sm={6} xs={12}>
@@ -448,7 +688,6 @@ class SubmitDealForm extends Component {
                           id={uuid()}
                           label="Date"
                           disabled
-                          value={`${moment().format('MMMM Do YYYY')}`}
                           fullWidth
                           required
                         />
@@ -461,9 +700,6 @@ class SubmitDealForm extends Component {
                           id={uuid()}
                           label="Agent"
                           disabled
-                          value={`${capitalize(firstName)} ${capitalize(
-                            lastName
-                          )}`}
                           fullWidth
                           required
                         />
@@ -476,12 +712,13 @@ class SubmitDealForm extends Component {
                           <MaterialCustomSelectInput
                             field="otherAgents"
                             id={uuid()}
-                            required
                             fullWidth
                             label="Other Agents"
                             name="otherAgents"
                             multiple
+                            disabled={submittedDeal && !isEditingDeal}
                             selectInputItems={agentsSelectItems}
+                            disabled={isViewType}
                           />
                         </div>
                       </Grid>
@@ -510,6 +747,7 @@ class SubmitDealForm extends Component {
                           id={uuid()}
                           label="Lead Source"
                           fullWidth
+                          disabled={submittedDeal && !isEditingDeal}
                         />
                       </div>
                     </Grid>
@@ -530,9 +768,11 @@ class SubmitDealForm extends Component {
                           id={uuid()}
                           required
                           fullWidth
+                          disabled={submittedDeal && !isEditingDeal}
                           label="Deal Type"
                           name="dealType"
                           selectInputItems={dealTypeSelectItems}
+                          disabled={submittedDeal && !isEditingDeal}
                         />
                       </div>
                     </Grid>
@@ -545,6 +785,7 @@ class SubmitDealForm extends Component {
                           label="Property Address"
                           required
                           fullWidth
+                          disabled={submittedDeal && !isEditingDeal}
                         />
                       </div>
                     </Grid>
@@ -568,6 +809,7 @@ class SubmitDealForm extends Component {
                           label="City"
                           required
                           fullWidth
+                          disabled={submittedDeal && !isEditingDeal}
                         />
                       </div>
                     </Grid>
@@ -579,6 +821,7 @@ class SubmitDealForm extends Component {
                           label="Apartment Number"
                           required
                           fullWidth
+                          disabled={submittedDeal && !isEditingDeal}
                         />
                       </div>
                     </Grid>
@@ -594,13 +837,14 @@ class SubmitDealForm extends Component {
                             label="Management/Co-Broke Company"
                             name="managementOrCobrokeCompany"
                             onChange={value => {
-                              if (value === 'Other') {
+                              if (value === 'Add a new item...') {
                                 toggleChoosingMgmtCoBrokeCompany(true);
                               }
                             }}
                             selectInputItems={
                               managementCobrokeCompanySelectItems
                             }
+                            disabled={submittedDeal && !isEditingDeal}
                           />
                         </div>
                       </Grid>
@@ -637,18 +881,26 @@ class SubmitDealForm extends Component {
                           color="primary"
                           style={{ marginLeft: '10px', marginTop: '5px' }}
                           onClick={() => {
-                            if (!newMgmtOrCobrokeCompany) return;
+                            const trimmedItem = newMgmtOrCobrokeCompany.trim();
+                            if (!newMgmtOrCobrokeCompany || !trimmedItem)
+                              return;
 
-                            if (
-                              [
-                                ...managementCobrokeCompanyItems,
-                                ...addedMgmtCompanies,
-                              ].includes(newMgmtOrCobrokeCompany.trim())
-                            ) {
+                            const items = [
+                              ...managementCobrokeCompanyItems,
+                              ...addedManagementCompanies,
+                            ];
+
+                            const regex = new RegExp(trimmedItem, 'i');
+
+                            const match = items.filter(item =>
+                              item.match(regex)
+                            );
+
+                            if (match.length) {
                               toggleChoosingMgmtCoBrokeCompany(false);
                               formApi.setValue(
                                 'managementOrCobrokeCompany',
-                                newMgmtOrCobrokeCompany.trim()
+                                match[0]
                               );
                               return;
                             }
@@ -656,7 +908,7 @@ class SubmitDealForm extends Component {
                             setHasSetNewMgmtOrCobrokeCompany();
                             formApi.setValue(
                               'managementOrCobrokeCompany',
-                              newMgmtOrCobrokeCompany
+                              capitalize(newMgmtOrCobrokeCompany)
                             );
                           }}
                           type="button"
@@ -676,6 +928,7 @@ class SubmitDealForm extends Component {
                           fullWidth
                           noLetters
                           isDollarAmount
+                          disabled={submittedDeal && !isEditingDeal}
                         />
                       </div>
                     </Grid>
@@ -697,6 +950,7 @@ class SubmitDealForm extends Component {
                           label="Client's Name"
                           required
                           fullWidth
+                          disabled={submittedDeal && !isEditingDeal}
                         />
                       </div>
                     </Grid>
@@ -709,6 +963,7 @@ class SubmitDealForm extends Component {
                           required
                           fullWidth
                           type="email"
+                          disabled={submittedDeal && !isEditingDeal}
                         />
                       </div>
                     </Grid>
@@ -750,6 +1005,7 @@ class SubmitDealForm extends Component {
                             name="paymentType"
                             selectInputItems={paymentTypeSelectItems}
                             validate={paymentTypeValidator}
+                            disabled={submittedDeal && !isEditingDeal}
                           />
                         </div>
                       </Grid>
@@ -763,6 +1019,7 @@ class SubmitDealForm extends Component {
                             required
                             fullWidth
                             validate={checkOrTransactionNumberValidator}
+                            disabled={submittedDeal && !isEditingDeal}
                           />
                         </div>
                       </Grid>
@@ -782,6 +1039,7 @@ class SubmitDealForm extends Component {
                               this.props.paymentAmountChangeHandler
                             }
                             isDollarAmount
+                            disabled={submittedDeal && !isEditingDeal}
                           />
                         </div>
                       </Grid>
@@ -803,6 +1061,7 @@ class SubmitDealForm extends Component {
                                     name="paymentType"
                                     selectInputItems={paymentTypeSelectItems}
                                     validate={paymentTypeValidator}
+                                    disabled={submittedDeal && !isEditingDeal}
                                   />
                                 </div>
                               </Grid>
@@ -816,6 +1075,7 @@ class SubmitDealForm extends Component {
                                     required
                                     fullWidth
                                     validate={checkOrTransactionNumberValidator}
+                                    disabled={submittedDeal && !isEditingDeal}
                                   />
                                 </div>
                               </Grid>
@@ -835,29 +1095,32 @@ class SubmitDealForm extends Component {
                                       this.props.paymentAmountChangeHandler
                                     }
                                     isDollarAmount
+                                    disabled={submittedDeal && !isEditingDeal}
                                   />
                                 </div>
                               </Grid>
                             </NestedField>
-                            <Button
-                              classes={{ root: classes.removePaymentBtn }}
-                              variant="raised"
-                              color="secondary"
-                              onClick={() => {
-                                const amount = Number(
-                                  formApi.values.paymentItems[i].amount
-                                );
+                            {submittedDeal && !isEditingDeal ? null : (
+                              <Button
+                                classes={{ root: classes.removePaymentBtn }}
+                                variant="raised"
+                                color="secondary"
+                                onClick={() => {
+                                  const amount = Number(
+                                    formApi.values.paymentItems[i].amount
+                                  );
 
-                                if (amount) {
-                                  subtractPaymentValueFromState(amount);
-                                }
+                                  if (amount) {
+                                    subtractPaymentValueFromState(amount);
+                                  }
 
-                                formApi.removeValue('paymentItems', i);
-                              }}
-                              type="button"
-                            >
-                              Remove
-                            </Button>
+                                  formApi.removeValue('paymentItems', i);
+                                }}
+                                type="button"
+                              >
+                                Remove
+                              </Button>
+                            )}
                           </div>
                         ))
                         .slice(1)}
@@ -868,6 +1131,7 @@ class SubmitDealForm extends Component {
                         color="primary"
                         onClick={() => formApi.addValue('paymentItems')}
                         type="button"
+                        disabled={submittedDeal && !isEditingDeal}
                       >
                         Add payment item
                       </Button>
@@ -915,6 +1179,7 @@ class SubmitDealForm extends Component {
                                 required
                                 selectInputItems={deductionTypeSelectItems}
                                 validate={deductionTypeValidator}
+                                disabled={submittedDeal && !isEditingDeal}
                               />
                             </div>
                           </Grid>
@@ -928,6 +1193,7 @@ class SubmitDealForm extends Component {
                                 fullWidth
                                 required
                                 validate={descriptionValidator}
+                                disabled={submittedDeal && !isEditingDeal}
                               />
                             </div>
                           </Grid>
@@ -947,31 +1213,34 @@ class SubmitDealForm extends Component {
                                   this.props.deductionAmountChangeHandler
                                 }
                                 isDollarAmount
+                                disabled={submittedDeal && !isEditingDeal}
                               />
                             </div>
                           </Grid>
                         </NestedField>
-                        <Button
-                          classes={{ root: classes.removePaymentBtn }}
-                          variant="raised"
-                          color="secondary"
-                          onClick={() => {
-                            this.setState({
-                              shouldRenderInitialDeductionItem: false,
-                            });
-                            const amount = Number(
-                              formApi.values.deductionItems[0].amount
-                            );
+                        {submittedDeal && !isEditingDeal ? null : (
+                          <Button
+                            classes={{ root: classes.removePaymentBtn }}
+                            variant="raised"
+                            color="secondary"
+                            onClick={() => {
+                              this.setState({
+                                shouldRenderInitialDeductionItem: false,
+                              });
+                              const amount = Number(
+                                formApi.values.deductionItems[0].amount
+                              );
 
-                            if (amount) {
-                              subtractDeductionValueFromState(amount);
-                            }
-                            formApi.removeValue('deductionItems', 0);
-                          }}
-                          type="button"
-                        >
-                          Remove
-                        </Button>
+                              if (amount) {
+                                subtractDeductionValueFromState(amount);
+                              }
+                              formApi.removeValue('deductionItems', 0);
+                            }}
+                            type="button"
+                          >
+                            Remove
+                          </Button>
+                        )}
                       </div>
                     ) : null}
 
@@ -983,6 +1252,7 @@ class SubmitDealForm extends Component {
                         color="primary"
                         onClick={() => formApi.addValue('deductionItems')}
                         type="button"
+                        disabled={submittedDeal && !isEditingDeal}
                       >
                         Add deduction item
                       </Button>
@@ -1022,6 +1292,19 @@ class SubmitDealForm extends Component {
                       </div>
                     </Grid>
 
+                    <Grid item xs={12}>
+                      <div className={classes.formControlWrapper}>
+                        <CustomTextField
+                          field="agentNotes"
+                          id={uuid()}
+                          label="Notes"
+                          fullWidth
+                          multiline
+                          disabled={submittedDeal && !isEditingDeal}
+                        />
+                      </div>
+                    </Grid>
+
                     <div className={classes.formMiniHeading2}>
                       <Typography
                         variant="subheading"
@@ -1039,16 +1322,50 @@ class SubmitDealForm extends Component {
                       <div className={classes.fileUploadBtnWrapper}>
                         <CustomFileUploadInputBtn
                           field="agencyDisclosureForm"
-                          id={uuid()}
+                          id="agencyDisclosureUploadForm"
                           label="Upload Agency Disclosure Form*"
                           btnClassName={classes.uploadBtnClassName}
-                          required
+                          required={isEditingDeal ? false : true}
                           customOnChange={setAgencyDisclosureForm}
                           customState={agencyDisclosureForm}
                           helperInfo="Agency Disclosure Form* (PDF or JPEG/JPG file)"
                           acceptedFileExtensions={acceptedFileExtensions}
                           accept=".jpeg, .jpg, .pdf"
+                          disabled={submittedDeal && !isEditingDeal}
+                          validate={
+                            isViewType
+                              ? undefined
+                              : agencyDisclosureFormValidator
+                          }
                         />
+                        {submittedDeal &&
+                        submittedDeal.agencyDisclosureForm &&
+                        !agencyDisclosureForm ? (
+                          <Button
+                            variant="fab"
+                            color="primary"
+                            aria-label="add"
+                            size="small"
+                            classes={{ root: classes.smallFileViewBtn }}
+                            onClick={this.openAgencyDisclosureLightBox}
+                          >
+                            <EyeIcon className={classes.viewIcon} />
+                          </Button>
+                        ) : null}
+                        {isEditingDeal && agencyDisclosureForm ? (
+                          <Button
+                            variant="fab"
+                            color="secondary"
+                            aria-label="add"
+                            size="small"
+                            classes={{ root: classes.smallFileRemoveBtn }}
+                            onClick={() => {
+                              setAgencyDisclosureForm('');
+                            }}
+                          >
+                            <DeleteIcon />
+                          </Button>
+                        ) : null}
                       </div>
                     </Grid>
 
@@ -1056,7 +1373,7 @@ class SubmitDealForm extends Component {
                       <div className={classes.fileUploadBtnWrapper}>
                         <CustomFileUploadInputBtn
                           field="contractOrLeaseItems"
-                          id={uuid()}
+                          id="contractOrLeaseItemsUploadForm"
                           label="Upload your Contract or Lease items"
                           btnClassName={classes.uploadBtnClassName}
                           multiple
@@ -1065,7 +1382,25 @@ class SubmitDealForm extends Component {
                           helperInfo="Contract or Lease items (PDF or JPEG/JPG files)"
                           acceptedFileExtensions={acceptedFileExtensions}
                           accept=".jpeg, .jpg, .pdf"
+                          disabled={submittedDeal && !isEditingDeal}
                         />
+                        {submittedDeal &&
+                        submittedDeal.contractOrLeaseForms &&
+                        submittedDeal.contractOrLeaseForms.length &&
+                        !(
+                          contractOrLeaseForms && contractOrLeaseForms.length
+                        ) ? (
+                          <Button
+                            variant="fab"
+                            color="primary"
+                            aria-label="add"
+                            size="small"
+                            classes={{ root: classes.smallFileViewBtn }}
+                            onClick={this.openContractLeaseLightBox}
+                          >
+                            <EyeIcon className={classes.viewIcon} />
+                          </Button>
+                        ) : null}
                         {contractOrLeaseForms.length ? (
                           <Button
                             variant="fab"
@@ -1150,6 +1485,7 @@ class SubmitDealForm extends Component {
                         label="How would you like to get paid?"
                         radioInputItems={radioInputAgentPaymentItems}
                         horizontal
+                        disabled={submittedDeal && !isEditingDeal}
                       />
                     </div>
 
@@ -1163,6 +1499,7 @@ class SubmitDealForm extends Component {
                           label="Funds will/have been paid by..."
                           name="fundsPaidBy"
                           selectInputItems={fundsPaidBySelectItems}
+                          disabled={submittedDeal && !isEditingDeal}
                         />
                       </div>
                     </Grid>
@@ -1179,6 +1516,7 @@ class SubmitDealForm extends Component {
                         label="Have you already deposited or given the funds to us?"
                         radioInputItems={radioInputYesNoItems}
                         horizontal
+                        disabled={submittedDeal && !isEditingDeal}
                       />
                     </div>
 
@@ -1188,12 +1526,13 @@ class SubmitDealForm extends Component {
                       }`}
                     >
                       <MaterialCustomRadioInput
-                        field="shouldSendApprovalTextMessageNotificaion"
+                        field="shouldSendApprovalTextMessageNotification"
                         id={uuid()}
                         required
                         label="Want to recieve a text notification upon deal approval?"
                         radioInputItems={radioInputYesNoItems}
                         horizontal
+                        disabled={submittedDeal && !isEditingDeal}
                       />
                     </div>
                   </Grid>
@@ -1201,7 +1540,47 @@ class SubmitDealForm extends Component {
               );
             }}
           </Form>
-        </div>
+        ) : null}
+
+        {submittingFormToServer ? (
+          <div className={classes.formSubmittingWrapper}>
+            <Icon type="loading" style={{ color: '#000', fontSize: '4rem' }} />
+            <div className={classes.progressBarExplanation}>
+              Finishing submission...
+            </div>
+          </div>
+        ) : null}
+
+        {isUploadingFile ? (
+          <div className={classes.progressBarWrapper}>
+            <CircularProgressbar
+              className={classes.progressBar}
+              percentage={uplodingFileProgress}
+              styles={{
+                path: {
+                  stroke: `rgba(62, 152, 199, ${uplodingFileProgress / 100})`,
+                },
+              }}
+            />
+            <div className={classes.progressBarExplanation}>
+              {uplodingFileText || 'Uploading file picture...'}
+            </div>
+          </div>
+        ) : null}
+
+        <Lightbox
+          images={
+            this.state.lightboxType === 'agencyDisclosure'
+              ? this.returnAgencyDisclosureURL()
+              : this.returnContractLeaseURLS()
+          }
+          isOpen={this.state.lightboxIsOpen}
+          onClose={this.closeLightbox}
+          onClickPrev={this.onClickPrev}
+          onClickNext={this.onClickNext}
+          currentImage={this.state.currentLightBoxIndex}
+          backdropClosesModal
+        />
       </div>
     );
   }

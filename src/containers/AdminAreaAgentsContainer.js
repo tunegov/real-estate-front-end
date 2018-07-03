@@ -43,6 +43,7 @@ const agentsQuery = gql`
         mobileNumber
         officeNumber
         realEstateLicenseNumber
+        agentType
       }
     }
   }

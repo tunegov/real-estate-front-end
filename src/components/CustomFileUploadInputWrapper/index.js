@@ -4,6 +4,7 @@ import { withStyles } from 'material-ui/styles';
 import { FormControl, FormHelperText } from 'material-ui/Form';
 import { Field } from 'react-form';
 import Tooltip from 'material-ui/Tooltip';
+import classnames from 'classnames';
 
 const styles = theme => ({
   container: {
@@ -32,6 +33,11 @@ const styles = theme => ({
   info: {
     color: 'rgba(0, 0, 0, 0.54)',
   },
+  disabled: {
+    //pointerEvents: 'none',
+    opacity: '.6',
+    pointerEvents: 'none',
+  },
 });
 
 @observer
@@ -48,9 +54,10 @@ class CustomFileUploadInputWrapper extends React.Component {
       return customState[0].name;
     }
     return customState.name;
-  }
+  };
 
   renderLabelComponent = () => {
+    const { disabled, classes } = this.props;
     const tooltipIncludedComp = (
       <Tooltip
         id={this.props.id}
@@ -58,25 +65,47 @@ class CustomFileUploadInputWrapper extends React.Component {
         enterDelay={300}
         leaveDelay={100}
       >
-        <label htmlFor={this.props.id} className={this.props.btnClassName || ''}>
+        <label
+          htmlFor={this.props.id}
+          disabled={disabled}
+          className={classnames(
+            this.props.btnClassName,
+            disabled && classes.disabled
+          )}
+        >
           {this.renderLabelText()}
         </label>
       </Tooltip>
     );
 
     const withoutTooltipComp = (
-      <label htmlFor={this.props.id} className={this.props.btnClassName || ''}>
+      <label
+        htmlFor={this.props.id}
+        disabled={disabled}
+        className={classnames(
+          this.props.btnClassName,
+          disabled && classes.disabled
+        )}
+      >
         {this.renderLabelText()}
       </label>
     );
 
-    if (this.props.multiple && this.props.customState && this.props.customState.length > 1) {
+    if (
+      this.props.multiple &&
+      this.props.customState &&
+      this.props.customState.length > 1
+    ) {
       return tooltipIncludedComp;
     }
     return withoutTooltipComp;
-  }
+  };
 
-  isAcceptedFileExtension = (filesObject, acceptedFileExtensions, hasMultiple) => {
+  isAcceptedFileExtension = (
+    filesObject,
+    acceptedFileExtensions,
+    hasMultiple
+  ) => {
     let ok = true;
 
     if (hasMultiple) {
@@ -91,7 +120,8 @@ class CustomFileUploadInputWrapper extends React.Component {
           return;
         }
 
-        if (!acceptedFileExtensions.includes(extension.toLowerCase())) ok = false;
+        if (!acceptedFileExtensions.includes(extension.toLowerCase()))
+          ok = false;
       });
     } else {
       const filePartsArray = filesObject[0].name.split('.');
@@ -105,13 +135,13 @@ class CustomFileUploadInputWrapper extends React.Component {
     }
 
     return ok;
-  }
+  };
 
   render() {
     const { props } = this;
 
     return (
-      <Field validate={props.validate} field={props.field}>
+      <Field validate={props.validate} field={props.field} {...this.props}>
         {fieldApi => {
           const {
             onInput,
@@ -132,6 +162,7 @@ class CustomFileUploadInputWrapper extends React.Component {
             acceptedFileExtensions,
             input,
             getInput,
+            validate,
             ...rest
           } = props;
 
@@ -155,6 +186,7 @@ class CustomFileUploadInputWrapper extends React.Component {
             >
               {this.renderLabelComponent()}
               <input
+                disabled={disabled}
                 className={classes.input}
                 type="file"
                 id={id}
@@ -164,8 +196,18 @@ class CustomFileUploadInputWrapper extends React.Component {
                   const { files } = e.target;
                   if (multiple) {
                     if (!files[0]) return;
-                    if (!this.isAcceptedFileExtension(files, acceptedFileExtensions, true)) {
-                      setError(`Files must be one of the following types: ${acceptedFileExtensions.join(', ')}`);
+                    if (
+                      !this.isAcceptedFileExtension(
+                        files,
+                        acceptedFileExtensions,
+                        true
+                      )
+                    ) {
+                      setError(
+                        `Files must be one of the following types: ${acceptedFileExtensions.join(
+                          ', '
+                        )}`
+                      );
                       if (!touched) setTouched();
                       setTimeout(() => {
                         if (!error) setError();
@@ -179,8 +221,17 @@ class CustomFileUploadInputWrapper extends React.Component {
                   } else {
                     const file = files[0];
                     if (!file) return;
-                    if (!this.isAcceptedFileExtension(files, acceptedFileExtensions)) {
-                      setError(`Files must be one of the following types: ${acceptedFileExtensions.join(', ')}`);
+                    if (
+                      !this.isAcceptedFileExtension(
+                        files,
+                        acceptedFileExtensions
+                      )
+                    ) {
+                      setError(
+                        `Files must be one of the following types: ${acceptedFileExtensions.join(
+                          ', '
+                        )}`
+                      );
                       if (!touched) setTouched();
                       setTimeout(() => {
                         if (!error) setError();
@@ -207,8 +258,22 @@ class CustomFileUploadInputWrapper extends React.Component {
                 }}
                 {...rest}
               />
-              {error && touched ? <FormHelperText id={`${id}-error-text`} classes={{ root: classes.helperText }}>{error}</FormHelperText> : null}
-              {helperInfo ? <FormHelperText classes={{ root: `${classes.helperText} ${classes.info}` }} id={`${id}-info-text`}>{helperInfo}</FormHelperText> : null}
+              {error && touched ? (
+                <FormHelperText
+                  id={`${id}-error-text`}
+                  classes={{ root: classes.helperText }}
+                >
+                  {error}
+                </FormHelperText>
+              ) : null}
+              {helperInfo ? (
+                <FormHelperText
+                  classes={{ root: `${classes.helperText} ${classes.info}` }}
+                  id={`${id}-info-text`}
+                >
+                  {helperInfo}
+                </FormHelperText>
+              ) : null}
             </FormControl>
           );
         }}

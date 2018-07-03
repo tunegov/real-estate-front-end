@@ -42,6 +42,10 @@ class CustomTextFieldWrapper extends React.Component {
     };
   }
 
+  componentWillUnmount = () => {
+    if (this._fieldApi) this._fieldApi.setError('');
+  };
+
   static getDerivedStateFromProps(nextProps, prevState) {
     const { convertToLocaleString } = nextProps;
     if (
@@ -71,7 +75,11 @@ class CustomTextFieldWrapper extends React.Component {
     const { returnStartAdornment } = this;
 
     return (
-      <Field validate={this.props.validate} field={this.props.field}>
+      <Field
+        validate={this.props.validate}
+        field={this.props.field}
+        {...this.props}
+      >
         {fieldApi => {
           const {
             onInput,
@@ -101,6 +109,11 @@ class CustomTextFieldWrapper extends React.Component {
             isPercentAmount,
             requiresDefaultOnChange,
             isInputMasked,
+            beforeUnmount,
+            isEditingDeal,
+            defaultValue,
+            disabledStyle,
+            mask,
             ...rest
           } = this.props;
 
@@ -114,23 +127,17 @@ class CustomTextFieldWrapper extends React.Component {
             touched,
           } = fieldApi;
 
-          const returnValue = () => {
-            if (isInputMasked) {
-              return undefined;
-            } else {
-              return value || '';
-            }
-          };
+          this._fieldApi = fieldApi;
 
           return (
             <FormControl
               className={
-                disabled
+                disabled || disabledStyle
                   ? `${classes.formControl} ${classes.disabled}`
                   : classes.formControl
               }
               error={error && touched}
-              disabled={disabled}
+              disabled={disabled || disabledStyle}
               fullWidth={fullWidth}
               required={required}
             >
@@ -138,7 +145,7 @@ class CustomTextFieldWrapper extends React.Component {
                 <InputLabel
                   htmlFor={id}
                   className={
-                    disabled
+                    disabled || disabledStyle
                       ? `${classes.disabled} ${labelClassName}`
                       : `${labelClassName}`
                   }
@@ -147,27 +154,20 @@ class CustomTextFieldWrapper extends React.Component {
                 </InputLabel>
               ) : null}
               <Input
+                defaultValue={defaultValue}
                 inputRef={ref => (this._input = ref)}
-                className={disabled ? classes.disabled : null}
+                className={disabled || disabledStyle ? classes.disabled : null}
                 inputProps={{
-                  className: disabled
-                    ? `${classes.disabled} ${inputClassName}`
-                    : `${inputClassName}`,
+                  className:
+                    disabled || disabledStyle
+                      ? `${classes.disabled} ${inputClassName}`
+                      : `${inputClassName}`,
                 }}
-                value={returnValue()}
+                value={value || ''}
                 classes={
                   inputRootClassName ? { root: inputRootClassName } : null
                 }
                 id={id}
-                onInput={
-                  isInputMasked
-                    ? debounce(() => {
-                        if (this._input) {
-                          setValue(this._input.value);
-                        }
-                      }, 250)
-                    : undefined
-                }
                 onChange={e => {
                   const newValue = e.target.value;
                   if (
@@ -192,6 +192,12 @@ class CustomTextFieldWrapper extends React.Component {
 
                   if (!isInputMasked) {
                     setValue(newValue);
+                  }
+
+                  if (isInputMasked) {
+                    if (mask && mask.length && newValue.length <= mask.length) {
+                      setValue(newValue);
+                    }
                   }
 
                   if (onChange && typeof onChange === 'function') {
