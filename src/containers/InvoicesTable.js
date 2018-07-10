@@ -63,6 +63,7 @@ class InvoicesTableContainer extends Component {
     super(props);
     this.state = {
       tableIsLoading: true,
+      selection: [],
     };
   }
 
@@ -113,12 +114,17 @@ class InvoicesTableContainer extends Component {
 
   convertInvoicesToCSV = () => {
     const { invoices } = this.props;
+    const { selection } = this.state;
+
+    if (!selection || !selection.length) return;
 
     const csvContent = Papa.unparse(
-      invoices.map(invoice => ({
-        ...invoice,
-        date: moment(invoice.date).format('MM/DD/YYYY'),
-      })),
+      invoices
+        .filter(invoice => selection.includes(invoice.invoiceID))
+        .map(invoice => ({
+          ...invoice,
+          date: moment(invoice.date).format('MM/DD/YYYY'),
+        })),
       {
         header: true,
       }
@@ -134,15 +140,24 @@ class InvoicesTableContainer extends Component {
     }
   };
 
+  changeSelection = selection => {
+    this.setState({ selection });
+  };
+
   render() {
-    const { tableIsLoading } = this.state;
+    const { tableIsLoading, selection } = this.state;
     const { classes, invoices, ...rest } = this.props;
     return (
       <div className={classes.root}>
         {tableIsLoading ? (
           <div
             className={classes.progressWrapper}
-            style={{ display: 'flex', justifyContent: 'center' }}
+            style={{
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              height: 'calc(100vh - 180px)',
+            }}
           >
             <Loader color="#f44336" loading />
           </div>
@@ -150,6 +165,8 @@ class InvoicesTableContainer extends Component {
         <InvoicesTable
           {...rest}
           convertInvoicesToCSV={this.convertInvoicesToCSV}
+          changeSelection={this.changeSelection}
+          selection={selection}
           onMount={() =>
             tableIsLoading ? this.setState({ tableIsLoading: false }) : null
           }

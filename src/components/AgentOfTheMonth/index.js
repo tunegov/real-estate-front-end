@@ -9,6 +9,13 @@ import { Link } from '../../routes';
 
 const styles = theme => ({
   root: {},
+  anchor: {
+    textDecoration: 'none',
+    color: 'rgba(0,0,0,.7)',
+    '&:hover': {
+      color: 'rgba(0,0,0,.9)',
+    },
+  },
   agentBoxWrapper: {
     position: 'relative',
     display: 'flex',
@@ -44,6 +51,7 @@ const styles = theme => ({
     objectFit: 'cover',
     cursor: 'pointer',
     borderRadius: '50%',
+    background: 'linear-gradient(45deg, #45484d 0%,#000000 100%)',
   },
   infoWrapper: {
     marginLeft: '70px',
@@ -84,6 +92,7 @@ const styles = theme => ({
     fontSize: '10px',
     borderRadius: '10px',
     color: '#fff',
+    zIndex: 10,
   },
   contentWrapper: {
     height: '100%',
@@ -92,10 +101,35 @@ const styles = theme => ({
     alignItems: 'center',
     overflow: 'auto',
   },
+  placeholder: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    position: 'absolute',
+    top: 0,
+    right: 0,
+    bottom: 0,
+    left: 0,
+    //backgroundColor: 'rgba(0,0,0,.8)',
+    background: 'linear-gradient(45deg, #45484d 0%,#1c1c1c 100%)',
+    color: '#fff',
+    fontWeight: 500,
+    borderRadius: '5px',
+  },
 });
 
 @observer
 class AgentOfTheMonth extends Component {
+  renderPlaceholder = () => {
+    const { classes } = this.props;
+    return (
+      <div className={classNames(classes.agentBoxWrapper)}>
+        <span className={classes.label}>Agent of the Quarter</span>
+        <div className={classes.placeholder}>Tallying up the numbers...</div>
+      </div>
+    );
+  };
+
   render() {
     const {
       classes,
@@ -108,152 +142,167 @@ class AgentOfTheMonth extends Component {
       <div className={classes.root}>
         <Grid container spacing={16}>
           <Grid item xs={12} md={6}>
-            <Link route={residentialDollarsAgent.profileURL || '#'}>
-              <div
-                className={classNames(classes.agentBoxWrapper, classes.sales)}
-              >
-                <span className={classes.label}>Agent of the Quarter</span>
+            {residentialDollarsAgent ? (
+              <Link route={residentialDollarsAgent.profileURL || '#'}>
+                <a className={classes.anchor}>
+                  <div
+                    className={classNames(
+                      classes.agentBoxWrapper,
+                      classes.sales
+                    )}
+                  >
+                    <span className={classes.label}>Agent of the Quarter</span>
 
-                <div className={classes.contentWrapper}>
-                  <div className={classes.profilePhotoWrapper}>
-                    <img
-                      className={classes.image}
-                      src={residentialDollarsAgent.photoURL}
-                      alt={residentialDollarsAgent.name}
-                    />
-                  </div>
+                    <div className={classes.contentWrapper}>
+                      <div className={classes.profilePhotoWrapper}>
+                        <img
+                          className={classes.image}
+                          src={residentialDollarsAgent.photoURL}
+                          alt={residentialDollarsAgent.name}
+                        />
+                      </div>
 
-                  <div className={classes.infoWrapper}>
-                    <div className={classes.agentName}>
-                      {residentialDollarsAgent.name}
-                    </div>
-                    <div className={classes.agentAwardTitle}>
-                      - Gross Residential Sales
-                    </div>
-                    <div className={classes.stat}>
-                      Seles: ${residentialDollarsAgent.statItem.toLocaleString()}
+                      <div className={classes.infoWrapper}>
+                        <div className={classes.agentName}>
+                          {residentialDollarsAgent.name}
+                        </div>
+                        <div className={classes.agentAwardTitle}>
+                          - Gross Residential Sales
+                        </div>
+                        <div className={classes.stat}>
+                          Seles: ${residentialDollarsAgent.statItem.toLocaleString()}
+                        </div>
+                      </div>
                     </div>
                   </div>
-                </div>
-              </div>
-            </Link>
+                </a>
+              </Link>
+            ) : (
+              this.renderPlaceholder()
+            )}
           </Grid>
 
           <Grid item xs={12} md={6}>
-            <Tooltip
-              title="Click to view profile"
-              enterDelay={300}
-              leaveDelay={100}
-              id="tooltip-commercialDollarsAgent"
-            >
+            {commercialDollarsAgent ? (
               <Link route={commercialDollarsAgent.profileURL || '#'}>
-                <div
-                  className={classNames(classes.agentBoxWrapper, classes.sales)}
-                >
-                  <span className={classes.label}>Agent of the Quarter</span>
+                <a className={classes.anchor}>
+                  <div
+                    className={classNames(
+                      classes.agentBoxWrapper,
+                      classes.sales
+                    )}
+                  >
+                    <span className={classes.label}>Agent of the Quarter</span>
 
-                  <div className={classes.contentWrapper}>
-                    <div className={classes.profilePhotoWrapper}>
-                      <img
-                        className={classes.image}
-                        src={commercialDollarsAgent.photoURL}
-                        alt={commercialDollarsAgent.name}
-                      />
-                    </div>
+                    <div className={classes.contentWrapper}>
+                      <div className={classes.profilePhotoWrapper}>
+                        <img
+                          className={classes.image}
+                          src={commercialDollarsAgent.photoURL}
+                          alt={commercialDollarsAgent.name}
+                        />
+                      </div>
 
-                    <div className={classes.infoWrapper}>
-                      <div className={classes.agentName}>
-                        {commercialDollarsAgent.name}
-                      </div>
-                      <div className={classes.agentAwardTitle}>
-                        - Gross Commercial Sales
-                      </div>
-                      <div className={classes.stat}>
-                        Sales: ${commercialDollarsAgent.statItem.toLocaleString()}
+                      <div className={classes.infoWrapper}>
+                        <div className={classes.agentName}>
+                          {commercialDollarsAgent.name}
+                        </div>
+                        <div className={classes.agentAwardTitle}>
+                          - Gross Commercial Sales
+                        </div>
+                        <div className={classes.stat}>
+                          Sales: ${commercialDollarsAgent.statItem.toLocaleString()}
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
+                </a>
               </Link>
-            </Tooltip>
+            ) : (
+              this.renderPlaceholder()
+            )}
           </Grid>
 
           <Grid item xs={12} md={6}>
-            <Tooltip
-              title="Click to view profile"
-              enterDelay={300}
-              leaveDelay={100}
-              id="tooltip-residentialDollarsAgent"
-            >
+            {rentalsDollarsAgent ? (
               <Link route={rentalsDollarsAgent.profileURL || '#'}>
-                <div
-                  className={classNames(classes.agentBoxWrapper, classes.other)}
-                >
-                  <span className={classes.label}>Agent of the Quarter</span>
+                <a className={classes.anchor}>
+                  <div
+                    className={classNames(
+                      classes.agentBoxWrapper,
+                      classes.other
+                    )}
+                  >
+                    <span className={classes.label}>Agent of the Quarter</span>
 
-                  <div className={classes.contentWrapper}>
-                    <div className={classes.profilePhotoWrapper}>
-                      <img
-                        className={classes.image}
-                        src={rentalsDollarsAgent.photoURL}
-                        alt={rentalsDollarsAgent.name}
-                      />
-                    </div>
+                    <div className={classes.contentWrapper}>
+                      <div className={classes.profilePhotoWrapper}>
+                        <img
+                          className={classes.image}
+                          src={rentalsDollarsAgent.photoURL}
+                          alt={rentalsDollarsAgent.name}
+                        />
+                      </div>
 
-                    <div className={classes.infoWrapper}>
-                      <div className={classes.agentName}>
-                        {rentalsDollarsAgent.name}
-                      </div>
-                      <div className={classes.agentAwardTitle}>
-                        - Gross Rentals Amount
-                      </div>
-                      <div className={classes.stat}>
-                        Amount: ${rentalsDollarsAgent.statItem.toLocaleString()}
+                      <div className={classes.infoWrapper}>
+                        <div className={classes.agentName}>
+                          {rentalsDollarsAgent.name}
+                        </div>
+                        <div className={classes.agentAwardTitle}>
+                          - Gross Rentals Amount
+                        </div>
+                        <div className={classes.stat}>
+                          Amount: ${rentalsDollarsAgent.statItem.toLocaleString()}
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
+                </a>
               </Link>
-            </Tooltip>
+            ) : (
+              this.renderPlaceholder()
+            )}
           </Grid>
 
           <Grid item xs={12} md={6}>
-            <Tooltip
-              title="Click to view profile"
-              enterDelay={300}
-              leaveDelay={100}
-              id="tooltip-commercialNumbersAgent"
-            >
+            {numbersAgent ? (
               <Link route={numbersAgent.profileURL || '#'}>
-                <div
-                  className={classNames(classes.agentBoxWrapper, classes.other)}
-                >
-                  <span className={classes.label}>Agent of the Quarter</span>
+                <a className={classes.anchor}>
+                  <div
+                    className={classNames(
+                      classes.agentBoxWrapper,
+                      classes.other
+                    )}
+                  >
+                    <span className={classes.label}>Agent of the Quarter</span>
 
-                  <div className={classes.contentWrapper}>
-                    <div className={classes.profilePhotoWrapper}>
-                      <img
-                        className={classes.image}
-                        src={numbersAgent.photoURL}
-                        alt={numbersAgent.name}
-                      />
-                    </div>
+                    <div className={classes.contentWrapper}>
+                      <div className={classes.profilePhotoWrapper}>
+                        <img
+                          className={classes.image}
+                          src={numbersAgent.photoURL}
+                          alt={numbersAgent.name}
+                        />
+                      </div>
 
-                    <div className={classes.infoWrapper}>
-                      <div className={classes.agentName}>
-                        {numbersAgent.name}
-                      </div>
-                      <div className={classes.agentAwardTitle}>
-                        - Total Deals
-                      </div>
-                      <div className={classes.stat}>
-                        Deals: {numbersAgent.statItem.toLocaleString()}
+                      <div className={classes.infoWrapper}>
+                        <div className={classes.agentName}>
+                          {numbersAgent.name}
+                        </div>
+                        <div className={classes.agentAwardTitle}>
+                          - Total Deals
+                        </div>
+                        <div className={classes.stat}>
+                          Deals: {numbersAgent.statItem.toLocaleString()}
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
+                </a>
               </Link>
-            </Tooltip>
+            ) : (
+              this.renderPlaceholder()
+            )}
           </Grid>
         </Grid>
       </div>

@@ -163,6 +163,7 @@ class CustomFileUploadInputWrapper extends React.Component {
             input,
             getInput,
             validate,
+            submits,
             ...rest
           } = props;
 
@@ -180,7 +181,7 @@ class CustomFileUploadInputWrapper extends React.Component {
           return (
             <FormControl
               className={classes.formControl}
-              error={error && touched}
+              error={(error && touched) || (error && submits)}
               fullWidth={fullWidth}
               required={required}
             >
@@ -258,7 +259,7 @@ class CustomFileUploadInputWrapper extends React.Component {
                 }}
                 {...rest}
               />
-              {error && touched ? (
+              {(error && touched) || (error && submits) ? (
                 <FormHelperText
                   id={`${id}-error-text`}
                   classes={{ root: classes.helperText }}

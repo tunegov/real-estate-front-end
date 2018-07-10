@@ -15,12 +15,15 @@ import CircularProgressbar from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 import { Icon } from 'antd';
 import Lightbox from 'react-images';
+import classnames from 'classnames';
 import EyeIcon from '@material-ui/icons/RemoveRedEye';
 import MaterialCustomTextFieldWrapper from '../../MaterialCustomTextFieldWrapper';
 import MaterialCustomRadioInputWrapper from '../../MaterialCustomRadioInputWrapper';
 import MaterialCustomSelectInputWrapper from '../../MaterialCustomSelectInputWrapper';
 import CustomFileUploadInputWrapper from '../../CustomFileUploadInputWrapper';
 import { capitalize } from '../../../utils/stringUtils';
+import Input, { InputLabel, InputAdornment } from 'material-ui/Input';
+import { FormControl } from 'material-ui/Form';
 import validators, {
   paymentTypeValidator,
   checkOrTransactionNumberValidator,
@@ -30,6 +33,12 @@ import validators, {
   deductionsAmountValidator,
   agencyDisclosureFormValidator,
 } from './formValidation';
+import {
+  agent as agentRole,
+  admin,
+  superAdmin,
+} from '../../../constants/userTypes';
+import { padStringToDecimalString } from '../../../utils/Math';
 
 const CustomTextField = MaterialCustomTextFieldWrapper;
 const MaterialCustomRadioInput = MaterialCustomRadioInputWrapper;
@@ -203,6 +212,14 @@ const styles = theme => ({
     '&:hover': {
       backgroundColor: '#067706',
     },
+    [theme.breakpoints.down('xs')]: {
+      position: 'relative',
+      marginTop: '-18px',
+    },
+    '@media only screen and (max-width: 400px)': {
+      position: 'relative',
+      marginTop: '0 !important',
+    },
   },
   uploadContractDivWrapper: {
     position: 'relative',
@@ -250,6 +267,12 @@ const styles = theme => ({
   viewIcon: {
     fontSize: '1.2rem',
   },
+  disabled: {
+    cursor: 'not-allowed',
+  },
+  fullwidthInput: {
+    width: '100%',
+  },
 });
 
 const radioInputAgentItems = [
@@ -295,7 +318,6 @@ const deductionTypeSelectItems = [
   { label: 'Processing Fee' },
   { label: 'Payment' },
   { label: 'Agent Split' },
-  { label: 'Add a new item...' },
 ];
 
 @observer
@@ -318,6 +340,10 @@ class SubmitDealForm extends Component {
         deductionsTotal: this.props.submittedDeal.deductionsTotal,
         total: this.props.submittedDeal.total,
       });
+    }
+
+    if (this.props.resetDealBonus) {
+      this.props.resetDealBonus();
     }
   }
 
@@ -464,7 +490,6 @@ class SubmitDealForm extends Component {
     let finalDefaultValues;
 
     if (submittedDeal) {
-      console.log(submittedDeal);
       const {
         agentNotes,
         agentType,
@@ -490,6 +515,7 @@ class SubmitDealForm extends Component {
         deductionItems,
         apartmentNumber,
         total,
+        bonusPercentageAddedByAdmin,
       } = submittedDeal;
       finalDefaultValues = {
         agent: agentName,
@@ -530,6 +556,7 @@ class SubmitDealForm extends Component {
           ? deductionsTotal.toLocaleString()
           : '0',
         financialsTotal: total ? total.toLocaleString() : '0',
+        bonusPercentageAddedByAdmin: `${bonusPercentageAddedByAdmin}`,
       };
     }
 
@@ -1297,7 +1324,7 @@ class SubmitDealForm extends Component {
                         <CustomTextField
                           field="agentNotes"
                           id={uuid()}
-                          label="Notes"
+                          label="Listing agent/performance bonus info"
                           fullWidth
                           multiline
                           disabled={submittedDeal && !isEditingDeal}
@@ -1325,13 +1352,19 @@ class SubmitDealForm extends Component {
                           id="agencyDisclosureUploadForm"
                           label="Upload Agency Disclosure Form*"
                           btnClassName={classes.uploadBtnClassName}
-                          required={isEditingDeal ? false : true}
                           customOnChange={setAgencyDisclosureForm}
                           customState={agencyDisclosureForm}
                           helperInfo="Agency Disclosure Form* (PDF or JPEG/JPG file)"
                           acceptedFileExtensions={acceptedFileExtensions}
                           accept=".jpeg, .jpg, .pdf"
                           disabled={submittedDeal && !isEditingDeal}
+                          required={isViewType ? undefined : true}
+                          submits={formApi.submits}
+                          formError={
+                            formApi.errors
+                              ? formApi.errors.agencyDisclosureForm
+                              : undefined
+                          }
                           validate={
                             isViewType
                               ? undefined
@@ -1535,6 +1568,169 @@ class SubmitDealForm extends Component {
                         disabled={submittedDeal && !isEditingDeal}
                       />
                     </div>
+
+                    {!this.props.userRole ||
+                    !submittedDeal ||
+                    (this.props.userRole === agentRole &&
+                      submittedDeal.status === 'pending') ||
+                    (!submittedDeal.bonusPercentageAddedByAdmin &&
+                      submittedDeal.status === 'approved') ? null : (
+                      <Grid item xs={12}>
+                        <div className={classes.formControlWrapper}>
+                          <FormControl
+                            className={classnames(
+                              submittedDeal &&
+                                submittedDeal.status === 'approved' &&
+                                classes.disabled
+                            )}
+                            disabled={
+                              submittedDeal &&
+                              submittedDeal.status === 'approved'
+                            }
+                            fullWidth
+                          >
+                            <InputLabel
+                              htmlFor="bonusPercentageAddedByAdmin"
+                              className={classnames(
+                                submittedDeal &&
+                                  submittedDeal.status === 'approved' &&
+                                  classes.disabled
+                              )}
+                            >
+                              Listing agent/performance bonus
+                            </InputLabel>
+                            <Input
+                              id="bonusPercentageAddedByAdmin"
+                              value={
+                                submittedDeal &&
+                                submittedDeal.bonusPercentageAddedByAdmin
+                                  ? submittedDeal.bonusPercentageAddedByAdmin
+                                  : this.props.dealBonus
+                              }
+                              className={classnames(
+                                submittedDeal &&
+                                  submittedDeal.status === 'approved' &&
+                                  classes.disabled,
+                                classes.fullwidthInput
+                              )}
+                              inputProps={{
+                                onInput: this.props.onBonusChange,
+                                className:
+                                  submittedDeal.status === 'approved'
+                                    ? classes.disabled
+                                    : undefined,
+                              }}
+                              startAdornment={
+                                <InputAdornment position="start">
+                                  %
+                                </InputAdornment>
+                              }
+                            />
+                          </FormControl>
+                        </div>
+                      </Grid>
+                    )}
+
+                    {submittedDeal &&
+                    submittedDeal.netAgentCommission &&
+                    submittedDeal.status === 'approved' ? (
+                      <Grid item xs={12}>
+                        <div className={classes.formControlWrapper}>
+                          <FormControl
+                            className={classnames(
+                              submittedDeal &&
+                                submittedDeal.status === 'approved' &&
+                                classes.disabled
+                            )}
+                            disabled={
+                              submittedDeal &&
+                              submittedDeal.status === 'approved'
+                            }
+                            fullWidth
+                          >
+                            <InputLabel
+                              htmlFor="netAgentCommission"
+                              className={classes.disabled}
+                            >
+                              Net Agent Commission
+                            </InputLabel>
+                            <Input
+                              id="netAgentCommission"
+                              value={
+                                submittedDeal &&
+                                submittedDeal.netAgentCommission
+                                  ? padStringToDecimalString(
+                                      Number(
+                                        submittedDeal.netAgentCommission
+                                      ).toLocaleString()
+                                    )
+                                  : null
+                              }
+                              className={classnames(
+                                classes.disabled,
+                                classes.finalTotalInputClass
+                              )}
+                              inputProps={{
+                                className: classes.disabled,
+                              }}
+                              startAdornment={
+                                <InputAdornment position="start">
+                                  $
+                                </InputAdornment>
+                              }
+                            />
+                          </FormControl>
+                        </div>
+                      </Grid>
+                    ) : null}
+
+                    {(this.props.userRole === admin ||
+                      this.props.userRole === superAdmin) &&
+                    submittedDeal &&
+                    submittedDeal.netCompanyCommission &&
+                    submittedDeal.status === 'approved' ? (
+                      <Grid item xs={12}>
+                        <div className={classes.formControlWrapper}>
+                          <FormControl
+                            className={classnames(classes.disabled)}
+                            disabled
+                            fullWidth
+                          >
+                            <InputLabel
+                              htmlFor="netCompanyCommission"
+                              className={classes.disabled}
+                            >
+                              Net Company Commission
+                            </InputLabel>
+                            <Input
+                              id="netCompanyCommission"
+                              value={
+                                submittedDeal &&
+                                submittedDeal.netCompanyCommission
+                                  ? padStringToDecimalString(
+                                      Number(
+                                        submittedDeal.netCompanyCommission
+                                      ).toLocaleString()
+                                    )
+                                  : null
+                              }
+                              className={classnames(
+                                classes.disabled,
+                                classes.finalTotalInputClass
+                              )}
+                              inputProps={{
+                                className: classes.disabled,
+                              }}
+                              startAdornment={
+                                <InputAdornment position="start">
+                                  $
+                                </InputAdornment>
+                              }
+                            />
+                          </FormControl>
+                        </div>
+                      </Grid>
+                    ) : null}
                   </Grid>
                 </form>
               );

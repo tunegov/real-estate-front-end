@@ -1,11 +1,17 @@
-export const round = (number, precision) => {
+export const round = (number, precision = 2) => {
   if (!number) return 0;
-  const shift = (number, precision, reverseShift) => {
-    if (reverseShift) {
-      precision = -precision;
-    }
-    const numArray = ("" + number).split("e");
-    return +(numArray[0] + "e" + (numArray[1] ? (+numArray[1] + precision) : precision));
-  };
-  return shift(Math.round(shift(number, precision, false)), precision, true);
+  return Number(number.toFixed(precision));
+};
+
+export const padNumToDecimalString = (number, precision = 2) => {
+  let s = number.toString();
+  if (s.indexOf('.') == -1) s += '.';
+  while (s.length < s.indexOf('.') + (precision + 1)) s += '0';
+  return s;
+};
+
+export const padStringToDecimalString = (s, precision = 3 - 1) => {
+  if (s.indexOf('.') == -1) s += '.';
+  while (s.length < s.indexOf('.') + (precision + 1)) s += '0';
+  return s;
 };

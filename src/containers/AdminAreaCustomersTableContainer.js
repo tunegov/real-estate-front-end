@@ -5,6 +5,7 @@ import Chance from 'chance';
 import faker from 'faker';
 import moment from 'moment';
 import AdminAreaCustomersTable from '../components/AdminAreaCustomersTable';
+import { capitalize } from '../utils/stringUtils';
 
 const chance = new Chance();
 
@@ -73,7 +74,7 @@ class AdminAreaCustomersTableContainer extends Component {
           imageURL: profilePicURL,
           id: uuid,
         },
-        name: `${firstName} ${lastName}`,
+        name: capitalize(`${firstName} ${lastName}`),
         email,
         interest: interest || 'unspecified',
         lastLoginTimestamp: lastLoginTimestamp

@@ -143,7 +143,6 @@ class AdminAreaDealsContainer extends Component {
     const today = moment();
 
     this.state = {
-      dealsSummaryDialogBoxOpen: false,
       startDate: moment().subtract(1, 'months'),
       endDate: today,
       fineGrainSearchType: '',
@@ -158,12 +157,6 @@ class AdminAreaDealsContainer extends Component {
       acceptedInvoiceIDS: [],
     };
   }
-
-  toggleDealsSummaryDialogBox = () => {
-    this.setState({
-      dealsSummaryDialogBoxOpen: !this.state.dealsSummaryDialogBoxOpen,
-    });
-  };
 
   onStartDateCHange = date => {
     if (!date) this.setState({ startDate: date });
@@ -224,6 +217,9 @@ class AdminAreaDealsContainer extends Component {
         if (res.error) {
           console.log(res.error);
           return;
+        } else if (res.userErrors.length) {
+          res.userErrors.forEach(error => console.log(error));
+          return;
         }
 
         this.setState({
@@ -243,6 +239,9 @@ class AdminAreaDealsContainer extends Component {
       .then(res => {
         if (res.error) {
           console.log(res.error);
+          return;
+        } else if (res.userErrors.length) {
+          res.userErrors.forEach(error => console.log(error));
           return;
         }
 

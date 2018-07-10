@@ -12,6 +12,8 @@ import {
   PagingState,
   IntegratedPaging,
   DataTypeProvider,
+  SelectionState,
+  IntegratedSelection,
 } from '@devexpress/dx-react-grid';
 import {
   Grid,
@@ -24,6 +26,7 @@ import {
   Toolbar,
   SearchPanel,
   PagingPanel,
+  TableSelection,
 } from '@devexpress/dx-react-grid-material-ui';
 import { MdFileDownload } from 'react-icons/lib/md';
 import SelectFilterCell from '../../utils/backEndTableUtils/SelectFilterCell';
@@ -181,7 +184,13 @@ class InvoicesTable extends Component {
   };
 
   render() {
-    const { classes, columns, rows, convertInvoicesToCSV } = this.props;
+    const {
+      classes,
+      columns,
+      rows,
+      convertInvoicesToCSV,
+      changeSelection,
+    } = this.props;
     return (
       <div className={classes.root}>
         <Grid rows={rows} columns={columns} getRowId={getRowId}>
@@ -193,6 +202,10 @@ class InvoicesTable extends Component {
           <SortingState
             defaultSorting={[{ columnName: 'date', direction: 'desc' }]}
             columnExtensions={sortingStateColumnExtensions}
+          />
+          <SelectionState
+            selection={this.props.selection}
+            onSelectionChange={changeSelection}
           />
           <PagingState
             currentPage={this.state.currentPage}
@@ -206,6 +219,8 @@ class InvoicesTable extends Component {
           <IntegratedSorting
             columnExtensions={integratedSortingColumnExtensions}
           />
+
+          <IntegratedSelection />
 
           <IntegratedPaging />
 
@@ -226,6 +241,7 @@ class InvoicesTable extends Component {
           <SearchPanel />
 
           <TableHeaderRow showSortingControls />
+          <TableSelection showSelectAll selectByRowClick />
           <PagingPanel pageSizes={pageSizes} />
         </Grid>
 

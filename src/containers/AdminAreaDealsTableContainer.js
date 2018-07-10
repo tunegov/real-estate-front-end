@@ -5,9 +5,11 @@ import { DotLoader } from 'react-spinners';
 import Chance from 'chance';
 import isBrowser from 'is-browser';
 import moment from 'moment';
+import Papa from 'papaparse';
 import AdminAreaDealsTable from '../components/AdminAreaDealsTable';
 import debounce from '../utils/debounce';
 import { capitalize } from '../utils/stringUtils';
+import { padStringToDecimalString } from '../utils/Math';
 
 const chance = new Chance();
 
@@ -66,6 +68,9 @@ const columns = [
   { name: 'deductionsTotal', title: 'Deductions Total' },
   { name: 'paymentsTotal', title: 'Payments Total' },
   { name: 'netPaymentsTotal', title: 'Net Payments Total' },
+  { name: 'bonusPercentageAddedByAdmin', title: "Agent's Bonus %" },
+  { name: 'netAgentCommission', title: 'Net Agent Commission' },
+  { name: 'netCompanyCommission', title: 'Net Company Commission' },
   { name: 'status', title: 'Status' },
   { name: 'view', title: 'View' },
 ];
@@ -76,6 +81,7 @@ class DealsTableContainer extends Component {
     super(props);
     this.state = {
       tableIsLoading: true,
+      selection: [],
     };
   }
 
@@ -101,6 +107,9 @@ class DealsTableContainer extends Component {
         total,
         agentNotes,
         status,
+        bonusPercentageAddedByAdmin,
+        netAgentCommission,
+        netCompanyCommission,
       } = deal;
 
       return {
@@ -119,6 +128,20 @@ class DealsTableContainer extends Component {
         deductionsTotal: `$${Number(deductionsTotal).toLocaleString()}`,
         paymentsTotal: `$${Number(paymentsTotal).toLocaleString()}`,
         netPaymentsTotal: `$${Number(total).toLocaleString()}`,
+        bonusPercentageAddedByAdmin:
+          status === 'pending' ? undefined : `%${bonusPercentageAddedByAdmin}`,
+        netAgentCommission:
+          status === 'pending'
+            ? undefined
+            : `$${padStringToDecimalString(
+                Number(netAgentCommission).toLocaleString()
+              )}`,
+        netCompanyCommission:
+          status === 'pending'
+            ? undefined
+            : `$${padStringToDecimalString(
+                Number(netCompanyCommission).toLocaleString()
+              )}`,
         status: capitalize(status),
         view: {
           type: 'action',
@@ -133,8 +156,41 @@ class DealsTableContainer extends Component {
     });
   };
 
+  convertDealsToCSV = () => {
+    const { deals } = this.props;
+    const { selection } = this.state;
+
+    console.log(selection);
+    console.log(deals);
+
+    if (!selection || !selection.length) return;
+
+    const csvContent = Papa.unparse(
+      deals.filter(deal => selection.includes(deal.dealID)).map(deal => ({
+        ...deal,
+        date: moment(deal.date).format('MM/DD/YYYY'),
+      })),
+      {
+        header: true,
+      }
+    );
+
+    if (this._csvLink) {
+      this._csvLink.setAttribute(
+        'href',
+        `data:text/csv;charset=utf-8,${encodeURIComponent(csvContent)}`
+      );
+      this._csvLink.setAttribute('download', 'deals_data.csv');
+      this._csvLink.click();
+    }
+  };
+
+  changeSelection = selection => {
+    this.setState({ selection });
+  };
+
   render() {
-    const { tableIsLoading, rows } = this.state;
+    const { tableIsLoading, selection } = this.state;
     const { classes, small, ...rest } = this.props;
     return (
       <div className={classes.root}>
@@ -153,12 +209,25 @@ class DealsTableContainer extends Component {
         ) : null}
         <AdminAreaDealsTable
           {...rest}
+          changeSelection={this.changeSelection}
+          selection={selection}
+          convertDealsToCSV={this.convertDealsToCSV}
           small={small}
           onMount={() =>
             tableIsLoading ? this.setState({ tableIsLoading: false }) : null
           }
           columns={columns}
           rows={this.createRows()}
+        />
+        <a
+          href="#"
+          id="csvLink"
+          ref={ref => (this._csvLink = ref)}
+          style={{
+            visibility: 'hidden',
+            position: 'absolute',
+            poniterEvents: 'none',
+          }}
         />
       </div>
     );

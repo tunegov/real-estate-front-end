@@ -17,6 +17,7 @@ import Menu from 'material-ui/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import ViewDealForm from '../../containers/ViewDealForm';
 import { agent, admin, superAdmin } from '../../constants/userTypes';
+import acceptDeal from '../../effects/deals/acceptDeal';
 
 const styles = theme => ({
   paper: {
@@ -113,6 +114,7 @@ class SubmitDealDialogBox extends Component {
       isEditingDeal: false,
       cancelAnchorEl: null,
       acceptAnchorEl: null,
+      dealBonus: '',
     };
   }
 
@@ -157,6 +159,42 @@ class SubmitDealDialogBox extends Component {
     this.setState({ acceptAnchorEl: null });
   };
 
+  onBonusChange = ({ target }) => {
+    const dollarRegex = /^\d*(\.\d*)?$/;
+    const val = target.value;
+
+    if (!dollarRegex.test(val)) return;
+
+    this.setState({
+      dealBonus: val,
+    });
+  };
+
+  resetDealBonus = () => {
+    this.setState({
+      dealBonus: '',
+    });
+  };
+
+  acceptDeal = dealID => {
+    const { dealBonus } = this.state;
+    acceptDeal(dealID, Number(dealBonus) ? Number(dealBonus) : undefined)
+      .then(res => {
+        if (res.error) {
+          console.log(res.error);
+          return;
+        } else if (res.userErrors.length) {
+          res.userErrors.forEach(error => console.log(error));
+          return;
+        }
+
+        this.props.dealAccepted(dealID);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
+
   render() {
     const {
       fullScreen,
@@ -167,7 +205,6 @@ class SubmitDealDialogBox extends Component {
       viewingDealID,
       viewingDealStatus,
       deleteDeal,
-      acceptDeal,
     } = this.props;
 
     const { isEditingDeal, cancelAnchorEl, acceptAnchorEl } = this.state;
@@ -196,6 +233,11 @@ class SubmitDealDialogBox extends Component {
             dealID={viewingDealID}
             isEditingDeal={isEditingDeal}
             isViewType
+            userRole={this.props.userRole}
+            dealAccepted={this.props.dealAccepted}
+            onBonusChange={this.onBonusChange}
+            dealBonus={this.state.dealBonus}
+            resetDealBonus={this.resetDealBonus}
           />
           <Snackbar
             classes={{ root: classes.snackBar }}
@@ -322,7 +364,7 @@ class SubmitDealDialogBox extends Component {
                 classes={{ root: classes.menuItemAccept }}
                 onClick={() => {
                   this.handleAcceptMenuClose();
-                  acceptDeal(viewingDealID);
+                  this.acceptDeal(viewingDealID);
                 }}
               >
                 Yes

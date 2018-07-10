@@ -1,10 +1,33 @@
 import React, { Component } from 'react';
 import { observer } from 'mobx-react';
-import Profile from '../components/Profile';
 import faker from 'faker';
+import { withStyles } from 'material-ui/styles';
+import Snackbar from 'material-ui/Snackbar';
+import IconButton from 'material-ui/IconButton';
+import CloseIcon from '@material-ui/icons/Close';
+import Button from 'material-ui/Button';
+import Profile from '../components/Profile';
 import ProfilePicDialogBox from '../components/EditProfilePicDialogBox';
+import EditAgentDialogBox from '../components/EditAgentDialogBox';
+import EditAgentPasswordDialogBox from '../components/EditAgentPasswordDialogBox';
+
+const styles = theme => ({
+  submitInvoiceBtn: {},
+  wrapper: {
+    position: 'relative',
+  },
+  buttonsWrapper: {
+    display: 'flex',
+    marginBottom: '25px',
+    justifyContent: 'center',
+  },
+  snackBar: {
+    marginTop: 30,
+  },
+});
 
 @observer
+@withStyles(styles)
 class ProfileContainer extends Component {
   constructor(props) {
     super(props);
@@ -14,83 +37,16 @@ class ProfileContainer extends Component {
     this.state = {
       user: agent,
       isEditing: false,
-      tempUser: agent,
-      previousSavedUser: agent,
       profilePicEditorDialogBoxOpen: false,
       submittingEditProfilePicForm: false,
       editProfilePicFormSubmitted: false,
+      editAgentModalOpen: false,
+      editAgentDialogBoxOpen: false,
+      editAgentPasswordDialogBoxOpen: false,
+      snackbarOpen: false,
+      snackbarText: '',
     };
   }
-
-  enterEditingMode = () => {
-    this.setState({
-      isEditing: true,
-    });
-  };
-
-  cancelEditingMode = () => {
-    this.setState({
-      isEditing: false,
-      tempUser: {
-        ...this.state.user,
-      },
-    });
-  };
-
-  setDescription = profileDescription => {
-    this.setState({
-      tempUser: {
-        ...this.state.tempUser,
-        agent: {
-          ...this.state.tempUser.agent,
-          profileDescription,
-        },
-      },
-    });
-  };
-
-  setMobileNumber = ({ target: { value } }) => {
-    this.setState({
-      tempUser: {
-        ...this.state.tempUser,
-        agent: {
-          ...this.state.tempUser.agent,
-          mobileNumber: value,
-        },
-      },
-    });
-  };
-
-  saveUser = () => {
-    const phoneNumberIsValid =
-      this.state.tempUser.agent.mobileNumber.length === 14;
-    this.setState({
-      isEditing: false,
-      user: {
-        ...this.state.tempUser,
-        agent: {
-          ...this.state.tempUser.agent,
-          mobileNumber: phoneNumberIsValid
-            ? this.state.tempUser.agent.mobileNumber
-            : this.state.user.agent.mobileNumber,
-        },
-      },
-      previousSavedUser: {
-        ...this.state.user,
-      },
-    });
-  };
-
-  undoSave = () => {
-    this.setState({
-      user: {
-        ...this.state.previousSavedUser,
-      },
-      tempUser: {
-        ...this.state.previousSavedUser,
-      },
-    });
-  };
 
   openProfilePicEditor = () => {
     this.setState({
@@ -116,12 +72,31 @@ class ProfileContainer extends Component {
       profilePicEditorDialogBoxOpen: false,
       submittingEditProfilePicForm: false,
       editProfilePicFormSubmitted: false,
+      snackbarOpen: true,
+      snackbarText: 'Profile Picture successfully changed!',
     });
     const picEl = document.getElementById('agentProfilePic');
 
     if (picEl) {
       picEl.src = `${url}?cache=${faker.random.uuid()}`;
     }
+  };
+
+  editPasswordFormSubmittedSuccessfully = () => {
+    this.setState({
+      editAgentPasswordDialogBoxOpen: false,
+      snackbarOpen: true,
+      snackbarText: 'Password successfully changed!',
+    });
+  };
+
+  editAgentFormSubmittedSuccessfully = agent => {
+    this.setState({
+      user: agent,
+      editAgentDialogBoxOpen: false,
+      snackbarOpen: true,
+      snackbarText: 'Agent Information successfully updated!',
+    });
   };
 
   toggleSubmittingEditProfilePicForm = bool => {
@@ -137,6 +112,53 @@ class ProfileContainer extends Component {
     this.setState({
       editProfilePicFormSubmitted: true,
     });
+  };
+
+  toggleEditAgentModal = state => {
+    const { editAgentModalOpen } = this.state;
+    this.setState({
+      editAgentModalOpen:
+        typeof state === 'boolean' ? state : !editAgentModalOpen,
+    });
+  };
+
+  openEditAgentDialogBox = () => {
+    this.setState({
+      editAgentDialogBoxOpen: true,
+    });
+  };
+
+  closeEditAgentDialogBox = () => {
+    this.setState({
+      editAgentDialogBoxOpen: false,
+    });
+  };
+
+  openEditAgentPasswordDialogBox = () => {
+    this.setState({
+      editAgentPasswordDialogBoxOpen: true,
+    });
+  };
+
+  closeEditAgentPasswordDialogBox = () => {
+    this.setState({
+      editAgentPasswordDialogBoxOpen: false,
+    });
+  };
+
+  handleCloseSnackbar = () => {
+    this.setState({
+      snackbarOpen: false,
+      snackbarUndoFunction: null,
+    });
+  };
+
+  agentSuccessfullyDeleted = () => {
+    this.setState({
+      snackbarOpen: true,
+      snackbarText: 'Agent had been successfully deleted!',
+    });
+    this.props.setAgentDeleted();
   };
 
   render() {
@@ -158,7 +180,10 @@ class ProfileContainer extends Component {
       openProfilePicEditor,
       closeProfilePicEditor,
       undoSave,
+      toggleEditAgentModal,
     } = this;
+
+    const { classes } = this.props;
     return (
       <div>
         <Profile
@@ -175,7 +200,30 @@ class ProfileContainer extends Component {
           openProfilePicEditor={openProfilePicEditor}
           currentUserRole={this.props.currentUserRole}
           currentUserUUID={this.props.currentUserUUID}
+          openEditAgentDialogBox={this.openEditAgentDialogBox}
+          openEditAgentPasswordDialogBox={this.openEditAgentPasswordDialogBox}
           uuid={this.props.uuid}
+        />
+
+        <EditAgentDialogBox
+          open={this.state.editAgentDialogBoxOpen}
+          closeEditAgentDialogBox={this.closeEditAgentDialogBox}
+          confirmAgentCreated={this.confirmAgentCreated}
+          viewingAgentUUID={this.props.uuid}
+          currentUserRole={this.props.currentUserRole}
+          agentSuccessfullyDeleted={this.agentSuccessfullyDeleted}
+          editAgentFormSubmittedSuccessfully={
+            this.editAgentFormSubmittedSuccessfully
+          }
+        />
+
+        <EditAgentPasswordDialogBox
+          closeEditAgentPasswordDialogBox={this.closeEditAgentPasswordDialogBox}
+          open={this.state.editAgentPasswordDialogBoxOpen}
+          viewingAgentUUID={this.props.uuid}
+          editPasswordFormSubmittedSuccessfully={
+            this.editPasswordFormSubmittedSuccessfully
+          }
         />
 
         <ProfilePicDialogBox
@@ -191,6 +239,49 @@ class ProfileContainer extends Component {
             this.toggleSubmittingEditProfilePicForm
           }
           uuid={this.props.uuid}
+        />
+
+        <Snackbar
+          classes={{ root: classes.snackBar }}
+          anchorOrigin={{
+            vertical: 'top',
+            horizontal: 'center',
+          }}
+          open={this.state.snackbarOpen}
+          autoHideDuration={4000}
+          onClose={this.handleCloseSnackbar}
+          message={<span id="snackbar-id">{this.state.snackbarText}</span>}
+          action={[
+            this.snackbarUndoFunction ? (
+              <Button
+                key="undo"
+                color="secondary"
+                size="small"
+                onClick={() => {
+                  this.handleCloseSnackbar();
+                  if (
+                    this.state.snackbarUndoFunction &&
+                    typeof snackbarUndoFunction === 'function'
+                  ) {
+                    this.snackbarUndoFunction();
+                  }
+                }}
+              >
+                UNDO
+              </Button>
+            ) : (
+              undefined
+            ),
+            <IconButton
+              key="close"
+              aria-label="Close"
+              color="inherit"
+              className={classes.close}
+              onClick={this.handleCloseSnackbar}
+            >
+              <CloseIcon />
+            </IconButton>,
+          ]}
         />
       </div>
     );

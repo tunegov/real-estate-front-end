@@ -5,8 +5,9 @@ import Chance from 'chance';
 import faker from 'faker';
 import moment from 'moment';
 import AdminAreaAdminTable from '../components/AdminAreaAdminTable';
-
-const chance = new Chance();
+import { capitalize } from '../utils/stringUtils';
+import { superAdmin, admin as adminRole } from '../constants/userTypes';
+import debounce from '../utils/debounce';
 
 const styles = theme => ({
   root: {
@@ -35,24 +36,42 @@ const styles = theme => ({
   },
 });
 
-const columns = [
-  { name: 'adminID', title: 'Admin ID' },
-  { name: 'name', title: 'Name' },
-  { name: 'email', title: 'Email' },
-  { name: 'mobileNumber', title: 'Mobile Number' },
-  { name: 'companyNumberAndExt', title: 'Company Number/Extension' },
-  { name: 'lastLoginTimestamp', title: 'Last Login Time' },
-];
-
 @observer
 class AdminAreaAdminTableContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
       tableIsLoading: true,
-      rows: this.createRows(this.props.allAdmin),
     };
   }
+
+  columns = [
+    { name: 'adminID', title: 'Admin ID' },
+    { name: 'name', title: 'Name' },
+    { name: 'email', title: 'Email' },
+    { name: 'mobileNumber', title: 'Mobile Number' },
+    { name: 'companyNumberAndExt', title: 'Company Number/Extension' },
+    { name: 'lastLoginTimestamp', title: 'Last Login Time' },
+    { name: 'createdAt', title: 'Created At' },
+  ];
+
+  returnColumns = () => {
+    const columns = [
+      { name: 'adminID', title: 'Admin ID' },
+      { name: 'name', title: 'Name' },
+      { name: 'email', title: 'Email' },
+      { name: 'mobileNumber', title: 'Mobile Number' },
+      { name: 'companyNumberAndExt', title: 'Company Number/Extension' },
+      { name: 'lastLoginTimestamp', title: 'Last Login Time' },
+      { name: 'createdAt', title: 'Created At' },
+    ];
+
+    if (this.props.userRole === superAdmin) {
+      columns.push({ name: 'view', title: 'View Info' });
+    }
+
+    return columns;
+  };
 
   createRows = (allAdmin = []) => {
     const rows = [];
@@ -64,6 +83,8 @@ class AdminAreaAdminTableContainer extends Component {
         email,
         uuid,
         lastLoginTimestamp,
+        createdAt,
+        role,
       } = admin;
       const { profilePicURL, officeNumber, mobileNumber } = adminPart;
       rows.push({
@@ -72,13 +93,34 @@ class AdminAreaAdminTableContainer extends Component {
           imageURL: profilePicURL,
           id: uuid,
         },
-        name: `${firstName} ${lastName}`,
+        name: capitalize(`${firstName} ${lastName}`),
         email,
         mobileNumber,
         companyNumberAndExt: officeNumber,
         lastLoginTimestamp: lastLoginTimestamp
           ? moment(lastLoginTimestamp).format('MM/DD/YYYY, h:mm:ss a')
           : '',
+        createdAt: createdAt
+          ? moment(createdAt).format('MM/DD/YYYY, h:mm:ss a')
+          : undefined,
+        view:
+          role === adminRole || this.props.userUUID === uuid
+            ? {
+                type: 'action',
+                needsEvent: true,
+                onClick: event =>
+                  debounce(
+                    this.props.handleEditAdminMenuClick.bind(
+                      null,
+                      event,
+                      uuid,
+                      role
+                    ),
+                    1000,
+                    true
+                  )(),
+              }
+            : { noShow: true },
       });
     });
     return rows;
@@ -86,7 +128,7 @@ class AdminAreaAdminTableContainer extends Component {
 
   render() {
     const { tableIsLoading, rows } = this.state;
-    const { classes, ...rest } = this.props;
+    const { classes, allAdmin, ...rest } = this.props;
     return (
       <div className={classes.root}>
         <AdminAreaAdminTable
@@ -94,8 +136,8 @@ class AdminAreaAdminTableContainer extends Component {
           onMount={() =>
             tableIsLoading ? this.setState({ tableIsLoading: false }) : null
           }
-          columns={columns}
-          rows={rows}
+          columns={this.returnColumns()}
+          rows={this.createRows(allAdmin)}
         />
       </div>
     );

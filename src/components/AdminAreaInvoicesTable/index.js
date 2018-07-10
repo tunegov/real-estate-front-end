@@ -14,6 +14,7 @@ import {
   IntegratedSelection,
   DataTypeProvider,
 } from '@devexpress/dx-react-grid';
+import Tooltip from 'material-ui/Tooltip';
 import {
   Grid,
   VirtualTable,
@@ -29,6 +30,7 @@ import {
   ColumnChooser,
   TableColumnVisibility,
 } from '@devexpress/dx-react-grid-material-ui';
+import { MdFileDownload } from 'react-icons/lib/md';
 import SelectFilterCell from '../../utils/backEndTableUtils/SelectFilterCell';
 import {
   compareDate,
@@ -72,6 +74,32 @@ const styles = theme => ({
   myNoDataCellComponent: {
     borderBottom: 'none !important',
   },
+  editBtnsWrapper: {
+    display: 'flex',
+    position: 'absolute',
+    top: '-13px',
+    left: '-13px',
+  },
+  downloadCSVBtn: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: '34px',
+    width: '34px',
+    border: 'none',
+    borderRadius: '50%',
+    fontSize: '1rem',
+    color: '#fff',
+    backgroundColor: '#646d64',
+    boxShadow: theme.shadows[2],
+    zIndex: '2',
+    cursor: 'pointer',
+    outline: 'none',
+    transition: 'transform .2s ease-in-out',
+    '&:hover': {
+      transform: 'scale(1.1,1.1)',
+    },
+  },
 });
 
 const sortingStateColumnExtensions = [
@@ -110,7 +138,7 @@ const defaultColumnWidths = [
   { columnName: 'date', width: 120 },
   { columnName: 'agentName', width: 130 },
   { columnName: 'agentType', width: 120 },
-  { columnName: 'dealType', width: 120 },
+  { columnName: 'invoiceType', width: 120 },
   { columnName: 'clientName', width: 140 },
   { columnName: 'clientPhoneNumber', width: 140 },
   { columnName: 'propertyAddress', width: 140 },
@@ -179,8 +207,14 @@ class InvoicesTable extends Component {
   };
 
   render() {
-    const { classes, columns, rows, lgViewport } = this.props;
-    const { selection } = this.state;
+    const {
+      classes,
+      columns,
+      rows,
+      lgViewport,
+      changeSelection,
+      convertDealsToCSV,
+    } = this.props;
     return (
       <div className={classes.root}>
         <Grid rows={rows} columns={columns} getRowId={getRowId}>
@@ -192,6 +226,10 @@ class InvoicesTable extends Component {
           <SortingState
             defaultSorting={[{ columnName: 'date', direction: 'desc' }]}
             columnExtensions={sortingStateColumnExtensions}
+          />
+          <SelectionState
+            selection={this.props.selection}
+            onSelectionChange={changeSelection}
           />
           <PagingState
             currentPage={this.state.currentPage}
@@ -205,6 +243,8 @@ class InvoicesTable extends Component {
           <IntegratedSorting
             columnExtensions={integratedSortingColumnExtensions}
           />
+
+          <IntegratedSelection />
 
           <IntegratedPaging />
 
@@ -239,8 +279,26 @@ class InvoicesTable extends Component {
           <ColumnChooser />
 
           <TableHeaderRow showSortingControls />
+          <TableSelection showSelectAll selectByRowClick />
           <PagingPanel pageSizes={pageSizes} />
         </Grid>
+
+        {rows && rows.length ? (
+          <Tooltip
+            title="Download selected rows from table as CSV file."
+            enterDelay={300}
+            leaveDelay={100}
+          >
+            <span className={classes.editBtnsWrapper}>
+              <button
+                className={classes.downloadCSVBtn}
+                onClick={convertDealsToCSV}
+              >
+                <MdFileDownload />
+              </button>
+            </span>
+          </Tooltip>
+        ) : null}
       </div>
     );
   }

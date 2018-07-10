@@ -12,6 +12,8 @@ import {
   PagingState,
   IntegratedPaging,
   DataTypeProvider,
+  SelectionState,
+  IntegratedSelection,
 } from '@devexpress/dx-react-grid';
 import {
   Grid,
@@ -24,6 +26,7 @@ import {
   Toolbar,
   SearchPanel,
   PagingPanel,
+  TableSelection,
 } from '@devexpress/dx-react-grid-material-ui';
 import { MdFileDownload } from 'react-icons/lib/md';
 import SelectFilterCell from '../../utils/backEndTableUtils/SelectFilterCell';
@@ -133,6 +136,9 @@ const defaultColumnWidths = [
   { columnName: 'propertyCity', width: 120 },
   { columnName: 'managementOrCobrokeCompany', width: 160 },
   { columnName: 'rentOrSalePrice', width: 100 },
+  { columnName: 'bonusPercentageAddedByAdmin', width: 120 },
+  { columnName: 'netAgentCommission', width: 170 },
+  { columnName: 'dealTotal', width: 170 },
   { columnName: 'status', width: 120 },
   { columnName: 'view', width: 80 },
 ];
@@ -181,7 +187,13 @@ class DealsTable extends Component {
   };
 
   render() {
-    const { classes, columns, rows, convertDealsToCSV } = this.props;
+    const {
+      classes,
+      columns,
+      rows,
+      convertDealsToCSV,
+      changeSelection,
+    } = this.props;
     return (
       <div className={classes.root}>
         <Grid rows={rows} columns={columns} getRowId={getRowId}>
@@ -192,6 +204,10 @@ class DealsTable extends Component {
           <SortingState
             defaultSorting={[{ columnName: 'date', direction: 'desc' }]}
             columnExtensions={sortingStateColumnExtensions}
+          />
+          <SelectionState
+            selection={this.props.selection}
+            onSelectionChange={changeSelection}
           />
           <PagingState
             currentPage={this.state.currentPage}
@@ -205,6 +221,8 @@ class DealsTable extends Component {
           <IntegratedSorting
             columnExtensions={integratedSortingColumnExtensions}
           />
+
+          <IntegratedSelection />
 
           <IntegratedPaging />
 
@@ -225,12 +243,13 @@ class DealsTable extends Component {
           <SearchPanel />
 
           <TableHeaderRow showSortingControls />
+          <TableSelection showSelectAll selectByRowClick />
           <PagingPanel pageSizes={pageSizes} />
         </Grid>
 
         {rows && rows.length ? (
           <Tooltip
-            title="Download table as CSV file."
+            title="Download selected rows from table as CSV file."
             enterDelay={300}
             leaveDelay={100}
           >

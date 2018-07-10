@@ -34,6 +34,9 @@ const dealsQuery = gql`
       managementOrCobrokeCompany
       price
       status
+      bonusPercentageAddedByAdmin
+      netAgentCommission
+      total
     }
   }
 `;
@@ -77,6 +80,7 @@ class Deals extends Component {
       viewingDealID: '',
       viewingDealStatus: '',
       deletedDealIDS: [],
+      userUUID: this.props.userUUID,
     };
   }
 
@@ -140,6 +144,9 @@ class Deals extends Component {
         if (res.error) {
           console.log(res.error);
           return;
+        } else if (res.userErrors.length) {
+          res.userErrors.forEach(error => console.log(error));
+          return;
         }
 
         this.setState({
@@ -171,7 +178,11 @@ class Deals extends Component {
     } = this;
 
     return (
-      <Query query={dealsQuery} variables={{ uuid: userUUID }}>
+      <Query
+        query={dealsQuery}
+        variables={{ uuid: userUUID || this.state.userUUID }}
+        ssr={false}
+      >
         {({ loading, error, data }) => {
           if (loading)
             return (
@@ -207,6 +218,8 @@ class Deals extends Component {
           uniqueDeals = uniqueDeals.filter(
             deal => !this.state.deletedDealIDS.includes(deal.dealID)
           );
+
+          console.log(uniqueDeals);
 
           return (
             <div className={classes.wrapper}>
@@ -260,6 +273,7 @@ class Deals extends Component {
               <DealsSummaryDealDialogBox
                 toggleDealsSummaryDialogBox={toggleDealsSummaryDialogBox}
                 dealsSummaryDialogBoxOpen={dealsSummaryDialogBoxOpen}
+                deals={uniqueDeals}
                 userUUID={userUUID}
               />
 

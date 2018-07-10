@@ -155,8 +155,10 @@ class SubmitInvoiceFormContainer extends Component {
         if (!failed) {
           this.props.setInvoiceSuccessfullySubmitted(res.invoice);
         }
+        this.props.setFormSubmitted(false);
       })
       .catch(err => {
+        this.props.setFormSubmitted(false);
         console.log(err);
       });
 

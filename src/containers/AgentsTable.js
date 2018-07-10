@@ -7,6 +7,7 @@ import gql from 'graphql-tag';
 import { Query } from 'react-apollo';
 import { DotLoader } from 'react-spinners';
 import AgentsTable from '../components/AgentsTable';
+import { capitalize } from '../utils/stringUtils';
 
 const chance = new Chance();
 
@@ -106,7 +107,7 @@ class AgentsTableContainer extends Component {
           imageURL: profilePicURL,
           id: uuid,
         },
-        name: `${firstName} ${lastName}`,
+        name: capitalize(`${firstName} ${lastName}`),
         email,
         areaOfFocus: areaOfFocus || 'none',
         mobileNumber,

@@ -83,7 +83,7 @@ const styles = theme => ({
   listRoot: {
     height: '100%',
     overflow: 'auto',
-    borderBottom: '1px solid rgba(255,255,255,.5)',
+    // borderBottom: '1px solid rgba(255,255,255,.5)',
   },
 });
 
@@ -131,7 +131,7 @@ class AdminSideNav extends Component {
           <List classes={{ root: classes.listRoot }}>
             {this.renderSideLinkComponents(currentPath)}
           </List>
-          <div className={classes.notificationIcon}>
+          {/*<div className={classes.notificationIcon}>
             <Tooltip
               id="tooltip-icon"
               title="Notifications"
@@ -147,7 +147,7 @@ class AdminSideNav extends Component {
                 <NotificationIcon />
               </IconButton>
             </Tooltip>
-          </div>
+          </div>*/}
         </Drawer>
       </div>
     );

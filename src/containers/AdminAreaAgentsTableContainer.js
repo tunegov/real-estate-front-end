@@ -5,6 +5,8 @@ import Chance from 'chance';
 import faker from 'faker';
 import moment from 'moment';
 import AdminAreaAgentsTable from '../components/AdminAreaAgentsTable';
+import { capitalize } from '../utils/stringUtils';
+import debounce from '../utils/debounce';
 
 const chance = new Chance();
 
@@ -47,6 +49,7 @@ const columns = [
   { name: 'branch', title: 'Branch' },
   { name: 'state', title: 'State' },
   { name: 'lastLoginTimestamp', title: 'Last Login Time' },
+  { name: 'createdAt', title: 'Created At' },
   { name: 'view', title: 'View Profile' },
 ];
 
@@ -56,7 +59,6 @@ class AdminAreaAgentsTableContainer extends Component {
     super(props);
     this.state = {
       tableIsLoading: true,
-      rows: this.createRows(this.props.agents),
     };
   }
 
@@ -70,6 +72,7 @@ class AdminAreaAgentsTableContainer extends Component {
         email,
         uuid,
         lastLoginTimestamp,
+        createdAt,
       } = agent;
       const {
         areaOfFocus,
@@ -87,7 +90,7 @@ class AdminAreaAgentsTableContainer extends Component {
           imageURL: profilePicURL,
           id: uuid,
         },
-        name: `${firstName} ${lastName}`,
+        name: capitalize(`${firstName} ${lastName}`),
         email,
         areaOfFocus: areaOfFocus || 'none',
         mobileNumber,
@@ -97,6 +100,9 @@ class AdminAreaAgentsTableContainer extends Component {
         lastLoginTimestamp: lastLoginTimestamp
           ? moment(lastLoginTimestamp).format('MM/DD/YYYY, h:mm:ss a')
           : '',
+        createdAt: createdAt
+          ? moment(createdAt).format('MM/DD/YYYY, h:mm:ss a')
+          : undefined,
         view: {
           route: 'profile',
           id: uuid,
@@ -108,7 +114,7 @@ class AdminAreaAgentsTableContainer extends Component {
 
   render() {
     const { tableIsLoading, rows } = this.state;
-    const { classes, ...rest } = this.props;
+    const { classes, agents, ...rest } = this.props;
     return (
       <div className={classes.root}>
         <AdminAreaAgentsTable
@@ -117,7 +123,7 @@ class AdminAreaAgentsTableContainer extends Component {
             tableIsLoading ? this.setState({ tableIsLoading: false }) : null
           }
           columns={columns}
-          rows={rows}
+          rows={this.createRows(agents)}
         />
       </div>
     );

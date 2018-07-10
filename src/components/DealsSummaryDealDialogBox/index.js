@@ -55,12 +55,18 @@ class SubmitDealDialogBox extends Component {
         classes={{ paper: classes.paper }}
         fullScreen={fullScreen}
       >
-        <DialogTitle id="form-dialog-title" classes={{ root: classes.formTitle }}>
+        <DialogTitle
+          id="form-dialog-title"
+          classes={{ root: classes.formTitle }}
+        >
           Deals Summary
         </DialogTitle>
         <Divider />
         <DialogContent classes={{ root: classes.dialogContent }}>
-          <DealsSummaryContainer userUUID={this.props.userUUID} />
+          <DealsSummaryContainer
+            userUUID={this.props.userUUID}
+            deals={this.props.deals}
+          />
         </DialogContent>
         <DialogActions classes={{ root: classes.dialogActions }}>
           <Button onClick={toggleDealsSummaryDialogBox} color="primary">

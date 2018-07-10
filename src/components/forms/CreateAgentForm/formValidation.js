@@ -7,11 +7,6 @@ const validator = values => {
     realEstateLicenseNumber: !values.realEstateLicenseNumber
       ? 'This value is required'
       : null,
-    temporaryPassword:
-      !values.temporaryPassword ||
-      (values.temporaryPassword && values.temporaryPassword.length < 8)
-        ? 'This value is required and must be at least 8 characters long'
-        : null,
     agentType: !values.agentType ? 'This value is required' : null,
     branch: !values.branch ? 'This value is required' : null,
     state: !values.state ? 'This value is required' : null,
@@ -31,5 +26,12 @@ const validator = values => {
         : null,
   };
 };
+
+export const temporaryPasswordValidator = value => ({
+  error:
+    !value || value.length < 8
+      ? 'This value is required and must be at least 8 characters long'
+      : null,
+});
 
 export default validator;

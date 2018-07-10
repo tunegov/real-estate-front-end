@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { withStyles } from 'material-ui/styles';
 import withSizes from 'react-sizes';
 import isBrowser from 'is-browser';
+import Tooltip from 'material-ui/Tooltip';
+import classnames from 'classnames';
 import {
   SortingState,
   FilteringState,
@@ -13,6 +15,8 @@ import {
   SelectionState,
   IntegratedSelection,
   DataTypeProvider,
+  GroupingState,
+  IntegratedGrouping,
 } from '@devexpress/dx-react-grid';
 import {
   Grid,
@@ -28,7 +32,10 @@ import {
   PagingPanel,
   ColumnChooser,
   TableColumnVisibility,
+  GroupingPanel,
+  TableGroupRow,
 } from '@devexpress/dx-react-grid-material-ui';
+import { MdFileDownload } from 'react-icons/lib/md';
 import SelectFilterCell from '../../utils/backEndTableUtils/SelectFilterCell';
 import {
   compareDate,
@@ -70,6 +77,32 @@ const styles = theme => ({
   myNoDataCellComponent: {
     borderBottom: 'none !important',
   },
+  editBtnsWrapper: {
+    display: 'flex',
+    position: 'absolute',
+    top: '-13px',
+    left: '-13px',
+  },
+  downloadCSVBtn: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: '34px',
+    width: '34px',
+    border: 'none',
+    borderRadius: '50%',
+    fontSize: '1rem',
+    color: '#fff',
+    backgroundColor: '#646d64',
+    boxShadow: theme.shadows[2],
+    zIndex: '2',
+    cursor: 'pointer',
+    outline: 'none',
+    transition: 'transform .2s ease-in-out',
+    '&:hover': {
+      transform: 'scale(1.1,1.1)',
+    },
+  },
 });
 
 const sortingStateColumnExtensions = [
@@ -109,7 +142,7 @@ const integratedSortingColumnExtensions = [
 const defaultColumnWidths = [
   { columnName: 'dealID', width: 120 },
   { columnName: 'date', width: 120 },
-  { columnName: 'agentName', width: 120 },
+  { columnName: 'agentName', width: 140 },
   { columnName: 'agentType', width: 120 },
   { columnName: 'dealType', width: 120 },
   { columnName: 'clientName', width: 140 },
@@ -122,8 +155,11 @@ const defaultColumnWidths = [
   { columnName: 'deductionsTotal', width: 110 },
   { columnName: 'paymentsTotal', width: 110 },
   { columnName: 'netPaymentsTotal', width: 110 },
+  { columnName: 'bonusPercentageAddedByAdmin', width: 120 },
+  { columnName: 'netAgentCommission', width: 170 },
+  { columnName: 'netCompanyCommission', width: 170 },
   { columnName: 'status', width: 120 },
-  { columnName: 'view', width: 80 },
+  { columnName: 'view', width: 100 },
 ];
 
 const defaultHiddenColumnNames = [
@@ -133,6 +169,9 @@ const defaultHiddenColumnNames = [
   'propertyState',
   'clientEmail',
   'managementOrCobrokeCompany',
+  'bonusPercentageAddedByAdmin',
+  'netAgentCommission',
+  'netCompanyCommission',
 ];
 
 const ViewCellFormatter = ({ value }) => <ViewFormatter value={value} />;
@@ -159,7 +198,29 @@ class DealsTable extends Component {
     this.state = {
       pageSize: 10,
       currentPage: 0,
-      selection: [],
+      grouping: [{ columnName: 'status' }],
+      groupingStateColumnExtensions: [
+        { columnName: 'dealID', groupingEnabled: false },
+        { columnName: 'date', groupingEnabled: false },
+        { columnName: 'clientName', groupingEnabled: false },
+        { columnName: 'clientEmail', groupingEnabled: false },
+        { columnName: 'propertyAddress', groupingEnabled: false },
+        { columnName: 'propertyCity', groupingEnabled: false },
+        { columnName: 'propertyState', groupingEnabled: false },
+        { columnName: 'managementOrCobrokeCompany', groupingEnabled: false },
+        { columnName: 'rentOrSalePrice', groupingEnabled: false },
+        { columnName: 'deductionsTotal', groupingEnabled: false },
+        { columnName: 'paymentsTotal', groupingEnabled: false },
+        { columnName: 'netPaymentsTotal', groupingEnabled: false },
+        { columnName: 'bonusPercentageAddedByAdmin', groupingEnabled: false },
+        { columnName: 'netAgentCommission', groupingEnabled: false },
+        { columnName: 'netCompanyCommission', groupingEnabled: false },
+        { columnName: 'view', groupingEnabled: false },
+      ],
+      integratedGroupingColumnExtensions: [
+        { columnName: 'view', criteria: value => ({ key: value.id }) },
+      ],
+      defaultExpandedGroups: ['Pending'],
     };
   }
 
@@ -179,15 +240,23 @@ class DealsTable extends Component {
     document.getElementById('myTableContainer').scrollTop = 0;
   };
 
-  changeSelection = selection => {
-    this.setState({ selection });
-  };
-
   render() {
-    const { classes, columns, rows, lgViewport } = this.props;
-    const { selection } = this.state;
+    const {
+      classes,
+      columns,
+      rows,
+      lgViewport,
+      changeSelection,
+      convertDealsToCSV,
+    } = this.props;
+    const {
+      grouping,
+      groupingStateColumnExtensions,
+      integratedGroupingColumnExtensions,
+      defaultExpandedGroups,
+    } = this.state;
     return (
-      <div className={classes.root}>
+      <div className={classnames(classes.root, 'deal-table-wrapper')}>
         <Grid rows={rows} columns={columns} getRowId={getRowId}>
           <ViewTypeProvider for={['view']} />
 
@@ -197,6 +266,15 @@ class DealsTable extends Component {
           <SortingState
             defaultSorting={[{ columnName: 'date', direction: 'desc' }]}
             columnExtensions={sortingStateColumnExtensions}
+          />
+          <SelectionState
+            selection={this.props.selection}
+            onSelectionChange={changeSelection}
+          />
+          <GroupingState
+            defaultGrouping={grouping}
+            columnExtensions={groupingStateColumnExtensions}
+            defaultExpandedGroups={defaultExpandedGroups}
           />
           <PagingState
             currentPage={this.state.currentPage}
@@ -210,6 +288,12 @@ class DealsTable extends Component {
           <IntegratedSorting
             columnExtensions={integratedSortingColumnExtensions}
           />
+
+          <IntegratedGrouping
+            columnExtensions={integratedGroupingColumnExtensions}
+          />
+
+          <IntegratedSelection />
 
           <IntegratedPaging />
 
@@ -235,6 +319,7 @@ class DealsTable extends Component {
           <TableColumnResizing defaultColumnWidths={defaultColumnWidths} />
 
           <TableFilterRow cellComponent={FilterCell} />
+          <TableGroupRow />
           <Toolbar />
           <SearchPanel />
 
@@ -243,9 +328,28 @@ class DealsTable extends Component {
           />
           <ColumnChooser />
 
-          <TableHeaderRow showSortingControls />
+          <TableHeaderRow showSortingControls showGroupingControls />
+          <TableSelection showSelectAll selectByRowClick />
+          <GroupingPanel showGroupingControls />
           <PagingPanel pageSizes={pageSizes} />
         </Grid>
+
+        {rows && rows.length ? (
+          <Tooltip
+            title="Download selected rows from table as CSV file."
+            enterDelay={300}
+            leaveDelay={100}
+          >
+            <span className={classes.editBtnsWrapper}>
+              <button
+                className={classes.downloadCSVBtn}
+                onClick={convertDealsToCSV}
+              >
+                <MdFileDownload />
+              </button>
+            </span>
+          </Tooltip>
+        ) : null}
       </div>
     );
   }

@@ -20,6 +20,8 @@ import ExpansionPanel, {
 } from 'material-ui/ExpansionPanel';
 import StatNumberBox from '../StatNumberBox';
 import AgentOfTheMonthContainer from '../../containers/AgentOfTheMonth';
+import { round } from '../../utils/Math';
+import CompanyNewsAlerts from '../../containers/CompanyNewsAlerts';
 
 const chance = new Chance();
 
@@ -150,92 +152,17 @@ const mapSizesToProps = ({ width }) => ({
 @observer
 @withSizes(mapSizesToProps)
 class AgentDashboard extends Component {
-  renderCompanyNews = () => {
-    const { newsItems, classes } = this.props;
-    if (newsItems && newsItems.length) {
-      return <List />;
-    }
-    return (
-      <div className={classes.companyNewsPlaceHolder}>
-        There is currently no news available...
-      </div>
-    );
-  };
-
-  renderCompanyAlerts = () => {
-    const { alertItems, classes } = this.props;
-    if (alertItems && alertItems.length) {
-      return <List />;
-    }
-    return (
-      <div className={classes.companyNewsPlaceHolder}>
-        There are currently no alerts available...
-      </div>
-    );
-  };
-
   render() {
     const { classes, userUUID, newsItems } = this.props;
     const currentDate = moment();
     return (
       <div className={classes.root}>
         <Grid container spacing={16}>
-          {/*
-            <Grid item xs={12}>
-            <div>Company Alerts</div>
-          </Grid>
-          */}
-
-          <Grid item xs={12} lg={6}>
-            <div className={classNames(classes.companyNewsWrapper)}>
-              <ExpansionPanel defaultExpanded={newsItems && newsItems.length}>
-                <ExpansionPanelSummary
-                  classes={{
-                    root: classes.normalExpansionSummary,
-                    expanded: classes.expansionSummaryExpanded,
-                  }}
-                  expandIcon={<ExpandMoreIcon />}
-                >
-                  <Typography color="inherit" className={classes.heading}>
-                    Company News
-                  </Typography>
-                </ExpansionPanelSummary>
-                <ExpansionPanelDetails>
-                  {this.renderCompanyNews()}
-                </ExpansionPanelDetails>
-              </ExpansionPanel>
-            </div>
-          </Grid>
-
-          <Grid item xs={12} lg={6}>
-            <div className={classNames(classes.companyAlertsWrapper)}>
-              <ExpansionPanel
-                classes={{ root: classes.companyNewsExpansionWrapper }}
-                defaultExpanded={newsItems && newsItems.length}
-              >
-                <ExpansionPanelSummary
-                  classes={{
-                    root: classes.darkExpansionSummary,
-                    expanded: classes.expansionSummaryExpanded,
-                  }}
-                  expandIcon={<ExpandMoreIcon />}
-                >
-                  <Typography
-                    color="inherit"
-                    className={classnames(
-                      classes.heading,
-                      classes.lightHeading
-                    )}
-                  >
-                    Company Alerts
-                  </Typography>
-                </ExpansionPanelSummary>
-                <ExpansionPanelDetails>
-                  {this.renderCompanyAlerts()}
-                </ExpansionPanelDetails>
-              </ExpansionPanel>
-            </div>
-          </Grid>
+          <CompanyNewsAlerts
+            userRole={this.props.userRole}
+            submittedNewsAlertSuccessfully={submittedNewsAlertSuccessfully}
+            deletedNewsAlertSuccessfully={deletedNewsAlertSuccessfully}
+          />
 
           <Grid item xs={12}>
             <Divider />
@@ -256,7 +183,10 @@ class AgentDashboard extends Component {
                         rootClassName={classes.statNumberBoxWrapper}
                         icon={DollarIcon}
                         iconClass={classes.statBoxMoneyIcon}
-                        stat={'$28,579,790' || '$0'}
+                        stat={`$${round(
+                          this.props.netCommissionsToDate,
+                          0
+                        ).toLocaleString()}`}
                         statTitle="Total Net Commissions to Date"
                       />
                     </Grid>
@@ -265,7 +195,10 @@ class AgentDashboard extends Component {
                         rootClassName={classes.statNumberBoxWrapper}
                         icon={DollarIcon}
                         iconClass={classes.statBoxMoneyIcon}
-                        stat={'$1,579,790' || '$0'}
+                        stat={`$${round(
+                          this.props.currentMonthNetCommissions,
+                          0
+                        ).toLocaleString()}`}
                         statTitle={`${
                           months[currentDate.month()]
                         } - Net Commissions`}
@@ -276,7 +209,7 @@ class AgentDashboard extends Component {
                         rootClassName={classes.statNumberBoxWrapper}
                         icon={StarIcon}
                         iconClass={classes.statBoxStarIcon}
-                        stat={'7' || '$0'}
+                        stat={this.props.currentMonthNumOfDealsCommissions}
                         statTitle={`${
                           months[currentDate.month()]
                         } - Number of Deals`}
@@ -287,7 +220,7 @@ class AgentDashboard extends Component {
                         rootClassName={classes.statNumberBoxWrapper}
                         icon={PendingIcon}
                         iconClass={classes.statBoxQuestionIcon}
-                        stat={'4' || '0'}
+                        stat={this.props.numOfPendingDeals}
                         statTitle="Number of Pending Deals"
                       />
                     </Grid>

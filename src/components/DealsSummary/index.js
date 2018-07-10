@@ -92,52 +92,6 @@ const styles = theme => ({
   },
 });
 
-const dealData = [
-  {
-    id: 'Res. Sales',
-    label: 'Res. Sales',
-    value: 227,
-  },
-  {
-    id: 'Res. Rentals',
-    label: 'Res. Rentals',
-    value: 133,
-  },
-  {
-    id: 'Com. Sales',
-    label: 'Com. Sales',
-    value: 434,
-  },
-  {
-    id: 'Com. Rentals',
-    label: 'Com. Rentals',
-    value: 67,
-  },
-];
-
-const dealDollarData = [
-  {
-    id: 'Res. Sales',
-    label: 'Res. Sales',
-    value: 22700,
-  },
-  {
-    id: 'Res. Rentals',
-    label: 'Res. Rentals',
-    value: 13300,
-  },
-  {
-    id: 'Com. Sales',
-    label: 'Com. Sales',
-    value: 4340,
-  },
-  {
-    id: 'Com. Rentals',
-    label: 'Com. Rentals',
-    value: 6700,
-  },
-];
-
 const generateMonthlyNumberDealsData = () => {
   const months = [
     'Jan',
@@ -158,10 +112,10 @@ const generateMonthlyNumberDealsData = () => {
 
   months.forEach(month => {
     data[month] = {
-      'Com. Sales': chance.integer({ min: 0, max: 3 }) || 0.05,
-      'Com. Rentals': chance.integer({ min: 0, max: 15 }) || 0.05,
-      'Res. Sales': chance.integer({ min: 0, max: 3 }) || 0.05,
-      'Res. Rentals': chance.integer({ min: 0, max: 30 }) || 0.05,
+      'Com Sales': chance.integer({ min: 0, max: 3 }) || 0.05,
+      'Com Rentals': chance.integer({ min: 0, max: 15 }) || 0.05,
+      'Res Sales': chance.integer({ min: 0, max: 3 }) || 0.05,
+      'Res Rentals': chance.integer({ min: 0, max: 30 }) || 0.05,
     };
   });
 
@@ -182,10 +136,10 @@ const generateYearlyNumberDealsData = () => {
 
   years.forEach(year => {
     data[year] = {
-      'Com. Sales': chance.integer({ min: 0, max: 36 }) || 0.05,
-      'Com. Rentals': chance.integer({ min: 0, max: 180 }) || 0.05,
-      'Res. Sales': chance.integer({ min: 0, max: 36 }) || 0.05,
-      'Res. Rentals': chance.integer({ min: 0, max: 360 }) || 0.05,
+      'Com Sales': chance.integer({ min: 0, max: 36 }) || 0.05,
+      'Com Rentals': chance.integer({ min: 0, max: 180 }) || 0.05,
+      'Res Sales': chance.integer({ min: 0, max: 36 }) || 0.05,
+      'Res Rentals': chance.integer({ min: 0, max: 360 }) || 0.05,
     };
   });
 
@@ -206,13 +160,13 @@ const generateYearlyDollarDealsData = () => {
 
   years.forEach(year => {
     data[year] = {
-      'Com. Sales':
+      'Com Sales':
         round(chance.integer({ min: 0, max: 35000000 }) / 1000000, 2) || 0.001,
-      'Com. Rentals':
+      'Com Rentals':
         round(chance.integer({ min: 0, max: 35000000 }) / 1000000, 2) || 0.001,
-      'Res. Sales':
+      'Res Sales':
         round(chance.integer({ min: 0, max: 35000000 }) / 1000000, 2) || 0.001,
-      'Res. Rentals':
+      'Res Rentals':
         round(chance.integer({ min: 0, max: 3500000 }) / 1000000, 2) || 0.001,
     };
   });
@@ -240,13 +194,13 @@ const generateMonthlyDollarDealsData = () => {
 
   months.forEach(month => {
     data[month] = {
-      'Com. Sales':
+      'Com Sales':
         round(chance.integer({ min: 0, max: 3000000 }) / 1000000, 2) || 0.001,
-      'Com. Rentals':
+      'Com Rentals':
         round(chance.integer({ min: 0, max: 3000000 }) / 1000000, 2) || 0.001,
-      'Res. Sales':
+      'Res Sales':
         round(chance.integer({ min: 0, max: 3000000 }) / 1000000, 2) || 0.001,
-      'Res. Rentals':
+      'Res Rentals':
         round(chance.integer({ min: 0, max: 300000 }) / 1000000, 2) || 0.001,
     };
   });
@@ -257,14 +211,14 @@ const generateMonthlyDollarDealsData = () => {
 const generateMonthlyDealsBarData = data =>
   Object.keys(data).map(month => ({
     month,
-    'Com. Sales': data[month]['Com. Sales'],
-    'Com. Rentals': data[month]['Com. Rentals'],
-    'Res. Sales': data[month]['Res. Sales'],
-    'Res. Rentals': data[month]['Res. Rentals'],
+    'Com Sales': data[month]['Com Sales'],
+    'Com Rentals': data[month]['Com Rentals'],
+    'Res Sales': data[month]['Res Sales'],
+    'Res Rentals': data[month]['Res Rentals'],
   }));
 
 const generateMonthlyDealsLineData = data => {
-  const types = ['Com. Sales', 'Com. Rentals', 'Res. Sales', 'Res. Rentals'];
+  const types = ['Com Sales', 'Com Rentals', 'Res Sales', 'Res Rentals'];
 
   return types.map(id => ({
     id,
@@ -390,23 +344,23 @@ class AgentDashboard extends Component {
       if (smViewport) {
         return isYear ? 'Year' : 'Month';
       } else if (mdViewport) {
-        return 'Gross Dollar Amount ($ Millions)';
+        return 'Gross Dollar Amount ($ Thousands)';
       }
       if (lgViewport) {
-        return 'Gross Dollar Amount ($ Millions)';
+        return 'Gross Dollar Amount ($ Thousands)';
       }
       return isYear ? 'Year' : 'Month';
     }
 
     if (smViewport) {
-      return 'Gross Dollar Amount ($ Millions)';
+      return 'Gross Dollar Amount ($ Thousands)';
     } else if (mdViewport) {
       return isYear ? 'Year' : 'Month';
     }
     if (lgViewport) {
       return isYear ? 'Year' : 'Month';
     }
-    return 'Gross Dollar Amount ($ Millions)';
+    return 'Gross Dollar Amount ($ Thousands)';
   };
 
   numberBarGraphAxis = (axis, isYear) => {
@@ -450,92 +404,94 @@ class AgentDashboard extends Component {
             <StatNumberBox
               icon={DollarIcon}
               iconClass={classes.statBoxMoneyIcon}
-              stat={'$28,579,790' || '0'}
-              statTitle="Total Commissions to Date"
+              stat={`$${this.props.grossDealCommissions.toLocaleString()}`}
+              statTitle="Gross Commissions to Date"
             />
           </Grid>
           <Grid item xs={12} md={6}>
             <StatNumberBox
               icon={PendingIcon}
               iconClass={classes.statBoxQuestionIcon}
-              stat={'4' || '0'}
+              stat={this.props.numberOfPendingDeals}
               statTitle="Number of Pending Deals"
             />
           </Grid>
 
-          <Grid item xs={12}>
-            <div
-              className={classes.graphWrapper}
-              style={{ fontSize: xsViewport ? '11px' : '12px' }}
-            >
-              <div className={classes.graphTitle}>Total Deals</div>
-              <ResponsivePie
-                data={
-                  totalDealsPieDollarOrNum === 'number'
-                    ? dealData
-                    : dealDollarData
-                }
-                margin={{
-                  top: 70,
-                  right: 80,
-                  bottom: 120,
-                  left: 80,
-                }}
-                innerRadius={0.7}
-                padAngle={0.7}
-                cornerRadius={0}
-                colors="dark2"
-                colorBy="id"
-                borderColor="inherit:darker(0.6)"
-                radialLabelsSkipAngle={10}
-                radialLabelsTextXOffset={6}
-                radialLabelsTextColor="#333333"
-                radialLabelsLinkOffset={0}
-                radialLabelsLinkDiagonalLength={smViewport ? 4 : 16}
-                radialLabelsLinkHorizontalLength={smViewport ? 10 : 24}
-                radialLabelsLinkStrokeWidth={1}
-                radialLabelsLinkColor="inherit"
-                slicesLabelsSkipAngle={10}
-                slicesLabelsTextColor="#333333"
-                animate
-                motionStiffness={90}
-                motionDamping={15}
-                legends={[
-                  {
-                    anchor: 'bottom',
-                    direction: 'row',
-                    translateY: 56,
-                    itemWidth: smViewport ? 85 : 100,
-                    itemHeight: 14,
-                    symbolSize: 14,
-                    symbolShape: 'circle',
-                    itemDirection: 'top-to-bottom',
-                  },
-                ]}
-              />
-              <div className={classes.graphControlsWrapper}>
-                <span className={classes.graphControlsLabel}>Controls:</span>
-                <ToggleButton
-                  value={this.state.totalDealsPieDollarOrNum !== 'number'}
-                  thumbStyle={borderRadiusStyle}
-                  trackStyle={borderRadiusStyle}
-                  colors={{
-                    active: {
-                      base: 'rgb(65,66,68)',
-                      hover: 'rgb(95,96,98)',
-                    },
-                    inactive: {
-                      base: 'rgb(65,66,68)',
-                      hover: 'rgb(95,96,98)',
-                    },
+          {this.props.numberOfTotalDealsData ? (
+            <Grid item xs={12}>
+              <div
+                className={classes.graphWrapper}
+                style={{ fontSize: xsViewport ? '11px' : '12px' }}
+              >
+                <div className={classes.graphTitle}>Total Deals</div>
+                <ResponsivePie
+                  data={
+                    totalDealsPieDollarOrNum === 'number'
+                      ? this.props.numberOfTotalDealsData
+                      : this.props.grossDollarAmtOfTotalDealsData
+                  }
+                  margin={{
+                    top: 70,
+                    right: 80,
+                    bottom: 120,
+                    left: 80,
                   }}
-                  inactiveLabel="Num"
-                  activeLabel="$"
-                  onToggle={this.toggleTotalDealsPieDollarOrNum}
+                  innerRadius={0.7}
+                  padAngle={0.7}
+                  cornerRadius={0}
+                  colors="dark2"
+                  colorBy="id"
+                  borderColor="inherit:darker(0.6)"
+                  radialLabelsSkipAngle={10}
+                  radialLabelsTextXOffset={6}
+                  radialLabelsTextColor="#333333"
+                  radialLabelsLinkOffset={0}
+                  radialLabelsLinkDiagonalLength={smViewport ? 4 : 16}
+                  radialLabelsLinkHorizontalLength={smViewport ? 10 : 24}
+                  radialLabelsLinkStrokeWidth={1}
+                  radialLabelsLinkColor="inherit"
+                  slicesLabelsSkipAngle={10}
+                  slicesLabelsTextColor="#333333"
+                  animate
+                  motionStiffness={90}
+                  motionDamping={15}
+                  legends={[
+                    {
+                      anchor: 'bottom',
+                      direction: 'row',
+                      translateY: 56,
+                      itemWidth: smViewport ? 85 : 100,
+                      itemHeight: 14,
+                      symbolSize: 14,
+                      symbolShape: 'circle',
+                      itemDirection: 'top-to-bottom',
+                    },
+                  ]}
                 />
+                <div className={classes.graphControlsWrapper}>
+                  <span className={classes.graphControlsLabel}>Controls:</span>
+                  <ToggleButton
+                    value={this.state.totalDealsPieDollarOrNum !== 'number'}
+                    thumbStyle={borderRadiusStyle}
+                    trackStyle={borderRadiusStyle}
+                    colors={{
+                      active: {
+                        base: 'rgb(65,66,68)',
+                        hover: 'rgb(95,96,98)',
+                      },
+                      inactive: {
+                        base: 'rgb(65,66,68)',
+                        hover: 'rgb(95,96,98)',
+                      },
+                    }}
+                    inactiveLabel="Num"
+                    activeLabel="$"
+                    onToggle={this.toggleTotalDealsPieDollarOrNum}
+                  />
+                </div>
               </div>
-            </div>
-          </Grid>
+            </Grid>
+          ) : null}
 
           <Grid item xs={12} lg={6}>
             <div
@@ -588,8 +544,8 @@ class AgentDashboard extends Component {
                 <ResponsiveLine
                   data={
                     !yearlyDealsDollarGraphOn
-                      ? this._monthlyDealsDollarLineData
-                      : this._yearlyDealsDollarLineData
+                      ? this.props.monthlyDealsDollarLineData
+                      : this.props.yearlyDealsDollarLineData
                   }
                   colors="dark2"
                   curve="catmullRom"
@@ -615,7 +571,7 @@ class AgentDashboard extends Component {
                     tickSize: 5,
                     tickPadding: 5,
                     tickRotation: 0,
-                    legend: 'Net Dollar Amount ($ Millions)',
+                    legend: 'Net Dollar Amount ($ Thousands)',
                     legendOffset: -40,
                     legendPosition: 'center',
                   }}
@@ -646,18 +602,18 @@ class AgentDashboard extends Component {
                 <ResponsiveBar
                   data={
                     yearlyDealsDollarGraphOn
-                      ? this._yearlyDealsDollarBarData
-                      : this._monthlyDealsDollarBarData
+                      ? this.props.yearlyDealsDollarBarData
+                      : this.props.monthlyDealsDollarBarData
                   }
                   colors="dark2"
                   groupMode="grouped"
                   maxValue="auto"
                   layout={this.barGraphLayout()}
                   keys={[
-                    'Com. Sales',
-                    'Com. Rentals',
-                    'Res. Sales',
-                    'Res. Rentals',
+                    'Com Sales',
+                    'Com Rentals',
+                    'Res Sales',
+                    'Res Rentals',
                   ]}
                   indexBy="month"
                   margin={{
@@ -802,8 +758,8 @@ class AgentDashboard extends Component {
                 <ResponsiveLine
                   data={
                     !yearlyDealsNumberGraphOn
-                      ? this._monthlyDealsNumberLineData
-                      : this._yearlyDealsNumberLineData
+                      ? this.props.monthlyDealsNumberLineData
+                      : this.props.yearlyDealsNumberLineData
                   }
                   colors="dark2"
                   curve="catmullRom"
@@ -860,18 +816,18 @@ class AgentDashboard extends Component {
                 <ResponsiveBar
                   data={
                     yearlyDealsNumberGraphOn
-                      ? this._yearlyDealsNumberBarData
-                      : this._monthlyDealsNumberBarData
+                      ? this.props.yearlyDealsNumberBarData
+                      : this.props.monthlyDealsNumberBarData
                   }
                   colors="dark2"
                   groupMode="grouped"
                   maxValue="auto"
                   layout={this.barGraphLayout()}
                   keys={[
-                    'Com. Sales',
-                    'Com. Rentals',
-                    'Res. Sales',
-                    'Res. Rentals',
+                    'Com Sales',
+                    'Com Rentals',
+                    'Res Sales',
+                    'Res Rentals',
                   ]}
                   indexBy="month"
                   margin={{

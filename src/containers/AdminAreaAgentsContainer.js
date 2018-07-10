@@ -26,32 +26,9 @@ import CreateAgentDialogBox from '../components/CreateAgentDialogBox';
 import MaterialCustomSelectInput from '../components/MaterialCustomSelectInput';
 import AdminAreaAgentsTableContainer from './AdminAreaAgentsTableContainer';
 
-const Loader = DotLoader;
-
-const agentsQuery = gql`
-  query agents {
-    agents {
-      uuid
-      firstName
-      lastName
-      email
-      role
-      agent {
-        profilePicURL
-        branch
-        state
-        mobileNumber
-        officeNumber
-        realEstateLicenseNumber
-        agentType
-      }
-    }
-  }
-`;
-
 const styles = theme => ({
-  addDealBtn: {},
-  dealsSummaryBtn: {
+  addAgentBtn: {},
+  agentsSummaryBtn: {
     backgroundColor: '#2995F3',
     color: '#fff',
     '&:hover': {
@@ -124,7 +101,7 @@ const selectInputItems = [
   { label: '' },
   { label: 'Agent Name' },
   { label: 'Client Name' },
-  { label: 'Deal ID' },
+  { label: 'Agent ID' },
 ];
 
 const searchTypes = {
@@ -132,8 +109,34 @@ const searchTypes = {
   specific: 'specific',
 };
 
+const Loader = DotLoader;
+
+const agentsQuery = gql`
+  query agents {
+    agents {
+      uuid
+      firstName
+      lastName
+      email
+      role
+      lastLoginTimestamp
+      createdAt
+      agent {
+        profilePicURL
+        branch
+        state
+        mobileNumber
+        officeNumber
+        areaOfFocus
+        realEstateLicenseNumber
+        agentType
+      }
+    }
+  }
+`;
+
 @observer
-class AdminAreaDealsContainer extends Component {
+class AdminAreaAgentsContainer extends Component {
   constructor(props) {
     super(props);
 
@@ -144,6 +147,8 @@ class AdminAreaDealsContainer extends Component {
       snackbarOpen: false,
       snackbarText: '',
       snackbarUndoFunction: null,
+      addedAgents: [],
+      deletedAgentIDS: [],
     };
   }
 
@@ -155,11 +160,12 @@ class AdminAreaDealsContainer extends Component {
     });
   };
 
-  confirmAgentCreated = () => {
+  confirmAgentCreated = newAgent => {
     this.setState({
       createAgentModalOpen: false,
       snackbarOpen: true,
       snackbarText: 'Agent created successfully',
+      addedAgents: [...this.state.addedAgents, newAgent],
     });
   };
 
@@ -175,7 +181,7 @@ class AdminAreaDealsContainer extends Component {
     const { createAgentModalOpen } = this.state;
 
     return (
-      <Query query={agentsQuery}>
+      <Query query={agentsQuery} ssr={false}>
         {({ loading, error, data }) => {
           console.log(data);
           if (loading)
@@ -186,6 +192,8 @@ class AdminAreaDealsContainer extends Component {
                   justifyContent: 'center',
                   alignItems: 'center',
                   height: 'calc(100vh - 110px)',
+                  boxShadow:
+                    '0px 1px 3px 0px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 2px 1px -1px rgba(0, 0, 0, 0.12)',
                 }}
               >
                 <Loader color="#f44336" loading />
@@ -193,7 +201,28 @@ class AdminAreaDealsContainer extends Component {
             );
           // TODO: change the error message to a generic
           // 'error connecting to server' message
+
           if (error) return `Error!: ${error}`;
+
+          const intAgents = {};
+
+          const allAgents = [...data.agents, ...this.state.addedAgents];
+
+          allAgents.forEach(agent => {
+            intAgents[agent.uuid] = agent;
+          });
+
+          let uniqueAgents = [];
+
+          Object.keys(intAgents).forEach(key => {
+            uniqueAgents.push(intAgents[key]);
+          });
+
+          uniqueAgents = uniqueAgents.filter(
+            agent => !this.state.deletedAgentIDS.includes(agent.uuid)
+          );
+
+          console.log(data.agents);
 
           return (
             <div className={classes.wrapper}>
@@ -202,7 +231,7 @@ class AdminAreaDealsContainer extends Component {
                   <Button
                     variant="raised"
                     onClick={this.toggleCreateAgentModal}
-                    classes={{ root: classes.dealsSummaryBtn }}
+                    classes={{ root: classes.agentsSummaryBtn }}
                   >
                     <AddIcon />
                     Create Agent
@@ -215,6 +244,7 @@ class AdminAreaDealsContainer extends Component {
               <CreateAgentDialogBox
                 open={createAgentModalOpen}
                 toggleCreateAgentModal={this.toggleCreateAgentModal}
+                confirmAgentCreated={this.confirmAgentCreated}
               />
 
               <Snackbar
@@ -272,4 +302,4 @@ class AdminAreaDealsContainer extends Component {
   }
 }
 
-export default withStyles(styles)(AdminAreaDealsContainer);
+export default withStyles(styles)(AdminAreaAgentsContainer);

@@ -61,7 +61,7 @@ const styles = theme => ({
   listRoot: {
     height: '100%',
     overflow: 'auto',
-    borderBottom: '1px solid rgba(255,255,255,.2)',
+    //borderBottom: '1px solid rgba(255,255,255,.2)',
   },
   icon: {
     '&:hover': {
@@ -160,7 +160,7 @@ class SideNav extends Component {
             <List classes={{ root: classes.listRoot }}>
               {this.renderSideLinkComponents(currentPath)}
             </List>
-            <div className={classes.notificationIcon}>
+            {/*<div className={classes.notificationIcon}>
               <Tooltip
                 id="tooltip-icon"
                 title="Notifications"
@@ -173,7 +173,7 @@ class SideNav extends Component {
                   <NotificationIcon />
                 </IconButton>
               </Tooltip>
-            </div>
+          </div>*/}
           </Drawer>
         </Hidden>
         <Hidden smDown implementation="css">
@@ -187,7 +187,8 @@ class SideNav extends Component {
             <List classes={{ root: classes.listRoot }}>
               {this.renderSideLinkComponents(currentPath)}
             </List>
-            <div className={classes.notificationIcon}>
+
+            {/*<div className={classes.notificationIcon}>
               <Tooltip
                 id="tooltip-icon"
                 title="Notifications"
@@ -200,7 +201,7 @@ class SideNav extends Component {
                   <NotificationIcon />
                 </IconButton>
               </Tooltip>
-            </div>
+          </div>*/}
           </Drawer>
         </Hidden>
       </div>

@@ -20,13 +20,38 @@ const styles = theme => ({
 class VeiwFormatter extends React.Component {
   render() {
     const { classes } = this.props;
-    const { id, route, onClick, type } = this.props.value;
+    let id;
+    let route;
+    let onClick;
+    let type;
+    let noShow;
+    let needsEvent;
+
+    if (this.props && this.props.value) {
+      id = this.props.value.id;
+      route = this.props.value.route;
+      onClick = this.props.value.onClick;
+      type = this.props.value.type;
+      noShow = this.props.value.noShow;
+      needsEvent = this.props.value.needsEvent;
+    }
+
+    if (noShow) return <div />;
 
     if (type === 'action' && onClick) {
       return (
         <Tooltip title="Click to view" enterDelay={400} leaveDelay={100}>
-          <div className={classes.wrapper}>
-            <EyeIcon onClick={onClick} />
+          <div className={classes.wrapper} id="viewTableIcon">
+            <EyeIcon
+              onClick={event => {
+                if (needsEvent) {
+                  onClick(event);
+                } else {
+                  onClick();
+                }
+                if (event.stopPropagation) event.stopPropagation();
+              }}
+            />
           </div>
         </Tooltip>
       );

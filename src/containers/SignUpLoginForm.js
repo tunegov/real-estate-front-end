@@ -11,7 +11,6 @@ class SignUpLoginForm extends React.Component {
     this.state = {
       errorsFromServer: '',
     };
-    this.onSubmit = debounce(this.onSubmit, 500, true);
     this.child = Children.only(props.children);
   }
 

@@ -32,7 +32,10 @@ class AdminViewAgents extends React.Component {
   render() {
     return (
       <Layout UserStore={this.store.UserStore} UIStore={this.store.UIStore}>
-        <AdminAreaAdminContainer userUUID={this.store.UserStore.uuid} />
+        <AdminAreaAdminContainer
+          userUUID={this.store.UserStore.uuid}
+          userRole={this.store.UserStore.userRole}
+        />
       </Layout>
     );
   }

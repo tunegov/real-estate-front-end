@@ -8,6 +8,8 @@ import Button from 'material-ui/Button';
 import IconButton from 'material-ui/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 import Input from 'buildo-react-components/lib/Input';
+import Menu from 'material-ui/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
 import {
   agent as agentRole,
   admin,
@@ -17,7 +19,7 @@ import TextareaAutosize from 'react-textarea-autosize';
 import {
   FaFacebook,
   FaTwitter,
-  FaCopy,
+  FaInstagram,
   FaPencil,
   FaClose,
   FaCheck,
@@ -134,6 +136,9 @@ const styles = theme => ({
     display: 'flex',
     flexDirection: 'column',
     width: '100%',
+    [theme.breakpoints.down('sm')]: {
+      marginBottom: 40,
+    },
   },
   socialMediaTitle: {
     fontSize: '1.1rem',
@@ -150,7 +155,6 @@ const styles = theme => ({
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    marginLeft: 'auto',
     marginRight: 'auto',
     width: '55px',
     height: '55px',
@@ -212,6 +216,16 @@ const styles = theme => ({
     top: '-13px',
     right: '-13px',
   },
+  editProfilePicBtnsWrapper: {
+    display: 'flex',
+    position: 'absolute',
+    top: '-13px',
+    right: '-13px',
+    [theme.breakpoints.down('xs')]: {
+      right: 'auto',
+      left: '-13px',
+    },
+  },
   cancelBtn: {
     backgroundColor: theme.palette.secondary.main,
     marginRight: '8px',
@@ -247,6 +261,41 @@ const styles = theme => ({
   snackBar: {
     transform: 'translate(0px, -25px)',
   },
+  popupMenuTitle: {
+    display: 'flex',
+    justifyContent: 'center',
+    outline: 'none',
+    padding: '12px 16px',
+    width: 'auto',
+    color: 'rgba(0, 0, 0, 0.87)',
+    height: '24px',
+    overflow: 'hidden',
+    fontSize: '1rem',
+    boxSizing: 'content-box',
+    fontWeight: '400',
+    lineHeight: '1.5em',
+    fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
+    whiteSpace: 'nowrap',
+    paddingLeft: '16px',
+    textOverflow: 'ellipsis',
+    paddingRight: '16px',
+    borderBottom: '1px solid rgba(0,0,0,.1)',
+    pointerEvents: 'none',
+  },
+  menuItem: {
+    display: 'flex !important',
+    justifyContent: 'center !important',
+  },
+  menuItemAccept: {
+    display: 'flex !important',
+    justifyContent: 'center !important',
+    transition:
+      'background-color 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, color 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms !important',
+    '&:hover': {
+      backgroundColor: `${theme.custom.submitBlue.light} !important`,
+      color: '#fff !important',
+    },
+  },
 });
 
 @withStyles(styles)
@@ -258,6 +307,7 @@ class Profile extends Component {
     this.state = {
       open: false,
       Transition: null,
+      editAgentAnchorEl: null,
     };
   }
 
@@ -289,61 +339,12 @@ class Profile extends Component {
     }
   };
 
-  renderEditBtns = () => {
-    const {
-      currentUserUUID,
-      currentUserRole,
-      uuid,
-      isEditing,
-      enterEditingMode,
-      cancelEditingMode,
-      classes,
-      saveUser,
-    } = this.props;
-    const canEdit =
-      currentUserUUID === uuid ||
-      currentUserRole === admin ||
-      currentUserRole === superAdmin;
+  handleEditAgentMenuClick = event => {
+    this.setState({ editAgentAnchorEl: event.currentTarget });
+  };
 
-    console.log(currentUserRole);
-
-    if (!canEdit) return null;
-
-    if (isEditing) {
-      return (
-        <span className={classes.editBtnsWrapper}>
-          <button
-            className={classNames(classes.editBtn, classes.cancelBtn)}
-            onClick={cancelEditingMode}
-          >
-            <FaClose />
-          </button>
-          <button
-            className={classNames(classes.editBtn, classes.saveBtn)}
-            onClick={() => {
-              saveUser();
-              this.handleClick();
-            }}
-          >
-            <FaCheck />
-          </button>
-        </span>
-      );
-    } else {
-      return (
-        <span className={classes.editBtnsWrapper}>
-          <button
-            className={classes.editBtn}
-            onClick={() => {
-              this.setState({ open: false });
-              enterEditingMode();
-            }}
-          >
-            <FaPencil />
-          </button>
-        </span>
-      );
-    }
+  handleEditAgentMenuClose = () => {
+    this.setState({ editAgentAnchorEl: null });
   };
 
   render() {
@@ -361,6 +362,8 @@ class Profile extends Component {
       uuid,
       currentUserRole,
       currentUserUUID,
+      openEditAgentDialogBox,
+      openEditAgentPasswordDialogBox,
     } = this.props;
     const {
       firstName,
@@ -373,8 +376,13 @@ class Profile extends Component {
         officeNumber,
         branch,
         profilePicURL,
+        facebook,
+        twitter,
+        instagram,
       },
     } = agent;
+
+    const { editAgentAnchorEl } = this.state;
 
     const name = capitalize(`${firstName} ${lastName}`);
 
@@ -383,9 +391,54 @@ class Profile extends Component {
       currentUserRole === admin ||
       currentUserRole === superAdmin;
 
+    const editingOwnProfile = currentUserUUID === uuid;
+
     return (
       <div className={classes.root}>
-        {this.renderEditBtns()}
+        {canEdit && (
+          <span className={classes.editBtnsWrapper}>
+            <button
+              className={classes.editBtn}
+              onClick={this.handleEditAgentMenuClick}
+            >
+              <FaPencil />
+            </button>
+          </span>
+        )}
+        <Menu
+          id="simple-menu"
+          anchorEl={editAgentAnchorEl}
+          open={Boolean(editAgentAnchorEl)}
+          onClose={this.handleEditAgentMenuClose}
+        >
+          <div className={classes.popupMenuTitle}>Edit</div>
+          <MenuItem
+            classes={{ root: classes.menuItemAccept }}
+            onClick={() => {
+              this.handleEditAgentMenuClose();
+              openEditAgentDialogBox();
+            }}
+          >
+            Information
+          </MenuItem>
+          <MenuItem
+            classes={{ root: classes.menuItemAccept }}
+            onClick={() => {
+              this.handleEditAgentMenuClose();
+              openEditAgentPasswordDialogBox();
+            }}
+          >
+            Password
+          </MenuItem>
+          <MenuItem
+            classes={{ root: classes.menuItem }}
+            onClick={() => {
+              this.handleEditAgentMenuClose();
+            }}
+          >
+            Cancel
+          </MenuItem>
+        </Menu>
         <div className={classes.leftColumnWrapper}>
           <div className={classes.profilePicWrapper}>
             {profilePicURL ? (
@@ -403,9 +456,9 @@ class Profile extends Component {
               </div>
             )}
 
-            {isEditing &&
+            {canEdit &&
               (currentUserRole === admin || currentUserRole === superAdmin) && (
-                <span className={classes.editBtnsWrapper}>
+                <span className={classes.editProfilePicBtnsWrapper}>
                   <button
                     className={classes.editProfilePicBtn}
                     onClick={openProfilePicEditor}
@@ -427,46 +480,47 @@ class Profile extends Component {
             </div>
             <div className={classNames(classes.mobile, classes.details)}>
               <div className={classes.detailsTitle}>Mobile</div>
-              {isEditing ? (
-                <CustomInputMask
-                  mask="(999) 999-9999"
-                  maskChar={null}
-                  placeholder="Phone Number"
-                  onChange={setMobileNumber}
-                  defaultValue={mobileNumber}
-                >
-                  {props => (
-                    <input
-                      className={classes.detailsInfoInput}
-                      placeholder="Your mobile numer..."
-                      type="tel"
-                      {...props}
-                    />
-                  )}
-                </CustomInputMask>
-              ) : (
-                <div className={classes.detailsInfo}>{mobileNumber}</div>
-              )}
+              <div className={classes.detailsInfo}>{mobileNumber}</div>
             </div>
             <div className={classNames(classes.region, classes.details)}>
               <div className={classes.detailsTitle}>Branch</div>
               <div className={classes.detailsInfo}>{branch}</div>
             </div>
 
-            {/*<div className={classes.socialMediaWrapper}>
-              <div className={classes.socialMediaTitle}>Share:</div>
-              <div className={classes.socialMediaItemsWrapper}>
-              <button className={classes.socialMediaItemWrapper}>
-                <FaFacebook />
-              </button>
-              <button className={classes.socialMediaItemWrapper}>
-                <FaTwitter />
-              </button>
-              <button className={classes.socialMediaItemWrapper}>
-                <FaCopy />
-              </button>
+            {facebook || instagram || twitter ? (
+              <div className={classes.socialMediaWrapper}>
+                <div className={classes.socialMediaTitle}>Social Media:</div>
+                <div className={classes.socialMediaItemsWrapper}>
+                  {facebook && (
+                    <a
+                      href={facebook}
+                      target="_blank"
+                      className={classes.socialMediaItemWrapper}
+                    >
+                      <FaFacebook />
+                    </a>
+                  )}
+                  {twitter && (
+                    <a
+                      href={twitter}
+                      target="_blank"
+                      className={classes.socialMediaItemWrapper}
+                    >
+                      <FaTwitter />
+                    </a>
+                  )}
+                  {instagram && (
+                    <a
+                      href={instagram}
+                      target="_blank"
+                      className={classes.socialMediaItemWrapper}
+                    >
+                      <FaInstagram />
+                    </a>
+                  )}
+                </div>
               </div>
-            </div>*/}
+            ) : null}
           </div>
         </div>
         <div className={classes.rightColumnWrapper}>
@@ -477,19 +531,9 @@ class Profile extends Component {
               <div className={classes.descriptionTitle}>
                 About {name.split(' ')[0]}
               </div>
-              {isEditing ? (
-                <TextareaAutosize
-                  className={classes.descriptionDetailsInput}
-                  defaultValue={profileDescription}
-                  spellCheck
-                  controls={false}
-                  onChange={({ target }) => setDescription(target.value)}
-                />
-              ) : (
-                <FormattedText className={classes.descriptionDetails}>
-                  {profileDescription || 'No description available yet...'}
-                </FormattedText>
-              )}
+              <FormattedText className={classes.descriptionDetails}>
+                {profileDescription || 'No description available yet...'}
+              </FormattedText>
             </div>
           </div>
         </div>

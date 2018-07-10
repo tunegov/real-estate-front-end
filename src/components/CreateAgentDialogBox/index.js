@@ -53,18 +53,19 @@ class CreateAgentDialogBox extends Component {
     super(props);
     this.state = {
       formApi: null,
-      submittingForm: false,
+      formSubmitted: false,
     };
   }
 
+  setFormSubmitted = (bool = true) => {
+    this.setState({ formSubmitted: bool });
+  };
+
   render() {
     const { fullScreen, classes, toggleCreateAgentModal, open } = this.props;
-    const { submittingForm } = this.state;
 
     return (
       <Dialog
-        disableBackdropClick
-        disableEscapeKeyDown
         open={open}
         classes={{ paper: classes.paper }}
         fullScreen={fullScreen}
@@ -84,30 +85,28 @@ class CreateAgentDialogBox extends Component {
             {context => (
               <CreateAgentForm
                 userUUID={this.props.userUUID}
-                setIsSubmittingForm={this.setIsSubmittingForm}
-                setNotSubmittingForm={this.setNotSubmittingForm}
+                setFormSubmitted={this.setFormSubmitted}
                 getFormApi={formApi => this.setState({ formApi })}
                 createAgent={context.UserStore.createAgent}
                 setAgentProfilePic={context.UserStore.setAgentProfilePic}
+                confirmAgentCreated={this.props.confirmAgentCreated}
               />
             )}
           </AppContext.Consumer>
         </DialogContent>
-        <DialogActions classes={{ root: classes.dialogActions }}>
-          <Button onClick={toggleCreateAgentModal} color="primary">
-            Cancel
-          </Button>
-          <Button
-            onClick={() => this.state.formApi.submitForm()}
-            color="primary"
-            disabled={submittingForm ? true : false}
-          >
-            Submit{' '}
-            {submittingForm ? (
-              <Icon type="loading" style={{ color: '#fff' }} />
-            ) : null}
-          </Button>
-        </DialogActions>
+        {!this.state.formSubmitted ? (
+          <DialogActions classes={{ root: classes.dialogActions }}>
+            <Button onClick={toggleCreateAgentModal} color="primary">
+              Cancel
+            </Button>
+            <Button
+              onClick={() => this.state.formApi.submitForm()}
+              color="primary"
+            >
+              Submit
+            </Button>
+          </DialogActions>
+        ) : null}
       </Dialog>
     );
   }

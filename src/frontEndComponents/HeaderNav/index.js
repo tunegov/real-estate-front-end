@@ -61,11 +61,11 @@ class HeaderNav extends React.Component {
             <NavAnchor>Log In</NavAnchor>
           </HeaderNavLink>
         </span>
-        <Link route="sign-up" href="/sign-up" prefetch>
+        {/*<Link route="sign-up" href="/sign-up" prefetch>
           <a className={classes.anchor}>
             <span className={classes.signUpLink}>Sign Up</span>
           </a>
-        </Link>
+          </Link>*/}
       </LeftHeaderLinkWrapper>
     );
   };
@@ -88,12 +88,14 @@ class HeaderNav extends React.Component {
     const { headerBoxShadowOff } = this.props;
     return (
       <HeaderWrapper id="header-wrapper" headerBoxShadowOff>
-        <Logo>
-          <Link route="home" prefetch>
-            <LogoAnchor>Real Estate App Logo</LogoAnchor>
-          </Link>
-        </Logo>
-        {this.renderMiddleLinks()}
+        {
+          <Logo>
+            <Link route="home" prefetch>
+              <LogoAnchor>Real Estate App Logo</LogoAnchor>
+            </Link>
+          </Logo>
+        }
+        {/*this.renderMiddleLinks()*/}
         {this.renderLinks()}
       </HeaderWrapper>
     );

@@ -48,10 +48,10 @@ class AgentOfTheMonthContainer extends Component {
     } = this;
     return (
       <AgentOfTheMonth
-        residentialDollarsAgent={_residentialDollarsAgent}
-        commercialDollarsAgent={_commercialDollarsAgent}
-        rentalsDollarsAgent={_rentalsDollarsAgent}
-        numbersAgent={_numbersAgent}
+        residentialDollarsAgent={/*_residentialDollarsAgent*/ null}
+        commercialDollarsAgent={/*_commercialDollarsAgent*/ null}
+        rentalsDollarsAgent={/*_rentalsDollarsAgent*/ null}
+        numbersAgent={/*_numbersAgent*/ null}
       />
     );
   }

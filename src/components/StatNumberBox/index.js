@@ -83,15 +83,19 @@ class StatNumberBox extends Component {
       icon: Icon,
     } = this.props;
     return (
-      <div className={classNames(classes.root, rootClassName)} style={{ width: widthPercent ? `${widthPercent}%` : null }}>
-        <div className={classes.boxTop}>
-          {stat || 'noop'}
-        </div>
+      <div
+        className={classNames(classes.root, rootClassName)}
+        style={{ width: widthPercent ? `${widthPercent}%` : null }}
+      >
+        <div className={classes.boxTop}>{stat}</div>
         <div className={classes.boxInfo}>
-          <span className={classes.boxInfoText}>{statTitle || 'noop'}</span>
+          <span className={classes.boxInfoText}>{statTitle}</span>
         </div>
-        <div className={classes.boxBottom} style={{ color: iconColor ? iconColor : null }}>
-          {Icon ? <Icon classes={{ root: iconClass }} color="inherit" /> : 'noop'}
+        <div
+          className={classes.boxBottom}
+          style={{ color: iconColor ? iconColor : null }}
+        >
+          {Icon ? <Icon classes={{ root: iconClass }} color="inherit" /> : null}
         </div>
       </div>
     );

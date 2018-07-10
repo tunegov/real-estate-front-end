@@ -5,6 +5,7 @@ import Input, { InputLabel, InputAdornment } from 'material-ui/Input';
 import { FormControl, FormHelperText } from 'material-ui/Form';
 import { Field } from 'react-form';
 import uuid from 'uuid/v4';
+import classnames from 'classnames';
 import debounce from '../../utils/debounce';
 
 const numbersOnlyRegex = /^\d+$/;
@@ -113,6 +114,8 @@ class CustomTextFieldWrapper extends React.Component {
             isEditingDeal,
             defaultValue,
             disabledStyle,
+            formControlClassName,
+            shrink,
             mask,
             ...rest
           } = this.props;
@@ -131,11 +134,11 @@ class CustomTextFieldWrapper extends React.Component {
 
           return (
             <FormControl
-              className={
-                disabled || disabledStyle
-                  ? `${classes.formControl} ${classes.disabled}`
-                  : classes.formControl
-              }
+              className={classnames(
+                disabled || disabledStyle ? classes.disabled : null,
+                classes.formControl,
+                formControlClassName
+              )}
               error={error && touched}
               disabled={disabled || disabledStyle}
               fullWidth={fullWidth}
@@ -144,6 +147,7 @@ class CustomTextFieldWrapper extends React.Component {
               {label ? (
                 <InputLabel
                   htmlFor={id}
+                  shrink={shrink}
                   className={
                     disabled || disabledStyle
                       ? `${classes.disabled} ${labelClassName}`
@@ -201,7 +205,7 @@ class CustomTextFieldWrapper extends React.Component {
                   }
 
                   if (onChange && typeof onChange === 'function') {
-                    if (requiresDefaultOnChange) {
+                    if (requiresDefaultOnChange || isInputMasked) {
                       onChange(e, setValue);
                     } else {
                       onChange(newValue, setValue, e);

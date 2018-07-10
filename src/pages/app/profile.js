@@ -18,13 +18,15 @@ const agentQuery = gql`
       lastName
       role
       email
-      role
       agent {
         profilePicURL
         mobileNumber
         officeNumber
         branch
         profileDescription
+        facebook
+        twitter
+        instagram
       }
     }
   }
@@ -51,7 +53,15 @@ class Profile extends React.Component {
 
     // for debugging only!!!
     if (isBrowser && !window._appStore) window._appStore = this.store;
+
+    this.state = {
+      agentDeleted: false,
+    };
   }
+
+  setAgentDeleted = () => {
+    this.setState({ agentDeleted: true });
+  };
 
   render() {
     const { profileID } = this.props;
@@ -81,6 +91,13 @@ class Profile extends React.Component {
             // 'error connecting to server' message
             if (error) return `Error!: ${error}`;
 
+            if (this.state.agentDeleted)
+              return (
+                <div style={{ textAlign: 'center', fontSize: '1.2rem' }}>
+                  AGENT DELETED
+                </div>
+              );
+
             if (!data || !data.agent)
               return (
                 <div style={{ textAlign: 'center', fontSize: '1.2rem' }}>
@@ -94,6 +111,7 @@ class Profile extends React.Component {
                 uuid={profileID || this.store.UserStore.uuid}
                 currentUserRole={this.store.UserStore.userRole}
                 currentUserUUID={this.store.UserStore.uuid}
+                setAgentDeleted={this.setAgentDeleted}
               />
             );
           }}

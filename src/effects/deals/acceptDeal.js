@@ -3,8 +3,8 @@ import { GraphQLClient } from 'graphql-request';
 import graphQLEndpoint from '../../constants/graphQLEndpoint';
 
 const query = `
-  mutation acceptDeal($uuid: String!) {
-    acceptDeal(uuid: $uuid) {
+  mutation acceptDeal($input: AcceptDealInput!) {
+    acceptDeal(input: $input) {
       deal {
         dealID
         date
@@ -25,6 +25,9 @@ const query = `
         total
         agentNotes
         status
+        bonusPercentageAddedByAdmin
+        netAgentCommission
+        netCompanyCommission
       }
       userErrors {
         field
@@ -39,11 +42,14 @@ const client = new GraphQLClient(graphQLEndpoint, {
   credentials: 'same-origin',
 });
 
-const acceptDeal = uuid => {
+const acceptDeal = (dealID, bonusPercentageAddedByAdmin) => {
   let res;
 
   const variables = {
-    uuid,
+    input: {
+      uuid: dealID,
+      bonusPercentageAddedByAdmin,
+    },
   };
 
   const finalResponseObj = {

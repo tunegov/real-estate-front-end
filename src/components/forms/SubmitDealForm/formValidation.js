@@ -42,7 +42,8 @@ const validator = values => {
       ? 'This value is required'
       : null,
     financialsTotal:
-      values.financialsTotal <= 0
+      !values.financialsTotal ||
+      parseFloat(values.financialsTotal.split(',').join('')) <= 0
         ? 'The total amount for this deal must be greater than 0'
         : null,
   };

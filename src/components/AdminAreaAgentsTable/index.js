@@ -87,10 +87,16 @@ const defaultColumnWidths = [
   { columnName: 'branch', width: 140 },
   { columnName: 'state', width: 150 },
   { columnName: 'lastLoginTimestamp', width: 180 },
+  { columnName: 'createdAt', width: 180 },
   { columnName: 'view', width: 120 },
 ];
 
-const defaultHiddenColumnNames = ['lastLoginTimestamp', 'state', 'agentID'];
+const defaultHiddenColumnNames = [
+  'lastLoginTimestamp',
+  'state',
+  'agentID',
+  'createdAt',
+];
 
 const pageSizes = [5, 10, 15, 20, 50, 100, 0];
 

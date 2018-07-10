@@ -198,6 +198,7 @@ class ViewInvoiceFormContainer extends Component {
     console.log(errs);
     console.log(onSubmitError);
     console.log(formApi.errors);
+    this.props.setFormSubmitted(false);
   };
 
   render() {

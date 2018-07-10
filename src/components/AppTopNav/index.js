@@ -102,7 +102,7 @@ class AppTopNav extends Component {
               </IconButton>
             </div>
           </div>
-          <div className={classes.iconGroupWrapper}>
+          {/*<div className={classes.iconGroupWrapper}>
             <Tooltip
               id="tooltip-icon"
               title="Home"
@@ -119,7 +119,7 @@ class AppTopNav extends Component {
                 <HomeIcon />
               </IconButton>
             </Tooltip>
-          </div>
+          </div>*/}
         </Toolbar>
       </AppBar>
     );

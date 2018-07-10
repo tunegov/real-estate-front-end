@@ -5,6 +5,7 @@ import { DotLoader } from 'react-spinners';
 import Chance from 'chance';
 import isBrowser from 'is-browser';
 import moment from 'moment';
+import Papa from 'papaparse';
 import AdminAreaInvoicesTable from '../components/AdminAreaInvoicesTable';
 import { capitalize } from '../utils/stringUtils';
 import { round } from '../utils/Math';
@@ -56,7 +57,7 @@ const columns = [
   { name: 'date', title: 'Date' },
   { name: 'agentName', title: 'Agent Name' },
   { name: 'agentType', title: 'Agent Type' },
-  { name: 'dealType', title: 'Deal Type' },
+  { name: 'invoiceType', title: 'Deal Type' },
   { name: 'clientName', title: 'Client Name' },
   { name: 'clientPhoneNumber', title: 'Client Phone Number' },
   { name: 'propertyAddress', title: 'Property Address' },
@@ -74,6 +75,7 @@ class InvoicesTableContainer extends Component {
     super(props);
     this.state = {
       tableIsLoading: true,
+      selection: [],
     };
   }
 
@@ -99,7 +101,7 @@ class InvoicesTableContainer extends Component {
       return {
         invoiceID,
         date: moment(date).format('MM/DD/YYYY'),
-        dealType: invoiceType,
+        invoiceType: invoiceType,
         clientName,
         clientPhoneNumber,
         agentType,
@@ -128,8 +130,40 @@ class InvoicesTableContainer extends Component {
     });
   };
 
+  convertDealsToCSV = () => {
+    const { invoices } = this.props;
+    const { selection } = this.state;
+
+    if (!selection || !selection.length) return;
+
+    const csvContent = Papa.unparse(
+      invoices
+        .filter(invoice => selection.includes(invoice.invoiceID))
+        .map(invoice => ({
+          ...invoice,
+          date: moment(invoice.date).format('MM/DD/YYYY'),
+        })),
+      {
+        header: true,
+      }
+    );
+
+    if (this._csvLink) {
+      this._csvLink.setAttribute(
+        'href',
+        `data:text/csv;charset=utf-8,${encodeURIComponent(csvContent)}`
+      );
+      this._csvLink.setAttribute('download', 'invoices_data.csv');
+      this._csvLink.click();
+    }
+  };
+
+  changeSelection = selection => {
+    this.setState({ selection });
+  };
+
   render() {
-    const { tableIsLoading, rows } = this.state;
+    const { tableIsLoading, rows, selection } = this.state;
     const { classes, small, ...rest } = this.props;
     return (
       <div className={classes.root}>
@@ -148,12 +182,25 @@ class InvoicesTableContainer extends Component {
         ) : null}
         <AdminAreaInvoicesTable
           {...rest}
+          changeSelection={this.changeSelection}
+          selection={selection}
+          convertDealsToCSV={this.convertDealsToCSV}
           small={small}
           onMount={() =>
             tableIsLoading ? this.setState({ tableIsLoading: false }) : null
           }
           columns={columns}
           rows={this.createRows()}
+        />
+        <a
+          href="#"
+          id="csvLink"
+          ref={ref => (this._csvLink = ref)}
+          style={{
+            visibility: 'hidden',
+            position: 'absolute',
+            poniterEvents: 'none',
+          }}
         />
       </div>
     );

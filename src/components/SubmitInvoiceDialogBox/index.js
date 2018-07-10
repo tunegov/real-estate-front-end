@@ -68,8 +68,8 @@ class SubmitInvoiceDialogBox extends Component {
     };
   }
 
-  setFormSubmitted = () => {
-    this.setState({ formSubmitted: true });
+  setFormSubmitted = (bool = true) => {
+    this.setState({ formSubmitted: bool });
   };
 
   toggleSnackbarOpen = text => {

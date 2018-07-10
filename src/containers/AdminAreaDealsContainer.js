@@ -269,6 +269,9 @@ const dealsQuery = gql`
       total
       agentNotes
       status
+      bonusPercentageAddedByAdmin
+      netAgentCommission
+      netCompanyCommission
     }
   }
 `;
@@ -294,6 +297,7 @@ class AdminAreaDealsContainer extends Component {
       viewingDealStatus: '',
       deletedDealIDS: [],
       acceptedDealIDS: [],
+      dealBonus: '0',
     };
   }
 
@@ -446,6 +450,9 @@ class AdminAreaDealsContainer extends Component {
         if (res.error) {
           console.log(res.error);
           return;
+        } else if (res.userErrors.length) {
+          res.userErrors.forEach(error => console.log(error));
+          return;
         }
 
         this.setState({
@@ -460,24 +467,19 @@ class AdminAreaDealsContainer extends Component {
       });
   };
 
-  acceptDeal = dealID => {
-    acceptDeal(dealID)
-      .then(res => {
-        if (res.error) {
-          console.log(res.error);
-          return;
-        }
+  dealAccepted = dealID => {
+    this.setState({
+      snackbarOpen: true,
+      snackbarText: 'Deal accepted successfully!',
+      dealsViewDialogBoxOpen: false,
+      acceptedDealIDS: [...this.state.acceptedDealIDS, dealID],
+    });
+  };
 
-        this.setState({
-          snackbarOpen: true,
-          snackbarText: 'Deal accepted successfully!',
-          dealsViewDialogBoxOpen: false,
-          acceptedDealIDS: [...this.state.acceptedDealIDS, dealID],
-        });
-      })
-      .catch(err => {
-        console.log(err);
-      });
+  handleCloseSnackbar = () => {
+    this.setState({
+      snackbarOpen: false,
+    });
   };
 
   render() {
@@ -504,7 +506,7 @@ class AdminAreaDealsContainer extends Component {
     } = this;
 
     return (
-      <Query query={dealsQuery}>
+      <Query query={dealsQuery} ssr={false}>
         {({ loading, error, data }) => {
           if (loading)
             return (
@@ -732,7 +734,7 @@ class AdminAreaDealsContainer extends Component {
                 setDealSuccessfullySubmitted={this.setDealSuccessfullyEditted}
                 userRole={this.props.userRole}
                 deleteDeal={this.deleteDeal}
-                acceptDeal={this.acceptDeal}
+                dealAccepted={this.dealAccepted}
               />
 
               <AdminAreaDealsTableContainer

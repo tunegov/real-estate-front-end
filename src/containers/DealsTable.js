@@ -9,6 +9,7 @@ import Papa from 'papaparse';
 import DealsTable from '../components/DealsTable';
 import { capitalize } from '../utils/stringUtils';
 import debounce from '../utils/debounce';
+import { padStringToDecimalString } from '../utils/Math';
 
 const chance = new Chance();
 
@@ -51,6 +52,9 @@ const columns = [
   { name: 'propertyCity', title: 'Property City' },
   { name: 'managementOrCobrokeCompany', title: 'Mgmt/Co-Broke Co.' },
   { name: 'rentOrSalePrice', title: 'Rent/Sale Price' },
+  { name: 'bonusPercentageAddedByAdmin', title: "Agent's Bonus %" },
+  { name: 'netAgentCommission', title: 'Net Commission' },
+  { name: 'dealTotal', title: 'Deal Total' },
   { name: 'status', title: 'Status' },
   { name: 'view', title: 'View' },
 ];
@@ -61,6 +65,7 @@ class DealsTableContainer extends Component {
     super(props);
     this.state = {
       tableIsLoading: true,
+      selection: [],
     };
   }
 
@@ -77,7 +82,10 @@ class DealsTableContainer extends Component {
         city,
         managementOrCobrokeCompany,
         price,
+        bonusPercentageAddedByAdmin,
+        netAgentCommission,
         status,
+        total,
       } = deal;
 
       return {
@@ -90,6 +98,15 @@ class DealsTableContainer extends Component {
         propertyCity: city,
         managementOrCobrokeCompany,
         rentOrSalePrice: `$${Number(price).toLocaleString()}`,
+        bonusPercentageAddedByAdmin:
+          status === 'pending' ? undefined : `%${bonusPercentageAddedByAdmin}`,
+        netAgentCommission:
+          status === 'pending'
+            ? undefined
+            : `$${padStringToDecimalString(
+                Number(netAgentCommission).toLocaleString()
+              )}`,
+        dealTotal: `$${Number(total).toLocaleString()}`,
         status: capitalize(status),
         view: {
           type: 'action',
@@ -106,9 +123,12 @@ class DealsTableContainer extends Component {
 
   convertDealsToCSV = () => {
     const { deals } = this.props;
+    const { selection } = this.state;
+
+    if (!selection || !selection.length) return;
 
     const csvContent = Papa.unparse(
-      deals.map(deal => ({
+      deals.filter(deal => selection.includes(deal.dealID)).map(deal => ({
         ...deal,
         date: moment(deal.date).format('MM/DD/YYYY'),
       })),
@@ -127,15 +147,24 @@ class DealsTableContainer extends Component {
     }
   };
 
+  changeSelection = selection => {
+    this.setState({ selection });
+  };
+
   render() {
-    const { tableIsLoading } = this.state;
+    const { tableIsLoading, selection } = this.state;
     const { classes, deals, ...rest } = this.props;
     return (
       <div className={classes.root}>
         {tableIsLoading ? (
           <div
             className={classes.progressWrapper}
-            style={{ display: 'flex', justifyContent: 'center' }}
+            style={{
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              height: 'calc(100vh - 180px)',
+            }}
           >
             <Loader color="#f44336" loading />
           </div>
@@ -143,6 +172,8 @@ class DealsTableContainer extends Component {
         <DealsTable
           {...rest}
           convertDealsToCSV={this.convertDealsToCSV}
+          changeSelection={this.changeSelection}
+          selection={selection}
           onMount={() =>
             tableIsLoading ? this.setState({ tableIsLoading: false }) : null
           }

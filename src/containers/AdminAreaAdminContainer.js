@@ -14,6 +14,8 @@ import ExpansionPanel, {
   ExpansionPanelSummary,
   ExpansionPanelDetails,
 } from 'material-ui/ExpansionPanel';
+import Menu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 import gql from 'graphql-tag';
@@ -22,11 +24,65 @@ import { DotLoader } from 'react-spinners';
 import Snackbar from 'material-ui/Snackbar';
 import IconButton from 'material-ui/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
-import CreateAgentDialogBox from '../components/CreateAgentDialogBox';
+import CreateAdminDialogBox from '../components/CreateAdminDialogBox';
 import MaterialCustomSelectInput from '../components/MaterialCustomSelectInput';
 import AdminAreaAdminTableContainer from './AdminAreaAdminTableContainer';
+import EditAdminDialogBox from '../components/EditAdminDialogBox';
+import deleteAdmin from '../effects/users/deleteAdmin';
+import EditAdminPasswordDialogBox from '../components/EditAdminPasswordDialogBox';
 
 const Loader = DotLoader;
+
+const styles = theme => ({
+  addAdminBtn: {
+    marginLeft: '25px',
+    backgroundColor: '#2995F3',
+    color: '#fff',
+    '&:hover': {
+      backgroundColor: '#2380D1',
+    },
+  },
+  buttonsWrapper: {
+    display: 'flex',
+    marginBottom: '25px',
+    justifyContent: 'center',
+  },
+  popupMenuTitle: {
+    display: 'flex',
+    justifyContent: 'center',
+    outline: 'none',
+    padding: '12px 16px',
+    width: 'auto',
+    color: 'rgba(0, 0, 0, 0.87)',
+    height: '24px',
+    overflow: 'hidden',
+    fontSize: '1rem',
+    boxSizing: 'content-box',
+    fontWeight: '400',
+    lineHeight: '1.5em',
+    fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
+    whiteSpace: 'nowrap',
+    paddingLeft: '16px',
+    textOverflow: 'ellipsis',
+    paddingRight: '16px',
+    borderBottom: '1px solid rgba(0,0,0,.1)',
+    pointerEvents: 'none',
+  },
+  menuItem: {
+    display: 'flex !important',
+    justifyContent: 'center !important',
+  },
+  menuItemAccept: {
+    display: 'flex !important',
+    justifyContent: 'center !important',
+    transition:
+      'background-color 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, color 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms !important',
+    '&:hover': {
+      backgroundColor: `${theme.custom.submitBlue.light} !important`,
+      color: '#fff !important',
+    },
+  },
+});
 
 const adminQuery = gql`
   query allAdmin {
@@ -36,97 +92,151 @@ const adminQuery = gql`
       lastName
       email
       lastLoginTimestamp
+      createdAt
+      role
       admin {
-        profilePicURL
         mobileNumber
         officeNumber
+        state
+        branch
       }
     }
   }
 `;
 
-const styles = theme => ({
-  addDealBtn: {},
-  dealsSummaryBtn: {
-    marginLeft: '25px',
-    backgroundColor: '#2995F3',
-    color: '#fff',
-    '&:hover': {
-      backgroundColor: '#2380D1',
-    },
-  },
-  wrapper: {
-    position: 'relative',
-  },
-  buttonsWrapper: {
-    display: 'flex',
-    marginBottom: '25px',
-    justifyContent: 'center',
-  },
-  tableFormWrapper: {
-    width: '100%',
-    zIndex: 2,
-    marginBottom: '20px',
-  },
-  paper: theme.mixins.gutters({
-    paddingTop: 16,
-    paddingBottom: 16,
-    marginTop: theme.spacing.unit * 3,
-    marginBottom: '20px',
-  }),
-  formControlWrapper: {
-    paddingLeft: theme.spacing.unit,
-    paddingRight: theme.spacing.unit,
-  },
-  formControlWrapperCenter: {
-    paddingLeft: theme.spacing.unit,
-    paddingRight: theme.spacing.unit,
-    textAlign: 'center',
-  },
-  submitBtnWrapper: {
-    display: 'flex',
-    justifyContent: 'center',
-    marginTop: '10px',
-  },
-  submitBtnWrapper2: {
-    display: 'flex',
-    justifyContent: 'center',
-    marginTop: '2px',
-  },
-  searchBoxHeader: {
-    marginBottom: '20px',
-  },
-  searchWrapper: {
-    marginBottom: '25px',
-  },
-  heading: {
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    width: '100%',
-    color: 'rgba(0,0,0,.7)',
-  },
-  selectInput: {
-    width: '167px',
-    marginTop: '0px',
-  },
-  checkIcon: {
-    marginLeft: '10px',
-    color: 'green',
-    fontSize: '.95rem',
-  },
-});
-
 @observer
 class AdminAreaAdminContainer extends Component {
-  state = {};
+  state = {
+    createAdminModalOpen: false,
+    snackbarOpen: false,
+    snackbarText: '',
+    snackbarUndoFunction: null,
+    addedAdmin: [],
+    deletedAdminIDS: [],
+    editAdminAnchorEl: null,
+    editAdminPasswordDialogBoxOpen: false,
+  };
+
+  toggleCreateAdminModal = state => {
+    const { createAdminModalOpen } = this.state;
+    this.setState({
+      createAdminModalOpen:
+        typeof state === 'boolean' ? state : !createAdminModalOpen,
+    });
+  };
+
+  confirmAdminCreated = newAdmin => {
+    const { addedAdmin } = this.state;
+    this.setState({
+      createAdminModalOpen: false,
+      snackbarOpen: true,
+      snackbarText: 'Admin created successfully',
+      addedAdmin: [...addedAdmin, newAdmin],
+      viewingAdminUUID: null,
+      deletedAdminIDS: [],
+    });
+  };
+
+  confirmAdminEdited = admin => {
+    const { addedAdmin } = this.state;
+    console.log(admin);
+    this.setState({
+      createAdminModalOpen: false,
+      snackbarOpen: true,
+      snackbarText: 'Admin updated successfully',
+      addedAdmin: [...addedAdmin, admin],
+      viewingAdminUUID: null,
+      editAdminModalOpen: false,
+      viewingAdminRole: null,
+    });
+  };
+
+  deleteAdmin = adminID => {
+    deleteAdmin(adminID)
+      .then(res => {
+        if (res.error) {
+          console.log(res.error);
+          return;
+        } else if (res.error) {
+          conspole.log(res.error);
+          return;
+        }
+
+        this.setState({
+          snackbarOpen: true,
+          snackbarText: 'Admin deleted successfully!',
+          editAdminModalOpen: false,
+          deletedAdminIDS: [...this.state.deletedAdminIDS, adminID],
+        });
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
+
+  handleCloseSnackbar = () => {
+    this.setState({
+      snackbarOpen: false,
+      snackbarUndoFunction: null,
+    });
+  };
+
+  openAdminInfoViewDialogBox = () => {
+    const { viewingAdminUUID, viewingAdminRole } = this.state;
+    this.setState({
+      editAdminModalOpen: true,
+      viewingAdminUUID,
+      viewingAdminRole,
+    });
+  };
+
+  closeAdminInfoViewDialogBox = (bool = true) => {
+    this.setState({ editAdminModalOpen: false });
+  };
+
+  handleEditAdminMenuClick = (event, viewingAdminUUID, viewingAdminRole) => {
+    console.log(event.currentTarget);
+    this.setState({
+      editAdminAnchorEl: event.currentTarget,
+      viewingAdminUUID,
+      viewingAdminRole,
+    });
+  };
+
+  handleEditAdminMenuClose = () => {
+    this.setState({ editAdminAnchorEl: null });
+  };
+
+  editPasswordFormSubmittedSuccessfully = () => {
+    this.setState({
+      editAdminPasswordDialogBoxOpen: false,
+      snackbarOpen: true,
+      snackbarText: 'Password successfully changed!',
+    });
+  };
+
+  openEditAdminPasswordDialogBox = () => {
+    this.setState({
+      editAdminPasswordDialogBoxOpen: true,
+    });
+  };
+
+  closeEditAdminPasswordDialogBox = () => {
+    this.setState({
+      editAdminPasswordDialogBoxOpen: false,
+    });
+  };
 
   render() {
-    const { classes } = this.props;
-    const { createAgentModalOpen } = this.state;
+    const { classes, userUUID, userRole } = this.props;
+    const {
+      createAdminModalOpen,
+      editAdminModalOpen,
+      editAdminAnchorEl,
+    } = this.state;
 
     return (
-      <Query query={adminQuery}>
+      <Query query={adminQuery} ssr={false}>
         {({ loading, error, data }) => {
           console.log(data);
           if (loading)
@@ -137,6 +247,8 @@ class AdminAreaAdminContainer extends Component {
                   justifyContent: 'center',
                   alignItems: 'center',
                   height: 'calc(100vh - 110px)',
+                  boxShadow:
+                    '0px 1px 3px 0px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 2px 1px -1px rgba(0, 0, 0, 0.12)',
                 }}
               >
                 <Loader color="#f44336" loading />
@@ -146,6 +258,24 @@ class AdminAreaAdminContainer extends Component {
           // 'error connecting to server' message
           if (error) return `Error!: ${error}`;
 
+          const intAdmin = {};
+
+          const allAdmin = [...data.allAdmin, ...this.state.addedAdmin];
+
+          allAdmin.forEach(admin => {
+            intAdmin[admin.uuid] = admin;
+          });
+
+          let uniqueAdmin = [];
+
+          Object.keys(intAdmin).forEach(key => {
+            uniqueAdmin.push(intAdmin[key]);
+          });
+
+          uniqueAdmin = uniqueAdmin.filter(
+            admin => !this.state.deletedAdminIDS.includes(admin.uuid)
+          );
+
           return (
             <div className={classes.wrapper}>
               <div>
@@ -153,7 +283,7 @@ class AdminAreaAdminContainer extends Component {
                   <Button
                     variant="raised"
                     onClick={this.toggleCreateAdminModal}
-                    classes={{ root: classes.dealsSummaryBtn }}
+                    classes={{ root: classes.addAdminBtn }}
                   >
                     <AddIcon />
                     Create Admin
@@ -161,7 +291,82 @@ class AdminAreaAdminContainer extends Component {
                 </div>
               </div>
 
-              <AdminAreaAdminTableContainer allAdmin={data.allAdmin} />
+              <AdminAreaAdminTableContainer
+                allAdmin={uniqueAdmin}
+                handleEditAdminMenuClick={this.handleEditAdminMenuClick}
+                closeAdminInfoViewDialogBox={this.closeAdminInfoViewDialogBox}
+                userRole={this.props.userRole}
+                userUUID={this.props.userUUID}
+              />
+
+              <EditAdminDialogBox
+                open={editAdminModalOpen}
+                toggleCreateAdminModal={this.toggleCreateAdminModal}
+                confirmAdminCreated={this.confirmAdminCreated}
+                viewingAdminID={this.state.viewingAdminID}
+                userRole={this.props.userRole}
+                closeAdminInfoViewDialogBox={this.closeAdminInfoViewDialogBox}
+                viewingAdminUUID={this.state.viewingAdminUUID}
+                confirmAdminEdited={this.confirmAdminEdited}
+                deleteAdmin={this.deleteAdmin}
+              />
+
+              <CreateAdminDialogBox
+                open={createAdminModalOpen}
+                toggleCreateAdminModal={this.toggleCreateAdminModal}
+                confirmAdminCreated={this.confirmAdminCreated}
+              />
+
+              <EditAdminPasswordDialogBox
+                closeEditAdminPasswordDialogBox={
+                  this.closeEditAdminPasswordDialogBox
+                }
+                open={this.state.editAdminPasswordDialogBoxOpen}
+                viewingAdminUUID={this.state.viewingAdminUUID}
+                editPasswordFormSubmittedSuccessfully={
+                  this.editPasswordFormSubmittedSuccessfully
+                }
+              />
+
+              <Menu
+                id="simple-menu"
+                disableEnforceFocus
+                anchorEl={() => {
+                  if (isBrowser) {
+                    return document.getElementById('viewTableIcon');
+                  }
+                }}
+                open={Boolean(editAdminAnchorEl)}
+                onClose={this.handleEditAdminMenuClose}
+              >
+                <div className={classes.popupMenuTitle}>Edit</div>
+                <MenuItem
+                  classes={{ root: classes.menuItemAccept }}
+                  onClick={() => {
+                    this.handleEditAdminMenuClose();
+                    this.openAdminInfoViewDialogBox();
+                  }}
+                >
+                  Information
+                </MenuItem>
+                <MenuItem
+                  classes={{ root: classes.menuItemAccept }}
+                  onClick={() => {
+                    this.handleEditAdminMenuClose();
+                    this.openEditAdminPasswordDialogBox();
+                  }}
+                >
+                  Password
+                </MenuItem>
+                <MenuItem
+                  classes={{ root: classes.menuItem }}
+                  onClick={() => {
+                    this.handleEditAdminMenuClose();
+                  }}
+                >
+                  Cancel
+                </MenuItem>
+              </Menu>
 
               <Snackbar
                 classes={{ root: classes.snackBar }}

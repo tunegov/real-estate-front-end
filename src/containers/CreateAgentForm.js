@@ -3,6 +3,7 @@ import { observer } from 'mobx-react';
 import axios from 'axios';
 import CreateAgentForm from '../components/forms/CreateAgentForm';
 import { round } from '../utils/Math';
+import { capitalize } from '../utils/stringUtils';
 
 @observer
 class CreateAgentContainer extends Component {
@@ -78,27 +79,19 @@ class CreateAgentContainer extends Component {
   onSubmit = (values, e, formApi) => {
     const { imageFile, imageFileConfirmed } = this.state;
     const returnValues = {
+      ...values,
+      firstName: capitalize(values.firstName),
+      lastName: capitalize(values.lastName),
       fileName: imageFile && imageFileConfirmed ? imageFile.name : undefined,
       fileType: imageFile && imageFileConfirmed ? imageFile.type : undefined,
     };
 
-    this.props.setIsSubmittingForm();
+    delete returnValues.profilePicture;
 
-    Object.keys(values).forEach(key => {
-      if (key === 'profilePicture' || typeof values[key] === 'undefined')
-        return;
-
-      if (key === 'agentType') {
-        returnValues[key] = values[key].slice(0, -1);
-      } else {
-        returnValues[key] = values[key];
-      }
-    });
+    this.props.setFormSubmitted();
 
     this.props.createAgent(returnValues).then(result => {
       const { signedURL, error, agent } = result;
-
-      this.props.setNotSubmittingForm();
 
       if (error) {
         if (error.field === 'email') {
@@ -106,6 +99,7 @@ class CreateAgentContainer extends Component {
           formApi.setError(error.field, error.message);
           formElement.scrollTop = formElement.scrollHeight;
         }
+        this.props.setFormSubmitted(false);
         return;
       }
 
@@ -129,12 +123,19 @@ class CreateAgentContainer extends Component {
             },
           })
           .then(() => {
-            this.props.setAgentProfilePic(
-              agent.uuid,
-              this.state.imageFile.name
-            );
+            this.props
+              .setAgentProfilePic(agent.uuid, this.state.imageFile.name)
+              .then(() => {
+                this.props.confirmAgentCreated();
+                this.props.setFormSubmitted(false);
+              })
+              .catch(error => {
+                console.log(error);
+                this.props.setFormSubmitted(false);
+              });
           })
           .catch(error => {
+            this.props.setFormSubmitted(false);
             console.log(error);
           });
       } else {

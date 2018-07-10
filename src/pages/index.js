@@ -4,7 +4,7 @@ import isBrowser from 'is-browser';
 import Layout from '../frontEndComponents/FrontEndLayout';
 import { initStore } from '../models';
 import withData from '../lib/withData';
-import JumbotronHeader from '../frontEndContainers/JumbotronHeader';
+import ComingSoonJumbotronHeader from '../frontEndContainers/ComingSoonJumbotronHeader';
 import HowItWorksSection from '../frontEndComponents/HowItWorksSection';
 import FeaturedPropertySection from '../frontEndComponents/FeaturedPropertySection';
 
@@ -12,7 +12,10 @@ import FeaturedPropertySection from '../frontEndComponents/FeaturedPropertySecti
 class Home extends React.Component {
   static getInitialProps({ req }) {
     const isServer = !!req;
-    return { cookieJWTData: req && req.cookies ? req.cookies.jwtData : null, isServer };
+    return {
+      cookieJWTData: req && req.cookies ? req.cookies.jwtData : null,
+      isServer,
+    };
   }
 
   constructor(props) {
@@ -25,10 +28,12 @@ class Home extends React.Component {
 
   render() {
     return (
-      <Layout UserStore={this.store.UserStore} >
-        <JumbotronHeader />
-        <HowItWorksSection />
-        <FeaturedPropertySection />
+      <Layout UserStore={this.store.UserStore}>
+        <ComingSoonJumbotronHeader />
+        {/*
+          <HowItWorksSection />
+          <FeaturedPropertySection />
+        */}
       </Layout>
     );
   }

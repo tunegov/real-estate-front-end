@@ -80,6 +80,8 @@ const defaultColumnWidths = [
   { columnName: 'mobileNumber', width: 150 },
   { columnName: 'companyNumberAndExt', width: 150 },
   { columnName: 'lastLoginTimestamp', width: 180 },
+  { columnName: 'createdAt', width: 180 },
+  { columnName: 'view', width: 100 },
 ];
 
 const pageSizes = [5, 10, 15, 20, 50, 100, 0];
@@ -145,7 +147,7 @@ class AdminAreaAdminTable extends Component {
   render() {
     const { classes, columns, rows, lgViewport } = this.props;
     return (
-      <div className={classes.root}>
+      <div className={classes.root} id="adminAreaAdminTable">
         <Grid rows={rows} columns={columns} getRowId={getRowId}>
           <PhotoTypeProvider for={['photo']} />
           <ViewTypeProvider for={['view']} />

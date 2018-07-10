@@ -65,6 +65,7 @@ class Invoices extends Component {
       viewingInvoiceID: '',
       viewingInvoiceStatus: '',
       deletedInvoiceIDS: [],
+      userUUID: this.props.userUUID,
     };
   }
 
@@ -124,6 +125,9 @@ class Invoices extends Component {
         if (res.error) {
           console.log(res.error);
           return;
+        } else if (res.userErrors.length) {
+          res.userErrors.forEach(error => console.log(error));
+          return;
         }
 
         this.setState({
@@ -155,7 +159,11 @@ class Invoices extends Component {
     } = this;
 
     return (
-      <Query query={invoicesQuery} variables={{ uuid: userUUID }}>
+      <Query
+        query={invoicesQuery}
+        variables={{ uuid: userUUID || this.state.userUUID }}
+        ssr={false}
+      >
         {({ loading, error, data }) => {
           if (loading)
             return (

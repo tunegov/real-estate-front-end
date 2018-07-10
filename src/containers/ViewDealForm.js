@@ -63,6 +63,9 @@ export const dealQuery = gql`
       alreadyTurnedFundsIn
       shouldSendApprovalTextMessageNotification
       status
+      bonusPercentageAddedByAdmin
+      netAgentCommission
+      netCompanyCommission
     }
   }
 `;
@@ -91,6 +94,7 @@ class ViewDealFormContainer extends Component {
       filesUploadedSuccessfully: null,
       formSubmissionBegun: false,
       submittingFormToServer: false,
+      dealBonus: '0',
     };
   }
 
@@ -474,6 +478,7 @@ class ViewDealFormContainer extends Component {
     console.log(errs);
     console.log(onSubmitError);
     console.log(formApi.errors);
+    this.props.setFormSubmitted(false);
   };
 
   render() {
@@ -535,6 +540,10 @@ class ViewDealFormContainer extends Component {
                   submittingFormToServer={this.state.submittingFormToServer}
                   isEditingDeal={isEditingDeal}
                   isViewType={isViewType}
+                  userRole={this.props.userRole}
+                  onBonusChange={this.props.onBonusChange}
+                  dealBonus={this.props.dealBonus}
+                  resetDealBonus={this.props.resetDealBonus}
                   setHasSetNewMgmtOrCobrokeCompany={
                     this.setHasSetNewMgmtOrCobrokeCompany
                   }

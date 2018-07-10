@@ -1,10 +1,9 @@
 const globalStyles = `
   html {
     height: 100%;
-    overflow: hidden;
   }
   body {
-    overflow: auto;
+    overflow: hidden;
     position: relative;
     min-height: 100%;
     min-width: 100%;
@@ -93,6 +92,15 @@ const globalStyles = `
   }
   thead[class^="MuiTableHead"] > tr th:hover div[class^="TableHeaderCell-resizeHandleLine"] {
     background-color: #64b5f6;
+  }
+  .deal-table-wrapper div[class^="TableHeaderCell-container"] {
+    display: flex
+  }
+  .deal-table-wrapper div[class^="TableHeaderCell-container"] > div[class^="TableHeaderCell-content"] {
+    order: 2;
+  }
+  .deal-table-wrapper div[class^="TableHeaderCell-container"] > div:not([class^="TableHeaderCell-content"]) {
+    margin-right: 5px;
   }
 `;
 
