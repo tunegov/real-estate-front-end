@@ -116,6 +116,9 @@ const styles = theme => ({
     fontWeight: 500,
     borderRadius: '5px',
   },
+  placeholderWrapper: {
+    cursor: 'default',
+  },
 });
 
 @observer
@@ -123,7 +126,12 @@ class AgentOfTheMonth extends Component {
   renderPlaceholder = () => {
     const { classes } = this.props;
     return (
-      <div className={classNames(classes.agentBoxWrapper)}>
+      <div
+        className={classNames(
+          classes.agentBoxWrapper,
+          classes.placeholderWrapper
+        )}
+      >
         <span className={classes.label}>Agent of the Quarter</span>
         <div className={classes.placeholder}>Tallying up the numbers...</div>
       </div>

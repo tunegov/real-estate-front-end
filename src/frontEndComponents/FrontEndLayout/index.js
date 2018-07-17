@@ -52,10 +52,12 @@ class Layout extends Component {
           />
           <link
             href="https://fonts.googleapis.com/css?family=Alegreya|Alegreya+Sans"
+            type="text/css"
             rel="stylesheet"
           />
           <link
             href="https://fonts.googleapis.com/css?family=Playfair+Display|Raleway"
+            type="text/css"
             rel="stylesheet"
           />
           <style dangerouslySetInnerHTML={{ __html: globalStyles }} />

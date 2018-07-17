@@ -57,7 +57,6 @@ export default class MyDocument extends Document {
     return (
       <html lang="en">
         <Head>
-          <title>My page</title>
           <meta charSet="utf-8" />
           {/* Use minimum-scale=1 to enable GPU rasterization */}
           <meta
@@ -76,7 +75,6 @@ export default class MyDocument extends Document {
             type="text/css"
             href="/_next/static/style.css"
           />
-          <script id="stripe-js" src="https://js.stripe.com/v3/" async />
           <style dangerouslySetInnerHTML={{ __html: this.props.css }} />
           {this.props.styleTags}
         </Head>

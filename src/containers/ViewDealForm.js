@@ -8,64 +8,64 @@ import getDealUploadsSignedURLS from '../effects/deals/getDealUploadsSignedURLS'
 import uploadFile from '../effects/uploadFile';
 import updateDeal from '../effects/deals/updateDeal';
 import { capitalize } from '../utils/stringUtils';
+import { admin, superAdmin } from '../constants/userTypes';
 
 const Loader = BounceLoader;
 
-export const agentsQuery = gql`
-  query agents {
-    agents {
-      firstName
-      lastName
-      uuid
-    }
-  }
-`;
-
-export const dealQuery = gql`
-  query deal($uuid: String!) {
-    deal(uuid: $uuid) {
-      dealID
-      date
-      agentName
-      otherAgents {
-        agentID
+const viewDealFormQuery = gql`
+  query viewDealForm($uuid: String!) {
+    viewDealForm(uuid: $uuid) {
+      formSelectItems
+      agents {
+        firstName
+        lastName
+        uuid
+      }
+      deal {
+        dealID
+        date
         agentName
+        otherAgents {
+          agentID
+          agentName
+        }
+        agentType
+        leadSource
+        dealType
+        propertyAddress
+        state
+        city
+        apartmentNumber
+        managementOrCobrokeCompany
+        price
+        clientName
+        clientEmail
+        paymentItems {
+          paymentType
+          checkOrTransactionNumber
+          amount
+        }
+        paymentsTotal
+        deductionItems {
+          deductionType
+          description
+          amount
+        }
+        deductionsTotal
+        total
+        agentNotes
+        agencyDisclosureForm
+        contractOrLeaseForms
+        agentPaymentType
+        ACHAccountNumber
+        fundsPaidBy
+        alreadyTurnedFundsIn
+        shouldSendApprovalTextMessageNotification
+        status
+        bonusPercentageAddedByAdmin
+        netAgentCommission
+        netCompanyCommission
       }
-      agentType
-      leadSource
-      dealType
-      propertyAddress
-      state
-      city
-      apartmentNumber
-      managementOrCobrokeCompany
-      price
-      clientName
-      clientEmail
-      paymentItems {
-        paymentType
-        checkOrTransactionNumber
-        amount
-      }
-      paymentsTotal
-      deductionItems {
-        deductionType
-        description
-        amount
-      }
-      deductionsTotal
-      total
-      agentNotes
-      agencyDisclosureForm
-      contractOrLeaseForms
-      agentPaymentType
-      fundsPaidBy
-      alreadyTurnedFundsIn
-      shouldSendApprovalTextMessageNotification
-      status
-      bonusPercentageAddedByAdmin
-      netAgentCommission
-      netCompanyCommission
     }
   }
 `;
@@ -282,6 +282,10 @@ class ViewDealFormContainer extends Component {
     delete returnObject.state;
     delete returnObject.otherAgents;
 
+    if (this.props.userRole !== admin && this.props.userRole !== superAdmin) {
+      delete returnObject.bonusPercentageAddedByAdmin;
+    }
+
     returnObject.price = Number(returnObject.price);
     returnObject.paymentItems = returnObject.paymentItems.map(item => ({
       ...item,
@@ -322,12 +326,11 @@ class ViewDealFormContainer extends Component {
           let failed = false;
 
           if (res.otherError) {
-            console.log(res.otherError);
+            this.props.openRequestErrorSnackbar(res.otherError);
             failed = true;
           }
 
           if (res.userErrors.length) {
-            res.userErrors.forEach(error => console.log(error));
             failed = true;
           }
 
@@ -343,15 +346,14 @@ class ViewDealFormContainer extends Component {
         })
         .catch(err => {
           this.props.setFormSubmitted(false);
-          console.log(err);
+          this.props.openRequestErrorSnackbar();
         });
-      console.log(returnObject);
       return;
     }
 
     getDealUploadsSignedURLS(uploadItems).then(response => {
       if (response.error) {
-        console.log(response.error);
+        this.props.openRequestErrorSnackbar(response.error);
         return;
       }
 
@@ -366,7 +368,7 @@ class ViewDealFormContainer extends Component {
       });
 
       if (errors.length) {
-        errors.forEach(error => console.log(error));
+        this.props.openRequestErrorSnackbar(errors[0]);
         return;
       }
 
@@ -404,12 +406,11 @@ class ViewDealFormContainer extends Component {
               let failed = false;
 
               if (res.otherError) {
-                console.log(res.otherError);
+                this.props.openRequestErrorSnackbar(res.otherError);
                 failed = true;
               }
 
               if (res.userErrors.length) {
-                res.userErrors.forEach(error => console.log(error));
                 failed = true;
               }
 
@@ -420,10 +421,9 @@ class ViewDealFormContainer extends Component {
             })
             .catch(err => {
               this.props.setFormSubmitted(false);
-              console.log(err);
+              this.props.openRequestErrorSnackbar();
             });
 
-          console.log(returnObject);
           return;
         }
 
@@ -467,7 +467,7 @@ class ViewDealFormContainer extends Component {
               thisRef
             )
           )
-          .catch(err => console.log(err));
+          .catch(err => this.props.openRequestErrorSnackbar());
       };
 
       recursiveUploads(items, returnObject, this);
@@ -493,84 +493,89 @@ class ViewDealFormContainer extends Component {
 
     return (
       <Query
-        query={dealQuery}
+        query={viewDealFormQuery}
         variables={{ uuid: dealID }}
         fetchPolicy="cache-and-network"
       >
-        {({ loading: loadingOne, error: errorOne, data: dataOne }) => (
-          <Query query={agentsQuery}>
-            {({ loading: loadingTwo, error: errorTwo, data: dataTwo }) => {
-              if (loadingOne || loadingTwo)
-                return (
-                  <div style={{ display: 'flex', justifyContent: 'center' }}>
-                    <Loader color="#f44336" loading />
-                  </div>
-                );
-              // TODO: change the error message to a generic
-              // 'error connecting to server' message
-              if (errorOne || errorTwo)
-                return `Error!: ${errorOne || errorTwo}`;
+        {({ loading, error, data }) => {
+          if (loading)
+            return (
+              <div style={{ display: 'flex', justifyContent: 'center' }}>
+                <Loader color="#f44336" loading />
+              </div>
+            );
 
-              const submittedDeal = dataOne.deal;
+          if (error) {
+            console.log(error);
+            return (
+              <div style={{ textAlign: 'center' }}>
+                We're sorry. There was an error processing your request.
+              </div>
+            );
+          }
 
-              const agents = dataTwo.agents.filter(
+          const {
+            deal,
+            agents: agentItems,
+            formSelectItems,
+          } = data.viewDealForm;
+
+          const agents = agentItems || [];
+
+          const submittedDeal = deal;
+
+          return (
+            <SubmitDealForm
+              setInitialContainerState={this.setInitialContainerState}
+              paymentsTotal={`${this.state.paymentsTotal}`}
+              deductionsTotal={`${this.state.deductionsTotal}`}
+              total={this.state.total}
+              submittedDeal={submittedDeal}
+              agents={agents.filter(
                 agent => (uuid ? agent.uuid !== uuid : agent)
-              );
-
-              return (
-                <SubmitDealForm
-                  setInitialContainerState={this.setInitialContainerState}
-                  paymentsTotal={`${this.state.paymentsTotal}`}
-                  deductionsTotal={`${this.state.deductionsTotal}`}
-                  total={this.state.total}
-                  submittedDeal={submittedDeal}
-                  agents={agents}
-                  onSubmit={this.onSubmit}
-                  setAgencyDisclosureForm={this.setAgencyDisclosureForm}
-                  setContractOrLeaseForms={this.setContractOrLeaseForms}
-                  agencyDisclosureForm={agencyDisclosureForm}
-                  contractOrLeaseForms={contractOrLeaseForms}
-                  paymentAmountChangeHandler={this.paymentAmountChangeHandler}
-                  addedManagementCompanies={this.state.addedManagementCompanies}
-                  newMgmtOrCobrokeCompany={this.state.newMgmtOrCobrokeCompany}
-                  uplodingFileProgress={this.state.uplodingFileProgress}
-                  isUploadingFile={this.state.isUploadingFile}
-                  uplodingFileText={this.state.uplodingFileText}
-                  formSubmissionBegun={this.state.formSubmissionBegun}
-                  submittingFormToServer={this.state.submittingFormToServer}
-                  isEditingDeal={isEditingDeal}
-                  isViewType={isViewType}
-                  userRole={this.props.userRole}
-                  onBonusChange={this.props.onBonusChange}
-                  dealBonus={this.props.dealBonus}
-                  resetDealBonus={this.props.resetDealBonus}
-                  setHasSetNewMgmtOrCobrokeCompany={
-                    this.setHasSetNewMgmtOrCobrokeCompany
-                  }
-                  toggleChoosingMgmtCoBrokeCompany={
-                    this.toggleChoosingMgmtCoBrokeCompany
-                  }
-                  handleMgmtOrCobrokeCompanyChange={
-                    this.handleMgmtOrCobrokeCompanyChange
-                  }
-                  choosingMgmtCoBrokeCompany={
-                    this.state.choosingMgmtCoBrokeCompany
-                  }
-                  deductionAmountChangeHandler={
-                    this.deductionAmountChangeHandler
-                  }
-                  subtractPaymentValueFromState={
-                    this.subtractPaymentValueFromState
-                  }
-                  subtractDeductionValueFromState={
-                    this.subtractDeductionValueFromState
-                  }
-                  {...rest}
-                />
-              );
-            }}
-          </Query>
-        )}
+              )}
+              managementCobrokeCompanyItems={formSelectItems || []}
+              onSubmit={this.onSubmit}
+              setAgencyDisclosureForm={this.setAgencyDisclosureForm}
+              setContractOrLeaseForms={this.setContractOrLeaseForms}
+              agencyDisclosureForm={agencyDisclosureForm}
+              contractOrLeaseForms={contractOrLeaseForms}
+              paymentAmountChangeHandler={this.paymentAmountChangeHandler}
+              addedManagementCompanies={this.state.addedManagementCompanies}
+              newMgmtOrCobrokeCompany={this.state.newMgmtOrCobrokeCompany}
+              uplodingFileProgress={this.state.uplodingFileProgress}
+              isUploadingFile={this.state.isUploadingFile}
+              uplodingFileText={this.state.uplodingFileText}
+              formSubmissionBegun={this.state.formSubmissionBegun}
+              submittingFormToServer={
+                this.state.submittingFormToServer ||
+                this.props.submittingRequestToServer
+              }
+              isEditingDeal={isEditingDeal}
+              isViewType={isViewType}
+              userRole={this.props.userRole}
+              onBonusChange={this.props.onBonusChange}
+              dealBonus={this.props.dealBonus}
+              resetDealBonus={this.props.resetDealBonus}
+              setHasSetNewMgmtOrCobrokeCompany={
+                this.setHasSetNewMgmtOrCobrokeCompany
+              }
+              toggleChoosingMgmtCoBrokeCompany={
+                this.toggleChoosingMgmtCoBrokeCompany
+              }
+              handleMgmtOrCobrokeCompanyChange={
+                this.handleMgmtOrCobrokeCompanyChange
+              }
+              choosingMgmtCoBrokeCompany={this.state.choosingMgmtCoBrokeCompany}
+              deductionAmountChangeHandler={this.deductionAmountChangeHandler}
+              subtractPaymentValueFromState={this.subtractPaymentValueFromState}
+              subtractDeductionValueFromState={
+                this.subtractDeductionValueFromState
+              }
+              {...rest}
+            />
+          );
+        }}
       </Query>
     );
   }

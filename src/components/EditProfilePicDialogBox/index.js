@@ -57,9 +57,9 @@ class CreateAgentDialogBox extends Component {
     };
   }
 
-  setFormSubmitted = () => {
+  setFormSubmitted = (bool = true) => {
     this.setState({
-      formSubmitted: true,
+      formSubmitted: bool,
     });
   };
 
@@ -122,14 +122,12 @@ class CreateAgentDialogBox extends Component {
             <Button onClick={closeProfilePicEditor} color="primary">
               Cancel
             </Button>
-            {!editProfilePicFormSubmitted ? (
-              <Button
-                onClick={() => this.state.formApi.submitForm()}
-                color="primary"
-              >
-                Submit{' '}
-              </Button>
-            ) : null}
+            <Button
+              onClick={() => this.state.formApi.submitForm()}
+              color="primary"
+            >
+              Submit{' '}
+            </Button>
           </DialogActions>
         ) : null}
       </Dialog>

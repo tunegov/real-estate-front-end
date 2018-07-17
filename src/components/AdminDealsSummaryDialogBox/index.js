@@ -9,7 +9,7 @@ import Dialog, {
 import Divider from 'material-ui/Divider';
 import { withStyles } from 'material-ui/styles';
 import Button from 'material-ui/Button';
-import DealsSummaryContainer from '../../containers/DealsSummary';
+import AdminDealsSummaryContainer from '../../containers/AdminDealsSummary';
 const styles = theme => ({
   paper: {
     width: '90%',
@@ -39,7 +39,7 @@ const styles = theme => ({
 });
 
 @observer
-class SubmitDealDialogBox extends Component {
+class AdminDealsSummaryDialogBox extends Component {
   render() {
     const {
       fullScreen,
@@ -56,17 +56,14 @@ class SubmitDealDialogBox extends Component {
         fullScreen={fullScreen}
       >
         <DialogTitle
-          id="form-dialog-title"
+          id="dealsSummaryDialog"
           classes={{ root: classes.formTitle }}
         >
           Deals Summary
         </DialogTitle>
         <Divider />
         <DialogContent classes={{ root: classes.dialogContent }}>
-          <DealsSummaryContainer
-            userUUID={this.props.userUUID}
-            deals={this.props.deals}
-          />
+          <AdminDealsSummaryContainer deals={this.props.deals} />
         </DialogContent>
         <DialogActions classes={{ root: classes.dialogActions }}>
           <Button onClick={toggleDealsSummaryDialogBox} color="primary">
@@ -78,4 +75,6 @@ class SubmitDealDialogBox extends Component {
   }
 }
 
-export default withMobileDialog()(withStyles(styles)(SubmitDealDialogBox));
+export default withMobileDialog()(
+  withStyles(styles)(AdminDealsSummaryDialogBox)
+);

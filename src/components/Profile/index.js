@@ -10,6 +10,7 @@ import CloseIcon from '@material-ui/icons/Close';
 import Input from 'buildo-react-components/lib/Input';
 import Menu from 'material-ui/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
+import { BounceLoader } from 'react-spinners';
 import {
   agent as agentRole,
   admin,
@@ -26,6 +27,8 @@ import {
 } from 'react-icons/lib/fa';
 import { capitalize } from '../../utils/stringUtils';
 import CustomInputMask from '../CustomInputMask';
+
+const Loader = BounceLoader;
 
 const styles = theme => ({
   root: {
@@ -54,6 +57,9 @@ const styles = theme => ({
   },
   name: {
     marginBottom: '5px',
+    '@media (max-height: 500px)': {
+      fontSize: '1.4rem',
+    },
   },
   title: {
     color: 'rgba(0,0,0,.7)',
@@ -71,6 +77,15 @@ const styles = theme => ({
       height: 'auto',
     },
   },
+  profilePicLoader: {
+    position: 'absolute',
+    top: 0,
+    right: 0,
+    bottom: 0,
+    left: 0,
+    backgroundColor: '#f1eded',
+    zIndex: 1,
+  },
   profilePic: {
     position: 'absolute',
     top: 0,
@@ -84,11 +99,23 @@ const styles = theme => ({
     background: 'linear-gradient(45deg, #45484d 0%,#000000 100%)',
   },
   profilePicSubstitute: {
-    position: 'relative',
-    paddingTop: '100%',
+    position: 'absolute',
+    top: 0,
+    right: 0,
+    bottom: 0,
+    left: 0,
+    padding: 20,
+    textAlign: 'center',
     width: '100%',
+    height: '100%',
     background: 'linear-gradient(45deg, #45484d 0%,#000000 100%)',
     color: '#fff',
+    width: '325px',
+    height: '325px',
+    [theme.breakpoints.down('sm')]: {
+      width: '100%',
+      height: 'auto',
+    },
   },
   profilePicSubstituteText: {
     positon: 'absolute',
@@ -106,17 +133,24 @@ const styles = theme => ({
     flexDirection: 'column',
     alignItems: 'center',
     fontSize: '1.1rem',
+    '@media (max-width: 800px)': {
+      fontSize: '0.9rem',
+    },
   },
   details: {
     display: 'flex',
     width: '100%',
     textAlign: 'center',
     marginBottom: '5px',
+    '@media (max-width: 800px)': {
+      fontSize: '0.9rem',
+    },
   },
   detailsTitle: {
     display: 'inline-block',
     fontWeight: '500',
     marginBottom: '8px',
+    marginRight: 10,
   },
   detailsInfo: {
     marginLeft: 'auto',
@@ -126,11 +160,17 @@ const styles = theme => ({
     '& > span': {
       lineHeight: '1.4rem',
     },
+    '@media (max-width: 800px)': {
+      fontSize: '0.8rem',
+    },
   },
   descriptionTitle: {
     fontSize: '1.1rem',
     fontWeight: '500',
     marginBottom: '10px',
+    '@media (max-width: 500px)': {
+      fontSize: '0.9rem',
+    },
   },
   socialMediaWrapper: {
     display: 'flex',
@@ -168,6 +208,10 @@ const styles = theme => ({
     '&:hover': {
       borderColor: 'rgba(0,0,0,.9)',
       color: 'rgba(0,0,0,.8)',
+    },
+    '@media (max-width: 800px)': {
+      width: '45px',
+      height: '45px',
     },
   },
   editBtn: {
@@ -308,8 +352,26 @@ class Profile extends Component {
       open: false,
       Transition: null,
       editAgentAnchorEl: null,
+      imageError: false,
     };
   }
+
+  errorTimeout;
+
+  componentDidMount = () => {
+    if (this._img) {
+      this._img.src = this.props.agent.agent.profilePicURL;
+      this.errorTimeout = setTimeout(() => {
+        if (this.props.isLoadingProfilePicture) {
+          this.setState({ imageError: true });
+        }
+      }, 15000);
+    }
+  };
+
+  componentWillUnmount = () => {
+    if (this.errorTimeout) clearTimeout(this.errorTimeout);
+  };
 
   handleClick = () => {
     this.setState({ open: true });
@@ -347,6 +409,81 @@ class Profile extends Component {
     this.setState({ editAgentAnchorEl: null });
   };
 
+  renderProfilePic = () => {
+    const {
+      isLoadingProfilePicture,
+      classes,
+      agent,
+      currentUserUUID,
+      currentUserRole,
+      toggleIsLoadingProfilePicture,
+      openProfilePicEditor,
+    } = this.props;
+    const canEdit = currentUserRole === admin || currentUserRole === superAdmin;
+
+    return (
+      <div className={classes.profilePicWrapper}>
+        {isLoadingProfilePicture &&
+          agent.agent.profilePicURL &&
+          !this.state.imageError && (
+            <div className={classes.profilePicLoader}>
+              <div className={classes.profilePicSubstituteText}>
+                <div
+                  style={{
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    height: '100%',
+                    width: '100%',
+                  }}
+                >
+                  <Loader color="#f44336" loading />
+                </div>
+              </div>
+            </div>
+          )}
+        {agent.agent.profilePicURL ? (
+          !this.state.imageError ? (
+            <img
+              id="agentProfilePic"
+              className={classes.profilePic}
+              ref={img => (this._img = img)}
+              alt="Agent"
+              onLoad={() => {
+                this.setState({ imageError: false });
+                toggleIsLoadingProfilePicture(false);
+              }}
+              onError={() => this.setState({ imageError: true })}
+            />
+          ) : (
+            <div className={classes.profilePicSubstitute}>
+              <div className={classes.profilePicSubstituteText}>
+                Error loading profile picture...
+              </div>
+            </div>
+          )
+        ) : (
+          <div className={classes.profilePicSubstitute}>
+            <div className={classes.profilePicSubstituteText}>
+              No profile photo available
+            </div>
+          </div>
+        )}
+
+        {canEdit && (
+          <span className={classes.editProfilePicBtnsWrapper}>
+            <button
+              className={classes.editProfilePicBtn}
+              onClick={openProfilePicEditor}
+            >
+              <FaPencil />
+            </button>
+          </span>
+        )}
+      </div>
+    );
+  };
+
   render() {
     const {
       agent,
@@ -364,6 +501,8 @@ class Profile extends Component {
       currentUserUUID,
       openEditAgentDialogBox,
       openEditAgentPasswordDialogBox,
+      isLoadingProfilePicture,
+      toggleIsLoadingProfilePicture,
     } = this.props;
     const {
       firstName,
@@ -440,34 +579,7 @@ class Profile extends Component {
           </MenuItem>
         </Menu>
         <div className={classes.leftColumnWrapper}>
-          <div className={classes.profilePicWrapper}>
-            {profilePicURL ? (
-              <img
-                id="agentProfilePic"
-                className={classes.profilePic}
-                src={profilePicURL}
-                alt="Agent"
-              />
-            ) : (
-              <div className={classes.profilePicSubstitute}>
-                <div className={classes.profilePicSubstituteText}>
-                  No profile photo available
-                </div>
-              </div>
-            )}
-
-            {canEdit &&
-              (currentUserRole === admin || currentUserRole === superAdmin) && (
-                <span className={classes.editProfilePicBtnsWrapper}>
-                  <button
-                    className={classes.editProfilePicBtn}
-                    onClick={openProfilePicEditor}
-                  >
-                    <FaPencil />
-                  </button>
-                </span>
-              )}
-          </div>
+          {this.renderProfilePic()}
 
           <div className={classes.detailsWrapper}>
             <div className={classNames(classes.email, classes.details)}>

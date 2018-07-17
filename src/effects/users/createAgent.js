@@ -1,13 +1,28 @@
 import { GraphQLClient } from 'graphql-request';
 
-import graphQLEndpoint from '../../../../constants/graphQLEndpoint';
+import graphQLEndpoint from '../../constants/graphQLEndpoint';
 
 const query = `
     mutation createAgent($input: CreateAgentInput!) {
       createAgent(input: $input) {
         agent {
           uuid
+          firstName
+          lastName
+          email
           role
+          lastLoginTimestamp
+          createdAt
+          agent {
+            profilePicURL
+            branch
+            state
+            mobileNumber
+            officeNumber
+            areaOfFocus
+            realEstateLicenseNumber
+            agentType
+          }
         }
         signedURL
         wasSuccessful

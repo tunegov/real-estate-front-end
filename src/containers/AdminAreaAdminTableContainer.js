@@ -51,6 +51,7 @@ class AdminAreaAdminTableContainer extends Component {
     { name: 'email', title: 'Email' },
     { name: 'mobileNumber', title: 'Mobile Number' },
     { name: 'companyNumberAndExt', title: 'Company Number/Extension' },
+    { name: 'role', title: 'Role' },
     { name: 'lastLoginTimestamp', title: 'Last Login Time' },
     { name: 'createdAt', title: 'Created At' },
   ];
@@ -62,6 +63,7 @@ class AdminAreaAdminTableContainer extends Component {
       { name: 'email', title: 'Email' },
       { name: 'mobileNumber', title: 'Mobile Number' },
       { name: 'companyNumberAndExt', title: 'Company Number/Extension' },
+      { name: 'role', title: 'Role' },
       { name: 'lastLoginTimestamp', title: 'Last Login Time' },
       { name: 'createdAt', title: 'Created At' },
     ];
@@ -73,7 +75,7 @@ class AdminAreaAdminTableContainer extends Component {
     return columns;
   };
 
-  createRows = (allAdmin = []) => {
+  createRows = (allAdmin = [], currentUserSecondaryRole) => {
     const rows = [];
     allAdmin.forEach(admin => {
       const {
@@ -86,7 +88,12 @@ class AdminAreaAdminTableContainer extends Component {
         createdAt,
         role,
       } = admin;
-      const { profilePicURL, officeNumber, mobileNumber } = adminPart;
+      const {
+        profilePicURL,
+        officeNumber,
+        mobileNumber,
+        isAdminOwner,
+      } = adminPart;
       rows.push({
         adminID: uuid,
         photo: {
@@ -97,6 +104,7 @@ class AdminAreaAdminTableContainer extends Component {
         email,
         mobileNumber,
         companyNumberAndExt: officeNumber,
+        role,
         lastLoginTimestamp: lastLoginTimestamp
           ? moment(lastLoginTimestamp).format('MM/DD/YYYY, h:mm:ss a')
           : '',
@@ -104,7 +112,9 @@ class AdminAreaAdminTableContainer extends Component {
           ? moment(createdAt).format('MM/DD/YYYY, h:mm:ss a')
           : undefined,
         view:
-          role === adminRole || this.props.userUUID === uuid
+          role === adminRole ||
+          this.props.userUUID === uuid ||
+          this.props.currentUserIsAdminOwner
             ? {
                 type: 'action',
                 needsEvent: true,
@@ -114,7 +124,8 @@ class AdminAreaAdminTableContainer extends Component {
                       null,
                       event,
                       uuid,
-                      role
+                      role,
+                      isAdminOwner
                     ),
                     1000,
                     true

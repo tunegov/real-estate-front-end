@@ -15,8 +15,14 @@ import { withStyles } from 'material-ui/styles';
 import Button from 'material-ui/Button';
 import Menu from 'material-ui/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
+import classnames from 'classnames';
 import ViewInvoiceForm from '../../containers/ViewInvoiceForm';
 import { agent, admin, superAdmin } from '../../constants/userTypes';
+import acceptInvoice from '../../effects/invoices/acceptInvoice';
+import deleteInvoice from '../../effects/invoices/deleteInvoice';
+
+const networkErrorMessage =
+  "We're sorry. There was an error processing your request.";
 
 const styles = theme => ({
   paper: {
@@ -39,15 +45,6 @@ const styles = theme => ({
   },
   dialogContent: {
     paddingTop: '32px',
-  },
-  snackBar: {
-    marginBottom: '60px',
-    '@media (max-height: 500px)': {
-      marginBottom: '50px',
-    },
-    '@media (max-height: 390px)': {
-      marginBottom: '30px',
-    },
   },
   editInvoiceBtn: {
     color: theme.custom.submitBlue.main,
@@ -98,6 +95,20 @@ const styles = theme => ({
       color: '#fff !important',
     },
   },
+  snackBar: {
+    marginBottom: '60px',
+    '@media (max-height: 500px)': {
+      marginBottom: '50px',
+    },
+    '@media (max-height: 390px)': {
+      marginBottom: '30px',
+    },
+  },
+  errorSnackbar: {
+    '& > div': {
+      backgroundColor: theme.palette.secondary.main,
+    },
+  },
 });
 
 @observer
@@ -113,6 +124,8 @@ class SubmitInvoiceDialogBox extends Component {
       isEditingInvoice: false,
       cancelAnchorEl: null,
       acceptAnchorEl: null,
+      submittingRequestToServer: false,
+      isErrorSnackbar: false,
     };
   }
 
@@ -131,6 +144,16 @@ class SubmitInvoiceDialogBox extends Component {
     this.setState({
       snackbarOpen: false,
       snackbarUndoFunction: null,
+      isErrorSnackbar: false,
+      snackbarText: '',
+    });
+  };
+
+  openRequestErrorSnackbar = (text = networkErrorMessage) => {
+    this.setState({
+      snackbarOpen: true,
+      snackbarText: text,
+      isErrorSnackbar: true,
     });
   };
 
@@ -157,6 +180,50 @@ class SubmitInvoiceDialogBox extends Component {
     this.setState({ acceptAnchorEl: null });
   };
 
+  deleteInvoice = invoiceID => {
+    this.toggleSubmittingRequestToServer(true);
+    deleteInvoice(invoiceID)
+      .then(res => {
+        this.toggleSubmittingRequestToServer(false);
+        if (res.error) {
+          this.openRequestErrorSnackbar(res.error);
+          return;
+        }
+
+        this.props.invoiceDeleted(invoiceID);
+      })
+      .catch(err => {
+        console.log(err);
+        this.openRequestErrorSnackbar();
+      });
+  };
+
+  toggleSubmittingRequestToServer = (
+    bool = !this.state.submittingRequestToServer
+  ) => {
+    this.setState({
+      submittingRequestToServer: bool,
+      formSubmitted: bool,
+    });
+  };
+
+  acceptInvoice = invoiceID => {
+    this.toggleSubmittingRequestToServer(true);
+    acceptInvoice(invoiceID)
+      .then(res => {
+        this.toggleSubmittingRequestToServer(false);
+        if (res.error) {
+          this.openRequestErrorSnackbar(res.error);
+          return;
+        }
+
+        this.props.invoiceAccepted(invoiceID);
+      })
+      .catch(err => {
+        this.openRequestErrorSnackbar();
+      });
+  };
+
   render() {
     const {
       fullScreen,
@@ -166,8 +233,6 @@ class SubmitInvoiceDialogBox extends Component {
       setInvoiceSuccessfullySubmitted,
       viewingInvoiceID,
       viewingInvoiceStatus,
-      deleteInvoice,
-      acceptInvoice,
     } = this.props;
 
     const { isEditingInvoice, cancelAnchorEl, acceptAnchorEl } = this.state;
@@ -195,9 +260,16 @@ class SubmitInvoiceDialogBox extends Component {
             invoiceID={viewingInvoiceID}
             isEditingInvoice={isEditingInvoice}
             isViewType
+            submittingRequestToServer={this.state.submittingRequestToServer}
+            openRequestErrorSnackbar={this.openRequestErrorSnackbar}
           />
           <Snackbar
-            classes={{ root: classes.snackBar }}
+            classes={{
+              root: classnames(
+                classes.snackBar,
+                this.state.isErrorSnackbar && classes.errorSnackbar
+              ),
+            }}
             anchorOrigin={{
               vertical: 'bottom',
               horizontal: 'center',
@@ -275,7 +347,7 @@ class SubmitInvoiceDialogBox extends Component {
                 classes={{ root: classes.menuItemDelete }}
                 onClick={() => {
                   this.handleCancelMenuClose();
-                  deleteInvoice(viewingInvoiceID);
+                  this.deleteInvoice(viewingInvoiceID);
                 }}
               >
                 Yes
@@ -322,7 +394,7 @@ class SubmitInvoiceDialogBox extends Component {
                 classes={{ root: classes.menuItemAccept }}
                 onClick={() => {
                   this.handleAcceptMenuClose();
-                  acceptInvoice(viewingInvoiceID);
+                  this.acceptInvoice(viewingInvoiceID);
                 }}
               >
                 Yes

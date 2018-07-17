@@ -1,6 +1,6 @@
 import { GraphQLClient } from 'graphql-request';
 
-import graphQLEndpoint from '../../../../constants/graphQLEndpoint';
+import graphQLEndpoint from '../../constants/graphQLEndpoint';
 
 const query = `
     mutation setAgentProfilePic($input: SetAgentProfilePicInput!) {

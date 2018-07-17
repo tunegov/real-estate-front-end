@@ -26,6 +26,7 @@ export const agentQuery = gql`
         areaOfFocus
         realEstateLicenseNumber
         agentType
+        ACHAccountNumber
         facebook
         instagram
         twitter
@@ -52,39 +53,52 @@ class CreateAgentContainer extends Component {
     console.log(values);
 
     this.props.setFormSubmitted();
+    this.props.toggleSubmittingRequestToServer(true);
 
-    updateAgent(returnValues).then(result => {
-      const { userErrors, otherError, agent } = result;
+    updateAgent(returnValues)
+      .then(result => {
+        const { userErrors, otherError, agent } = result;
 
-      let hasErrors = false;
+        let hasErrors = false;
 
-      if (userErrors.length) {
-        userErrors.forEach(error => {
-          console.log(error);
-          if (error.field === 'email') {
-            const formElement = document.getElementById('formDialog');
-            formApi.setError(error.field, error.message);
-            formElement.scrollTop = formElement.scrollHeight;
-          }
+        if (userErrors.length) {
+          userErrors.forEach(error => {
+            console.log(error);
+            if (error.field === 'email') {
+              const formElement = document.getElementById('formDialog');
+              formApi.setError(error.field, error.message);
+              formElement.scrollTop = formElement.scrollHeight;
+            }
 
-          hasErrors = true;
-        });
+            hasErrors = true;
+          });
+
+          this.props.setFormSubmitted(false);
+          this.props.toggleSubmittingRequestToServer(false);
+          return;
+        } else if (otherError) {
+          this.props.openRequestErrorSnackbar(otherError);
+          this.props.setFormSubmitted(false);
+          this.props.toggleSubmittingRequestToServer(false);
+          return;
+        } else if (!agent) {
+          this.props.openRequestErrorSnackbar();
+          this.props.setFormSubmitted(false);
+          this.props.toggleSubmittingRequestToServer(false);
+          return;
+        }
+
+        this.setState({ formSubmitedSuccessfully: true });
 
         this.props.setFormSubmitted(false);
-        return;
-      } else if (otherError) {
-        console.log(otherError);
+        this.props.toggleSubmittingRequestToServer(false);
+        this.props.editAgentFormSubmittedSuccessfully(agent);
+      })
+      .catch(err => {
         this.props.setFormSubmitted(false);
-        return;
-      }
-
-      console.log('nasty');
-
-      this.setState({ formSubmitedSuccessfully: true });
-
-      this.props.setFormSubmitted(false);
-      this.props.editAgentFormSubmittedSuccessfully(agent);
-    });
+        this.props.toggleSubmittingRequestToServer(false);
+        this.props.openRequestErrorSnackbar();
+      });
   };
 
   onSubmitFailure = (errs, onSubmitError) => {
@@ -110,7 +124,14 @@ class CreateAgentContainer extends Component {
             );
           // TODO: change the error message to a generic
           // 'error connecting to server' message
-          if (error) return `Error!: ${error}`;
+          if (error) {
+            console.log(error);
+            return (
+              <div style={{ textAlign: 'center' }}>
+                We're sorry. There was an error processing your request.
+              </div>
+            );
+          }
 
           const submittedInvoice = data.agent;
 
@@ -125,6 +146,7 @@ class CreateAgentContainer extends Component {
                 isEditingAgent={this.props.isEditingAgent}
                 currentUserRole={this.props.currentUserRole}
                 getFormApi={this.props.getFormApi}
+                submittingFormToServer={this.props.submittingRequestToServer}
                 {...rest}
               />
             </div>

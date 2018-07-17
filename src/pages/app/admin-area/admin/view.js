@@ -35,6 +35,7 @@ class AdminViewAgents extends React.Component {
         <AdminAreaAdminContainer
           userUUID={this.store.UserStore.uuid}
           userRole={this.store.UserStore.userRole}
+          currentUserIsAdminOwner={this.store.UserStore.isAdminOwner}
         />
       </Layout>
     );

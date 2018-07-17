@@ -14,10 +14,15 @@ import Divider from 'material-ui/Divider';
 import { withStyles } from 'material-ui/styles';
 import Button from 'material-ui/Button';
 import Menu from 'material-ui/Menu';
+import classnames from 'classnames';
 import MenuItem from '@material-ui/core/MenuItem';
 import ViewDealForm from '../../containers/ViewDealForm';
 import { agent, admin, superAdmin } from '../../constants/userTypes';
 import acceptDeal from '../../effects/deals/acceptDeal';
+import deleteDeal from '../../effects/deals/deleteDeal';
+
+const networkErrorMessage =
+  "We're sorry. There was an error processing your request.";
 
 const styles = theme => ({
   paper: {
@@ -40,15 +45,6 @@ const styles = theme => ({
   },
   dialogContent: {
     paddingTop: '32px',
-  },
-  snackBar: {
-    marginBottom: '60px',
-    '@media (max-height: 500px)': {
-      marginBottom: '50px',
-    },
-    '@media (max-height: 390px)': {
-      marginBottom: '30px',
-    },
   },
   editDealBtn: {
     color: theme.custom.submitBlue.main,
@@ -99,6 +95,20 @@ const styles = theme => ({
       color: '#fff !important',
     },
   },
+  snackBar: {
+    marginBottom: '60px',
+    '@media (max-height: 500px)': {
+      marginBottom: '50px',
+    },
+    '@media (max-height: 390px)': {
+      marginBottom: '30px',
+    },
+  },
+  errorSnackbar: {
+    '& > div': {
+      backgroundColor: theme.palette.secondary.main,
+    },
+  },
 });
 
 @observer
@@ -115,6 +125,8 @@ class SubmitDealDialogBox extends Component {
       cancelAnchorEl: null,
       acceptAnchorEl: null,
       dealBonus: '',
+      submittingRequestToServer: false,
+      isErrorSnackbar: false,
     };
   }
 
@@ -133,6 +145,16 @@ class SubmitDealDialogBox extends Component {
     this.setState({
       snackbarOpen: false,
       snackbarUndoFunction: null,
+      isErrorSnackbar: false,
+      snackbarText: '',
+    });
+  };
+
+  openRequestErrorSnackbar = (text = networkErrorMessage) => {
+    this.setState({
+      snackbarOpen: true,
+      snackbarText: text,
+      isErrorSnackbar: true,
     });
   };
 
@@ -178,21 +200,50 @@ class SubmitDealDialogBox extends Component {
 
   acceptDeal = dealID => {
     const { dealBonus } = this.state;
+    this.toggleSubmittingRequestToServer(true);
     acceptDeal(dealID, Number(dealBonus) ? Number(dealBonus) : undefined)
       .then(res => {
+        this.toggleSubmittingRequestToServer(false);
         if (res.error) {
-          console.log(res.error);
+          this.openRequestErrorSnackbar(res.error);
           return;
         } else if (res.userErrors.length) {
-          res.userErrors.forEach(error => console.log(error));
+          this.openRequestErrorSnackbar(res.userErrors[0]);
           return;
         }
 
         this.props.dealAccepted(dealID);
       })
       .catch(err => {
-        console.log(err);
+        this.openRequestErrorSnackbar();
       });
+  };
+
+  deleteDeal = dealID => {
+    this.toggleSubmittingRequestToServer(true);
+    deleteDeal(dealID)
+      .then(res => {
+        this.toggleSubmittingRequestToServer(false);
+        if (res.error) {
+          this.openRequestErrorSnackbar(res.error);
+          return;
+        }
+
+        this.props.dealDeleted(dealID);
+      })
+      .catch(err => {
+        this.toggleSubmittingRequestToServer(true);
+        this.openRequestErrorSnackbar();
+      });
+  };
+
+  toggleSubmittingRequestToServer = (
+    bool = !this.state.submittingRequestToServer
+  ) => {
+    this.setState({
+      submittingRequestToServer: bool,
+      formSubmitted: bool,
+    });
   };
 
   render() {
@@ -204,7 +255,6 @@ class SubmitDealDialogBox extends Component {
       setDealSuccessfullySubmitted,
       viewingDealID,
       viewingDealStatus,
-      deleteDeal,
     } = this.props;
 
     const { isEditingDeal, cancelAnchorEl, acceptAnchorEl } = this.state;
@@ -238,9 +288,16 @@ class SubmitDealDialogBox extends Component {
             onBonusChange={this.onBonusChange}
             dealBonus={this.state.dealBonus}
             resetDealBonus={this.resetDealBonus}
+            submittingRequestToServer={this.state.submittingRequestToServer}
+            openRequestErrorSnackbar={this.openRequestErrorSnackbar}
           />
           <Snackbar
-            classes={{ root: classes.snackBar }}
+            classes={{
+              root: classnames(
+                classes.snackBar,
+                this.state.isErrorSnackbar && classes.errorSnackbar
+              ),
+            }}
             anchorOrigin={{
               vertical: 'bottom',
               horizontal: 'center',
@@ -317,7 +374,7 @@ class SubmitDealDialogBox extends Component {
                 classes={{ root: classes.menuItemDelete }}
                 onClick={() => {
                   this.handleCancelMenuClose();
-                  deleteDeal(viewingDealID);
+                  this.deleteDeal(viewingDealID);
                 }}
               >
                 Yes

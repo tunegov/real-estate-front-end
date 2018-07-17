@@ -119,27 +119,13 @@ class Invoices extends Component {
     });
   };
 
-  deleteInvoice = invoiceID => {
-    deleteInvoice(invoiceID)
-      .then(res => {
-        if (res.error) {
-          console.log(res.error);
-          return;
-        } else if (res.userErrors.length) {
-          res.userErrors.forEach(error => console.log(error));
-          return;
-        }
-
-        this.setState({
-          snackbarOpen: true,
-          snackbarText: 'Invoice deleted successfully!',
-          invoicesViewDialogBoxOpen: false,
-          deletedInvoiceIDS: [...this.state.deletedInvoiceIDS, invoiceID],
-        });
-      })
-      .catch(err => {
-        console.log(err);
-      });
+  invoiceDeleted = invoiceID => {
+    this.setState({
+      snackbarOpen: true,
+      snackbarText: 'Invoice deleted successfully!',
+      invoicesViewDialogBoxOpen: false,
+      deletedInvoiceIDS: [...this.state.deletedInvoiceIDS, invoiceID],
+    });
   };
 
   render() {
@@ -182,11 +168,25 @@ class Invoices extends Component {
             );
           // TODO: change the error message to a generic
           // 'error connecting to server' message
-          if (error) return `Error!: ${error}`;
+          if (error) {
+            console.log(error);
+            return (
+              <div style={{ textAlign: 'center' }}>
+                We're sorry. There was an error processing your request.
+              </div>
+            );
+          }
 
           const intInvoices = {};
 
-          if (error) return `Error!: ${error}`;
+          if (error) {
+            console.log(error);
+            return (
+              <div style={{ textAlign: 'center' }}>
+                We're sorry. There was an error processing your request.
+              </div>
+            );
+          }
 
           const allInvoices = [
             ...data.invoicesByAgentID,
@@ -241,11 +241,11 @@ class Invoices extends Component {
                 viewingInvoiceID={viewingInvoiceID}
                 viewingInvoiceStatus={viewingInvoiceStatus}
                 toggleSnackbarOpen={this.toggleSnackbarOpen}
+                invoiceDeleted={this.invoiceDeleted}
                 setInvoiceSuccessfullySubmitted={
                   this.setInvoiceSuccessfullyEditted
                 }
                 userRole={this.props.userRole}
-                deleteInvoice={this.deleteInvoice}
               />
 
               <InvoicesTableContainer

@@ -150,11 +150,6 @@ class WelcomeHeader extends Component {
               <div className={classes.headline}>
                 Coming <span className={classes.redEmphasis}>-</span> Soon
               </div>
-              <div className={classes.subHeadline}>
-                Mauris neque lectus, ullamcorper nec nisl eget, interdum
-                facilisis lacus. Praesent eros diam, tempor ut sem et,
-                pellentesque tincidunt diam.
-              </div>
             </div>
           </div>
         </div>

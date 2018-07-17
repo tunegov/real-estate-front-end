@@ -9,16 +9,19 @@ import { capitalize } from '../utils/stringUtils';
 
 const Loader = BounceLoader;
 
-const agentQuery = gql`
-  query agent($uuid: String!) {
-    agent(uuid: $uuid) {
-      firstName
-      lastName
-      role
+export const invoiceFormQuery = gql`
+  query dealForm($uuid: String) {
+    dealForm(uuid: $uuid) {
       agent {
-        state
-        agentType
+        firstName
+        lastName
+        role
+        agent {
+          agentType
+          state
+        }
       }
+      formSelectItems
     }
   }
 `;
@@ -143,12 +146,11 @@ class SubmitInvoiceFormContainer extends Component {
         let failed = false;
 
         if (res.otherError) {
-          console.log(res.otherError);
+          this.props.openRequestErrorSnackbar(res.otherError);
           failed = true;
         }
 
         if (res.userErrors.length) {
-          res.userErrors.forEach(error => console.log(error));
           failed = true;
         }
 
@@ -159,17 +161,19 @@ class SubmitInvoiceFormContainer extends Component {
       })
       .catch(err => {
         this.props.setFormSubmitted(false);
-        console.log(err);
+        this.props.openRequestErrorSnackbar();
       });
-
-    console.log(returnObject);
   };
 
   render() {
     const { userUUID: uuid, ...rest } = this.props;
 
     return (
-      <Query query={agentQuery} variables={{ uuid }}>
+      <Query
+        query={invoiceFormQuery}
+        variables={{ uuid }}
+        fetchPolicy="cache-and-network"
+      >
         {({ loading, error, data }) => {
           if (loading)
             return (
@@ -177,15 +181,24 @@ class SubmitInvoiceFormContainer extends Component {
                 <Loader color="#f44336" loading />
               </div>
             );
-          // TODO: change the error message to a generic
-          // 'error connecting to server' message
-          if (error) return `Error!: ${error}`;
+
+          if (error) {
+            console.log(error);
+            return (
+              <div style={{ textAlign: 'center' }}>
+                We're sorry. There was an error processing your request.
+              </div>
+            );
+          }
+
+          const { agent, formSelectItems } = data.dealForm;
 
           return (
             <SubmitInvoiceForm
               deductionsTotal={`${this.state.deductionsTotal}`}
               total={this.state.total}
-              agent={data.agent}
+              agent={agent}
+              managementCobrokeCompanyItems={formSelectItems || []}
               onSubmit={this.onSubmit}
               paymentAmountChangeHandler={this.paymentAmountChangeHandler}
               subtractPaymentValueFromState={this.subtractPaymentValueFromState}

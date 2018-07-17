@@ -27,7 +27,7 @@ const styles = theme => ({
     overflow: 'auto',
     width: drawerWidth,
     zIndex: 1,
-    backgroundColor: theme.palette.primary.main,
+    backgroundColor: 'rgba(36, 68, 109, .75)',
     color: '#fff',
   },
   tempDrawer: {

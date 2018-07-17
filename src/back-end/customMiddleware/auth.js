@@ -1,4 +1,5 @@
 const jwt = require('jsonwebtoken');
+const { agent, admin, superAdmin } = require('../../constants/userTypes');
 
 function isAuthorizedMiddleware(req, res, next) {
   const { jwtData, jwtSignature } = req.cookies;
@@ -21,6 +22,9 @@ function isAuthorizedMiddleware(req, res, next) {
       }
       req.isAuthorized = true;
       req.jwtPayload = decoded;
+      req.canAccessBackend =
+        decoded && [agent, admin, superAdmin].includes(decoded.role);
+      req.isAdmin = decoded && [admin, superAdmin].includes(decoded.role);
       next();
     }
   );

@@ -9,33 +9,36 @@ import { capitalize } from '../utils/stringUtils';
 
 const Loader = BounceLoader;
 
-export const invoiceQuery = gql`
-  query invoice($uuid: String!) {
-    invoice(uuid: $uuid) {
-      invoiceID
-      date
-      agentName
-      agentType
-      invoiceType
-      propertyAddress
-      state
-      city
-      apartmentNumber
-      managementOrCobrokeCompany
-      price
-      clientName
-      clientPhoneNumber
-      paymentItems {
-        paymentType
-        checkOrTransactionNumber
-        amount
+const viewInvoiceFormQuery = gql`
+  query viewInvoiceForm($uuid: String!) {
+    viewInvoiceForm(uuid: $uuid) {
+      formSelectItems
+      invoice {
+        invoiceID
+        date
+        agentName
+        agentType
+        invoiceType
+        propertyAddress
+        state
+        city
+        apartmentNumber
+        managementOrCobrokeCompany
+        price
+        clientName
+        clientPhoneNumber
+        paymentItems {
+          paymentType
+          checkOrTransactionNumber
+          amount
+        }
+        total
+        agentNotes
+        shouldSendApprovalTextMessageNotification
+        status
+        attention
+        attentionEmail
       }
-      total
-      agentNotes
-      shouldSendApprovalTextMessageNotification
-      status
-      attention
-      attentionEmail
     }
   }
 `;
@@ -167,12 +170,11 @@ class ViewInvoiceFormContainer extends Component {
         let failed = false;
 
         if (res.otherError) {
-          console.log(res.otherError);
+          this.props.openRequestErrorSnackbar(res.otherError);
           failed = true;
         }
 
         if (res.userErrors.length) {
-          res.userErrors.forEach(error => console.log(error));
           failed = true;
         }
 
@@ -188,7 +190,7 @@ class ViewInvoiceFormContainer extends Component {
       })
       .catch(err => {
         this.props.setFormSubmitted(false);
-        console.log(err);
+        this.props.openRequestErrorSnackbar();
       });
 
     console.log(returnObject);
@@ -212,7 +214,7 @@ class ViewInvoiceFormContainer extends Component {
 
     return (
       <Query
-        query={invoiceQuery}
+        query={viewInvoiceFormQuery}
         variables={{ uuid: invoiceID }}
         fetchPolicy="cache-and-network"
       >
@@ -223,19 +225,27 @@ class ViewInvoiceFormContainer extends Component {
                 <Loader color="#f44336" loading />
               </div>
             );
-          // TODO: change the error message to a generic
-          // 'error connecting to server' message
-          if (error) return `Error!: ${error}`;
 
-          const submittedInvoice = data.invoice;
+          if (error) {
+            console.log(errorOne, errorTwo);
+            return (
+              <div style={{ textAlign: 'center' }}>
+                We're sorry. There was an error processing your request.
+              </div>
+            );
+          }
 
-          console.log(submittedInvoice);
+          const {
+            invoice: submittedInvoice,
+            formSelectItems,
+          } = data.viewInvoiceForm;
 
           return (
             <SubmitInvoiceForm
               deductionsTotal={`${this.state.deductionsTotal}`}
               total={this.state.total}
               submittedInvoice={submittedInvoice}
+              managementCobrokeCompanyItems={formSelectItems || []}
               onSubmit={this.onSubmit}
               paymentAmountChangeHandler={this.paymentAmountChangeHandler}
               subtractPaymentValueFromState={this.subtractPaymentValueFromState}
@@ -255,7 +265,10 @@ class ViewInvoiceFormContainer extends Component {
               choosingMgmtCoBrokeCompany={this.state.choosingMgmtCoBrokeCompany}
               {...rest}
               formSubmissionBegun={this.state.formSubmissionBegun}
-              submittingFormToServer={this.state.submittingFormToServer}
+              submittingFormToServer={
+                this.state.submittingFormToServer ||
+                this.props.submittingRequestToServer
+              }
             />
           );
         }}

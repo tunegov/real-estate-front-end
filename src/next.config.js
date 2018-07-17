@@ -6,4 +6,13 @@ if (typeof require !== 'undefined') {
   require.extensions['.css'] = file => {};
 }
 
-module.exports = withCSS();
+module.exports = withCSS({
+  webpack(config, options) {
+    // Further custom configuration here
+    config.node = {
+      fs: 'empty',
+    };
+
+    return config;
+  },
+});

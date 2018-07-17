@@ -6,7 +6,6 @@ const compress = require('compression');
 const cookieParser = require('cookie-parser');
 const router = require('./back-end/routes');
 const app = require('./nextExport');
-const preRouter = require('./back-end/preRouter');
 require('./config/keys');
 
 helmet.hsts({
@@ -41,8 +40,6 @@ app
     server.use(cookieParser());
 
     server.use(morgan('dev', { skip: skipMiscLogging }));
-
-    server.use(preRouter);
 
     server.use(router);
 

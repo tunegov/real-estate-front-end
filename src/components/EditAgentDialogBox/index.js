@@ -15,10 +15,14 @@ import IconButton from 'material-ui/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 import Menu from 'material-ui/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
+import classnames from 'classnames';
 import EditAgentForm from '../../containers/EditAgentForm';
 import updateAgent from '../../effects/users/updateAgent';
 import deleteAgent from '../../effects/users/deleteAgent';
 import { agent, admin, superAdmin } from '../../constants/userTypes';
+
+const networkErrorMessage =
+  "We're sorry. There was an error processing your request.";
 
 const styles = theme => ({
   paper: {
@@ -110,6 +114,15 @@ const styles = theme => ({
       backgroundColor: theme.custom.submitBlue.transparentLightBackground,
     },
   },
+  snackBar: {
+    position: 'absolute',
+    bottom: 0,
+  },
+  errorSnackbar: {
+    '& > div': {
+      backgroundColor: theme.palette.secondary.main,
+    },
+  },
 });
 
 @observer
@@ -127,6 +140,8 @@ class EditAgentDialogBox extends Component {
       isEditingAgent: false,
       cancelAnchorEl: null,
       acceptAnchorEl: null,
+      isErrorSnackbar: false,
+      snackbarText: '',
     };
   }
 
@@ -145,6 +160,8 @@ class EditAgentDialogBox extends Component {
     this.setState({
       snackbarOpen: false,
       snackbarUndoFunction: null,
+      isErrorSnackbar: false,
+      snackbarText: '',
     });
   };
 
@@ -172,17 +189,39 @@ class EditAgentDialogBox extends Component {
   };
 
   deleteAgent = uuid => {
+    this.toggleSubmittingRequestToServer(true);
     deleteAgent(uuid)
       .then(res => {
+        this.toggleSubmittingRequestToServer(false);
+
         if (res.error) {
-          console.log(error);
+          this.openRequestErrorSnackbar(res.error);
         } else {
           this.props.agentSuccessfullyDeleted();
         }
       })
       .catch(err => {
+        this.openRequestErrorSnackbar(networkErrorMessage);
+        this.toggleSubmittingRequestToServer(false);
         console.log(err);
       });
+  };
+
+  openRequestErrorSnackbar = (text = networkErrorMessage) => {
+    this.setState({
+      snackbarOpen: true,
+      snackbarText: text,
+      isErrorSnackbar: true,
+    });
+  };
+
+  toggleSubmittingRequestToServer = (
+    bool = !this.state.submittingRequestToServer
+  ) => {
+    this.setState({
+      submittingRequestToServer: bool,
+      formSubmitted: bool,
+    });
   };
 
   render() {
@@ -222,12 +261,22 @@ class EditAgentDialogBox extends Component {
             confirmAgentCreated={this.props.confirmAgentCreated}
             isEditingAgent={isEditingAgent}
             currentUserRole={this.props.currentUserRole}
+            openRequestErrorSnackbar={this.openRequestErrorSnackbar}
+            submittingRequestToServer={this.state.submittingRequestToServer}
+            toggleSubmittingRequestToServer={
+              this.toggleSubmittingRequestToServer
+            }
             editAgentFormSubmittedSuccessfully={
               this.props.editAgentFormSubmittedSuccessfully
             }
           />
           <Snackbar
-            classes={{ root: classes.snackBar }}
+            classes={{
+              root: classnames(
+                classes.snackBar,
+                this.state.isErrorSnackbar && classes.errorSnackbar
+              ),
+            }}
             anchorOrigin={{
               vertical: 'bottom',
               horizontal: 'center',

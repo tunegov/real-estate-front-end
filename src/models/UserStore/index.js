@@ -8,6 +8,7 @@ const defaultState = {
   userRole: '',
   isLoggedIn: false,
   uuid: '',
+  isAdminOwner: false,
 };
 
 const userRoles = [
@@ -24,6 +25,7 @@ const UserStore = types
     isLoggedIn: types.boolean,
     uuid: types.string,
     serverJWTData: types.optional(types.frozen, null),
+    isAdminOwner: types.boolean,
   })
   .actions(self => ({
     setUser: userObject => {
@@ -31,11 +33,13 @@ const UserStore = types
       self.isLoggedIn = true;
       self.userRole = userObject.role;
       self.uuid = userObject.uuid;
+      self.isAdminOwner = userObject.isAdminOwner || false;
     },
     unsetUser: () => {
       self.isLoggedIn = false;
       self.userRole = '';
       self.uuid = '';
+      self.isAdminOwner = false;
     },
     afterCreate: async () => {
       let JWTData;

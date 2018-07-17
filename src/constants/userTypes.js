@@ -1,9 +1,17 @@
-export const customer = 'customer';
+const customer = 'customer';
 
-export const agent = 'agent';
+const agent = 'agent';
 
-export const admin = 'admin';
+const admin = 'admin';
 
-export const superAdmin = 'super-admin';
+const superAdmin = 'super-admin';
 
-export const anonymous = 'anonymous';
+const anonymous = 'anonymous';
+
+module.exports = {
+  customer,
+  agent,
+  admin,
+  superAdmin,
+  anonymous,
+};

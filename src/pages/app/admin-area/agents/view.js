@@ -11,7 +11,10 @@ import AdminAreaAgentsContainer from '../../../../containers/AdminAreaAgentsCont
 class AdminViewAgents extends React.Component {
   static getInitialProps({ req }) {
     const isServer = !!req;
-    return { cookieJWTData: req && req.cookies ? req.cookies.jwtData : null, isServer };
+    return {
+      cookieJWTData: req && req.cookies ? req.cookies.jwtData : null,
+      isServer,
+    };
   }
 
   constructor(props) {
@@ -29,7 +32,10 @@ class AdminViewAgents extends React.Component {
   render() {
     return (
       <Layout UserStore={this.store.UserStore} UIStore={this.store.UIStore}>
-        <AdminAreaAgentsContainer userUUID={this.store.UserStore.uuid} />
+        <AdminAreaAgentsContainer
+          userUUID={this.store.UserStore.uuid}
+          currentUserRole={this.store.UserStore.userRole}
+        />
       </Layout>
     );
   }

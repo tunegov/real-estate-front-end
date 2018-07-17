@@ -66,7 +66,9 @@ class Layout extends Component {
       <div style={{ top: 0, bottom: 0, left: 0, right: 0 }}>
         <Head>
           <title>
-            {this.props.title ? this.props.title : 'Real Estate App'}
+            {this.props.title
+              ? this.props.title
+              : 'Reyes & Elsamad Real Estate'}
           </title>
           {/* Import CSS for nprogress */}
           <link
@@ -77,10 +79,12 @@ class Layout extends Component {
 
           <link
             rel="stylesheet"
+            type="text/css"
             href="https://fonts.googleapis.com/css?family=Roboto:300,400,500"
           />
           <link
             rel="stylesheet"
+            type="text/css"
             href="https://fonts.googleapis.com/icon?family=Material+Icons"
           />
 

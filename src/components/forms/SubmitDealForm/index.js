@@ -32,6 +32,7 @@ import validators, {
   descriptionValidator,
   deductionsAmountValidator,
   agencyDisclosureFormValidator,
+  ACHAccountNumberValidator,
 } from './formValidation';
 import {
   agent as agentRole,
@@ -92,7 +93,6 @@ const styles = theme => ({
   formSubheading: {
     width: '100%',
     textAlign: 'center',
-    paddingLeft: '16px',
     paddingTop: '82px',
   },
   h3: {
@@ -430,22 +430,34 @@ class SubmitDealForm extends Component {
       isEditingDeal,
       isViewType,
       agentUUID,
+      managementCobrokeCompanyItems,
+      agentPaymentTypeIsACH,
       onSubmit,
     } = this.props;
 
-    let managementCobrokeCompanyItems = [
-      'Private Landlord',
-      'Disney Land',
-      'Gucci',
-      'Alexander the Great',
-      'Apple',
-      'Amazon',
-    ];
+    const managementCobrokeCompanies =
+      managementCobrokeCompanyItems && managementCobrokeCompanyItems.length
+        ? [...managementCobrokeCompanyItems]
+        : [];
+
+    if (submittedDeal && submittedDeal.managementOrCobrokeCompany) {
+      if (
+        !managementCobrokeCompanies.includes(
+          submittedDeal.managementOrCobrokeCompany
+        )
+      ) {
+        managementCobrokeCompanies.push(
+          submittedDeal.managementOrCobrokeCompany
+        );
+      }
+    }
 
     const agentsSelectItems = agents
       .filter(agent => (agentUUID ? agent.uuid !== agentUUID : agent))
       .map(({ firstName, lastName, uuid }) => ({
-        label: `${firstName} ${lastName} (Agent ID - ${uuid})`,
+        label: `${capitalize(firstName)} ${capitalize(
+          lastName
+        )} (Agent ID - ${uuid})`,
         key: uuid,
         value: uuid,
       }));
@@ -465,7 +477,7 @@ class SubmitDealForm extends Component {
       });
     }
 
-    let managementCobrokeCompanySelectItems = managementCobrokeCompanyItems.map(
+    let managementCobrokeCompanySelectItems = managementCobrokeCompanies.map(
       company => ({ label: company })
     );
 
@@ -516,6 +528,7 @@ class SubmitDealForm extends Component {
         apartmentNumber,
         total,
         bonusPercentageAddedByAdmin,
+        ACHAccountNumber,
       } = submittedDeal;
       finalDefaultValues = {
         agent: agentName,
@@ -556,43 +569,46 @@ class SubmitDealForm extends Component {
           ? deductionsTotal.toLocaleString()
           : '0',
         financialsTotal: total ? total.toLocaleString() : '0',
+        ACHAccountNumber,
         bonusPercentageAddedByAdmin: `${bonusPercentageAddedByAdmin}`,
       };
     }
 
     return (
       <div className={classes.formWrapper}>
-        {!formSubmissionBegun ? (
-          <Form
-            defaultValues={
-              !finalDefaultValues && this.props.agent
-                ? {
-                    date: `${moment().format('MMMM Do YYYY')}`,
-                    agentType: `${this.props.agent.agent.agentType}`,
-                    state: this.props.agent.agent.state,
-                    agent: `${capitalize(
-                      this.props.agent.firstName
-                    )} ${capitalize(this.props.agent.lastName)}`,
-                    paymentsSubtotal: this.props.paymentsTotal,
-                    deductionsSubtotal: this.props.deductionsTotal,
-                  }
-                : finalDefaultValues
+        <Form
+          defaultValues={
+            !finalDefaultValues && this.props.agent
+              ? {
+                  date: `${moment().format('MMMM Do YYYY')}`,
+                  agentType: `${this.props.agent.agent.agentType}`,
+                  state: this.props.agent.agent.state,
+                  agent: `${capitalize(
+                    this.props.agent.firstName
+                  )} ${capitalize(this.props.agent.lastName)}`,
+                  paymentsSubtotal: this.props.paymentsTotal,
+                  deductionsSubtotal: this.props.deductionsTotal,
+                  ACHAccountNumber: `${
+                    this.props.agent.agent.ACHAccountNumber
+                  }`,
+                }
+              : finalDefaultValues
+          }
+          preValidate={this.preValidate}
+          validateOnMount
+          onSubmit={values => {
+            if (onSubmit) {
+              onSubmit(values);
             }
-            preValidate={this.preValidate}
-            validateOnMount
-            onSubmit={values => {
-              if (onSubmit) {
-                onSubmit(values);
-              }
-            }}
-            onSubmitFailure={this.props.onSubmitFailure}
-            validate={validators}
-            getApi={formApi => {
-              this.props.getFormApi(formApi);
-            }}
-          >
-            {formApi => {
-              /*
+          }}
+          onSubmitFailure={this.props.onSubmitFailure}
+          validate={validators}
+          getApi={formApi => {
+            this.props.getFormApi(formApi);
+          }}
+        >
+          {formApi => {
+            /*
               console.log(formApi.errors);
               console.log(formApi.values);
               console.log(formApi.values.deductionItems);
@@ -614,16 +630,586 @@ class SubmitDealForm extends Component {
               }
               */
 
-              const renderRestDeductionItems = () => {
-                if (
-                  !formApi.values.deductionItems ||
-                  !formApi.values.deductionItems.length
+            const renderRestDeductionItems = () => {
+              if (
+                !formApi.values.deductionItems ||
+                !formApi.values.deductionItems.length
+              )
+                return;
+              const deductionItems = formApi.values.deductionItems.map(
+                (deductionItem, i) => (
+                  <div className={classes.paymentItemsWrapper} key={i}>
+                    <NestedField field={['deductionItems', i]}>
+                      <Grid item sm={4} xs={12}>
+                        <div className={classes.formControlWrapper}>
+                          <MaterialCustomSelectInput
+                            field="deductionType"
+                            id={uuid()}
+                            fullWidth
+                            label="Deduction Type"
+                            name="deductionType"
+                            required
+                            selectInputItems={deductionTypeSelectItems}
+                            validate={deductionTypeValidator}
+                            disabled={submittedDeal && !isEditingDeal}
+                          />
+                        </div>
+                      </Grid>
+
+                      <Grid item sm={4} xs={12}>
+                        <div className={classes.formControlWrapper}>
+                          <CustomTextField
+                            field="description"
+                            id={uuid()}
+                            label="Description"
+                            fullWidth
+                            required
+                            validate={descriptionValidator}
+                            disabled={submittedDeal && !isEditingDeal}
+                          />
+                        </div>
+                      </Grid>
+
+                      <Grid item sm={4} xs={12}>
+                        <div className={classes.formControlWrapper}>
+                          <CustomTextField
+                            field="amount"
+                            id={uuid()}
+                            label="Amount"
+                            fullWidth
+                            validate={deductionsAmountValidator}
+                            noLetters
+                            required
+                            noNegativeSign
+                            onChangeWithID={
+                              this.props.deductionAmountChangeHandler
+                            }
+                            isDollarAmount
+                            disabled={submittedDeal && !isEditingDeal}
+                          />
+                        </div>
+                      </Grid>
+                    </NestedField>
+                    <Button
+                      classes={{ root: classes.removePaymentBtn }}
+                      variant="raised"
+                      color="secondary"
+                      onClick={() => {
+                        const amount = Number(
+                          formApi.values.deductionItems[i].amount
+                        );
+
+                        if (amount) {
+                          subtractDeductionValueFromState(amount);
+                        }
+                        formApi.removeValue('deductionItems', i);
+                      }}
+                      type="button"
+                    >
+                      Remove
+                    </Button>
+                  </div>
                 )
-                  return;
-                const deductionItems = formApi.values.deductionItems.map(
-                  (deductionItem, i) => (
-                    <div className={classes.paymentItemsWrapper} key={i}>
-                      <NestedField field={['deductionItems', i]}>
+              );
+              if (this.state.shouldRenderInitialDeductionItem) {
+                return deductionItems.slice(1);
+              }
+              return deductionItems;
+            };
+
+            return (
+              <form
+                onSubmit={formApi.submitForm}
+                id="form1"
+                className={classes.formRoot}
+                style={{
+                  display:
+                    formSubmissionBegun || submittingFormToServer
+                      ? 'none'
+                      : undefined,
+                }}
+              >
+                <Grid container spacing={24}>
+                  <Grid item sm={6} xs={12}>
+                    <div className={classes.formControlWrapper}>
+                      <CustomTextField
+                        field="date"
+                        id={uuid()}
+                        label="Date"
+                        disabled
+                        fullWidth
+                        required
+                      />
+                    </div>
+                  </Grid>
+                  <Grid item sm={6} xs={12}>
+                    <div className={classes.formControlWrapper}>
+                      <CustomTextField
+                        field="agent"
+                        id={uuid()}
+                        label="Agent"
+                        disabled
+                        fullWidth
+                        required
+                      />
+                    </div>
+                  </Grid>
+
+                  {agentsSelectItems.length ? (
+                    <Grid item xs={12}>
+                      <div className={classes.formControlWrapper}>
+                        <MaterialCustomSelectInput
+                          field="otherAgents"
+                          id={uuid()}
+                          fullWidth
+                          label="Other Agents"
+                          name="otherAgents"
+                          multiple
+                          disabled={submittedDeal && !isEditingDeal}
+                          selectInputItems={agentsSelectItems}
+                          disabled={isViewType}
+                        />
+                      </div>
+                    </Grid>
+                  ) : null}
+
+                  <div
+                    className={`${classes.formControlWrapper} ${
+                      classes.radioInputWrapper
+                    }`}
+                  >
+                    <MaterialCustomRadioInput
+                      field="agentType"
+                      id={uuid()}
+                      required
+                      label="Agent Type"
+                      radioInputItems={radioInputAgentItems}
+                      disabled
+                      horizontal
+                    />
+                  </div>
+
+                  <Grid item xs={12}>
+                    <div className={classes.formControlWrapper}>
+                      <CustomTextField
+                        field="leadSource"
+                        id={uuid()}
+                        label="Lead Source"
+                        fullWidth
+                        disabled={submittedDeal && !isEditingDeal}
+                      />
+                    </div>
+                  </Grid>
+
+                  <div className={classes.formSubheading}>
+                    <Typography
+                      variant="subheading"
+                      classes={{ subheading: classes.h3 }}
+                    >
+                      Property Information
+                    </Typography>
+                  </div>
+
+                  <Grid item sm={6} xs={12}>
+                    <div className={classes.formControlWrapper}>
+                      <MaterialCustomSelectInput
+                        field="dealType"
+                        id={uuid()}
+                        required
+                        fullWidth
+                        disabled={submittedDeal && !isEditingDeal}
+                        label="Deal Type"
+                        name="dealType"
+                        selectInputItems={dealTypeSelectItems}
+                        disabled={submittedDeal && !isEditingDeal}
+                      />
+                    </div>
+                  </Grid>
+
+                  <Grid item sm={6} xs={12}>
+                    <div className={classes.formControlWrapper}>
+                      <CustomTextField
+                        field="propertyAddress"
+                        id={uuid()}
+                        label="Property Address"
+                        required
+                        fullWidth
+                        disabled={submittedDeal && !isEditingDeal}
+                      />
+                    </div>
+                  </Grid>
+                  <Grid item sm={6} xs={12}>
+                    <div className={classes.formControlWrapper}>
+                      <CustomTextField
+                        field="state"
+                        id={uuid()}
+                        label="State"
+                        required
+                        fullWidth
+                        disabled
+                      />
+                    </div>
+                  </Grid>
+                  <Grid item sm={6} xs={12}>
+                    <div className={classes.formControlWrapper}>
+                      <CustomTextField
+                        field="city"
+                        id={uuid()}
+                        label="City"
+                        required
+                        fullWidth
+                        disabled={submittedDeal && !isEditingDeal}
+                      />
+                    </div>
+                  </Grid>
+                  <Grid item sm={6} xs={12}>
+                    <div className={classes.formControlWrapper}>
+                      <CustomTextField
+                        field="apartmentNumber"
+                        id={uuid()}
+                        label="Apartment Number"
+                        required
+                        fullWidth
+                        disabled={submittedDeal && !isEditingDeal}
+                      />
+                    </div>
+                  </Grid>
+
+                  {!choosingMgmtCoBrokeCompany ? (
+                    <Grid item sm={6} xs={12}>
+                      <div className={classes.formControlWrapper}>
+                        <MaterialCustomSelectInput
+                          field="managementOrCobrokeCompany"
+                          id={uuid()}
+                          required
+                          fullWidth
+                          label="Management/Co-Broke Company"
+                          name="managementOrCobrokeCompany"
+                          onChange={value => {
+                            if (value === 'Add a new item...') {
+                              toggleChoosingMgmtCoBrokeCompany(true);
+                            }
+                          }}
+                          selectInputItems={managementCobrokeCompanySelectItems}
+                          disabled={submittedDeal && !isEditingDeal}
+                        />
+                      </div>
+                    </Grid>
+                  ) : (
+                    <Grid item sm={6} xs={12}>
+                      <div className={classes.formControlWrapper}>
+                        <TextField
+                          id="newManagementOrCobrokeCompany"
+                          label="Add Mgmt/Co-broke Company..."
+                          value={newMgmtOrCobrokeCompany}
+                          className={
+                            classes.ManagementOrCobrokeCompanyTextField
+                          }
+                          onChange={handleMgmtOrCobrokeCompanyChange}
+                          margin="normal"
+                        />
+                      </div>
+                      <Button
+                        classes={{ root: classes.removePaymentBtn }}
+                        variant="raised"
+                        color="secondary"
+                        style={{ marginLeft: '0' }}
+                        onClick={() => {
+                          toggleChoosingMgmtCoBrokeCompany(false);
+                          formApi.setValue('managementOrCobrokeCompany', '');
+                        }}
+                        type="button"
+                      >
+                        Cancel
+                      </Button>
+                      <Button
+                        classes={{ root: classes.addPaymentBtn }}
+                        variant="raised"
+                        color="primary"
+                        style={{ marginLeft: '10px', marginTop: '5px' }}
+                        onClick={() => {
+                          const trimmedItem = newMgmtOrCobrokeCompany.trim();
+                          if (!newMgmtOrCobrokeCompany || !trimmedItem) return;
+
+                          const items = [
+                            ...managementCobrokeCompanyItems,
+                            ...addedManagementCompanies,
+                          ];
+
+                          const regex = new RegExp(trimmedItem, 'i');
+
+                          const match = items.filter(item => item.match(regex));
+
+                          if (match.length) {
+                            toggleChoosingMgmtCoBrokeCompany(false);
+                            formApi.setValue(
+                              'managementOrCobrokeCompany',
+                              match[0]
+                            );
+                            return;
+                          }
+
+                          setHasSetNewMgmtOrCobrokeCompany();
+                          formApi.setValue(
+                            'managementOrCobrokeCompany',
+                            capitalize(newMgmtOrCobrokeCompany)
+                          );
+                        }}
+                        type="button"
+                      >
+                        Add Item
+                      </Button>
+                    </Grid>
+                  )}
+
+                  <Grid item xs={12}>
+                    <div className={classes.formControlWrapper}>
+                      <CustomTextField
+                        field="price"
+                        id={uuid()}
+                        label="Rent or Sale Price"
+                        required
+                        fullWidth
+                        noLetters
+                        isDollarAmount
+                        disabled={submittedDeal && !isEditingDeal}
+                      />
+                    </div>
+                  </Grid>
+
+                  <div className={classes.formSubheading}>
+                    <Typography
+                      variant="subheading"
+                      classes={{ subheading: classes.h3 }}
+                    >
+                      {"Client's"} Information
+                    </Typography>
+                  </div>
+
+                  <Grid item sm={6} xs={12}>
+                    <div className={classes.formControlWrapper}>
+                      <CustomTextField
+                        field="clientName"
+                        id={uuid()}
+                        label="Client's Name"
+                        required
+                        fullWidth
+                        disabled={submittedDeal && !isEditingDeal}
+                      />
+                    </div>
+                  </Grid>
+                  <Grid item sm={6} xs={12}>
+                    <div className={classes.formControlWrapper}>
+                      <CustomTextField
+                        field="clientEmail"
+                        id={uuid()}
+                        label="Client Email"
+                        required
+                        fullWidth
+                        type="email"
+                        disabled={submittedDeal && !isEditingDeal}
+                      />
+                    </div>
+                  </Grid>
+
+                  <div
+                    className={`${classes.formSubheading} ${
+                      classes.paddingBottom10
+                    }`}
+                  >
+                    <Typography
+                      variant="subheading"
+                      classes={{ subheading: classes.h3 }}
+                    >
+                      Transaction Financials
+                    </Typography>
+                  </div>
+
+                  <div className={classes.formMiniHeading}>
+                    <Typography
+                      variant="subheading"
+                      classes={{
+                        subheading: classes.h4,
+                        root: classes.greenText,
+                      }}
+                    >
+                      Paid:
+                    </Typography>
+                  </div>
+
+                  <NestedField field={['paymentItems', 0]}>
+                    <Grid item sm={4} xs={12}>
+                      <div className={classes.formControlWrapper}>
+                        <MaterialCustomSelectInput
+                          field="paymentType"
+                          id={uuid()}
+                          required
+                          fullWidth
+                          label="Payment Type"
+                          name="paymentType"
+                          selectInputItems={paymentTypeSelectItems}
+                          validate={paymentTypeValidator}
+                          disabled={submittedDeal && !isEditingDeal}
+                        />
+                      </div>
+                    </Grid>
+
+                    <Grid item sm={4} xs={12}>
+                      <div className={classes.formControlWrapper}>
+                        <CustomTextField
+                          field="checkOrTransactionNumber"
+                          id={uuid()}
+                          label="Check/Transaction#"
+                          required
+                          fullWidth
+                          validate={checkOrTransactionNumberValidator}
+                          disabled={submittedDeal && !isEditingDeal}
+                        />
+                      </div>
+                    </Grid>
+
+                    <Grid item sm={4} xs={12}>
+                      <div className={classes.formControlWrapper}>
+                        <CustomTextField
+                          field="amount"
+                          id={uuid()}
+                          label="Amount"
+                          required
+                          fullWidth
+                          validate={paymentAmountValidator}
+                          noLetters
+                          noNegativeSign
+                          onChangeWithID={this.props.paymentAmountChangeHandler}
+                          isDollarAmount
+                          disabled={submittedDeal && !isEditingDeal}
+                        />
+                      </div>
+                    </Grid>
+                  </NestedField>
+
+                  {formApi.values.paymentItems &&
+                    formApi.values.paymentItems
+                      .map((paymentItems, i) => (
+                        <div className={classes.paymentItemsWrapper} key={i}>
+                          <NestedField field={['paymentItems', i]}>
+                            <Grid item sm={4} xs={12}>
+                              <div className={classes.formControlWrapper}>
+                                <MaterialCustomSelectInput
+                                  field="paymentType"
+                                  id={uuid()}
+                                  required
+                                  fullWidth
+                                  label="Payment Type"
+                                  name="paymentType"
+                                  selectInputItems={paymentTypeSelectItems}
+                                  validate={paymentTypeValidator}
+                                  disabled={submittedDeal && !isEditingDeal}
+                                />
+                              </div>
+                            </Grid>
+
+                            <Grid item sm={4} xs={12}>
+                              <div className={classes.formControlWrapper}>
+                                <CustomTextField
+                                  field="checkOrTransactionNumber"
+                                  id={uuid()}
+                                  label="Check/Transaction#"
+                                  required
+                                  fullWidth
+                                  validate={checkOrTransactionNumberValidator}
+                                  disabled={submittedDeal && !isEditingDeal}
+                                />
+                              </div>
+                            </Grid>
+
+                            <Grid item sm={4} xs={12}>
+                              <div className={classes.formControlWrapper}>
+                                <CustomTextField
+                                  field="amount"
+                                  id={uuid()}
+                                  label="Amount"
+                                  required
+                                  fullWidth
+                                  validate={paymentAmountValidator}
+                                  noLetters
+                                  noNegativeSign
+                                  onChangeWithID={
+                                    this.props.paymentAmountChangeHandler
+                                  }
+                                  isDollarAmount
+                                  disabled={submittedDeal && !isEditingDeal}
+                                />
+                              </div>
+                            </Grid>
+                          </NestedField>
+                          {submittedDeal && !isEditingDeal ? null : (
+                            <Button
+                              classes={{ root: classes.removePaymentBtn }}
+                              variant="raised"
+                              color="secondary"
+                              onClick={() => {
+                                const amount = Number(
+                                  formApi.values.paymentItems[i].amount
+                                );
+
+                                if (amount) {
+                                  subtractPaymentValueFromState(amount);
+                                }
+
+                                formApi.removeValue('paymentItems', i);
+                              }}
+                              type="button"
+                            >
+                              Remove
+                            </Button>
+                          )}
+                        </div>
+                      ))
+                      .slice(1)}
+                  <Grid item xs={12}>
+                    <Button
+                      classes={{ root: classes.addPaymentBtn }}
+                      variant="raised"
+                      color="primary"
+                      onClick={() => formApi.addValue('paymentItems')}
+                      type="button"
+                      disabled={submittedDeal && !isEditingDeal}
+                    >
+                      Add payment item
+                    </Button>
+                  </Grid>
+
+                  <Grid item xs={12} sm={6}>
+                    <div className={classes.formControlWrapper}>
+                      <CustomTextField
+                        field="paymentsSubtotal"
+                        id={uuid()}
+                        label="Payments Subtotal"
+                        disabled
+                        fullWidth
+                        submittedValue={this.props.paymentsTotal}
+                        formApi={formApi}
+                        convertToLocaleString
+                        isDollarAmount
+                      />
+                    </div>
+                  </Grid>
+
+                  <div className={classes.formMiniHeading2}>
+                    <Typography
+                      variant="subheading"
+                      classes={{
+                        subheading: classes.h4,
+                        root: classes.redText,
+                      }}
+                    >
+                      Deductions:
+                    </Typography>
+                  </div>
+
+                  {this.state.shouldRenderInitialDeductionItem ? (
+                    <div className={classes.paymentItemsWrapper}>
+                      <NestedField field={['deductionItems', 0]}>
                         <Grid item sm={4} xs={12}>
                           <div className={classes.formControlWrapper}>
                             <MaterialCustomSelectInput
@@ -674,784 +1260,209 @@ class SubmitDealForm extends Component {
                           </div>
                         </Grid>
                       </NestedField>
-                      <Button
-                        classes={{ root: classes.removePaymentBtn }}
-                        variant="raised"
-                        color="secondary"
-                        onClick={() => {
-                          const amount = Number(
-                            formApi.values.deductionItems[i].amount
-                          );
-
-                          if (amount) {
-                            subtractDeductionValueFromState(amount);
-                          }
-                          formApi.removeValue('deductionItems', i);
-                        }}
-                        type="button"
-                      >
-                        Remove
-                      </Button>
-                    </div>
-                  )
-                );
-                if (this.state.shouldRenderInitialDeductionItem) {
-                  return deductionItems.slice(1);
-                }
-                return deductionItems;
-              };
-
-              return (
-                <form
-                  onSubmit={formApi.submitForm}
-                  id="form1"
-                  className={classes.formRoot}
-                >
-                  <Grid container spacing={24}>
-                    <Grid item sm={6} xs={12}>
-                      <div className={classes.formControlWrapper}>
-                        <CustomTextField
-                          field="date"
-                          id={uuid()}
-                          label="Date"
-                          disabled
-                          fullWidth
-                          required
-                        />
-                      </div>
-                    </Grid>
-                    <Grid item sm={6} xs={12}>
-                      <div className={classes.formControlWrapper}>
-                        <CustomTextField
-                          field="agent"
-                          id={uuid()}
-                          label="Agent"
-                          disabled
-                          fullWidth
-                          required
-                        />
-                      </div>
-                    </Grid>
-
-                    {agentsSelectItems.length ? (
-                      <Grid item xs={12}>
-                        <div className={classes.formControlWrapper}>
-                          <MaterialCustomSelectInput
-                            field="otherAgents"
-                            id={uuid()}
-                            fullWidth
-                            label="Other Agents"
-                            name="otherAgents"
-                            multiple
-                            disabled={submittedDeal && !isEditingDeal}
-                            selectInputItems={agentsSelectItems}
-                            disabled={isViewType}
-                          />
-                        </div>
-                      </Grid>
-                    ) : null}
-
-                    <div
-                      className={`${classes.formControlWrapper} ${
-                        classes.radioInputWrapper
-                      }`}
-                    >
-                      <MaterialCustomRadioInput
-                        field="agentType"
-                        id={uuid()}
-                        required
-                        label="Agent Type"
-                        radioInputItems={radioInputAgentItems}
-                        disabled
-                        horizontal
-                      />
-                    </div>
-
-                    <Grid item xs={12}>
-                      <div className={classes.formControlWrapper}>
-                        <CustomTextField
-                          field="leadSource"
-                          id={uuid()}
-                          label="Lead Source"
-                          fullWidth
-                          disabled={submittedDeal && !isEditingDeal}
-                        />
-                      </div>
-                    </Grid>
-
-                    <div className={classes.formSubheading}>
-                      <Typography
-                        variant="subheading"
-                        classes={{ subheading: classes.h3 }}
-                      >
-                        Property Information
-                      </Typography>
-                    </div>
-
-                    <Grid item sm={6} xs={12}>
-                      <div className={classes.formControlWrapper}>
-                        <MaterialCustomSelectInput
-                          field="dealType"
-                          id={uuid()}
-                          required
-                          fullWidth
-                          disabled={submittedDeal && !isEditingDeal}
-                          label="Deal Type"
-                          name="dealType"
-                          selectInputItems={dealTypeSelectItems}
-                          disabled={submittedDeal && !isEditingDeal}
-                        />
-                      </div>
-                    </Grid>
-
-                    <Grid item sm={6} xs={12}>
-                      <div className={classes.formControlWrapper}>
-                        <CustomTextField
-                          field="propertyAddress"
-                          id={uuid()}
-                          label="Property Address"
-                          required
-                          fullWidth
-                          disabled={submittedDeal && !isEditingDeal}
-                        />
-                      </div>
-                    </Grid>
-                    <Grid item sm={6} xs={12}>
-                      <div className={classes.formControlWrapper}>
-                        <CustomTextField
-                          field="state"
-                          id={uuid()}
-                          label="State"
-                          required
-                          fullWidth
-                          disabled
-                        />
-                      </div>
-                    </Grid>
-                    <Grid item sm={6} xs={12}>
-                      <div className={classes.formControlWrapper}>
-                        <CustomTextField
-                          field="city"
-                          id={uuid()}
-                          label="City"
-                          required
-                          fullWidth
-                          disabled={submittedDeal && !isEditingDeal}
-                        />
-                      </div>
-                    </Grid>
-                    <Grid item sm={6} xs={12}>
-                      <div className={classes.formControlWrapper}>
-                        <CustomTextField
-                          field="apartmentNumber"
-                          id={uuid()}
-                          label="Apartment Number"
-                          required
-                          fullWidth
-                          disabled={submittedDeal && !isEditingDeal}
-                        />
-                      </div>
-                    </Grid>
-
-                    {!choosingMgmtCoBrokeCompany ? (
-                      <Grid item sm={6} xs={12}>
-                        <div className={classes.formControlWrapper}>
-                          <MaterialCustomSelectInput
-                            field="managementOrCobrokeCompany"
-                            id={uuid()}
-                            required
-                            fullWidth
-                            label="Management/Co-Broke Company"
-                            name="managementOrCobrokeCompany"
-                            onChange={value => {
-                              if (value === 'Add a new item...') {
-                                toggleChoosingMgmtCoBrokeCompany(true);
-                              }
-                            }}
-                            selectInputItems={
-                              managementCobrokeCompanySelectItems
-                            }
-                            disabled={submittedDeal && !isEditingDeal}
-                          />
-                        </div>
-                      </Grid>
-                    ) : (
-                      <Grid item sm={6} xs={12}>
-                        <div className={classes.formControlWrapper}>
-                          <TextField
-                            id="newManagementOrCobrokeCompany"
-                            label="Add Mgmt/Co-broke Company..."
-                            value={newMgmtOrCobrokeCompany}
-                            className={
-                              classes.ManagementOrCobrokeCompanyTextField
-                            }
-                            onChange={handleMgmtOrCobrokeCompanyChange}
-                            margin="normal"
-                          />
-                        </div>
+                      {submittedDeal && !isEditingDeal ? null : (
                         <Button
                           classes={{ root: classes.removePaymentBtn }}
                           variant="raised"
                           color="secondary"
-                          style={{ marginLeft: '0' }}
                           onClick={() => {
-                            toggleChoosingMgmtCoBrokeCompany(false);
-                            formApi.setValue('managementOrCobrokeCompany', '');
-                          }}
-                          type="button"
-                        >
-                          Cancel
-                        </Button>
-                        <Button
-                          classes={{ root: classes.addPaymentBtn }}
-                          variant="raised"
-                          color="primary"
-                          style={{ marginLeft: '10px', marginTop: '5px' }}
-                          onClick={() => {
-                            const trimmedItem = newMgmtOrCobrokeCompany.trim();
-                            if (!newMgmtOrCobrokeCompany || !trimmedItem)
-                              return;
-
-                            const items = [
-                              ...managementCobrokeCompanyItems,
-                              ...addedManagementCompanies,
-                            ];
-
-                            const regex = new RegExp(trimmedItem, 'i');
-
-                            const match = items.filter(item =>
-                              item.match(regex)
+                            this.setState({
+                              shouldRenderInitialDeductionItem: false,
+                            });
+                            const amount = Number(
+                              formApi.values.deductionItems[0].amount
                             );
 
-                            if (match.length) {
-                              toggleChoosingMgmtCoBrokeCompany(false);
-                              formApi.setValue(
-                                'managementOrCobrokeCompany',
-                                match[0]
-                              );
-                              return;
+                            if (amount) {
+                              subtractDeductionValueFromState(amount);
                             }
-
-                            setHasSetNewMgmtOrCobrokeCompany();
-                            formApi.setValue(
-                              'managementOrCobrokeCompany',
-                              capitalize(newMgmtOrCobrokeCompany)
-                            );
+                            formApi.removeValue('deductionItems', 0);
                           }}
                           type="button"
                         >
-                          Add Item
+                          Remove
                         </Button>
-                      </Grid>
-                    )}
-
-                    <Grid item xs={12}>
-                      <div className={classes.formControlWrapper}>
-                        <CustomTextField
-                          field="price"
-                          id={uuid()}
-                          label="Rent or Sale Price"
-                          required
-                          fullWidth
-                          noLetters
-                          isDollarAmount
-                          disabled={submittedDeal && !isEditingDeal}
-                        />
-                      </div>
-                    </Grid>
-
-                    <div className={classes.formSubheading}>
-                      <Typography
-                        variant="subheading"
-                        classes={{ subheading: classes.h3 }}
-                      >
-                        {"Client's"} Information
-                      </Typography>
+                      )}
                     </div>
+                  ) : null}
 
-                    <Grid item sm={6} xs={12}>
-                      <div className={classes.formControlWrapper}>
-                        <CustomTextField
-                          field="clientName"
-                          id={uuid()}
-                          label="Client's Name"
-                          required
-                          fullWidth
-                          disabled={submittedDeal && !isEditingDeal}
-                        />
-                      </div>
-                    </Grid>
-                    <Grid item sm={6} xs={12}>
-                      <div className={classes.formControlWrapper}>
-                        <CustomTextField
-                          field="clientEmail"
-                          id={uuid()}
-                          label="Client Email"
-                          required
-                          fullWidth
-                          type="email"
-                          disabled={submittedDeal && !isEditingDeal}
-                        />
-                      </div>
-                    </Grid>
-
-                    <div
-                      className={`${classes.formSubheading} ${
-                        classes.paddingBottom10
-                      }`}
+                  {renderRestDeductionItems()}
+                  <Grid item xs={12}>
+                    <Button
+                      classes={{ root: classes.addPaymentBtn }}
+                      variant="raised"
+                      color="primary"
+                      onClick={() => formApi.addValue('deductionItems')}
+                      type="button"
+                      disabled={submittedDeal && !isEditingDeal}
                     >
-                      <Typography
-                        variant="subheading"
-                        classes={{ subheading: classes.h3 }}
-                      >
-                        Transaction Financials
-                      </Typography>
+                      Add deduction item
+                    </Button>
+                  </Grid>
+
+                  <Grid item xs={12} sm={6}>
+                    <div className={classes.formControlWrapper}>
+                      <CustomTextField
+                        field="deductionsSubtotal"
+                        id={uuid()}
+                        label="Deductions Subtotal"
+                        disabled
+                        fullWidth
+                        submittedValue={`${this.props.deductionsTotal}`}
+                        formApi={formApi}
+                        convertToLocaleString
+                        isDollarAmount
+                      />
                     </div>
+                  </Grid>
 
-                    <div className={classes.formMiniHeading}>
-                      <Typography
-                        variant="subheading"
-                        classes={{
-                          subheading: classes.h4,
-                          root: classes.greenText,
-                        }}
-                      >
-                        Paid:
-                      </Typography>
+                  <Grid item xs={12}>
+                    <div className={classes.formControlWrapper}>
+                      <CustomTextField
+                        field="financialsTotal"
+                        id={uuid()}
+                        label="Final Total"
+                        disabled
+                        fullWidth
+                        labelClassName={classes.finalTotalLabelClass}
+                        submittedValue={`${this.props.total}`}
+                        formApi={formApi}
+                        convertToLocaleString
+                        isDollarAmount
+                        inputRootClassName={classes.finalTotalInputClass}
+                      />
                     </div>
+                  </Grid>
 
-                    <NestedField field={['paymentItems', 0]}>
-                      <Grid item sm={4} xs={12}>
-                        <div className={classes.formControlWrapper}>
-                          <MaterialCustomSelectInput
-                            field="paymentType"
-                            id={uuid()}
-                            required
-                            fullWidth
-                            label="Payment Type"
-                            name="paymentType"
-                            selectInputItems={paymentTypeSelectItems}
-                            validate={paymentTypeValidator}
-                            disabled={submittedDeal && !isEditingDeal}
-                          />
-                        </div>
-                      </Grid>
-
-                      <Grid item sm={4} xs={12}>
-                        <div className={classes.formControlWrapper}>
-                          <CustomTextField
-                            field="checkOrTransactionNumber"
-                            id={uuid()}
-                            label="Check/Transaction#"
-                            required
-                            fullWidth
-                            validate={checkOrTransactionNumberValidator}
-                            disabled={submittedDeal && !isEditingDeal}
-                          />
-                        </div>
-                      </Grid>
-
-                      <Grid item sm={4} xs={12}>
-                        <div className={classes.formControlWrapper}>
-                          <CustomTextField
-                            field="amount"
-                            id={uuid()}
-                            label="Amount"
-                            required
-                            fullWidth
-                            validate={paymentAmountValidator}
-                            noLetters
-                            noNegativeSign
-                            onChangeWithID={
-                              this.props.paymentAmountChangeHandler
-                            }
-                            isDollarAmount
-                            disabled={submittedDeal && !isEditingDeal}
-                          />
-                        </div>
-                      </Grid>
-                    </NestedField>
-
-                    {formApi.values.paymentItems &&
-                      formApi.values.paymentItems
-                        .map((paymentItems, i) => (
-                          <div className={classes.paymentItemsWrapper} key={i}>
-                            <NestedField field={['paymentItems', i]}>
-                              <Grid item sm={4} xs={12}>
-                                <div className={classes.formControlWrapper}>
-                                  <MaterialCustomSelectInput
-                                    field="paymentType"
-                                    id={uuid()}
-                                    required
-                                    fullWidth
-                                    label="Payment Type"
-                                    name="paymentType"
-                                    selectInputItems={paymentTypeSelectItems}
-                                    validate={paymentTypeValidator}
-                                    disabled={submittedDeal && !isEditingDeal}
-                                  />
-                                </div>
-                              </Grid>
-
-                              <Grid item sm={4} xs={12}>
-                                <div className={classes.formControlWrapper}>
-                                  <CustomTextField
-                                    field="checkOrTransactionNumber"
-                                    id={uuid()}
-                                    label="Check/Transaction#"
-                                    required
-                                    fullWidth
-                                    validate={checkOrTransactionNumberValidator}
-                                    disabled={submittedDeal && !isEditingDeal}
-                                  />
-                                </div>
-                              </Grid>
-
-                              <Grid item sm={4} xs={12}>
-                                <div className={classes.formControlWrapper}>
-                                  <CustomTextField
-                                    field="amount"
-                                    id={uuid()}
-                                    label="Amount"
-                                    required
-                                    fullWidth
-                                    validate={paymentAmountValidator}
-                                    noLetters
-                                    noNegativeSign
-                                    onChangeWithID={
-                                      this.props.paymentAmountChangeHandler
-                                    }
-                                    isDollarAmount
-                                    disabled={submittedDeal && !isEditingDeal}
-                                  />
-                                </div>
-                              </Grid>
-                            </NestedField>
-                            {submittedDeal && !isEditingDeal ? null : (
-                              <Button
-                                classes={{ root: classes.removePaymentBtn }}
-                                variant="raised"
-                                color="secondary"
-                                onClick={() => {
-                                  const amount = Number(
-                                    formApi.values.paymentItems[i].amount
-                                  );
-
-                                  if (amount) {
-                                    subtractPaymentValueFromState(amount);
-                                  }
-
-                                  formApi.removeValue('paymentItems', i);
-                                }}
-                                type="button"
-                              >
-                                Remove
-                              </Button>
-                            )}
-                          </div>
-                        ))
-                        .slice(1)}
-                    <Grid item xs={12}>
-                      <Button
-                        classes={{ root: classes.addPaymentBtn }}
-                        variant="raised"
-                        color="primary"
-                        onClick={() => formApi.addValue('paymentItems')}
-                        type="button"
+                  <Grid item xs={12}>
+                    <div className={classes.formControlWrapper}>
+                      <CustomTextField
+                        field="agentNotes"
+                        id={uuid()}
+                        label="Listing agent/performance bonus info"
+                        fullWidth
+                        multiline
                         disabled={submittedDeal && !isEditingDeal}
-                      >
-                        Add payment item
-                      </Button>
-                    </Grid>
-
-                    <Grid item xs={12} sm={6}>
-                      <div className={classes.formControlWrapper}>
-                        <CustomTextField
-                          field="paymentsSubtotal"
-                          id={uuid()}
-                          label="Payments Subtotal"
-                          disabled
-                          fullWidth
-                          submittedValue={this.props.paymentsTotal}
-                          formApi={formApi}
-                          convertToLocaleString
-                          isDollarAmount
-                        />
-                      </div>
-                    </Grid>
-
-                    <div className={classes.formMiniHeading2}>
-                      <Typography
-                        variant="subheading"
-                        classes={{
-                          subheading: classes.h4,
-                          root: classes.redText,
-                        }}
-                      >
-                        Deductions:
-                      </Typography>
+                      />
                     </div>
+                  </Grid>
 
-                    {this.state.shouldRenderInitialDeductionItem ? (
-                      <div className={classes.paymentItemsWrapper}>
-                        <NestedField field={['deductionItems', 0]}>
-                          <Grid item sm={4} xs={12}>
-                            <div className={classes.formControlWrapper}>
-                              <MaterialCustomSelectInput
-                                field="deductionType"
-                                id={uuid()}
-                                fullWidth
-                                label="Deduction Type"
-                                name="deductionType"
-                                required
-                                selectInputItems={deductionTypeSelectItems}
-                                validate={deductionTypeValidator}
-                                disabled={submittedDeal && !isEditingDeal}
-                              />
-                            </div>
-                          </Grid>
+                  <div className={classes.formMiniHeading2}>
+                    <Typography
+                      variant="subheading"
+                      classes={{ subheading: classes.h4 }}
+                    >
+                      File Uploads:
+                    </Typography>
+                  </div>
 
-                          <Grid item sm={4} xs={12}>
-                            <div className={classes.formControlWrapper}>
-                              <CustomTextField
-                                field="description"
-                                id={uuid()}
-                                label="Description"
-                                fullWidth
-                                required
-                                validate={descriptionValidator}
-                                disabled={submittedDeal && !isEditingDeal}
-                              />
-                            </div>
-                          </Grid>
+                  <Grid item xs={12}>
+                    <Divider />
+                  </Grid>
 
-                          <Grid item sm={4} xs={12}>
-                            <div className={classes.formControlWrapper}>
-                              <CustomTextField
-                                field="amount"
-                                id={uuid()}
-                                label="Amount"
-                                fullWidth
-                                validate={deductionsAmountValidator}
-                                noLetters
-                                required
-                                noNegativeSign
-                                onChangeWithID={
-                                  this.props.deductionAmountChangeHandler
-                                }
-                                isDollarAmount
-                                disabled={submittedDeal && !isEditingDeal}
-                              />
-                            </div>
-                          </Grid>
-                        </NestedField>
-                        {submittedDeal && !isEditingDeal ? null : (
-                          <Button
-                            classes={{ root: classes.removePaymentBtn }}
-                            variant="raised"
-                            color="secondary"
-                            onClick={() => {
-                              this.setState({
-                                shouldRenderInitialDeductionItem: false,
-                              });
-                              const amount = Number(
-                                formApi.values.deductionItems[0].amount
-                              );
-
-                              if (amount) {
-                                subtractDeductionValueFromState(amount);
-                              }
-                              formApi.removeValue('deductionItems', 0);
-                            }}
-                            type="button"
-                          >
-                            Remove
-                          </Button>
-                        )}
-                      </div>
-                    ) : null}
-
-                    {renderRestDeductionItems()}
-                    <Grid item xs={12}>
-                      <Button
-                        classes={{ root: classes.addPaymentBtn }}
-                        variant="raised"
-                        color="primary"
-                        onClick={() => formApi.addValue('deductionItems')}
-                        type="button"
+                  <Grid item xs={12}>
+                    <div className={classes.fileUploadBtnWrapper}>
+                      <CustomFileUploadInputBtn
+                        field="agencyDisclosureForm"
+                        id="agencyDisclosureUploadForm"
+                        label="Upload Agency Disclosure Form*"
+                        btnClassName={classes.uploadBtnClassName}
+                        customOnChange={setAgencyDisclosureForm}
+                        customState={agencyDisclosureForm}
+                        helperInfo="Agency Disclosure Form* (PDF or JPEG/JPG file)"
+                        acceptedFileExtensions={acceptedFileExtensions}
+                        accept=".jpeg, .jpg, .pdf"
                         disabled={submittedDeal && !isEditingDeal}
-                      >
-                        Add deduction item
-                      </Button>
-                    </Grid>
-
-                    <Grid item xs={12} sm={6}>
-                      <div className={classes.formControlWrapper}>
-                        <CustomTextField
-                          field="deductionsSubtotal"
-                          id={uuid()}
-                          label="Deductions Subtotal"
-                          disabled
-                          fullWidth
-                          submittedValue={`${this.props.deductionsTotal}`}
-                          formApi={formApi}
-                          convertToLocaleString
-                          isDollarAmount
-                        />
-                      </div>
-                    </Grid>
-
-                    <Grid item xs={12}>
-                      <div className={classes.formControlWrapper}>
-                        <CustomTextField
-                          field="financialsTotal"
-                          id={uuid()}
-                          label="Final Total"
-                          disabled
-                          fullWidth
-                          labelClassName={classes.finalTotalLabelClass}
-                          submittedValue={`${this.props.total}`}
-                          formApi={formApi}
-                          convertToLocaleString
-                          isDollarAmount
-                          inputRootClassName={classes.finalTotalInputClass}
-                        />
-                      </div>
-                    </Grid>
-
-                    <Grid item xs={12}>
-                      <div className={classes.formControlWrapper}>
-                        <CustomTextField
-                          field="agentNotes"
-                          id={uuid()}
-                          label="Listing agent/performance bonus info"
-                          fullWidth
-                          multiline
-                          disabled={submittedDeal && !isEditingDeal}
-                        />
-                      </div>
-                    </Grid>
-
-                    <div className={classes.formMiniHeading2}>
-                      <Typography
-                        variant="subheading"
-                        classes={{ subheading: classes.h4 }}
-                      >
-                        File Uploads:
-                      </Typography>
+                        required={isViewType ? undefined : true}
+                        submits={formApi.submits}
+                        formError={
+                          formApi.errors
+                            ? formApi.errors.agencyDisclosureForm
+                            : undefined
+                        }
+                        validate={
+                          isViewType ? undefined : agencyDisclosureFormValidator
+                        }
+                      />
+                      {submittedDeal &&
+                      submittedDeal.agencyDisclosureForm &&
+                      !agencyDisclosureForm ? (
+                        <Button
+                          variant="fab"
+                          color="primary"
+                          aria-label="add"
+                          size="small"
+                          classes={{ root: classes.smallFileViewBtn }}
+                          onClick={this.openAgencyDisclosureLightBox}
+                        >
+                          <EyeIcon className={classes.viewIcon} />
+                        </Button>
+                      ) : null}
+                      {isEditingDeal && agencyDisclosureForm ? (
+                        <Button
+                          variant="fab"
+                          color="secondary"
+                          aria-label="add"
+                          size="small"
+                          classes={{ root: classes.smallFileRemoveBtn }}
+                          onClick={() => {
+                            setAgencyDisclosureForm('');
+                          }}
+                        >
+                          <DeleteIcon />
+                        </Button>
+                      ) : null}
                     </div>
+                  </Grid>
 
-                    <Grid item xs={12}>
-                      <Divider />
-                    </Grid>
+                  <Grid item xs={12}>
+                    <div className={classes.fileUploadBtnWrapper}>
+                      <CustomFileUploadInputBtn
+                        field="contractOrLeaseItems"
+                        id="contractOrLeaseItemsUploadForm"
+                        label="Upload your Contract or Lease items"
+                        btnClassName={classes.uploadBtnClassName}
+                        multiple
+                        customOnChange={setContractOrLeaseForms}
+                        customState={contractOrLeaseForms}
+                        helperInfo="Contract or Lease items (PDF or JPEG/JPG files)"
+                        acceptedFileExtensions={acceptedFileExtensions}
+                        accept=".jpeg, .jpg, .pdf"
+                        disabled={submittedDeal && !isEditingDeal}
+                      />
+                      {submittedDeal &&
+                      submittedDeal.contractOrLeaseForms &&
+                      submittedDeal.contractOrLeaseForms.length &&
+                      !(contractOrLeaseForms && contractOrLeaseForms.length) ? (
+                        <Button
+                          variant="fab"
+                          color="primary"
+                          aria-label="add"
+                          size="small"
+                          classes={{ root: classes.smallFileViewBtn }}
+                          onClick={this.openContractLeaseLightBox}
+                        >
+                          <EyeIcon className={classes.viewIcon} />
+                        </Button>
+                      ) : null}
+                      {contractOrLeaseForms.length ? (
+                        <Button
+                          variant="fab"
+                          color="secondary"
+                          aria-label="add"
+                          size="small"
+                          classes={{ root: classes.smallFileRemoveBtn }}
+                          onClick={() => {
+                            setContractOrLeaseForms([]);
+                          }}
+                        >
+                          <DeleteIcon />
+                        </Button>
+                      ) : null}
+                    </div>
+                  </Grid>
 
-                    <Grid item xs={12}>
-                      <div className={classes.fileUploadBtnWrapper}>
-                        <CustomFileUploadInputBtn
-                          field="agencyDisclosureForm"
-                          id="agencyDisclosureUploadForm"
-                          label="Upload Agency Disclosure Form*"
-                          btnClassName={classes.uploadBtnClassName}
-                          customOnChange={setAgencyDisclosureForm}
-                          customState={agencyDisclosureForm}
-                          helperInfo="Agency Disclosure Form* (PDF or JPEG/JPG file)"
-                          acceptedFileExtensions={acceptedFileExtensions}
-                          accept=".jpeg, .jpg, .pdf"
-                          disabled={submittedDeal && !isEditingDeal}
-                          required={isViewType ? undefined : true}
-                          submits={formApi.submits}
-                          formError={
-                            formApi.errors
-                              ? formApi.errors.agencyDisclosureForm
-                              : undefined
-                          }
-                          validate={
-                            isViewType
-                              ? undefined
-                              : agencyDisclosureFormValidator
-                          }
-                        />
-                        {submittedDeal &&
-                        submittedDeal.agencyDisclosureForm &&
-                        !agencyDisclosureForm ? (
-                          <Button
-                            variant="fab"
-                            color="primary"
-                            aria-label="add"
-                            size="small"
-                            classes={{ root: classes.smallFileViewBtn }}
-                            onClick={this.openAgencyDisclosureLightBox}
-                          >
-                            <EyeIcon className={classes.viewIcon} />
-                          </Button>
-                        ) : null}
-                        {isEditingDeal && agencyDisclosureForm ? (
-                          <Button
-                            variant="fab"
-                            color="secondary"
-                            aria-label="add"
-                            size="small"
-                            classes={{ root: classes.smallFileRemoveBtn }}
-                            onClick={() => {
-                              setAgencyDisclosureForm('');
-                            }}
-                          >
-                            <DeleteIcon />
-                          </Button>
-                        ) : null}
-                      </div>
-                    </Grid>
-
-                    <Grid item xs={12}>
-                      <div className={classes.fileUploadBtnWrapper}>
-                        <CustomFileUploadInputBtn
-                          field="contractOrLeaseItems"
-                          id="contractOrLeaseItemsUploadForm"
-                          label="Upload your Contract or Lease items"
-                          btnClassName={classes.uploadBtnClassName}
-                          multiple
-                          customOnChange={setContractOrLeaseForms}
-                          customState={contractOrLeaseForms}
-                          helperInfo="Contract or Lease items (PDF or JPEG/JPG files)"
-                          acceptedFileExtensions={acceptedFileExtensions}
-                          accept=".jpeg, .jpg, .pdf"
-                          disabled={submittedDeal && !isEditingDeal}
-                        />
-                        {submittedDeal &&
-                        submittedDeal.contractOrLeaseForms &&
-                        submittedDeal.contractOrLeaseForms.length &&
-                        !(
-                          contractOrLeaseForms && contractOrLeaseForms.length
-                        ) ? (
-                          <Button
-                            variant="fab"
-                            color="primary"
-                            aria-label="add"
-                            size="small"
-                            classes={{ root: classes.smallFileViewBtn }}
-                            onClick={this.openContractLeaseLightBox}
-                          >
-                            <EyeIcon className={classes.viewIcon} />
-                          </Button>
-                        ) : null}
-                        {contractOrLeaseForms.length ? (
-                          <Button
-                            variant="fab"
-                            color="secondary"
-                            aria-label="add"
-                            size="small"
-                            classes={{ root: classes.smallFileRemoveBtn }}
-                            onClick={() => {
-                              setContractOrLeaseForms([]);
-                            }}
-                          >
-                            <DeleteIcon />
-                          </Button>
-                        ) : null}
-                      </div>
-                    </Grid>
-
-                    {/*
+                  {/*
                       {formApi.values.contractOrLeaseItems && formApi.values.contractOrLeaseItems.map((contractOrLeaseItem, i) => (
                         <Grid item xs={12} key={i} classes={{ typeItem: classes.uploadContractDivWrapper }}>
                           <div className={classes.fileUploadBtnWrapper2}>
@@ -1493,250 +1504,264 @@ class SubmitDealForm extends Component {
                     </Grid>
                     */}
 
-                    <div className={classes.formMiniHeading2}>
-                      <Typography
-                        variant="subheading"
-                        classes={{ subheading: classes.h4 }}
-                      >
-                        Other:
-                      </Typography>
-                    </div>
-
-                    <Grid item xs={12}>
-                      <Divider />
-                    </Grid>
-
-                    <div
-                      className={`${classes.formControlWrapper} ${
-                        classes.radioInputWrapper
-                      }`}
+                  <div className={classes.formMiniHeading2}>
+                    <Typography
+                      variant="subheading"
+                      classes={{ subheading: classes.h4 }}
                     >
-                      <MaterialCustomRadioInput
-                        field="agentPaymentType"
-                        id={uuid()}
-                        required
-                        label="How would you like to get paid?"
-                        radioInputItems={radioInputAgentPaymentItems}
-                        horizontal
-                        disabled={submittedDeal && !isEditingDeal}
-                      />
-                    </div>
+                      Other:
+                    </Typography>
+                  </div>
 
+                  <Grid item xs={12}>
+                    <Divider />
+                  </Grid>
+
+                  <div
+                    className={`${classes.formControlWrapper} ${
+                      classes.radioInputWrapper
+                    }`}
+                  >
+                    <MaterialCustomRadioInput
+                      field="agentPaymentType"
+                      id={uuid()}
+                      required
+                      label="How would you like to get paid?"
+                      radioInputItems={radioInputAgentPaymentItems}
+                      onInput={this.props.onAgentPaymentTypeChange}
+                      horizontal
+                      disabled={submittedDeal && !isEditingDeal}
+                    />
+                  </div>
+
+                  {(agentPaymentTypeIsACH ||
+                    (submittedDeal && submittedDeal.ACHAccountNumber)) && (
                     <Grid item xs={12}>
                       <div className={classes.formControlWrapper}>
-                        <MaterialCustomSelectInput
-                          field="fundsPaidBy"
+                        <CustomTextField
+                          field="ACHAccountNumber"
                           id={uuid()}
+                          label="ACH Account Number"
                           required
                           fullWidth
-                          label="Funds will/have been paid by..."
-                          name="fundsPaidBy"
-                          selectInputItems={fundsPaidBySelectItems}
+                          validate={ACHAccountNumberValidator}
                           disabled={submittedDeal && !isEditingDeal}
                         />
                       </div>
                     </Grid>
+                  )}
 
-                    <div
-                      className={`${classes.formControlWrapper} ${
-                        classes.radioInputWrapper
-                      }`}
-                    >
-                      <MaterialCustomRadioInput
-                        field="alreadyTurnedFundsIn"
+                  <Grid item xs={12}>
+                    <div className={classes.formControlWrapper}>
+                      <MaterialCustomSelectInput
+                        field="fundsPaidBy"
                         id={uuid()}
                         required
-                        label="Have you already deposited or given the funds to us?"
-                        radioInputItems={radioInputYesNoItems}
-                        horizontal
+                        fullWidth
+                        label="Funds will/have been paid by..."
+                        name="fundsPaidBy"
+                        selectInputItems={fundsPaidBySelectItems}
                         disabled={submittedDeal && !isEditingDeal}
                       />
                     </div>
-
-                    <div
-                      className={`${classes.formControlWrapper} ${
-                        classes.radioInputWrapper
-                      }`}
-                    >
-                      <MaterialCustomRadioInput
-                        field="shouldSendApprovalTextMessageNotification"
-                        id={uuid()}
-                        required
-                        label="Want to recieve a text notification upon deal approval?"
-                        radioInputItems={radioInputYesNoItems}
-                        horizontal
-                        disabled={submittedDeal && !isEditingDeal}
-                      />
-                    </div>
-
-                    {!this.props.userRole ||
-                    !submittedDeal ||
-                    (this.props.userRole === agentRole &&
-                      submittedDeal.status === 'pending') ||
-                    (!submittedDeal.bonusPercentageAddedByAdmin &&
-                      submittedDeal.status === 'approved') ? null : (
-                      <Grid item xs={12}>
-                        <div className={classes.formControlWrapper}>
-                          <FormControl
-                            className={classnames(
-                              submittedDeal &&
-                                submittedDeal.status === 'approved' &&
-                                classes.disabled
-                            )}
-                            disabled={
-                              submittedDeal &&
-                              submittedDeal.status === 'approved'
-                            }
-                            fullWidth
-                          >
-                            <InputLabel
-                              htmlFor="bonusPercentageAddedByAdmin"
-                              className={classnames(
-                                submittedDeal &&
-                                  submittedDeal.status === 'approved' &&
-                                  classes.disabled
-                              )}
-                            >
-                              Listing agent/performance bonus
-                            </InputLabel>
-                            <Input
-                              id="bonusPercentageAddedByAdmin"
-                              value={
-                                submittedDeal &&
-                                submittedDeal.bonusPercentageAddedByAdmin
-                                  ? submittedDeal.bonusPercentageAddedByAdmin
-                                  : this.props.dealBonus
-                              }
-                              className={classnames(
-                                submittedDeal &&
-                                  submittedDeal.status === 'approved' &&
-                                  classes.disabled,
-                                classes.fullwidthInput
-                              )}
-                              inputProps={{
-                                onInput: this.props.onBonusChange,
-                                className:
-                                  submittedDeal.status === 'approved'
-                                    ? classes.disabled
-                                    : undefined,
-                              }}
-                              startAdornment={
-                                <InputAdornment position="start">
-                                  %
-                                </InputAdornment>
-                              }
-                            />
-                          </FormControl>
-                        </div>
-                      </Grid>
-                    )}
-
-                    {submittedDeal &&
-                    submittedDeal.netAgentCommission &&
-                    submittedDeal.status === 'approved' ? (
-                      <Grid item xs={12}>
-                        <div className={classes.formControlWrapper}>
-                          <FormControl
-                            className={classnames(
-                              submittedDeal &&
-                                submittedDeal.status === 'approved' &&
-                                classes.disabled
-                            )}
-                            disabled={
-                              submittedDeal &&
-                              submittedDeal.status === 'approved'
-                            }
-                            fullWidth
-                          >
-                            <InputLabel
-                              htmlFor="netAgentCommission"
-                              className={classes.disabled}
-                            >
-                              Net Agent Commission
-                            </InputLabel>
-                            <Input
-                              id="netAgentCommission"
-                              value={
-                                submittedDeal &&
-                                submittedDeal.netAgentCommission
-                                  ? padStringToDecimalString(
-                                      Number(
-                                        submittedDeal.netAgentCommission
-                                      ).toLocaleString()
-                                    )
-                                  : null
-                              }
-                              className={classnames(
-                                classes.disabled,
-                                classes.finalTotalInputClass
-                              )}
-                              inputProps={{
-                                className: classes.disabled,
-                              }}
-                              startAdornment={
-                                <InputAdornment position="start">
-                                  $
-                                </InputAdornment>
-                              }
-                            />
-                          </FormControl>
-                        </div>
-                      </Grid>
-                    ) : null}
-
-                    {(this.props.userRole === admin ||
-                      this.props.userRole === superAdmin) &&
-                    submittedDeal &&
-                    submittedDeal.netCompanyCommission &&
-                    submittedDeal.status === 'approved' ? (
-                      <Grid item xs={12}>
-                        <div className={classes.formControlWrapper}>
-                          <FormControl
-                            className={classnames(classes.disabled)}
-                            disabled
-                            fullWidth
-                          >
-                            <InputLabel
-                              htmlFor="netCompanyCommission"
-                              className={classes.disabled}
-                            >
-                              Net Company Commission
-                            </InputLabel>
-                            <Input
-                              id="netCompanyCommission"
-                              value={
-                                submittedDeal &&
-                                submittedDeal.netCompanyCommission
-                                  ? padStringToDecimalString(
-                                      Number(
-                                        submittedDeal.netCompanyCommission
-                                      ).toLocaleString()
-                                    )
-                                  : null
-                              }
-                              className={classnames(
-                                classes.disabled,
-                                classes.finalTotalInputClass
-                              )}
-                              inputProps={{
-                                className: classes.disabled,
-                              }}
-                              startAdornment={
-                                <InputAdornment position="start">
-                                  $
-                                </InputAdornment>
-                              }
-                            />
-                          </FormControl>
-                        </div>
-                      </Grid>
-                    ) : null}
                   </Grid>
-                </form>
-              );
-            }}
-          </Form>
-        ) : null}
+
+                  <div
+                    className={`${classes.formControlWrapper} ${
+                      classes.radioInputWrapper
+                    }`}
+                  >
+                    <MaterialCustomRadioInput
+                      field="alreadyTurnedFundsIn"
+                      id={uuid()}
+                      required
+                      label="Have you already deposited or given the funds to us?"
+                      radioInputItems={radioInputYesNoItems}
+                      horizontal
+                      disabled={submittedDeal && !isEditingDeal}
+                    />
+                  </div>
+
+                  <div
+                    className={`${classes.formControlWrapper} ${
+                      classes.radioInputWrapper
+                    }`}
+                  >
+                    <MaterialCustomRadioInput
+                      field="shouldSendApprovalTextMessageNotification"
+                      id={uuid()}
+                      required
+                      label="Want to recieve a text notification upon deal approval?"
+                      radioInputItems={radioInputYesNoItems}
+                      horizontal
+                      disabled={submittedDeal && !isEditingDeal}
+                    />
+                  </div>
+
+                  {!this.props.userRole ||
+                  !submittedDeal ||
+                  (this.props.userRole === agentRole &&
+                    submittedDeal.status === 'pending') ||
+                  (!submittedDeal.bonusPercentageAddedByAdmin &&
+                    submittedDeal.status === 'approved') ? null : (
+                    <Grid item xs={12}>
+                      <div className={classes.formControlWrapper}>
+                        <FormControl
+                          className={classnames(
+                            submittedDeal &&
+                              submittedDeal.status === 'approved' &&
+                              classes.disabled
+                          )}
+                          disabled={
+                            submittedDeal && submittedDeal.status === 'approved'
+                          }
+                          fullWidth
+                        >
+                          <InputLabel
+                            htmlFor="bonusPercentageAddedByAdmin"
+                            className={classnames(
+                              submittedDeal &&
+                                submittedDeal.status === 'approved' &&
+                                classes.disabled
+                            )}
+                          >
+                            Listing agent/performance bonus
+                          </InputLabel>
+                          <Input
+                            id="bonusPercentageAddedByAdmin"
+                            value={
+                              submittedDeal &&
+                              submittedDeal.bonusPercentageAddedByAdmin
+                                ? submittedDeal.bonusPercentageAddedByAdmin
+                                : this.props.dealBonus
+                            }
+                            className={classnames(
+                              submittedDeal &&
+                                submittedDeal.status === 'approved' &&
+                                classes.disabled,
+                              classes.fullwidthInput
+                            )}
+                            inputProps={{
+                              onInput: this.props.onBonusChange,
+                              className:
+                                submittedDeal.status === 'approved'
+                                  ? classes.disabled
+                                  : undefined,
+                            }}
+                            startAdornment={
+                              <InputAdornment position="start">
+                                %
+                              </InputAdornment>
+                            }
+                          />
+                        </FormControl>
+                      </div>
+                    </Grid>
+                  )}
+
+                  {submittedDeal &&
+                  submittedDeal.netAgentCommission &&
+                  submittedDeal.status === 'approved' ? (
+                    <Grid item xs={12}>
+                      <div className={classes.formControlWrapper}>
+                        <FormControl
+                          className={classnames(
+                            submittedDeal &&
+                              submittedDeal.status === 'approved' &&
+                              classes.disabled
+                          )}
+                          disabled={
+                            submittedDeal && submittedDeal.status === 'approved'
+                          }
+                          fullWidth
+                        >
+                          <InputLabel
+                            htmlFor="netAgentCommission"
+                            className={classes.disabled}
+                          >
+                            Net Agent Commission
+                          </InputLabel>
+                          <Input
+                            id="netAgentCommission"
+                            value={
+                              submittedDeal && submittedDeal.netAgentCommission
+                                ? padStringToDecimalString(
+                                    Number(
+                                      submittedDeal.netAgentCommission
+                                    ).toLocaleString()
+                                  )
+                                : null
+                            }
+                            className={classnames(
+                              classes.disabled,
+                              classes.finalTotalInputClass
+                            )}
+                            inputProps={{
+                              className: classes.disabled,
+                            }}
+                            startAdornment={
+                              <InputAdornment position="start">
+                                $
+                              </InputAdornment>
+                            }
+                          />
+                        </FormControl>
+                      </div>
+                    </Grid>
+                  ) : null}
+
+                  {(this.props.userRole === admin ||
+                    this.props.userRole === superAdmin) &&
+                  submittedDeal &&
+                  submittedDeal.netCompanyCommission &&
+                  submittedDeal.status === 'approved' ? (
+                    <Grid item xs={12}>
+                      <div className={classes.formControlWrapper}>
+                        <FormControl
+                          className={classnames(classes.disabled)}
+                          disabled
+                          fullWidth
+                        >
+                          <InputLabel
+                            htmlFor="netCompanyCommission"
+                            className={classes.disabled}
+                          >
+                            Net Company Commission
+                          </InputLabel>
+                          <Input
+                            id="netCompanyCommission"
+                            value={
+                              submittedDeal &&
+                              submittedDeal.netCompanyCommission
+                                ? padStringToDecimalString(
+                                    Number(
+                                      submittedDeal.netCompanyCommission
+                                    ).toLocaleString()
+                                  )
+                                : null
+                            }
+                            className={classnames(
+                              classes.disabled,
+                              classes.finalTotalInputClass
+                            )}
+                            inputProps={{
+                              className: classes.disabled,
+                            }}
+                            startAdornment={
+                              <InputAdornment position="start">
+                                $
+                              </InputAdornment>
+                            }
+                          />
+                        </FormControl>
+                      </div>
+                    </Grid>
+                  ) : null}
+                </Grid>
+              </form>
+            );
+          }}
+        </Form>
 
         {submittingFormToServer ? (
           <div className={classes.formSubmittingWrapper}>

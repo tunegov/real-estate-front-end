@@ -95,6 +95,9 @@ const styles = theme => ({
     color: 'green',
     fontSize: '.95rem',
   },
+  snackBar: {
+    marginTop: 30,
+  },
 });
 
 const selectInputItems = [
@@ -165,7 +168,9 @@ class AdminAreaAgentsContainer extends Component {
       createAgentModalOpen: false,
       snackbarOpen: true,
       snackbarText: 'Agent created successfully',
-      addedAgents: [...this.state.addedAgents, newAgent],
+      addedAgents: this.state.addedAgents.length
+        ? [...this.state.addedAgents, newAgent]
+        : [newAgent],
     });
   };
 
@@ -181,7 +186,7 @@ class AdminAreaAgentsContainer extends Component {
     const { createAgentModalOpen } = this.state;
 
     return (
-      <Query query={agentsQuery} ssr={false}>
+      <Query query={agentsQuery} ssr={false} fetchPolicy="cache-and-network">
         {({ loading, error, data }) => {
           console.log(data);
           if (loading)
@@ -202,13 +207,23 @@ class AdminAreaAgentsContainer extends Component {
           // TODO: change the error message to a generic
           // 'error connecting to server' message
 
-          if (error) return `Error!: ${error}`;
+          if (error) {
+            console.log(error);
+            return (
+              <div style={{ textAlign: 'center' }}>
+                We're sorry. There was an error processing your request.
+              </div>
+            );
+          }
 
           const intAgents = {};
 
           const allAgents = [...data.agents, ...this.state.addedAgents];
 
+          console.log(this.state.addedAgents);
+
           allAgents.forEach(agent => {
+            if (!agent) return;
             intAgents[agent.uuid] = agent;
           });
 
@@ -221,8 +236,6 @@ class AdminAreaAgentsContainer extends Component {
           uniqueAgents = uniqueAgents.filter(
             agent => !this.state.deletedAgentIDS.includes(agent.uuid)
           );
-
-          console.log(data.agents);
 
           return (
             <div className={classes.wrapper}>
@@ -239,12 +252,13 @@ class AdminAreaAgentsContainer extends Component {
                 </div>
               </div>
 
-              <AdminAreaAgentsTableContainer agents={data.agents} />
+              <AdminAreaAgentsTableContainer agents={uniqueAgents} />
 
               <CreateAgentDialogBox
                 open={createAgentModalOpen}
                 toggleCreateAgentModal={this.toggleCreateAgentModal}
                 confirmAgentCreated={this.confirmAgentCreated}
+                currentUserRole={this.props.currentUserRole}
               />
 
               <Snackbar

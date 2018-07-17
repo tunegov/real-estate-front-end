@@ -116,7 +116,7 @@ class DealsTableContainer extends Component {
         dealID,
         date: moment(date).format('MM/DD/YYYY'),
         agentName,
-        agentType,
+        agentType: `${agentType}%`,
         dealType,
         clientName,
         clientEmail,

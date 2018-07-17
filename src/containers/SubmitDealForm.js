@@ -11,26 +11,25 @@ import { capitalize } from '../utils/stringUtils';
 
 const Loader = BounceLoader;
 
-export const agentQuery = gql`
-  query agent($uuid: String!) {
-    agent(uuid: $uuid) {
-      firstName
-      lastName
-      role
+export const dealFormQuery = gql`
+  query dealForm($uuid: String) {
+    dealForm(uuid: $uuid) {
       agent {
-        agentType
-        state
+        firstName
+        lastName
+        role
+        agent {
+          agentType
+          state
+          ACHAccountNumber
+        }
       }
-    }
-  }
-`;
-
-export const agentsQuery = gql`
-  query agents {
-    agents {
-      firstName
-      lastName
-      uuid
+      agents {
+        firstName
+        lastName
+        uuid
+      }
+      formSelectItems
     }
   }
 `;
@@ -198,6 +197,18 @@ class SubmitDealFormContainer extends Component {
     });
   };
 
+  onAgentPaymentTypeChange = ({ target }) => {
+    const { value } = target;
+    const isACH = value === 'Please ACH me';
+    if (isACH) {
+      this.setState({ agentPaymentTypeIsACH: true });
+    } else {
+      this.setState({ agentPaymentTypeIsACH: false });
+    }
+
+    console.log(`isACH type: ${isACH}`);
+  };
+
   onSubmit = values => {
     this.props.setFormSubmitted();
 
@@ -261,7 +272,7 @@ class SubmitDealFormContainer extends Component {
 
     getDealUploadsSignedURLS(uploadItems).then(response => {
       if (response.error) {
-        console.log(response.error);
+        this.props.openRequestErrorSnackbar(response.error);
         this.props.setFormSubmitted(false);
         return;
       }
@@ -277,7 +288,7 @@ class SubmitDealFormContainer extends Component {
       });
 
       if (errors.length) {
-        errors.forEach(error => console.log(error));
+        this.props.openRequestErrorSnackbar(errors[0]);
         this.props.setFormSubmitted(false);
         return;
       }
@@ -316,12 +327,11 @@ class SubmitDealFormContainer extends Component {
               let failed = false;
 
               if (res.otherError) {
-                console.log(res.otherError);
+                this.props.openRequestErrorSnackbar(res.otherError);
                 failed = true;
               }
 
               if (res.userErrors.length) {
-                res.userErrors.forEach(error => console.log(error));
                 failed = true;
               }
 
@@ -329,14 +339,19 @@ class SubmitDealFormContainer extends Component {
                 this.props.setDealSuccessfullySubmitted(res.deal);
               }
 
+              this.setState({
+                submittingFormToServer: false,
+              });
+
               this.props.setFormSubmitted(false);
             })
             .catch(err => {
+              this.setState({
+                submittingFormToServer: false,
+              });
               this.props.setFormSubmitted(false);
-              console.log(err);
+              this.props.openRequestErrorSnackbar();
             });
-
-          console.log(returnObject);
           return;
         }
 
@@ -381,8 +396,11 @@ class SubmitDealFormContainer extends Component {
             )
           )
           .catch(err => {
+            this.setState({
+              submittingFormToServer: false,
+            });
             this.props.setFormSubmitted(false);
-            console.log(err);
+            this.props.openRequestErrorSnackbar();
           });
       };
 
@@ -401,74 +419,70 @@ class SubmitDealFormContainer extends Component {
     const { agencyDisclosureForm, contractOrLeaseForms } = this.state;
 
     return (
-      <Query query={agentQuery} variables={{ uuid }}>
-        {({ loading: loadingOne, error: errorOne, data: dataOne }) => (
-          <Query query={agentsQuery}>
-            {({ loading: loadingTwo, error: errorTwo, data: dataTwo }) => {
-              if (loadingOne || loadingTwo)
-                return (
-                  <div style={{ display: 'flex', justifyContent: 'center' }}>
-                    <Loader color="#f44336" loading />
-                  </div>
-                );
-              // TODO: change the error message to a generic
-              // 'error connecting to server' message
-              if (errorOne || errorTwo)
-                return `Error!: ${errorOne || errorTwo}`;
+      <Query query={dealFormQuery} fetchPolicy="cache-and-network">
+        {({ loading, error, data }) => {
+          if (loading)
+            return (
+              <div style={{ display: 'flex', justifyContent: 'center' }}>
+                <Loader color="#f44336" loading />
+              </div>
+            );
 
-              const agent = dataOne.agent;
+          if (error) {
+            console.log(error);
+            return (
+              <div style={{ textAlign: 'center' }}>
+                We're sorry. There was an error processing your request.
+              </div>
+            );
+          }
 
-              const agents = dataTwo.agents.filter(
-                agent => agent.uuid !== uuid
-              );
+          const { agent, agents, formSelectItems } = data.dealForm;
 
-              return (
-                <SubmitDealForm
-                  paymentsTotal={`${this.state.paymentsTotal}`}
-                  deductionsTotal={`${this.state.deductionsTotal}`}
-                  total={this.state.total}
-                  agent={agent}
-                  agents={agents}
-                  onSubmit={this.onSubmit}
-                  setAgencyDisclosureForm={this.setAgencyDisclosureForm}
-                  setContractOrLeaseForms={this.setContractOrLeaseForms}
-                  agencyDisclosureForm={agencyDisclosureForm}
-                  contractOrLeaseForms={contractOrLeaseForms}
-                  paymentAmountChangeHandler={this.paymentAmountChangeHandler}
-                  addedManagementCompanies={this.state.addedManagementCompanies}
-                  newMgmtOrCobrokeCompany={this.state.newMgmtOrCobrokeCompany}
-                  uplodingFileProgress={this.state.uplodingFileProgress}
-                  isUploadingFile={this.state.isUploadingFile}
-                  uplodingFileText={this.state.uplodingFileText}
-                  formSubmissionBegun={this.state.formSubmissionBegun}
-                  submittingFormToServer={this.state.submittingFormToServer}
-                  setHasSetNewMgmtOrCobrokeCompany={
-                    this.setHasSetNewMgmtOrCobrokeCompany
-                  }
-                  toggleChoosingMgmtCoBrokeCompany={
-                    this.toggleChoosingMgmtCoBrokeCompany
-                  }
-                  handleMgmtOrCobrokeCompanyChange={
-                    this.handleMgmtOrCobrokeCompanyChange
-                  }
-                  choosingMgmtCoBrokeCompany={
-                    this.state.choosingMgmtCoBrokeCompany
-                  }
-                  deductionAmountChangeHandler={
-                    this.deductionAmountChangeHandler
-                  }
-                  subtractPaymentValueFromState={
-                    this.subtractPaymentValueFromState
-                  }
-                  subtractDeductionValueFromState={
-                    this.subtractDeductionValueFromState
-                  }
-                  {...rest}
-                />
-              );
-            }}
-          </Query>
-        )}
+          console.log(agent);
+
+          return (
+            <SubmitDealForm
+              paymentsTotal={`${this.state.paymentsTotal}`}
+              deductionsTotal={`${this.state.deductionsTotal}`}
+              total={this.state.total}
+              agent={agent}
+              agents={agents.filter(agent => agent.uuid !== uuid)}
+              managementCobrokeCompanyItems={formSelectItems || []}
+              onSubmit={this.onSubmit}
+              setAgencyDisclosureForm={this.setAgencyDisclosureForm}
+              setContractOrLeaseForms={this.setContractOrLeaseForms}
+              agencyDisclosureForm={agencyDisclosureForm}
+              contractOrLeaseForms={contractOrLeaseForms}
+              paymentAmountChangeHandler={this.paymentAmountChangeHandler}
+              addedManagementCompanies={this.state.addedManagementCompanies}
+              newMgmtOrCobrokeCompany={this.state.newMgmtOrCobrokeCompany}
+              uplodingFileProgress={this.state.uplodingFileProgress}
+              isUploadingFile={this.state.isUploadingFile}
+              uplodingFileText={this.state.uplodingFileText}
+              formSubmissionBegun={this.state.formSubmissionBegun}
+              submittingFormToServer={this.state.submittingFormToServer}
+              setHasSetNewMgmtOrCobrokeCompany={
+                this.setHasSetNewMgmtOrCobrokeCompany
+              }
+              toggleChoosingMgmtCoBrokeCompany={
+                this.toggleChoosingMgmtCoBrokeCompany
+              }
+              handleMgmtOrCobrokeCompanyChange={
+                this.handleMgmtOrCobrokeCompanyChange
+              }
+              choosingMgmtCoBrokeCompany={this.state.choosingMgmtCoBrokeCompany}
+              deductionAmountChangeHandler={this.deductionAmountChangeHandler}
+              subtractPaymentValueFromState={this.subtractPaymentValueFromState}
+              subtractDeductionValueFromState={
+                this.subtractDeductionValueFromState
+              }
+              agentPaymentTypeIsACH={this.state.agentPaymentTypeIsACH}
+              onAgentPaymentTypeChange={this.onAgentPaymentTypeChange}
+              {...rest}
+            />
+          );
+        }}
       </Query>
     );
   }

@@ -10,7 +10,14 @@ import { Icon } from 'antd';
 import Divider from 'material-ui/Divider';
 import { withStyles } from 'material-ui/styles';
 import Button from 'material-ui/Button';
+import Snackbar from 'material-ui/Snackbar';
+import IconButton from 'material-ui/IconButton';
+import CloseIcon from '@material-ui/icons/Close';
+import classnames from 'classnames';
 import EditAdminPasswordForm from '../../containers/EditAdminPasswordForm';
+
+const networkErrorMessage =
+  "We're sorry. There was an error processing your request.";
 
 const styles = theme => ({
   paper: {
@@ -44,6 +51,15 @@ const styles = theme => ({
       backgroundColor: theme.custom.submitBlue.transparentLightBackground,
     },
   },
+  snackBar: {
+    position: 'absolute',
+    bottom: 0,
+  },
+  errorSnackbar: {
+    '& > div': {
+      backgroundColor: theme.palette.secondary.main,
+    },
+  },
 });
 
 @observer
@@ -54,6 +70,10 @@ class EditAdminPasswordDialogBox extends Component {
       formApi: null,
       submittingForm: false,
       formSubmitted: false,
+      snackbarOpen: false,
+      snackbarText: '',
+      submittingRequestToServer: false,
+      isErrorSnackbar: false,
     };
   }
 
@@ -61,6 +81,39 @@ class EditAdminPasswordDialogBox extends Component {
     this.setState({
       formSubmitted: bool,
       submittingForm: !bool,
+    });
+  };
+
+  toggleSnackbarOpen = text => {
+    this.setState({
+      snackbarOpen: true,
+      snackbarText: text,
+    });
+  };
+
+  handleCloseSnackbar = () => {
+    this.setState({
+      snackbarOpen: false,
+      snackbarUndoFunction: null,
+      isErrorSnackbar: false,
+    });
+  };
+
+  openRequestErrorSnackbar = (text = networkErrorMessage) => {
+    this.setState({
+      snackbarOpen: true,
+      snackbarText: text,
+      isErrorSnackbar: true,
+      snackbarText: '',
+    });
+  };
+
+  toggleSubmittingRequestToServer = (
+    bool = !this.state.submittingRequestToServer
+  ) => {
+    this.setState({
+      submittingRequestToServer: bool,
+      formSubmitted: bool,
     });
   };
 
@@ -98,9 +151,57 @@ class EditAdminPasswordDialogBox extends Component {
             viewingAdminUUID={this.props.viewingAdminUUID}
             getFormApi={formApi => this.setState({ formApi })}
             setFormSubmitted={this.setFormSubmitted}
+            openRequestErrorSnackbar={this.openRequestErrorSnackbar}
+            submittingRequestToServer={this.state.submittingRequestToServer}
+            toggleSubmittingRequestToServer={
+              this.toggleSubmittingRequestToServer
+            }
             formSubmittedSuccessfully={
               this.props.editPasswordFormSubmittedSuccessfully
             }
+          />
+
+          <Snackbar
+            classes={{ root: classes.snackBar }}
+            anchorOrigin={{
+              vertical: 'bottom',
+              horizontal: 'center',
+            }}
+            open={this.state.snackbarOpen}
+            autoHideDuration={4000}
+            onClose={this.handleCloseSnackbar}
+            message={<span id="snackbar-id">{this.state.snackbarText}</span>}
+            action={[
+              this.snackbarUndoFunction ? (
+                <Button
+                  key="undo"
+                  color="secondary"
+                  size="small"
+                  onClick={() => {
+                    this.handleCloseSnackbar();
+                    if (
+                      this.state.snackbarUndoFunction &&
+                      typeof snackbarUndoFunction === 'function'
+                    ) {
+                      this.snackbarUndoFunction();
+                    }
+                  }}
+                >
+                  UNDO
+                </Button>
+              ) : (
+                undefined
+              ),
+              <IconButton
+                key="close"
+                aria-label="Close"
+                color="inherit"
+                className={classes.close}
+                onClick={this.handleCloseSnackbar}
+              >
+                <CloseIcon />
+              </IconButton>,
+            ]}
           />
         </DialogContent>
         {!submittingEditAdminPasswordForm ? (
@@ -110,7 +211,25 @@ class EditAdminPasswordDialogBox extends Component {
             </Button>
             {!editProfilePicFormSubmitted ? (
               <Button
-                onClick={() => this.state.formApi.submitForm()}
+                onClick={() => {
+                  const errors = this.state.formApi.getError();
+                  let errorCount;
+                  console.log(this.state.formApi.getError());
+                  if (errors) {
+                    errorCount = Object.keys(this.state.formApi.getError())
+                      .length;
+                  }
+
+                  if (errorCount) {
+                    this.toggleSnackbarOpen(
+                      `Please correct ${errorCount} form error${
+                        errorCount > 1 ? 's' : ''
+                      }`
+                    );
+                  }
+
+                  this.state.formApi.submitForm();
+                }}
                 color="primary"
               >
                 Submit{' '}

@@ -67,11 +67,13 @@ class EditAdminContainer extends Component {
         this.props.setFormSubmitted(false);
         return;
       } else if (otherError) {
-        console.log(otherError);
+        this.props.openRequestErrorSnackbar(otherError);
         this.props.setFormSubmitted(false);
         return;
       } else if (!admin) {
-        console.log('An unknown error has occorred while updating the agent.');
+        this.props.openRequestErrorSnackbar(
+          'An server error occorred while updating the agent.'
+        );
         this.props.setFormSubmitted(false);
         return;
       }
@@ -103,7 +105,14 @@ class EditAdminContainer extends Component {
             );
           // TODO: change the error message to a generic
           // 'error connecting to server' message
-          if (error) return `Error!: ${error}`;
+          if (error) {
+            console.log(error);
+            return (
+              <div style={{ textAlign: 'center' }}>
+                We're sorry. There was an error processing your request.
+              </div>
+            );
+          }
 
           const submittedAdmin = data.admin;
 
@@ -116,6 +125,7 @@ class EditAdminContainer extends Component {
                 formSubmitedSuccessfully={this.state.formSubmitedSuccessfully}
                 submittedAdmin={submittedAdmin}
                 getFormApi={this.props.getFormApi}
+                submittingFormToServer={this.props.submittingRequestToServer}
                 {...rest}
               />
             </div>

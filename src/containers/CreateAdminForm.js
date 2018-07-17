@@ -10,6 +10,7 @@ class CreateAdminContainer extends Component {
     super(props);
     this.state = {
       formSubmitedSuccessfully: false,
+      submittingFormToServer: false,
     };
   }
 
@@ -23,22 +24,36 @@ class CreateAdminContainer extends Component {
     delete returnValues.profilePicture;
 
     this.props.setFormSubmitted();
-
-    createAdmin(returnValues).then(result => {
-      const { error, admin } = result;
-
-      if (error) {
-        if (error.field === 'email') {
-          const formElement = document.getElementById('formDialog');
-          formApi.setError(error.field, error.message);
-          formElement.scrollTop = formElement.scrollHeight;
-        }
-        this.props.setFormSubmitted(false);
-        return;
-      }
-
-      this.props.confirmAdminCreated(admin);
+    this.setState({
+      submittingFormToServer: true,
     });
+
+    createAdmin(returnValues)
+      .then(result => {
+        const { error, admin } = result;
+        this.setState({
+          submittingFormToServer: false,
+        });
+        this.props.setFormSubmitted(false);
+
+        if (error) {
+          if (error.field === 'email') {
+            const formElement = document.getElementById('formDialog');
+            formApi.setError(error.field, error.message);
+            formElement.scrollTop = formElement.scrollHeight;
+          } else {
+            this.props.openRequestErrorSnackbar(error);
+          }
+          return;
+        }
+
+        this.props.confirmAdminCreated(admin);
+      })
+      .catch(error => {
+        console.log(error);
+        this.props.setFormSubmitted(false);
+        this.props.openRequestErrorSnackbar();
+      });
   };
 
   onSubmitFailure(errs, onSubmitError) {
@@ -69,8 +84,8 @@ class CreateAdminContainer extends Component {
           uplodingImageProgress={this.state.uplodingImageProgress}
           formSubmitedSuccessfully={this.state.formSubmitedSuccessfully}
           isUploadingImage={this.state.isUploadingImage}
+          submittingFormToServer={this.state.submittingFormToServer}
           getFormApi={formApi => {
-            console.log(formApi);
             this._formApi = formApi;
           }}
           {...rest}

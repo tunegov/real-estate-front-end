@@ -211,50 +211,22 @@ class AdminAreaDealsContainer extends Component {
     });
   };
 
-  deleteInvoice = invoiceID => {
-    deleteInvoice(invoiceID)
-      .then(res => {
-        if (res.error) {
-          console.log(res.error);
-          return;
-        } else if (res.userErrors.length) {
-          res.userErrors.forEach(error => console.log(error));
-          return;
-        }
-
-        this.setState({
-          snackbarOpen: true,
-          snackbarText: 'Invoice deleted successfully!',
-          invoicesViewDialogBoxOpen: false,
-          deletedInvoiceIDS: [...this.state.deletedInvoiceIDS, invoiceID],
-        });
-      })
-      .catch(err => {
-        console.log(err);
-      });
+  invoiceAccepted = invoiceID => {
+    this.setState({
+      snackbarOpen: true,
+      snackbarText: 'Invoice accepted successfully!',
+      invoicesViewDialogBoxOpen: false,
+      acceptedInvoiceIDS: [...this.state.acceptedInvoiceIDS, invoiceID],
+    });
   };
 
-  acceptInvoice = invoiceID => {
-    acceptInvoice(invoiceID)
-      .then(res => {
-        if (res.error) {
-          console.log(res.error);
-          return;
-        } else if (res.userErrors.length) {
-          res.userErrors.forEach(error => console.log(error));
-          return;
-        }
-
-        this.setState({
-          snackbarOpen: true,
-          snackbarText: 'Invoice accepted successfully!',
-          invoicesViewDialogBoxOpen: false,
-          acceptedInvoiceIDS: [...this.state.acceptedInvoiceIDS, invoiceID],
-        });
-      })
-      .catch(err => {
-        console.log(err);
-      });
+  invoiceDeleted = invoiceID => {
+    this.setState({
+      snackbarOpen: true,
+      snackbarText: 'Invoice deleted successfully!',
+      invoicesViewDialogBoxOpen: false,
+      deletedInvoiceIDS: [...this.state.deletedInvoiceIDS, invoiceID],
+    });
   };
 
   render() {
@@ -431,11 +403,17 @@ class AdminAreaDealsContainer extends Component {
               );
             // TODO: change the error message to a generic
             // 'error connecting to server' message
-            if (error) return `Error!: ${error}`;
 
             const intInvoices = {};
 
-            if (error) return `Error!: ${error}`;
+            if (error) {
+              console.log(error);
+              return (
+                <div style={{ textAlign: 'center' }}>
+                  We're sorry. There was an error processing your request.
+                </div>
+              );
+            }
 
             const allInvoices = data.allInvoices;
 
@@ -475,7 +453,8 @@ class AdminAreaDealsContainer extends Component {
                     this.setInvoiceSuccessfullyEditted
                   }
                   userRole={this.props.userRole}
-                  deleteInvoice={this.deleteInvoice}
+                  invoiceAccepted={this.invoiceAccepted}
+                  invoiceDeleted={this.invoiceDeleted}
                 />
 
                 <AdminAreaInvoicesTableContainer

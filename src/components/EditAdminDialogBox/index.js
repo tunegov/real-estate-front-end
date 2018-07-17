@@ -19,6 +19,10 @@ import EditAdminForm from '../../containers/EditAdminForm';
 import updateAdmin from '../../effects/users/updateAdmin';
 import deleteAdmin from '../../effects/users/deleteAdmin';
 import { admin, superAdmin } from '../../constants/userTypes';
+import classnames from 'classnames';
+
+const networkErrorMessage =
+  "We're sorry. There was an error processing your request.";
 
 const styles = theme => ({
   paper: {
@@ -110,6 +114,15 @@ const styles = theme => ({
       backgroundColor: theme.custom.submitBlue.transparentLightBackground,
     },
   },
+  snackBar: {
+    position: 'absolute',
+    bottom: 0,
+  },
+  errorSnackbar: {
+    '& > div': {
+      backgroundColor: theme.palette.secondary.main,
+    },
+  },
 });
 
 @observer
@@ -127,6 +140,8 @@ class EditAdminDialogBox extends Component {
       isEditingAdmin: false,
       cancelAnchorEl: null,
       acceptAnchorEl: null,
+      submittingRequestToServer: false,
+      isErrorSnackbar: false,
     };
   }
 
@@ -145,6 +160,16 @@ class EditAdminDialogBox extends Component {
     this.setState({
       snackbarOpen: false,
       snackbarUndoFunction: null,
+      isErrorSnackbar: false,
+      snackbarText: '',
+    });
+  };
+
+  openRequestErrorSnackbar = (text = networkErrorMessage) => {
+    this.setState({
+      snackbarOpen: true,
+      snackbarText: text,
+      isErrorSnackbar: true,
     });
   };
 
@@ -171,17 +196,31 @@ class EditAdminDialogBox extends Component {
     this.setState({ acceptAnchorEl: null });
   };
 
+  toggleSubmittingRequestToServer = (
+    bool = !this.state.submittingRequestToServer
+  ) => {
+    this.setState({
+      submittingRequestToServer: bool,
+      formSubmitted: bool,
+    });
+  };
+
   deleteAdmin = uuid => {
+    this.toggleSubmittingRequestToServer(true);
     deleteAdmin(uuid)
       .then(res => {
+        this.toggleSubmittingRequestToServer(false);
+
         if (res.error) {
-          console.log(error);
+          this.openRequestErrorSnackbar(res.error);
         } else {
-          this.props.AdminSuccessfullyDeleted();
+          this.props.adminSuccessfullyDeleted();
         }
         this.toggleEditingAdmin(false);
       })
       .catch(err => {
+        this.openRequestErrorSnackbar(networkErrorMessage);
+        this.toggleSubmittingRequestToServer(false);
         console.log(err);
       });
   };
@@ -197,7 +236,12 @@ class EditAdminDialogBox extends Component {
       currentUserRole,
       closeAdminInfoViewDialogBox,
     } = this.props;
-    const { isEditingAdmin, cancelAnchorEl, acceptAnchorEl } = this.state;
+    const {
+      isEditingAdmin,
+      cancelAnchorEl,
+      acceptAnchorEl,
+      submittingRequestToServer,
+    } = this.state;
 
     return (
       <Dialog
@@ -226,12 +270,19 @@ class EditAdminDialogBox extends Component {
             toggleEditingAdmin={this.toggleEditingAdmin}
             currentUserRole={this.props.currentUserRole}
             confirmAdminEdited={this.props.confirmAdminEdited}
+            submittingRequestToServer={submittingRequestToServer}
+            openRequestErrorSnackbar={this.openRequestErrorSnackbar}
             editAdminFormSubmittedSuccessfully={
               this.props.editAdminFormSubmittedSuccessfully
             }
           />
           <Snackbar
-            classes={{ root: classes.snackBar }}
+            classes={{
+              root: classnames(
+                classes.snackBar,
+                this.state.isErrorSnackbar && classes.errorSnackbar
+              ),
+            }}
             anchorOrigin={{
               vertical: 'bottom',
               horizontal: 'center',
@@ -285,7 +336,7 @@ class EditAdminDialogBox extends Component {
             >
               Cancel
             </Button>
-            {!isEditingAdmin ? (
+            {!isEditingAdmin && currentUserUUID !== viewingAdminUUID ? (
               <Button
                 disabled={this.state.formSubmitted}
                 onClick={this.handleCancelMenuClick}
@@ -306,7 +357,7 @@ class EditAdminDialogBox extends Component {
                 classes={{ root: classes.menuItemDelete }}
                 onClick={() => {
                   this.handleCancelMenuClose();
-                  this.props.deleteAdmin(viewingAdminUUID);
+                  this.deleteAdmin(viewingAdminUUID);
                 }}
               >
                 Yes

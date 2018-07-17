@@ -10,8 +10,15 @@ import { Icon } from 'antd';
 import Divider from 'material-ui/Divider';
 import { withStyles } from 'material-ui/styles';
 import Button from 'material-ui/Button';
+import Snackbar from 'material-ui/Snackbar';
+import IconButton from 'material-ui/IconButton';
+import CloseIcon from '@material-ui/icons/Close';
+import classnames from 'classnames';
 import CreateAdminForm from '../../containers/CreateAdminForm';
 import { AppContext } from '../../AppGlobalStateProvider';
+
+const networkErrorMessage =
+  "We're sorry. There was an error processing your request. Please try again shortly or contact an administrator for assistance.";
 
 const styles = theme => ({
   paper: {
@@ -45,6 +52,20 @@ const styles = theme => ({
       backgroundColor: theme.custom.submitBlue.transparentLightBackground,
     },
   },
+  snackBar: {
+    marginBottom: '60px',
+    '@media (max-height: 500px)': {
+      marginBottom: '50px',
+    },
+    '@media (max-height: 390px)': {
+      marginBottom: '30px',
+    },
+  },
+  errorSnackbar: {
+    '& > div': {
+      backgroundColor: theme.palette.secondary.main,
+    },
+  },
 });
 
 @observer
@@ -54,11 +75,39 @@ class CreateAdminDialogBox extends Component {
     this.state = {
       formApi: null,
       formSubmitted: false,
+      snackbarOpen: false,
+      snackbarText: '',
+      isErrorSnackbar: false,
     };
   }
 
   setFormSubmitted = (bool = true) => {
     this.setState({ formSubmitted: bool });
+  };
+
+  toggleSnackbarOpen = text => {
+    this.setState({
+      snackbarOpen: true,
+      snackbarText: text,
+    });
+  };
+
+  handleCloseSnackbar = () => {
+    this.setState({
+      snackbarOpen: false,
+      snackbarUndoFunction: null,
+      isErrorSnackbar: false,
+      snackbarText: '',
+    });
+  };
+
+  openRequestErrorSnackbar = (text = networkErrorMessage) => {
+    console.log('ypooo');
+    this.setState({
+      snackbarOpen: true,
+      snackbarText: text,
+      isErrorSnackbar: true,
+    });
   };
 
   render() {
@@ -90,9 +139,58 @@ class CreateAdminDialogBox extends Component {
                 createAdmin={context.UserStore.createAdmin}
                 setAdminProfilePic={context.UserStore.setAdminProfilePic}
                 confirmAdminCreated={this.props.confirmAdminCreated}
+                openRequestErrorSnackbar={this.openRequestErrorSnackbar}
               />
             )}
           </AppContext.Consumer>
+
+          <Snackbar
+            classes={{
+              root: classnames(
+                classes.snackBar,
+                this.state.isErrorSnackbar && classes.errorSnackbar
+              ),
+            }}
+            anchorOrigin={{
+              vertical: 'bottom',
+              horizontal: 'center',
+            }}
+            open={this.state.snackbarOpen}
+            autoHideDuration={this.state.isErrorSnackbar ? 8000 : 4000}
+            onClose={this.handleCloseSnackbar}
+            message={<span id="snackbar-id">{this.state.snackbarText}</span>}
+            action={[
+              this.snackbarUndoFunction ? (
+                <Button
+                  key="undo"
+                  color="secondary"
+                  size="small"
+                  onClick={() => {
+                    this.handleCloseSnackbar();
+                    if (
+                      this.state.snackbarUndoFunction &&
+                      typeof snackbarUndoFunction === 'function'
+                    ) {
+                      this.snackbarUndoFunction();
+                    }
+                  }}
+                >
+                  UNDO
+                </Button>
+              ) : (
+                undefined
+              ),
+              <IconButton
+                key="close"
+                aria-label="Close"
+                color="inherit"
+                className={classes.close}
+                onClick={this.handleCloseSnackbar}
+              >
+                <CloseIcon />
+              </IconButton>,
+            ]}
+          />
         </DialogContent>
         {!this.state.formSubmitted ? (
           <DialogActions classes={{ root: classes.dialogActions }}>
@@ -100,7 +198,25 @@ class CreateAdminDialogBox extends Component {
               Cancel
             </Button>
             <Button
-              onClick={() => this.state.formApi.submitForm()}
+              onClick={() => {
+                const errors = this.state.formApi.getError();
+                let errorCount;
+                console.log(this.state.formApi.getError());
+                if (errors) {
+                  errorCount = Object.keys(this.state.formApi.getError())
+                    .length;
+                }
+
+                if (errorCount) {
+                  this.toggleSnackbarOpen(
+                    `Please correct ${errorCount} form error${
+                      errorCount > 1 ? 's' : ''
+                    }`
+                  );
+                }
+
+                this.state.formApi.submitForm();
+              }}
               color="primary"
             >
               Submit

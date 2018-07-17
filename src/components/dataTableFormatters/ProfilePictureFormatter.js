@@ -67,7 +67,7 @@ class ProfilePictureFormatter extends React.Component {
           <div className={classes.wrapper}>
             <Link route="profile" params={{ id }}>
               <a>
-                <div className={classes.noImagePlaceholder} />
+                <div className={classes.noImagePlaceholder}>?</div>
               </a>
             </Link>
           </div>

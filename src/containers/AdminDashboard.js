@@ -98,7 +98,7 @@ class DashboardContainer extends Component {
     return (
       <Query query={dealsQuery} variables={{ uuid: userUUID }} ssr={false}>
         {({ loading, error, data }) => {
-          if (loading)
+          if (loading) {
             return (
               <div
                 style={{
@@ -113,8 +113,16 @@ class DashboardContainer extends Component {
                 <Loader color="#f44336" loading />
               </div>
             );
+          }
 
-          if (error) return `Error!: ${error}`;
+          if (error) {
+            console.log(error);
+            return (
+              <div style={{ textAlign: 'center' }}>
+                We're sorry. There was an error processing your request.
+              </div>
+            );
+          }
 
           const {
             netCommissionsToDate,

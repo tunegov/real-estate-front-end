@@ -26,7 +26,7 @@ const styles = theme => ({
   appBar: {
     zIndex: theme.zIndex.drawer + 1,
     marginLeft: drawerWidth,
-    width: '100%)',
+    width: '100%',
     boxShadow: theme.shadows[3],
   },
   [theme.breakpoints.down(theme.breakpoints.values.md)]: {

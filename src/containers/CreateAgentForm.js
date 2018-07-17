@@ -4,6 +4,8 @@ import axios from 'axios';
 import CreateAgentForm from '../components/forms/CreateAgentForm';
 import { round } from '../utils/Math';
 import { capitalize } from '../utils/stringUtils';
+import createAgent from '../effects/users/createAgent';
+import setAgentProfilePic from '../effects/users/setAgentProfilePic';
 
 @observer
 class CreateAgentContainer extends Component {
@@ -20,6 +22,7 @@ class CreateAgentContainer extends Component {
       isUploadingImage: false,
       formSubmitedSuccessfully: false,
       imageBlob: null,
+      submittingFormToServer: false,
     };
   }
 
@@ -88,9 +91,13 @@ class CreateAgentContainer extends Component {
 
     delete returnValues.profilePicture;
 
+    this.setState({
+      submittingFormToServer: true,
+    });
+
     this.props.setFormSubmitted();
 
-    this.props.createAgent(returnValues).then(result => {
+    createAgent(returnValues).then(result => {
       const { signedURL, error, agent } = result;
 
       if (error) {
@@ -99,7 +106,15 @@ class CreateAgentContainer extends Component {
           formApi.setError(error.field, error.message);
           formElement.scrollTop = formElement.scrollHeight;
         }
+        this.setState({
+          submittingFormToServer: false,
+        });
+
+        console.log(error);
         this.props.setFormSubmitted(false);
+
+        this.props.openRequestErrorSnackbar(error.field);
+
         return;
       }
 
@@ -114,36 +129,62 @@ class CreateAgentContainer extends Component {
               const loadedPercent =
                 (progressEvent.loaded / progressEvent.total) * 100;
               this.setState({
+                submittingFormToServer: false,
                 formSubmitedSuccessfully: true,
                 uplodingImageProgress: Math.floor(loadedPercent),
                 isUploadingImage: loadedPercent >= 100 ? false : true,
               });
-
-              if (loadedPercent >= 100) this.props.confirmAgentCreated();
             },
           })
           .then(() => {
-            this.props
-              .setAgentProfilePic(agent.uuid, this.state.imageFile.name)
-              .then(() => {
-                this.props.confirmAgentCreated();
+            this.setState({
+              submittingFormToServer: true,
+            });
+            setAgentProfilePic(agent.uuid, this.state.imageFile.name)
+              .then(({ url, otherError }) => {
+                this.setState({
+                  submittingFormToServer: false,
+                });
+
+                if (otherError) {
+                  this.props.openRequestErrorSnackbar(otherError);
+
+                  return;
+                }
+                if (url) {
+                  agent.agent.profilePicURL = this.state.confirmedImageDataURL;
+                }
+                this.props.confirmAgentCreated(agent);
                 this.props.setFormSubmitted(false);
               })
               .catch(error => {
+                this.props.openRequestErrorSnackbar(
+                  'There was an error uploading your image.'
+                );
+
                 console.log(error);
+                this.setState({
+                  submittingFormToServer: false,
+                });
                 this.props.setFormSubmitted(false);
               });
           })
           .catch(error => {
             this.props.setFormSubmitted(false);
+            this.setState({
+              submittingFormToServer: false,
+            });
+
+            this.props.openRequestErrorSnackbar(
+              'There was an error uploading your image.'
+            );
+
             console.log(error);
           });
       } else {
         this.setState({ formSubmitedSuccessfully: true });
-      }
-
-      if (!imageFileConfirmed) {
-        this.props.confirmAgentCreated();
+        this.props.setFormSubmitted(false);
+        this.props.confirmAgentCreated(agent);
       }
     });
   };
@@ -176,8 +217,9 @@ class CreateAgentContainer extends Component {
           uplodingImageProgress={this.state.uplodingImageProgress}
           formSubmitedSuccessfully={this.state.formSubmitedSuccessfully}
           isUploadingImage={this.state.isUploadingImage}
+          currentUserRole={this.props.currentUserRole}
+          submittingFormToServer={this.state.submittingFormToServer}
           getFormApi={formApi => {
-            console.log(formApi);
             this._formApi = formApi;
           }}
           {...rest}

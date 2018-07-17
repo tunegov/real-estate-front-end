@@ -89,7 +89,14 @@ class Profile extends React.Component {
               );
             // TODO: change the error message to a generic
             // 'error connecting to server' message
-            if (error) return `Error!: ${error}`;
+            if (error) {
+              console.log(error);
+              return (
+                <div style={{ textAlign: 'center' }}>
+                  We're sorry. There was an error processing your request.
+                </div>
+              );
+            }
 
             if (this.state.agentDeleted)
               return (

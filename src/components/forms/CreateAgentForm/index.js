@@ -6,10 +6,9 @@ import { withStyles } from 'material-ui/styles';
 import Grid from 'material-ui/Grid';
 import withSizes from 'react-sizes';
 import Button from 'material-ui/Button';
-import { Icon } from 'antd';
 import Typography from 'material-ui/Typography';
 import CircularProgressbar from 'react-circular-progressbar';
-import { Input as AntDInput } from 'antd';
+import { Input as AntDInput, Icon } from 'antd';
 import 'react-circular-progressbar/dist/styles.css';
 import Slider from '../../CustomSlider';
 import validators, { temporaryPasswordValidator } from './formValidation';
@@ -81,7 +80,9 @@ const styles = theme => ({
   },
   profileItemsWrapper: {
     //display: 'inline-block',
+    width: '100%',
     textAlign: 'center',
+    marginBottom: '30px',
   },
   sliderWrapper: {
     width: '100%',
@@ -89,7 +90,6 @@ const styles = theme => ({
   formSubheading: {
     width: '100%',
     textAlign: 'center',
-    paddingLeft: '16px',
     paddingTop: '82px',
   },
   h3: {
@@ -182,6 +182,13 @@ const styles = theme => ({
     backgroundColor: 'rgba(0,0,0,.07)',
     borderRadius: '5px 5px 0 0',
   },
+  formSubmittingWrapper: {
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: '100%',
+  },
 });
 
 const radioInputAgentItems = [
@@ -203,6 +210,8 @@ const stateSelectItems = states.map(state => ({ label: state }));
 
 @withSizes(mapSizesToProps)
 class CreateAgentForm extends Component {
+  firstTimeRender = true;
+
   render() {
     const {
       classes,
@@ -228,6 +237,8 @@ class CreateAgentForm extends Component {
       isEditingAgent,
       currentUserRole,
       onSubmit,
+      submittingFormToServer,
+      formSubmissionBegun,
     } = this.props;
 
     let finalDefaultValues;
@@ -243,6 +254,7 @@ class CreateAgentForm extends Component {
         areaOfFocus,
         realEstateLicenseNumber,
         agentType,
+        ACHAccountNumber,
         twitter,
         facebook,
         instagram,
@@ -260,9 +272,10 @@ class CreateAgentForm extends Component {
         agentType,
         branch,
         state,
-        facebook,
-        instagram,
-        twitter,
+        ACHAccountNumber,
+        facebook: facebook ? facebook.split('/').pop() : undefined,
+        twitter: twitter ? twitter.split('/').pop() : undefined,
+        instagram: instagram ? instagram.split('/').pop() : undefined,
         profileDescription,
       };
     }
@@ -273,216 +286,300 @@ class CreateAgentForm extends Component {
 
     return (
       <div className={classes.root}>
-        {!formSubmitedSuccessfully && (
-          <Form
-            defaultValues={finalDefaultValues || undefined}
-            preValidate={this.preValidate}
-            onSubmit={onSubmit}
-            validateOnMount
-            onSubmitFailure={this.props.onSubmitFailure}
-            validate={validators}
-            getApi={this.props.getFormApi}
-          >
-            {formApi => {
-              return (
-                <form
-                  onSubmit={formApi.submitForm}
-                  id="form1"
-                  className={classes.formRoot}
-                >
-                  <Grid container spacing={8}>
-                    {isAdmin && (
-                      <Grid item xs={12} md={6}>
-                        <div className={classes.formControlWrapper}>
-                          <CustomTextField
-                            field="firstName"
-                            id={uuid()}
-                            label="First Name"
-                            fullWidth
-                            required
-                            disabled={isViewType && !isEditingAgent}
+        <Form
+          defaultValues={finalDefaultValues || undefined}
+          preValidate={this.preValidate}
+          onSubmit={onSubmit}
+          validateOnMount
+          onSubmitFailure={this.props.onSubmitFailure}
+          validate={validators}
+          getApi={this.props.getFormApi}
+        >
+          {formApi => {
+            if (this.firstTimeRender) {
+              this.firstTimeRender = false;
+              if (isAdmin && !formApi.getValue('firstName')) {
+                formApi.setValue('firstName', '');
+              }
+            }
+            return (
+              <form
+                onSubmit={formApi.submitForm}
+                id="form1"
+                className={classes.formRoot}
+                style={{
+                  display:
+                    formSubmitedSuccessfully || submittingFormToServer
+                      ? 'none'
+                      : undefined,
+                }}
+              >
+                <Grid container spacing={8}>
+                  {isAdmin && (
+                    <div className={classes.profileItemsWrapper}>
+                      {(imageFile && !imageFileConfirmed) || loadingSetImg ? (
+                        <AvatarEditor
+                          ref={getProfilePicEditor}
+                          image={imageFile || null}
+                          width={lgViewport ? 200 : 250}
+                          height={lgViewport ? 200 : 250}
+                          border={50}
+                          color={[0, 0, 0, 0.3]}
+                          scale={adjustedImageScale || 1.2}
+                          rotate={0}
+                          style={{
+                            maxWidth: '100%',
+                            boxShadow:
+                              '0px 1px 5px 0px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 3px 1px -2px rgba(0, 0, 0, 0.12)',
+                            display: 'block',
+                            marginLeft: 'auto',
+                            marginRight: 'auto',
+                          }}
+                        />
+                      ) : null}
+                      {(imageFile && !imageFileConfirmed) || loadingSetImg ? (
+                        <div className={classes.sliderWrapper}>
+                          <Slider
+                            value={imageScale}
+                            min={0}
+                            max={100}
+                            onChange={value => setImageScale(value)}
+                            label="Scale:"
+                            rootClassName={classes.sliderRoot}
+                            labelClassName={classes.sliderLabel}
+                            inputClassName={classes.sliderInput}
                           />
                         </div>
-                      </Grid>
-                    )}
-                    {isAdmin && (
-                      <Grid item xs={12} md={6}>
-                        <div className={classes.formControlWrapper}>
-                          <CustomTextField
-                            field="lastName"
+                      ) : null}
+                      <div
+                        className={classes.setImageWrapper}
+                        style={{
+                          display:
+                            !imageFile ||
+                            !confirmedImageDataURL ||
+                            loadingSetImg
+                              ? 'none'
+                              : undefined,
+                        }}
+                      >
+                        <img
+                          className={classes.setImage}
+                          src={confirmedImageDataURL}
+                          onLoad={setFinishedLoadingImg}
+                          alt="profile pic"
+                        />
+                      </div>
+                      <div>
+                        {!imageFileConfirmed || loadingSetImg ? (
+                          <CustomFileUploadInputBtn
+                            field="profilePicture"
                             id={uuid()}
-                            label="Last Name"
-                            fullWidth
+                            label="Upload Agent's Profile Picture"
+                            btnClassName={classes.uploadBtnClassName}
                             required
-                            disabled={isViewType && !isEditingAgent}
+                            customOnChange={setImageFile}
+                            customState={imageFile}
+                            helperInfo="Agent's Profile (JPEG/JPG file)"
+                            acceptedFileExtensions={acceptedFileExtensions}
+                            getInput={getFileUploadInput}
+                            accept=".jpg, .jpeg, .png"
                           />
+                        ) : null}
+                        <div>
+                          {imageFile ? (
+                            <Button
+                              classes={{ root: classes.removePaymentBtn }}
+                              variant="raised"
+                              color="secondary"
+                              onClick={() => clearImageFile()}
+                              type="button"
+                            >
+                              Clear File
+                            </Button>
+                          ) : null}
+                          {(imageFile && !imageFileConfirmed) ||
+                          loadingSetImg ? (
+                            <Button
+                              classes={{ root: classes.confirmImgBtn }}
+                              variant="raised"
+                              color="primary"
+                              onClick={() => confirmImageFile()}
+                              type="button"
+                            >
+                              Confirm File{' '}
+                              {loadingSetImg ? (
+                                <Icon
+                                  type="loading"
+                                  style={{ color: '#fff' }}
+                                />
+                              ) : null}
+                            </Button>
+                          ) : null}
                         </div>
-                      </Grid>
-                    )}
-                    <Grid item xs={12} md={isAdmin ? 6 : 12}>
+                      </div>
+                    </div>
+                  )}
+                  {isAdmin && (
+                    <Grid item xs={12} md={6}>
                       <div className={classes.formControlWrapper}>
-                        <MaterialCustomSelectInput
-                          field="areaOfFocus"
+                        <CustomTextField
+                          field="firstName"
                           id={uuid()}
+                          label="First Name"
                           fullWidth
-                          label="Area of Focus"
-                          name="areaOfFocus"
-                          selectInputItems={areaOfFocusSelectItems}
+                          required
                           disabled={isViewType && !isEditingAgent}
                         />
                       </div>
                     </Grid>
-
-                    {isAdmin && (
-                      <Grid item xs={12} md={6}>
-                        <div className={classes.formControlWrapper}>
-                          <CustomTextField
-                            field="realEstateLicenseNumber"
-                            id={uuid()}
-                            label="Real Estate License#"
-                            fullWidth
-                            required
-                            disabled={isViewType && !isEditingAgent}
-                          />
-                        </div>
-                      </Grid>
-                    )}
-
-                    {isAdmin && (
-                      <Grid item xs={12} md={6}>
-                        <div className={classes.formControlWrapper}>
-                          <MaterialCustomSelectInput
-                            field="branch"
-                            id={uuid()}
-                            required
-                            fullWidth
-                            label="Branch"
-                            name="branch"
-                            selectInputItems={branchSelectItems}
-                            disabled={isViewType && !isEditingAgent}
-                          />
-                        </div>
-                      </Grid>
-                    )}
-
-                    {isAdmin && (
-                      <Grid item xs={12} md={6}>
-                        <div className={classes.formControlWrapper}>
-                          <MaterialCustomSelectInput
-                            field="state"
-                            id={uuid()}
-                            required
-                            fullWidth
-                            label="State"
-                            name="state"
-                            selectInputItems={stateSelectItems}
-                            disabled={isViewType && !isEditingAgent}
-                          />
-                        </div>
-                      </Grid>
-                    )}
-
-                    {!isViewType && (
-                      <Grid item xs={12}>
-                        <div className={classes.formControlWrapper}>
-                          <CustomTextField
-                            field="temporaryPassword"
-                            id={uuid()}
-                            label="Temporary Password"
-                            fullWidth
-                            required
-                            disabled={isViewType && !isEditingAgent}
-                            validate={temporaryPasswordValidator}
-                          />
-                        </div>
-                      </Grid>
-                    )}
-
-                    {isAdmin && (
-                      <div
-                        className={`${classes.formControlWrapper} ${
-                          classes.radioInputWrapper
-                        }`}
-                      >
-                        <MaterialCustomRadioInput
-                          field="agentType"
+                  )}
+                  {isAdmin && (
+                    <Grid item xs={12} md={6}>
+                      <div className={classes.formControlWrapper}>
+                        <CustomTextField
+                          field="lastName"
                           id={uuid()}
+                          label="Last Name"
+                          fullWidth
                           required
-                          label="Agent Type"
-                          radioInputItems={radioInputAgentItems}
-                          horizontal
                           disabled={isViewType && !isEditingAgent}
                         />
                       </div>
-                    )}
-
-                    <div className={classes.formSubheading}>
-                      <Typography
-                        variant="subheading"
-                        classes={{ subheading: classes.h3 }}
-                      >
-                        Contact Information
-                      </Typography>
+                    </Grid>
+                  )}
+                  <Grid item xs={12} md={isAdmin ? 6 : 12}>
+                    <div className={classes.formControlWrapper}>
+                      <MaterialCustomSelectInput
+                        field="areaOfFocus"
+                        id={uuid()}
+                        fullWidth
+                        label="Area of Focus"
+                        name="areaOfFocus"
+                        selectInputItems={areaOfFocusSelectItems}
+                        disabled={isViewType && !isEditingAgent}
+                      />
                     </div>
+                  </Grid>
 
-                    {isAdmin && (
-                      <Grid item xs={12} md={6}>
-                        <div className={classes.formControlWrapper}>
-                          <CustomInputMask
-                            mask="(999) 999-9999 \x999"
-                            placeholder="Office Number"
-                            maskChar={null}
-                            officePhoneNumber
-                            disabled={isViewType && !isEditingAgent}
-                            defaultValue={
-                              isViewType && submittedAgent
-                                ? finalDefaultValues.officeNumber
-                                : undefined
-                            }
-                          >
-                            {props => (
-                              <CustomTextField
-                                field="officeNumber"
-                                id={uuid()}
-                                label="Office Number"
-                                fullWidth
-                                required
-                                type="tel"
-                                isInputMasked
-                                requiresDefaultOnChange
-                                mask="(999) 999-9999 \x999"
-                                disabledStyle={isViewType && !isEditingAgent}
-                                {...props}
-                              />
-                            )}
-                          </CustomInputMask>
-                        </div>
-                      </Grid>
-                    )}
-                    <Grid item xs={12} md={isAdmin ? 6 : 12}>
+                  {isAdmin && (
+                    <Grid item xs={12} md={6}>
+                      <div className={classes.formControlWrapper}>
+                        <CustomTextField
+                          field="realEstateLicenseNumber"
+                          id={uuid()}
+                          label="Real Estate License#"
+                          fullWidth
+                          required
+                          disabled={isViewType && !isEditingAgent}
+                        />
+                      </div>
+                    </Grid>
+                  )}
+
+                  {isAdmin && (
+                    <Grid item xs={12} md={6}>
+                      <div className={classes.formControlWrapper}>
+                        <MaterialCustomSelectInput
+                          field="branch"
+                          id={uuid()}
+                          required
+                          fullWidth
+                          label="Branch"
+                          name="branch"
+                          selectInputItems={branchSelectItems}
+                          disabled={isViewType && !isEditingAgent}
+                        />
+                      </div>
+                    </Grid>
+                  )}
+
+                  {isAdmin && (
+                    <Grid item xs={12} md={6}>
+                      <div className={classes.formControlWrapper}>
+                        <MaterialCustomSelectInput
+                          field="state"
+                          id={uuid()}
+                          required
+                          fullWidth
+                          label="State"
+                          name="state"
+                          selectInputItems={stateSelectItems}
+                          disabled={isViewType && !isEditingAgent}
+                        />
+                      </div>
+                    </Grid>
+                  )}
+
+                  {!isViewType && (
+                    <Grid item xs={12}>
+                      <div className={classes.formControlWrapper}>
+                        <CustomTextField
+                          field="temporaryPassword"
+                          id={uuid()}
+                          label="Temporary Password"
+                          fullWidth
+                          required
+                          type="password"
+                          disabled={isViewType && !isEditingAgent}
+                          validate={temporaryPasswordValidator}
+                        />
+                      </div>
+                    </Grid>
+                  )}
+
+                  {isAdmin && (
+                    <div
+                      className={`${classes.formControlWrapper} ${
+                        classes.radioInputWrapper
+                      }`}
+                    >
+                      <MaterialCustomRadioInput
+                        field="agentType"
+                        id={uuid()}
+                        required
+                        label="Agent Type"
+                        radioInputItems={radioInputAgentItems}
+                        horizontal
+                        disabled={isViewType && !isEditingAgent}
+                      />
+                    </div>
+                  )}
+
+                  <div className={classes.formSubheading}>
+                    <Typography
+                      variant="subheading"
+                      classes={{ subheading: classes.h3 }}
+                    >
+                      Contact Information
+                    </Typography>
+                  </div>
+
+                  {isAdmin && (
+                    <Grid item xs={12} md={6}>
                       <div className={classes.formControlWrapper}>
                         <CustomInputMask
-                          mask="(999) 999-9999"
+                          mask="(999) 999-9999 \x999"
+                          placeholder="Office Number"
                           maskChar={null}
-                          placeholder="Phone Number"
+                          officePhoneNumber
                           disabled={isViewType && !isEditingAgent}
                           defaultValue={
                             isViewType && submittedAgent
-                              ? finalDefaultValues.mobileNumber
+                              ? finalDefaultValues.officeNumber
                               : undefined
                           }
                         >
                           {props => (
                             <CustomTextField
-                              field="mobileNumber"
+                              field="officeNumber"
                               id={uuid()}
-                              label="Mobile Number"
+                              label="Office Number"
                               fullWidth
                               required
                               type="tel"
                               isInputMasked
                               requiresDefaultOnChange
-                              mask="(999) 999-9999"
+                              mask="(999) 999-9999 \x999"
                               disabledStyle={isViewType && !isEditingAgent}
                               {...props}
                             />
@@ -490,91 +587,150 @@ class CreateAgentForm extends Component {
                         </CustomInputMask>
                       </div>
                     </Grid>
-                    {isAdmin && (
-                      <Grid item xs={12}>
-                        <div className={classes.formControlWrapper}>
+                  )}
+                  <Grid item xs={12} md={isAdmin ? 6 : 12}>
+                    <div className={classes.formControlWrapper}>
+                      <CustomInputMask
+                        mask="(999) 999-9999"
+                        maskChar={null}
+                        placeholder="Phone Number"
+                        disabled={isViewType && !isEditingAgent}
+                        defaultValue={
+                          isViewType && submittedAgent
+                            ? finalDefaultValues.mobileNumber
+                            : undefined
+                        }
+                      >
+                        {props => (
                           <CustomTextField
-                            field="email"
+                            field="mobileNumber"
                             id={uuid()}
-                            label="Email"
+                            label="Mobile Number"
                             fullWidth
                             required
-                            type="email"
-                            disabled={isViewType && !isEditingAgent}
+                            type="tel"
+                            isInputMasked
+                            requiresDefaultOnChange
+                            mask="(999) 999-9999"
+                            disabledStyle={isViewType && !isEditingAgent}
+                            {...props}
                           />
-                        </div>
-                      </Grid>
-                    )}
-
-                    <div className={classes.formSubheading}>
-                      <Typography
-                        variant="subheading"
-                        classes={{ subheading: classes.h3 }}
-                      >
-                        Other Information
-                      </Typography>
+                        )}
+                      </CustomInputMask>
                     </div>
-
-                    <Grid item xs={12} sm={4}>
-                      <div className={classes.formControlWrapper}>
-                        <CustomTextField
-                          field="facebook"
-                          id={uuid()}
-                          label="Facebook URL"
-                          fullWidth
-                          disabled={isViewType && !isEditingAgent}
-                        />
-                      </div>
-                    </Grid>
-
-                    <Grid item xs={12} sm={4}>
-                      <div className={classes.formControlWrapper}>
-                        <CustomTextField
-                          field="twitter"
-                          id={uuid()}
-                          label="Twitter URL"
-                          fullWidth
-                          disabled={isViewType && !isEditingAgent}
-                        />
-                      </div>
-                    </Grid>
-
-                    <Grid item xs={12} sm={4}>
-                      <div className={classes.formControlWrapper}>
-                        <CustomTextField
-                          field="instagram"
-                          id={uuid()}
-                          label="Instagram URL"
-                          fullWidth
-                          disabled={isViewType && !isEditingAgent}
-                        />
-                      </div>
-                    </Grid>
-
+                  </Grid>
+                  {isAdmin && (
                     <Grid item xs={12}>
                       <div className={classes.formControlWrapper}>
                         <CustomTextField
-                          inputRootClassName={classes.profileDescription}
-                          field="profileDescription"
+                          field="email"
                           id={uuid()}
-                          label="Profile Description"
+                          label="Email"
                           fullWidth
-                          multiline
-                          rows={4}
-                          rowsMax={12}
-                          shrink
+                          required
+                          type="email"
                           disabled={isViewType && !isEditingAgent}
                         />
                       </div>
                     </Grid>
-                  </Grid>
-                </form>
-              );
-            }}
-          </Form>
-        )}
+                  )}
 
-        {uplodingImageProgress /*&& isUploadingImage */ ? (
+                  <div className={classes.formSubheading}>
+                    <Typography
+                      variant="subheading"
+                      classes={{ subheading: classes.h3 }}
+                    >
+                      Other Information
+                    </Typography>
+                  </div>
+
+                  <Grid item xs={12}>
+                    <div className={classes.formControlWrapper}>
+                      <CustomTextField
+                        field="ACHAccountNumber"
+                        id={uuid()}
+                        label="ACH Account Number"
+                        fullWidth
+                        disabled={isViewType && !isEditingAgent}
+                      />
+                    </div>
+                  </Grid>
+
+                  <Grid item xs={12}>
+                    <div className={classes.formControlWrapper}>
+                      <CustomTextField
+                        field="facebook"
+                        id={uuid()}
+                        label="Facebook URL"
+                        fullWidth
+                        disabled={isViewType && !isEditingAgent}
+                        customPrefix="www.facebook.com/"
+                        shrink
+                      />
+                    </div>
+                  </Grid>
+
+                  <Grid item xs={12}>
+                    <div className={classes.formControlWrapper}>
+                      <CustomTextField
+                        field="twitter"
+                        id={uuid()}
+                        label="Twitter URL"
+                        fullWidth
+                        disabled={isViewType && !isEditingAgent}
+                        customPrefix="www.twitter.com/"
+                        shrink
+                      />
+                    </div>
+                  </Grid>
+
+                  <Grid item xs={12}>
+                    <div className={classes.formControlWrapper}>
+                      <CustomTextField
+                        field="instagram"
+                        id={uuid()}
+                        label="Instagram URL"
+                        fullWidth
+                        disabled={isViewType && !isEditingAgent}
+                        customPrefix="www.instagram.com/"
+                        shrink
+                      />
+                    </div>
+                  </Grid>
+
+                  <Grid item xs={12}>
+                    <div className={classes.formControlWrapper}>
+                      <CustomTextField
+                        inputRootClassName={classes.profileDescription}
+                        field="profileDescription"
+                        id={uuid()}
+                        label="Profile Description"
+                        fullWidth
+                        multiline
+                        rows={4}
+                        rowsMax={12}
+                        shrink
+                        disabled={isViewType && !isEditingAgent}
+                      />
+                    </div>
+                  </Grid>
+                </Grid>
+              </form>
+            );
+          }}
+        </Form>
+
+        {submittingFormToServer ? (
+          <div className={classes.formSubmittingWrapper}>
+            <Icon type="loading" style={{ color: '#000', fontSize: '4rem' }} />
+            <div className={classes.progressBarExplanation}>
+              Finishing submission...
+            </div>
+          </div>
+        ) : null}
+
+        {uplodingImageProgress &&
+        !submittingFormToServer /*&& isUploadingImage */ ? (
           <div className={classes.progressBarWrapper}>
             <CircularProgressbar
               className={classes.progressBar}

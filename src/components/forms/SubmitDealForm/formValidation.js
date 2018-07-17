@@ -63,6 +63,10 @@ export const checkOrTransactionNumberValidator = value => ({
   error: !value ? 'This value is required' : null,
 });
 
+export const ACHAccountNumberValidator = value => ({
+  error: !value ? 'This value is required' : null,
+});
+
 export const paymentAmountValidator = value => ({
   error:
     !value || !dollarAmountOnlyRegex.test(value)

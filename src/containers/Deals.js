@@ -13,7 +13,7 @@ import { Query } from 'react-apollo';
 import { DotLoader } from 'react-spinners';
 import SubmitDealDialogBox from '../components/SubmitDealDialogBox';
 import DealsTableContainer from './DealsTable';
-import DealsSummaryDealDialogBox from '../components/DealsSummaryDealDialogBox';
+import DealsSummarDialogBox from '../components/DealsSummarDialogBox';
 import ViewDealDialogBox from '../components/ViewDealDialogBox';
 import deleteDeal from '../effects/deals/deleteDeal';
 
@@ -138,27 +138,13 @@ class Deals extends Component {
     });
   };
 
-  deleteDeal = dealID => {
-    deleteDeal(dealID)
-      .then(res => {
-        if (res.error) {
-          console.log(res.error);
-          return;
-        } else if (res.userErrors.length) {
-          res.userErrors.forEach(error => console.log(error));
-          return;
-        }
-
-        this.setState({
-          snackbarOpen: true,
-          snackbarText: 'Deal deleted successfully!',
-          dealsViewDialogBoxOpen: false,
-          deletedDealIDS: [...this.state.deletedDealIDS, dealID],
-        });
-      })
-      .catch(err => {
-        console.log(err);
-      });
+  dealDeleted = dealID => {
+    this.setState({
+      snackbarOpen: true,
+      snackbarText: 'Deal deleted successfully!',
+      dealsViewDialogBoxOpen: false,
+      deletedDealIDS: [...this.state.deletedDealIDS, dealID],
+    });
   };
 
   render() {
@@ -201,7 +187,14 @@ class Deals extends Component {
             );
           const intDeals = {};
 
-          if (error) return `Error!: ${error}`;
+          if (error) {
+            console.log(error);
+            return (
+              <div style={{ textAlign: 'center' }}>
+                We're sorry. There was an error processing your request.
+              </div>
+            );
+          }
 
           const allDeals = [...data.dealsByAgentID, ...this.state.addedDeals];
 
@@ -263,14 +256,14 @@ class Deals extends Component {
                   toggleSnackbarOpen={this.toggleSnackbarOpen}
                   setDealSuccessfullySubmitted={this.setDealSuccessfullyEditted}
                   userRole={this.props.userRole}
-                  deleteDeal={this.deleteDeal}
+                  dealDeleted={this.dealDeleted}
                 />
               </div>
               <DealsTableContainer
                 deals={uniqueDeals}
                 openDealsViewDialogBox={openDealsViewDialogBox}
               />
-              <DealsSummaryDealDialogBox
+              <DealsSummarDialogBox
                 toggleDealsSummaryDialogBox={toggleDealsSummaryDialogBox}
                 dealsSummaryDialogBoxOpen={dealsSummaryDialogBoxOpen}
                 deals={uniqueDeals}

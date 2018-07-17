@@ -63,11 +63,13 @@ class CustomTextFieldWrapper extends React.Component {
   }
 
   returnStartAdornment = () => {
-    const { isDollarAmount, isPercentAmount } = this.props;
+    const { isDollarAmount, isPercentAmount, customPrefix } = this.props;
     if (isDollarAmount) {
       return <InputAdornment position="start">$</InputAdornment>;
     } else if (isPercentAmount) {
       return <InputAdornment position="start">%</InputAdornment>;
+    } else if (customPrefix) {
+      return <InputAdornment position="start">{customPrefix}</InputAdornment>;
     }
     return null;
   };

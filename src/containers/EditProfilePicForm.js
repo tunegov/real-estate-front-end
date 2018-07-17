@@ -4,6 +4,7 @@ import axios from 'axios';
 import EditProfilePicForm from '../components/forms/EditProfilePicForm';
 import { round } from '../utils/Math';
 import getProfilePicSignedURL from '../effects/getProfilePicSignedURL';
+import setAgentProfilePic from '../effects/users/setAgentProfilePic';
 
 @observer
 class EditProfilePicFormContainer extends Component {
@@ -110,6 +111,7 @@ class EditProfilePicFormContainer extends Component {
 
         if (hasError) {
           this.props.toggleSubmittingEditProfilePicForm(false);
+          this.props.setFormSubmitted(false);
           return;
         }
 
@@ -131,16 +133,18 @@ class EditProfilePicFormContainer extends Component {
               },
             })
             .then(() => {
-              this.props
-                .setAgentProfilePic(this.props.uuid, item[0].fileName)
-                .then(res => {
+              setAgentProfilePic(this.props.uuid, item[0].fileName).then(
+                res => {
                   this.props.setFinishedSubmittingForm(res.url);
-                });
+                  this.props.setFormSubmitted(false);
+                }
+              );
             });
         }
       })
       .catch(err => {
         console.log(err);
+        this.props.setFormSubmitted(false);
         this.props.toggleSubmittingEditProfilePicForm(true);
       });
   };
@@ -148,6 +152,7 @@ class EditProfilePicFormContainer extends Component {
   onSubmitFailure(errs, onSubmitError) {
     console.log(errs);
     console.log(onSubmitError);
+    this.props.setFormSubmitted(false);
   }
 
   render() {

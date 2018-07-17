@@ -153,7 +153,13 @@ const mapSizesToProps = ({ width }) => ({
 @withSizes(mapSizesToProps)
 class AgentDashboard extends Component {
   render() {
-    const { classes, userUUID, newsItems } = this.props;
+    const {
+      classes,
+      userUUID,
+      newsItems,
+      submittedNewsAlertSuccessfully,
+      deletedNewsAlertSuccessfully,
+    } = this.props;
     const currentDate = moment();
     return (
       <div className={classes.root}>

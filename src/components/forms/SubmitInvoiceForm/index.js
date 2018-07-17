@@ -80,7 +80,6 @@ const styles = theme => ({
   formSubheading: {
     width: '100%',
     textAlign: 'center',
-    paddingLeft: '16px',
     paddingTop: '82px',
   },
   h3: {
@@ -312,19 +311,28 @@ class SubmitInvoiceForm extends Component {
       submittingFormToServer,
       submittedInvoice,
       isEditingInvoice,
+      managementCobrokeCompanyItems,
       isViewType,
     } = this.props;
 
-    let managementCobrokeCompanyItems = [
-      'Private Landlord',
-      'Disney Land',
-      'Gucci',
-      'Alexander the Great',
-      'Apple',
-      'Amazon',
-    ];
+    const managementCobrokeCompanies =
+      managementCobrokeCompanyItems && managementCobrokeCompanyItems.length
+        ? [...managementCobrokeCompanyItems]
+        : [];
 
-    let managementCobrokeCompanySelectItems = managementCobrokeCompanyItems.map(
+    if (submittedInvoice && submittedInvoice.managementOrCobrokeCompany) {
+      if (
+        !managementCobrokeCompanies.includes(
+          submittedInvoice.managementOrCobrokeCompany
+        )
+      ) {
+        managementCobrokeCompanies.push(
+          submittedInvoice.managementOrCobrokeCompany
+        );
+      }
+    }
+
+    let managementCobrokeCompanySelectItems = managementCobrokeCompanies.map(
       company => ({ label: company })
     );
 

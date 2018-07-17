@@ -82,6 +82,9 @@ const styles = theme => ({
       color: '#fff !important',
     },
   },
+  snackBar: {
+    marginTop: 30,
+  },
 });
 
 const adminQuery = gql`
@@ -99,6 +102,7 @@ const adminQuery = gql`
         officeNumber
         state
         branch
+        isAdminOwner
       }
     }
   }
@@ -148,30 +152,17 @@ class AdminAreaAdminContainer extends Component {
       viewingAdminUUID: null,
       editAdminModalOpen: false,
       viewingAdminRole: null,
+      viewingAdminIsOwnerAdmin: null,
     });
   };
 
-  deleteAdmin = adminID => {
-    deleteAdmin(adminID)
-      .then(res => {
-        if (res.error) {
-          console.log(res.error);
-          return;
-        } else if (res.error) {
-          conspole.log(res.error);
-          return;
-        }
-
-        this.setState({
-          snackbarOpen: true,
-          snackbarText: 'Admin deleted successfully!',
-          editAdminModalOpen: false,
-          deletedAdminIDS: [...this.state.deletedAdminIDS, adminID],
-        });
-      })
-      .catch(err => {
-        console.log(err);
-      });
+  adminSuccessfullyDeleted = () => {
+    this.setState({
+      snackbarOpen: true,
+      snackbarText: 'Admin deleted successfully!',
+      editAdminModalOpen: false,
+      deletedAdminIDS: [...this.state.deletedAdminIDS, adminID],
+    });
   };
 
   handleCloseSnackbar = () => {
@@ -194,12 +185,18 @@ class AdminAreaAdminContainer extends Component {
     this.setState({ editAdminModalOpen: false });
   };
 
-  handleEditAdminMenuClick = (event, viewingAdminUUID, viewingAdminRole) => {
+  handleEditAdminMenuClick = (
+    event,
+    viewingAdminUUID,
+    viewingAdminRole,
+    viewingAdminIsOwnerAdmin
+  ) => {
     console.log(event.currentTarget);
     this.setState({
       editAdminAnchorEl: event.currentTarget,
       viewingAdminUUID,
       viewingAdminRole,
+      viewingAdminIsOwnerAdmin,
     });
   };
 
@@ -228,11 +225,12 @@ class AdminAreaAdminContainer extends Component {
   };
 
   render() {
-    const { classes, userUUID, userRole } = this.props;
+    const { classes, userUUID, userRole, currentUserIsAdminOwner } = this.props;
     const {
       createAdminModalOpen,
       editAdminModalOpen,
       editAdminAnchorEl,
+      viewingAdminIsOwnerAdmin,
     } = this.state;
 
     return (
@@ -254,9 +252,15 @@ class AdminAreaAdminContainer extends Component {
                 <Loader color="#f44336" loading />
               </div>
             );
-          // TODO: change the error message to a generic
-          // 'error connecting to server' message
-          if (error) return `Error!: ${error}`;
+
+          if (error) {
+            console.log(error);
+            return (
+              <div style={{ textAlign: 'center' }}>
+                We're sorry. There was an error processing your request.
+              </div>
+            );
+          }
 
           const intAdmin = {};
 
@@ -297,6 +301,7 @@ class AdminAreaAdminContainer extends Component {
                 closeAdminInfoViewDialogBox={this.closeAdminInfoViewDialogBox}
                 userRole={this.props.userRole}
                 userUUID={this.props.userUUID}
+                currentUserIsAdminOwner={currentUserIsAdminOwner}
               />
 
               <EditAdminDialogBox
@@ -309,6 +314,9 @@ class AdminAreaAdminContainer extends Component {
                 viewingAdminUUID={this.state.viewingAdminUUID}
                 confirmAdminEdited={this.confirmAdminEdited}
                 deleteAdmin={this.deleteAdmin}
+                currentUserUUID={this.props.userUUID}
+                currentUserIsAdminOwner={currentUserIsAdminOwner}
+                adminSuccessfullyDeleted={this.adminSuccessfullyDeleted}
               />
 
               <CreateAdminDialogBox
@@ -349,15 +357,17 @@ class AdminAreaAdminContainer extends Component {
                 >
                   Information
                 </MenuItem>
-                <MenuItem
-                  classes={{ root: classes.menuItemAccept }}
-                  onClick={() => {
-                    this.handleEditAdminMenuClose();
-                    this.openEditAdminPasswordDialogBox();
-                  }}
-                >
-                  Password
-                </MenuItem>
+                {
+                  <MenuItem
+                    classes={{ root: classes.menuItemAccept }}
+                    onClick={() => {
+                      this.handleEditAdminMenuClose();
+                      this.openEditAdminPasswordDialogBox();
+                    }}
+                  >
+                    Password
+                  </MenuItem>
+                }
                 <MenuItem
                   classes={{ root: classes.menuItem }}
                   onClick={() => {

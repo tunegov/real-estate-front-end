@@ -5,6 +5,7 @@ import { withStyles } from 'material-ui/styles';
 import Grid from 'material-ui/Grid';
 import withSizes from 'react-sizes';
 import 'react-circular-progressbar/dist/styles.css';
+import { Icon } from 'antd';
 import validators from './formValidation';
 import MaterialCustomTextFieldWrapper from '../../MaterialCustomTextFieldWrapper';
 
@@ -42,7 +43,6 @@ const styles = theme => ({
   formSubheading: {
     width: '100%',
     textAlign: 'center',
-    paddingLeft: '16px',
     paddingTop: '82px',
   },
   h3: {
@@ -59,12 +59,23 @@ const styles = theme => ({
     paddingLeft: '28px',
     marginTop: '60px',
   },
+  progressBarExplanation: {
+    marginTop: '20px',
+    fontSize: '1.1rem',
+  },
+  formSubmittingWrapper: {
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: '100%',
+  },
 });
 
 @withSizes(mapSizesToProps)
 class CreateAgentForm extends Component {
   render() {
-    const { classes, onSubmit } = this.props;
+    const { classes, onSubmit, submittingFormToServer } = this.props;
 
     return (
       <div className={classes.root}>
@@ -73,6 +84,7 @@ class CreateAgentForm extends Component {
           onSubmit={onSubmit}
           onSubmitFailure={this.props.onSubmitFailure}
           validate={validators}
+          validateOnMount
           getApi={this.props.getFormApi}
         >
           {formApi => {
@@ -81,6 +93,9 @@ class CreateAgentForm extends Component {
                 onSubmit={formApi.submitForm}
                 id="form1"
                 className={classes.formRoot}
+                style={{
+                  display: submittingFormToServer ? 'none' : undefined,
+                }}
               >
                 <Grid container spacing={8}>
                   <Grid item xs={12}>
@@ -112,6 +127,15 @@ class CreateAgentForm extends Component {
             );
           }}
         </Form>
+
+        {submittingFormToServer ? (
+          <div className={classes.formSubmittingWrapper}>
+            <Icon type="loading" style={{ color: '#000', fontSize: '4rem' }} />
+            <div className={classes.progressBarExplanation}>
+              Finishing submission...
+            </div>
+          </div>
+        ) : null}
       </div>
     );
   }

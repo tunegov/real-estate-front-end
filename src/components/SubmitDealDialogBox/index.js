@@ -14,6 +14,10 @@ import Divider from 'material-ui/Divider';
 import { withStyles } from 'material-ui/styles';
 import Button from 'material-ui/Button';
 import SubmitDealForm from '../../containers/SubmitDealForm';
+import classnames from 'classnames';
+
+const networkErrorMessage =
+  "We're sorry. There was an error processing your request.";
 
 const styles = theme => ({
   paper: {
@@ -38,12 +42,12 @@ const styles = theme => ({
     paddingTop: '32px',
   },
   snackBar: {
-    marginBottom: '60px',
-    '@media (max-height: 500px)': {
-      marginBottom: '50px',
-    },
-    '@media (max-height: 390px)': {
-      marginBottom: '30px',
+    position: 'absolute',
+    bottom: 20,
+  },
+  errorSnackbar: {
+    '& > div': {
+      backgroundColor: theme.palette.secondary.main,
     },
   },
 });
@@ -58,6 +62,7 @@ class SubmitDealDialogBox extends Component {
       snackbarOpen: false,
       snackbarText: '',
       snackbarUndoFunction: null,
+      isErrorSnackbar: false,
     };
   }
 
@@ -76,6 +81,16 @@ class SubmitDealDialogBox extends Component {
     this.setState({
       snackbarOpen: false,
       snackbarUndoFunction: null,
+      isErrorSnackbar: false,
+      snackbarText: '',
+    });
+  };
+
+  openRequestErrorSnackbar = (text = networkErrorMessage) => {
+    this.setState({
+      snackbarOpen: true,
+      snackbarText: text,
+      isErrorSnackbar: true,
     });
   };
 
@@ -109,15 +124,21 @@ class SubmitDealDialogBox extends Component {
             getFormApi={formApi => this.setState({ formApi })}
             setFormSubmitted={this.setFormSubmitted}
             setDealSuccessfullySubmitted={setDealSuccessfullySubmitted}
+            openRequestErrorSnackbar={this.openRequestErrorSnackbar}
           />
           <Snackbar
-            classes={{ root: classes.snackBar }}
+            classes={{
+              root: classnames(
+                classes.snackBar,
+                this.state.isErrorSnackbar && classes.errorSnackbar
+              ),
+            }}
             anchorOrigin={{
               vertical: 'bottom',
               horizontal: 'center',
             }}
             open={this.state.snackbarOpen}
-            autoHideDuration={4000}
+            autoHideDuration={this.state.isErrorSnackbar ? 8000 : 4000}
             onClose={this.handleCloseSnackbar}
             message={<span id="snackbar-id">{this.state.snackbarText}</span>}
             action={[

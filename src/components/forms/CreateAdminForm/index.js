@@ -1,33 +1,21 @@
 import React, { Component } from 'react';
 import { Form } from 'react-form';
 import uuid from 'uuid/v4';
-import AvatarEditor from 'react-avatar-editor';
 import { withStyles } from 'material-ui/styles';
 import Grid from 'material-ui/Grid';
 import withSizes from 'react-sizes';
-import Button from 'material-ui/Button';
-import { Icon } from 'antd';
 import Typography from 'material-ui/Typography';
-import CircularProgressbar from 'react-circular-progressbar';
-import { Input as AntDInput } from 'antd';
 import 'react-circular-progressbar/dist/styles.css';
-import Slider from '../../CustomSlider';
+import { Icon } from 'antd';
 import validators, { temporaryPasswordValidator } from './formValidation';
-import CustomFileUploadInputBtn from '../../CustomFileUploadInputWrapper';
 import MaterialCustomTextFieldWrapper from '../../MaterialCustomTextFieldWrapper';
-import MaterialCustomRadioInputWrapper from '../../MaterialCustomRadioInputWrapper';
 import MaterialCustomSelectInputWrapper from '../../MaterialCustomSelectInputWrapper';
 import CustomInputMask from '../../CustomInputMask';
 import { states } from '../../../utils/constants';
 import { admin, superAdmin } from '../../../constants/userTypes';
 
-const { TextArea } = AntDInput;
-
 const CustomTextField = MaterialCustomTextFieldWrapper;
-const MaterialCustomRadioInput = MaterialCustomRadioInputWrapper;
 const MaterialCustomSelectInput = MaterialCustomSelectInputWrapper;
-
-const acceptedFileExtensions = ['jpg', 'jpeg'];
 
 const mapSizesToProps = ({ width }) => ({
   smViewport: width < 600,
@@ -89,7 +77,6 @@ const styles = theme => ({
   formSubheading: {
     width: '100%',
     textAlign: 'center',
-    paddingLeft: '16px',
     paddingTop: '82px',
   },
   h3: {
@@ -182,6 +169,13 @@ const styles = theme => ({
     backgroundColor: 'rgba(0,0,0,.07)',
     borderRadius: '5px 5px 0 0',
   },
+  formSubmittingWrapper: {
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: '100%',
+  },
 });
 
 const branchSelectItems = [{ label: 'New York City' }];
@@ -193,6 +187,8 @@ const stateSelectItems = states.map(state => ({ label: state }));
 
 @withSizes(mapSizesToProps)
 class CreateAgentForm extends Component {
+  firstTimeRender = true;
+
   render() {
     const {
       classes,
@@ -202,6 +198,7 @@ class CreateAgentForm extends Component {
       isViewType,
       isEditingAdmin,
       onSubmit,
+      submittingFormToServer,
     } = this.props;
 
     let finalDefaultValues;
@@ -225,199 +222,221 @@ class CreateAgentForm extends Component {
 
     return (
       <div className={classes.root}>
-        {!formSubmitedSuccessfully && (
-          <Form
-            defaultValues={finalDefaultValues || undefined}
-            preValidate={this.preValidate}
-            onSubmit={onSubmit}
-            onSubmitFailure={this.props.onSubmitFailure}
-            validate={validators}
-            getApi={this.props.getFormApi}
-          >
-            {formApi => {
-              return (
-                <form
-                  onSubmit={formApi.submitForm}
-                  id="form1"
-                  className={classes.formRoot}
-                >
-                  <Grid container spacing={8}>
-                    <Grid item xs={12} sm={6}>
-                      <div className={classes.formControlWrapper}>
-                        <CustomTextField
-                          field="firstName"
-                          id={uuid()}
-                          label="First Name"
-                          fullWidth
-                          required
-                          disabled={isViewType && !isEditingAdmin}
-                        />
-                      </div>
-                    </Grid>
-                    <Grid item xs={12} sm={6}>
-                      <div className={classes.formControlWrapper}>
-                        <CustomTextField
-                          field="lastName"
-                          id={uuid()}
-                          label="Last Name"
-                          fullWidth
-                          required
-                          disabled={isViewType && !isEditingAdmin}
-                        />
-                      </div>
-                    </Grid>
+        <Form
+          defaultValues={finalDefaultValues || undefined}
+          preValidate={this.preValidate}
+          validateOnMount
+          onSubmit={values => {
+            if (onSubmit) {
+              onSubmit(values);
+            }
+          }}
+          onSubmitFailure={this.props.onSubmitFailure}
+          validate={validators}
+          getApi={this.props.getFormApi}
+        >
+          {formApi => {
+            if (this.firstTimeRender && !formApi.getValue('firstName')) {
+              this.firstTimeRender = false;
+              formApi.setValue('firstName', '');
+            }
+            return (
+              <form
+                onSubmit={formApi.submitForm}
+                id="form1"
+                style={{
+                  display:
+                    formSubmitedSuccessfully || submittingFormToServer
+                      ? 'none'
+                      : undefined,
+                }}
+              >
+                <Grid container spacing={8}>
+                  <Grid item xs={12} sm={6}>
+                    <div className={classes.formControlWrapper}>
+                      <CustomTextField
+                        field="firstName"
+                        id={uuid()}
+                        label="First Name"
+                        fullWidth
+                        required
+                        disabled={isViewType && !isEditingAdmin}
+                      />
+                    </div>
+                  </Grid>
+                  <Grid item xs={12} sm={6}>
+                    <div className={classes.formControlWrapper}>
+                      <CustomTextField
+                        field="lastName"
+                        id={uuid()}
+                        label="Last Name"
+                        fullWidth
+                        required
+                        disabled={isViewType && !isEditingAdmin}
+                      />
+                    </div>
+                  </Grid>
 
-                    <Grid item xs={12} sm={6}>
-                      <div className={classes.formControlWrapper}>
-                        <MaterialCustomSelectInput
-                          field="branch"
-                          id={uuid()}
-                          required
-                          fullWidth
-                          label="Branch"
-                          name="branch"
-                          selectInputItems={branchSelectItems}
-                          disabled={isViewType && !isEditingAdmin}
-                        />
-                      </div>
-                    </Grid>
+                  <Grid item xs={12} sm={6}>
+                    <div className={classes.formControlWrapper}>
+                      <MaterialCustomSelectInput
+                        field="branch"
+                        id={uuid()}
+                        required
+                        fullWidth
+                        label="Branch"
+                        name="branch"
+                        selectInputItems={branchSelectItems}
+                        disabled={isViewType && !isEditingAdmin}
+                      />
+                    </div>
+                  </Grid>
 
-                    <Grid item xs={12} sm={6}>
-                      <div className={classes.formControlWrapper}>
-                        <MaterialCustomSelectInput
-                          field="state"
-                          id={uuid()}
-                          required
-                          fullWidth
-                          label="State"
-                          name="state"
-                          selectInputItems={stateSelectItems}
-                          disabled={isViewType && !isEditingAdmin}
-                        />
-                      </div>
-                    </Grid>
+                  <Grid item xs={12} sm={6}>
+                    <div className={classes.formControlWrapper}>
+                      <MaterialCustomSelectInput
+                        field="state"
+                        id={uuid()}
+                        required
+                        fullWidth
+                        label="State"
+                        name="state"
+                        selectInputItems={stateSelectItems}
+                        disabled={isViewType && !isEditingAdmin}
+                      />
+                    </div>
+                  </Grid>
 
+                  <Grid item xs={12}>
+                    <div className={classes.formControlWrapper}>
+                      <MaterialCustomSelectInput
+                        field="role"
+                        id={uuid()}
+                        required
+                        fullWidth
+                        label="Role"
+                        name="role"
+                        selectInputItems={roleSelectItems}
+                        disabled={isViewType && !isEditingAdmin}
+                      />
+                    </div>
+                  </Grid>
+
+                  {!isViewType && (
                     <Grid item xs={12}>
                       <div className={classes.formControlWrapper}>
-                        <MaterialCustomSelectInput
-                          field="role"
+                        <CustomTextField
+                          field="temporaryPassword"
                           id={uuid()}
-                          required
+                          label="Temporary Password"
                           fullWidth
-                          label="Role"
-                          name="role"
-                          selectInputItems={roleSelectItems}
-                          disabled={isViewType && !isEditingAdmin}
+                          required
+                          type="password"
+                          validate={temporaryPasswordValidator}
                         />
                       </div>
                     </Grid>
+                  )}
 
-                    {!isViewType && (
-                      <Grid item xs={12}>
-                        <div className={classes.formControlWrapper}>
+                  <div className={classes.formSubheading}>
+                    <Typography
+                      variant="subheading"
+                      classes={{ subheading: classes.h3 }}
+                    >
+                      Contact Information
+                    </Typography>
+                  </div>
+
+                  <Grid item xs={12} sm={6}>
+                    <div className={classes.formControlWrapper}>
+                      <CustomInputMask
+                        mask="(999) 999-9999 \x999"
+                        placeholder="Office Number"
+                        maskChar={null}
+                        officePhoneNumber
+                        disabled={isViewType && !isEditingAdmin}
+                        defaultValue={
+                          isViewType && submittedAdmin
+                            ? finalDefaultValues.officeNumber
+                            : undefined
+                        }
+                      >
+                        {props => (
                           <CustomTextField
-                            field="temporaryPassword"
+                            field="officeNumber"
                             id={uuid()}
-                            label="Temporary Password"
+                            label="Office Number"
                             fullWidth
                             required
-                            validate={temporaryPasswordValidator}
+                            type="tel"
+                            isInputMasked
+                            requiresDefaultOnChange
+                            disabledStyle={isViewType && !isEditingAdmin}
+                            mask="(999) 999-9999 \x999"
+                            {...props}
                           />
-                        </div>
-                      </Grid>
-                    )}
-
-                    <div className={classes.formSubheading}>
-                      <Typography
-                        variant="subheading"
-                        classes={{ subheading: classes.h3 }}
-                      >
-                        Contact Information
-                      </Typography>
+                        )}
+                      </CustomInputMask>
                     </div>
-
-                    <Grid item xs={12} sm={6}>
-                      <div className={classes.formControlWrapper}>
-                        <CustomInputMask
-                          mask="(999) 999-9999 \x999"
-                          placeholder="Office Number"
-                          maskChar={null}
-                          officePhoneNumber
-                          disabled={isViewType && !isEditingAdmin}
-                          defaultValue={
-                            isViewType && submittedAdmin
-                              ? finalDefaultValues.officeNumber
-                              : undefined
-                          }
-                        >
-                          {props => (
-                            <CustomTextField
-                              field="officeNumber"
-                              id={uuid()}
-                              label="Office Number"
-                              fullWidth
-                              required
-                              type="tel"
-                              isInputMasked
-                              requiresDefaultOnChange
-                              disabledStyle={isViewType && !isEditingAdmin}
-                              mask="(999) 999-9999 \x999"
-                              {...props}
-                            />
-                          )}
-                        </CustomInputMask>
-                      </div>
-                    </Grid>
-                    <Grid item xs={12} sm={6}>
-                      <div className={classes.formControlWrapper}>
-                        <CustomInputMask
-                          mask="(999) 999-9999"
-                          maskChar={null}
-                          placeholder="Phone Number"
-                          disabled={isViewType && !isEditingAdmin}
-                          defaultValue={
-                            isViewType && submittedAdmin
-                              ? finalDefaultValues.mobileNumber
-                              : undefined
-                          }
-                        >
-                          {props => (
-                            <CustomTextField
-                              field="mobileNumber"
-                              id={uuid()}
-                              label="Mobile Number"
-                              fullWidth
-                              required
-                              type="tel"
-                              isInputMasked
-                              requiresDefaultOnChange
-                              disabledStyle={isViewType && !isEditingAdmin}
-                              mask="(999) 999-9999"
-                              {...props}
-                            />
-                          )}
-                        </CustomInputMask>
-                      </div>
-                    </Grid>
-                    <Grid item xs={12}>
-                      <div className={classes.formControlWrapper}>
-                        <CustomTextField
-                          field="email"
-                          id={uuid()}
-                          label="Email"
-                          fullWidth
-                          required
-                          type="email"
-                          disabled={isViewType && !isEditingAdmin}
-                        />
-                      </div>
-                    </Grid>
                   </Grid>
-                </form>
-              );
-            }}
-          </Form>
-        )}
+                  <Grid item xs={12} sm={6}>
+                    <div className={classes.formControlWrapper}>
+                      <CustomInputMask
+                        mask="(999) 999-9999"
+                        maskChar={null}
+                        placeholder="Phone Number"
+                        disabled={isViewType && !isEditingAdmin}
+                        defaultValue={
+                          isViewType && submittedAdmin
+                            ? finalDefaultValues.mobileNumber
+                            : undefined
+                        }
+                      >
+                        {props => (
+                          <CustomTextField
+                            field="mobileNumber"
+                            id={uuid()}
+                            label="Mobile Number"
+                            fullWidth
+                            required
+                            type="tel"
+                            isInputMasked
+                            requiresDefaultOnChange
+                            disabledStyle={isViewType && !isEditingAdmin}
+                            mask="(999) 999-9999"
+                            {...props}
+                          />
+                        )}
+                      </CustomInputMask>
+                    </div>
+                  </Grid>
+                  <Grid item xs={12}>
+                    <div className={classes.formControlWrapper}>
+                      <CustomTextField
+                        field="email"
+                        id={uuid()}
+                        label="Email"
+                        fullWidth
+                        required
+                        type="email"
+                        disabled={isViewType && !isEditingAdmin}
+                      />
+                    </div>
+                  </Grid>
+                </Grid>
+              </form>
+            );
+          }}
+        </Form>
+
+        {submittingFormToServer ? (
+          <div className={classes.formSubmittingWrapper}>
+            <Icon type="loading" style={{ color: '#000', fontSize: '4rem' }} />
+            <div className={classes.progressBarExplanation}>
+              Finishing submission...
+            </div>
+          </div>
+        ) : null}
       </div>
     );
   }

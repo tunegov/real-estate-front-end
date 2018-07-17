@@ -24,7 +24,7 @@ import { Query } from 'react-apollo';
 import { DotLoader } from 'react-spinners';
 import MaterialCustomSelectInput from '../components/MaterialCustomSelectInput';
 import AdminAreaDealsTableContainer from './AdminAreaDealsTableContainer';
-import DealsSummaryDealDialogBox from '../components/DealsSummaryDealDialogBox';
+import AdminDealsSummaryDialogBox from '../components/AdminDealsSummaryDialogBox';
 import ViewDealDialogBox from '../components/ViewDealDialogBox';
 import deleteDeal from '../effects/deals/deleteDeal';
 import acceptDeal from '../effects/deals/acceptDeal';
@@ -450,9 +450,6 @@ class AdminAreaDealsContainer extends Component {
         if (res.error) {
           console.log(res.error);
           return;
-        } else if (res.userErrors.length) {
-          res.userErrors.forEach(error => console.log(error));
-          return;
         }
 
         this.setState({
@@ -465,6 +462,15 @@ class AdminAreaDealsContainer extends Component {
       .catch(err => {
         console.log(err);
       });
+  };
+
+  dealDeleted = dealID => {
+    this.setState({
+      snackbarOpen: true,
+      snackbarText: 'Deal deleted successfully!',
+      dealsViewDialogBoxOpen: false,
+      deletedDealIDS: [...this.state.deletedDealIDS, dealID],
+    });
   };
 
   dealAccepted = dealID => {
@@ -525,7 +531,14 @@ class AdminAreaDealsContainer extends Component {
             );
           const intDeals = {};
 
-          if (error) return `Error!: ${error}`;
+          if (error) {
+            console.log(error);
+            return (
+              <div style={{ textAlign: 'center' }}>
+                We're sorry. There was an error processing your request.
+              </div>
+            );
+          }
 
           // const intResult = data[this.returnQueryName()];
 
@@ -735,15 +748,17 @@ class AdminAreaDealsContainer extends Component {
                 userRole={this.props.userRole}
                 deleteDeal={this.deleteDeal}
                 dealAccepted={this.dealAccepted}
+                dealDeleted={this.dealDeleted}
               />
 
               <AdminAreaDealsTableContainer
                 deals={uniqueDeals}
                 openDealsViewDialogBox={this.openDealsViewDialogBox}
               />
-              <DealsSummaryDealDialogBox
+              <AdminDealsSummaryDialogBox
                 toggleDealsSummaryDialogBox={toggleDealsSummaryDialogBox}
                 dealsSummaryDialogBoxOpen={dealsSummaryDialogBoxOpen}
+                deals={uniqueDeals}
               />
 
               <Snackbar

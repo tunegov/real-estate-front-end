@@ -14,30 +14,28 @@ class EditAgentPasswordFormContainer extends Component {
 
   onSubmit = (values, e, formApi) => {
     this.props.setFormSubmitted();
-
-    console.log(values);
+    this.props.toggleSubmittingRequestToServer(true);
 
     const returnValues = {
       uuid: this.props.viewingAgentUUID,
       newPassword: values.password,
     };
 
-    console.log(returnValues);
-
     editAgentPassword(returnValues)
       .then(res => {
+        this.props.setFormSubmitted(false);
+        this.props.toggleSubmittingRequestToServer(false);
         if (res.error) {
-          console.log(res.error);
-          this.props.setFormSubmitted(false);
+          this.props.openRequestErrorSnackbar(res.error);
           return;
         }
 
-        this.props.setFormSubmitted(false);
         this.props.formSubmittedSuccessfully();
       })
       .catch(err => {
+        this.props.toggleSubmittingRequestToServer(false);
         this.props.setFormSubmitted(false);
-        console.log(err);
+        this.props.openRequestErrorSnackbar();
       });
   };
 
@@ -56,6 +54,7 @@ class EditAgentPasswordFormContainer extends Component {
           onSubmitFailure={this.onSubmitFailure}
           formSubmitedSuccessfully={this.state.formSubmitedSuccessfully}
           getFormApi={this.props.getFormApi}
+          submittingFormToServer={this.props.submittingRequestToServer}
           {...rest}
         />
       </div>

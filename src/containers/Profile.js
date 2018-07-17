@@ -45,6 +45,7 @@ class ProfileContainer extends Component {
       editAgentPasswordDialogBoxOpen: false,
       snackbarOpen: false,
       snackbarText: '',
+      isLoadingProfilePicture: true,
     };
   }
 
@@ -67,19 +68,39 @@ class ProfileContainer extends Component {
     });
   };
 
-  setFinishedSubmittingForm = url => {
+  toggleIsLoadingProfilePicture = (bool = false) => {
+    console.log(`loaded: ${bool}`);
     this.setState({
-      profilePicEditorDialogBoxOpen: false,
-      submittingEditProfilePicForm: false,
-      editProfilePicFormSubmitted: false,
-      snackbarOpen: true,
-      snackbarText: 'Profile Picture successfully changed!',
+      isLoadingProfilePicture: bool,
     });
-    const picEl = document.getElementById('agentProfilePic');
+  };
 
-    if (picEl) {
-      picEl.src = `${url}?cache=${faker.random.uuid()}`;
-    }
+  setFinishedSubmittingForm = url => {
+    const { user } = this.state;
+    this.setState(
+      {
+        user: {
+          ...user,
+          agent: {
+            ...user.agent,
+            profilePicURL: `${url}?cacheBust=${faker.random.uuid()}`,
+          },
+        },
+        profilePicEditorDialogBoxOpen: false,
+        isLoadingProfilePicture: true,
+        submittingEditProfilePicForm: false,
+        editProfilePicFormSubmitted: false,
+        snackbarOpen: true,
+        snackbarText: 'Profile picture successfully changed!',
+      },
+      () => {
+        const picEl = document.getElementById('agentProfilePic');
+
+        if (picEl) {
+          picEl.src = `${url}?cache=${faker.random.uuid()}`;
+        }
+      }
+    );
   };
 
   editPasswordFormSubmittedSuccessfully = () => {
@@ -168,6 +189,7 @@ class ProfileContainer extends Component {
       profilePicEditorDialogBoxOpen,
       submittingEditProfilePicForm,
       editProfilePicFormSubmitted,
+      isLoadingProfilePicture,
     } = this.state;
     const {
       toggleEditingMode,
@@ -203,6 +225,8 @@ class ProfileContainer extends Component {
           openEditAgentDialogBox={this.openEditAgentDialogBox}
           openEditAgentPasswordDialogBox={this.openEditAgentPasswordDialogBox}
           uuid={this.props.uuid}
+          isLoadingProfilePicture={isLoadingProfilePicture}
+          toggleIsLoadingProfilePicture={this.toggleIsLoadingProfilePicture}
         />
 
         <EditAgentDialogBox

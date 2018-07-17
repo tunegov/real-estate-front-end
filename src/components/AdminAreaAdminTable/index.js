@@ -79,6 +79,7 @@ const defaultColumnWidths = [
   { columnName: 'email', width: 160 },
   { columnName: 'mobileNumber', width: 150 },
   { columnName: 'companyNumberAndExt', width: 150 },
+  { columnName: 'role', width: 140 },
   { columnName: 'lastLoginTimestamp', width: 180 },
   { columnName: 'createdAt', width: 180 },
   { columnName: 'view', width: 100 },

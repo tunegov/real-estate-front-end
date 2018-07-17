@@ -3,7 +3,7 @@ import { observer } from 'mobx-react';
 import { withStyles } from 'material-ui/styles';
 import gql from 'graphql-tag';
 import { Query } from 'react-apollo';
-import { DotLoader } from 'react-spinners';
+import { BounceLoader } from 'react-spinners';
 import moment from 'moment';
 import CompanyNewsAlerts from '../components/CompanyNewsAlerts';
 import CreateCompanyAlertsNewsDialogBox from '../components/CreateCompanyAlertsNewsDialogBox';
@@ -12,7 +12,7 @@ import { admin as adminRole, superAdmin } from '../constants/userTypes';
 import submitNewsAlertItem from '../effects/general/submitNewsAlertItem';
 import deleteNewsAlertItem from '../effects/general/deleteNewsAlertItem';
 
-const Loader = DotLoader;
+const Loader = BounceLoader;
 
 const newsAlertItemsQuery = gql`
   query newsAlertItems {
@@ -29,6 +29,7 @@ const newsAlertItemsQuery = gql`
 const styles = theme => ({
   root: {
     maxWidth: '100%',
+    width: '100%',
     marginBottom: 10,
   },
   snackBar: {
@@ -197,19 +198,29 @@ class CompanyNewsAlertsContainer extends React.Component {
             return (
               <div
                 style={{
+                  width: '100%',
                   display: 'flex',
                   justifyContent: 'center',
                   alignItems: 'center',
-                  height: 'calc(100vh - 110px)',
+                  height: '64px',
+                  margin: '8px',
+                  marginTop: '0',
                   boxShadow:
                     '0px 1px 3px 0px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 2px 1px -1px rgba(0, 0, 0, 0.12)',
                 }}
               >
-                <Loader color="#f44336" loading />
+                <Loader color="#f44336" size={35} loading />
               </div>
             );
 
-          if (error) return `Error!: ${error}`;
+          if (error) {
+            console.log(error);
+            return (
+              <div style={{ textAlign: 'center' }}>
+                We're sorry. There was an error processing your request.
+              </div>
+            );
+          }
 
           const newsAlertItems = data.newsAlertItems;
 

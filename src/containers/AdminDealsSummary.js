@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { observer } from 'mobx-react';
 import moment from 'moment';
 import setValue from 'set-value';
-import DealsSummary from '../components/DealsSummary';
+import AdminDealsSummary from '../components/AdminDealsSummary';
 import {
   residentialRental,
   residentialSale,
@@ -64,11 +64,14 @@ const returnGraphMonth = month => {
 class AdminDealsSummaryContainer extends Component {
   constructor(props) {
     super(props);
+    const { deals } = this.props;
 
     this.state = {};
   }
 
   returnNumberOfTotalDealsData = (deals = []) => {
+    if (!deals.length) return false;
+
     const dealDataCounts = {
       'Res. Sales': 0,
       'Res. Rentals': 0,
@@ -123,8 +126,17 @@ class AdminDealsSummaryContainer extends Component {
     return dealData;
   };
 
-  returnGrossDollarAmtOfTotalDealsData = (deals = []) => {
-    const dealDataCounts = {
+  returnDollarAmtOfTotalDealsData = (deals = []) => {
+    if (!deals.length) return false;
+
+    const grossDealDataCounts = {
+      'Res. Sales': 0,
+      'Res. Rentals': 0,
+      'Com. Sales': 0,
+      'Com. Rentals': 0,
+    };
+
+    const netDealDataCounts = {
       'Res. Sales': 0,
       'Res. Rentals': 0,
       'Com. Sales': 0,
@@ -137,16 +149,20 @@ class AdminDealsSummaryContainer extends Component {
 
         switch (deal.dealType) {
           case commercialRental:
-            dealDataCounts['Com. Rentals'] += deal.total;
+            grossDealDataCounts['Com. Rentals'] += deal.total;
+            netDealDataCounts['Com. Rentals'] += deal.netCompanyCommission;
             break;
           case commercialSale:
-            dealDataCounts['Com. Sales'] += deal.total;
+            grossDealDataCounts['Com. Sales'] += deal.total;
+            netDealDataCounts['Com. Sales'] += deal.netCompanyCommission;
             break;
           case residentialRental:
-            dealDataCounts['Res. Rentals'] += deal.total;
+            grossDealDataCounts['Res. Rentals'] += deal.total;
+            netDealDataCounts['Res. Rentals'] += deal.netCompanyCommission;
             break;
           case residentialSale:
-            dealDataCounts['Res. Sales'] += deal.total;
+            grossDealDataCounts['Res. Sales'] += deal.total;
+            netDealDataCounts['Res. Sales'] += deal.netCompanyCommission;
             break;
           default:
             return;
@@ -154,30 +170,53 @@ class AdminDealsSummaryContainer extends Component {
       });
     }
 
-    const dealsGrossDollarData = [
+    const grossDealsDollarData = [
       {
         id: 'Res. Sales',
         label: 'Res. Sales',
-        value: dealDataCounts['Res. Sales'] || 0,
+        value: round(grossDealDataCounts['Res. Sales'] || 0, 0),
       },
       {
         id: 'Res. Rentals',
         label: 'Res. Rentals',
-        value: dealDataCounts['Res. Sales'] || 0,
+        value: round(grossDealDataCounts['Res. Sales'] || 0, 0),
       },
       {
         id: 'Com. Sales',
         label: 'Com. Sales',
-        value: dealDataCounts['Com. Sales'] || 0,
+        value: round(grossDealDataCounts['Com. Sales'] || 0, 0),
       },
       {
         id: 'Com. Rentals',
         label: 'Com. Rentals',
-        value: dealDataCounts['Com. Rentals'] || 0,
+        value: round(grossDealDataCounts['Com. Rentals'] || 0, 0),
       },
     ];
 
-    return dealsGrossDollarData;
+    const netDealsDollarData = [
+      {
+        id: 'Res. Sales',
+        label: 'Res. Sales',
+        value: round(netDealDataCounts['Res. Sales'] || 0, 0),
+      },
+      {
+        id: 'Res. Rentals',
+        label: 'Res. Rentals',
+        value: round(netDealDataCounts['Res. Sales'] || 0, 0),
+      },
+      {
+        id: 'Com. Sales',
+        label: 'Com. Sales',
+        value: round(netDealDataCounts['Com. Sales'] || 0, 0),
+      },
+      {
+        id: 'Com. Rentals',
+        label: 'Com. Rentals',
+        value: round(netDealDataCounts['Com. Rentals'] || 0, 0),
+      },
+    ];
+
+    return { grossDealsDollarData, netDealsDollarData };
   };
 
   returnNumberOfPendingDeals = (deals = []) => {
@@ -193,17 +232,33 @@ class AdminDealsSummaryContainer extends Component {
   };
 
   returnGrossDealCommissions = (deals = []) => {
-    return deals.reduce((grossAmount, deal) => {
-      if (deal.status === 'pending') return grossAmount;
+    return round(
+      deals.reduce((grossAmount, deal) => {
+        if (deal.status === 'pending') return grossAmount;
 
-      return (grossAmount += deal.total);
-    }, 0);
+        return (grossAmount += deal.total);
+      }, 0),
+      0
+    );
+  };
+
+  returnNetDealCommissions = (deals = []) => {
+    return round(
+      deals.reduce((grossAmount, deal) => {
+        if (deal.status === 'pending') return grossAmount;
+
+        return (grossAmount += deal.netCompanyCommission);
+      }, 0),
+      0
+    );
   };
 
   returnMonthlyAndYearlyDealsData = (deals = []) => {
     const monthlyDollarData = returnMonthlyDollarDataContainer();
+    const grossMonthlyDollarData = returnMonthlyDollarDataContainer();
     const monthlyDealNumberData = returnMonthlyDealNumberDataContainer();
     const yearlyDollarData = returnNumberDealsDataContainer();
+    const grossYearlyDollarData = returnNumberDealsDataContainer();
     const yearlyDealNumberData = returnYearlyDollarDealsDataContainer();
 
     deals.forEach(deal => {
@@ -214,7 +269,25 @@ class AdminDealsSummaryContainer extends Component {
       const currentYear = moment().year();
       const yearLimit = currentYear - 4;
 
-      // monthlyDollarData
+      // gross monthlyDollarData
+      if (
+        get(
+          [returnGraphMonth(month), returnGraphDealType(deal)],
+          grossMonthlyDollarData
+        )
+      ) {
+        grossMonthlyDollarData[returnGraphMonth(month)][
+          returnGraphDealType(deal)
+        ] += round(deal.total / 1000);
+      } else {
+        setValue(
+          grossMonthlyDollarData,
+          `${returnGraphMonth(month)}.${returnGraphDealType(deal)}`,
+          round(deal.total / 1000)
+        );
+      }
+
+      // net monthlyDollarData
       if (
         get(
           [returnGraphMonth(month), returnGraphDealType(deal)],
@@ -223,12 +296,12 @@ class AdminDealsSummaryContainer extends Component {
       ) {
         monthlyDollarData[returnGraphMonth(month)][
           returnGraphDealType(deal)
-        ] += round(deal.netAgentCommission / 1000);
+        ] += round(deal.netCompanyCommission / 1000);
       } else {
         setValue(
           monthlyDollarData,
           `${returnGraphMonth(month)}.${returnGraphDealType(deal)}`,
-          round(deal.netAgentCommission / 1000)
+          round(deal.netCompanyCommission / 1000)
         );
       }
 
@@ -251,16 +324,29 @@ class AdminDealsSummaryContainer extends Component {
       }
 
       if (year >= yearLimit) {
+        // gross yearlyDollarData
+        if (get([year, returnGraphDealType(deal)], yearlyDollarData)) {
+          grossYearlyDollarData[year][returnGraphDealType(deal)] += round(
+            deal.total / 1000
+          );
+        } else {
+          setValue(
+            grossYearlyDollarData,
+            `${year}.${returnGraphDealType(deal)}`,
+            round(deal.total / 1000)
+          );
+        }
+
         // yearlyDollarData
         if (get([year, returnGraphDealType(deal)], yearlyDollarData)) {
           yearlyDollarData[year][returnGraphDealType(deal)] += round(
-            deal.netAgentCommission / 1000
+            deal.netCompanyCommission / 1000
           );
         } else {
           setValue(
             yearlyDollarData,
             `${year}.${returnGraphDealType(deal)}`,
-            round(deal.netAgentCommission / 1000)
+            round(deal.netCompanyCommission / 1000)
           );
         }
 
@@ -279,8 +365,10 @@ class AdminDealsSummaryContainer extends Component {
 
     return {
       monthlyDollarData,
+      grossMonthlyDollarData,
       monthlyDealNumberData,
       yearlyDollarData,
+      grossYearlyDollarData,
       yearlyDealNumberData,
     };
   };
@@ -309,23 +397,37 @@ class AdminDealsSummaryContainer extends Component {
   returnAllGraphData = deals => {
     const {
       monthlyDollarData,
+      grossMonthlyDollarData,
       monthlyDealNumberData,
       yearlyDollarData,
+      grossYearlyDollarData,
       yearlyDealNumberData,
     } = this.returnMonthlyAndYearlyDealsData(deals);
 
     return {
       monthlyDealsDollarBarData: this.generateDealsBarData(monthlyDollarData),
+      grossMonthlyDealsDollarBarData: this.generateDealsBarData(
+        grossMonthlyDollarData
+      ),
       monthlyDealsNumberBarData: this.generateDealsBarData(
         monthlyDealNumberData
       ),
       monthlyDealsDollarLineData: this.generateDealsLineData(monthlyDollarData),
+      grossMonthlyDealsDollarLineData: this.generateDealsLineData(
+        grossMonthlyDollarData
+      ),
       monthlyDealsNumberLineData: this.generateDealsLineData(
         monthlyDealNumberData
       ),
       yearlyDealsDollarBarData: this.generateDealsBarData(yearlyDollarData),
+      grossYearlyDealsDollarBarData: this.generateDealsBarData(
+        grossYearlyDollarData
+      ),
       yearlyDealsNumberBarData: this.generateDealsBarData(yearlyDealNumberData),
       yearlyDealsDollarLineData: this.generateDealsLineData(yearlyDollarData),
+      grossYearlyDealsDollarLineData: this.generateDealsLineData(
+        grossYearlyDollarData
+      ),
       yearlyDealsNumberLineData: this.generateDealsLineData(
         yearlyDealNumberData
       ),
@@ -337,32 +439,45 @@ class AdminDealsSummaryContainer extends Component {
 
     const {
       monthlyDealsDollarBarData,
+      grossMonthlyDealsDollarBarData,
       monthlyDealsNumberBarData,
       monthlyDealsDollarLineData,
+      grossMonthlyDealsDollarLineData,
       monthlyDealsNumberLineData,
       yearlyDealsDollarBarData,
+      grossYearlyDealsDollarBarData,
       yearlyDealsNumberBarData,
       yearlyDealsDollarLineData,
+      grossYearlyDealsDollarLineData,
       yearlyDealsNumberLineData,
     } = this.returnAllGraphData(deals);
 
+    const {
+      grossDealsDollarData,
+      netDealsDollarData,
+    } = this.returnDollarAmtOfTotalDealsData(deals);
+
     return (
       <div>
-        <DealsSummary
+        <AdminDealsSummary
           userUUID={this.props.userUUID}
           numberOfTotalDealsData={this.returnNumberOfTotalDealsData(deals)}
-          grossDollarAmtOfTotalDealsData={this.returnGrossDollarAmtOfTotalDealsData(
-            deals
-          )}
+          grossDollarAmtOfTotalDealsData={grossDealsDollarData}
+          netDollarAmtOfTotalDealsData={netDealsDollarData}
           numberOfPendingDeals={this.returnNumberOfPendingDeals(deals)}
           grossDealCommissions={this.returnGrossDealCommissions(deals)}
+          netDealCommissions={this.returnNetDealCommissions(deals)}
           monthlyDealsDollarBarData={monthlyDealsDollarBarData}
+          grossMonthlyDealsDollarBarData={grossMonthlyDealsDollarBarData}
           monthlyDealsNumberBarData={monthlyDealsNumberBarData}
           monthlyDealsDollarLineData={monthlyDealsDollarLineData}
+          grossMonthlyDealsDollarLineData={grossMonthlyDealsDollarLineData}
           monthlyDealsNumberLineData={monthlyDealsNumberLineData}
           yearlyDealsDollarBarData={yearlyDealsDollarBarData}
+          grossYearlyDealsDollarBarData={grossYearlyDealsDollarBarData}
           yearlyDealsNumberBarData={yearlyDealsNumberBarData}
           yearlyDealsDollarLineData={yearlyDealsDollarLineData}
+          grossYearlyDealsDollarLineData={grossYearlyDealsDollarLineData}
           yearlyDealsNumberLineData={yearlyDealsNumberLineData}
         />
       </div>

@@ -7,6 +7,9 @@ const query = `
         user {
           uuid
           role
+          admin {
+            isAdminOwner
+          }
         }
         wasSuccessful
         userErrors {
@@ -53,6 +56,10 @@ async function loginUser(self, values) {
     finalResponseObj.error = data.userErrors.length
       ? data.userErrors[0].message
       : data.otherError;
+  }
+
+  if (user && user.admin && user.admin.isAdminOwner) {
+    user.isAdminOwner = true;
   }
 
   if (!finalResponseObj.error) {
