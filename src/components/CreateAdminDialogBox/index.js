@@ -102,7 +102,6 @@ class CreateAdminDialogBox extends Component {
   };
 
   openRequestErrorSnackbar = (text = networkErrorMessage) => {
-    console.log('ypooo');
     this.setState({
       snackbarOpen: true,
       snackbarText: text,

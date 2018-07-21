@@ -110,6 +110,7 @@ class EditProfilePicFormContainer extends Component {
         }
 
         if (hasError) {
+          this.props.openRequestErrorSnackbar();
           this.props.toggleSubmittingEditProfilePicForm(false);
           this.props.setFormSubmitted(false);
           return;
@@ -132,7 +133,25 @@ class EditProfilePicFormContainer extends Component {
                 });
               },
             })
-            .then(() => {
+            .then(response => {
+              const status = `${response.status}`;
+              const okRegex = /^[2][0-9][0-9]$/;
+
+              if (!okRegex.test(status)) {
+                this.setState({
+                  isUploadingImage: false,
+                });
+                this.props.setFormSubmitted(false);
+
+                if (this.props.openRequestErrorSnackbar) {
+                  this.props.openRequestErrorSnackbar(
+                    'There was an error uploading your file. Please try again shortly.'
+                  );
+                }
+
+                return;
+              }
+
               setAgentProfilePic(this.props.uuid, item[0].fileName).then(
                 res => {
                   this.props.setFinishedSubmittingForm(res.url);
@@ -144,6 +163,7 @@ class EditProfilePicFormContainer extends Component {
       })
       .catch(err => {
         console.log(err);
+        this.props.openRequestErrorSnackbar();
         this.props.setFormSubmitted(false);
         this.props.toggleSubmittingEditProfilePicForm(true);
       });

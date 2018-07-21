@@ -22,7 +22,6 @@ const client = new GraphQLClient(graphQLEndpoint, {
 });
 
 async function signUpCustomer(self, values) {
-  let res;
   let response;
   let error;
 
@@ -40,28 +39,29 @@ async function signUpCustomer(self, values) {
     error,
   };
 
-  try {
-    res = await client.request(query, variables);
-  } catch (err) {
-    console.log(err);
-    finalResponseObj.error = 'Error reaching the server';
-    return finalResponseObj;
-  }
+  return client
+    .request(query, variables)
+    .then(res => {
+      const { registerCustomer: data } = res;
+      const { customer } = data;
 
-  const { registerCustomer: data } = res;
-  const { customer } = data;
+      if (!data.wasSuccessful) {
+        finalResponseObj.error = data.userErrors.length
+          ? data.userErrors[0].message
+          : data.otherError;
+      }
 
-  if (!data.wasSuccessful) {
-    finalResponseObj.error = data.userErrors.length
-      ? data.userErrors[0].message
-      : data.otherError;
-  }
+      if (!finalResponseObj.error) {
+        self.setUser(customer);
+      }
 
-  if (!finalResponseObj.error) {
-    self.setUser(customer);
-  }
-
-  return finalResponseObj;
+      return finalResponseObj;
+    })
+    .catch(err => {
+      console.log(err);
+      finalResponseObj.error = 'Error reaching the server';
+      return finalResponseObj;
+    });
 }
 
 export default signUpCustomer;

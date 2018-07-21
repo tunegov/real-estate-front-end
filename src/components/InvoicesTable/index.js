@@ -136,7 +136,7 @@ const defaultColumnWidths = [
   { columnName: 'managementOrCobrokeCompany', width: 160 },
   { columnName: 'rentOrSalePrice', width: 100 },
   { columnName: 'totalAmount', width: 100 },
-  { columnName: 'status', width: 120 },
+  // { columnName: 'status', width: 120 },
   { columnName: 'view', width: 80 },
 ];
 

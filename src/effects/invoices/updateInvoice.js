@@ -15,7 +15,6 @@ const query = `
         city
         managementOrCobrokeCompany
         price
-        status
       }
       userErrors {
         field

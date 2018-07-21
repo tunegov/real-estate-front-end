@@ -10,8 +10,15 @@ import { Icon } from 'antd';
 import Divider from 'material-ui/Divider';
 import { withStyles } from 'material-ui/styles';
 import Button from 'material-ui/Button';
+import Snackbar from 'material-ui/Snackbar';
+import IconButton from 'material-ui/IconButton';
+import CloseIcon from '@material-ui/icons/Close';
+import classnames from 'classnames';
 import EditProfilePicForm from '../../containers/EditProfilePicForm';
 import { AppContext } from '../../AppGlobalStateProvider';
+
+const networkErrorMessage =
+  "We're sorry. There was an error processing your request.";
 
 const styles = theme => ({
   paper: {
@@ -45,21 +52,57 @@ const styles = theme => ({
       backgroundColor: theme.custom.submitBlue.transparentLightBackground,
     },
   },
+  snackBar: {
+    position: 'absolute',
+    bottom: 0,
+  },
+  errorSnackbar: {
+    '& > div': {
+      backgroundColor: theme.palette.secondary.main,
+    },
+  },
 });
 
 @observer
-class CreateAgentDialogBox extends Component {
+class EditProfilePicDialogBox extends Component {
   constructor(props) {
     super(props);
     this.state = {
       formApi: null,
       submittingForm: false,
+      snackbarOpen: false,
+      snackbarText: '',
+      isErrorSnackbar: false,
     };
   }
 
   setFormSubmitted = (bool = true) => {
     this.setState({
       formSubmitted: bool,
+    });
+  };
+
+  toggleSnackbarOpen = text => {
+    this.setState({
+      snackbarOpen: true,
+      snackbarText: text,
+    });
+  };
+
+  handleCloseSnackbar = () => {
+    this.setState({
+      snackbarOpen: false,
+      snackbarUndoFunction: null,
+      isErrorSnackbar: false,
+      snackbarText: '',
+    });
+  };
+
+  openRequestErrorSnackbar = (text = networkErrorMessage) => {
+    this.setState({
+      snackbarOpen: true,
+      snackbarText: text,
+      isErrorSnackbar: true,
     });
   };
 
@@ -109,6 +152,7 @@ class CreateAgentDialogBox extends Component {
                 setFormSubmitted={setFormSubmitted}
                 setFinishedSubmittingForm={setFinishedSubmittingForm}
                 editProfilePicFormSubmitted={editProfilePicFormSubmitted}
+                openRequestErrorSnackbar={this.openRequestErrorSnackbar}
                 toggleSubmittingEditProfilePicForm={
                   toggleSubmittingEditProfilePicForm
                 }
@@ -116,6 +160,54 @@ class CreateAgentDialogBox extends Component {
               />
             )}
           </AppContext.Consumer>
+
+          <Snackbar
+            classes={{
+              root: classnames(
+                classes.snackBar,
+                this.state.isErrorSnackbar && classes.errorSnackbar
+              ),
+            }}
+            anchorOrigin={{
+              vertical: 'bottom',
+              horizontal: 'center',
+            }}
+            open={this.state.snackbarOpen}
+            autoHideDuration={this.state.isErrorSnackbar ? 8000 : 4000}
+            onClose={this.handleCloseSnackbar}
+            message={<span id="snackbar-id">{this.state.snackbarText}</span>}
+            action={[
+              this.snackbarUndoFunction ? (
+                <Button
+                  key="undo"
+                  color="secondary"
+                  size="small"
+                  onClick={() => {
+                    this.handleCloseSnackbar();
+                    if (
+                      this.state.snackbarUndoFunction &&
+                      typeof snackbarUndoFunction === 'function'
+                    ) {
+                      this.snackbarUndoFunction();
+                    }
+                  }}
+                >
+                  UNDO
+                </Button>
+              ) : (
+                undefined
+              ),
+              <IconButton
+                key="close"
+                aria-label="Close"
+                color="inherit"
+                className={classes.close}
+                onClick={this.handleCloseSnackbar}
+              >
+                <CloseIcon />
+              </IconButton>,
+            ]}
+          />
         </DialogContent>
         {!submittingEditProfilePicForm ? (
           <DialogActions classes={{ root: classes.dialogActions }}>
@@ -135,4 +227,4 @@ class CreateAgentDialogBox extends Component {
   }
 }
 
-export default withMobileDialog()(withStyles(styles)(CreateAgentDialogBox));
+export default withMobileDialog()(withStyles(styles)(EditProfilePicDialogBox));

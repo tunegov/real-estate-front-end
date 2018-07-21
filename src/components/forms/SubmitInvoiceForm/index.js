@@ -358,7 +358,7 @@ class SubmitInvoiceForm extends Component {
         invoiceType,
         managementOrCobrokeCompany,
         propertyAddress,
-        shouldSendApprovalTextMessageNotification,
+        // shouldSendApprovalTextMessageNotification,
         state,
         price,
         paymentItems,
@@ -379,7 +379,7 @@ class SubmitInvoiceForm extends Component {
         invoiceType,
         managementOrCobrokeCompany,
         propertyAddress,
-        shouldSendApprovalTextMessageNotification,
+        // shouldSendApprovalTextMessageNotification,
         state,
         price,
         paymentItems: paymentItems.map(
@@ -966,22 +966,6 @@ class SubmitInvoiceForm extends Component {
                     <Grid item xs={12}>
                       <Divider />
                     </Grid>
-
-                    <div
-                      className={`${classes.formControlWrapper} ${
-                        classes.radioInputWrapper
-                      }`}
-                    >
-                      <MaterialCustomRadioInput
-                        field="shouldSendApprovalTextMessageNotification"
-                        id={uuid()}
-                        required
-                        label="Want to recieve a text notification upon invoice approval?"
-                        radioInputItems={radioInputYesNoItems}
-                        horizontal
-                        disabled={submittedInvoice && !isEditingInvoice}
-                      />
-                    </div>
 
                     <Grid item xs={12}>
                       <div className={classes.formControlWrapper}>

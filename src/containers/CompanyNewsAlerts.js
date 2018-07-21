@@ -123,8 +123,6 @@ class CompanyNewsAlertsContainer extends React.Component {
       return;
     }
 
-    console.log(textEditorValue);
-
     let res;
     let hasErrors = false;
 

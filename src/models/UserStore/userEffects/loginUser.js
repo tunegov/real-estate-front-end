@@ -25,48 +25,46 @@ const client = new GraphQLClient(graphQLEndpoint, {
 });
 
 async function loginUser(self, values) {
-  let res;
-  let response;
-  let error;
-
   const variables = {
-    input: {
-      email: values.email,
-      password: values.password,
-    },
+    input: values,
   };
 
   const finalResponseObj = {
-    response,
-    error,
+    user: null,
+    error: null,
   };
 
-  try {
-    res = await client.request(query, variables);
-  } catch (err) {
-    console.log(err);
-    finalResponseObj.error = 'Error reaching the server';
-    return finalResponseObj;
-  }
+  return client
+    .request(query, variables)
+    .then(res => {
+      const { loginUser: data } = res;
+      const { user } = data;
 
-  const { loginUser: data } = res;
-  const { user } = data;
+      if (!data.wasSuccessful) {
+        finalResponseObj.error = data.userErrors.length
+          ? data.userErrors[0].message
+          : data.otherError;
+      }
 
-  if (!data.wasSuccessful) {
-    finalResponseObj.error = data.userErrors.length
-      ? data.userErrors[0].message
-      : data.otherError;
-  }
+      if (user) {
+        finalResponseObj.user = user;
 
-  if (user && user.admin && user.admin.isAdminOwner) {
-    user.isAdminOwner = true;
-  }
+        if (user.admin && user.admin.isAdminOwner) {
+          user.isAdminOwner = true;
+        }
+      }
 
-  if (!finalResponseObj.error) {
-    self.setUser(user);
-  }
+      if (!finalResponseObj.error) {
+        self.setUser(user);
+      }
 
-  return finalResponseObj;
+      return finalResponseObj;
+    })
+    .catch(err => {
+      console.log(err);
+      finalResponseObj.error = 'Error reaching the server';
+      return finalResponseObj;
+    });
 }
 
 export default loginUser;

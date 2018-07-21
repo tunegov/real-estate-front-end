@@ -207,6 +207,7 @@ class SubmitInvoiceDialogBox extends Component {
     });
   };
 
+  /*
   acceptInvoice = invoiceID => {
     this.toggleSubmittingRequestToServer(true);
     acceptInvoice(invoiceID)
@@ -223,6 +224,7 @@ class SubmitInvoiceDialogBox extends Component {
         this.openRequestErrorSnackbar();
       });
   };
+  */
 
   render() {
     const {
@@ -323,18 +325,15 @@ class SubmitInvoiceDialogBox extends Component {
             >
               Cancel
             </Button>
-            {(this.props.userRole === agent &&
-              viewingInvoiceStatus === 'pending') ||
-            this.props.userRole === superAdmin ||
-            this.props.userRole === admin ? (
-              <Button
-                disabled={this.state.formSubmitted}
-                onClick={this.handleCancelMenuClick}
-                color="secondary"
-              >
-                Delete
-              </Button>
-            ) : null}
+
+            <Button
+              disabled={this.state.formSubmitted}
+              onClick={this.handleCancelMenuClick}
+              color="secondary"
+            >
+              Delete
+            </Button>
+
             <Menu
               id="simple-menu"
               anchorEl={cancelAnchorEl}
@@ -371,7 +370,7 @@ class SubmitInvoiceDialogBox extends Component {
                 Edit
               </Button>
             ) : null}
-            {(this.props.userRole === admin ||
+            {/*{(this.props.userRole === admin ||
               this.props.userRole === superAdmin) &&
             viewingInvoiceStatus === 'pending' ? (
               <Button
@@ -405,7 +404,7 @@ class SubmitInvoiceDialogBox extends Component {
               >
                 No
               </MenuItem>
-            </Menu>
+              </Menu>*/}
             {isEditingInvoice ? (
               <Button
                 disabled={this.state.formSubmitted}

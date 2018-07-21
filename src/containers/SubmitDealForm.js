@@ -205,8 +205,6 @@ class SubmitDealFormContainer extends Component {
     } else {
       this.setState({ agentPaymentTypeIsACH: false });
     }
-
-    console.log(`isACH type: ${isACH}`);
   };
 
   onSubmit = values => {
@@ -386,18 +384,34 @@ class SubmitDealFormContainer extends Component {
             });
           },
         })
-          .then(() =>
-            recursiveHelper(
+          .then(res => {
+            const status = `${res.status}`;
+            const okRegex = /^[2][0-9][0-9]$/;
+
+            if (!okRegex.test(status)) {
+              this.setState({
+                submittingFormToServer: false,
+                isUploadingFile: false,
+              });
+              this.props.setFormSubmitted(false);
+              this.props.openRequestErrorSnackbar(
+                'There was an error uploading your files. Please try again shortly.'
+              );
+              return;
+            }
+
+            return recursiveHelper(
               items,
               uploadItemIndex + 1,
               uploadItemsNum,
               returnObject,
               thisRef
-            )
-          )
+            );
+          })
           .catch(err => {
             this.setState({
               submittingFormToServer: false,
+              isUploadingFile: false,
             });
             this.props.setFormSubmitted(false);
             this.props.openRequestErrorSnackbar();
@@ -438,8 +452,6 @@ class SubmitDealFormContainer extends Component {
           }
 
           const { agent, agents, formSelectItems } = data.dealForm;
-
-          console.log(agent);
 
           return (
             <SubmitDealForm

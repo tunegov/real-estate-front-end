@@ -33,6 +33,9 @@ const styles = theme => ({
     display: 'flex',
     marginRight: '5px',
   },
+  logo: {
+    height: 30,
+  },
 });
 
 @observer
@@ -85,13 +88,15 @@ class HeaderNav extends React.Component {
   );
 
   render() {
-    const { headerBoxShadowOff } = this.props;
+    const { headerBoxShadowOff, classes } = this.props;
     return (
       <HeaderWrapper id="header-wrapper" headerBoxShadowOff>
         {
           <Logo>
             <Link route="home" prefetch>
-              <LogoAnchor>Real Estate App Logo</LogoAnchor>
+              <LogoAnchor>
+                <img className={classes.logo} src="/static/images/logo.png" />
+              </LogoAnchor>
             </Link>
           </Logo>
         }

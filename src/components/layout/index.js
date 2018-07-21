@@ -14,6 +14,7 @@ import FullScreenLoader from '../FullScreenLoader';
 import { initStore } from '../../models';
 import { admin, superAdmin } from '../../constants/userTypes';
 import { AppProvider } from '../../AppGlobalStateProvider';
+import style from '../../static/css/main.css';
 
 const store = initStore();
 const { UIStore } = store;

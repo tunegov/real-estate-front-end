@@ -40,11 +40,13 @@ routes
   )
   .add('view-admin', '/app/admin-area/admin/view', 'app/admin-area/admin/view')
   .add('view-deals', '/app/admin-area/deals/view', 'app/admin-area/deals/view')
+  /*
   .add(
     'view-invoices',
     '/app/admin-area/invoices/view',
     'app/admin-area/invoices/view'
   )
+  */
   .add('log-in', '/log-in')
   .add('sign-up', '/sign-up')
   .add('listings', '/listings')

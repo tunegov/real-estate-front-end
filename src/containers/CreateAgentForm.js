@@ -136,7 +136,22 @@ class CreateAgentContainer extends Component {
               });
             },
           })
-          .then(() => {
+          .then(res => {
+            const status = `${res.status}`;
+            const okRegex = /^[2][0-9][0-9]$/;
+
+            if (!okRegex.test(status)) {
+              this.setState({
+                submittingFormToServer: false,
+                isUploadingImage: false,
+              });
+              this.props.setFormSubmitted(false);
+              this.props.openRequestErrorSnackbar(
+                'There was an error uploading your file. Please try again shortly.'
+              );
+              return;
+            }
+
             this.setState({
               submittingFormToServer: true,
             });

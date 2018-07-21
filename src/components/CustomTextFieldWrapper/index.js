@@ -106,8 +106,6 @@ const CustomTextFieldWrapper = props => (
         touched,
       } = fieldApi;
 
-      console.log('you')
-
       return (
         <InputWrapper>
           <Input

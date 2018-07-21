@@ -30,7 +30,6 @@ const invoicesQuery = gql`
       managementOrCobrokeCompany
       price
       total
-      status
     }
   }
 `;

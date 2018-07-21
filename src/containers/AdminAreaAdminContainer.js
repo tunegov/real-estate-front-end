@@ -191,7 +191,6 @@ class AdminAreaAdminContainer extends Component {
     viewingAdminRole,
     viewingAdminIsOwnerAdmin
   ) => {
-    console.log(event.currentTarget);
     this.setState({
       editAdminAnchorEl: event.currentTarget,
       viewingAdminUUID,

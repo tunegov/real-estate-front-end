@@ -7,7 +7,6 @@ import { initStore } from '../models';
 import Layout from '../frontEndComponents/FrontEndLayout';
 import { Router } from '../routes';
 import SignUpLoginForm from '../containers/SignUpLoginForm';
-import LoginForm from '../components/forms/LoginForm';
 import withData from '../lib/withData';
 
 const Form = fadesDown(SignUpLoginForm);
@@ -16,7 +15,10 @@ const Form = fadesDown(SignUpLoginForm);
 class LogIn extends React.Component {
   static getInitialProps({ req }) {
     const isServer = !!req;
-    return { cookieJWTData: req && req.cookies ? req.cookies.jwtData : null, isServer };
+    return {
+      cookieJWTData: req && req.cookies ? req.cookies.jwtData : null,
+      isServer,
+    };
   }
 
   constructor(props) {
@@ -35,9 +37,7 @@ class LogIn extends React.Component {
     return (
       <Layout UserStore={this.store.UserStore}>
         <TransitionGroup>
-          <Form loginUser={this.store.UserStore.loginUser} formType="login">
-            <LoginForm />
-          </Form>
+          <Form loginUser={this.store.UserStore.loginUser} formType="login" />
         </TransitionGroup>
       </Layout>
     );

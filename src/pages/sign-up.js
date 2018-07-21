@@ -7,7 +7,6 @@ import { initStore } from '../models';
 import Layout from '../frontEndComponents/FrontEndLayout';
 import { Router } from '../routes';
 import SignUpLoginForm from '../containers/SignUpLoginForm';
-import SignUpForm from '../components/forms/SignUpForm';
 import withData from '../lib/withData';
 
 // use higher-order-component for mount animation
@@ -42,9 +41,7 @@ class SignUp extends React.Component {
           <Form
             signUpCustomer={this.store.UserStore.signUpCustomer}
             formType="sign-up"
-          >
-            <SignUpForm />
-          </Form>
+          />
         </TransitionGroup>
       </Layout>
     );

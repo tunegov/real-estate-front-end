@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
+import Head from 'next/head';
 import 'react-quill/dist/quill.snow.css';
 import isBrowser from 'is-browser';
+import style from '../../static/css/main.css';
 
 const colorArray = [
   '#000',
@@ -102,12 +104,21 @@ class MyRichTextEditor extends Component {
   render() {
     const { onChange, ...rest } = this.props;
     return isBrowser ? (
-      <ReactQuill
-        value={this.state.editorVal}
-        onChange={this.handleChange}
-        modules={this.modules}
-        {...rest}
-      />
+      <div>
+        <Head>
+          <link
+            href="//cdn.quilljs.com/1.2.6/quill.snow.css"
+            rel="stylesheet"
+            type="text/css"
+          />
+        </Head>
+        <ReactQuill
+          value={this.state.editorVal}
+          onChange={this.handleChange}
+          modules={this.modules}
+          {...rest}
+        />
+      </div>
     ) : null;
   }
 }

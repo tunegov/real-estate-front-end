@@ -53,7 +53,7 @@ const columns = [
   { name: 'managementOrCobrokeCompany', title: 'Mgmt/Co-Broke Co.' },
   { name: 'rentOrSalePrice', title: 'Rent/Sale Price' },
   { name: 'totalAmount', title: 'Total Amount' },
-  { name: 'status', title: 'Status' },
+  // { name: 'status', title: 'Status' },
   { name: 'view', title: 'View' },
 ];
 
@@ -80,7 +80,7 @@ class InvoicesTableContainer extends Component {
         managementOrCobrokeCompany,
         price,
         total,
-        status,
+        // status,
       } = invoice;
 
       return {
@@ -93,7 +93,7 @@ class InvoicesTableContainer extends Component {
         propertyCity: city,
         managementOrCobrokeCompany,
         rentOrSalePrice: `$${Number(price).toLocaleString()}`,
-        status: capitalize(status),
+        // status: capitalize(status),
         totalAmount: `$${Number(total).toLocaleString()}`,
         view: {
           type: 'action',

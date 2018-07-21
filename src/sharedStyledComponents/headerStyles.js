@@ -6,6 +6,7 @@ export const HeaderWrapper = styled.header`
   box-sizing: border-box;
   position: fixed;
   display: flex;
+  align-items: center;
   top: 0;
   padding: 15px 50px;
   font-weight: 800;
@@ -17,12 +18,16 @@ export const HeaderWrapper = styled.header`
   justify-content: flex-end;
   font-size: 14px;
   background-color: ${theme.primaryColor};
-  box-shadow: ${props => props.headerBoxShadowOff ? 'none' : '0px 2px 14px -1px rgba(0, 0, 0, 0.12)'};
-  border-bottom: ${props => props.headerBoxShadowOff ? '1px solid rgba(255,255,255,.1)' : 'none'};
+  box-shadow: ${props =>
+    props.headerBoxShadowOff
+      ? 'none'
+      : '0px 2px 14px -1px rgba(0, 0, 0, 0.12)'};
+  border-bottom: ${props =>
+    props.headerBoxShadowOff ? '1px solid rgba(255,255,255,.1)' : 'none'};
 `;
 
 export const HeaderLink = styled.a`
-  color: rgba(255,255,255,.9);
+  color: rgba(255, 255, 255, 0.9);
   text-decoration: none;
   transition: color 0.1s ease-in-out;
   cursor: pointer;
@@ -37,7 +42,7 @@ export const HeaderLink = styled.a`
 
 export const LeftHeaderLinkWrapper = styled.div`
   display: flex;
-  margin-left: auto
+  margin-left: auto;
 `;
 
 export const MiddleHeaderLinkWrapper = styled.div`

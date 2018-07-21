@@ -16,7 +16,6 @@ const query = `
         managementOrCobrokeCompany
         price
         total
-        status
       }
       userErrors {
         field

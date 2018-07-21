@@ -28,12 +28,14 @@ export const adminSideLinks = [
     route: 'view-deals',
     icon: DealsIcon,
   },
+  /*
   {
     name: 'Invoices',
     route: 'view-invoices',
     icon: InvoicesIcon,
     iconFontSize: 20,
   },
+  */
   {
     name: 'Agents',
     route: 'view-agents',

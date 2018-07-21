@@ -170,7 +170,7 @@ class InnerAppLayout extends React.Component {
           <main className={classes.content} id="inner-app-content">
             <div className={classes.toolbar} />
             {this.props.children}
-            <div className={classes.drawerWrapper}>
+            {/*<div className={classes.drawerWrapper}>
               <button
                 className={classes.settingsBtn}
                 onClick={this.toggleSettingsDrawer}
@@ -188,7 +188,7 @@ class InnerAppLayout extends React.Component {
                   this.state.managementModalCurrentType
                 }
               />
-            </div>
+              </div>*/}
           </main>
           <MenuDialogBox
             open={menuDialogBoxOpen}

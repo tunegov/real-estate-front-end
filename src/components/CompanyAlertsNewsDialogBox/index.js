@@ -42,8 +42,8 @@ const styles = theme => ({
     },
   },
   textEditor: {
+    width: '100%',
     paddingBottom: 42,
-    width: '80%',
     height: 250,
     [theme.breakpoints.down('sm')]: {
       width: '100%',

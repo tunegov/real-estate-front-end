@@ -3,6 +3,9 @@ import { observer } from 'mobx-react';
 import debounce from 'debounce';
 import { Router } from '../routes';
 import ServerErrorMessage from '../sharedStyledComponents/ServerErrorMessage';
+import { agent, admin, superAdmin } from '../constants/userTypes';
+import LoginForm from '../components/forms/LoginForm';
+import SignUpForm from '../components/forms/SignUpForm';
 
 @observer
 class SignUpLoginForm extends React.Component {
@@ -11,40 +14,50 @@ class SignUpLoginForm extends React.Component {
     this.state = {
       errorsFromServer: '',
     };
-    this.child = Children.only(props.children);
   }
 
   onSubmitFailure(errs, onSubmitError) {
     console.log(onSubmitError);
   }
 
-  onSubmit = async (values, event) => {
+  onSubmit = (values, event) => {
     const formSubmitFuncName =
       this.props.formType === 'sign-up' ? 'signUpCustomer' : 'loginUser';
-    let res;
 
-    try {
-      res = await this.props[formSubmitFuncName](values);
-    } catch (err) {
-      console.log(err);
-    }
+    this.props[formSubmitFuncName](values)
+      .then(res => {
+        console.log(res);
+        if (res.error) {
+          this.setState({
+            errorsFromServer: res.error,
+          });
+          return;
+        }
 
-    if (res.error) {
-      this.setState({
-        ...this.state,
-        errorsFromServer: res.error,
+        if (this.state.errorsFromServer) {
+          this.setState({
+            errorsFromServer: '',
+          });
+        }
+
+        if (res.user) {
+          if (res.user.role === agent) {
+            Router.pushRoute('dashboard');
+          } else if (res.user.role === admin || res.user.role === superAdmin) {
+            Router.pushRoute('admin-dashboard');
+          } else {
+            Router.pushRoute('home');
+          }
+        } else {
+          this.setState({
+            errorsFromServer:
+              "We're sorry, there was an error processing your request.",
+          });
+        }
+      })
+      .catch(err => {
+        console.log(err);
       });
-      return;
-    }
-
-    if (this.state.errorsFromServer) {
-      this.setState({
-        ...this.state,
-        errorsFromServer: '',
-      });
-    }
-
-    Router.pushRoute('home');
   };
 
   renderServerErrorMessage = () => (
@@ -57,11 +70,19 @@ class SignUpLoginForm extends React.Component {
     return (
       <div style={{ padding: '0 20px' }}>
         {this.state.errorsFromServer ? this.renderServerErrorMessage() : null}
-        {React.cloneElement(this.child, {
-          ...this.props,
-          onSubmit: this.onSubmit,
-          onSubmitFailure: this.onSubmitFailure,
-        })}
+        {this.props.formType === 'login' ? (
+          <LoginForm
+            {...this.props}
+            onSubmit={this.onSubmit}
+            onSubmitFailure={this.onSubmitFailure}
+          />
+        ) : (
+          <SignUpForm
+            {...this.props}
+            onSubmit={this.onSubmit}
+            onSubmitFailure={this.onSubmitFailure}
+          />
+        )}
       </div>
     );
   }

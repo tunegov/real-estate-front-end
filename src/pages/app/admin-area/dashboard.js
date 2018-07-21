@@ -1,6 +1,7 @@
 import React from 'react';
 import { observer } from 'mobx-react';
 import isBrowser from 'is-browser';
+import Head from 'next/head';
 import Layout from '../../../components/Layout';
 import { initStore } from '../../../models';
 import withData from '../../../lib/withData';

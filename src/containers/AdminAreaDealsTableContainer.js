@@ -105,7 +105,6 @@ class DealsTableContainer extends Component {
         paymentsTotal,
         deductionsTotal,
         total,
-        agentNotes,
         status,
         bonusPercentageAddedByAdmin,
         netAgentCommission,

@@ -26,9 +26,6 @@ const validator = values => {
       values.clientName.length > 80
         ? 'Between 3 and 80 characters'
         : null,
-    shouldSendApprovalTextMessageNotification: !values.shouldSendApprovalTextMessageNotification
-      ? 'This value is required'
-      : null,
     financialsTotal:
       values.financialsTotal <= 0
         ? 'The total amount for this invoice must be greater than 0'

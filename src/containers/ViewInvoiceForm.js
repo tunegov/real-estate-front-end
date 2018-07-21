@@ -34,8 +34,6 @@ const viewInvoiceFormQuery = gql`
         }
         total
         agentNotes
-        shouldSendApprovalTextMessageNotification
-        status
         attention
         attentionEmail
       }
@@ -227,7 +225,7 @@ class ViewInvoiceFormContainer extends Component {
             );
 
           if (error) {
-            console.log(errorOne, errorTwo);
+            console.log(error);
             return (
               <div style={{ textAlign: 'center' }}>
                 We're sorry. There was an error processing your request.
