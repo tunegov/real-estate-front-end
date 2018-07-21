@@ -6,4 +6,6 @@ if (typeof require !== 'undefined') {
   require.extensions['.css'] = file => {};
 }
 
-module.exports = withCSS();
+module.exports = withCSS({
+  distDir: './src',
+});
