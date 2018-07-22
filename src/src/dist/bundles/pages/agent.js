@@ -1390,7 +1390,11 @@ var external__apollo_cache_inmemory__default = /*#__PURE__*/__webpack_require__.
 var external__isomorphic_unfetch_ = __webpack_require__(53);
 var external__isomorphic_unfetch__default = /*#__PURE__*/__webpack_require__.n(external__isomorphic_unfetch_);
 
+// CONCATENATED MODULE: ./constants/websiteURL.js
+var websiteURL = 'https://reyeselsamad/api/graphql';
+/* harmony default export */ var constants_websiteURL = (websiteURL);
 // CONCATENATED MODULE: ./lib/initApollo.js
+
 
 
 
@@ -1407,7 +1411,7 @@ function create(initialState) {
     ssrMode: !process.browser,
     // Disables forceFetch on the server (so queries are only run once)
     link: new external__apollo_link_http_["HttpLink"]({
-      uri: "http://".concat(process.env.HOST_FOR_BROWSER, "/api/graphql"),
+      uri: "".concat(constants_websiteURL),
       // Server URL (must be absolute)
       credentials: 'same-origin',
       // Additional fetch() options like `credentials` or `headers`
@@ -2601,7 +2605,7 @@ var FrontEndLayout = __webpack_require__(92);
 // EXTERNAL MODULE: ./models/index.js + 8 modules
 var models = __webpack_require__(22);
 
-// EXTERNAL MODULE: ./lib/withData.js + 1 modules
+// EXTERNAL MODULE: ./lib/withData.js + 2 modules
 var withData = __webpack_require__(49);
 
 // EXTERNAL MODULE: external "chance"
