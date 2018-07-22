@@ -996,7 +996,7 @@ var external__isomorphic_unfetch_ = __webpack_require__(53);
 var external__isomorphic_unfetch__default = /*#__PURE__*/__webpack_require__.n(external__isomorphic_unfetch_);
 
 // CONCATENATED MODULE: ./constants/websiteURL.js
-var websiteURL = 'https://reyeselsamad/api/graphql';
+var websiteURL = 'https://reyeselsamad.com/api/graphql';
 /* harmony default export */ var constants_websiteURL = (websiteURL);
 // CONCATENATED MODULE: ./lib/initApollo.js
 
