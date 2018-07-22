@@ -1452,7 +1452,7 @@ function create(initialState) {
     ssrMode: !process.browser,
     // Disables forceFetch on the server (so queries are only run once)
     link: new external__apollo_link_http_["HttpLink"]({
-      uri: 'http://localhost/api/graphql',
+      uri: "http://".concat(process.env.HOST_FOR_BROWSER, "/api/graphql"),
       // Server URL (must be absolute)
       credentials: 'same-origin',
       // Additional fetch() options like `credentials` or `headers`
