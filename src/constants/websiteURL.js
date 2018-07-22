@@ -1,3 +1,3 @@
-const websiteURL = 'https://reyeselsamad/api/graphql';
+const websiteURL = 'https://reyeselsamad.com/api/graphql';
 
 export default websiteURL;
