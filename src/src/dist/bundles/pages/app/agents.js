@@ -67,7 +67,7 @@ module.exports =
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 217);
+/******/ 	return __webpack_require__(__webpack_require__.s = 223);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -1118,18 +1118,8 @@ module.exports = require("@material-ui/icons/Close");
 module.exports = require("material-ui/Drawer");
 
 /***/ }),
-/* 31 */
-/***/ (function(module, exports) {
-
-module.exports = require("material-ui/Button");
-
-/***/ }),
-/* 32 */
-/***/ (function(module, exports) {
-
-module.exports = require("material-ui/Grid");
-
-/***/ }),
+/* 31 */,
+/* 32 */,
 /* 33 */
 /***/ (function(module, exports) {
 
@@ -1143,7 +1133,12 @@ module.exports = require("@material-ui/icons/RemoveRedEye");
 
 /***/ }),
 /* 35 */,
-/* 36 */,
+/* 36 */
+/***/ (function(module, exports) {
+
+module.exports = require("@devexpress/dx-react-grid-material-ui");
+
+/***/ }),
 /* 37 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -1263,12 +1258,7 @@ module.exports = require("material-ui/colors/red");
 module.exports = require("material-ui/Dialog");
 
 /***/ }),
-/* 42 */
-/***/ (function(module, exports) {
-
-module.exports = require("moment");
-
-/***/ }),
+/* 42 */,
 /* 43 */
 /***/ (function(module, exports) {
 
@@ -1797,41 +1787,7 @@ function (_React$Component) {
 
 
 /***/ }),
-/* 70 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return round; });
-/* unused harmony export padNumToDecimalString */
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return padStringToDecimalString; });
-var round = function round(number) {
-  var precision = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 2;
-  if (!number) return 0;
-  return Number(number.toFixed(precision));
-};
-var padNumToDecimalString = function padNumToDecimalString(number) {
-  var precision = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 2;
-  var s = number.toString();
-  if (s.indexOf('.') == -1) s += '.';
-
-  while (s.length < s.indexOf('.') + (precision + 1)) {
-    s += '0';
-  }
-
-  return s;
-};
-var padStringToDecimalString = function padStringToDecimalString(s) {
-  var precision = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 3 - 1;
-  if (s.indexOf('.') == -1) s += '.';
-
-  while (s.length < s.indexOf('.') + (precision + 1)) {
-    s += '0';
-  }
-
-  return s;
-};
-
-/***/ }),
+/* 70 */,
 /* 71 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -3800,64 +3756,234 @@ module.exports = require("material-ui/Portal");
 /* 94 */,
 /* 95 */,
 /* 96 */,
-/* 97 */,
-/* 98 */,
-/* 99 */,
-/* 100 */,
-/* 101 */,
-/* 102 */,
-/* 103 */,
-/* 104 */,
-/* 105 */,
-/* 106 */,
-/* 107 */
+/* 97 */
 /***/ (function(module, exports) {
 
-module.exports = require("material-ui/ExpansionPanel");
+module.exports = require("@devexpress/dx-react-grid");
 
 /***/ }),
-/* 108 */,
-/* 109 */
-/***/ (function(module, exports) {
-
-module.exports = require("@material-ui/icons/ExpandMore");
-
-/***/ }),
-/* 110 */,
-/* 111 */,
-/* 112 */,
-/* 113 */,
-/* 114 */,
-/* 115 */,
-/* 116 */,
-/* 117 */,
-/* 118 */,
-/* 119 */,
-/* 120 */,
-/* 121 */
-/***/ (function(module, exports) {
-
-module.exports = require("@material-ui/icons/AttachMoney");
-
-/***/ }),
-/* 122 */
-/***/ (function(module, exports) {
-
-module.exports = require("@material-ui/icons/Help");
-
-/***/ }),
-/* 123 */
+/* 98 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_mobx_react__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_mobx_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_mobx_react__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__devexpress_dx_react_grid_material_ui__ = __webpack_require__(36);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__devexpress_dx_react_grid_material_ui___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__devexpress_dx_react_grid_material_ui__);
+
+
+
+var VirtualCell = function VirtualCell(props) {
+  return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__devexpress_dx_react_grid_material_ui__["VirtualTable"].Cell, props);
+};
+
+/* harmony default export */ __webpack_exports__["a"] = (VirtualCell);
+
+/***/ }),
+/* 99 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__devexpress_dx_react_grid_material_ui__ = __webpack_require__(36);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__devexpress_dx_react_grid_material_ui___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__devexpress_dx_react_grid_material_ui__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_material_ui_styles__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_material_ui_styles___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_material_ui_styles__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_classnames__ = __webpack_require__(8);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_classnames___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_classnames__);
+function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+
+function _objectWithoutProperties(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i < sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) >= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }
+
+
+
+
+
+var styles = function styles(theme) {
+  return {
+    root: {
+      boxShadow: theme.shadows[1],
+      backgroundColor: '#fff',
+      borderRadius: '3px',
+      '& [class^="Pager-pager-"]': {
+        borderTop: '1px solid rgba(224, 224, 224, 1)'
+      }
+    },
+    cell: {
+      width: '100%',
+      paddingLeft: theme.spacing.unit,
+      paddingRight: theme.spacing.unit
+    },
+    input: {
+      width: '100%'
+    },
+    myTable: {},
+    myTableContainer: {
+      minHeight: '300px',
+      height: 'calc(100vh - 310px) !important' // maxHeight: '800px',
+
+    },
+    myNoDataCellComponent: {
+      borderBottom: 'none !important'
+    }
+  };
+};
+
+var TableComponentBase = function TableComponentBase(_ref) {
+  var classes = _ref.classes,
+      restProps = _objectWithoutProperties(_ref, ["classes"]);
+
+  return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__devexpress_dx_react_grid_material_ui__["VirtualTable"].Table, _extends({}, restProps, {
+    className: classes.myTable
+  }));
+};
+
+/* harmony default export */ __webpack_exports__["a"] = (Object(__WEBPACK_IMPORTED_MODULE_2_material_ui_styles__["withStyles"])(styles, {
+  name: 'TableComponent'
+})(TableComponentBase));
+
+/***/ }),
+/* 100 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__devexpress_dx_react_grid_material_ui__ = __webpack_require__(36);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__devexpress_dx_react_grid_material_ui___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__devexpress_dx_react_grid_material_ui__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_material_ui_styles__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_material_ui_styles___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_material_ui_styles__);
+function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+
+function _objectWithoutProperties(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i < sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) >= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }
+
+
+
+
+
+var styles = function styles(theme) {
+  return {
+    root: {
+      boxShadow: theme.shadows[1],
+      backgroundColor: '#fff',
+      borderRadius: '3px',
+      '& [class^="Pager-pager-"]': {
+        borderTop: '1px solid rgba(224, 224, 224, 1)'
+      }
+    },
+    cell: {
+      width: '100%',
+      paddingLeft: theme.spacing.unit,
+      paddingRight: theme.spacing.unit
+    },
+    input: {
+      width: '100%'
+    },
+    myTable: {},
+    myTableContainer: {
+      minHeight: '300px',
+      height: 'calc(100vh - 310px) !important' // maxHeight: '800px',
+
+    },
+    myNoDataCellComponent: {
+      borderBottom: 'none !important'
+    }
+  };
+};
+
+var TableContainerBase = function TableContainerBase(_ref) {
+  var classes = _ref.classes,
+      className = _ref.className,
+      restProps = _objectWithoutProperties(_ref, ["classes", "className"]);
+
+  return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__devexpress_dx_react_grid_material_ui__["VirtualTable"].Container, _extends({}, restProps, {
+    className: className || classes.myTableContainer,
+    id: "myTableContainer"
+  }));
+};
+
+/* harmony default export */ __webpack_exports__["a"] = (Object(__WEBPACK_IMPORTED_MODULE_2_material_ui_styles__["withStyles"])(styles, {
+  name: 'TableContainerComponent'
+})(TableContainerBase));
+
+/***/ }),
+/* 101 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__devexpress_dx_react_grid_material_ui__ = __webpack_require__(36);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__devexpress_dx_react_grid_material_ui___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__devexpress_dx_react_grid_material_ui__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_material_ui_styles__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_material_ui_styles___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_material_ui_styles__);
+function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+
+function _objectWithoutProperties(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i < sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) >= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }
+
+
+
+
+
+var styles = function styles(theme) {
+  return {
+    root: {
+      boxShadow: theme.shadows[1],
+      backgroundColor: '#fff',
+      borderRadius: '3px',
+      '& [class^="Pager-pager-"]': {
+        borderTop: '1px solid rgba(224, 224, 224, 1)'
+      }
+    },
+    cell: {
+      width: '100%',
+      paddingLeft: theme.spacing.unit,
+      paddingRight: theme.spacing.unit
+    },
+    input: {
+      width: '100%'
+    },
+    myTable: {},
+    myTableContainer: {
+      minHeight: '300px',
+      height: 'calc(100vh - 310px) !important' // maxHeight: '800px',
+
+    },
+    myNoDataCellComponent: {
+      borderBottom: 'none !important'
+    }
+  };
+};
+
+var NoDataCellComponentBase = function NoDataCellComponentBase(_ref) {
+  var classes = _ref.classes,
+      restProps = _objectWithoutProperties(_ref, ["classes"]);
+
+  return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__devexpress_dx_react_grid_material_ui__["VirtualTable"].NoDataCell, _extends({}, restProps, {
+    className: classes.myNoDataCellComponent
+  }));
+};
+
+/* harmony default export */ __webpack_exports__["a"] = (Object(__WEBPACK_IMPORTED_MODULE_2_material_ui_styles__["withStyles"])(styles, {
+  name: 'NoDataCellComponentBase'
+})(NoDataCellComponentBase));
+
+/***/ }),
+/* 102 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_material_ui_styles__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_material_ui_styles___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_material_ui_styles__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_mobx_react__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_mobx_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_mobx_react__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__material_ui_icons_RemoveRedEye__ = __webpack_require__(34);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__material_ui_icons_RemoveRedEye___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__material_ui_icons_RemoveRedEye__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_material_ui_Tooltip__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_material_ui_Tooltip___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_material_ui_Tooltip__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__routes__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__routes___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5__routes__);
 var _class;
 
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -3874,7 +4000,7 @@ function _assertThisInitialized(self) { if (self === void 0) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 
 
 
@@ -3883,132 +4009,303 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 var styles = function styles(theme) {
   return {
-    root: {
-      position: 'relative',
-      height: '200px',
-      width: '100%',
-      boxShadow: theme.shadows[1],
-      borderRadius: '5px'
-    },
-    boxTop: _defineProperty({
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      height: '50%',
-      borderBottom: '1px solid rgba(0,0,0,.15)',
-      fontSize: '40px',
-      lineHeight: '40px',
-      fontWeight: '300',
-      whiteSpace: 'nowrap',
-      overflow: 'hidden',
-      textOverflow: 'ellipsis',
-      padding: '0 10px'
-    }, theme.breakpoints.down('sm'), {
-      fontSize: '32px'
-    }),
-    boxInfo: {
-      display: 'flex',
-      width: '100%',
-      alignItems: 'center',
-      justifyContent: 'center',
-      position: 'absolute',
-      top: '50%',
-      marginTop: '-12px',
-      padding: '2px 5px',
-      height: '24px'
-    },
-    boxInfoText: _defineProperty({
-      height: '24px',
-      display: 'inline-block',
-      padding: '4px 10px',
-      textTransform: 'uppercase',
-      lineHeight: '14px',
-      backgroundColor: '#fff',
-      border: '1px solid rgba(0,0,0,.15)',
-      fontSize: '12px',
-      color: '#636c72',
-      borderRadius: '10px',
-      whiteSpace: 'nowrap',
-      overflow: 'hidden',
-      textOverflow: 'ellipsis'
-    }, theme.breakpoints.down('xs'), {
-      fontSize: '10px'
-    }),
-    boxBottom: {
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      height: '50%',
-      whiteSpace: 'nowrap',
-      overflow: 'hidden',
-      textOverflow: 'ellipsis',
-      padding: '0 10px'
+    wrapper: {
+      width: '90%',
+      height: '90%',
+      boxSizing: 'border-box',
+      textAlign: 'center',
+      color: '#00C853',
+      cursor: 'pointer'
     }
   };
 };
 
-var StatNumberBox = Object(__WEBPACK_IMPORTED_MODULE_1_mobx_react__["observer"])(_class =
+var VeiwFormatter = Object(__WEBPACK_IMPORTED_MODULE_2_mobx_react__["observer"])(_class =
 /*#__PURE__*/
-function (_Component) {
-  _inherits(StatNumberBox, _Component);
+function (_React$Component) {
+  _inherits(VeiwFormatter, _React$Component);
 
-  function StatNumberBox() {
-    _classCallCheck(this, StatNumberBox);
+  function VeiwFormatter() {
+    _classCallCheck(this, VeiwFormatter);
 
-    return _possibleConstructorReturn(this, (StatNumberBox.__proto__ || Object.getPrototypeOf(StatNumberBox)).apply(this, arguments));
+    return _possibleConstructorReturn(this, (VeiwFormatter.__proto__ || Object.getPrototypeOf(VeiwFormatter)).apply(this, arguments));
   }
 
-  _createClass(StatNumberBox, [{
+  _createClass(VeiwFormatter, [{
     key: "render",
     value: function render() {
-      var _props = this.props,
-          classes = _props.classes,
-          iconClass = _props.iconClass,
-          iconColor = _props.iconColor,
-          statTitle = _props.statTitle,
-          stat = _props.stat,
-          widthPercent = _props.widthPercent,
-          rootClassName = _props.rootClassName,
-          Icon = _props.icon;
-      return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", {
-        className: __WEBPACK_IMPORTED_MODULE_3_classnames___default()(classes.root, rootClassName),
-        style: {
-          width: widthPercent ? "".concat(widthPercent, "%") : null
+      var classes = this.props.classes;
+      var id;
+      var route;
+
+      var _onClick;
+
+      var type;
+      var noShow;
+      var needsEvent;
+
+      if (this.props && this.props.value) {
+        id = this.props.value.id;
+        route = this.props.value.route;
+        _onClick = this.props.value.onClick;
+        type = this.props.value.type;
+        noShow = this.props.value.noShow;
+        needsEvent = this.props.value.needsEvent;
+      }
+
+      if (noShow) return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", null);
+
+      if (type === 'action' && _onClick) {
+        return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4_material_ui_Tooltip___default.a, {
+          title: "Click to view",
+          enterDelay: 400,
+          leaveDelay: 100
+        }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", {
+          className: classes.wrapper,
+          id: "viewTableIcon"
+        }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__material_ui_icons_RemoveRedEye___default.a, {
+          onClick: function onClick(event) {
+            if (needsEvent) {
+              _onClick(event);
+            } else {
+              _onClick();
+            }
+
+            if (event.stopPropagation) event.stopPropagation();
+          }
+        })));
+      }
+
+      return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4_material_ui_Tooltip___default.a, {
+        title: "Click to view",
+        enterDelay: 400,
+        leaveDelay: 100
+      }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5__routes__["Link"], {
+        route: route,
+        params: {
+          id: id
         }
-      }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", {
-        className: classes.boxTop
-      }, stat), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", {
-        className: classes.boxInfo
-      }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("span", {
-        className: classes.boxInfoText
-      }, statTitle)), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", {
-        className: classes.boxBottom,
-        style: {
-          color: iconColor ? iconColor : null
-        }
-      }, Icon ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(Icon, {
-        classes: {
-          root: iconClass
-        },
-        color: "inherit"
-      }) : null));
+      }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("a", null, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", {
+        className: classes.wrapper
+      }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__material_ui_icons_RemoveRedEye___default.a, null)))));
     }
   }]);
 
-  return StatNumberBox;
-}(__WEBPACK_IMPORTED_MODULE_0_react__["Component"])) || _class;
+  return VeiwFormatter;
+}(__WEBPACK_IMPORTED_MODULE_0_react___default.a.Component)) || _class;
 
-/* harmony default export */ __webpack_exports__["a"] = (Object(__WEBPACK_IMPORTED_MODULE_2_material_ui_styles__["withStyles"])(styles)(StatNumberBox));
+/* harmony default export */ __webpack_exports__["a"] = (Object(__WEBPACK_IMPORTED_MODULE_1_material_ui_styles__["withStyles"])(styles)(VeiwFormatter));
 
 /***/ }),
+/* 103 */,
+/* 104 */,
+/* 105 */,
+/* 106 */,
+/* 107 */,
+/* 108 */,
+/* 109 */,
+/* 110 */,
+/* 111 */
+/***/ (function(module, exports) {
+
+module.exports = require("faker");
+
+/***/ }),
+/* 112 */,
+/* 113 */,
+/* 114 */,
+/* 115 */,
+/* 116 */,
+/* 117 */,
+/* 118 */,
+/* 119 */,
+/* 120 */,
+/* 121 */,
+/* 122 */,
+/* 123 */,
 /* 124 */,
 /* 125 */,
 /* 126 */,
 /* 127 */,
 /* 128 */,
 /* 129 */,
-/* 130 */,
-/* 131 */,
+/* 130 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_material_ui_styles__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_material_ui_styles___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_material_ui_styles__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_mobx_react__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_mobx_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_mobx_react__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_material_ui_Tooltip__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_material_ui_Tooltip___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_material_ui_Tooltip__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_react_lazyload__ = __webpack_require__(131);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_react_lazyload___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_react_lazyload__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__routes__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__routes___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5__routes__);
+var _class;
+
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+
+
+
+
+
+
+
+var styles = function styles(theme) {
+  return {
+    wrapper: {
+      width: '38px',
+      height: '38px',
+      marginLeft: 'auto',
+      marginRight: 'auto',
+      boxSizing: 'border-box'
+    },
+    image: {
+      width: '100%',
+      height: '100%',
+      display: 'block',
+      objectFit: 'cover',
+      cursor: 'pointer',
+      borderRadius: '50%',
+      background: 'linear-gradient(45deg, #45484d 0%,#000000 100%)'
+    },
+    noImagePlaceholder: {
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      width: '100%',
+      height: '100%',
+      cursor: 'pointer',
+      borderRadius: '50%',
+      background: 'linear-gradient(45deg, #45484d 0%,#000000 100%)',
+      color: '#fff'
+    }
+  };
+};
+
+var ProfilePictureFormatter = Object(__WEBPACK_IMPORTED_MODULE_2_mobx_react__["observer"])(_class =
+/*#__PURE__*/
+function (_React$Component) {
+  _inherits(ProfilePictureFormatter, _React$Component);
+
+  function ProfilePictureFormatter() {
+    var _ref;
+
+    var _temp, _this;
+
+    _classCallCheck(this, ProfilePictureFormatter);
+
+    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    return _possibleConstructorReturn(_this, (_temp = _this = _possibleConstructorReturn(this, (_ref = ProfilePictureFormatter.__proto__ || Object.getPrototypeOf(ProfilePictureFormatter)).call.apply(_ref, [this].concat(args))), Object.defineProperty(_assertThisInitialized(_this), "hideBrokenImage", {
+      configurable: true,
+      enumerable: true,
+      writable: true,
+      value: function value() {
+        _this._imgItem.style.visibility = 'hidden';
+      }
+    }), _temp));
+  }
+
+  _createClass(ProfilePictureFormatter, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      if (this._imgItem) {
+        this._imgItem.addEventListener('error', this.hideBrokenImage);
+      }
+    }
+  }, {
+    key: "componentWillUnmount",
+    value: function componentWillUnmount() {
+      if (this._imgItem) {
+        this._imgItem.removeEventListener('error', this.hideBrokenImage);
+      }
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var _this2 = this;
+
+      var _props$value = this.props.value,
+          id = _props$value.id,
+          imageAltText = _props$value.imageAltText,
+          imageURL = _props$value.imageURL;
+      var classes = this.props.classes;
+
+      if (!imageURL) {
+        return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3_material_ui_Tooltip___default.a, {
+          title: "Click to view profile",
+          enterDelay: 400,
+          leaveDelay: 100
+        }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", {
+          className: classes.wrapper
+        }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5__routes__["Link"], {
+          route: "profile",
+          params: {
+            id: id
+          }
+        }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("a", null, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", {
+          className: classes.noImagePlaceholder
+        }, "?")))));
+      }
+
+      return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3_material_ui_Tooltip___default.a, {
+        title: "Click to view profile",
+        enterDelay: 400,
+        leaveDelay: 100
+      }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", {
+        className: classes.wrapper
+      }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5__routes__["Link"], {
+        route: "profile",
+        params: {
+          id: id
+        }
+      }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("a", null, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4_react_lazyload___default.a, {
+        height: 38,
+        offset: 100,
+        once: true
+      }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("img", {
+        className: classes.image,
+        ref: function ref(imgItem) {
+          return _this2._imgItem = imgItem;
+        },
+        src: imageURL,
+        alt: imageAltText || 'unable to load profile picture'
+      }))))));
+    }
+  }]);
+
+  return ProfilePictureFormatter;
+}(__WEBPACK_IMPORTED_MODULE_0_react___default.a.Component)) || _class;
+
+/* harmony default export */ __webpack_exports__["a"] = (Object(__WEBPACK_IMPORTED_MODULE_1_material_ui_styles__["withStyles"])(styles)(ProfilePictureFormatter));
+
+/***/ }),
+/* 131 */
+/***/ (function(module, exports) {
+
+module.exports = require("react-lazyload");
+
+/***/ }),
 /* 132 */,
 /* 133 */,
 /* 134 */,
@@ -4042,1458 +4339,11 @@ function (_Component) {
 /* 162 */,
 /* 163 */,
 /* 164 */,
-/* 165 */
-/***/ (function(module, exports) {
-
-module.exports = require("@material-ui/icons/Star");
-
-/***/ }),
-/* 166 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-
-// EXTERNAL MODULE: external "@babel/runtime/regenerator"
-var regenerator_ = __webpack_require__(3);
-var regenerator__default = /*#__PURE__*/__webpack_require__.n(regenerator_);
-
-// EXTERNAL MODULE: external "react"
-var external__react_ = __webpack_require__(0);
-var external__react__default = /*#__PURE__*/__webpack_require__.n(external__react_);
-
-// EXTERNAL MODULE: external "mobx-react"
-var external__mobx_react_ = __webpack_require__(1);
-var external__mobx_react__default = /*#__PURE__*/__webpack_require__.n(external__mobx_react_);
-
-// EXTERNAL MODULE: external "material-ui/styles"
-var styles_ = __webpack_require__(2);
-var styles__default = /*#__PURE__*/__webpack_require__.n(styles_);
-
-// EXTERNAL MODULE: external "graphql-tag"
-var external__graphql_tag_ = __webpack_require__(64);
-var external__graphql_tag__default = /*#__PURE__*/__webpack_require__.n(external__graphql_tag_);
-
-// EXTERNAL MODULE: external "react-apollo"
-var external__react_apollo_ = __webpack_require__(19);
-var external__react_apollo__default = /*#__PURE__*/__webpack_require__.n(external__react_apollo_);
-
-// EXTERNAL MODULE: external "react-spinners"
-var external__react_spinners_ = __webpack_require__(23);
-var external__react_spinners__default = /*#__PURE__*/__webpack_require__.n(external__react_spinners_);
-
-// EXTERNAL MODULE: external "moment"
-var external__moment_ = __webpack_require__(42);
-var external__moment__default = /*#__PURE__*/__webpack_require__.n(external__moment_);
-
-// EXTERNAL MODULE: external "material-ui/Grid"
-var Grid_ = __webpack_require__(32);
-var Grid__default = /*#__PURE__*/__webpack_require__.n(Grid_);
-
-// EXTERNAL MODULE: external "@material-ui/icons/ExpandMore"
-var ExpandMore_ = __webpack_require__(109);
-var ExpandMore__default = /*#__PURE__*/__webpack_require__.n(ExpandMore_);
-
-// EXTERNAL MODULE: external "material-ui/Typography"
-var Typography_ = __webpack_require__(26);
-var Typography__default = /*#__PURE__*/__webpack_require__.n(Typography_);
-
-// EXTERNAL MODULE: external "classnames"
-var external__classnames_ = __webpack_require__(8);
-var external__classnames__default = /*#__PURE__*/__webpack_require__.n(external__classnames_);
-
-// EXTERNAL MODULE: external "material-ui/List"
-var List_ = __webpack_require__(27);
-var List__default = /*#__PURE__*/__webpack_require__.n(List_);
-
-// EXTERNAL MODULE: external "@material-ui/icons/Add"
-var Add_ = __webpack_require__(33);
-var Add__default = /*#__PURE__*/__webpack_require__.n(Add_);
-
-// EXTERNAL MODULE: external "react-truncate"
-var external__react_truncate_ = __webpack_require__(167);
-var external__react_truncate__default = /*#__PURE__*/__webpack_require__.n(external__react_truncate_);
-
-// EXTERNAL MODULE: external "material-ui/ExpansionPanel"
-var ExpansionPanel_ = __webpack_require__(107);
-var ExpansionPanel__default = /*#__PURE__*/__webpack_require__.n(ExpansionPanel_);
-
-// EXTERNAL MODULE: ./constants/userTypes.js
-var userTypes = __webpack_require__(12);
-var userTypes_default = /*#__PURE__*/__webpack_require__.n(userTypes);
-
-// CONCATENATED MODULE: ./components/CompanyNewsAlerts/index.js
-var _dec, _class;
-
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-var styles = function styles(theme) {
-  return {
-    root: {
-      maxWidth: '100%',
-      width: '100%'
-    },
-    heading: {
-      fontSize: '.94rem',
-      fontWeight: 500,
-      color: 'rgba(0,0,0,.7)'
-    },
-    lightHeading: {
-      color: '#fff'
-    },
-    companyNewsWrapper: {
-      position: 'relative',
-      display: 'flex',
-      flexDirection: 'column',
-      // paddingTop: '20px',
-      maxHeight: '256px',
-      // backgroundColor: '#fff',
-      borderRadius: '5px',
-      boxShadow: theme.shadows[1],
-      backgroundColor: '#fff',
-      '&::after': {
-        content: "''",
-        position: 'absolute',
-        zIndex: 1,
-        bottom: 0,
-        left: 0,
-        right: 0,
-        pointerEvents: 'none',
-        backgroundImage: 'linear-gradient(to bottom, rgba(255,255,255, 0), rgba(255,255,255, 1) 90%)',
-        width: '100%',
-        height: '2em'
-      }
-    },
-    companyAlertsWrapper: {
-      position: 'relative',
-      display: 'flex',
-      flexDirection: 'column',
-      // paddingTop: '20px',
-      maxHeight: '256px',
-      // backgroundColor: '#fff',
-      borderRadius: '5px',
-      boxShadow: theme.shadows[1],
-      backgroundColor: '#fff',
-      '&::after': {
-        content: "''",
-        position: 'absolute',
-        zIndex: 1,
-        bottom: 0,
-        left: 0,
-        right: 0,
-        pointerEvents: 'none',
-        backgroundImage: 'linear-gradient(to bottom, rgba(255,255,255, 0), rgba(255,255,255, 1) 90%)',
-        width: '100%',
-        height: '2em'
-      }
-    },
-    boxTitleWrapper: {
-      width: '100%',
-      paddingLeft: '24px',
-      paddingRight: '24px',
-      display: 'flex',
-      alignItems: 'center',
-      height: '35px',
-      fontSize: '.94rem',
-      fontWeight: 500,
-      color: 'rgba(0,0,0,.7)',
-      whiteSpace: 'nowrap',
-      overflow: 'hidden',
-      textOverflow: 'ellipsis'
-    },
-    companyNewsPlaceHolder: {
-      display: 'flex',
-      marginTop: '15px',
-      alignItems: 'center',
-      justifyContent: 'center',
-      height: '100%',
-      width: '100%',
-      // backgroundColor: 'rgba(0,0,0,.8)',
-      color: 'rgba(0,0,0,.7)',
-      borderRadius: '0 0 5px 5px'
-    },
-    companyAlertsExpansionWrapper: {
-      backgroundColor: 'inherit',
-      color: 'inherit'
-    },
-    normalExpansionSummary: {
-      minHeight: '48px',
-      maxHeight: '48px',
-      zIndex: 2
-    },
-    darkExpansionSummary: {
-      minHeight: '48px',
-      maxHeight: '48px',
-      backgroundColor: theme.palette.secondary.dark,
-      color: '#fff',
-      zIndex: 2
-    },
-    expansionSummaryExpanded: {
-      minHeight: '48px',
-      maxHeight: '48px',
-      marginBottom: '0 important!'
-    },
-    expandPanel: {
-      marginBottom: 0
-    },
-    addBtn: {
-      top: -12,
-      right: -12,
-      display: 'flex',
-      justifyContent: 'center',
-      alignItems: 'center',
-      position: 'absolute',
-      height: 24,
-      width: 24,
-      borderRadius: '50%',
-      border: 'none',
-      color: '#fff',
-      backgroundColor: 'rgba(0,0,0,.8)',
-      cursor: 'pointer',
-      outline: 'none',
-      transition: 'transform .2s ease-in-out',
-      '&:hover': {
-        transform: 'scale(1.1,1.1)'
-      },
-      zIndex: 3
-    },
-    addIcon: {
-      fontSize: 12
-    },
-    expansionPanelContent: {
-      maxHeight: 'calc(256px - 48px)',
-      overflow: 'auto'
-    },
-    listRoot: {
-      width: '100%'
-    },
-    listItem: {
-      position: 'relative',
-      marginBottom: 10,
-      width: '100%',
-      backgroundColor: 'rgba(0,0,0,.1)',
-      color: '#000',
-      border: 'none',
-      borderRadius: '30px',
-      cursor: 'pointer',
-      transition: 'transform .2s ease-in-out',
-      '&:hover': {
-        transform: 'scale(1.01,1.01)'
-      },
-      '&:last-of-type': {
-        marginBottom: 20
-      }
-    },
-    listItemText: {
-      color: '#fff',
-      '& h3': {
-        color: '#000'
-      }
-    },
-    listItemNumber: {
-      display: 'flex',
-      justifyContent: 'center',
-      alignItems: 'center',
-      top: -2,
-      left: -2,
-      position: 'absolute',
-      height: 24,
-      width: 24,
-      padding: 0,
-      border: 'none',
-      borderRadius: '50%',
-      color: '#fff',
-      backgroundColor: theme.palette.secondary.dark,
-      fontSize: '28px',
-      outline: 'none',
-      transition: 'transform .4s ease-in-out',
-      '&:hover': {
-        transform: 'rotate(180deg)'
-      },
-      cursor: 'pointer'
-    },
-    deleteSign: {
-      position: 'absolute',
-      top: -9
-    }
-  };
-};
-
-var CompanyNewsAlerts_CompanyNewsAlerts = (_dec = Object(styles_["withStyles"])(styles), Object(external__mobx_react_["observer"])(_class = _dec(_class =
-/*#__PURE__*/
-function (_React$Component) {
-  _inherits(CompanyNewsAlerts, _React$Component);
-
-  function CompanyNewsAlerts() {
-    var _ref;
-
-    var _temp, _this;
-
-    _classCallCheck(this, CompanyNewsAlerts);
-
-    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
-      args[_key] = arguments[_key];
-    }
-
-    return _possibleConstructorReturn(_this, (_temp = _this = _possibleConstructorReturn(this, (_ref = CompanyNewsAlerts.__proto__ || Object.getPrototypeOf(CompanyNewsAlerts)).call.apply(_ref, [this].concat(args))), Object.defineProperty(_assertThisInitialized(_this), "renderCompanyNews", {
-      configurable: true,
-      enumerable: true,
-      writable: true,
-      value: function value() {
-        var _this$props = _this.props,
-            newsItems = _this$props.newsItems,
-            classes = _this$props.classes,
-            isAdmin = _this$props.isAdmin,
-            deleteNewsAlertItem = _this$props.deleteNewsAlertItem,
-            openVeiwNewsAlertItemDialogBox = _this$props.openVeiwNewsAlertItemDialogBox;
-
-        if (newsItems && newsItems.length) {
-          return external__react__default.a.createElement(List__default.a, {
-            classes: {
-              root: classes.listRoot
-            }
-          }, newsItems.map(function (item, i) {
-            return external__react__default.a.createElement(List_["ListItem"], {
-              onClick: function onClick() {
-                openVeiwNewsAlertItemDialogBox(item.uuid, item.html, item.type);
-              },
-              classes: {
-                root: classes.listItem
-              },
-              key: "item-".concat(i)
-            }, isAdmin && external__react__default.a.createElement("button", {
-              className: classes.listItemNumber,
-              onClick: function onClick(event) {
-                if (event.stopPropagation) event.stopPropagation();
-                deleteNewsAlertItem(item.uuid, item.type);
-              }
-            }, external__react__default.a.createElement("span", {
-              className: classes.deleteSign
-            }, "-")), external__react__default.a.createElement("div", {
-              style: {
-                width: '100%'
-              }
-            }, external__react__default.a.createElement(external__react_truncate__default.a, {
-              trimWhitespace: true,
-              lines: 1
-            }, item.string)));
-          }));
-        }
-
-        return external__react__default.a.createElement("div", {
-          className: classes.companyNewsPlaceHolder
-        }, "There is currently no news available...");
-      }
-    }), Object.defineProperty(_assertThisInitialized(_this), "renderCompanyAlerts", {
-      configurable: true,
-      enumerable: true,
-      writable: true,
-      value: function value() {
-        var _this$props2 = _this.props,
-            alertItems = _this$props2.alertItems,
-            classes = _this$props2.classes,
-            isAdmin = _this$props2.isAdmin,
-            deleteNewsAlertItem = _this$props2.deleteNewsAlertItem,
-            openVeiwNewsAlertItemDialogBox = _this$props2.openVeiwNewsAlertItemDialogBox;
-
-        if (alertItems && alertItems.length) {
-          return external__react__default.a.createElement(List__default.a, {
-            classes: {
-              root: classes.listRoot
-            }
-          }, alertItems.map(function (item, i) {
-            return external__react__default.a.createElement(List_["ListItem"], {
-              onClick: function onClick() {
-                openVeiwNewsAlertItemDialogBox(item.uuid, item.html, item.type);
-              },
-              classes: {
-                root: classes.listItem
-              },
-              key: "item-".concat(i)
-            }, isAdmin && external__react__default.a.createElement("button", {
-              className: classes.listItemNumber,
-              onClick: function onClick(event) {
-                if (event.stopPropagation) event.stopPropagation();
-                deleteNewsAlertItem(item.uuid, item.type);
-              }
-            }, external__react__default.a.createElement("span", {
-              className: classes.deleteSign
-            }, "-")), external__react__default.a.createElement("div", {
-              style: {
-                width: '100%'
-              }
-            }, external__react__default.a.createElement(external__react_truncate__default.a, {
-              trimWhitespace: true,
-              lines: 1
-            }, item.string)));
-          }));
-        }
-
-        return external__react__default.a.createElement("div", {
-          className: classes.companyNewsPlaceHolder
-        }, "There are currently no alerts available...");
-      }
-    }), _temp));
-  }
-
-  _createClass(CompanyNewsAlerts, [{
-    key: "render",
-    value: function render() {
-      var _props = this.props,
-          classes = _props.classes,
-          newsItems = _props.newsItems,
-          alertItems = _props.alertItems,
-          openDialogBox = _props.openDialogBox,
-          isAdmin = _props.isAdmin;
-      return external__react__default.a.createElement("div", {
-        className: classes.root
-      }, external__react__default.a.createElement(Grid__default.a, {
-        container: true,
-        spacing: 16
-      }, external__react__default.a.createElement(Grid__default.a, {
-        item: true,
-        xs: 12,
-        lg: 6
-      }, external__react__default.a.createElement("div", {
-        className: external__classnames__default()(classes.companyNewsWrapper)
-      }, external__react__default.a.createElement(ExpansionPanel__default.a, {
-        defaultExpanded: newsItems && newsItems.length,
-        classes: {
-          root: external__classnames__default()(classes.expandPanel)
-        }
-      }, external__react__default.a.createElement(ExpansionPanel_["ExpansionPanelSummary"], {
-        classes: {
-          root: classes.normalExpansionSummary,
-          expanded: classes.expansionSummaryExpanded
-        },
-        expandIcon: external__react__default.a.createElement(ExpandMore__default.a, null)
-      }, external__react__default.a.createElement(Typography__default.a, {
-        color: "inherit",
-        className: classes.heading
-      }, "Company News")), external__react__default.a.createElement(ExpansionPanel_["ExpansionPanelDetails"], {
-        classes: {
-          root: classes.expansionPanelContent
-        }
-      }, this.renderCompanyNews())), isAdmin && external__react__default.a.createElement("button", {
-        className: classes.addBtn,
-        onClick: openDialogBox.bind(null, 'news')
-      }, external__react__default.a.createElement(Add__default.a, {
-        classes: {
-          root: classes.addIcon
-        }
-      })))), external__react__default.a.createElement(Grid__default.a, {
-        item: true,
-        xs: 12,
-        lg: 6
-      }, external__react__default.a.createElement("div", {
-        className: external__classnames__default()(classes.companyAlertsWrapper)
-      }, external__react__default.a.createElement(ExpansionPanel__default.a, {
-        classes: {
-          root: external__classnames__default()(classes.companyNewsExpansionWrapper, classes.expandPanel)
-        },
-        defaultExpanded: alertItems && alertItems.length
-      }, external__react__default.a.createElement(ExpansionPanel_["ExpansionPanelSummary"], {
-        classes: {
-          root: classes.darkExpansionSummary,
-          expanded: classes.expansionSummaryExpanded
-        },
-        expandIcon: external__react__default.a.createElement(ExpandMore__default.a, null)
-      }, external__react__default.a.createElement(Typography__default.a, {
-        color: "inherit",
-        className: external__classnames__default()(classes.heading, classes.lightHeading)
-      }, "Company Alerts")), external__react__default.a.createElement(ExpansionPanel_["ExpansionPanelDetails"], {
-        classes: {
-          root: classes.expansionPanelContent
-        }
-      }, this.renderCompanyAlerts())), isAdmin && external__react__default.a.createElement("button", {
-        className: classes.addBtn,
-        onClick: openDialogBox.bind(null, 'alert')
-      }, external__react__default.a.createElement(Add__default.a, {
-        classes: {
-          root: classes.addIcon
-        }
-      }))))));
-    }
-  }]);
-
-  return CompanyNewsAlerts;
-}(external__react__default.a.Component)) || _class) || _class);
-/* harmony default export */ var components_CompanyNewsAlerts = (CompanyNewsAlerts_CompanyNewsAlerts);
-// EXTERNAL MODULE: external "material-ui/Dialog"
-var Dialog_ = __webpack_require__(41);
-var Dialog__default = /*#__PURE__*/__webpack_require__.n(Dialog_);
-
-// EXTERNAL MODULE: external "material-ui/Divider"
-var Divider_ = __webpack_require__(20);
-var Divider__default = /*#__PURE__*/__webpack_require__.n(Divider_);
-
-// EXTERNAL MODULE: external "material-ui/Button"
-var Button_ = __webpack_require__(31);
-var Button__default = /*#__PURE__*/__webpack_require__.n(Button_);
-
-// EXTERNAL MODULE: external "next/head"
-var head_ = __webpack_require__(16);
-var head__default = /*#__PURE__*/__webpack_require__.n(head_);
-
-// EXTERNAL MODULE: ../node_modules/react-quill/dist/quill.snow.css
-var quill_snow = __webpack_require__(168);
-var quill_snow_default = /*#__PURE__*/__webpack_require__.n(quill_snow);
-
-// EXTERNAL MODULE: external "is-browser"
-var external__is_browser_ = __webpack_require__(7);
-var external__is_browser__default = /*#__PURE__*/__webpack_require__.n(external__is_browser_);
-
-// EXTERNAL MODULE: ./static/css/main.css
-var main = __webpack_require__(69);
-var main_default = /*#__PURE__*/__webpack_require__.n(main);
-
-// CONCATENATED MODULE: ./components/RichTextEditor/index.js
-function RichTextEditor__typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { RichTextEditor__typeof = function _typeof(obj) { return typeof obj; }; } else { RichTextEditor__typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return RichTextEditor__typeof(obj); }
-
-function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
-
-function _objectWithoutProperties(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i < sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) >= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }
-
-function RichTextEditor__classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function RichTextEditor__defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function RichTextEditor__createClass(Constructor, protoProps, staticProps) { if (protoProps) RichTextEditor__defineProperties(Constructor.prototype, protoProps); if (staticProps) RichTextEditor__defineProperties(Constructor, staticProps); return Constructor; }
-
-function RichTextEditor__possibleConstructorReturn(self, call) { if (call && (RichTextEditor__typeof(call) === "object" || typeof call === "function")) { return call; } return RichTextEditor__assertThisInitialized(self); }
-
-function RichTextEditor__inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-function RichTextEditor__assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-
-
-
-
-
-var colorArray = ['#000', '#fff', '#FF6633', '#FFB399', '#FF33FF', '#FFFF99', '#00B3E6', '#E6B333', '#3366E6', '#999966', '#99FF99', '#B34D4D', '#80B300', '#809900', '#E6B3B3', '#6680B3', '#66991A', '#FF99E6', '#CCFF1A', '#FF1A66', '#E6331A', '#33FFCC', '#66994D', '#B366CC', '#4D8000', '#B33300', '#CC80CC', '#66664D', '#991AFF', '#E666FF', '#4DB3FF', '#1AB399', '#E666B3', '#33991A', '#CC9999', '#B3B31A', '#00E680', '#4D8066', '#809980', '#E6FF80', '#1AFF33', '#999933', '#FF3380', '#CCCC00', '#66E64D', '#4D80CC', '#9900B3', '#E64D66', '#4DB380', '#FF4D4D', '#99E6E6', '#6666FF'];
-var ReactQuill;
-
-if (external__is_browser__default.a) {
-  ReactQuill = __webpack_require__(169);
-}
-
-var RichTextEditor_MyRichTextEditor =
-/*#__PURE__*/
-function (_Component) {
-  RichTextEditor__inherits(MyRichTextEditor, _Component);
-
-  function MyRichTextEditor() {
-    var _ref;
-
-    var _temp, _this;
-
-    RichTextEditor__classCallCheck(this, MyRichTextEditor);
-
-    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
-      args[_key] = arguments[_key];
-    }
-
-    return RichTextEditor__possibleConstructorReturn(_this, (_temp = _this = RichTextEditor__possibleConstructorReturn(this, (_ref = MyRichTextEditor.__proto__ || Object.getPrototypeOf(MyRichTextEditor)).call.apply(_ref, [this].concat(args))), Object.defineProperty(RichTextEditor__assertThisInitialized(_this), "state", {
-      configurable: true,
-      enumerable: true,
-      writable: true,
-      value: {
-        editorVal: ''
-      }
-    }), Object.defineProperty(RichTextEditor__assertThisInitialized(_this), "modules", {
-      configurable: true,
-      enumerable: true,
-      writable: true,
-      value: {
-        toolbar: [[{
-          header: '1'
-        }, {
-          header: '2'
-        }], [{
-          size: []
-        }], ['bold', 'italic', 'underline', 'strike', 'blockquote'], [{
-          list: 'ordered'
-        }, {
-          list: 'bullet'
-        }, {
-          indent: '-1'
-        }, {
-          indent: '+1'
-        }], ['link'], [{
-          color: colorArray
-        }, {
-          background: colorArray
-        }], ['clean']],
-        clipboard: {
-          // toggle to add extra line breaks when pasting HTML:
-          matchVisual: false
-        }
-      }
-    }), Object.defineProperty(RichTextEditor__assertThisInitialized(_this), "handleChange", {
-      configurable: true,
-      enumerable: true,
-      writable: true,
-      value: function value(content, delta, source, editor) {
-        var onChange = _this.props.onChange;
-
-        _this.setState({
-          editorVal: content
-        });
-
-        if (onChange && typeof onChange === 'function') {
-          onChange(content, delta, source, editor);
-        }
-      }
-    }), _temp));
-  }
-
-  RichTextEditor__createClass(MyRichTextEditor, [{
-    key: "render",
-    value: function render() {
-      var _props = this.props,
-          onChange = _props.onChange,
-          rest = _objectWithoutProperties(_props, ["onChange"]);
-
-      return external__is_browser__default.a ? external__react__default.a.createElement("div", null, external__react__default.a.createElement(head__default.a, null, external__react__default.a.createElement("link", {
-        href: "//cdn.quilljs.com/1.2.6/quill.snow.css",
-        rel: "stylesheet",
-        type: "text/css"
-      })), external__react__default.a.createElement(ReactQuill, _extends({
-        value: this.state.editorVal,
-        onChange: this.handleChange,
-        modules: this.modules
-      }, rest))) : null;
-    }
-  }]);
-
-  return MyRichTextEditor;
-}(external__react_["Component"]);
-
-/* harmony default export */ var RichTextEditor = (RichTextEditor_MyRichTextEditor);
-// CONCATENATED MODULE: ./components/CreateCompanyAlertsNewsDialogBox/index.js
-var CreateCompanyAlertsNewsDialogBox__class;
-
-function CreateCompanyAlertsNewsDialogBox__typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { CreateCompanyAlertsNewsDialogBox__typeof = function _typeof(obj) { return typeof obj; }; } else { CreateCompanyAlertsNewsDialogBox__typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return CreateCompanyAlertsNewsDialogBox__typeof(obj); }
-
-function CreateCompanyAlertsNewsDialogBox__classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function CreateCompanyAlertsNewsDialogBox__defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function CreateCompanyAlertsNewsDialogBox__createClass(Constructor, protoProps, staticProps) { if (protoProps) CreateCompanyAlertsNewsDialogBox__defineProperties(Constructor.prototype, protoProps); if (staticProps) CreateCompanyAlertsNewsDialogBox__defineProperties(Constructor, staticProps); return Constructor; }
-
-function CreateCompanyAlertsNewsDialogBox__possibleConstructorReturn(self, call) { if (call && (CreateCompanyAlertsNewsDialogBox__typeof(call) === "object" || typeof call === "function")) { return call; } return CreateCompanyAlertsNewsDialogBox__assertThisInitialized(self); }
-
-function CreateCompanyAlertsNewsDialogBox__inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-function CreateCompanyAlertsNewsDialogBox__assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-
-
-
-
-
-
-
-
-var CreateCompanyAlertsNewsDialogBox_styles = function styles(theme) {
-  return {
-    paper: {
-      width: '800px',
-      maxWidth: '800px'
-    },
-    dialogActions: {
-      margin: '8px 0'
-    },
-    formTitle: {
-      padding: 'theme.spacing.unit theme.spacing.unit * 3',
-      textAlign: 'center'
-    },
-    formSubheader: {
-      paddingLeft: theme.spacing.unit * 4,
-      paddingRight: theme.spacing.unit * 4,
-      marginBottom: theme.spacing.unit * 6,
-      marginTop: theme.spacing.unit * 2,
-      textAlign: 'center'
-    },
-    dialogContent: {
-      paddingTop: '32px',
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'center'
-    },
-    saveDraftBtn: {
-      marginRight: 'auto',
-      color: theme.custom.submitBlue.main,
-      '&:hover': {
-        backgroundColor: theme.custom.submitBlue.transparentLightBackground
-      }
-    },
-    textEditor: _defineProperty({
-      paddingBottom: 42,
-      height: 250
-    }, theme.breakpoints.down('sm'), {
-      width: '100%'
-    })
-  };
-};
-
-var CreateCompanyAlertsNewsDialogBox_CreateCompanyAlertsNewsDialogBox = Object(external__mobx_react_["observer"])(CreateCompanyAlertsNewsDialogBox__class =
-/*#__PURE__*/
-function (_Component) {
-  CreateCompanyAlertsNewsDialogBox__inherits(CreateCompanyAlertsNewsDialogBox, _Component);
-
-  function CreateCompanyAlertsNewsDialogBox() {
-    var _ref;
-
-    var _temp, _this;
-
-    CreateCompanyAlertsNewsDialogBox__classCallCheck(this, CreateCompanyAlertsNewsDialogBox);
-
-    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
-      args[_key] = arguments[_key];
-    }
-
-    return CreateCompanyAlertsNewsDialogBox__possibleConstructorReturn(_this, (_temp = _this = CreateCompanyAlertsNewsDialogBox__possibleConstructorReturn(this, (_ref = CreateCompanyAlertsNewsDialogBox.__proto__ || Object.getPrototypeOf(CreateCompanyAlertsNewsDialogBox)).call.apply(_ref, [this].concat(args))), Object.defineProperty(CreateCompanyAlertsNewsDialogBox__assertThisInitialized(_this), "state", {
-      configurable: true,
-      enumerable: true,
-      writable: true,
-      value: {
-        formApi: null,
-        formSubmitted: false,
-        editorBounds: null
-      }
-    }), Object.defineProperty(CreateCompanyAlertsNewsDialogBox__assertThisInitialized(_this), "setFormSubmitted", {
-      configurable: true,
-      enumerable: true,
-      writable: true,
-      value: function value() {
-        var bool = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : true;
-
-        _this.setState({
-          formSubmitted: bool
-        });
-      }
-    }), _temp));
-  }
-
-  CreateCompanyAlertsNewsDialogBox__createClass(CreateCompanyAlertsNewsDialogBox, [{
-    key: "componentDidMount",
-    value: function componentDidMount() {
-      this.setState({
-        editorBounds: document.getElementById('formDialog')
-      });
-    }
-  }, {
-    key: "render",
-    value: function render() {
-      var _props = this.props,
-          fullScreen = _props.fullScreen,
-          classes = _props.classes,
-          open = _props.open,
-          dialogBoxType = _props.dialogBoxType,
-          closeDialogBox = _props.closeDialogBox;
-      var placeholderText = "Enter you new ".concat(dialogBoxType === 'news' ? 'news' : 'alert', " item here...");
-      return external__react__default.a.createElement(Dialog__default.a, {
-        disableEscapeKeyDown: true,
-        disableBackdropClick: true,
-        onClose: closeDialogBox,
-        open: open,
-        classes: {
-          paper: classes.paper
-        },
-        fullScreen: fullScreen
-      }, external__react__default.a.createElement(Dialog_["DialogTitle"], {
-        id: "form-dialog-title",
-        classes: {
-          root: classes.formTitle
-        }
-      }, "Add New ", dialogBoxType === 'news' ? 'News' : 'Alert', " Item"), external__react__default.a.createElement(Divider__default.a, null), external__react__default.a.createElement(Dialog_["DialogContent"], {
-        classes: {
-          root: classes.dialogContent
-        },
-        id: "formDialog"
-      }, external__react__default.a.createElement(RichTextEditor, {
-        onChange: this.props.onTextEditorChange,
-        autoFocus: true,
-        placeholder: placeholderText,
-        className: classes.textEditor,
-        bounds: '#formDialog'
-      })), !this.state.formSubmitted ? external__react__default.a.createElement(Dialog_["DialogActions"], {
-        classes: {
-          root: classes.dialogActions
-        }
-      }, external__react__default.a.createElement(Button__default.a, {
-        onClick: closeDialogBox,
-        color: "primary"
-      }, "Cancel"), external__react__default.a.createElement(Button__default.a, {
-        onClick: this.props.onSubmit,
-        color: "primary"
-      }, "Submit")) : null);
-    }
-  }]);
-
-  return CreateCompanyAlertsNewsDialogBox;
-}(external__react_["Component"])) || CreateCompanyAlertsNewsDialogBox__class;
-
-/* harmony default export */ var components_CreateCompanyAlertsNewsDialogBox = (Object(Dialog_["withMobileDialog"])()(Object(styles_["withStyles"])(CreateCompanyAlertsNewsDialogBox_styles)(CreateCompanyAlertsNewsDialogBox_CreateCompanyAlertsNewsDialogBox)));
-// CONCATENATED MODULE: ./components/CompanyAlertsNewsDialogBox/index.js
-var CompanyAlertsNewsDialogBox__class;
-
-function CompanyAlertsNewsDialogBox__typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { CompanyAlertsNewsDialogBox__typeof = function _typeof(obj) { return typeof obj; }; } else { CompanyAlertsNewsDialogBox__typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return CompanyAlertsNewsDialogBox__typeof(obj); }
-
-function CompanyAlertsNewsDialogBox__classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function CompanyAlertsNewsDialogBox__defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function CompanyAlertsNewsDialogBox__createClass(Constructor, protoProps, staticProps) { if (protoProps) CompanyAlertsNewsDialogBox__defineProperties(Constructor.prototype, protoProps); if (staticProps) CompanyAlertsNewsDialogBox__defineProperties(Constructor, staticProps); return Constructor; }
-
-function CompanyAlertsNewsDialogBox__possibleConstructorReturn(self, call) { if (call && (CompanyAlertsNewsDialogBox__typeof(call) === "object" || typeof call === "function")) { return call; } return CompanyAlertsNewsDialogBox__assertThisInitialized(self); }
-
-function CompanyAlertsNewsDialogBox__assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function CompanyAlertsNewsDialogBox__inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-function CompanyAlertsNewsDialogBox__defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-
-
-
-
-
-
-
-var CompanyAlertsNewsDialogBox_styles = function styles(theme) {
-  return {
-    paper: {
-      width: '800px',
-      maxWidth: '800px'
-    },
-    dialogActions: {
-      margin: '8px 0'
-    },
-    formTitle: {
-      padding: 'theme.spacing.unit theme.spacing.unit * 3',
-      textAlign: 'center'
-    },
-    formSubheader: {
-      paddingLeft: theme.spacing.unit * 4,
-      paddingRight: theme.spacing.unit * 4,
-      marginBottom: theme.spacing.unit * 6,
-      marginTop: theme.spacing.unit * 2,
-      textAlign: 'center'
-    },
-    dialogContent: {
-      paddingTop: '32px',
-      display: 'flex',
-      flexDirection: 'column'
-    },
-    saveDraftBtn: {
-      marginRight: 'auto',
-      color: theme.custom.submitBlue.main,
-      '&:hover': {
-        backgroundColor: theme.custom.submitBlue.transparentLightBackground
-      }
-    },
-    textEditor: CompanyAlertsNewsDialogBox__defineProperty({
-      width: '100%',
-      paddingBottom: 42,
-      height: 250
-    }, theme.breakpoints.down('sm'), {
-      width: '100%'
-    }),
-    newsAlertHTMLWrapper: {}
-  };
-};
-
-var CompanyAlertsNewsDialogBox_CompanyAlertsNewsDialogBox = Object(external__mobx_react_["observer"])(CompanyAlertsNewsDialogBox__class =
-/*#__PURE__*/
-function (_Component) {
-  CompanyAlertsNewsDialogBox__inherits(CompanyAlertsNewsDialogBox, _Component);
-
-  function CompanyAlertsNewsDialogBox() {
-    CompanyAlertsNewsDialogBox__classCallCheck(this, CompanyAlertsNewsDialogBox);
-
-    return CompanyAlertsNewsDialogBox__possibleConstructorReturn(this, (CompanyAlertsNewsDialogBox.__proto__ || Object.getPrototypeOf(CompanyAlertsNewsDialogBox)).apply(this, arguments));
-  }
-
-  CompanyAlertsNewsDialogBox__createClass(CompanyAlertsNewsDialogBox, [{
-    key: "render",
-    value: function render() {
-      var _props = this.props,
-          fullScreen = _props.fullScreen,
-          classes = _props.classes,
-          open = _props.open,
-          dialogBoxType = _props.dialogBoxType,
-          closeDialogBox = _props.closeDialogBox,
-          newsAlertHTML = _props.newsAlertHTML;
-      return external__react__default.a.createElement(Dialog__default.a, {
-        onClose: closeDialogBox,
-        open: open,
-        classes: {
-          paper: classes.paper
-        },
-        fullScreen: fullScreen
-      }, external__react__default.a.createElement(Dialog_["DialogTitle"], {
-        id: "form-dialog-title",
-        classes: {
-          root: classes.formTitle
-        }
-      }, "Veiwing ", dialogBoxType === 'news' ? 'News' : 'Alert'), external__react__default.a.createElement(Divider__default.a, null), external__react__default.a.createElement(Dialog_["DialogContent"], {
-        classes: {
-          root: classes.dialogContent
-        },
-        id: "formDialog"
-      }, external__react__default.a.createElement("div", {
-        className: classes.newsAlertHTMLWrapper,
-        dangerouslySetInnerHTML: {
-          __html: newsAlertHTML
-        }
-      })), external__react__default.a.createElement(Dialog_["DialogActions"], {
-        classes: {
-          root: classes.dialogActions
-        }
-      }, external__react__default.a.createElement(Button__default.a, {
-        onClick: closeDialogBox,
-        color: "primary"
-      }, "Close")));
-    }
-  }]);
-
-  return CompanyAlertsNewsDialogBox;
-}(external__react_["Component"])) || CompanyAlertsNewsDialogBox__class;
-
-/* harmony default export */ var components_CompanyAlertsNewsDialogBox = (Object(Dialog_["withMobileDialog"])()(Object(styles_["withStyles"])(CompanyAlertsNewsDialogBox_styles)(CompanyAlertsNewsDialogBox_CompanyAlertsNewsDialogBox)));
-// EXTERNAL MODULE: external "graphql-request"
-var external__graphql_request_ = __webpack_require__(5);
-var external__graphql_request__default = /*#__PURE__*/__webpack_require__.n(external__graphql_request_);
-
-// EXTERNAL MODULE: ./constants/graphQLEndpoint.js
-var graphQLEndpoint = __webpack_require__(6);
-
-// CONCATENATED MODULE: ./effects/general/submitNewsAlertItem.js
-
-
-var query = "\n  mutation submitNewsAlertItem($input: SubmitNewsAlertItemInput!) {\n    submitNewsAlertItem(input: $input) {\n      item {\n        uuid\n        html\n        string\n        type\n        createdAt\n      }\n      error\n    }\n  }\n";
-var client = new external__graphql_request_["GraphQLClient"](graphQLEndpoint["a" /* default */], {
-  credentials: 'same-origin'
-});
-
-var submitNewsAlertItem = function submitNewsAlertItem(values) {
-  var res;
-  var variables = {
-    input: values
-  };
-  var finalResponseObj = {
-    item: null,
-    error: null
-  };
-  return client.request(query, variables).then(function (result) {
-    res = result;
-    console.log(res);
-    var _res = res,
-        data = _res.submitNewsAlertItem;
-    var error = data.error,
-        item = data.item;
-
-    if (error) {
-      finalResponseObj.error = error;
-    } else if (item) {
-      finalResponseObj.item = item;
-    } else {
-      finalResponseObj.error = 'There was a server error when creating your item!';
-    }
-
-    return finalResponseObj;
-  }).catch(function (err) {
-    console.log(err);
-    finalResponseObj.error = 'Error reaching the server';
-    return finalResponseObj;
-  });
-};
-
-/* harmony default export */ var general_submitNewsAlertItem = (submitNewsAlertItem);
-// CONCATENATED MODULE: ./effects/general/deleteNewsAlertItem.js
-
-
-var deleteNewsAlertItem_query = "\n  mutation deleteNewsAlertItem($uuid: String!) {\n    deleteNewsAlertItem(uuid: $uuid) {\n      error\n    }\n  }\n";
-var deleteNewsAlertItem_client = new external__graphql_request_["GraphQLClient"](graphQLEndpoint["a" /* default */], {
-  credentials: 'same-origin'
-});
-
-var deleteNewsAlertItem_deleteNewsAlertItem = function deleteNewsAlertItem(uuid) {
-  var res;
-  var variables = {
-    uuid: uuid
-  };
-  var finalResponseObj = {
-    error: null
-  };
-  return deleteNewsAlertItem_client.request(deleteNewsAlertItem_query, variables).then(function (result) {
-    res = result;
-    console.log(res);
-    var _res = res,
-        data = _res.deleteNewsAlertItem;
-    var error = data.error;
-
-    if (error) {
-      finalResponseObj.error = error;
-    }
-
-    return finalResponseObj;
-  }).catch(function (err) {
-    console.log(err);
-    finalResponseObj.error = 'Error reaching the server';
-    return finalResponseObj;
-  });
-};
-
-/* harmony default export */ var general_deleteNewsAlertItem = (deleteNewsAlertItem_deleteNewsAlertItem);
-// CONCATENATED MODULE: ./containers/CompanyNewsAlerts.js
-
-
-var CompanyNewsAlerts__dec, CompanyNewsAlerts__class;
-
-var _templateObject = /*#__PURE__*/ _taggedTemplateLiteral(["\n  query newsAlertItems {\n    newsAlertItems {\n      uuid\n      html\n      string\n      type\n      createdAt\n    }\n  }\n"]);
-
-function CompanyNewsAlerts__typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { CompanyNewsAlerts__typeof = function _typeof(obj) { return typeof obj; }; } else { CompanyNewsAlerts__typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return CompanyNewsAlerts__typeof(obj); }
-
-function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
-
-function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance"); }
-
-function _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter); }
-
-function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }
-
-function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } } function _next(value) { step("next", value); } function _throw(err) { step("throw", err); } _next(); }); }; }
-
-function CompanyNewsAlerts__classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function CompanyNewsAlerts__defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function CompanyNewsAlerts__createClass(Constructor, protoProps, staticProps) { if (protoProps) CompanyNewsAlerts__defineProperties(Constructor.prototype, protoProps); if (staticProps) CompanyNewsAlerts__defineProperties(Constructor, staticProps); return Constructor; }
-
-function CompanyNewsAlerts__possibleConstructorReturn(self, call) { if (call && (CompanyNewsAlerts__typeof(call) === "object" || typeof call === "function")) { return call; } return CompanyNewsAlerts__assertThisInitialized(self); }
-
-function CompanyNewsAlerts__inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-function CompanyNewsAlerts__assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-var Loader = external__react_spinners_["BounceLoader"];
-var newsAlertItemsQuery = external__graphql_tag__default()(_templateObject);
-
-var CompanyNewsAlerts_styles = function styles(theme) {
-  return {
-    root: {
-      maxWidth: '100%',
-      width: '100%',
-      marginBottom: 10
-    },
-    snackBar: {
-      marginTop: 30
-    }
-  };
-};
-
-var CompanyNewsAlerts_CompanyNewsAlertsContainer = (CompanyNewsAlerts__dec = Object(styles_["withStyles"])(CompanyNewsAlerts_styles), Object(external__mobx_react_["observer"])(CompanyNewsAlerts__class = CompanyNewsAlerts__dec(CompanyNewsAlerts__class =
-/*#__PURE__*/
-function (_React$Component) {
-  CompanyNewsAlerts__inherits(CompanyNewsAlertsContainer, _React$Component);
-
-  function CompanyNewsAlertsContainer() {
-    var _ref;
-
-    var _temp, _this;
-
-    CompanyNewsAlerts__classCallCheck(this, CompanyNewsAlertsContainer);
-
-    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
-      args[_key] = arguments[_key];
-    }
-
-    return CompanyNewsAlerts__possibleConstructorReturn(_this, (_temp = _this = CompanyNewsAlerts__possibleConstructorReturn(this, (_ref = CompanyNewsAlertsContainer.__proto__ || Object.getPrototypeOf(CompanyNewsAlertsContainer)).call.apply(_ref, [this].concat(args))), Object.defineProperty(CompanyNewsAlerts__assertThisInitialized(_this), "state", {
-      configurable: true,
-      enumerable: true,
-      writable: true,
-      value: {
-        dialogBoxOpen: false,
-        viewDialogBoxOpen: false,
-        dialogBoxType: '',
-        textEditorValue: {
-          html: '',
-          string: ''
-        },
-        addedNewsItems: [],
-        addedAlertItems: [],
-        deletedNewsItems: [],
-        deletedAlertItems: [],
-        viewingNewsAlertItemID: null,
-        viewingNewsAlertItemHTML: ''
-      }
-    }), Object.defineProperty(CompanyNewsAlerts__assertThisInitialized(_this), "openDialogBox", {
-      configurable: true,
-      enumerable: true,
-      writable: true,
-      value: function value(type) {
-        _this.setState({
-          dialogBoxOpen: true,
-          dialogBoxType: type
-        });
-      }
-    }), Object.defineProperty(CompanyNewsAlerts__assertThisInitialized(_this), "closeDialogBox", {
-      configurable: true,
-      enumerable: true,
-      writable: true,
-      value: function value() {
-        _this.setState({
-          dialogBoxOpen: false
-        });
-      }
-    }), Object.defineProperty(CompanyNewsAlerts__assertThisInitialized(_this), "onTextEditorChange", {
-      configurable: true,
-      enumerable: true,
-      writable: true,
-      value: function value(content, delta, source, editor) {
-        _this.setState({
-          textEditorValue: {
-            html: content,
-            string: editor.getText()
-          }
-        });
-      }
-    }), Object.defineProperty(CompanyNewsAlerts__assertThisInitialized(_this), "deleteNewsAlertItem", {
-      configurable: true,
-      enumerable: true,
-      writable: true,
-      value: function () {
-        var _value = _asyncToGenerator(
-        /*#__PURE__*/
-        regenerator__default.a.mark(function _callee(uuid, type) {
-          var _this$state, deletedAlertItems, deletedNewsItems, res;
-
-          return regenerator__default.a.wrap(function _callee$(_context) {
-            while (1) {
-              switch (_context.prev = _context.next) {
-                case 0:
-                  _this$state = _this.state, deletedAlertItems = _this$state.deletedAlertItems, deletedNewsItems = _this$state.deletedNewsItems;
-                  _context.prev = 1;
-                  res = general_deleteNewsAlertItem(uuid);
-                  _context.next = 9;
-                  break;
-
-                case 5:
-                  _context.prev = 5;
-                  _context.t0 = _context["catch"](1);
-                  console.log(_context.t0);
-                  return _context.abrupt("return");
-
-                case 9:
-                  if (res.error) {
-                    console.log(error);
-                  } else {
-                    if (type === 'news') {
-                      _this.setState({
-                        deletedNewsItems: [uuid].concat(_toConsumableArray(deletedNewsItems))
-                      });
-                    } else {
-                      _this.setState({
-                        deletedAlertItems: [uuid].concat(_toConsumableArray(deletedAlertItems))
-                      });
-                    }
-
-                    if (_this.props.deletedNewsAlertSuccessfully) {
-                      _this.props.deletedNewsAlertSuccessfully();
-                    }
-                  }
-
-                case 10:
-                case "end":
-                  return _context.stop();
-              }
-            }
-          }, _callee, this, [[1, 5]]);
-        }));
-
-        return function value(_x, _x2) {
-          return _value.apply(this, arguments);
-        };
-      }()
-    }), Object.defineProperty(CompanyNewsAlerts__assertThisInitialized(_this), "onSubmit", {
-      configurable: true,
-      enumerable: true,
-      writable: true,
-      value: function () {
-        var _value2 = _asyncToGenerator(
-        /*#__PURE__*/
-        regenerator__default.a.mark(function _callee2() {
-          var _this$state2, textEditorValue, dialogBoxType, addedNewsItems, addedAlertItems, res, hasErrors;
-
-          return regenerator__default.a.wrap(function _callee2$(_context2) {
-            while (1) {
-              switch (_context2.prev = _context2.next) {
-                case 0:
-                  _this$state2 = _this.state, textEditorValue = _this$state2.textEditorValue, dialogBoxType = _this$state2.dialogBoxType, addedNewsItems = _this$state2.addedNewsItems, addedAlertItems = _this$state2.addedAlertItems;
-
-                  if (!(!textEditorValue || !textEditorValue.string || textEditorValue.html === '<p><br></p>')) {
-                    _context2.next = 3;
-                    break;
-                  }
-
-                  return _context2.abrupt("return");
-
-                case 3:
-                  hasErrors = false;
-                  _context2.prev = 4;
-                  _context2.next = 7;
-                  return general_submitNewsAlertItem({
-                    html: textEditorValue.html,
-                    string: textEditorValue.string,
-                    type: dialogBoxType
-                  });
-
-                case 7:
-                  res = _context2.sent;
-                  _context2.next = 14;
-                  break;
-
-                case 10:
-                  _context2.prev = 10;
-                  _context2.t0 = _context2["catch"](4);
-                  console.log('sdgns');
-                  console.log(_context2.t0);
-
-                case 14:
-                  if (res.error) {
-                    console.log(res.error);
-                    hasErrors = true;
-                  }
-
-                  if (!hasErrors) {
-                    _context2.next = 17;
-                    break;
-                  }
-
-                  return _context2.abrupt("return");
-
-                case 17:
-                  if (dialogBoxType === 'news') {
-                    _this.setState({
-                      addedNewsItems: [res.item].concat(_toConsumableArray(addedNewsItems))
-                    });
-                  } else {
-                    _this.setState({
-                      addedAlertItems: [res.item].concat(_toConsumableArray(addedAlertItems))
-                    });
-                  }
-
-                  _this.closeDialogBox();
-
-                  if (_this.props.submittedNewsAlertSuccessfully) {
-                    _this.props.submittedNewsAlertSuccessfully();
-                  }
-
-                case 20:
-                case "end":
-                  return _context2.stop();
-              }
-            }
-          }, _callee2, this, [[4, 10]]);
-        }));
-
-        return function value() {
-          return _value2.apply(this, arguments);
-        };
-      }()
-    }), Object.defineProperty(CompanyNewsAlerts__assertThisInitialized(_this), "openVeiwNewsAlertItemDialogBox", {
-      configurable: true,
-      enumerable: true,
-      writable: true,
-      value: function value(uuid, viewingNewsAlertItemHTML, type) {
-        _this.setState({
-          viewingNewsAlertItemID: uuid,
-          viewDialogBoxOpen: true,
-          viewingNewsAlertItemHTML: viewingNewsAlertItemHTML,
-          dialogBoxType: type
-        });
-      }
-    }), Object.defineProperty(CompanyNewsAlerts__assertThisInitialized(_this), "closeVeiwNewsAlertItemDialogBox", {
-      configurable: true,
-      enumerable: true,
-      writable: true,
-      value: function value() {
-        _this.setState({
-          viewDialogBoxOpen: false
-        });
-      }
-    }), _temp));
-  }
-
-  CompanyNewsAlerts__createClass(CompanyNewsAlertsContainer, [{
-    key: "render",
-    value: function render() {
-      var _this2 = this;
-
-      var _props = this.props,
-          classes = _props.classes,
-          userRole = _props.userRole;
-      var _state = this.state,
-          dialogBoxType = _state.dialogBoxType,
-          dialogBoxOpen = _state.dialogBoxOpen,
-          addedAlertItems = _state.addedAlertItems,
-          addedNewsItems = _state.addedNewsItems,
-          deletedAlertItems = _state.deletedAlertItems,
-          deletedNewsItems = _state.deletedNewsItems,
-          viewingNewsAlertItemID = _state.viewingNewsAlertItemID,
-          viewDialogBoxOpen = _state.viewDialogBoxOpen,
-          viewingNewsAlertItemHTML = _state.viewingNewsAlertItemHTML;
-      var isAdmin = userRole === userTypes["admin"] || userRole === userTypes["superAdmin"];
-      return external__react__default.a.createElement(external__react_apollo_["Query"], {
-        query: newsAlertItemsQuery,
-        ssr: false
-      }, function (_ref2) {
-        var loading = _ref2.loading,
-            error = _ref2.error,
-            data = _ref2.data;
-        if (loading) return external__react__default.a.createElement("div", {
-          style: {
-            width: '100%',
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-            height: '64px',
-            margin: '8px',
-            marginTop: '0',
-            boxShadow: '0px 1px 3px 0px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 2px 1px -1px rgba(0, 0, 0, 0.12)'
-          }
-        }, external__react__default.a.createElement(Loader, {
-          color: "#f44336",
-          size: 35,
-          loading: true
-        }));
-
-        if (error) {
-          console.log(error);
-          return external__react__default.a.createElement("div", {
-            style: {
-              textAlign: 'center'
-            }
-          }, "We're sorry. There was an error processing your request.");
-        }
-
-        var newsAlertItems = data.newsAlertItems;
-
-        var newsItems = _toConsumableArray(addedNewsItems);
-
-        var alertItems = _toConsumableArray(addedAlertItems);
-
-        newsAlertItems.forEach(function (item) {
-          if (item.type === 'news') {
-            newsItems.push(item);
-          } else if (item.type === 'alert') {
-            alertItems.push(item);
-          }
-        });
-        console.log(newsItems);
-        return external__react__default.a.createElement("div", {
-          className: classes.root
-        }, external__react__default.a.createElement(components_CompanyNewsAlerts, {
-          userRole: userRole,
-          openDialogBox: _this2.openDialogBox,
-          deleteNewsAlertItem: _this2.deleteNewsAlertItem,
-          openVeiwNewsAlertItemDialogBox: _this2.openVeiwNewsAlertItemDialogBox,
-          newsItems: newsItems.sort(function (a, b) {
-            return external__moment__default()(b.createdAt).isAfter(external__moment__default()(a.createdAt));
-          }).filter(function (item) {
-            return !deletedNewsItems.includes(item.uuid);
-          }),
-          alertItems: alertItems.sort(function (a, b) {
-            return external__moment__default()(b.createdAt).isAfter(external__moment__default()(a.createdAt));
-          }).filter(function (item) {
-            return !deletedAlertItems.includes(item.uuid);
-          }),
-          isAdmin: isAdmin
-        }), isAdmin && external__react__default.a.createElement(components_CreateCompanyAlertsNewsDialogBox, {
-          open: dialogBoxOpen,
-          dialogBoxType: dialogBoxType,
-          closeDialogBox: _this2.closeDialogBox,
-          onTextEditorChange: _this2.onTextEditorChange,
-          onSubmit: _this2.onSubmit
-        }), external__react__default.a.createElement(components_CompanyAlertsNewsDialogBox, {
-          open: viewDialogBoxOpen,
-          dialogBoxType: dialogBoxType,
-          closeDialogBox: _this2.closeVeiwNewsAlertItemDialogBox,
-          viewingNewsAlertItemID: viewingNewsAlertItemID,
-          newsAlertHTML: viewingNewsAlertItemHTML
-        }));
-      });
-    }
-  }]);
-
-  return CompanyNewsAlertsContainer;
-}(external__react__default.a.Component)) || CompanyNewsAlerts__class) || CompanyNewsAlerts__class);
-/* harmony default export */ var containers_CompanyNewsAlerts = __webpack_exports__["a"] = (CompanyNewsAlerts_CompanyNewsAlertsContainer);
-
-/***/ }),
-/* 167 */
-/***/ (function(module, exports) {
-
-module.exports = require("react-truncate");
-
-/***/ }),
-/* 168 */
-/***/ (function(module, exports) {
-
-
-
-/***/ }),
-/* 169 */
-/***/ (function(module, exports) {
-
-module.exports = require("react-quill");
-
-/***/ }),
+/* 165 */,
+/* 166 */,
+/* 167 */,
+/* 168 */,
+/* 169 */,
 /* 170 */,
 /* 171 */,
 /* 172 */,
@@ -5541,14 +4391,20 @@ module.exports = require("react-quill");
 /* 214 */,
 /* 215 */,
 /* 216 */,
-/* 217 */
+/* 217 */,
+/* 218 */,
+/* 219 */,
+/* 220 */,
+/* 221 */,
+/* 222 */,
+/* 223 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(218);
+module.exports = __webpack_require__(224);
 
 
 /***/ }),
-/* 218 */
+/* 224 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -5566,10 +4422,6 @@ var external__mobx_react__default = /*#__PURE__*/__webpack_require__.n(external_
 var external__is_browser_ = __webpack_require__(7);
 var external__is_browser__default = /*#__PURE__*/__webpack_require__.n(external__is_browser_);
 
-// EXTERNAL MODULE: external "next/head"
-var head_ = __webpack_require__(16);
-var head__default = /*#__PURE__*/__webpack_require__.n(head_);
-
 // EXTERNAL MODULE: ./components/Layout/index.js + 11 modules
 var Layout = __webpack_require__(71);
 
@@ -5583,6 +4435,18 @@ var withData = __webpack_require__(49);
 var routes = __webpack_require__(4);
 var routes_default = /*#__PURE__*/__webpack_require__.n(routes);
 
+// EXTERNAL MODULE: external "material-ui/styles"
+var styles_ = __webpack_require__(2);
+var styles__default = /*#__PURE__*/__webpack_require__.n(styles_);
+
+// EXTERNAL MODULE: external "chance"
+var external__chance_ = __webpack_require__(63);
+var external__chance__default = /*#__PURE__*/__webpack_require__.n(external__chance_);
+
+// EXTERNAL MODULE: external "faker"
+var external__faker_ = __webpack_require__(111);
+var external__faker__default = /*#__PURE__*/__webpack_require__.n(external__faker_);
+
 // EXTERNAL MODULE: external "graphql-tag"
 var external__graphql_tag_ = __webpack_require__(64);
 var external__graphql_tag__default = /*#__PURE__*/__webpack_require__.n(external__graphql_tag_);
@@ -5595,85 +4459,38 @@ var external__react_apollo__default = /*#__PURE__*/__webpack_require__.n(externa
 var external__react_spinners_ = __webpack_require__(23);
 var external__react_spinners__default = /*#__PURE__*/__webpack_require__.n(external__react_spinners_);
 
-// EXTERNAL MODULE: external "material-ui/styles"
-var styles_ = __webpack_require__(2);
-var styles__default = /*#__PURE__*/__webpack_require__.n(styles_);
-
-// EXTERNAL MODULE: external "moment"
-var external__moment_ = __webpack_require__(42);
-var external__moment__default = /*#__PURE__*/__webpack_require__.n(external__moment_);
-
-// EXTERNAL MODULE: external "material-ui/Snackbar"
-var Snackbar_ = __webpack_require__(28);
-var Snackbar__default = /*#__PURE__*/__webpack_require__.n(Snackbar_);
-
-// EXTERNAL MODULE: external "material-ui/IconButton"
-var IconButton_ = __webpack_require__(15);
-var IconButton__default = /*#__PURE__*/__webpack_require__.n(IconButton_);
-
-// EXTERNAL MODULE: external "@material-ui/icons/Close"
-var Close_ = __webpack_require__(29);
-var Close__default = /*#__PURE__*/__webpack_require__.n(Close_);
-
-// EXTERNAL MODULE: external "material-ui/Grid"
-var Grid_ = __webpack_require__(32);
-var Grid__default = /*#__PURE__*/__webpack_require__.n(Grid_);
-
 // EXTERNAL MODULE: external "react-sizes"
 var external__react_sizes_ = __webpack_require__(67);
 var external__react_sizes__default = /*#__PURE__*/__webpack_require__.n(external__react_sizes_);
 
-// EXTERNAL MODULE: external "chance"
-var external__chance_ = __webpack_require__(63);
-var external__chance__default = /*#__PURE__*/__webpack_require__.n(external__chance_);
+// EXTERNAL MODULE: external "@devexpress/dx-react-grid"
+var dx_react_grid_ = __webpack_require__(97);
+var dx_react_grid__default = /*#__PURE__*/__webpack_require__.n(dx_react_grid_);
 
-// EXTERNAL MODULE: external "@material-ui/icons/AttachMoney"
-var AttachMoney_ = __webpack_require__(121);
-var AttachMoney__default = /*#__PURE__*/__webpack_require__.n(AttachMoney_);
+// EXTERNAL MODULE: external "@devexpress/dx-react-grid-material-ui"
+var dx_react_grid_material_ui_ = __webpack_require__(36);
+var dx_react_grid_material_ui__default = /*#__PURE__*/__webpack_require__.n(dx_react_grid_material_ui_);
 
-// EXTERNAL MODULE: external "@material-ui/icons/Help"
-var Help_ = __webpack_require__(122);
-var Help__default = /*#__PURE__*/__webpack_require__.n(Help_);
+// EXTERNAL MODULE: ./utils/backEndTableUtils/DefaultVirtualTableCell.js
+var DefaultVirtualTableCell = __webpack_require__(98);
 
-// EXTERNAL MODULE: external "@material-ui/icons/Star"
-var Star_ = __webpack_require__(165);
-var Star__default = /*#__PURE__*/__webpack_require__.n(Star_);
+// EXTERNAL MODULE: ./utils/backEndTableUtils/TableComponent.js
+var TableComponent = __webpack_require__(99);
 
-// EXTERNAL MODULE: external "@material-ui/icons/ExpandMore"
-var ExpandMore_ = __webpack_require__(109);
-var ExpandMore__default = /*#__PURE__*/__webpack_require__.n(ExpandMore_);
+// EXTERNAL MODULE: ./utils/backEndTableUtils/TableContainerComponent.js
+var TableContainerComponent = __webpack_require__(100);
 
-// EXTERNAL MODULE: external "material-ui/Divider"
-var Divider_ = __webpack_require__(20);
-var Divider__default = /*#__PURE__*/__webpack_require__.n(Divider_);
+// EXTERNAL MODULE: ./utils/backEndTableUtils/NoDataCellComponent.js
+var NoDataCellComponent = __webpack_require__(101);
 
-// EXTERNAL MODULE: external "material-ui/Typography"
-var Typography_ = __webpack_require__(26);
-var Typography__default = /*#__PURE__*/__webpack_require__.n(Typography_);
+// EXTERNAL MODULE: ./components/dataTableFormatters/ProfilePictureFormatter.js
+var ProfilePictureFormatter = __webpack_require__(130);
 
-// EXTERNAL MODULE: external "material-ui/List"
-var List_ = __webpack_require__(27);
-var List__default = /*#__PURE__*/__webpack_require__.n(List_);
+// EXTERNAL MODULE: ./components/dataTableFormatters/ViewFormatter.js
+var ViewFormatter = __webpack_require__(102);
 
-// EXTERNAL MODULE: external "classnames"
-var external__classnames_ = __webpack_require__(8);
-var external__classnames__default = /*#__PURE__*/__webpack_require__.n(external__classnames_);
-
-// EXTERNAL MODULE: external "material-ui/ExpansionPanel"
-var ExpansionPanel_ = __webpack_require__(107);
-var ExpansionPanel__default = /*#__PURE__*/__webpack_require__.n(ExpansionPanel_);
-
-// EXTERNAL MODULE: ./components/StatNumberBox/index.js
-var StatNumberBox = __webpack_require__(123);
-
-// EXTERNAL MODULE: ./utils/Math.js
-var utils_Math = __webpack_require__(70);
-
-// EXTERNAL MODULE: ./containers/CompanyNewsAlerts.js + 6 modules
-var CompanyNewsAlerts = __webpack_require__(166);
-
-// CONCATENATED MODULE: ./components/AdminDashboard/index.js
-var _dec, _class;
+// CONCATENATED MODULE: ./components/AgentsTable/index.js
+var _dec, _dec2, _class;
 
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
@@ -5685,10 +4502,13 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
 
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _objectWithoutProperties(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i < sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) >= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }
+
+function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 
 
 
@@ -5702,117 +4522,89 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 
 
-
-
-
-
-
-
-var chance = new external__chance__default.a();
-var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
 var styles = function styles(theme) {
   return {
     root: {
-      maxWidth: '100%'
-    },
-    heading: {
-      fontSize: '.94rem',
-      fontWeight: 500,
-      color: 'rgba(0,0,0,.7)'
-    },
-    lightHeading: {
-      color: '#fff'
-    },
-    statNumberBoxWrapper: {
-      backgroundColor: '#fff',
-      height: '175px'
-    },
-    statBoxQuestionIcon: {
-      fontSize: '40px',
-      color: '#F57C00'
-    },
-    statBoxMoneyIcon: {
-      fontSize: '40px',
-      color: '#388E3C'
-    },
-    statBoxStarIcon: {
-      fontSize: '40px',
-      color: '#1976D2'
-    },
-    agentOfTheMonthWrapper: {
-      paddingTop: '20px',
-      height: '320px',
-      backgroundColor: '#fff',
-      borderRadius: '5px',
       boxShadow: theme.shadows[1],
-      overflow: 'auto'
+      backgroundColor: '#fff',
+      borderRadius: '3px',
+      '& [class^="Pager-pager-"]': {
+        borderTop: '1px solid rgba(224, 224, 224, 1)'
+      }
     },
-    companyNewsWrapper: {
-      display: 'flex',
-      flexDirection: 'column',
-      // paddingTop: '20px',
-      maxHeight: '256px',
-      // backgroundColor: '#fff',
-      borderRadius: '5px',
-      boxShadow: theme.shadows[1]
-    },
-    companyAlertsWrapper: {
-      display: 'flex',
-      flexDirection: 'column',
-      // paddingTop: '20px',
-      maxHeight: '256px',
-      // backgroundColor: '#fff',
-      borderRadius: '5px',
-      boxShadow: theme.shadows[1]
-    },
-    boxTitleWrapper: {
+    cell: {
       width: '100%',
-      paddingLeft: '24px',
-      paddingRight: '24px',
-      display: 'flex',
-      alignItems: 'center',
-      height: '35px',
-      fontSize: '.94rem',
-      fontWeight: 500,
-      color: 'rgba(0,0,0,.7)',
-      whiteSpace: 'nowrap',
-      overflow: 'hidden',
-      textOverflow: 'ellipsis'
+      paddingLeft: theme.spacing.unit,
+      paddingRight: theme.spacing.unit
     },
-    agentOfTheMonthContent: {// padding: '24px',
+    input: {
+      width: '100%'
     },
-    companyNewsPlaceHolder: {
-      display: 'flex',
-      marginTop: '15px',
-      alignItems: 'center',
-      justifyContent: 'center',
-      height: '100%',
-      width: '100%',
-      // backgroundColor: 'rgba(0,0,0,.8)',
-      color: 'rgba(0,0,0,.7)',
-      borderRadius: '0 0 5px 5px'
+    myTable: {},
+    myTableContainer: {
+      minHeight: '300px',
+      height: 'calc(100vh - 245px) !important' // maxHeight: '800px',
+
     },
-    companyAlertsExpansionWrapper: {
-      backgroundColor: 'inherit',
-      color: 'inherit'
-    },
-    normalExpansionSummary: {
-      minHeight: '48px',
-      maxHeight: '48px'
-    },
-    darkExpansionSummary: {
-      minHeight: '48px',
-      maxHeight: '48px',
-      backgroundColor: theme.palette.secondary.dark,
-      color: '#fff'
-    },
-    expansionSummaryExpanded: {
-      minHeight: '48px',
-      maxHeight: '48px'
+    myNoDataCellComponent: {
+      borderBottom: 'none !important'
     }
   };
 };
+
+var sortingStateColumnExtensions = [{
+  columnName: 'photo',
+  sortingEnabled: false
+}, {
+  columnName: 'view',
+  sortingEnabled: false
+}];
+var filteringStateColumnExtensions = [{
+  columnName: 'photo',
+  filteringEnabled: false
+}, {
+  columnName: 'view',
+  filteringEnabled: false
+}];
+
+var getRowId = function getRowId(row) {
+  return row.email;
+};
+
+var AgentsTable_FilterCell = function FilterCell(props) {
+  return external__react__default.a.createElement(dx_react_grid_material_ui_["TableFilterRow"].Cell, props);
+};
+
+var defaultColumnWidths = [{
+  columnName: 'agentID',
+  width: 120
+}, {
+  columnName: 'photo',
+  width: 95
+}, {
+  columnName: 'name',
+  width: 150
+}, {
+  columnName: 'email',
+  width: 160
+}, {
+  columnName: 'areaOfFocus',
+  width: 150
+}, {
+  columnName: 'mobileNumber',
+  width: 150
+}, {
+  columnName: 'companyNumberAndExt',
+  width: 180
+}, {
+  columnName: 'branch',
+  width: 140
+}, {
+  columnName: 'view',
+  width: 120
+}];
+var pageSizes = [5, 10, 15, 20, 50, 100, 0];
 
 var mapSizesToProps = function mapSizesToProps(_ref) {
   var width = _ref.width;
@@ -5824,132 +4616,171 @@ var mapSizesToProps = function mapSizesToProps(_ref) {
   };
 };
 
-var AdminDashboard_AdminDashboard = (_dec = external__react_sizes__default()(mapSizesToProps), Object(external__mobx_react_["observer"])(_class = _dec(_class =
+var AgentsTable_PhotoFormatter = function PhotoFormatter(_ref2) {
+  var value = _ref2.value;
+  return external__react__default.a.createElement(ProfilePictureFormatter["a" /* default */], {
+    value: value
+  });
+};
+
+var AgentsTable_PhotoTypeProvider = function PhotoTypeProvider(props) {
+  return external__react__default.a.createElement(dx_react_grid_["DataTypeProvider"], _extends({
+    formatterComponent: AgentsTable_PhotoFormatter
+  }, props));
+};
+
+var AgentsTable_ViewCellFormatter = function ViewCellFormatter(_ref3) {
+  var value = _ref3.value;
+  return external__react__default.a.createElement(ViewFormatter["a" /* default */], {
+    value: value
+  });
+};
+
+var AgentsTable_ViewTypeProvider = function ViewTypeProvider(props) {
+  return external__react__default.a.createElement(dx_react_grid_["DataTypeProvider"], _extends({
+    formatterComponent: AgentsTable_ViewCellFormatter
+  }, props));
+};
+
+var AgentsTable_TableContainerComponentWrapperBase = function TableContainerComponentWrapperBase(_ref4) {
+  var classes = _ref4.classes,
+      restProps = _objectWithoutProperties(_ref4, ["classes"]);
+
+  return external__react__default.a.createElement(TableContainerComponent["a" /* default */], _extends({}, restProps, {
+    className: classes.myTableContainer
+  }));
+};
+
+var TableContainerComponentWrapper = Object(styles_["withStyles"])(styles)(AgentsTable_TableContainerComponentWrapperBase);
+var AgentsTable_AgentsTable = (_dec = Object(styles_["withStyles"])(styles), _dec2 = external__react_sizes__default()(mapSizesToProps), _dec(_class = _dec2(_class =
 /*#__PURE__*/
 function (_Component) {
-  _inherits(AdminDashboard, _Component);
+  _inherits(AgentsTable, _Component);
 
-  function AdminDashboard() {
-    _classCallCheck(this, AdminDashboard);
+  function AgentsTable(props) {
+    var _this;
 
-    return _possibleConstructorReturn(this, (AdminDashboard.__proto__ || Object.getPrototypeOf(AdminDashboard)).apply(this, arguments));
+    _classCallCheck(this, AgentsTable);
+
+    _this = _possibleConstructorReturn(this, (AgentsTable.__proto__ || Object.getPrototypeOf(AgentsTable)).call(this, props));
+    Object.defineProperty(_assertThisInitialized(_this), "changePageSize", {
+      configurable: true,
+      enumerable: true,
+      writable: true,
+      value: function value(pageSize) {
+        _this.setState({
+          pageSize: pageSize
+        });
+
+        if (_this.state.pageSize < pageSize) {
+          document.getElementById('myTableContainer').scrollTop = 0;
+        }
+      }
+    });
+    Object.defineProperty(_assertThisInitialized(_this), "currentPageChange", {
+      configurable: true,
+      enumerable: true,
+      writable: true,
+      value: function value(currentPage) {
+        _this.setState({
+          currentPage: currentPage
+        });
+
+        document.getElementById('myTableContainer').scrollTop = 0;
+      }
+    });
+    _this.state = {
+      pageSize: 10,
+      currentPage: 0
+    };
+    return _this;
   }
 
-  _createClass(AdminDashboard, [{
+  _createClass(AgentsTable, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      if (this.props.onMount) this.props.onMount();
+    }
+  }, {
     key: "render",
     value: function render() {
       var _props = this.props,
           classes = _props.classes,
-          userUUID = _props.userUUID,
-          newsItems = _props.newsItems,
-          submittedNewsAlertSuccessfully = _props.submittedNewsAlertSuccessfully,
-          deletedNewsAlertSuccessfully = _props.deletedNewsAlertSuccessfully;
-      var currentDate = external__moment__default()();
+          columns = _props.columns,
+          rows = _props.rows;
       return external__react__default.a.createElement("div", {
         className: classes.root
-      }, external__react__default.a.createElement(CompanyNewsAlerts["a" /* default */], {
-        userRole: this.props.userRole,
-        submittedNewsAlertSuccessfully: submittedNewsAlertSuccessfully,
-        deletedNewsAlertSuccessfully: deletedNewsAlertSuccessfully
-      }), external__react__default.a.createElement(Grid__default.a, {
-        container: true,
-        spacing: 16
-      }, external__react__default.a.createElement(Grid__default.a, {
-        item: true,
-        xs: 12
-      }, external__react__default.a.createElement(Divider__default.a, null)), external__react__default.a.createElement(Grid__default.a, {
-        item: true,
-        xs: 12
-      }, external__react__default.a.createElement("div", {
-        className: classes.expansionPanelWrapper
-      }, external__react__default.a.createElement(ExpansionPanel__default.a, {
-        defaultExpanded: true
-      }, external__react__default.a.createElement(ExpansionPanel_["ExpansionPanelSummary"], {
-        expandIcon: external__react__default.a.createElement(ExpandMore__default.a, null)
-      }, external__react__default.a.createElement(Typography__default.a, {
-        className: classes.heading
-      }, "Company Stats")), external__react__default.a.createElement(ExpansionPanel_["ExpansionPanelDetails"], null, external__react__default.a.createElement(Grid__default.a, {
-        container: true,
-        spacing: 16
-      }, external__react__default.a.createElement(Grid__default.a, {
-        item: true,
-        xs: 12,
-        sm: 6,
-        lg: 4
-      }, external__react__default.a.createElement(StatNumberBox["a" /* default */], {
-        rootClassName: classes.statNumberBoxWrapper,
-        icon: AttachMoney__default.a,
-        iconClass: classes.statBoxMoneyIcon,
-        stat: "$".concat(Object(utils_Math["b" /* round */])(this.props.grossCommissionsToDate, 0).toLocaleString()),
-        statTitle: "Gross Commissions to Date"
-      })), external__react__default.a.createElement(Grid__default.a, {
-        item: true,
-        xs: 12,
-        sm: 6,
-        lg: 4
-      }, external__react__default.a.createElement(StatNumberBox["a" /* default */], {
-        rootClassName: classes.statNumberBoxWrapper,
-        icon: AttachMoney__default.a,
-        iconClass: classes.statBoxMoneyIcon,
-        stat: "$".concat(Object(utils_Math["b" /* round */])(this.props.netCommissionsToDate, 0).toLocaleString()),
-        statTitle: "Total Net Commissions to Date"
-      })), external__react__default.a.createElement(Grid__default.a, {
-        item: true,
-        xs: 12,
-        lg: 4
-      }, external__react__default.a.createElement(StatNumberBox["a" /* default */], {
-        rootClassName: classes.statNumberBoxWrapper,
-        icon: AttachMoney__default.a,
-        iconClass: classes.statBoxMoneyIcon,
-        stat: "$".concat(Object(utils_Math["b" /* round */])(this.props.currentMonthNetCommissions, 0).toLocaleString()),
-        statTitle: "".concat(months[currentDate.month()], " - Net Commissions")
-      })), external__react__default.a.createElement(Grid__default.a, {
-        item: true,
-        xs: 12,
-        sm: 6
-      }, external__react__default.a.createElement(StatNumberBox["a" /* default */], {
-        rootClassName: classes.statNumberBoxWrapper,
-        icon: Star__default.a,
-        iconClass: classes.statBoxStarIcon,
-        stat: this.props.currentMonthNumOfDealsCommissions,
-        statTitle: "".concat(months[currentDate.month()], " - Number of Deals")
-      })), external__react__default.a.createElement(Grid__default.a, {
-        item: true,
-        xs: 12,
-        sm: 6
-      }, external__react__default.a.createElement(StatNumberBox["a" /* default */], {
-        rootClassName: classes.statNumberBoxWrapper,
-        icon: Help__default.a,
-        iconClass: classes.statBoxQuestionIcon,
-        stat: this.props.numOfPendingDeals,
-        statTitle: "Number of Pending Deals"
-      })))))))));
+      }, external__react__default.a.createElement(dx_react_grid_material_ui_["Grid"], {
+        rows: rows,
+        columns: columns,
+        getRowId: getRowId
+      }, external__react__default.a.createElement(AgentsTable_PhotoTypeProvider, {
+        "for": ['photo']
+      }), external__react__default.a.createElement(AgentsTable_ViewTypeProvider, {
+        "for": ['view']
+      }), external__react__default.a.createElement(dx_react_grid_material_ui_["DragDropProvider"], null), external__react__default.a.createElement(dx_react_grid_["SearchState"], null), external__react__default.a.createElement(dx_react_grid_["FilteringState"], {
+        columnExtensions: filteringStateColumnExtensions
+      }), external__react__default.a.createElement(dx_react_grid_["SortingState"], {
+        defaultSorting: [{
+          columnName: 'name',
+          direction: 'asc'
+        }],
+        columnExtensions: sortingStateColumnExtensions
+      }), external__react__default.a.createElement(dx_react_grid_["PagingState"], {
+        currentPage: this.state.currentPage,
+        pageSize: this.state.pageSize,
+        onPageSizeChange: this.changePageSize,
+        onCurrentPageChange: this.currentPageChange
+      }), external__react__default.a.createElement(dx_react_grid_["IntegratedFiltering"], null), external__react__default.a.createElement(dx_react_grid_["IntegratedSorting"], null), external__react__default.a.createElement(dx_react_grid_["IntegratedPaging"], null), external__react__default.a.createElement(dx_react_grid_material_ui_["VirtualTable"], {
+        height: external__is_browser__default.a ? window.innerHeight - 245 : undefined,
+        tableComponent: TableComponent["a" /* default */],
+        containerComponent: TableContainerComponentWrapper,
+        cellComponent: DefaultVirtualTableCell["a" /* default */],
+        noDataCellComponent: NoDataCellComponent["a" /* default */]
+      }), external__react__default.a.createElement(dx_react_grid_material_ui_["TableColumnReordering"], {
+        defaultOrder: columns.map(function (column) {
+          return column.name;
+        })
+      }), external__react__default.a.createElement(dx_react_grid_material_ui_["TableColumnResizing"], {
+        defaultColumnWidths: defaultColumnWidths
+      }), external__react__default.a.createElement(dx_react_grid_material_ui_["TableFilterRow"], {
+        cellComponent: AgentsTable_FilterCell
+      }), external__react__default.a.createElement(dx_react_grid_material_ui_["Toolbar"], null), external__react__default.a.createElement(dx_react_grid_material_ui_["SearchPanel"], null), external__react__default.a.createElement(dx_react_grid_material_ui_["TableHeaderRow"], {
+        showSortingControls: true
+      }), external__react__default.a.createElement(dx_react_grid_material_ui_["PagingPanel"], {
+        pageSizes: pageSizes
+      })));
     }
   }]);
 
-  return AdminDashboard;
+  return AgentsTable;
 }(external__react_["Component"])) || _class) || _class);
-/* harmony default export */ var components_AdminDashboard = (Object(styles_["withStyles"])(styles)(AdminDashboard_AdminDashboard));
-// CONCATENATED MODULE: ./containers/AdminDashboard.js
-var AdminDashboard__dec, AdminDashboard__class;
+/* harmony default export */ var components_AgentsTable = (AgentsTable_AgentsTable);
+// EXTERNAL MODULE: ./utils/stringUtils.js
+var stringUtils = __webpack_require__(17);
 
-var _templateObject = /*#__PURE__*/ _taggedTemplateLiteral(["\n  query allDeals {\n    allDeals {\n      date\n      status\n      netCompanyCommission\n      total\n    }\n  }\n"]);
+// CONCATENATED MODULE: ./containers/AgentsTable.js
+var AgentsTable__class;
 
-function AdminDashboard__typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { AdminDashboard__typeof = function _typeof(obj) { return typeof obj; }; } else { AdminDashboard__typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return AdminDashboard__typeof(obj); }
+var _templateObject = /*#__PURE__*/ _taggedTemplateLiteral(["\n  query agents {\n    agents {\n      uuid\n      firstName\n      lastName\n      email\n      role\n      agent {\n        profilePicURL\n        branch\n        mobileNumber\n        officeNumber\n        areaOfFocus\n      }\n    }\n  }\n"]);
 
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function AgentsTable__typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { AgentsTable__typeof = function _typeof(obj) { return typeof obj; }; } else { AgentsTable__typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return AgentsTable__typeof(obj); }
 
-function AdminDashboard__classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+function AgentsTable__extends() { AgentsTable__extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return AgentsTable__extends.apply(this, arguments); }
 
-function AdminDashboard__defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+function AgentsTable__objectWithoutProperties(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i < sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) >= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }
 
-function AdminDashboard__createClass(Constructor, protoProps, staticProps) { if (protoProps) AdminDashboard__defineProperties(Constructor.prototype, protoProps); if (staticProps) AdminDashboard__defineProperties(Constructor, staticProps); return Constructor; }
+function AgentsTable__classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-function AdminDashboard__possibleConstructorReturn(self, call) { if (call && (AdminDashboard__typeof(call) === "object" || typeof call === "function")) { return call; } return AdminDashboard__assertThisInitialized(self); }
+function AgentsTable__defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 
-function AdminDashboard__inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+function AgentsTable__createClass(Constructor, protoProps, staticProps) { if (protoProps) AgentsTable__defineProperties(Constructor.prototype, protoProps); if (staticProps) AgentsTable__defineProperties(Constructor, staticProps); return Constructor; }
 
-function AdminDashboard__assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+function AgentsTable__possibleConstructorReturn(self, call) { if (call && (AgentsTable__typeof(call) === "object" || typeof call === "function")) { return call; } return AgentsTable__assertThisInitialized(self); }
+
+function AgentsTable__inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+function AgentsTable__assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 
 function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
 
@@ -5963,147 +4794,162 @@ function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(
 
 
 
-
+var chance = new external__chance__default.a();
 var Loader = external__react_spinners_["DotLoader"];
-var dealsQuery = external__graphql_tag__default()(_templateObject);
+var agentsQuery = external__graphql_tag__default()(_templateObject);
 
-var AdminDashboard_styles = function styles(theme) {
+var AgentsTable_styles = function styles(theme) {
   return {
     root: {
-      maxWidth: '100%',
-      marginBottom: 10
+      position: 'relative'
     },
-    snackBar: {
-      marginTop: 30
+    progress: {
+      margin: theme.spacing.unit * 2,
+      marginRight: 'auto',
+      marginLeft: 'auto',
+      display: 'block'
+    },
+    progressWrapper: {
+      position: 'absolute',
+      top: 0,
+      bottom: 0,
+      left: 0,
+      right: 0,
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      flexDirection: 'column',
+      padding: '60px 20px',
+      borderRadius: '3px',
+      backgroundColor: '#fff',
+      zIndex: 2
     }
   };
 };
 
-var AdminDashboard_DashboardContainer = (AdminDashboard__dec = Object(styles_["withStyles"])(AdminDashboard_styles), Object(external__mobx_react_["observer"])(AdminDashboard__class = AdminDashboard__dec(AdminDashboard__class =
+var AgentsTable_columns = [{
+  name: 'agentID',
+  title: 'Agent ID'
+}, {
+  name: 'photo',
+  title: 'Photo'
+}, {
+  name: 'name',
+  title: 'Name'
+}, {
+  name: 'email',
+  title: 'Email'
+}, {
+  name: 'areaOfFocus',
+  title: 'Area of Focus'
+}, {
+  name: 'mobileNumber',
+  title: 'Mobile Number'
+}, {
+  name: 'companyNumberAndExt',
+  title: 'Company Number/Extension'
+}, {
+  name: 'branch',
+  title: 'Branch'
+}, {
+  name: 'view',
+  title: 'View Profile'
+}];
+
+var AgentsTable_AgentsTableContainer = Object(external__mobx_react_["observer"])(AgentsTable__class =
 /*#__PURE__*/
 function (_Component) {
-  AdminDashboard__inherits(DashboardContainer, _Component);
+  AgentsTable__inherits(AgentsTableContainer, _Component);
 
-  function DashboardContainer() {
-    var _ref;
+  function AgentsTableContainer(props) {
+    var _this;
 
-    var _temp, _this;
+    AgentsTable__classCallCheck(this, AgentsTableContainer);
 
-    AdminDashboard__classCallCheck(this, DashboardContainer);
-
-    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
-      args[_key] = arguments[_key];
-    }
-
-    return AdminDashboard__possibleConstructorReturn(_this, (_temp = _this = AdminDashboard__possibleConstructorReturn(this, (_ref = DashboardContainer.__proto__ || Object.getPrototypeOf(DashboardContainer)).call.apply(_ref, [this].concat(args))), Object.defineProperty(AdminDashboard__assertThisInitialized(_this), "state", {
+    _this = AgentsTable__possibleConstructorReturn(this, (AgentsTableContainer.__proto__ || Object.getPrototypeOf(AgentsTableContainer)).call(this, props));
+    Object.defineProperty(AgentsTable__assertThisInitialized(_this), "createRows", {
       configurable: true,
       enumerable: true,
       writable: true,
-      value: {
-        snackbarText: '',
-        snackbarOpen: false
-      }
-    }), Object.defineProperty(AdminDashboard__assertThisInitialized(_this), "returnDealData", {
-      configurable: true,
-      enumerable: true,
-      writable: true,
-      value: function value() {
-        var deals = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
-        var currentMonth = external__moment__default()().month();
-        var netCommissionsToDate = 0;
-        var currentMonthNetCommissions = 0;
-        var currentMonthNumOfDealsCommissions = 0;
-        var numOfPendingDeals = 0;
-        var grossCommissionsToDate = 0;
-        deals.forEach(function (deal) {
-          if (deal.status === 'pending') {
-            numOfPendingDeals += 1;
-            return;
-          }
-
-          grossCommissionsToDate += deal.total;
-          netCommissionsToDate += deal.netCompanyCommission || 0;
-
-          if (external__moment__default()(deal.date).month() === currentMonth) {
-            currentMonthNumOfDealsCommissions += 1;
-            currentMonthNetCommissions += deal.netCompanyCommission || 0;
-          }
+      value: function value(agents) {
+        var rows = [];
+        agents.forEach(function (agent) {
+          var agentPart = agent.agent,
+              firstName = agent.firstName,
+              lastName = agent.lastName,
+              email = agent.email,
+              uuid = agent.uuid,
+              lastLoginTimestamp = agent.lastLoginTimestamp;
+          var areaOfFocus = agentPart.areaOfFocus,
+              state = agentPart.state,
+              realEstateLicenseNumber = agentPart.realEstateLicenseNumber,
+              profilePicURL = agentPart.profilePicURL,
+              officeNumber = agentPart.officeNumber,
+              mobileNumber = agentPart.mobileNumber,
+              branch = agentPart.branch;
+          rows.push({
+            agentID: uuid,
+            realEstateLicenseNumber: realEstateLicenseNumber,
+            photo: {
+              imageURL: profilePicURL,
+              id: uuid
+            },
+            name: Object(stringUtils["a" /* capitalize */])("".concat(firstName, " ").concat(lastName)),
+            email: email,
+            areaOfFocus: areaOfFocus || 'none',
+            mobileNumber: mobileNumber,
+            companyNumberAndExt: officeNumber,
+            branch: branch,
+            state: state,
+            lastLoginTimestamp: lastLoginTimestamp ? moment(lastLoginTimestamp).format('MM/DD/YYYY, h:mm:ss a') : '',
+            view: {
+              route: 'profile',
+              id: uuid
+            }
+          });
         });
-        return {
-          netCommissionsToDate: netCommissionsToDate,
-          currentMonthNetCommissions: currentMonthNetCommissions,
-          currentMonthNumOfDealsCommissions: currentMonthNumOfDealsCommissions,
-          numOfPendingDeals: numOfPendingDeals,
-          grossCommissionsToDate: grossCommissionsToDate
-        };
+        return rows;
       }
-    }), Object.defineProperty(AdminDashboard__assertThisInitialized(_this), "submittedNewsAlertSuccessfully", {
-      configurable: true,
-      enumerable: true,
-      writable: true,
-      value: function value() {
-        _this.setState({
-          snackbarText: 'News/Alert item successfully submitted!',
-          snackbarOpen: true
-        });
-      }
-    }), Object.defineProperty(AdminDashboard__assertThisInitialized(_this), "deletedNewsAlertSuccessfully", {
-      configurable: true,
-      enumerable: true,
-      writable: true,
-      value: function value() {
-        _this.setState({
-          snackbarText: 'News/Alert item successfully deleted!',
-          snackbarOpen: true
-        });
-      }
-    }), Object.defineProperty(AdminDashboard__assertThisInitialized(_this), "handleCloseSnackbar", {
-      configurable: true,
-      enumerable: true,
-      writable: true,
-      value: function value() {
-        _this.setState({
-          snackbarOpen: false
-        });
-      }
-    }), _temp));
+    });
+    _this.state = {
+      tableIsLoading: true
+    };
+    return _this;
   }
 
-  AdminDashboard__createClass(DashboardContainer, [{
+  AgentsTable__createClass(AgentsTableContainer, [{
     key: "render",
     value: function render() {
       var _this2 = this;
 
+      var _state = this.state,
+          tableIsLoading = _state.tableIsLoading,
+          rows = _state.rows;
+
       var _props = this.props,
-          userUUID = _props.userUUID,
-          classes = _props.classes;
+          classes = _props.classes,
+          rest = AgentsTable__objectWithoutProperties(_props, ["classes"]);
+
       return external__react__default.a.createElement(external__react_apollo_["Query"], {
-        query: dealsQuery,
-        variables: {
-          uuid: userUUID
-        },
-        ssr: false
-      }, function (_ref2) {
-        var _React$createElement;
-
-        var loading = _ref2.loading,
-            error = _ref2.error,
-            data = _ref2.data;
-
-        if (loading) {
-          return external__react__default.a.createElement("div", {
-            style: {
-              display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'center',
-              height: 'calc(100vh - 110px)',
-              boxShadow: '0px 1px 3px 0px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 2px 1px -1px rgba(0, 0, 0, 0.12)'
-            }
-          }, external__react__default.a.createElement(Loader, {
-            color: "#f44336",
-            loading: true
-          }));
-        }
+        query: agentsQuery
+      }, function (_ref) {
+        var loading = _ref.loading,
+            error = _ref.error,
+            data = _ref.data;
+        console.log(data);
+        if (loading) return external__react__default.a.createElement("div", {
+          style: {
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            height: 'calc(100vh - 110px)',
+            boxShadow: '0px 1px 3px 0px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 2px 1px -1px rgba(0, 0, 0, 0.12)'
+          }
+        }, external__react__default.a.createElement(Loader, {
+          color: "#f44336",
+          loading: true
+        })); // TODO: change the error message to a generic
+        // 'error connecting to server' message
 
         if (error) {
           console.log(error);
@@ -6114,69 +4960,50 @@ function (_Component) {
           }, "We're sorry. There was an error processing your request.");
         }
 
-        var _this2$returnDealData = _this2.returnDealData(data.allDeals),
-            netCommissionsToDate = _this2$returnDealData.netCommissionsToDate,
-            currentMonthNetCommissions = _this2$returnDealData.currentMonthNetCommissions,
-            currentMonthNumOfDealsCommissions = _this2$returnDealData.currentMonthNumOfDealsCommissions,
-            numOfPendingDeals = _this2$returnDealData.numOfPendingDeals,
-            grossCommissionsToDate = _this2$returnDealData.grossCommissionsToDate;
-
-        return external__react__default.a.createElement("div", null, external__react__default.a.createElement(components_AdminDashboard, (_React$createElement = {
-          userUUID: _this2.props.userUUID,
-          userRole: _this2.props.userRole,
-          grossCommissionsToDate: grossCommissionsToDate,
-          netCommissionsToDate: netCommissionsToDate,
-          currentMonthNetCommissions: currentMonthNetCommissions,
-          submittedNewsAlertSuccessfully: _this2.submittedNewsAlertSuccessfully,
-          deletedNewsAlertSuccessfully: _this2.deletedNewsAlertSuccessfully
-        }, _defineProperty(_React$createElement, "submittedNewsAlertSuccessfully", _this2.submittedNewsAlertSuccessfully), _defineProperty(_React$createElement, "currentMonthNumOfDealsCommissions", currentMonthNumOfDealsCommissions), _defineProperty(_React$createElement, "numOfPendingDeals", numOfPendingDeals), _React$createElement)), external__react__default.a.createElement(Snackbar__default.a, {
-          classes: {
-            root: classes.snackBar
+        return external__react__default.a.createElement("div", {
+          className: classes.root
+        }, tableIsLoading ? external__react__default.a.createElement("div", {
+          className: classes.progressWrapper,
+          style: {
+            display: 'flex',
+            justifyContent: 'center'
+          }
+        }, external__react__default.a.createElement(Loader, {
+          color: "#f44336",
+          loading: true
+        })) : null, external__react__default.a.createElement(components_AgentsTable, AgentsTable__extends({}, rest, {
+          onMount: function onMount() {
+            return tableIsLoading ? _this2.setState({
+              tableIsLoading: false
+            }) : null;
           },
-          anchorOrigin: {
-            vertical: 'top',
-            horizontal: 'center'
-          },
-          open: _this2.state.snackbarOpen,
-          autoHideDuration: 4000,
-          onClose: _this2.handleCloseSnackbar,
-          message: external__react__default.a.createElement("span", {
-            id: "snackbar-id"
-          }, _this2.state.snackbarText),
-          action: [external__react__default.a.createElement(IconButton__default.a, {
-            key: "close",
-            "aria-label": "Close",
-            color: "inherit",
-            className: classes.close,
-            onClick: _this2.handleCloseSnackbar
-          }, external__react__default.a.createElement(Close__default.a, null))]
-        }));
+          columns: AgentsTable_columns,
+          rows: _this2.createRows(data.agents)
+        })));
       });
     }
   }]);
 
-  return DashboardContainer;
-}(external__react_["Component"])) || AdminDashboard__class) || AdminDashboard__class);
-/* harmony default export */ var containers_AdminDashboard = (AdminDashboard_DashboardContainer);
-// CONCATENATED MODULE: ./pages/app/admin-area/dashboard.js
-var dashboard__class;
+  return AgentsTableContainer;
+}(external__react_["Component"])) || AgentsTable__class;
 
-function dashboard__typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { dashboard__typeof = function _typeof(obj) { return typeof obj; }; } else { dashboard__typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return dashboard__typeof(obj); }
+/* harmony default export */ var containers_AgentsTable = (Object(styles_["withStyles"])(AgentsTable_styles)(AgentsTable_AgentsTableContainer));
+// CONCATENATED MODULE: ./pages/app/agents.js
+var agents__class;
 
-function dashboard__classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+function agents__typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { agents__typeof = function _typeof(obj) { return typeof obj; }; } else { agents__typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return agents__typeof(obj); }
 
-function dashboard__possibleConstructorReturn(self, call) { if (call && (dashboard__typeof(call) === "object" || typeof call === "function")) { return call; } return dashboard__assertThisInitialized(self); }
+function agents__classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-function dashboard__assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+function agents__possibleConstructorReturn(self, call) { if (call && (agents__typeof(call) === "object" || typeof call === "function")) { return call; } return agents__assertThisInitialized(self); }
 
-function dashboard__defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+function agents__assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 
-function dashboard__createClass(Constructor, protoProps, staticProps) { if (protoProps) dashboard__defineProperties(Constructor.prototype, protoProps); if (staticProps) dashboard__defineProperties(Constructor, staticProps); return Constructor; }
+function agents__defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 
-function dashboard__inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+function agents__createClass(Constructor, protoProps, staticProps) { if (protoProps) agents__defineProperties(Constructor.prototype, protoProps); if (staticProps) agents__defineProperties(Constructor, staticProps); return Constructor; }
 
-
-
+function agents__inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 
 
@@ -6185,12 +5012,14 @@ function dashboard__inherits(subClass, superClass) { if (typeof superClass !== "
 
 
 
-var dashboard_Dashboard = Object(external__mobx_react_["observer"])(dashboard__class =
+
+
+var agents_AgentsDashboard = Object(external__mobx_react_["observer"])(agents__class =
 /*#__PURE__*/
 function (_React$Component) {
-  dashboard__inherits(Dashboard, _React$Component);
+  agents__inherits(AgentsDashboard, _React$Component);
 
-  dashboard__createClass(Dashboard, null, [{
+  agents__createClass(AgentsDashboard, null, [{
     key: "getInitialProps",
     value: function getInitialProps(_ref) {
       var req = _ref.req;
@@ -6202,12 +5031,12 @@ function (_React$Component) {
     }
   }]);
 
-  function Dashboard(props) {
+  function AgentsDashboard(props) {
     var _this;
 
-    dashboard__classCallCheck(this, Dashboard);
+    agents__classCallCheck(this, AgentsDashboard);
 
-    _this = dashboard__possibleConstructorReturn(this, (Dashboard.__proto__ || Object.getPrototypeOf(Dashboard)).call(this, props));
+    _this = agents__possibleConstructorReturn(this, (AgentsDashboard.__proto__ || Object.getPrototypeOf(AgentsDashboard)).call(this, props));
     _this.store = Object(models["a" /* initStore */])(props.isServer, props.cookieJWTData);
 
     if (external__is_browser__default.a && !_this.store.UserStore.isLoggedIn) {
@@ -6219,23 +5048,20 @@ function (_React$Component) {
     return _this;
   }
 
-  dashboard__createClass(Dashboard, [{
+  agents__createClass(AgentsDashboard, [{
     key: "render",
     value: function render() {
       return external__react__default.a.createElement(Layout["a" /* default */], {
         UserStore: this.store.UserStore,
         UIStore: this.store.UIStore
-      }, external__react__default.a.createElement(containers_AdminDashboard, {
-        userUUID: this.store.UserStore.uuid,
-        userRole: this.store.UserStore.userRole
-      }));
+      }, external__react__default.a.createElement("div", null, external__react__default.a.createElement(containers_AgentsTable, null)));
     }
   }]);
 
-  return Dashboard;
-}(external__react__default.a.Component)) || dashboard__class;
+  return AgentsDashboard;
+}(external__react__default.a.Component)) || agents__class;
 
-/* harmony default export */ var dashboard = __webpack_exports__["default"] = (Object(withData["a" /* default */])(dashboard_Dashboard));
+/* harmony default export */ var app_agents = __webpack_exports__["default"] = (Object(withData["a" /* default */])(agents_AgentsDashboard));
 
 /***/ })
 /******/ ]);

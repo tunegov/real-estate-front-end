@@ -67,7 +67,7 @@ module.exports =
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 217);
+/******/ 	return __webpack_require__(__webpack_require__.s = 225);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -3824,7 +3824,12 @@ module.exports = require("@material-ui/icons/ExpandMore");
 
 /***/ }),
 /* 110 */,
-/* 111 */,
+/* 111 */
+/***/ (function(module, exports) {
+
+module.exports = require("faker");
+
+/***/ }),
 /* 112 */,
 /* 113 */,
 /* 114 */,
@@ -5541,14 +5546,22 @@ module.exports = require("react-quill");
 /* 214 */,
 /* 215 */,
 /* 216 */,
-/* 217 */
+/* 217 */,
+/* 218 */,
+/* 219 */,
+/* 220 */,
+/* 221 */,
+/* 222 */,
+/* 223 */,
+/* 224 */,
+/* 225 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(218);
+module.exports = __webpack_require__(226);
 
 
 /***/ }),
-/* 218 */
+/* 226 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -5565,10 +5578,6 @@ var external__mobx_react__default = /*#__PURE__*/__webpack_require__.n(external_
 // EXTERNAL MODULE: external "is-browser"
 var external__is_browser_ = __webpack_require__(7);
 var external__is_browser__default = /*#__PURE__*/__webpack_require__.n(external__is_browser_);
-
-// EXTERNAL MODULE: external "next/head"
-var head_ = __webpack_require__(16);
-var head__default = /*#__PURE__*/__webpack_require__.n(head_);
 
 // EXTERNAL MODULE: ./components/Layout/index.js + 11 modules
 var Layout = __webpack_require__(71);
@@ -5595,25 +5604,13 @@ var external__react_apollo__default = /*#__PURE__*/__webpack_require__.n(externa
 var external__react_spinners_ = __webpack_require__(23);
 var external__react_spinners__default = /*#__PURE__*/__webpack_require__.n(external__react_spinners_);
 
-// EXTERNAL MODULE: external "material-ui/styles"
-var styles_ = __webpack_require__(2);
-var styles__default = /*#__PURE__*/__webpack_require__.n(styles_);
-
 // EXTERNAL MODULE: external "moment"
 var external__moment_ = __webpack_require__(42);
 var external__moment__default = /*#__PURE__*/__webpack_require__.n(external__moment_);
 
-// EXTERNAL MODULE: external "material-ui/Snackbar"
-var Snackbar_ = __webpack_require__(28);
-var Snackbar__default = /*#__PURE__*/__webpack_require__.n(Snackbar_);
-
-// EXTERNAL MODULE: external "material-ui/IconButton"
-var IconButton_ = __webpack_require__(15);
-var IconButton__default = /*#__PURE__*/__webpack_require__.n(IconButton_);
-
-// EXTERNAL MODULE: external "@material-ui/icons/Close"
-var Close_ = __webpack_require__(29);
-var Close__default = /*#__PURE__*/__webpack_require__.n(Close_);
+// EXTERNAL MODULE: external "material-ui/styles"
+var styles_ = __webpack_require__(2);
+var styles__default = /*#__PURE__*/__webpack_require__.n(styles_);
 
 // EXTERNAL MODULE: external "material-ui/Grid"
 var Grid_ = __webpack_require__(32);
@@ -5643,6 +5640,10 @@ var Star__default = /*#__PURE__*/__webpack_require__.n(Star_);
 var ExpandMore_ = __webpack_require__(109);
 var ExpandMore__default = /*#__PURE__*/__webpack_require__.n(ExpandMore_);
 
+// EXTERNAL MODULE: external "classnames"
+var external__classnames_ = __webpack_require__(8);
+var external__classnames__default = /*#__PURE__*/__webpack_require__.n(external__classnames_);
+
 // EXTERNAL MODULE: external "material-ui/Divider"
 var Divider_ = __webpack_require__(20);
 var Divider__default = /*#__PURE__*/__webpack_require__.n(Divider_);
@@ -5655,10 +5656,6 @@ var Typography__default = /*#__PURE__*/__webpack_require__.n(Typography_);
 var List_ = __webpack_require__(27);
 var List__default = /*#__PURE__*/__webpack_require__.n(List_);
 
-// EXTERNAL MODULE: external "classnames"
-var external__classnames_ = __webpack_require__(8);
-var external__classnames__default = /*#__PURE__*/__webpack_require__.n(external__classnames_);
-
 // EXTERNAL MODULE: external "material-ui/ExpansionPanel"
 var ExpansionPanel_ = __webpack_require__(107);
 var ExpansionPanel__default = /*#__PURE__*/__webpack_require__.n(ExpansionPanel_);
@@ -5666,14 +5663,20 @@ var ExpansionPanel__default = /*#__PURE__*/__webpack_require__.n(ExpansionPanel_
 // EXTERNAL MODULE: ./components/StatNumberBox/index.js
 var StatNumberBox = __webpack_require__(123);
 
-// EXTERNAL MODULE: ./utils/Math.js
-var utils_Math = __webpack_require__(70);
+// EXTERNAL MODULE: external "faker"
+var external__faker_ = __webpack_require__(111);
+var external__faker__default = /*#__PURE__*/__webpack_require__.n(external__faker_);
 
-// EXTERNAL MODULE: ./containers/CompanyNewsAlerts.js + 6 modules
-var CompanyNewsAlerts = __webpack_require__(166);
+// EXTERNAL MODULE: external "material-ui/Tooltip"
+var Tooltip_ = __webpack_require__(13);
+var Tooltip__default = /*#__PURE__*/__webpack_require__.n(Tooltip_);
 
-// CONCATENATED MODULE: ./components/AdminDashboard/index.js
-var _dec, _class;
+// EXTERNAL MODULE: external "polished"
+var external__polished_ = __webpack_require__(10);
+var external__polished__default = /*#__PURE__*/__webpack_require__.n(external__polished_);
+
+// CONCATENATED MODULE: ./components/AgentOfTheMonth/index.js
+var _class;
 
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
@@ -5685,10 +5688,9 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
 
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 
 
 
@@ -5698,20 +5700,482 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 
 
-
-
-
-
-
-
-
-
-
-
-var chance = new external__chance__default.a();
-var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
 var styles = function styles(theme) {
+  return {
+    root: {},
+    anchor: {
+      textDecoration: 'none',
+      color: 'rgba(0,0,0,.7)',
+      '&:hover': {
+        color: 'rgba(0,0,0,.9)'
+      }
+    },
+    agentBoxWrapper: {
+      position: 'relative',
+      display: 'flex',
+      padding: '5px 25px',
+      alignItems: 'center',
+      height: '120px',
+      boxShadow: theme.shadows[1],
+      backgroundColor: '#fff',
+      borderRadius: '5px',
+      cursor: 'pointer'
+    },
+
+    /*
+    sales: {
+      background: 'linear-gradient(45deg, #9e1f1f 0%,#c11f1f 14%,#ffffff 14%,#ffffff 100%)',
+      [theme.breakpoints.only('sm')]: {
+        background: 'linear-gradient(45deg, #9e1f1f 0%,#c11f1f 13%,#ffffff 13%,#ffffff 100%)',
+      },
+    },
+    other: {
+      background: `linear-gradient(45deg, ${darken(0.1, '#9e1f1f')} 0%, ${darken(0.1, '#c11f1f')} 14%,#ffffff 14%,#ffffff 100%)`,
+      [theme.breakpoints.only('sm')]: {
+        background: `linear-gradient(45deg, ${darken(0.1, '#9e1f1f')} 0%, ${darken(0.1, '#c11f1f')} 13%,#ffffff 13%,#ffffff 100%)`,
+      },
+    },
+    */
+    profilePhotoWrapper: {
+      position: 'absolute',
+      height: '60%'
+    },
+    image: {
+      height: '100%',
+      display: 'block',
+      objectFit: 'cover',
+      cursor: 'pointer',
+      borderRadius: '50%',
+      background: 'linear-gradient(45deg, #45484d 0%,#000000 100%)'
+    },
+    infoWrapper: {
+      marginLeft: '70px',
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'center',
+      padding: '0 10px',
+      width: '100%',
+      height: '80%'
+    },
+    AgentOfTheMonthType: {
+      fontSize: '.85rem',
+      fontWeight: 500,
+      color: 'rgba(0,0,0,.7)'
+    },
+    agentName: {
+      fontSize: '20px',
+      fontWeight: 300
+    },
+    agentAwardTitle: {
+      marginBottom: '10px',
+      fontSize: '14px',
+      fontWeight: 300,
+      fontStyle: 'italic',
+      color: theme.palette.secondary.dark
+    },
+    stat: {
+      fontSize: '14px',
+      fontWeight: 300,
+      color: 'rgba(0,0,0,.7)'
+    },
+    label: {
+      position: 'absolute',
+      top: '-5px',
+      right: '5px',
+      padding: '5px 8px',
+      backgroundColor: 'rgba(0,0,0,.8)',
+      fontSize: '10px',
+      borderRadius: '10px',
+      color: '#fff',
+      zIndex: 10
+    },
+    contentWrapper: {
+      height: '100%',
+      width: '100%',
+      display: 'flex',
+      alignItems: 'center',
+      overflow: 'auto'
+    },
+    placeholder: {
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      position: 'absolute',
+      top: 0,
+      right: 0,
+      bottom: 0,
+      left: 0,
+      //backgroundColor: 'rgba(0,0,0,.8)',
+      background: 'linear-gradient(45deg, #45484d 0%,#1c1c1c 100%)',
+      color: '#fff',
+      fontWeight: 500,
+      borderRadius: '5px'
+    },
+    placeholderWrapper: {
+      cursor: 'default'
+    }
+  };
+};
+
+var AgentOfTheMonth_AgentOfTheMonth = Object(external__mobx_react_["observer"])(_class =
+/*#__PURE__*/
+function (_Component) {
+  _inherits(AgentOfTheMonth, _Component);
+
+  function AgentOfTheMonth() {
+    var _ref;
+
+    var _temp, _this;
+
+    _classCallCheck(this, AgentOfTheMonth);
+
+    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    return _possibleConstructorReturn(_this, (_temp = _this = _possibleConstructorReturn(this, (_ref = AgentOfTheMonth.__proto__ || Object.getPrototypeOf(AgentOfTheMonth)).call.apply(_ref, [this].concat(args))), Object.defineProperty(_assertThisInitialized(_this), "renderPlaceholder", {
+      configurable: true,
+      enumerable: true,
+      writable: true,
+      value: function value() {
+        var classes = _this.props.classes;
+        return external__react__default.a.createElement("div", {
+          className: external__classnames__default()(classes.agentBoxWrapper, classes.placeholderWrapper)
+        }, external__react__default.a.createElement("span", {
+          className: classes.label
+        }, "Agent of the Quarter"), external__react__default.a.createElement("div", {
+          className: classes.placeholder
+        }, "Tallying up the numbers..."));
+      }
+    }), _temp));
+  }
+
+  _createClass(AgentOfTheMonth, [{
+    key: "render",
+    value: function render() {
+      var _props = this.props,
+          classes = _props.classes,
+          residentialDollarsAgent = _props.residentialDollarsAgent,
+          commercialDollarsAgent = _props.commercialDollarsAgent,
+          rentalsDollarsAgent = _props.rentalsDollarsAgent,
+          numbersAgent = _props.numbersAgent;
+      return external__react__default.a.createElement("div", {
+        className: classes.root
+      }, external__react__default.a.createElement(Grid__default.a, {
+        container: true,
+        spacing: 16
+      }, external__react__default.a.createElement(Grid__default.a, {
+        item: true,
+        xs: 12,
+        md: 6
+      }, residentialDollarsAgent ? external__react__default.a.createElement(routes["Link"], {
+        route: residentialDollarsAgent.profileURL || '#'
+      }, external__react__default.a.createElement("a", {
+        className: classes.anchor
+      }, external__react__default.a.createElement("div", {
+        className: external__classnames__default()(classes.agentBoxWrapper, classes.sales)
+      }, external__react__default.a.createElement("span", {
+        className: classes.label
+      }, "Agent of the Quarter"), external__react__default.a.createElement("div", {
+        className: classes.contentWrapper
+      }, external__react__default.a.createElement("div", {
+        className: classes.profilePhotoWrapper
+      }, external__react__default.a.createElement("img", {
+        className: classes.image,
+        src: residentialDollarsAgent.photoURL,
+        alt: residentialDollarsAgent.name
+      })), external__react__default.a.createElement("div", {
+        className: classes.infoWrapper
+      }, external__react__default.a.createElement("div", {
+        className: classes.agentName
+      }, residentialDollarsAgent.name), external__react__default.a.createElement("div", {
+        className: classes.agentAwardTitle
+      }, "- Gross Residential Sales"), external__react__default.a.createElement("div", {
+        className: classes.stat
+      }, "Seles: $", residentialDollarsAgent.statItem.toLocaleString())))))) : this.renderPlaceholder()), external__react__default.a.createElement(Grid__default.a, {
+        item: true,
+        xs: 12,
+        md: 6
+      }, commercialDollarsAgent ? external__react__default.a.createElement(routes["Link"], {
+        route: commercialDollarsAgent.profileURL || '#'
+      }, external__react__default.a.createElement("a", {
+        className: classes.anchor
+      }, external__react__default.a.createElement("div", {
+        className: external__classnames__default()(classes.agentBoxWrapper, classes.sales)
+      }, external__react__default.a.createElement("span", {
+        className: classes.label
+      }, "Agent of the Quarter"), external__react__default.a.createElement("div", {
+        className: classes.contentWrapper
+      }, external__react__default.a.createElement("div", {
+        className: classes.profilePhotoWrapper
+      }, external__react__default.a.createElement("img", {
+        className: classes.image,
+        src: commercialDollarsAgent.photoURL,
+        alt: commercialDollarsAgent.name
+      })), external__react__default.a.createElement("div", {
+        className: classes.infoWrapper
+      }, external__react__default.a.createElement("div", {
+        className: classes.agentName
+      }, commercialDollarsAgent.name), external__react__default.a.createElement("div", {
+        className: classes.agentAwardTitle
+      }, "- Gross Commercial Sales"), external__react__default.a.createElement("div", {
+        className: classes.stat
+      }, "Sales: $", commercialDollarsAgent.statItem.toLocaleString())))))) : this.renderPlaceholder()), external__react__default.a.createElement(Grid__default.a, {
+        item: true,
+        xs: 12,
+        md: 6
+      }, rentalsDollarsAgent ? external__react__default.a.createElement(routes["Link"], {
+        route: rentalsDollarsAgent.profileURL || '#'
+      }, external__react__default.a.createElement("a", {
+        className: classes.anchor
+      }, external__react__default.a.createElement("div", {
+        className: external__classnames__default()(classes.agentBoxWrapper, classes.other)
+      }, external__react__default.a.createElement("span", {
+        className: classes.label
+      }, "Agent of the Quarter"), external__react__default.a.createElement("div", {
+        className: classes.contentWrapper
+      }, external__react__default.a.createElement("div", {
+        className: classes.profilePhotoWrapper
+      }, external__react__default.a.createElement("img", {
+        className: classes.image,
+        src: rentalsDollarsAgent.photoURL,
+        alt: rentalsDollarsAgent.name
+      })), external__react__default.a.createElement("div", {
+        className: classes.infoWrapper
+      }, external__react__default.a.createElement("div", {
+        className: classes.agentName
+      }, rentalsDollarsAgent.name), external__react__default.a.createElement("div", {
+        className: classes.agentAwardTitle
+      }, "- Gross Rentals Amount"), external__react__default.a.createElement("div", {
+        className: classes.stat
+      }, "Amount: $", rentalsDollarsAgent.statItem.toLocaleString())))))) : this.renderPlaceholder()), external__react__default.a.createElement(Grid__default.a, {
+        item: true,
+        xs: 12,
+        md: 6
+      }, numbersAgent ? external__react__default.a.createElement(routes["Link"], {
+        route: numbersAgent.profileURL || '#'
+      }, external__react__default.a.createElement("a", {
+        className: classes.anchor
+      }, external__react__default.a.createElement("div", {
+        className: external__classnames__default()(classes.agentBoxWrapper, classes.other)
+      }, external__react__default.a.createElement("span", {
+        className: classes.label
+      }, "Agent of the Quarter"), external__react__default.a.createElement("div", {
+        className: classes.contentWrapper
+      }, external__react__default.a.createElement("div", {
+        className: classes.profilePhotoWrapper
+      }, external__react__default.a.createElement("img", {
+        className: classes.image,
+        src: numbersAgent.photoURL,
+        alt: numbersAgent.name
+      })), external__react__default.a.createElement("div", {
+        className: classes.infoWrapper
+      }, external__react__default.a.createElement("div", {
+        className: classes.agentName
+      }, numbersAgent.name), external__react__default.a.createElement("div", {
+        className: classes.agentAwardTitle
+      }, "- Total Deals"), external__react__default.a.createElement("div", {
+        className: classes.stat
+      }, "Deals: ", numbersAgent.statItem.toLocaleString())))))) : this.renderPlaceholder())));
+    }
+  }]);
+
+  return AgentOfTheMonth;
+}(external__react_["Component"])) || _class;
+
+/* harmony default export */ var components_AgentOfTheMonth = (Object(styles_["withStyles"])(styles)(AgentOfTheMonth_AgentOfTheMonth));
+// CONCATENATED MODULE: ./containers/AgentOfTheMonth.js
+var AgentOfTheMonth__class;
+
+var _templateObject = /*#__PURE__*/ _taggedTemplateLiteral(["\n  query agentsOfTheQuarter {\n    agentsOfTheQuarter {\n      commercialDollarsAgent {\n        name\n        photoURL\n        uuid\n        statItem\n      }\n      residentialDollarsAgent {\n        name\n        photoURL\n        uuid\n        statItem\n      }\n      rentalsDollarsAgent {\n        name\n        photoURL\n        uuid\n        statItem\n      }\n      numbersAgent {\n        name\n        photoURL\n        uuid\n        statItem\n      }\n    }\n  }\n"]);
+
+function AgentOfTheMonth__typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { AgentOfTheMonth__typeof = function _typeof(obj) { return typeof obj; }; } else { AgentOfTheMonth__typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return AgentOfTheMonth__typeof(obj); }
+
+function AgentOfTheMonth__classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function AgentOfTheMonth__defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function AgentOfTheMonth__createClass(Constructor, protoProps, staticProps) { if (protoProps) AgentOfTheMonth__defineProperties(Constructor.prototype, protoProps); if (staticProps) AgentOfTheMonth__defineProperties(Constructor, staticProps); return Constructor; }
+
+function AgentOfTheMonth__possibleConstructorReturn(self, call) { if (call && (AgentOfTheMonth__typeof(call) === "object" || typeof call === "function")) { return call; } return AgentOfTheMonth__assertThisInitialized(self); }
+
+function AgentOfTheMonth__assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function AgentOfTheMonth__inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
+
+
+
+
+
+
+
+
+ // import AgentOfTheMonthCarousel from '../components/AgentOfTheMonthCarousel';
+
+var chance = new external__chance__default.a();
+var Loader = external__react_spinners_["DotLoader"];
+var agentOfTheQuarterQuery = external__graphql_tag__default()(_templateObject);
+
+var AgentOfTheMonth_AgentOfTheMonthContainer = Object(external__mobx_react_["observer"])(AgentOfTheMonth__class =
+/*#__PURE__*/
+function (_Component) {
+  AgentOfTheMonth__inherits(AgentOfTheMonthContainer, _Component);
+
+  function AgentOfTheMonthContainer(props) {
+    var _this;
+
+    AgentOfTheMonth__classCallCheck(this, AgentOfTheMonthContainer);
+
+    _this = AgentOfTheMonth__possibleConstructorReturn(this, (AgentOfTheMonthContainer.__proto__ || Object.getPrototypeOf(AgentOfTheMonthContainer)).call(this, props));
+    _this._commercialDollarsAgent = {
+      name: chance.name(),
+      photoURL: external__faker__default.a.image.avatar(),
+      profileURL: '#',
+      statItem: chance.integer({
+        min: 1000000,
+        max: 8000000
+      })
+    };
+    _this._residentialDollarsAgent = {
+      name: chance.name(),
+      photoURL: external__faker__default.a.image.avatar(),
+      profileURL: '#',
+      statItem: chance.integer({
+        min: 1000000,
+        max: 8000000
+      })
+    };
+    _this._rentalsDollarsAgent = {
+      name: chance.name(),
+      photoURL: external__faker__default.a.image.avatar(),
+      profileURL: '#',
+      statItem: chance.integer({
+        min: 1000000,
+        max: 8000000
+      })
+    };
+    _this._numbersAgent = {
+      name: chance.name(),
+      photoURL: external__faker__default.a.image.avatar(),
+      profileURL: '#',
+      statItem: chance.integer({
+        min: 40,
+        max: 120
+      })
+    };
+    return _this;
+  }
+
+  AgentOfTheMonth__createClass(AgentOfTheMonthContainer, [{
+    key: "render",
+    value: function render() {
+      var userUUID = this.props.userUUID;
+      var _residentialDollarsAgent = this._residentialDollarsAgent,
+          _commercialDollarsAgent = this._commercialDollarsAgent,
+          _rentalsDollarsAgent = this._rentalsDollarsAgent,
+          _numbersAgent = this._numbersAgent;
+      return external__react__default.a.createElement(external__react_apollo_["Query"], {
+        query: agentOfTheQuarterQuery,
+        variables: {
+          uuid: userUUID || this.state.userUUID
+        },
+        ssr: false
+      }, function (_ref) {
+        var loading = _ref.loading,
+            error = _ref.error,
+            data = _ref.data;
+        if (loading) return external__react__default.a.createElement("div", {
+          style: {
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            height: 'calc(100vh - 110px)',
+            boxShadow: '0px 1px 3px 0px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 2px 1px -1px rgba(0, 0, 0, 0.12)'
+          }
+        }, external__react__default.a.createElement(Loader, {
+          color: "#f44336",
+          loading: true
+        }));
+
+        if (error) {
+          console.log(error);
+          return external__react__default.a.createElement("div", {
+            style: {
+              textAlign: 'center'
+            }
+          }, "We're sorry. There was an error processing your request.");
+        }
+
+        var _data$agentsOfTheQuar = data.agentsOfTheQuarter,
+            residentialDollarsAgent = _data$agentsOfTheQuar.residentialDollarsAgent,
+            commercialDollarsAgent = _data$agentsOfTheQuar.commercialDollarsAgent,
+            rentalsDollarsAgent = _data$agentsOfTheQuar.rentalsDollarsAgent,
+            numbersAgent = _data$agentsOfTheQuar.numbersAgent;
+        return external__react__default.a.createElement(components_AgentOfTheMonth, {
+          residentialDollarsAgent: residentialDollarsAgent.uuid ? residentialDollarsAgent : null,
+          commercialDollarsAgent: commercialDollarsAgent.uuid ? commercialDollarsAgent : null,
+          rentalsDollarsAgent: rentalsDollarsAgent.uuid ? rentalsDollarsAgent : null,
+          numbersAgent: numbersAgent.uuid ? numbersAgent : null
+        });
+      });
+    }
+  }]);
+
+  return AgentOfTheMonthContainer;
+}(external__react_["Component"])) || AgentOfTheMonth__class;
+
+/* harmony default export */ var containers_AgentOfTheMonth = (AgentOfTheMonth_AgentOfTheMonthContainer);
+// EXTERNAL MODULE: ./utils/Math.js
+var utils_Math = __webpack_require__(70);
+
+// EXTERNAL MODULE: ./containers/CompanyNewsAlerts.js + 6 modules
+var CompanyNewsAlerts = __webpack_require__(166);
+
+// CONCATENATED MODULE: ./components/AgentDashboard/index.js
+var _dec, AgentDashboard__class;
+
+function AgentDashboard__typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { AgentDashboard__typeof = function _typeof(obj) { return typeof obj; }; } else { AgentDashboard__typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return AgentDashboard__typeof(obj); }
+
+function AgentDashboard__classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function AgentDashboard__defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function AgentDashboard__createClass(Constructor, protoProps, staticProps) { if (protoProps) AgentDashboard__defineProperties(Constructor.prototype, protoProps); if (staticProps) AgentDashboard__defineProperties(Constructor, staticProps); return Constructor; }
+
+function AgentDashboard__possibleConstructorReturn(self, call) { if (call && (AgentDashboard__typeof(call) === "object" || typeof call === "function")) { return call; } return AgentDashboard__assertThisInitialized(self); }
+
+function AgentDashboard__assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function AgentDashboard__inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+var AgentDashboard_chance = new external__chance__default.a();
+var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+
+var AgentDashboard_styles = function styles(theme) {
   return {
     root: {
       maxWidth: '100%'
@@ -5824,18 +6288,18 @@ var mapSizesToProps = function mapSizesToProps(_ref) {
   };
 };
 
-var AdminDashboard_AdminDashboard = (_dec = external__react_sizes__default()(mapSizesToProps), Object(external__mobx_react_["observer"])(_class = _dec(_class =
+var AgentDashboard_AgentDashboard = (_dec = external__react_sizes__default()(mapSizesToProps), Object(external__mobx_react_["observer"])(AgentDashboard__class = _dec(AgentDashboard__class =
 /*#__PURE__*/
 function (_Component) {
-  _inherits(AdminDashboard, _Component);
+  AgentDashboard__inherits(AgentDashboard, _Component);
 
-  function AdminDashboard() {
-    _classCallCheck(this, AdminDashboard);
+  function AgentDashboard() {
+    AgentDashboard__classCallCheck(this, AgentDashboard);
 
-    return _possibleConstructorReturn(this, (AdminDashboard.__proto__ || Object.getPrototypeOf(AdminDashboard)).apply(this, arguments));
+    return AgentDashboard__possibleConstructorReturn(this, (AgentDashboard.__proto__ || Object.getPrototypeOf(AgentDashboard)).apply(this, arguments));
   }
 
-  _createClass(AdminDashboard, [{
+  AgentDashboard__createClass(AgentDashboard, [{
     key: "render",
     value: function render() {
       var _props = this.props,
@@ -5847,14 +6311,14 @@ function (_Component) {
       var currentDate = external__moment__default()();
       return external__react__default.a.createElement("div", {
         className: classes.root
+      }, external__react__default.a.createElement(Grid__default.a, {
+        container: true,
+        spacing: 16
       }, external__react__default.a.createElement(CompanyNewsAlerts["a" /* default */], {
         userRole: this.props.userRole,
         submittedNewsAlertSuccessfully: submittedNewsAlertSuccessfully,
         deletedNewsAlertSuccessfully: deletedNewsAlertSuccessfully
       }), external__react__default.a.createElement(Grid__default.a, {
-        container: true,
-        spacing: 16
-      }, external__react__default.a.createElement(Grid__default.a, {
         item: true,
         xs: 12
       }, external__react__default.a.createElement(Divider__default.a, null)), external__react__default.a.createElement(Grid__default.a, {
@@ -5868,25 +6332,13 @@ function (_Component) {
         expandIcon: external__react__default.a.createElement(ExpandMore__default.a, null)
       }, external__react__default.a.createElement(Typography__default.a, {
         className: classes.heading
-      }, "Company Stats")), external__react__default.a.createElement(ExpansionPanel_["ExpansionPanelDetails"], null, external__react__default.a.createElement(Grid__default.a, {
+      }, "Personal Stats")), external__react__default.a.createElement(ExpansionPanel_["ExpansionPanelDetails"], null, external__react__default.a.createElement(Grid__default.a, {
         container: true,
         spacing: 16
       }, external__react__default.a.createElement(Grid__default.a, {
         item: true,
         xs: 12,
-        sm: 6,
-        lg: 4
-      }, external__react__default.a.createElement(StatNumberBox["a" /* default */], {
-        rootClassName: classes.statNumberBoxWrapper,
-        icon: AttachMoney__default.a,
-        iconClass: classes.statBoxMoneyIcon,
-        stat: "$".concat(Object(utils_Math["b" /* round */])(this.props.grossCommissionsToDate, 0).toLocaleString()),
-        statTitle: "Gross Commissions to Date"
-      })), external__react__default.a.createElement(Grid__default.a, {
-        item: true,
-        xs: 12,
-        sm: 6,
-        lg: 4
+        sm: 6
       }, external__react__default.a.createElement(StatNumberBox["a" /* default */], {
         rootClassName: classes.statNumberBoxWrapper,
         icon: AttachMoney__default.a,
@@ -5896,7 +6348,7 @@ function (_Component) {
       })), external__react__default.a.createElement(Grid__default.a, {
         item: true,
         xs: 12,
-        lg: 4
+        sm: 6
       }, external__react__default.a.createElement(StatNumberBox["a" /* default */], {
         rootClassName: classes.statNumberBoxWrapper,
         icon: AttachMoney__default.a,
@@ -5923,35 +6375,41 @@ function (_Component) {
         iconClass: classes.statBoxQuestionIcon,
         stat: this.props.numOfPendingDeals,
         statTitle: "Number of Pending Deals"
-      })))))))));
+      }))))))), external__react__default.a.createElement(Grid__default.a, {
+        item: true,
+        xs: 12,
+        lg: 12
+      }, external__react__default.a.createElement("div", {
+        className: classes.agentOfTheMonthContent
+      }, external__react__default.a.createElement(containers_AgentOfTheMonth, {
+        userUUID: userUUID
+      })))));
     }
   }]);
 
-  return AdminDashboard;
-}(external__react_["Component"])) || _class) || _class);
-/* harmony default export */ var components_AdminDashboard = (Object(styles_["withStyles"])(styles)(AdminDashboard_AdminDashboard));
-// CONCATENATED MODULE: ./containers/AdminDashboard.js
-var AdminDashboard__dec, AdminDashboard__class;
+  return AgentDashboard;
+}(external__react_["Component"])) || AgentDashboard__class) || AgentDashboard__class);
+/* harmony default export */ var components_AgentDashboard = (Object(styles_["withStyles"])(AgentDashboard_styles)(AgentDashboard_AgentDashboard));
+// CONCATENATED MODULE: ./containers/Dashboard.js
+var Dashboard__class;
 
-var _templateObject = /*#__PURE__*/ _taggedTemplateLiteral(["\n  query allDeals {\n    allDeals {\n      date\n      status\n      netCompanyCommission\n      total\n    }\n  }\n"]);
+var Dashboard__templateObject = /*#__PURE__*/ Dashboard__taggedTemplateLiteral(["\n  query dealsByAgentID($uuid: String!) {\n    dealsByAgentID(uuid: $uuid) {\n      date\n      status\n      netAgentCommission\n      total\n    }\n  }\n"]);
 
-function AdminDashboard__typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { AdminDashboard__typeof = function _typeof(obj) { return typeof obj; }; } else { AdminDashboard__typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return AdminDashboard__typeof(obj); }
+function Dashboard__typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { Dashboard__typeof = function _typeof(obj) { return typeof obj; }; } else { Dashboard__typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return Dashboard__typeof(obj); }
 
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function Dashboard__classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-function AdminDashboard__classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+function Dashboard__defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 
-function AdminDashboard__defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+function Dashboard__createClass(Constructor, protoProps, staticProps) { if (protoProps) Dashboard__defineProperties(Constructor.prototype, protoProps); if (staticProps) Dashboard__defineProperties(Constructor, staticProps); return Constructor; }
 
-function AdminDashboard__createClass(Constructor, protoProps, staticProps) { if (protoProps) AdminDashboard__defineProperties(Constructor.prototype, protoProps); if (staticProps) AdminDashboard__defineProperties(Constructor, staticProps); return Constructor; }
+function Dashboard__possibleConstructorReturn(self, call) { if (call && (Dashboard__typeof(call) === "object" || typeof call === "function")) { return call; } return Dashboard__assertThisInitialized(self); }
 
-function AdminDashboard__possibleConstructorReturn(self, call) { if (call && (AdminDashboard__typeof(call) === "object" || typeof call === "function")) { return call; } return AdminDashboard__assertThisInitialized(self); }
+function Dashboard__inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-function AdminDashboard__inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+function Dashboard__assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 
-function AdminDashboard__assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
+function Dashboard__taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
 
 
 
@@ -5960,50 +6418,26 @@ function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(
 
 
 
+var Dashboard_Loader = external__react_spinners_["DotLoader"];
+var dealsQuery = external__graphql_tag__default()(Dashboard__templateObject);
 
-
-
-
-var Loader = external__react_spinners_["DotLoader"];
-var dealsQuery = external__graphql_tag__default()(_templateObject);
-
-var AdminDashboard_styles = function styles(theme) {
-  return {
-    root: {
-      maxWidth: '100%',
-      marginBottom: 10
-    },
-    snackBar: {
-      marginTop: 30
-    }
-  };
-};
-
-var AdminDashboard_DashboardContainer = (AdminDashboard__dec = Object(styles_["withStyles"])(AdminDashboard_styles), Object(external__mobx_react_["observer"])(AdminDashboard__class = AdminDashboard__dec(AdminDashboard__class =
+var Dashboard_DashboardContainer = Object(external__mobx_react_["observer"])(Dashboard__class =
 /*#__PURE__*/
 function (_Component) {
-  AdminDashboard__inherits(DashboardContainer, _Component);
+  Dashboard__inherits(DashboardContainer, _Component);
 
   function DashboardContainer() {
     var _ref;
 
     var _temp, _this;
 
-    AdminDashboard__classCallCheck(this, DashboardContainer);
+    Dashboard__classCallCheck(this, DashboardContainer);
 
     for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
       args[_key] = arguments[_key];
     }
 
-    return AdminDashboard__possibleConstructorReturn(_this, (_temp = _this = AdminDashboard__possibleConstructorReturn(this, (_ref = DashboardContainer.__proto__ || Object.getPrototypeOf(DashboardContainer)).call.apply(_ref, [this].concat(args))), Object.defineProperty(AdminDashboard__assertThisInitialized(_this), "state", {
-      configurable: true,
-      enumerable: true,
-      writable: true,
-      value: {
-        snackbarText: '',
-        snackbarOpen: false
-      }
-    }), Object.defineProperty(AdminDashboard__assertThisInitialized(_this), "returnDealData", {
+    return Dashboard__possibleConstructorReturn(_this, (_temp = _this = Dashboard__possibleConstructorReturn(this, (_ref = DashboardContainer.__proto__ || Object.getPrototypeOf(DashboardContainer)).call.apply(_ref, [this].concat(args))), Object.defineProperty(Dashboard__assertThisInitialized(_this), "returnDealData", {
       configurable: true,
       enumerable: true,
       writable: true,
@@ -6014,69 +6448,35 @@ function (_Component) {
         var currentMonthNetCommissions = 0;
         var currentMonthNumOfDealsCommissions = 0;
         var numOfPendingDeals = 0;
-        var grossCommissionsToDate = 0;
         deals.forEach(function (deal) {
           if (deal.status === 'pending') {
             numOfPendingDeals += 1;
             return;
           }
 
-          grossCommissionsToDate += deal.total;
-          netCommissionsToDate += deal.netCompanyCommission || 0;
+          netCommissionsToDate += deal.netAgentCommission || 0;
 
           if (external__moment__default()(deal.date).month() === currentMonth) {
             currentMonthNumOfDealsCommissions += 1;
-            currentMonthNetCommissions += deal.netCompanyCommission || 0;
+            currentMonthNetCommissions += deal.netAgentCommission || 0;
           }
         });
         return {
           netCommissionsToDate: netCommissionsToDate,
           currentMonthNetCommissions: currentMonthNetCommissions,
           currentMonthNumOfDealsCommissions: currentMonthNumOfDealsCommissions,
-          numOfPendingDeals: numOfPendingDeals,
-          grossCommissionsToDate: grossCommissionsToDate
+          numOfPendingDeals: numOfPendingDeals
         };
-      }
-    }), Object.defineProperty(AdminDashboard__assertThisInitialized(_this), "submittedNewsAlertSuccessfully", {
-      configurable: true,
-      enumerable: true,
-      writable: true,
-      value: function value() {
-        _this.setState({
-          snackbarText: 'News/Alert item successfully submitted!',
-          snackbarOpen: true
-        });
-      }
-    }), Object.defineProperty(AdminDashboard__assertThisInitialized(_this), "deletedNewsAlertSuccessfully", {
-      configurable: true,
-      enumerable: true,
-      writable: true,
-      value: function value() {
-        _this.setState({
-          snackbarText: 'News/Alert item successfully deleted!',
-          snackbarOpen: true
-        });
-      }
-    }), Object.defineProperty(AdminDashboard__assertThisInitialized(_this), "handleCloseSnackbar", {
-      configurable: true,
-      enumerable: true,
-      writable: true,
-      value: function value() {
-        _this.setState({
-          snackbarOpen: false
-        });
       }
     }), _temp));
   }
 
-  AdminDashboard__createClass(DashboardContainer, [{
+  Dashboard__createClass(DashboardContainer, [{
     key: "render",
     value: function render() {
       var _this2 = this;
 
-      var _props = this.props,
-          userUUID = _props.userUUID,
-          classes = _props.classes;
+      var userUUID = this.props.userUUID;
       return external__react__default.a.createElement(external__react_apollo_["Query"], {
         query: dealsQuery,
         variables: {
@@ -6084,8 +6484,6 @@ function (_Component) {
         },
         ssr: false
       }, function (_ref2) {
-        var _React$createElement;
-
         var loading = _ref2.loading,
             error = _ref2.error,
             data = _ref2.data;
@@ -6099,7 +6497,7 @@ function (_Component) {
               height: 'calc(100vh - 110px)',
               boxShadow: '0px 1px 3px 0px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 2px 1px -1px rgba(0, 0, 0, 0.12)'
             }
-          }, external__react__default.a.createElement(Loader, {
+          }, external__react__default.a.createElement(Dashboard_Loader, {
             color: "#f44336",
             loading: true
           }));
@@ -6114,51 +6512,29 @@ function (_Component) {
           }, "We're sorry. There was an error processing your request.");
         }
 
-        var _this2$returnDealData = _this2.returnDealData(data.allDeals),
+        var _this2$returnDealData = _this2.returnDealData(data.dealsByAgentID),
             netCommissionsToDate = _this2$returnDealData.netCommissionsToDate,
             currentMonthNetCommissions = _this2$returnDealData.currentMonthNetCommissions,
             currentMonthNumOfDealsCommissions = _this2$returnDealData.currentMonthNumOfDealsCommissions,
-            numOfPendingDeals = _this2$returnDealData.numOfPendingDeals,
-            grossCommissionsToDate = _this2$returnDealData.grossCommissionsToDate;
+            numOfPendingDeals = _this2$returnDealData.numOfPendingDeals;
 
-        return external__react__default.a.createElement("div", null, external__react__default.a.createElement(components_AdminDashboard, (_React$createElement = {
+        return external__react__default.a.createElement(components_AgentDashboard, {
           userUUID: _this2.props.userUUID,
-          userRole: _this2.props.userRole,
-          grossCommissionsToDate: grossCommissionsToDate,
+          deals: data.deals,
           netCommissionsToDate: netCommissionsToDate,
           currentMonthNetCommissions: currentMonthNetCommissions,
-          submittedNewsAlertSuccessfully: _this2.submittedNewsAlertSuccessfully,
-          deletedNewsAlertSuccessfully: _this2.deletedNewsAlertSuccessfully
-        }, _defineProperty(_React$createElement, "submittedNewsAlertSuccessfully", _this2.submittedNewsAlertSuccessfully), _defineProperty(_React$createElement, "currentMonthNumOfDealsCommissions", currentMonthNumOfDealsCommissions), _defineProperty(_React$createElement, "numOfPendingDeals", numOfPendingDeals), _React$createElement)), external__react__default.a.createElement(Snackbar__default.a, {
-          classes: {
-            root: classes.snackBar
-          },
-          anchorOrigin: {
-            vertical: 'top',
-            horizontal: 'center'
-          },
-          open: _this2.state.snackbarOpen,
-          autoHideDuration: 4000,
-          onClose: _this2.handleCloseSnackbar,
-          message: external__react__default.a.createElement("span", {
-            id: "snackbar-id"
-          }, _this2.state.snackbarText),
-          action: [external__react__default.a.createElement(IconButton__default.a, {
-            key: "close",
-            "aria-label": "Close",
-            color: "inherit",
-            className: classes.close,
-            onClick: _this2.handleCloseSnackbar
-          }, external__react__default.a.createElement(Close__default.a, null))]
-        }));
+          currentMonthNumOfDealsCommissions: currentMonthNumOfDealsCommissions,
+          numOfPendingDeals: numOfPendingDeals
+        });
       });
     }
   }]);
 
   return DashboardContainer;
-}(external__react_["Component"])) || AdminDashboard__class) || AdminDashboard__class);
-/* harmony default export */ var containers_AdminDashboard = (AdminDashboard_DashboardContainer);
-// CONCATENATED MODULE: ./pages/app/admin-area/dashboard.js
+}(external__react_["Component"])) || Dashboard__class;
+
+/* harmony default export */ var containers_Dashboard = (Dashboard_DashboardContainer);
+// CONCATENATED MODULE: ./pages/app/dashboard.js
 var dashboard__class;
 
 function dashboard__typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { dashboard__typeof = function _typeof(obj) { return typeof obj; }; } else { dashboard__typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return dashboard__typeof(obj); }
@@ -6174,7 +6550,6 @@ function dashboard__defineProperties(target, props) { for (var i = 0; i < props.
 function dashboard__createClass(Constructor, protoProps, staticProps) { if (protoProps) dashboard__defineProperties(Constructor.prototype, protoProps); if (staticProps) dashboard__defineProperties(Constructor, staticProps); return Constructor; }
 
 function dashboard__inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
 
 
 
@@ -6225,9 +6600,8 @@ function (_React$Component) {
       return external__react__default.a.createElement(Layout["a" /* default */], {
         UserStore: this.store.UserStore,
         UIStore: this.store.UIStore
-      }, external__react__default.a.createElement(containers_AdminDashboard, {
-        userUUID: this.store.UserStore.uuid,
-        userRole: this.store.UserStore.userRole
+      }, external__react__default.a.createElement(containers_Dashboard, {
+        userUUID: this.store.UserStore.uuid
       }));
     }
   }]);

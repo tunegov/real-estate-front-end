@@ -67,7 +67,7 @@ module.exports =
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 239);
+/******/ 	return __webpack_require__(__webpack_require__.s = 204);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -97,6 +97,13 @@ module.exports = require("polished");
 /***/ (function(module, exports) {
 
 module.exports = require("mobx-state-tree");
+
+/***/ }),
+
+/***/ 116:
+/***/ (function(module, exports) {
+
+module.exports = require("@material-ui/icons/Search");
 
 /***/ }),
 
@@ -150,6 +157,437 @@ module.exports = require("react-apollo");
 /***/ (function(module, exports) {
 
 module.exports = require("material-ui/styles");
+
+/***/ }),
+
+/***/ 204:
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(205);
+
+
+/***/ }),
+
+/***/ 205:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+
+// EXTERNAL MODULE: external "react"
+var external__react_ = __webpack_require__(0);
+var external__react__default = /*#__PURE__*/__webpack_require__.n(external__react_);
+
+// EXTERNAL MODULE: external "mobx-react"
+var external__mobx_react_ = __webpack_require__(1);
+var external__mobx_react__default = /*#__PURE__*/__webpack_require__.n(external__mobx_react_);
+
+// EXTERNAL MODULE: external "is-browser"
+var external__is_browser_ = __webpack_require__(7);
+var external__is_browser__default = /*#__PURE__*/__webpack_require__.n(external__is_browser_);
+
+// EXTERNAL MODULE: external "chance"
+var external__chance_ = __webpack_require__(63);
+var external__chance__default = /*#__PURE__*/__webpack_require__.n(external__chance_);
+
+// EXTERNAL MODULE: ./frontEndComponents/FrontEndLayout/index.js + 7 modules
+var FrontEndLayout = __webpack_require__(92);
+
+// EXTERNAL MODULE: ./models/index.js + 8 modules
+var models = __webpack_require__(22);
+
+// EXTERNAL MODULE: ./lib/withData.js + 2 modules
+var withData = __webpack_require__(49);
+
+// EXTERNAL MODULE: external "material-ui/styles"
+var styles_ = __webpack_require__(2);
+var styles__default = /*#__PURE__*/__webpack_require__.n(styles_);
+
+// EXTERNAL MODULE: external "material-ui/Grid"
+var Grid_ = __webpack_require__(32);
+var Grid__default = /*#__PURE__*/__webpack_require__.n(Grid_);
+
+// EXTERNAL MODULE: external "@material-ui/icons/Search"
+var Search_ = __webpack_require__(116);
+var Search__default = /*#__PURE__*/__webpack_require__.n(Search_);
+
+// EXTERNAL MODULE: ./routes.js
+var routes = __webpack_require__(4);
+var routes_default = /*#__PURE__*/__webpack_require__.n(routes);
+
+// CONCATENATED MODULE: ./frontEndComponents/AllAgentsView/index.js
+var _dec, _class;
+
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+
+
+
+
+
+var emailSubject = 'Real estate property inquiry';
+
+var styles = function styles(theme) {
+  var _agentEmail;
+
+  return {
+    root: {},
+    titleSection: {
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      height: 300,
+      width: '100%',
+      fontFamily: theme.frontEnd.typography.fontFamily.sansSerif,
+      fontSize: '2.8rem',
+      color: '#fff',
+      backgroundColor: 'black',
+      marginBottom: 50
+    },
+    mainSection: {
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'center',
+      padding: '0 20px'
+    },
+    agentsSection: {
+      marginLeft: 'auto',
+      marginRight: 'auto',
+      marginTop: '50px',
+      width: '100%',
+      maxWidth: 1200
+    },
+    agentCard: {
+      display: 'flex',
+      flexDirection: 'column',
+      width: '100%',
+      transition: 'transform .2s ease-in-out',
+      color: 'rgba(0,0,0,.7)',
+      '&:hover': {
+        transform: 'scale(1.02,1.02)'
+      }
+    },
+    profilePicWrapper: {
+      paddingTop: '100%',
+      width: '100%',
+      position: 'relative'
+    },
+    profilePicAnchor: {
+      position: 'absolute',
+      top: 0,
+      left: 0,
+      bottom: 0,
+      right: 0
+    },
+    profilePic: {
+      width: '100%',
+      height: 'auto',
+      objectFit: 'cover',
+      cursor: 'pointer'
+    },
+    detailsWrapper: {
+      padding: '20px 20px',
+      display: 'flex',
+      flexDirection: 'column',
+      border: '1px solid rgba(0,0,0,.1)',
+      borderTop: 'none'
+    },
+    agentName: {
+      fontSize: '1.5rem',
+      cursor: 'pointer'
+    },
+    agentNameAnchor: {
+      marginBottom: '7px',
+      textDecoration: 'none',
+      color: 'rgba(0,0,0,.8)'
+    },
+    agentEmail: (_agentEmail = {
+      marginBottom: '10px',
+      fontSize: '1.1rem'
+    }, _defineProperty(_agentEmail, "fontSize", '.9rem'), _defineProperty(_agentEmail, "fontFamily", theme.frontEnd.typography.fontFamily.sansSerif2), _defineProperty(_agentEmail, "textDecoration", 'none'), _defineProperty(_agentEmail, "color", 'rgba(0,0,0,.7)'), _agentEmail),
+    agentMobileNumber: {
+      marginBottom: '10px',
+      color: 'rgba(0,0,0,.5)',
+      fontSize: '.9rem',
+      fontFamily: theme.frontEnd.typography.fontFamily.sansSerif2
+    },
+    filterInputWrapper: {
+      position: 'relative',
+      marginLeft: 'auto',
+      marginRight: 'auto',
+      width: '100%',
+      maxWidth: 1200
+    },
+    filterInput: {
+      padding: '10px 12px',
+      paddingRight: 35,
+      width: '100%',
+      maxWidth: 1200,
+      height: 40,
+      fontSize: '.9rem',
+      border: '1px solid rgba(0,0,0,.3)',
+      borderRadius: 5
+    },
+    searchIconWrapper: {
+      position: 'absolute',
+      right: 20,
+      top: 8,
+      height: 10,
+      width: 10
+    }
+  };
+};
+
+var AllAgentsView_AllAgentsView = (_dec = Object(styles_["withStyles"])(styles), _dec(_class = Object(external__mobx_react_["observer"])(_class =
+/*#__PURE__*/
+function (_Component) {
+  _inherits(AllAgentsView, _Component);
+
+  function AllAgentsView() {
+    var _ref;
+
+    var _temp, _this;
+
+    _classCallCheck(this, AllAgentsView);
+
+    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    return _possibleConstructorReturn(_this, (_temp = _this = _possibleConstructorReturn(this, (_ref = AllAgentsView.__proto__ || Object.getPrototypeOf(AllAgentsView)).call.apply(_ref, [this].concat(args))), Object.defineProperty(_assertThisInitialized(_this), "state", {
+      configurable: true,
+      enumerable: true,
+      writable: true,
+      value: {
+        filterValue: ''
+      }
+    }), Object.defineProperty(_assertThisInitialized(_this), "onFilterChange", {
+      configurable: true,
+      enumerable: true,
+      writable: true,
+      value: function value(e) {
+        var value = e.target.value;
+        if (e.preventDefault) e.preventDefault();
+
+        _this.setState({
+          filterValue: value
+        });
+      }
+    }), Object.defineProperty(_assertThisInitialized(_this), "renderAgnets", {
+      configurable: true,
+      enumerable: true,
+      writable: true,
+      value: function value(agents) {
+        var classes = _this.props.classes;
+
+        var filter = _this.state.filterValue.trim().toLowerCase();
+
+        var viewableAgents;
+
+        if (filter) {
+          viewableAgents = agents.filter(function (agent) {
+            return agent.name.toLowerCase().includes(filter);
+          });
+        } else {
+          viewableAgents = agents;
+        }
+
+        return viewableAgents.map(function (agent) {
+          return external__react__default.a.createElement(Grid__default.a, {
+            item: true,
+            xs: 12,
+            sm: 6,
+            md: 4,
+            lg: 3,
+            key: agent.email
+          }, external__react__default.a.createElement("div", {
+            className: classes.agentCard
+          }, external__react__default.a.createElement("div", {
+            className: classes.profilePicWrapper
+          }, external__react__default.a.createElement(routes["Link"], {
+            route: "agent",
+            params: {
+              id: agent.agentID
+            }
+          }, external__react__default.a.createElement("a", {
+            className: classes.profilePicAnchor
+          }, external__react__default.a.createElement("img", {
+            className: classes.profilePic,
+            src: agent.profilePhotoURL,
+            alt: "agent"
+          })))), external__react__default.a.createElement("div", {
+            className: classes.detailsWrapper
+          }, external__react__default.a.createElement(routes["Link"], {
+            route: "agent",
+            params: {
+              id: agent.agentID
+            }
+          }, external__react__default.a.createElement("a", {
+            className: classes.agentNameAnchor
+          }, external__react__default.a.createElement("div", {
+            className: classes.agentName
+          }, agent.name))), external__react__default.a.createElement("div", {
+            className: classes.agentEmail
+          }, agent.email), external__react__default.a.createElement("div", {
+            className: classes.agentMobileNumber
+          }, "M: ", agent.mobileNumber))));
+        });
+      }
+    }), _temp));
+  }
+
+  _createClass(AllAgentsView, [{
+    key: "render",
+    value: function render() {
+      var _props = this.props,
+          agents = _props.agents,
+          classes = _props.classes;
+      console.log("agents: ".concat(agents)); // grab the agent info and listings using this agentID
+
+      return external__react__default.a.createElement("div", {
+        className: classes.root
+      }, external__react__default.a.createElement("div", {
+        className: classes.titleSection
+      }, "Our Agents"), external__react__default.a.createElement("div", {
+        className: classes.mainSection
+      }, external__react__default.a.createElement("div", {
+        className: classes.filterInputWrapper
+      }, external__react__default.a.createElement("input", {
+        className: classes.filterInput,
+        value: this.state.filterValue,
+        onChange: this.onFilterChange,
+        type: "text",
+        placeholder: "Search Agents..."
+      }), external__react__default.a.createElement("span", {
+        className: classes.searchIconWrapper
+      }, external__react__default.a.createElement(Search__default.a, null))), external__react__default.a.createElement("div", {
+        className: classes.agentsSection
+      }, external__react__default.a.createElement(Grid__default.a, {
+        container: true,
+        spacing: 24
+      }, agents && agents.length && this.renderAgnets(agents)))));
+    }
+  }]);
+
+  return AllAgentsView;
+}(external__react_["Component"])) || _class) || _class);
+/* harmony default export */ var frontEndComponents_AllAgentsView = (AllAgentsView_AllAgentsView);
+// CONCATENATED MODULE: ./pages/agents.js
+var agents__class;
+
+function agents__typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { agents__typeof = function _typeof(obj) { return typeof obj; }; } else { agents__typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return agents__typeof(obj); }
+
+function agents__classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function agents__possibleConstructorReturn(self, call) { if (call && (agents__typeof(call) === "object" || typeof call === "function")) { return call; } return agents__assertThisInitialized(self); }
+
+function agents__defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function agents__createClass(Constructor, protoProps, staticProps) { if (protoProps) agents__defineProperties(Constructor.prototype, protoProps); if (staticProps) agents__defineProperties(Constructor, staticProps); return Constructor; }
+
+function agents__inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+function agents__assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+
+
+
+
+
+
+
+
+var chance = new external__chance__default.a();
+
+var agents_Listing = Object(external__mobx_react_["observer"])(agents__class =
+/*#__PURE__*/
+function (_React$Component) {
+  agents__inherits(Listing, _React$Component);
+
+  agents__createClass(Listing, null, [{
+    key: "getInitialProps",
+    value: function getInitialProps(_ref) {
+      var req = _ref.req;
+      var isServer = !!req;
+      return {
+        cookieJWTData: req && req.cookies ? req.cookies.jwtData : null,
+        isServer: isServer
+      };
+    }
+  }]);
+
+  function Listing(props) {
+    var _this;
+
+    agents__classCallCheck(this, Listing);
+
+    _this = agents__possibleConstructorReturn(this, (Listing.__proto__ || Object.getPrototypeOf(Listing)).call(this, props));
+    Object.defineProperty(agents__assertThisInitialized(_this), "createAgents", {
+      configurable: true,
+      enumerable: true,
+      writable: true,
+      value: function value(num) {
+        var agents = [];
+
+        for (var i = 0; i < num; i++) {
+          var agent = {
+            profilePhotoURL: "http://picsum.photos/325/325/?random?".concat(chance.integer({
+              min: 1,
+              max: 1000
+            })),
+            name: chance.name(),
+            email: chance.email(),
+            mobileNumber: chance.phone(),
+            agentID: chance.integer({
+              min: 100000,
+              max: 999999
+            })
+          };
+          agents.push(agent);
+        }
+
+        return agents;
+      }
+    });
+    _this.store = Object(models["a" /* initStore */])(props.isServer, props.cookieJWTData); // for debugging only!!!
+
+    if (external__is_browser__default.a && !window._appStore) window._appStore = _this.store;
+    _this.state = {
+      agents: _this.createAgents(35)
+    };
+    return _this;
+  }
+
+  agents__createClass(Listing, [{
+    key: "render",
+    value: function render() {
+      return external__react__default.a.createElement(FrontEndLayout["a" /* default */], {
+        UserStore: this.store.UserStore
+      }, external__react__default.a.createElement(frontEndComponents_AllAgentsView, {
+        agents: this.state.agents
+      }));
+    }
+  }]);
+
+  return Listing;
+}(external__react__default.a.Component)) || agents__class;
+
+/* harmony default export */ var pages_agents = __webpack_exports__["default"] = (Object(withData["a" /* default */])(agents_Listing));
 
 /***/ }),
 
@@ -614,633 +1052,6 @@ function initStore(isServer) {
 
   return emittedStore;
 }
-
-/***/ }),
-
-/***/ 239:
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(240);
-
-
-/***/ }),
-
-/***/ 240:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-
-// EXTERNAL MODULE: external "react"
-var external__react_ = __webpack_require__(0);
-var external__react__default = /*#__PURE__*/__webpack_require__.n(external__react_);
-
-// EXTERNAL MODULE: external "mobx-react"
-var external__mobx_react_ = __webpack_require__(1);
-var external__mobx_react__default = /*#__PURE__*/__webpack_require__.n(external__mobx_react_);
-
-// EXTERNAL MODULE: external "is-browser"
-var external__is_browser_ = __webpack_require__(7);
-var external__is_browser__default = /*#__PURE__*/__webpack_require__.n(external__is_browser_);
-
-// EXTERNAL MODULE: ./frontEndComponents/FrontEndLayout/index.js + 7 modules
-var FrontEndLayout = __webpack_require__(92);
-
-// EXTERNAL MODULE: ./models/index.js + 8 modules
-var models = __webpack_require__(22);
-
-// EXTERNAL MODULE: ./lib/withData.js + 2 modules
-var withData = __webpack_require__(49);
-
-// EXTERNAL MODULE: external "material-ui/styles"
-var styles_ = __webpack_require__(2);
-var styles__default = /*#__PURE__*/__webpack_require__.n(styles_);
-
-// EXTERNAL MODULE: external "classnames"
-var external__classnames_ = __webpack_require__(8);
-var external__classnames__default = /*#__PURE__*/__webpack_require__.n(external__classnames_);
-
-// EXTERNAL MODULE: external "@material-ui/icons/ArrowDownward"
-var ArrowDownward_ = __webpack_require__(241);
-var ArrowDownward__default = /*#__PURE__*/__webpack_require__.n(ArrowDownward_);
-
-// EXTERNAL MODULE: external "react-scroll"
-var external__react_scroll_ = __webpack_require__(242);
-var external__react_scroll__default = /*#__PURE__*/__webpack_require__.n(external__react_scroll_);
-
-// CONCATENATED MODULE: ./frontEndComponents/ComingSoonWelcomeHeader/index.js
-var _dec, _class;
-
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
-
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-
-
-
-
-
- // import Carousel from 'nuka-carousel';
-
-var styles = function styles(theme) {
-  return {
-    root: {
-      position: 'relative',
-      height: 'calc(100vh - 60px)',
-      width: '100%',
-      backgroundImage: 'url(/static/images/breather-red.jpg)',
-      backgroundPosition: 'center',
-      backgroundSize: 'cover'
-    },
-    jumbotronImg: {
-      position: 'absolute',
-      left: '0',
-      bottom: '0',
-      right: '0',
-      top: '0',
-      zIndex: '-2',
-      height: 'calc(100vh - 60px)',
-      width: '100%',
-      display: 'block',
-      objectFit: 'cover'
-    },
-    contentWrapper: {
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      position: 'absolute',
-      left: '0',
-      bottom: '0',
-      right: '0',
-      top: '0',
-      zIndex: '1',
-      backgroundColor: 'rgba(0,0,0,.5)'
-    },
-    innerContentWrapper: {
-      width: '100%',
-      height: '100%',
-      display: 'flex',
-      flexDirection: 'column',
-      justifyContent: 'center',
-      alignItems: 'center',
-      padding: '40px',
-      color: '#fff'
-    },
-    headline: {
-      paddingLeft: '15px',
-      paddingRight: '15px',
-      fontSize: '2.3rem',
-      lineHeight: '2.6rem',
-      fontFamily: theme.frontEnd.typography.fontFamily.serif,
-      textAlign: 'center',
-      letterSpacing: '3px',
-      marginBottom: '70px',
-      textTransform: 'uppercase',
-      borderBottom: "1px solid ".concat(theme.frontEnd.colors.primary.main)
-    },
-    subHeadline: {
-      marginBottom: '30px',
-      maxWidth: '700px',
-      fontSize: '1.1rem',
-      lineHeight: '1.8rem',
-      letterSpacing: '1px',
-      fontFamily: theme.frontEnd.typography.fontFamily.sansSerif,
-      textAlign: 'center'
-    },
-    searchTypeBtnsWrapper: {
-      display: 'flex',
-      height: '33px',
-      width: '300px',
-      border: '1px solid #D93F2A',
-      borderRadius: '8px'
-    },
-    searchTypeBtn: {
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      height: '100%',
-      width: '50%',
-      margin: 0,
-      fontSize: '0.8rem',
-      backgroundColor: '#fff',
-      border: 'none',
-      borderRadius: '0px 8px 8px 0',
-      cursor: 'pointer',
-      color: 'rgba(0,0,0.8)',
-      transition: 'color .1s ease-in-out, background-color .1s ease-in-out',
-      '&:first-of-type': {
-        borderRight: '1px solid #D93F2A',
-        borderRadius: '8px 0 0 8px'
-      },
-      '&:hover': {
-        color: 'rgba(255,255,255,1)',
-        backgroundColor: '#D93F2A'
-      }
-    },
-    slide: {
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'center'
-    },
-    scrollDownBtn: {
-      display: 'flex',
-      justifyContent: 'center',
-      alignItems: 'center',
-      position: 'absolute',
-      left: '50%',
-      bottom: '20px',
-      marginLeft: '-20px',
-      height: '40px',
-      width: '40px',
-      backgroundColor: 'transparent',
-      borderRadius: '50%',
-      fontSize: '1rem',
-      color: 'rgba(255,255,255,.7)',
-      border: '1px solid rgba(255,255,255,.7)',
-      cursor: 'pointer',
-      zIndex: 1,
-      transition: 'transform .2s ease-in-out, color .2s ease-in-out',
-      '&:hover': {
-        color: 'rgba(255,255,255,.9)',
-        transform: 'scale(1.05,1.05)'
-      }
-    },
-    downArrowIcon: {
-      fontSize: '1.8rem',
-      color: 'rgba(255,255,255,.7)'
-    },
-    redEmphasis: {
-      color: theme.frontEnd.colors.primary.main
-    }
-  };
-};
-
-var ComingSoonWelcomeHeader_WelcomeHeader = (_dec = Object(styles_["withStyles"])(styles), Object(external__mobx_react_["observer"])(_class = _dec(_class =
-/*#__PURE__*/
-function (_Component) {
-  _inherits(WelcomeHeader, _Component);
-
-  function WelcomeHeader() {
-    _classCallCheck(this, WelcomeHeader);
-
-    return _possibleConstructorReturn(this, (WelcomeHeader.__proto__ || Object.getPrototypeOf(WelcomeHeader)).apply(this, arguments));
-  }
-
-  _createClass(WelcomeHeader, [{
-    key: "render",
-    value: function render() {
-      var classes = this.props.classes;
-      return external__react__default.a.createElement("div", {
-        className: classes.root
-      }, external__react__default.a.createElement("div", {
-        className: classes.contentWrapper
-      }, external__react__default.a.createElement("div", {
-        className: classes.innerContentWrapper
-      }, external__react__default.a.createElement("div", {
-        id: "slideOne",
-        className: external__classnames__default()(classes.slide)
-      }, external__react__default.a.createElement("div", {
-        className: classes.headline
-      }, "Coming ", external__react__default.a.createElement("span", {
-        className: classes.redEmphasis
-      }, "-"), " Soon")))));
-    }
-  }]);
-
-  return WelcomeHeader;
-}(external__react_["Component"])) || _class) || _class);
-/* harmony default export */ var ComingSoonWelcomeHeader = (ComingSoonWelcomeHeader_WelcomeHeader);
-// CONCATENATED MODULE: ./frontEndContainers/ComingSoonJumbotronHeader.js
-function ComingSoonJumbotronHeader__typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { ComingSoonJumbotronHeader__typeof = function _typeof(obj) { return typeof obj; }; } else { ComingSoonJumbotronHeader__typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return ComingSoonJumbotronHeader__typeof(obj); }
-
-function ComingSoonJumbotronHeader__classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function ComingSoonJumbotronHeader__defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function ComingSoonJumbotronHeader__createClass(Constructor, protoProps, staticProps) { if (protoProps) ComingSoonJumbotronHeader__defineProperties(Constructor.prototype, protoProps); if (staticProps) ComingSoonJumbotronHeader__defineProperties(Constructor, staticProps); return Constructor; }
-
-function ComingSoonJumbotronHeader__possibleConstructorReturn(self, call) { if (call && (ComingSoonJumbotronHeader__typeof(call) === "object" || typeof call === "function")) { return call; } return ComingSoonJumbotronHeader__assertThisInitialized(self); }
-
-function ComingSoonJumbotronHeader__assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function ComingSoonJumbotronHeader__inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-
-
-
-var ComingSoonJumbotronHeader_JumbotronHeader =
-/*#__PURE__*/
-function (_Component) {
-  ComingSoonJumbotronHeader__inherits(JumbotronHeader, _Component);
-
-  function JumbotronHeader() {
-    ComingSoonJumbotronHeader__classCallCheck(this, JumbotronHeader);
-
-    return ComingSoonJumbotronHeader__possibleConstructorReturn(this, (JumbotronHeader.__proto__ || Object.getPrototypeOf(JumbotronHeader)).apply(this, arguments));
-  }
-
-  ComingSoonJumbotronHeader__createClass(JumbotronHeader, [{
-    key: "render",
-    value: function render() {
-      return external__react__default.a.createElement(ComingSoonWelcomeHeader, null);
-    }
-  }]);
-
-  return JumbotronHeader;
-}(external__react_["Component"]);
-
-/* harmony default export */ var ComingSoonJumbotronHeader = (ComingSoonJumbotronHeader_JumbotronHeader);
-// EXTERNAL MODULE: external "material-ui/Grid"
-var Grid_ = __webpack_require__(32);
-var Grid__default = /*#__PURE__*/__webpack_require__.n(Grid_);
-
-// EXTERNAL MODULE: external "react-icons/lib/fa"
-var fa_ = __webpack_require__(54);
-var fa__default = /*#__PURE__*/__webpack_require__.n(fa_);
-
-// CONCATENATED MODULE: ./frontEndComponents/HowItWorksSection/index.js
-var HowItWorksSection__dec, HowItWorksSection__class;
-
-function HowItWorksSection__typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { HowItWorksSection__typeof = function _typeof(obj) { return typeof obj; }; } else { HowItWorksSection__typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return HowItWorksSection__typeof(obj); }
-
-function HowItWorksSection__classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function HowItWorksSection__defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function HowItWorksSection__createClass(Constructor, protoProps, staticProps) { if (protoProps) HowItWorksSection__defineProperties(Constructor.prototype, protoProps); if (staticProps) HowItWorksSection__defineProperties(Constructor, staticProps); return Constructor; }
-
-function HowItWorksSection__possibleConstructorReturn(self, call) { if (call && (HowItWorksSection__typeof(call) === "object" || typeof call === "function")) { return call; } return HowItWorksSection__assertThisInitialized(self); }
-
-function HowItWorksSection__assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function HowItWorksSection__inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-
-
-
-
-
- // import Carousel from 'nuka-carousel';
-
-var HowItWorksSection_styles = function styles(theme) {
-  var _howItWordsBtn;
-
-  return {
-    root: {
-      position: 'relative',
-      padding: '60px 10%',
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'center',
-      // height: '500px',
-      width: '100%',
-      backgroundColor: '#131413',
-      backgroundPosition: 'center',
-      backgroundSize: 'cover',
-      color: '#fff',
-      fontFamily: theme.frontEnd.typography.fontFamily.sansSerif2
-    },
-    sectionTitle: {
-      display: 'inline-block',
-      marginLeft: 'auto',
-      marginRight: 'auto',
-      textAlign: 'center',
-      ontWeight: '600',
-      marginBottom: '40px',
-      fontSize: '2.2rem',
-      fontFamily: theme.frontEnd.typography.fontFamily.sansSerif2,
-      textTransform: 'uppercase',
-      '&:::after': {
-        height: '2px',
-        backgroundColor: theme.frontEnd.colors.primary.main,
-        width: '40px',
-        content: ' '
-      }
-    },
-    blurbWrapper: {
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'center'
-    },
-    blurbText: {
-      fontSize: '1.2rem',
-      lineHeight: '1.8rem',
-      textAlign: 'center',
-      color: 'rgba(255,255,255,.7)'
-    },
-    blurbTitle: {
-      fontWeight: '600',
-      marginTop: '40px',
-      marginBottom: '10px',
-      fontSize: '1.8rem',
-      lineHeight: '1.8rem',
-      textAlign: 'center'
-    },
-    colorRed: {
-      color: theme.frontEnd.colors.primary.main
-    },
-    howItWordsBtn: (_howItWordsBtn = {
-      display: 'flex',
-      height: '40px',
-      width: '150px',
-      marginTop: '40px',
-      border: 'none'
-    }, _defineProperty(_howItWordsBtn, "display", 'flex'), _defineProperty(_howItWordsBtn, "alignItems", 'center'), _defineProperty(_howItWordsBtn, "justifyContent", 'center'), _defineProperty(_howItWordsBtn, "fontSize", '0.9rem'), _defineProperty(_howItWordsBtn, "color", '#fff'), _defineProperty(_howItWordsBtn, "backgroundColor", theme.frontEnd.colors.primary.main), _defineProperty(_howItWordsBtn, "borderRadius", '20px'), _defineProperty(_howItWordsBtn, "cursor", 'pointer'), _defineProperty(_howItWordsBtn, "transition", 'color .2s ease-in-out, background-color .1s ease-in-out'), _defineProperty(_howItWordsBtn, '&:hover', {
-      backgroundColor: theme.frontEnd.colors.primary.dark
-    }), _howItWordsBtn)
-  };
-};
-
-var HowItWorksSection_HowItWorksSection = (HowItWorksSection__dec = Object(styles_["withStyles"])(HowItWorksSection_styles), Object(external__mobx_react_["observer"])(HowItWorksSection__class = HowItWorksSection__dec(HowItWorksSection__class =
-/*#__PURE__*/
-function (_Component) {
-  HowItWorksSection__inherits(HowItWorksSection, _Component);
-
-  function HowItWorksSection() {
-    HowItWorksSection__classCallCheck(this, HowItWorksSection);
-
-    return HowItWorksSection__possibleConstructorReturn(this, (HowItWorksSection.__proto__ || Object.getPrototypeOf(HowItWorksSection)).apply(this, arguments));
-  }
-
-  HowItWorksSection__createClass(HowItWorksSection, [{
-    key: "render",
-    value: function render() {
-      var classes = this.props.classes;
-      return external__react__default.a.createElement("div", {
-        className: classes.root,
-        id: "how-it-works"
-      }, external__react__default.a.createElement("div", {
-        className: classes.sectionTitle
-      }, "How it works"), external__react__default.a.createElement(Grid__default.a, {
-        container: true,
-        spacing: 40
-      }, external__react__default.a.createElement(Grid__default.a, {
-        item: true,
-        xs: 12,
-        md: 4
-      }, external__react__default.a.createElement("div", {
-        className: classes.blurbWrapper
-      }, external__react__default.a.createElement(fa_["FaSearch"], {
-        color: "inherit",
-        size: 90
-      }), external__react__default.a.createElement("div", {
-        className: classes.blurbTitle
-      }, "Search"), external__react__default.a.createElement("div", {
-        className: classes.blurbText
-      }, "Sed eu condimentum nisl. Quisque volutpat enim vitae mi elementum tristique quis eget metus. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae."))), external__react__default.a.createElement(Grid__default.a, {
-        item: true,
-        xs: 12,
-        md: 4
-      }, external__react__default.a.createElement("div", {
-        className: classes.blurbWrapper
-      }, external__react__default.a.createElement(fa_["FaHome"], {
-        color: "inherit",
-        size: 90
-      }), external__react__default.a.createElement("div", {
-        className: classes.blurbTitle
-      }, "Schedule A Showing"), external__react__default.a.createElement("div", {
-        className: classes.blurbText
-      }, "Sed eu condimentum nisl. Quisque volutpat enim vitae mi elementum tristique quis eget metus. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae."))), external__react__default.a.createElement(Grid__default.a, {
-        item: true,
-        xs: 12,
-        md: 4
-      }, external__react__default.a.createElement("div", {
-        className: classes.blurbWrapper
-      }, external__react__default.a.createElement(fa_["FaKey"], {
-        color: "inherit",
-        size: 90
-      }), external__react__default.a.createElement("div", {
-        className: classes.blurbTitle
-      }, "Get Your Keys"), external__react__default.a.createElement("div", {
-        className: classes.blurbText
-      }, "Sed eu condimentum nisl. Quisque volutpat enim vitae mi elementum tristique quis eget metus. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae.")))), external__react__default.a.createElement("button", {
-        className: classes.howItWordsBtn
-      }, "Search"));
-    }
-  }]);
-
-  return HowItWorksSection;
-}(external__react_["Component"])) || HowItWorksSection__class) || HowItWorksSection__class);
-/* harmony default export */ var frontEndComponents_HowItWorksSection = (HowItWorksSection_HowItWorksSection);
-// CONCATENATED MODULE: ./frontEndComponents/FeaturedPropertySection/index.js
-var FeaturedPropertySection__dec, FeaturedPropertySection__class;
-
-function FeaturedPropertySection__typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { FeaturedPropertySection__typeof = function _typeof(obj) { return typeof obj; }; } else { FeaturedPropertySection__typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return FeaturedPropertySection__typeof(obj); }
-
-function FeaturedPropertySection__classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function FeaturedPropertySection__defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function FeaturedPropertySection__createClass(Constructor, protoProps, staticProps) { if (protoProps) FeaturedPropertySection__defineProperties(Constructor.prototype, protoProps); if (staticProps) FeaturedPropertySection__defineProperties(Constructor, staticProps); return Constructor; }
-
-function FeaturedPropertySection__possibleConstructorReturn(self, call) { if (call && (FeaturedPropertySection__typeof(call) === "object" || typeof call === "function")) { return call; } return FeaturedPropertySection__assertThisInitialized(self); }
-
-function FeaturedPropertySection__assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function FeaturedPropertySection__inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-
-
-
- // import Carousel from 'nuka-carousel';
-
-var FeaturedPropertySection_styles = function styles(theme) {
-  return {
-    root: {
-      position: 'relative',
-      padding: '60px 10%',
-      height: '500px',
-      width: '100%',
-      backgroundImage: 'url(/static/images/featured-property.jpg)',
-      backgroundPosition: 'center top',
-      backgroundSize: 'cover',
-      color: '#fff',
-      fontFamily: theme.frontEnd.typography.fontFamily.sansSerif2
-    },
-    contentWrapper: {
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      position: 'absolute',
-      left: '0',
-      bottom: '0',
-      right: '0',
-      top: '0',
-      zIndex: '1',
-      backgroundColor: 'rgba(0,0,0,.5)'
-    },
-    sectionTitle: {
-      textAlign: 'center',
-      ontWeight: '600',
-      marginBottom: '40px',
-      fontSize: '2.2rem',
-      textTransform: 'uppercase'
-    }
-  };
-};
-
-var FeaturedPropertySection_HowItWorksSection = (FeaturedPropertySection__dec = Object(styles_["withStyles"])(FeaturedPropertySection_styles), Object(external__mobx_react_["observer"])(FeaturedPropertySection__class = FeaturedPropertySection__dec(FeaturedPropertySection__class =
-/*#__PURE__*/
-function (_Component) {
-  FeaturedPropertySection__inherits(HowItWorksSection, _Component);
-
-  function HowItWorksSection() {
-    FeaturedPropertySection__classCallCheck(this, HowItWorksSection);
-
-    return FeaturedPropertySection__possibleConstructorReturn(this, (HowItWorksSection.__proto__ || Object.getPrototypeOf(HowItWorksSection)).apply(this, arguments));
-  }
-
-  FeaturedPropertySection__createClass(HowItWorksSection, [{
-    key: "render",
-    value: function render() {
-      var classes = this.props.classes;
-      return external__react__default.a.createElement("div", {
-        className: classes.root,
-        id: "featured-property"
-      }, external__react__default.a.createElement("div", {
-        className: classes.contentWrapper
-      }));
-    }
-  }]);
-
-  return HowItWorksSection;
-}(external__react_["Component"])) || FeaturedPropertySection__class) || FeaturedPropertySection__class);
-/* harmony default export */ var FeaturedPropertySection = (FeaturedPropertySection_HowItWorksSection);
-// CONCATENATED MODULE: ./pages/index.js
-var pages__class;
-
-function pages__typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { pages__typeof = function _typeof(obj) { return typeof obj; }; } else { pages__typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return pages__typeof(obj); }
-
-function pages__classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function pages__possibleConstructorReturn(self, call) { if (call && (pages__typeof(call) === "object" || typeof call === "function")) { return call; } return pages__assertThisInitialized(self); }
-
-function pages__assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function pages__defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function pages__createClass(Constructor, protoProps, staticProps) { if (protoProps) pages__defineProperties(Constructor.prototype, protoProps); if (staticProps) pages__defineProperties(Constructor, staticProps); return Constructor; }
-
-function pages__inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-
-
-
-
-
-
-
-
-
-
-var pages_Home = Object(external__mobx_react_["observer"])(pages__class =
-/*#__PURE__*/
-function (_React$Component) {
-  pages__inherits(Home, _React$Component);
-
-  pages__createClass(Home, null, [{
-    key: "getInitialProps",
-    value: function getInitialProps(_ref) {
-      var req = _ref.req;
-      var isServer = !!req;
-      return {
-        cookieJWTData: req && req.cookies ? req.cookies.jwtData : null,
-        isServer: isServer
-      };
-    }
-  }]);
-
-  function Home(props) {
-    var _this;
-
-    pages__classCallCheck(this, Home);
-
-    _this = pages__possibleConstructorReturn(this, (Home.__proto__ || Object.getPrototypeOf(Home)).call(this, props));
-    _this.store = Object(models["a" /* initStore */])(props.isServer, props.cookieJWTData); // for debugging only!!!
-
-    if (external__is_browser__default.a && !window._appStore) window._appStore = _this.store;
-    return _this;
-  }
-
-  pages__createClass(Home, [{
-    key: "render",
-    value: function render() {
-      return external__react__default.a.createElement(FrontEndLayout["a" /* default */], {
-        UserStore: this.store.UserStore
-      }, external__react__default.a.createElement(ComingSoonJumbotronHeader, null));
-    }
-  }]);
-
-  return Home;
-}(external__react__default.a.Component)) || pages__class;
-
-/* harmony default export */ var pages = __webpack_exports__["default"] = (Object(withData["a" /* default */])(pages_Home));
-
-/***/ }),
-
-/***/ 241:
-/***/ (function(module, exports) {
-
-module.exports = require("@material-ui/icons/ArrowDownward");
-
-/***/ }),
-
-/***/ 242:
-/***/ (function(module, exports) {
-
-module.exports = require("react-scroll");
 
 /***/ }),
 
@@ -1831,13 +1642,6 @@ module.exports = require("isomorphic-unfetch");
 
 /***/ }),
 
-/***/ 54:
-/***/ (function(module, exports) {
-
-module.exports = require("react-icons/lib/fa");
-
-/***/ }),
-
 /***/ 6:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -1847,17 +1651,17 @@ var endpoint = '/api/graphql';
 
 /***/ }),
 
+/***/ 63:
+/***/ (function(module, exports) {
+
+module.exports = require("chance");
+
+/***/ }),
+
 /***/ 7:
 /***/ (function(module, exports) {
 
 module.exports = require("is-browser");
-
-/***/ }),
-
-/***/ 8:
-/***/ (function(module, exports) {
-
-module.exports = require("classnames");
 
 /***/ }),
 

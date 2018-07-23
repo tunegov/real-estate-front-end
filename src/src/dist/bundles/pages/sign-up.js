@@ -67,7 +67,7 @@ module.exports =
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 239);
+/******/ 	return __webpack_require__(__webpack_require__.s = 254);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -125,6 +125,13 @@ module.exports = require("next/router");
 
 /***/ }),
 
+/***/ 157:
+/***/ (function(module, exports) {
+
+module.exports = require("gsap");
+
+/***/ }),
+
 /***/ 16:
 /***/ (function(module, exports) {
 
@@ -136,6 +143,905 @@ module.exports = require("next/head");
 /***/ (function(module, exports) {
 
 module.exports = require("prop-types");
+
+/***/ }),
+
+/***/ 183:
+/***/ (function(module, exports) {
+
+module.exports = require("react-transition-group/TransitionGroup");
+
+/***/ }),
+
+/***/ 184:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+
+// EXTERNAL MODULE: external "react"
+var external__react_ = __webpack_require__(0);
+var external__react__default = /*#__PURE__*/__webpack_require__.n(external__react_);
+
+// EXTERNAL MODULE: external "gsap"
+var external__gsap_ = __webpack_require__(157);
+var external__gsap__default = /*#__PURE__*/__webpack_require__.n(external__gsap_);
+
+// CONCATENATED MODULE: ./components/TransitionHOC/fadesUp.js
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+
+ // HOC that adds a fade up animation to it's component argument
+// and takes an 'options' configuration object
+
+/*
+
+const config = {
+  enterDuration: Int (seconds),
+  enterDelay: Int (seconds),
+  exitDuration: Int (seconds),
+}
+
+*/
+
+function fadesUp(Component) {
+  var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+  return (
+    /*#__PURE__*/
+    function (_React$Component) {
+      _inherits(FadesUp, _React$Component);
+
+      function FadesUp() {
+        _classCallCheck(this, FadesUp);
+
+        return _possibleConstructorReturn(this, (FadesUp.__proto__ || Object.getPrototypeOf(FadesUp)).apply(this, arguments));
+      }
+
+      _createClass(FadesUp, [{
+        key: "componentWillAppear",
+        value: function componentWillAppear(callback) {
+          var el = this._child;
+          external__gsap_["TweenMax"].fromTo(el, options.enterDuration || 0.8, {
+            y: -100,
+            opacity: 0
+          }, {
+            y: 0,
+            opacity: 1,
+            onComplete: callback,
+            delay: options.enterDelay || 0.3,
+            ease: external__gsap_["Elastic"].easeOut.config(1.5, 0.6)
+          });
+        }
+      }, {
+        key: "componentWillLeave",
+        value: function componentWillLeave(callback) {
+          var el = this._child;
+          external__gsap_["TweenMax"].fromTo(el, options.exitDuration || 0.5, {
+            opacity: 1
+          }, {
+            opacity: 0,
+            onComplete: callback
+          });
+        }
+      }, {
+        key: "render",
+        value: function render() {
+          var _this = this;
+
+          return external__react__default.a.createElement("div", {
+            ref: function ref(c) {
+              return _this._child = c;
+            }
+          }, external__react__default.a.createElement(Component, this.props));
+        }
+      }]);
+
+      return FadesUp;
+    }(external__react__default.a.Component)
+  );
+}
+
+/* harmony default export */ var TransitionHOC_fadesUp = (fadesUp);
+// CONCATENATED MODULE: ./components/TransitionHOC/fadesDown.js
+function fadesDown__typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { fadesDown__typeof = function _typeof(obj) { return typeof obj; }; } else { fadesDown__typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return fadesDown__typeof(obj); }
+
+function fadesDown__classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function fadesDown__defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function fadesDown__createClass(Constructor, protoProps, staticProps) { if (protoProps) fadesDown__defineProperties(Constructor.prototype, protoProps); if (staticProps) fadesDown__defineProperties(Constructor, staticProps); return Constructor; }
+
+function fadesDown__possibleConstructorReturn(self, call) { if (call && (fadesDown__typeof(call) === "object" || typeof call === "function")) { return call; } return fadesDown__assertThisInitialized(self); }
+
+function fadesDown__assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function fadesDown__inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+
+ // HOC that adds a fade up animation to it's component argument
+// and takes an 'options' configuration object
+
+/*
+
+const config = {
+  enterDuration: Int (seconds),
+  enterDelay: Int (seconds),
+  exitDuration: Int (seconds),
+}
+
+*/
+
+function fadesDown(Component) {
+  var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+  return (
+    /*#__PURE__*/
+    function (_React$Component) {
+      fadesDown__inherits(FadesDown, _React$Component);
+
+      function FadesDown() {
+        fadesDown__classCallCheck(this, FadesDown);
+
+        return fadesDown__possibleConstructorReturn(this, (FadesDown.__proto__ || Object.getPrototypeOf(FadesDown)).apply(this, arguments));
+      }
+
+      fadesDown__createClass(FadesDown, [{
+        key: "componentWillAppear",
+        value: function componentWillAppear(callback) {
+          var el = this._child;
+          external__gsap_["TweenMax"].fromTo(el, options.enterDuration || 0.8, {
+            y: 100,
+            opacity: 0
+          }, {
+            y: 0,
+            opacity: 1,
+            onComplete: callback,
+            delay: options.enterDelay || 0.3,
+            ease: external__gsap_["Elastic"].easeOut.config(1.5, 0.6)
+          });
+        }
+      }, {
+        key: "componentWillLeave",
+        value: function componentWillLeave(callback) {
+          var el = this._child;
+          external__gsap_["TweenMax"].fromTo(el, options.exitDuration || 0.5, {
+            opacity: 1
+          }, {
+            opacity: 0,
+            onComplete: callback
+          });
+        }
+      }, {
+        key: "render",
+        value: function render() {
+          var _this = this;
+
+          return external__react__default.a.createElement("div", {
+            ref: function ref(c) {
+              return _this._child = c;
+            }
+          }, external__react__default.a.createElement(Component, this.props));
+        }
+      }]);
+
+      return FadesDown;
+    }(external__react__default.a.Component)
+  );
+}
+
+/* harmony default export */ var TransitionHOC_fadesDown = (fadesDown);
+// CONCATENATED MODULE: ./components/TransitionHOC/index.js
+/* concated harmony reexport */__webpack_require__.d(__webpack_exports__, "b", function() { return TransitionHOC_fadesUp; });
+/* concated harmony reexport */__webpack_require__.d(__webpack_exports__, "a", function() { return TransitionHOC_fadesDown; });
+
+
+
+
+/***/ }),
+
+/***/ 185:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+
+// EXTERNAL MODULE: external "react"
+var external__react_ = __webpack_require__(0);
+var external__react__default = /*#__PURE__*/__webpack_require__.n(external__react_);
+
+// EXTERNAL MODULE: external "mobx-react"
+var external__mobx_react_ = __webpack_require__(1);
+var external__mobx_react__default = /*#__PURE__*/__webpack_require__.n(external__mobx_react_);
+
+// EXTERNAL MODULE: external "debounce"
+var external__debounce_ = __webpack_require__(91);
+var external__debounce__default = /*#__PURE__*/__webpack_require__.n(external__debounce_);
+
+// EXTERNAL MODULE: ./routes.js
+var routes = __webpack_require__(4);
+var routes_default = /*#__PURE__*/__webpack_require__.n(routes);
+
+// EXTERNAL MODULE: external "styled-components"
+var external__styled_components_ = __webpack_require__(9);
+var external__styled_components__default = /*#__PURE__*/__webpack_require__.n(external__styled_components_);
+
+// CONCATENATED MODULE: ./sharedStyledComponents/ServerErrorMessage.js
+
+/* harmony default export */ var ServerErrorMessage = (external__styled_components__default.a.h3.withConfig({
+  displayName: "ServerErrorMessage",
+  componentId: "a0iz9s-0"
+})(["margin-top:10px;text-align:center;margin-bottom:30px;color:red;"]));
+// EXTERNAL MODULE: ./constants/userTypes.js
+var userTypes = __webpack_require__(12);
+var userTypes_default = /*#__PURE__*/__webpack_require__.n(userTypes);
+
+// EXTERNAL MODULE: external "@babel/runtime/regenerator"
+var regenerator_ = __webpack_require__(3);
+var regenerator__default = /*#__PURE__*/__webpack_require__.n(regenerator_);
+
+// EXTERNAL MODULE: external "react-form"
+var external__react_form_ = __webpack_require__(24);
+var external__react_form__default = /*#__PURE__*/__webpack_require__.n(external__react_form_);
+
+// EXTERNAL MODULE: external "email-validator"
+var external__email_validator_ = __webpack_require__(89);
+var external__email_validator__default = /*#__PURE__*/__webpack_require__.n(external__email_validator_);
+
+// CONCATENATED MODULE: ./components/CustomTextFieldWrapper/styledComponents/index.js
+
+var Input = external__styled_components__default.a.input.withConfig({
+  displayName: "styledComponents__Input",
+  componentId: "s1c2cbyl-0"
+})(["box-sizing:border-box;display:block;width:100%;padding:10px 15px;font-size:16px;font-weight:400;font-family:Helvetica Neue;border:1px solid #ddd;border-radius:5px;"]);
+var InputWrapper = external__styled_components__default.a.div.withConfig({
+  displayName: "styledComponents__InputWrapper",
+  componentId: "s1c2cbyl-1"
+})(["margin-bottom:30px;"]);
+var FormMessage = external__styled_components__default.a.small.withConfig({
+  displayName: "styledComponents__FormMessage",
+  componentId: "s1c2cbyl-2"
+})(["color:", ";"], function (props) {
+  return props.color;
+});
+// CONCATENATED MODULE: ./components/CustomTextFieldWrapper/index.js
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+
+function _objectWithoutProperties(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i < sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) >= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+
+
+
+ // Define a custom message component
+
+var CustomTextFieldWrapper_Message = function Message(_ref) {
+  var color = _ref.color,
+      message = _ref.message;
+  return external__react__default.a.createElement("div", null, external__react__default.a.createElement(FormMessage, {
+    color: color
+  }, message));
+};
+
+var numbersOnlyRegex = /^\d+$/;
+
+var CustomTextFieldWrapper_CustomTextFieldWrapper =
+/*#__PURE__*/
+function (_React$Component) {
+  _inherits(CustomTextFieldWrapper, _React$Component);
+
+  function CustomTextFieldWrapper() {
+    _classCallCheck(this, CustomTextFieldWrapper);
+
+    return _possibleConstructorReturn(this, (CustomTextFieldWrapper.__proto__ || Object.getPrototypeOf(CustomTextFieldWrapper)).apply(this, arguments));
+  }
+
+  _createClass(CustomTextFieldWrapper, [{
+    key: "shouldComponentUpdate",
+    value: function shouldComponentUpdate() {
+      return true;
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var _this = this;
+
+      return external__react__default.a.createElement(external__react_form_["Field"], _extends({
+        validate: this.props.validate,
+        field: this.props.field
+      }, this.props), function (fieldApi) {
+        var _this$props = _this.props,
+            onInput = _this$props.onInput,
+            field = _this$props.field,
+            onBlur = _this$props.onBlur,
+            _onChange = _this$props.onChange,
+            numbersOnly = _this$props.numbersOnly,
+            rest = _objectWithoutProperties(_this$props, ["onInput", "field", "onBlur", "onChange", "numbersOnly"]);
+
+        var value = fieldApi.value,
+            error = fieldApi.error,
+            warning = fieldApi.warning,
+            success = fieldApi.success,
+            setValue = fieldApi.setValue,
+            setTouched = fieldApi.setTouched,
+            touched = fieldApi.touched;
+        return external__react__default.a.createElement(InputWrapper, null, external__react__default.a.createElement(Input, _extends({
+          value: value || '',
+          onChange: function onChange(e) {
+            var newValue = e.target.value;
+
+            if (numbersOnly && newValue && !numbersOnlyRegex.test(newValue)) {
+              return;
+            }
+
+            setValue(newValue);
+
+            if (_onChange) {
+              _onChange(newValue, e);
+            }
+          },
+          onBlur: function onBlur(event) {
+            if (event.target.value || touched) setTouched();
+          }
+        }, rest)), error && touched ? external__react__default.a.createElement(CustomTextFieldWrapper_Message, {
+          color: "#ef5350",
+          message: error
+        }) : null, !error && warning && touched ? external__react__default.a.createElement(CustomTextFieldWrapper_Message, {
+          color: "orange",
+          message: warning
+        }) : null, !error && !warning && success ? external__react__default.a.createElement(CustomTextFieldWrapper_Message, {
+          color: "green",
+          message: success
+        }) : null);
+      });
+    }
+  }]);
+
+  return CustomTextFieldWrapper;
+}(external__react__default.a.Component);
+/*
+const CustomTextFieldWrapper = props => (
+  <Field validate={props.validate} field={props.field}>
+    {fieldApi => {
+      const {
+        onInput,
+        field,
+        onBlur,
+        onChange,
+        ...rest
+      } = props;
+
+      const {
+        value,
+        error,
+        warning,
+        success,
+        setValue,
+        setTouched,
+        touched,
+      } = fieldApi;
+
+      return (
+        <InputWrapper>
+          <Input
+            value={value || ''}
+            onChange={e => {
+              console.log(value)
+              setValue(e.target.value);
+              if (onChange) {
+                onChange(e.target.value, e);
+              }
+            }}
+            onBlur={event => {
+              if (event.target.value || touched) setTouched();
+            }}
+            {...rest}
+          />
+          {error && touched ? <Message color="#ef5350" message={error} /> : null}
+          {!error && warning && touched ? (
+            <Message color="orange" message={warning} />
+          ) : null}
+          {!error && !warning && success ? (
+            <Message color="green" message={success} />
+          ) : null}
+        </InputWrapper>
+      );
+    }}
+  </Field>
+);
+*/
+
+
+/* harmony default export */ var components_CustomTextFieldWrapper = (Object(external__mobx_react_["observer"])(CustomTextFieldWrapper_CustomTextFieldWrapper));
+// CONCATENATED MODULE: ./sharedStyledComponents/FormWrapper.js
+
+/* harmony default export */ var FormWrapper = (external__styled_components__default.a.div.withConfig({
+  displayName: "FormWrapper",
+  componentId: "xed2n-0"
+})(["margin-left:auto;margin-right:auto;margin-top:40px;padding:30px 20px;width:450px;max-width:90%;border:none;border-radius:25px;background-color:#fff;box-shadow:0.05555555555555555rem 0.05555555555555555rem 1.1111111111111112rem rgba(20,20,20,0.27);"]));
+// EXTERNAL MODULE: external "polished"
+var external__polished_ = __webpack_require__(10);
+var external__polished__default = /*#__PURE__*/__webpack_require__.n(external__polished_);
+
+// CONCATENATED MODULE: ./sharedStyledComponents/PrimaryButton.js
+
+
+/* harmony default export */ var PrimaryButton = (external__styled_components__default.a.button.withConfig({
+  displayName: "PrimaryButton",
+  componentId: "ec9nxb-0"
+})(["margin-right:20px;padding:10px 20px;width:", ";font-size:20px;font-weight:400;font-family:Helvetica Neue;background-color:transparent;border:none;background-color:", ";border-radius:5px;color:#fff;cursor:pointer;outline:none;transition:background-color 0.2s ease-in-out,color 0.2s ease-in-out;&:hover{color:#fff;background-color:", ";}"], function (props) {
+  return props.width ? props.width + '%' : 'auto';
+}, function (props) {
+  return props.theme.secondaryColor;
+}, function (props) {
+  return Object(external__polished_["darken"])(0.1, props.theme.secondaryColor);
+}));
+// CONCATENATED MODULE: ./sharedStyledComponents/LoginSignUpFormTitle.js
+
+/* harmony default export */ var LoginSignUpFormTitle = (external__styled_components__default.a.div.withConfig({
+  displayName: "LoginSignUpFormTitle",
+  componentId: "s843o8r-0"
+})(["margin-bottom:10px;font-size:24px;font-weight:600;font-family:Helvetica Neue;color:#4d4d4d;"]));
+// CONCATENATED MODULE: ./components/forms/LoginForm/index.js
+
+
+var _class;
+
+function LoginForm__typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { LoginForm__typeof = function _typeof(obj) { return typeof obj; }; } else { LoginForm__typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return LoginForm__typeof(obj); }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } } function _next(value) { step("next", value); } function _throw(err) { step("throw", err); } _next(); }); }; }
+
+function LoginForm__classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function LoginForm__defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function LoginForm__createClass(Constructor, protoProps, staticProps) { if (protoProps) LoginForm__defineProperties(Constructor.prototype, protoProps); if (staticProps) LoginForm__defineProperties(Constructor, staticProps); return Constructor; }
+
+function LoginForm__possibleConstructorReturn(self, call) { if (call && (LoginForm__typeof(call) === "object" || typeof call === "function")) { return call; } return LoginForm__assertThisInitialized(self); }
+
+function LoginForm__inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+function LoginForm__assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+
+
+
+
+
+
+
+
+
+
+var CustomTextField = components_CustomTextFieldWrapper;
+
+var LoginForm_LoginForm = Object(external__mobx_react_["observer"])(_class =
+/*#__PURE__*/
+function (_React$Component) {
+  LoginForm__inherits(LoginForm, _React$Component);
+
+  function LoginForm() {
+    var _ref;
+
+    var _temp, _this;
+
+    LoginForm__classCallCheck(this, LoginForm);
+
+    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    return LoginForm__possibleConstructorReturn(_this, (_temp = _this = LoginForm__possibleConstructorReturn(this, (_ref = LoginForm.__proto__ || Object.getPrototypeOf(LoginForm)).call.apply(_ref, [this].concat(args))), Object.defineProperty(LoginForm__assertThisInitialized(_this), "onSubmit", {
+      configurable: true,
+      enumerable: true,
+      writable: true,
+      value: function () {
+        var _value = _asyncToGenerator(
+        /*#__PURE__*/
+        regenerator__default.a.mark(function _callee(values, event) {
+          var email, password, res;
+          return regenerator__default.a.wrap(function _callee$(_context) {
+            while (1) {
+              switch (_context.prev = _context.next) {
+                case 0:
+                  email = values.email, password = values.password;
+                  _context.prev = 1;
+                  _context.next = 4;
+                  return _this.props.loginUser({
+                    email: email,
+                    password: password
+                  });
+
+                case 4:
+                  res = _context.sent;
+                  _context.next = 10;
+                  break;
+
+                case 7:
+                  _context.prev = 7;
+                  _context.t0 = _context["catch"](1);
+                  console.log(_context.t0);
+
+                case 10:
+                  if (!res.error) {
+                    _context.next = 13;
+                    break;
+                  }
+
+                  _this.setState(_objectSpread({}, _this.state, {
+                    errorsFromServer: res.error
+                  }));
+
+                  return _context.abrupt("return");
+
+                case 13:
+                  if (_this.state.errorsFromServer) {
+                    _this.setState(_objectSpread({}, _this.state, {
+                      errorsFromServer: ''
+                    }));
+                  }
+
+                  routes["Router"].pushRoute('home');
+
+                case 15:
+                case "end":
+                  return _context.stop();
+              }
+            }
+          }, _callee, this, [[1, 7]]);
+        }));
+
+        return function value(_x, _x2) {
+          return _value.apply(this, arguments);
+        };
+      }()
+    }), Object.defineProperty(LoginForm__assertThisInitialized(_this), "preValidate", {
+      configurable: true,
+      enumerable: true,
+      writable: true,
+      value: function value(values, formApi) {
+        Object.keys(values).forEach(function (property) {
+          var val = values[property];
+
+          if (typeof val === 'string' && property !== 'password') {
+            values[property] = val.trim();
+          }
+        });
+        return values;
+      }
+    }), Object.defineProperty(LoginForm__assertThisInitialized(_this), "errorValidator", {
+      configurable: true,
+      enumerable: true,
+      writable: true,
+      value: function value(values) {
+        return {
+          email: !values.email || !external__email_validator_["validate"](values.email) ? 'Please provide a valid email address' : null,
+          password: !values.password || values.password.length < 6 || values.password.length > 20 ? 'Your password must be between 6 and 20 characters long' : null
+        };
+      }
+    }), Object.defineProperty(LoginForm__assertThisInitialized(_this), "renderServerErrorMessage", {
+      configurable: true,
+      enumerable: true,
+      writable: true,
+      value: function value() {
+        return external__react__default.a.createElement(ServerErrorMessage, null, "Error: ".concat(_this.state.errorsFromServer));
+      }
+    }), _temp));
+  }
+
+  LoginForm__createClass(LoginForm, [{
+    key: "onSubmitFailure",
+    value: function onSubmitFailure(errs, onSubmitError) {
+      console.log(onSubmitError);
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      return external__react__default.a.createElement(FormWrapper, null, external__react__default.a.createElement(LoginSignUpFormTitle, null, "Login"), external__react__default.a.createElement(external__react_form_["Form"], {
+        preValidate: this.preValidate,
+        onSubmit: this.props.onSubmit,
+        onSubmitFailure: this.props.onSubmitFailure,
+        validate: this.errorValidator
+      }, function (formApi) {
+        return external__react__default.a.createElement("form", {
+          onSubmit: formApi.submitForm,
+          id: "form1"
+        }, external__react__default.a.createElement(CustomTextField, {
+          type: "email",
+          field: "email",
+          id: "email",
+          placeholder: "Email"
+        }), external__react__default.a.createElement(CustomTextField, {
+          type: "password",
+          field: "password",
+          id: "password",
+          placeholder: "Password"
+        }), external__react__default.a.createElement(PrimaryButton, {
+          type: "submit",
+          width: 100
+        }, "Submit"));
+      }));
+    }
+  }]);
+
+  return LoginForm;
+}(external__react__default.a.Component)) || _class;
+
+/* harmony default export */ var forms_LoginForm = (LoginForm_LoginForm);
+// CONCATENATED MODULE: ./components/forms/SignUpForm/index.js
+var SignUpForm__class;
+
+function SignUpForm__typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { SignUpForm__typeof = function _typeof(obj) { return typeof obj; }; } else { SignUpForm__typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return SignUpForm__typeof(obj); }
+
+function SignUpForm__classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function SignUpForm__defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function SignUpForm__createClass(Constructor, protoProps, staticProps) { if (protoProps) SignUpForm__defineProperties(Constructor.prototype, protoProps); if (staticProps) SignUpForm__defineProperties(Constructor, staticProps); return Constructor; }
+
+function SignUpForm__possibleConstructorReturn(self, call) { if (call && (SignUpForm__typeof(call) === "object" || typeof call === "function")) { return call; } return SignUpForm__assertThisInitialized(self); }
+
+function SignUpForm__inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+function SignUpForm__assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+
+
+
+
+
+
+
+
+
+var SignUpForm_CustomTextField = components_CustomTextFieldWrapper;
+
+var SignUpForm_SignUpForm = Object(external__mobx_react_["observer"])(SignUpForm__class =
+/*#__PURE__*/
+function (_React$Component) {
+  SignUpForm__inherits(SignUpForm, _React$Component);
+
+  function SignUpForm() {
+    var _ref;
+
+    var _temp, _this;
+
+    SignUpForm__classCallCheck(this, SignUpForm);
+
+    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    return SignUpForm__possibleConstructorReturn(_this, (_temp = _this = SignUpForm__possibleConstructorReturn(this, (_ref = SignUpForm.__proto__ || Object.getPrototypeOf(SignUpForm)).call.apply(_ref, [this].concat(args))), Object.defineProperty(SignUpForm__assertThisInitialized(_this), "preValidate", {
+      configurable: true,
+      enumerable: true,
+      writable: true,
+      value: function value(values, formApi) {
+        Object.keys(values).forEach(function (property) {
+          var val = values[property];
+
+          if (typeof val === 'string' && property !== 'password') {
+            values[property] = val.trim();
+          }
+        });
+        return values;
+      }
+    }), Object.defineProperty(SignUpForm__assertThisInitialized(_this), "errorValidator", {
+      configurable: true,
+      enumerable: true,
+      writable: true,
+      value: function value(values) {
+        return {
+          firstName: !values.firstName || values.firstName.length < 3 || values.firstName.length > 30 ? 'Between 3 and 30 characters' : null,
+          lastName: !values.lastName || values.lastName.length < 3 || values.lastName.length > 30 ? 'Between 3 and 30 characters' : null,
+          email: !values.email || !external__email_validator_["validate"](values.email) || values.email.length > 40 ? 'Please provide a valid email address that is less than 40 characters' : null,
+          password: !values.password || values.password.length < 6 || values.password.length > 20 ? 'Your password must be between 6 and 20 characters long' : null,
+          passwordConfirmation: !values.password || values.password.length < 6 || values.password.length > 20 || values.password !== values.passwordConfirmation ? 'Your passwords do not match or are not valid' : null
+        };
+      }
+    }), Object.defineProperty(SignUpForm__assertThisInitialized(_this), "renderServerErrorMessage", {
+      configurable: true,
+      enumerable: true,
+      writable: true,
+      value: function value() {
+        return external__react__default.a.createElement(ServerErrorMessage, null, "Error: ".concat(_this.state.errorsFromServer));
+      }
+    }), _temp));
+  }
+
+  SignUpForm__createClass(SignUpForm, [{
+    key: "render",
+    value: function render() {
+      return external__react__default.a.createElement(FormWrapper, null, external__react__default.a.createElement(LoginSignUpFormTitle, null, "Sign Up"), external__react__default.a.createElement(external__react_form_["Form"], {
+        preValidate: this.preValidate,
+        onSubmit: this.props.onSubmit,
+        onSubmitFailure: this.props.onSubmitFailure,
+        validate: this.errorValidator
+      }, function (formApi) {
+        return external__react__default.a.createElement("form", {
+          onSubmit: formApi.submitForm,
+          id: "form1"
+        }, external__react__default.a.createElement(SignUpForm_CustomTextField, {
+          field: "firstName",
+          id: "first-name",
+          placeholder: "First Name"
+        }), external__react__default.a.createElement(SignUpForm_CustomTextField, {
+          field: "lastName",
+          id: "last-name",
+          placeholder: "Last Name"
+        }), external__react__default.a.createElement(SignUpForm_CustomTextField, {
+          type: "email",
+          field: "email",
+          id: "email",
+          placeholder: "Email"
+        }), external__react__default.a.createElement(SignUpForm_CustomTextField, {
+          type: "password",
+          field: "password",
+          id: "password",
+          placeholder: "Password"
+        }), external__react__default.a.createElement(SignUpForm_CustomTextField, {
+          type: "password",
+          field: "passwordConfirmation",
+          id: "passwordConfirmation",
+          placeholder: "Password Confirmation"
+        }), external__react__default.a.createElement(PrimaryButton, {
+          type: "submit",
+          width: 100
+        }, "Submit"));
+      }));
+    }
+  }]);
+
+  return SignUpForm;
+}(external__react__default.a.Component)) || SignUpForm__class;
+
+/* harmony default export */ var forms_SignUpForm = (SignUpForm_SignUpForm);
+// CONCATENATED MODULE: ./containers/SignUpLoginForm.js
+var SignUpLoginForm__class;
+
+function SignUpLoginForm__typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { SignUpLoginForm__typeof = function _typeof(obj) { return typeof obj; }; } else { SignUpLoginForm__typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return SignUpLoginForm__typeof(obj); }
+
+function SignUpLoginForm__extends() { SignUpLoginForm__extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return SignUpLoginForm__extends.apply(this, arguments); }
+
+function SignUpLoginForm__classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function SignUpLoginForm__defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function SignUpLoginForm__createClass(Constructor, protoProps, staticProps) { if (protoProps) SignUpLoginForm__defineProperties(Constructor.prototype, protoProps); if (staticProps) SignUpLoginForm__defineProperties(Constructor, staticProps); return Constructor; }
+
+function SignUpLoginForm__possibleConstructorReturn(self, call) { if (call && (SignUpLoginForm__typeof(call) === "object" || typeof call === "function")) { return call; } return SignUpLoginForm__assertThisInitialized(self); }
+
+function SignUpLoginForm__inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+function SignUpLoginForm__assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+
+
+
+
+
+
+
+
+
+var SignUpLoginForm_SignUpLoginForm = Object(external__mobx_react_["observer"])(SignUpLoginForm__class =
+/*#__PURE__*/
+function (_React$Component) {
+  SignUpLoginForm__inherits(SignUpLoginForm, _React$Component);
+
+  function SignUpLoginForm(props) {
+    var _this;
+
+    SignUpLoginForm__classCallCheck(this, SignUpLoginForm);
+
+    _this = SignUpLoginForm__possibleConstructorReturn(this, (SignUpLoginForm.__proto__ || Object.getPrototypeOf(SignUpLoginForm)).call(this, props));
+    Object.defineProperty(SignUpLoginForm__assertThisInitialized(_this), "onSubmit", {
+      configurable: true,
+      enumerable: true,
+      writable: true,
+      value: function value(values, event) {
+        var formSubmitFuncName = _this.props.formType === 'sign-up' ? 'signUpCustomer' : 'loginUser';
+
+        _this.props[formSubmitFuncName](values).then(function (res) {
+          console.log(res);
+
+          if (res.error) {
+            _this.setState({
+              errorsFromServer: res.error
+            });
+
+            return;
+          }
+
+          if (_this.state.errorsFromServer) {
+            _this.setState({
+              errorsFromServer: ''
+            });
+          }
+
+          if (res.user) {
+            if (res.user.role === userTypes["agent"]) {
+              routes["Router"].pushRoute('dashboard');
+            } else if (res.user.role === userTypes["admin"] || res.user.role === userTypes["superAdmin"]) {
+              routes["Router"].pushRoute('admin-dashboard');
+            } else {
+              routes["Router"].pushRoute('home');
+            }
+          } else {
+            _this.setState({
+              errorsFromServer: "We're sorry, there was an error processing your request."
+            });
+          }
+        }).catch(function (err) {
+          console.log(err);
+        });
+      }
+    });
+    Object.defineProperty(SignUpLoginForm__assertThisInitialized(_this), "renderServerErrorMessage", {
+      configurable: true,
+      enumerable: true,
+      writable: true,
+      value: function value() {
+        return external__react__default.a.createElement(ServerErrorMessage, null, "Error: ".concat(_this.state.errorsFromServer));
+      }
+    });
+    _this.state = {
+      errorsFromServer: ''
+    };
+    return _this;
+  }
+
+  SignUpLoginForm__createClass(SignUpLoginForm, [{
+    key: "onSubmitFailure",
+    value: function onSubmitFailure(errs, onSubmitError) {
+      console.log(onSubmitError);
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      return external__react__default.a.createElement("div", {
+        style: {
+          padding: '0 20px'
+        }
+      }, this.state.errorsFromServer ? this.renderServerErrorMessage() : null, this.props.formType === 'login' ? external__react__default.a.createElement(forms_LoginForm, SignUpLoginForm__extends({}, this.props, {
+        onSubmit: this.onSubmit,
+        onSubmitFailure: this.onSubmitFailure
+      })) : external__react__default.a.createElement(forms_SignUpForm, SignUpLoginForm__extends({}, this.props, {
+        onSubmit: this.onSubmit,
+        onSubmitFailure: this.onSubmitFailure
+      })));
+    }
+  }]);
+
+  return SignUpLoginForm;
+}(external__react__default.a.Component)) || SignUpLoginForm__class;
+
+/* harmony default export */ var containers_SignUpLoginForm = __webpack_exports__["a"] = (SignUpLoginForm_SignUpLoginForm);
 
 /***/ }),
 
@@ -617,630 +1523,10 @@ function initStore(isServer) {
 
 /***/ }),
 
-/***/ 239:
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(240);
-
-
-/***/ }),
-
-/***/ 240:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-
-// EXTERNAL MODULE: external "react"
-var external__react_ = __webpack_require__(0);
-var external__react__default = /*#__PURE__*/__webpack_require__.n(external__react_);
-
-// EXTERNAL MODULE: external "mobx-react"
-var external__mobx_react_ = __webpack_require__(1);
-var external__mobx_react__default = /*#__PURE__*/__webpack_require__.n(external__mobx_react_);
-
-// EXTERNAL MODULE: external "is-browser"
-var external__is_browser_ = __webpack_require__(7);
-var external__is_browser__default = /*#__PURE__*/__webpack_require__.n(external__is_browser_);
-
-// EXTERNAL MODULE: ./frontEndComponents/FrontEndLayout/index.js + 7 modules
-var FrontEndLayout = __webpack_require__(92);
-
-// EXTERNAL MODULE: ./models/index.js + 8 modules
-var models = __webpack_require__(22);
-
-// EXTERNAL MODULE: ./lib/withData.js + 2 modules
-var withData = __webpack_require__(49);
-
-// EXTERNAL MODULE: external "material-ui/styles"
-var styles_ = __webpack_require__(2);
-var styles__default = /*#__PURE__*/__webpack_require__.n(styles_);
-
-// EXTERNAL MODULE: external "classnames"
-var external__classnames_ = __webpack_require__(8);
-var external__classnames__default = /*#__PURE__*/__webpack_require__.n(external__classnames_);
-
-// EXTERNAL MODULE: external "@material-ui/icons/ArrowDownward"
-var ArrowDownward_ = __webpack_require__(241);
-var ArrowDownward__default = /*#__PURE__*/__webpack_require__.n(ArrowDownward_);
-
-// EXTERNAL MODULE: external "react-scroll"
-var external__react_scroll_ = __webpack_require__(242);
-var external__react_scroll__default = /*#__PURE__*/__webpack_require__.n(external__react_scroll_);
-
-// CONCATENATED MODULE: ./frontEndComponents/ComingSoonWelcomeHeader/index.js
-var _dec, _class;
-
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
-
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-
-
-
-
-
- // import Carousel from 'nuka-carousel';
-
-var styles = function styles(theme) {
-  return {
-    root: {
-      position: 'relative',
-      height: 'calc(100vh - 60px)',
-      width: '100%',
-      backgroundImage: 'url(/static/images/breather-red.jpg)',
-      backgroundPosition: 'center',
-      backgroundSize: 'cover'
-    },
-    jumbotronImg: {
-      position: 'absolute',
-      left: '0',
-      bottom: '0',
-      right: '0',
-      top: '0',
-      zIndex: '-2',
-      height: 'calc(100vh - 60px)',
-      width: '100%',
-      display: 'block',
-      objectFit: 'cover'
-    },
-    contentWrapper: {
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      position: 'absolute',
-      left: '0',
-      bottom: '0',
-      right: '0',
-      top: '0',
-      zIndex: '1',
-      backgroundColor: 'rgba(0,0,0,.5)'
-    },
-    innerContentWrapper: {
-      width: '100%',
-      height: '100%',
-      display: 'flex',
-      flexDirection: 'column',
-      justifyContent: 'center',
-      alignItems: 'center',
-      padding: '40px',
-      color: '#fff'
-    },
-    headline: {
-      paddingLeft: '15px',
-      paddingRight: '15px',
-      fontSize: '2.3rem',
-      lineHeight: '2.6rem',
-      fontFamily: theme.frontEnd.typography.fontFamily.serif,
-      textAlign: 'center',
-      letterSpacing: '3px',
-      marginBottom: '70px',
-      textTransform: 'uppercase',
-      borderBottom: "1px solid ".concat(theme.frontEnd.colors.primary.main)
-    },
-    subHeadline: {
-      marginBottom: '30px',
-      maxWidth: '700px',
-      fontSize: '1.1rem',
-      lineHeight: '1.8rem',
-      letterSpacing: '1px',
-      fontFamily: theme.frontEnd.typography.fontFamily.sansSerif,
-      textAlign: 'center'
-    },
-    searchTypeBtnsWrapper: {
-      display: 'flex',
-      height: '33px',
-      width: '300px',
-      border: '1px solid #D93F2A',
-      borderRadius: '8px'
-    },
-    searchTypeBtn: {
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      height: '100%',
-      width: '50%',
-      margin: 0,
-      fontSize: '0.8rem',
-      backgroundColor: '#fff',
-      border: 'none',
-      borderRadius: '0px 8px 8px 0',
-      cursor: 'pointer',
-      color: 'rgba(0,0,0.8)',
-      transition: 'color .1s ease-in-out, background-color .1s ease-in-out',
-      '&:first-of-type': {
-        borderRight: '1px solid #D93F2A',
-        borderRadius: '8px 0 0 8px'
-      },
-      '&:hover': {
-        color: 'rgba(255,255,255,1)',
-        backgroundColor: '#D93F2A'
-      }
-    },
-    slide: {
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'center'
-    },
-    scrollDownBtn: {
-      display: 'flex',
-      justifyContent: 'center',
-      alignItems: 'center',
-      position: 'absolute',
-      left: '50%',
-      bottom: '20px',
-      marginLeft: '-20px',
-      height: '40px',
-      width: '40px',
-      backgroundColor: 'transparent',
-      borderRadius: '50%',
-      fontSize: '1rem',
-      color: 'rgba(255,255,255,.7)',
-      border: '1px solid rgba(255,255,255,.7)',
-      cursor: 'pointer',
-      zIndex: 1,
-      transition: 'transform .2s ease-in-out, color .2s ease-in-out',
-      '&:hover': {
-        color: 'rgba(255,255,255,.9)',
-        transform: 'scale(1.05,1.05)'
-      }
-    },
-    downArrowIcon: {
-      fontSize: '1.8rem',
-      color: 'rgba(255,255,255,.7)'
-    },
-    redEmphasis: {
-      color: theme.frontEnd.colors.primary.main
-    }
-  };
-};
-
-var ComingSoonWelcomeHeader_WelcomeHeader = (_dec = Object(styles_["withStyles"])(styles), Object(external__mobx_react_["observer"])(_class = _dec(_class =
-/*#__PURE__*/
-function (_Component) {
-  _inherits(WelcomeHeader, _Component);
-
-  function WelcomeHeader() {
-    _classCallCheck(this, WelcomeHeader);
-
-    return _possibleConstructorReturn(this, (WelcomeHeader.__proto__ || Object.getPrototypeOf(WelcomeHeader)).apply(this, arguments));
-  }
-
-  _createClass(WelcomeHeader, [{
-    key: "render",
-    value: function render() {
-      var classes = this.props.classes;
-      return external__react__default.a.createElement("div", {
-        className: classes.root
-      }, external__react__default.a.createElement("div", {
-        className: classes.contentWrapper
-      }, external__react__default.a.createElement("div", {
-        className: classes.innerContentWrapper
-      }, external__react__default.a.createElement("div", {
-        id: "slideOne",
-        className: external__classnames__default()(classes.slide)
-      }, external__react__default.a.createElement("div", {
-        className: classes.headline
-      }, "Coming ", external__react__default.a.createElement("span", {
-        className: classes.redEmphasis
-      }, "-"), " Soon")))));
-    }
-  }]);
-
-  return WelcomeHeader;
-}(external__react_["Component"])) || _class) || _class);
-/* harmony default export */ var ComingSoonWelcomeHeader = (ComingSoonWelcomeHeader_WelcomeHeader);
-// CONCATENATED MODULE: ./frontEndContainers/ComingSoonJumbotronHeader.js
-function ComingSoonJumbotronHeader__typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { ComingSoonJumbotronHeader__typeof = function _typeof(obj) { return typeof obj; }; } else { ComingSoonJumbotronHeader__typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return ComingSoonJumbotronHeader__typeof(obj); }
-
-function ComingSoonJumbotronHeader__classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function ComingSoonJumbotronHeader__defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function ComingSoonJumbotronHeader__createClass(Constructor, protoProps, staticProps) { if (protoProps) ComingSoonJumbotronHeader__defineProperties(Constructor.prototype, protoProps); if (staticProps) ComingSoonJumbotronHeader__defineProperties(Constructor, staticProps); return Constructor; }
-
-function ComingSoonJumbotronHeader__possibleConstructorReturn(self, call) { if (call && (ComingSoonJumbotronHeader__typeof(call) === "object" || typeof call === "function")) { return call; } return ComingSoonJumbotronHeader__assertThisInitialized(self); }
-
-function ComingSoonJumbotronHeader__assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function ComingSoonJumbotronHeader__inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-
-
-
-var ComingSoonJumbotronHeader_JumbotronHeader =
-/*#__PURE__*/
-function (_Component) {
-  ComingSoonJumbotronHeader__inherits(JumbotronHeader, _Component);
-
-  function JumbotronHeader() {
-    ComingSoonJumbotronHeader__classCallCheck(this, JumbotronHeader);
-
-    return ComingSoonJumbotronHeader__possibleConstructorReturn(this, (JumbotronHeader.__proto__ || Object.getPrototypeOf(JumbotronHeader)).apply(this, arguments));
-  }
-
-  ComingSoonJumbotronHeader__createClass(JumbotronHeader, [{
-    key: "render",
-    value: function render() {
-      return external__react__default.a.createElement(ComingSoonWelcomeHeader, null);
-    }
-  }]);
-
-  return JumbotronHeader;
-}(external__react_["Component"]);
-
-/* harmony default export */ var ComingSoonJumbotronHeader = (ComingSoonJumbotronHeader_JumbotronHeader);
-// EXTERNAL MODULE: external "material-ui/Grid"
-var Grid_ = __webpack_require__(32);
-var Grid__default = /*#__PURE__*/__webpack_require__.n(Grid_);
-
-// EXTERNAL MODULE: external "react-icons/lib/fa"
-var fa_ = __webpack_require__(54);
-var fa__default = /*#__PURE__*/__webpack_require__.n(fa_);
-
-// CONCATENATED MODULE: ./frontEndComponents/HowItWorksSection/index.js
-var HowItWorksSection__dec, HowItWorksSection__class;
-
-function HowItWorksSection__typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { HowItWorksSection__typeof = function _typeof(obj) { return typeof obj; }; } else { HowItWorksSection__typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return HowItWorksSection__typeof(obj); }
-
-function HowItWorksSection__classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function HowItWorksSection__defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function HowItWorksSection__createClass(Constructor, protoProps, staticProps) { if (protoProps) HowItWorksSection__defineProperties(Constructor.prototype, protoProps); if (staticProps) HowItWorksSection__defineProperties(Constructor, staticProps); return Constructor; }
-
-function HowItWorksSection__possibleConstructorReturn(self, call) { if (call && (HowItWorksSection__typeof(call) === "object" || typeof call === "function")) { return call; } return HowItWorksSection__assertThisInitialized(self); }
-
-function HowItWorksSection__assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function HowItWorksSection__inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-
-
-
-
-
- // import Carousel from 'nuka-carousel';
-
-var HowItWorksSection_styles = function styles(theme) {
-  var _howItWordsBtn;
-
-  return {
-    root: {
-      position: 'relative',
-      padding: '60px 10%',
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'center',
-      // height: '500px',
-      width: '100%',
-      backgroundColor: '#131413',
-      backgroundPosition: 'center',
-      backgroundSize: 'cover',
-      color: '#fff',
-      fontFamily: theme.frontEnd.typography.fontFamily.sansSerif2
-    },
-    sectionTitle: {
-      display: 'inline-block',
-      marginLeft: 'auto',
-      marginRight: 'auto',
-      textAlign: 'center',
-      ontWeight: '600',
-      marginBottom: '40px',
-      fontSize: '2.2rem',
-      fontFamily: theme.frontEnd.typography.fontFamily.sansSerif2,
-      textTransform: 'uppercase',
-      '&:::after': {
-        height: '2px',
-        backgroundColor: theme.frontEnd.colors.primary.main,
-        width: '40px',
-        content: ' '
-      }
-    },
-    blurbWrapper: {
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'center'
-    },
-    blurbText: {
-      fontSize: '1.2rem',
-      lineHeight: '1.8rem',
-      textAlign: 'center',
-      color: 'rgba(255,255,255,.7)'
-    },
-    blurbTitle: {
-      fontWeight: '600',
-      marginTop: '40px',
-      marginBottom: '10px',
-      fontSize: '1.8rem',
-      lineHeight: '1.8rem',
-      textAlign: 'center'
-    },
-    colorRed: {
-      color: theme.frontEnd.colors.primary.main
-    },
-    howItWordsBtn: (_howItWordsBtn = {
-      display: 'flex',
-      height: '40px',
-      width: '150px',
-      marginTop: '40px',
-      border: 'none'
-    }, _defineProperty(_howItWordsBtn, "display", 'flex'), _defineProperty(_howItWordsBtn, "alignItems", 'center'), _defineProperty(_howItWordsBtn, "justifyContent", 'center'), _defineProperty(_howItWordsBtn, "fontSize", '0.9rem'), _defineProperty(_howItWordsBtn, "color", '#fff'), _defineProperty(_howItWordsBtn, "backgroundColor", theme.frontEnd.colors.primary.main), _defineProperty(_howItWordsBtn, "borderRadius", '20px'), _defineProperty(_howItWordsBtn, "cursor", 'pointer'), _defineProperty(_howItWordsBtn, "transition", 'color .2s ease-in-out, background-color .1s ease-in-out'), _defineProperty(_howItWordsBtn, '&:hover', {
-      backgroundColor: theme.frontEnd.colors.primary.dark
-    }), _howItWordsBtn)
-  };
-};
-
-var HowItWorksSection_HowItWorksSection = (HowItWorksSection__dec = Object(styles_["withStyles"])(HowItWorksSection_styles), Object(external__mobx_react_["observer"])(HowItWorksSection__class = HowItWorksSection__dec(HowItWorksSection__class =
-/*#__PURE__*/
-function (_Component) {
-  HowItWorksSection__inherits(HowItWorksSection, _Component);
-
-  function HowItWorksSection() {
-    HowItWorksSection__classCallCheck(this, HowItWorksSection);
-
-    return HowItWorksSection__possibleConstructorReturn(this, (HowItWorksSection.__proto__ || Object.getPrototypeOf(HowItWorksSection)).apply(this, arguments));
-  }
-
-  HowItWorksSection__createClass(HowItWorksSection, [{
-    key: "render",
-    value: function render() {
-      var classes = this.props.classes;
-      return external__react__default.a.createElement("div", {
-        className: classes.root,
-        id: "how-it-works"
-      }, external__react__default.a.createElement("div", {
-        className: classes.sectionTitle
-      }, "How it works"), external__react__default.a.createElement(Grid__default.a, {
-        container: true,
-        spacing: 40
-      }, external__react__default.a.createElement(Grid__default.a, {
-        item: true,
-        xs: 12,
-        md: 4
-      }, external__react__default.a.createElement("div", {
-        className: classes.blurbWrapper
-      }, external__react__default.a.createElement(fa_["FaSearch"], {
-        color: "inherit",
-        size: 90
-      }), external__react__default.a.createElement("div", {
-        className: classes.blurbTitle
-      }, "Search"), external__react__default.a.createElement("div", {
-        className: classes.blurbText
-      }, "Sed eu condimentum nisl. Quisque volutpat enim vitae mi elementum tristique quis eget metus. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae."))), external__react__default.a.createElement(Grid__default.a, {
-        item: true,
-        xs: 12,
-        md: 4
-      }, external__react__default.a.createElement("div", {
-        className: classes.blurbWrapper
-      }, external__react__default.a.createElement(fa_["FaHome"], {
-        color: "inherit",
-        size: 90
-      }), external__react__default.a.createElement("div", {
-        className: classes.blurbTitle
-      }, "Schedule A Showing"), external__react__default.a.createElement("div", {
-        className: classes.blurbText
-      }, "Sed eu condimentum nisl. Quisque volutpat enim vitae mi elementum tristique quis eget metus. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae."))), external__react__default.a.createElement(Grid__default.a, {
-        item: true,
-        xs: 12,
-        md: 4
-      }, external__react__default.a.createElement("div", {
-        className: classes.blurbWrapper
-      }, external__react__default.a.createElement(fa_["FaKey"], {
-        color: "inherit",
-        size: 90
-      }), external__react__default.a.createElement("div", {
-        className: classes.blurbTitle
-      }, "Get Your Keys"), external__react__default.a.createElement("div", {
-        className: classes.blurbText
-      }, "Sed eu condimentum nisl. Quisque volutpat enim vitae mi elementum tristique quis eget metus. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae.")))), external__react__default.a.createElement("button", {
-        className: classes.howItWordsBtn
-      }, "Search"));
-    }
-  }]);
-
-  return HowItWorksSection;
-}(external__react_["Component"])) || HowItWorksSection__class) || HowItWorksSection__class);
-/* harmony default export */ var frontEndComponents_HowItWorksSection = (HowItWorksSection_HowItWorksSection);
-// CONCATENATED MODULE: ./frontEndComponents/FeaturedPropertySection/index.js
-var FeaturedPropertySection__dec, FeaturedPropertySection__class;
-
-function FeaturedPropertySection__typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { FeaturedPropertySection__typeof = function _typeof(obj) { return typeof obj; }; } else { FeaturedPropertySection__typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return FeaturedPropertySection__typeof(obj); }
-
-function FeaturedPropertySection__classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function FeaturedPropertySection__defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function FeaturedPropertySection__createClass(Constructor, protoProps, staticProps) { if (protoProps) FeaturedPropertySection__defineProperties(Constructor.prototype, protoProps); if (staticProps) FeaturedPropertySection__defineProperties(Constructor, staticProps); return Constructor; }
-
-function FeaturedPropertySection__possibleConstructorReturn(self, call) { if (call && (FeaturedPropertySection__typeof(call) === "object" || typeof call === "function")) { return call; } return FeaturedPropertySection__assertThisInitialized(self); }
-
-function FeaturedPropertySection__assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function FeaturedPropertySection__inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-
-
-
- // import Carousel from 'nuka-carousel';
-
-var FeaturedPropertySection_styles = function styles(theme) {
-  return {
-    root: {
-      position: 'relative',
-      padding: '60px 10%',
-      height: '500px',
-      width: '100%',
-      backgroundImage: 'url(/static/images/featured-property.jpg)',
-      backgroundPosition: 'center top',
-      backgroundSize: 'cover',
-      color: '#fff',
-      fontFamily: theme.frontEnd.typography.fontFamily.sansSerif2
-    },
-    contentWrapper: {
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      position: 'absolute',
-      left: '0',
-      bottom: '0',
-      right: '0',
-      top: '0',
-      zIndex: '1',
-      backgroundColor: 'rgba(0,0,0,.5)'
-    },
-    sectionTitle: {
-      textAlign: 'center',
-      ontWeight: '600',
-      marginBottom: '40px',
-      fontSize: '2.2rem',
-      textTransform: 'uppercase'
-    }
-  };
-};
-
-var FeaturedPropertySection_HowItWorksSection = (FeaturedPropertySection__dec = Object(styles_["withStyles"])(FeaturedPropertySection_styles), Object(external__mobx_react_["observer"])(FeaturedPropertySection__class = FeaturedPropertySection__dec(FeaturedPropertySection__class =
-/*#__PURE__*/
-function (_Component) {
-  FeaturedPropertySection__inherits(HowItWorksSection, _Component);
-
-  function HowItWorksSection() {
-    FeaturedPropertySection__classCallCheck(this, HowItWorksSection);
-
-    return FeaturedPropertySection__possibleConstructorReturn(this, (HowItWorksSection.__proto__ || Object.getPrototypeOf(HowItWorksSection)).apply(this, arguments));
-  }
-
-  FeaturedPropertySection__createClass(HowItWorksSection, [{
-    key: "render",
-    value: function render() {
-      var classes = this.props.classes;
-      return external__react__default.a.createElement("div", {
-        className: classes.root,
-        id: "featured-property"
-      }, external__react__default.a.createElement("div", {
-        className: classes.contentWrapper
-      }));
-    }
-  }]);
-
-  return HowItWorksSection;
-}(external__react_["Component"])) || FeaturedPropertySection__class) || FeaturedPropertySection__class);
-/* harmony default export */ var FeaturedPropertySection = (FeaturedPropertySection_HowItWorksSection);
-// CONCATENATED MODULE: ./pages/index.js
-var pages__class;
-
-function pages__typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { pages__typeof = function _typeof(obj) { return typeof obj; }; } else { pages__typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return pages__typeof(obj); }
-
-function pages__classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function pages__possibleConstructorReturn(self, call) { if (call && (pages__typeof(call) === "object" || typeof call === "function")) { return call; } return pages__assertThisInitialized(self); }
-
-function pages__assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function pages__defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function pages__createClass(Constructor, protoProps, staticProps) { if (protoProps) pages__defineProperties(Constructor.prototype, protoProps); if (staticProps) pages__defineProperties(Constructor, staticProps); return Constructor; }
-
-function pages__inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-
-
-
-
-
-
-
-
-
-
-var pages_Home = Object(external__mobx_react_["observer"])(pages__class =
-/*#__PURE__*/
-function (_React$Component) {
-  pages__inherits(Home, _React$Component);
-
-  pages__createClass(Home, null, [{
-    key: "getInitialProps",
-    value: function getInitialProps(_ref) {
-      var req = _ref.req;
-      var isServer = !!req;
-      return {
-        cookieJWTData: req && req.cookies ? req.cookies.jwtData : null,
-        isServer: isServer
-      };
-    }
-  }]);
-
-  function Home(props) {
-    var _this;
-
-    pages__classCallCheck(this, Home);
-
-    _this = pages__possibleConstructorReturn(this, (Home.__proto__ || Object.getPrototypeOf(Home)).call(this, props));
-    _this.store = Object(models["a" /* initStore */])(props.isServer, props.cookieJWTData); // for debugging only!!!
-
-    if (external__is_browser__default.a && !window._appStore) window._appStore = _this.store;
-    return _this;
-  }
-
-  pages__createClass(Home, [{
-    key: "render",
-    value: function render() {
-      return external__react__default.a.createElement(FrontEndLayout["a" /* default */], {
-        UserStore: this.store.UserStore
-      }, external__react__default.a.createElement(ComingSoonJumbotronHeader, null));
-    }
-  }]);
-
-  return Home;
-}(external__react__default.a.Component)) || pages__class;
-
-/* harmony default export */ var pages = __webpack_exports__["default"] = (Object(withData["a" /* default */])(pages_Home));
-
-/***/ }),
-
-/***/ 241:
+/***/ 24:
 /***/ (function(module, exports) {
 
-module.exports = require("@material-ui/icons/ArrowDownward");
-
-/***/ }),
-
-/***/ 242:
-/***/ (function(module, exports) {
-
-module.exports = require("react-scroll");
+module.exports = require("react-form");
 
 /***/ }),
 
@@ -1273,17 +1559,120 @@ var theme = {
 
 /***/ }),
 
+/***/ 254:
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(255);
+
+
+/***/ }),
+
+/***/ 255:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_mobx_react__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_mobx_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_mobx_react__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_is_browser__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_is_browser___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_is_browser__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_react_transition_group_TransitionGroup__ = __webpack_require__(183);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_react_transition_group_TransitionGroup___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_react_transition_group_TransitionGroup__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_TransitionHOC__ = __webpack_require__(184);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__models__ = __webpack_require__(22);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__frontEndComponents_FrontEndLayout__ = __webpack_require__(92);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__routes__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__routes___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7__routes__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__containers_SignUpLoginForm__ = __webpack_require__(185);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__lib_withData__ = __webpack_require__(49);
+var _class;
+
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+
+
+
+
+
+
+
+
+
+ // use higher-order-component for mount animation
+
+var Form = Object(__WEBPACK_IMPORTED_MODULE_4__components_TransitionHOC__["b" /* fadesUp */])(__WEBPACK_IMPORTED_MODULE_8__containers_SignUpLoginForm__["a" /* default */]);
+
+var SignUp = Object(__WEBPACK_IMPORTED_MODULE_1_mobx_react__["observer"])(_class =
+/*#__PURE__*/
+function (_React$Component) {
+  _inherits(SignUp, _React$Component);
+
+  _createClass(SignUp, null, [{
+    key: "getInitialProps",
+    value: function getInitialProps(_ref) {
+      var req = _ref.req;
+      var isServer = !!req;
+      return {
+        cookieJWTData: req && req.cookies ? req.cookies.jwtData : null,
+        isServer: isServer
+      };
+    }
+  }]);
+
+  function SignUp(props) {
+    var _this;
+
+    _classCallCheck(this, SignUp);
+
+    _this = _possibleConstructorReturn(this, (SignUp.__proto__ || Object.getPrototypeOf(SignUp)).call(this, props));
+    _this.store = Object(__WEBPACK_IMPORTED_MODULE_5__models__["a" /* initStore */])(props.isServer, props.cookieJWTData);
+
+    if (_this.store.UserStore.isLoggedIn && __WEBPACK_IMPORTED_MODULE_2_is_browser___default.a) {
+      __WEBPACK_IMPORTED_MODULE_7__routes__["Router"].pushRoute('home');
+    } // for debugging only!!!
+
+
+    if (__WEBPACK_IMPORTED_MODULE_2_is_browser___default.a && !window._appStore) window._appStore = _this.store;
+    return _this;
+  }
+
+  _createClass(SignUp, [{
+    key: "render",
+    value: function render() {
+      return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_6__frontEndComponents_FrontEndLayout__["a" /* default */], {
+        UserStore: this.store.UserStore
+      }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3_react_transition_group_TransitionGroup___default.a, null, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(Form, {
+        signUpCustomer: this.store.UserStore.signUpCustomer,
+        formType: "sign-up"
+      })));
+    }
+  }]);
+
+  return SignUp;
+}(__WEBPACK_IMPORTED_MODULE_0_react___default.a.Component)) || _class;
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(__WEBPACK_IMPORTED_MODULE_9__lib_withData__["a" /* default */])(SignUp));
+
+/***/ }),
+
 /***/ 3:
 /***/ (function(module, exports) {
 
 module.exports = require("@babel/runtime/regenerator");
-
-/***/ }),
-
-/***/ 32:
-/***/ (function(module, exports) {
-
-module.exports = require("material-ui/Grid");
 
 /***/ }),
 
@@ -1831,13 +2220,6 @@ module.exports = require("isomorphic-unfetch");
 
 /***/ }),
 
-/***/ 54:
-/***/ (function(module, exports) {
-
-module.exports = require("react-icons/lib/fa");
-
-/***/ }),
-
 /***/ 6:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -1854,10 +2236,10 @@ module.exports = require("is-browser");
 
 /***/ }),
 
-/***/ 8:
+/***/ 89:
 /***/ (function(module, exports) {
 
-module.exports = require("classnames");
+module.exports = require("email-validator");
 
 /***/ }),
 
