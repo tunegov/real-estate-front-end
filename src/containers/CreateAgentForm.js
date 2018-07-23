@@ -113,7 +113,7 @@ class CreateAgentContainer extends Component {
         console.log(error);
         this.props.setFormSubmitted(false);
 
-        this.props.openRequestErrorSnackbar(error.field);
+        this.props.openRequestErrorSnackbar(error.message);
 
         return;
       }

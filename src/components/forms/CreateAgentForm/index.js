@@ -255,6 +255,7 @@ class CreateAgentForm extends Component {
         realEstateLicenseNumber,
         agentType,
         ACHAccountNumber,
+        title,
         twitter,
         facebook,
         instagram,
@@ -273,6 +274,7 @@ class CreateAgentForm extends Component {
         branch,
         state,
         ACHAccountNumber,
+        title,
         facebook: facebook ? facebook.split('/').pop() : undefined,
         twitter: twitter ? twitter.split('/').pop() : undefined,
         instagram: instagram ? instagram.split('/').pop() : undefined,
@@ -504,6 +506,20 @@ class CreateAgentForm extends Component {
                           label="State"
                           name="state"
                           selectInputItems={stateSelectItems}
+                          disabled={isViewType && !isEditingAgent}
+                        />
+                      </div>
+                    </Grid>
+                  )}
+
+                  {isAdmin && (
+                    <Grid item xs={12}>
+                      <div className={classes.formControlWrapper}>
+                        <CustomTextField
+                          field="title"
+                          id={uuid()}
+                          label="Title"
+                          fullWidth
                           disabled={isViewType && !isEditingAgent}
                         />
                       </div>

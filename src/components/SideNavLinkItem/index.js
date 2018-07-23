@@ -2,7 +2,12 @@ import React, { Component } from 'react';
 import { observer } from 'mobx-react';
 import { withStyles } from 'material-ui/styles';
 import { Link } from '../../routes';
-import { SideNavLinkItemWrapper, SideNavLinkItemAnchor, IconWrapper, SideNavLinkItemDiv } from './styledComponents';
+import {
+  SideNavLinkItemWrapper,
+  SideNavLinkItemAnchor,
+  IconWrapper,
+  SideNavLinkItemDiv,
+} from './styledComponents';
 
 const styles = theme => ({
   icon: {
@@ -33,11 +38,26 @@ class SideNavLinkItem extends Component {
     }
 
     const linkItem = (
-      <SideNavLinkItemWrapper active={active} onClick={onClick} isAdminLinks={isAdminLinks} {...rest}>
-        <Link route={this.props.route}>
+      <SideNavLinkItemWrapper
+        active={active}
+        onClick={onClick}
+        isAdminLinks={isAdminLinks}
+        {...rest}
+      >
+        <Link route={this.props.route} prefetch>
           <SideNavLinkItemAnchor isAdminLinks={isAdminLinks}>
-            <IconWrapper isAdminLinks={isAdminLinks} iconLeft={iconLeft} iconLeftSmall={iconLeftSmall}>
-              {Icon ? <Icon size={iconFontSize || 22} classes={{ root: classes.icon }} color="primary" /> : null}
+            <IconWrapper
+              isAdminLinks={isAdminLinks}
+              iconLeft={iconLeft}
+              iconLeftSmall={iconLeftSmall}
+            >
+              {Icon ? (
+                <Icon
+                  size={iconFontSize || 22}
+                  classes={{ root: classes.icon }}
+                  color="primary"
+                />
+              ) : null}
             </IconWrapper>
             {this.props.name}
           </SideNavLinkItemAnchor>
@@ -46,10 +66,21 @@ class SideNavLinkItem extends Component {
     );
 
     const actionItem = (
-      <SideNavLinkItemWrapper active={active} onClick={onClick} isAdminLinks={isAdminLinks} {...rest}>
+      <SideNavLinkItemWrapper
+        active={active}
+        onClick={onClick}
+        isAdminLinks={isAdminLinks}
+        {...rest}
+      >
         <SideNavLinkItemDiv isAdminLinks={isAdminLinks}>
           <IconWrapper isAdminLinks={isAdminLinks}>
-            {Icon ? <Icon size={iconFontSize || 22} color="primary" classes={{ root: classes.icon }} /> : null}
+            {Icon ? (
+              <Icon
+                size={iconFontSize || 22}
+                color="primary"
+                classes={{ root: classes.icon }}
+              />
+            ) : null}
           </IconWrapper>
           {this.props.name}
         </SideNavLinkItemDiv>

@@ -17,6 +17,7 @@ const query = `
           officeNumber
           branch
           profileDescription
+          title
           facebook
           twitter
           instagram

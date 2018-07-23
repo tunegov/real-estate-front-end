@@ -24,6 +24,7 @@ const agentQuery = gql`
         officeNumber
         branch
         profileDescription
+        title
         facebook
         twitter
         instagram

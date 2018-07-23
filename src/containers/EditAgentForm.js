@@ -27,6 +27,7 @@ export const agentQuery = gql`
         realEstateLicenseNumber
         agentType
         ACHAccountNumber
+        title
         facebook
         instagram
         twitter

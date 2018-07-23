@@ -385,10 +385,10 @@ class Profile extends Component {
     this.setState({ open: false });
   };
 
-  returnTitle = role => {
+  returnTitle = (role, title) => {
     switch (role) {
       case agentRole:
-        return 'Licensed Real Estate Salesperson';
+        return title ? capitalize(title) : 'Licensed Real Estate Salesperson';
         break;
       case admin:
         return 'Admin';
@@ -515,6 +515,7 @@ class Profile extends Component {
         officeNumber,
         branch,
         profilePicURL,
+        title,
         facebook,
         twitter,
         instagram,
@@ -638,7 +639,9 @@ class Profile extends Component {
         <div className={classes.rightColumnWrapper}>
           <div>
             <h1 className={classes.name}>{name}</h1>
-            <small className={classes.title}>{this.returnTitle(role)}</small>
+            <small className={classes.title}>
+              {this.returnTitle(role, title)}
+            </small>
             <div className={classes.descriptionWrapper}>
               <div className={classes.descriptionTitle}>
                 About {name.split(' ')[0]}
