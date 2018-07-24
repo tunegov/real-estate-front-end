@@ -15,7 +15,7 @@ import { withStyles } from 'material-ui/styles';
 import Button from 'material-ui/Button';
 import Menu from 'material-ui/Menu';
 import classnames from 'classnames';
-import MenuItem from '@material-ui/core/MenuItem';
+import MenuItem from 'material-ui/Menu/MenuItem';
 import ViewDealForm from '../../containers/ViewDealForm';
 import { agent, admin, superAdmin } from '../../constants/userTypes';
 import acceptDeal from '../../effects/deals/acceptDeal';
@@ -96,13 +96,8 @@ const styles = theme => ({
     },
   },
   snackBar: {
-    marginBottom: '60px',
-    '@media (max-height: 500px)': {
-      marginBottom: '50px',
-    },
-    '@media (max-height: 390px)': {
-      marginBottom: '30px',
-    },
+    position: 'absolute',
+    bottom: 20,
   },
   errorSnackbar: {
     '& > div': {

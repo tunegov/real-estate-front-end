@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { withStyles } from 'material-ui/styles';
 import Menu from 'material-ui/Menu';
-import MenuItem from '@material-ui/core/MenuItem';
+import MenuItem from 'material-ui/Menu/MenuItem';
 
 const styles = theme => ({
   popupMenuTitle: {

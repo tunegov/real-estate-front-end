@@ -24,7 +24,7 @@ if (isBrowser) {
 
 const styles = theme => ({
   root: {
-    maxHeight: '100%',
+    maxHeight: '100% !important',
     flexGrow: 1,
     zIndex: 1,
     overflow: 'hidden',
@@ -34,14 +34,24 @@ const styles = theme => ({
     fontFamily: theme.typography.fontFamily,
   },
   content: {
-    position: 'relative',
+    position: 'relative !important',
     flexGrow: 1,
     backgroundColor: theme.palette.background.default,
     padding: theme.spacing.unit * 3,
     minWidth: 0, // So the Typography noWrap works
     overflow: 'auto',
   },
-  toolbar: theme.mixins.toolbar,
+  toolbar: {
+    position: 'relative !important',
+    zIndex: '0 !important',
+    height: '56px !important',
+    '@media (min-width:0px) and (orientation: landscape)': {
+      height: '48px !important',
+    },
+    '@media (min-width:600px)': {
+      height: '64px !important',
+    },
+  },
   topToolbar: {
     flexDirection: 'row',
     justifyContent: 'center',
@@ -168,7 +178,7 @@ class InnerAppLayout extends React.Component {
           />
           {this.renderSideNav()}
           <main className={classes.content} id="inner-app-content">
-            <div className={classes.toolbar} />
+            <div className={classes.toolbar} id="toolbar-helper" />
             {this.props.children}
             {/*<div className={classes.drawerWrapper}>
               <button
@@ -190,13 +200,6 @@ class InnerAppLayout extends React.Component {
               />
               </div>*/}
           </main>
-          <MenuDialogBox
-            open={menuDialogBoxOpen}
-            title={menuDialogBoxTitle}
-            toggleSideNavModal={this.toggleMenuDialogBoxOpen}
-            linkItems={menuDialogBoxLinkItems}
-            toggleSideNavModalClosed={this.toggleMenuDialogBoxClosed}
-          />
         </div>
         {isBrowser && (
           <Offline>

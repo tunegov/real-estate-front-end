@@ -9,7 +9,7 @@ import IconButton from 'material-ui/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 import Input from 'buildo-react-components/lib/Input';
 import Menu from 'material-ui/Menu';
-import MenuItem from '@material-ui/core/MenuItem';
+import MenuItem from 'material-ui/Menu/MenuItem';
 import { BounceLoader } from 'react-spinners';
 import {
   agent as agentRole,

@@ -102,6 +102,7 @@ const globalStyles = `
   .deal-table-wrapper div[class^="TableHeaderCell-container"] > div:not([class^="TableHeaderCell-content"]) {
     margin-right: 5px;
   }
+  
 `;
 
 export default globalStyles;

@@ -14,8 +14,8 @@ import ExpansionPanel, {
   ExpansionPanelSummary,
   ExpansionPanelDetails,
 } from 'material-ui/ExpansionPanel';
-import Menu from '@material-ui/core/Menu';
-import MenuItem from '@material-ui/core/MenuItem';
+import Menu from 'material-ui/Menu';
+import MenuItem from 'material-ui/Menu/MenuItem';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 import gql from 'graphql-tag';

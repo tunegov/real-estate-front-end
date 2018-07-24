@@ -154,7 +154,9 @@ class EditProfilePicFormContainer extends Component {
 
               setAgentProfilePic(this.props.uuid, item[0].fileName).then(
                 res => {
-                  this.props.setFinishedSubmittingForm(res.url);
+                  this.props.setFinishedSubmittingForm(
+                    this.state.confirmedImageDataURL
+                  );
                   this.props.setFormSubmitted(false);
                 }
               );

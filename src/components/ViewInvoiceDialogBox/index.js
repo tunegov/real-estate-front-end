@@ -14,7 +14,7 @@ import Divider from 'material-ui/Divider';
 import { withStyles } from 'material-ui/styles';
 import Button from 'material-ui/Button';
 import Menu from 'material-ui/Menu';
-import MenuItem from '@material-ui/core/MenuItem';
+import MenuItem from 'material-ui/Menu/MenuItem';
 import classnames from 'classnames';
 import ViewInvoiceForm from '../../containers/ViewInvoiceForm';
 import { agent, admin, superAdmin } from '../../constants/userTypes';
@@ -96,13 +96,8 @@ const styles = theme => ({
     },
   },
   snackBar: {
-    marginBottom: '60px',
-    '@media (max-height: 500px)': {
-      marginBottom: '50px',
-    },
-    '@media (max-height: 390px)': {
-      marginBottom: '30px',
-    },
+    position: 'absolute',
+    bottom: 0,
   },
   errorSnackbar: {
     '& > div': {

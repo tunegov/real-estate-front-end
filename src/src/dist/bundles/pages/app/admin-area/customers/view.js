@@ -67,7 +67,7 @@ module.exports =
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 215);
+/******/ 	return __webpack_require__(__webpack_require__.s = 214);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -1399,7 +1399,7 @@ module.exports = require("next-routes");
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-var globalStyles = "\n  html {\n    height: 100%;\n  }\n  body {\n    overflow: hidden;\n    position: relative;\n    min-height: 100%;\n    min-width: 100%;\n    margin: 0;\n    -webkit-font-smoothing: antialiased;\n    background-color: #fafafa;\n  }\n  body > :first-child {\n    display: flex;\n    min-width: 100%;\n    max-width: 100%;\n    max-height: 100%;\n    position: absolute;\n  }\n  body > :first-child > #__next {\n    display: flex;\n    min-width: 100%;\n  }\n  body > :first-child > #__next > div {\n    display: flex;\n    min-width: 100%;\n  }\n  body > :first-child > #__next > div > div {\n    display: flex;\n    min-width: 100%;\n  }\n  .react-grid-HeaderCell {\n    font-weight: 500 !important;\n  }\n  .pull-right {\n    float: right;\n  }\n  .react-grid-Toolbar {\n    padding: 7px 14px !important;\n  }\n  .tools {\n    margin-top: 0 !important;\n  }\n  .customRow .react-grid-Cell {\n    background-color: initial !important;\n  }\n  .react-grid-Cell {\n    border-right: none !important;\n  }\n  .react-grid-Cell__value > div > span > div {\n    white-space: nowrap;\n    overflow: hidden;\n    text-overflow: ellipsis;\n  }\n  .oddRow .react-grid-Cell {\n    background-color: #fff !important;\n  }\n  .evenRow .react-grid-Cell {\n    background-color: #ECEBFE !important;\n  }\n  .react-grid-HeaderCell .form-group input {\n    width: 100%;\n    padding: 5px 10px;\n    font-size: 12px;\n    line-height: 1.5;\n    border-radius: 3px;\n    border: 1px solid #ccc;\n  }\n  .react-grid-HeaderCell input.form-control {\n    width: 100%;\n    padding: 5px 10px;\n    font-size: 12px;\n    line-height: 1.5;\n    border-radius: 3px;\n    border: 1px solid #ccc;\n  }\n  .react-grid-HeaderCell .form-group {\n    height: 100%;\n  }\n  .react-grid-HeaderCell > div {\n    white-space: nowrap;\n    overflow: hidden;\n    text-overflow: ellipsis;\n  }\n  .react-grid-HeaderCell > .Select {\n    overflow: initial;\n  }\n  #__next > div {\n    max-width: 100%;\n    width: 100%;\n  }\n  thead[class^=\"MuiTableHead\"] > tr th:hover div[class^=\"TableHeaderCell-resizeHandleLine\"] {\n    background-color: #64b5f6;\n  }\n  .deal-table-wrapper div[class^=\"TableHeaderCell-container\"] {\n    display: flex\n  }\n  .deal-table-wrapper div[class^=\"TableHeaderCell-container\"] > div[class^=\"TableHeaderCell-content\"] {\n    order: 2;\n  }\n  .deal-table-wrapper div[class^=\"TableHeaderCell-container\"] > div:not([class^=\"TableHeaderCell-content\"]) {\n    margin-right: 5px;\n  }\n";
+var globalStyles = "\n  html {\n    height: 100%;\n  }\n  body {\n    overflow: hidden;\n    position: relative;\n    min-height: 100%;\n    min-width: 100%;\n    margin: 0;\n    -webkit-font-smoothing: antialiased;\n    background-color: #fafafa;\n  }\n  body > :first-child {\n    display: flex;\n    min-width: 100%;\n    max-width: 100%;\n    max-height: 100%;\n    position: absolute;\n  }\n  body > :first-child > #__next {\n    display: flex;\n    min-width: 100%;\n  }\n  body > :first-child > #__next > div {\n    display: flex;\n    min-width: 100%;\n  }\n  body > :first-child > #__next > div > div {\n    display: flex;\n    min-width: 100%;\n  }\n  .react-grid-HeaderCell {\n    font-weight: 500 !important;\n  }\n  .pull-right {\n    float: right;\n  }\n  .react-grid-Toolbar {\n    padding: 7px 14px !important;\n  }\n  .tools {\n    margin-top: 0 !important;\n  }\n  .customRow .react-grid-Cell {\n    background-color: initial !important;\n  }\n  .react-grid-Cell {\n    border-right: none !important;\n  }\n  .react-grid-Cell__value > div > span > div {\n    white-space: nowrap;\n    overflow: hidden;\n    text-overflow: ellipsis;\n  }\n  .oddRow .react-grid-Cell {\n    background-color: #fff !important;\n  }\n  .evenRow .react-grid-Cell {\n    background-color: #ECEBFE !important;\n  }\n  .react-grid-HeaderCell .form-group input {\n    width: 100%;\n    padding: 5px 10px;\n    font-size: 12px;\n    line-height: 1.5;\n    border-radius: 3px;\n    border: 1px solid #ccc;\n  }\n  .react-grid-HeaderCell input.form-control {\n    width: 100%;\n    padding: 5px 10px;\n    font-size: 12px;\n    line-height: 1.5;\n    border-radius: 3px;\n    border: 1px solid #ccc;\n  }\n  .react-grid-HeaderCell .form-group {\n    height: 100%;\n  }\n  .react-grid-HeaderCell > div {\n    white-space: nowrap;\n    overflow: hidden;\n    text-overflow: ellipsis;\n  }\n  .react-grid-HeaderCell > .Select {\n    overflow: initial;\n  }\n  #__next > div {\n    max-width: 100%;\n    width: 100%;\n  }\n  thead[class^=\"MuiTableHead\"] > tr th:hover div[class^=\"TableHeaderCell-resizeHandleLine\"] {\n    background-color: #64b5f6;\n  }\n  .deal-table-wrapper div[class^=\"TableHeaderCell-container\"] {\n    display: flex\n  }\n  .deal-table-wrapper div[class^=\"TableHeaderCell-container\"] > div[class^=\"TableHeaderCell-content\"] {\n    order: 2;\n  }\n  .deal-table-wrapper div[class^=\"TableHeaderCell-container\"] > div:not([class^=\"TableHeaderCell-content\"]) {\n    margin-right: 5px;\n  }\n  \n";
 /* harmony default export */ __webpack_exports__["a"] = (globalStyles);
 
 /***/ }),
@@ -1472,7 +1472,7 @@ function create(initialState) {
     // Disables forceFetch on the server (so queries are only run once)
     link: new external__apollo_link_http_["HttpLink"]({
       uri: "".concat(constants_websiteURL),
-      // 'http://localhost/api/graphql' Server URL (must be absolute)
+      // 'http://localhost/api/graphql', // Server URL (must be absolute)
       credentials: 'same-origin',
       // Additional fetch() options like `credentials` or `headers`
       headers: {
@@ -3260,7 +3260,7 @@ if (external__is_browser__default.a) {
 var InnerAppLayout_styles = function styles(theme) {
   return {
     root: {
-      maxHeight: '100%',
+      maxHeight: '100% !important',
       flexGrow: 1,
       zIndex: 1,
       overflow: 'hidden',
@@ -3270,7 +3270,7 @@ var InnerAppLayout_styles = function styles(theme) {
       fontFamily: theme.typography.fontFamily
     },
     content: {
-      position: 'relative',
+      position: 'relative !important',
       flexGrow: 1,
       backgroundColor: theme.palette.background.default,
       padding: theme.spacing.unit * 3,
@@ -3278,7 +3278,17 @@ var InnerAppLayout_styles = function styles(theme) {
       // So the Typography noWrap works
       overflow: 'auto'
     },
-    toolbar: theme.mixins.toolbar,
+    toolbar: {
+      position: 'relative !important',
+      zIndex: '0 !important',
+      height: '56px !important',
+      '@media (min-width:0px) and (orientation: landscape)': {
+        height: '48px !important'
+      },
+      '@media (min-width:600px)': {
+        height: '64px !important'
+      }
+    },
     topToolbar: {
       flexDirection: 'row',
       justifyContent: 'center'
@@ -3364,14 +3374,9 @@ function (_React$Component) {
         className: classes.content,
         id: "inner-app-content"
       }, external__react__default.a.createElement("div", {
-        className: classes.toolbar
-      }), this.props.children), external__react__default.a.createElement(MenuDialogBox, {
-        open: menuDialogBoxOpen,
-        title: menuDialogBoxTitle,
-        toggleSideNavModal: this.toggleMenuDialogBoxOpen,
-        linkItems: menuDialogBoxLinkItems,
-        toggleSideNavModalClosed: this.toggleMenuDialogBoxClosed
-      })), external__is_browser__default.a && external__react__default.a.createElement(Offline, null, external__react__default.a.createElement(Snackbar__default.a, {
+        className: classes.toolbar,
+        id: "toolbar-helper"
+      }), this.props.children)), external__is_browser__default.a && external__react__default.a.createElement(Offline, null, external__react__default.a.createElement(Snackbar__default.a, {
         classes: {
           root: classes.snackBar
         },
@@ -8129,13 +8134,8 @@ var styles = function styles(theme) {
       }
     },
     snackBar: {
-      marginBottom: '60px',
-      '@media (max-height: 500px)': {
-        marginBottom: '50px'
-      },
-      '@media (max-height: 390px)': {
-        marginBottom: '30px'
-      }
+      position: 'absolute',
+      bottom: 0
     },
     errorSnackbar: {
       '& > div': {
@@ -8373,15 +8373,14 @@ function (_Component) {
 /* 211 */,
 /* 212 */,
 /* 213 */,
-/* 214 */,
-/* 215 */
+/* 214 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(216);
+module.exports = __webpack_require__(215);
 
 
 /***/ }),
-/* 216 */
+/* 215 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";

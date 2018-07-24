@@ -14,7 +14,7 @@ import Snackbar from 'material-ui/Snackbar';
 import IconButton from 'material-ui/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 import Menu from 'material-ui/Menu';
-import MenuItem from '@material-ui/core/MenuItem';
+import MenuItem from 'material-ui/Menu/MenuItem';
 import EditAdminForm from '../../containers/EditAdminForm';
 import updateAdmin from '../../effects/users/updateAdmin';
 import deleteAdmin from '../../effects/users/deleteAdmin';
@@ -54,15 +54,6 @@ const styles = theme => ({
     color: theme.custom.submitBlue.main,
     '&:hover': {
       backgroundColor: theme.custom.submitBlue.transparentLightBackground,
-    },
-  },
-  snackBar: {
-    marginBottom: '60px',
-    '@media (max-height: 500px)': {
-      marginBottom: '50px',
-    },
-    '@media (max-height: 390px)': {
-      marginBottom: '30px',
     },
   },
   popupMenuTitle: {

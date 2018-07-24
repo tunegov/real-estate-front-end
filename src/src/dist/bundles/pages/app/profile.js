@@ -67,7 +67,7 @@ module.exports =
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 233);
+/******/ 	return __webpack_require__(__webpack_require__.s = 232);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -1389,7 +1389,7 @@ module.exports = require("next-routes");
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-var globalStyles = "\n  html {\n    height: 100%;\n  }\n  body {\n    overflow: hidden;\n    position: relative;\n    min-height: 100%;\n    min-width: 100%;\n    margin: 0;\n    -webkit-font-smoothing: antialiased;\n    background-color: #fafafa;\n  }\n  body > :first-child {\n    display: flex;\n    min-width: 100%;\n    max-width: 100%;\n    max-height: 100%;\n    position: absolute;\n  }\n  body > :first-child > #__next {\n    display: flex;\n    min-width: 100%;\n  }\n  body > :first-child > #__next > div {\n    display: flex;\n    min-width: 100%;\n  }\n  body > :first-child > #__next > div > div {\n    display: flex;\n    min-width: 100%;\n  }\n  .react-grid-HeaderCell {\n    font-weight: 500 !important;\n  }\n  .pull-right {\n    float: right;\n  }\n  .react-grid-Toolbar {\n    padding: 7px 14px !important;\n  }\n  .tools {\n    margin-top: 0 !important;\n  }\n  .customRow .react-grid-Cell {\n    background-color: initial !important;\n  }\n  .react-grid-Cell {\n    border-right: none !important;\n  }\n  .react-grid-Cell__value > div > span > div {\n    white-space: nowrap;\n    overflow: hidden;\n    text-overflow: ellipsis;\n  }\n  .oddRow .react-grid-Cell {\n    background-color: #fff !important;\n  }\n  .evenRow .react-grid-Cell {\n    background-color: #ECEBFE !important;\n  }\n  .react-grid-HeaderCell .form-group input {\n    width: 100%;\n    padding: 5px 10px;\n    font-size: 12px;\n    line-height: 1.5;\n    border-radius: 3px;\n    border: 1px solid #ccc;\n  }\n  .react-grid-HeaderCell input.form-control {\n    width: 100%;\n    padding: 5px 10px;\n    font-size: 12px;\n    line-height: 1.5;\n    border-radius: 3px;\n    border: 1px solid #ccc;\n  }\n  .react-grid-HeaderCell .form-group {\n    height: 100%;\n  }\n  .react-grid-HeaderCell > div {\n    white-space: nowrap;\n    overflow: hidden;\n    text-overflow: ellipsis;\n  }\n  .react-grid-HeaderCell > .Select {\n    overflow: initial;\n  }\n  #__next > div {\n    max-width: 100%;\n    width: 100%;\n  }\n  thead[class^=\"MuiTableHead\"] > tr th:hover div[class^=\"TableHeaderCell-resizeHandleLine\"] {\n    background-color: #64b5f6;\n  }\n  .deal-table-wrapper div[class^=\"TableHeaderCell-container\"] {\n    display: flex\n  }\n  .deal-table-wrapper div[class^=\"TableHeaderCell-container\"] > div[class^=\"TableHeaderCell-content\"] {\n    order: 2;\n  }\n  .deal-table-wrapper div[class^=\"TableHeaderCell-container\"] > div:not([class^=\"TableHeaderCell-content\"]) {\n    margin-right: 5px;\n  }\n";
+var globalStyles = "\n  html {\n    height: 100%;\n  }\n  body {\n    overflow: hidden;\n    position: relative;\n    min-height: 100%;\n    min-width: 100%;\n    margin: 0;\n    -webkit-font-smoothing: antialiased;\n    background-color: #fafafa;\n  }\n  body > :first-child {\n    display: flex;\n    min-width: 100%;\n    max-width: 100%;\n    max-height: 100%;\n    position: absolute;\n  }\n  body > :first-child > #__next {\n    display: flex;\n    min-width: 100%;\n  }\n  body > :first-child > #__next > div {\n    display: flex;\n    min-width: 100%;\n  }\n  body > :first-child > #__next > div > div {\n    display: flex;\n    min-width: 100%;\n  }\n  .react-grid-HeaderCell {\n    font-weight: 500 !important;\n  }\n  .pull-right {\n    float: right;\n  }\n  .react-grid-Toolbar {\n    padding: 7px 14px !important;\n  }\n  .tools {\n    margin-top: 0 !important;\n  }\n  .customRow .react-grid-Cell {\n    background-color: initial !important;\n  }\n  .react-grid-Cell {\n    border-right: none !important;\n  }\n  .react-grid-Cell__value > div > span > div {\n    white-space: nowrap;\n    overflow: hidden;\n    text-overflow: ellipsis;\n  }\n  .oddRow .react-grid-Cell {\n    background-color: #fff !important;\n  }\n  .evenRow .react-grid-Cell {\n    background-color: #ECEBFE !important;\n  }\n  .react-grid-HeaderCell .form-group input {\n    width: 100%;\n    padding: 5px 10px;\n    font-size: 12px;\n    line-height: 1.5;\n    border-radius: 3px;\n    border: 1px solid #ccc;\n  }\n  .react-grid-HeaderCell input.form-control {\n    width: 100%;\n    padding: 5px 10px;\n    font-size: 12px;\n    line-height: 1.5;\n    border-radius: 3px;\n    border: 1px solid #ccc;\n  }\n  .react-grid-HeaderCell .form-group {\n    height: 100%;\n  }\n  .react-grid-HeaderCell > div {\n    white-space: nowrap;\n    overflow: hidden;\n    text-overflow: ellipsis;\n  }\n  .react-grid-HeaderCell > .Select {\n    overflow: initial;\n  }\n  #__next > div {\n    max-width: 100%;\n    width: 100%;\n  }\n  thead[class^=\"MuiTableHead\"] > tr th:hover div[class^=\"TableHeaderCell-resizeHandleLine\"] {\n    background-color: #64b5f6;\n  }\n  .deal-table-wrapper div[class^=\"TableHeaderCell-container\"] {\n    display: flex\n  }\n  .deal-table-wrapper div[class^=\"TableHeaderCell-container\"] > div[class^=\"TableHeaderCell-content\"] {\n    order: 2;\n  }\n  .deal-table-wrapper div[class^=\"TableHeaderCell-container\"] > div:not([class^=\"TableHeaderCell-content\"]) {\n    margin-right: 5px;\n  }\n  \n";
 /* harmony default export */ __webpack_exports__["a"] = (globalStyles);
 
 /***/ }),
@@ -1462,7 +1462,7 @@ function create(initialState) {
     // Disables forceFetch on the server (so queries are only run once)
     link: new external__apollo_link_http_["HttpLink"]({
       uri: "".concat(constants_websiteURL),
-      // 'http://localhost/api/graphql' Server URL (must be absolute)
+      // 'http://localhost/api/graphql', // Server URL (must be absolute)
       credentials: 'same-origin',
       // Additional fetch() options like `credentials` or `headers`
       headers: {
@@ -3245,7 +3245,7 @@ if (external__is_browser__default.a) {
 var InnerAppLayout_styles = function styles(theme) {
   return {
     root: {
-      maxHeight: '100%',
+      maxHeight: '100% !important',
       flexGrow: 1,
       zIndex: 1,
       overflow: 'hidden',
@@ -3255,7 +3255,7 @@ var InnerAppLayout_styles = function styles(theme) {
       fontFamily: theme.typography.fontFamily
     },
     content: {
-      position: 'relative',
+      position: 'relative !important',
       flexGrow: 1,
       backgroundColor: theme.palette.background.default,
       padding: theme.spacing.unit * 3,
@@ -3263,7 +3263,17 @@ var InnerAppLayout_styles = function styles(theme) {
       // So the Typography noWrap works
       overflow: 'auto'
     },
-    toolbar: theme.mixins.toolbar,
+    toolbar: {
+      position: 'relative !important',
+      zIndex: '0 !important',
+      height: '56px !important',
+      '@media (min-width:0px) and (orientation: landscape)': {
+        height: '48px !important'
+      },
+      '@media (min-width:600px)': {
+        height: '64px !important'
+      }
+    },
     topToolbar: {
       flexDirection: 'row',
       justifyContent: 'center'
@@ -3349,14 +3359,9 @@ function (_React$Component) {
         className: classes.content,
         id: "inner-app-content"
       }, external__react__default.a.createElement("div", {
-        className: classes.toolbar
-      }), this.props.children), external__react__default.a.createElement(MenuDialogBox, {
-        open: menuDialogBoxOpen,
-        title: menuDialogBoxTitle,
-        toggleSideNavModal: this.toggleMenuDialogBoxOpen,
-        linkItems: menuDialogBoxLinkItems,
-        toggleSideNavModalClosed: this.toggleMenuDialogBoxClosed
-      })), external__is_browser__default.a && external__react__default.a.createElement(Offline, null, external__react__default.a.createElement(Snackbar__default.a, {
+        className: classes.toolbar,
+        id: "toolbar-helper"
+      }), this.props.children)), external__is_browser__default.a && external__react__default.a.createElement(Offline, null, external__react__default.a.createElement(Snackbar__default.a, {
         classes: {
           root: classes.snackBar
         },
@@ -4903,7 +4908,7 @@ var MaterialCustomRadioInputWrapper = function MaterialCustomRadioInputWrapper(p
 /* 108 */
 /***/ (function(module, exports) {
 
-module.exports = require("@material-ui/core/MenuItem");
+module.exports = require("material-ui/Menu/MenuItem");
 
 /***/ }),
 /* 109 */,
@@ -7222,15 +7227,14 @@ function (_Component) {
 /* 229 */,
 /* 230 */,
 /* 231 */,
-/* 232 */,
-/* 233 */
+/* 232 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(234);
+module.exports = __webpack_require__(233);
 
 
 /***/ }),
-/* 234 */
+/* 233 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -7313,7 +7317,7 @@ var Input__default = /*#__PURE__*/__webpack_require__.n(Input_);
 var Menu_ = __webpack_require__(65);
 var Menu__default = /*#__PURE__*/__webpack_require__.n(Menu_);
 
-// EXTERNAL MODULE: external "@material-ui/core/MenuItem"
+// EXTERNAL MODULE: external "material-ui/Menu/MenuItem"
 var MenuItem_ = __webpack_require__(108);
 var MenuItem__default = /*#__PURE__*/__webpack_require__.n(MenuItem_);
 
@@ -8757,7 +8761,7 @@ function (_Component) {
               }
 
               Object(setAgentProfilePic["a" /* default */])(_this.props.uuid, item[0].fileName).then(function (res) {
-                _this.props.setFinishedSubmittingForm(res.url);
+                _this.props.setFinishedSubmittingForm(_this.state.confirmedImageDataURL);
 
                 _this.props.setFormSubmitted(false);
               });
@@ -9396,6 +9400,8 @@ var EditAgentDialogBox__class;
 
 function EditAgentDialogBox__typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { EditAgentDialogBox__typeof = function _typeof(obj) { return typeof obj; }; } else { EditAgentDialogBox__typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return EditAgentDialogBox__typeof(obj); }
 
+function EditAgentDialogBox__defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 function EditAgentDialogBox__classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function EditAgentDialogBox__defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
@@ -9407,8 +9413,6 @@ function EditAgentDialogBox__possibleConstructorReturn(self, call) { if (call &&
 function EditAgentDialogBox__inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 function EditAgentDialogBox__assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function EditAgentDialogBox__defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 
 
@@ -9429,9 +9433,7 @@ function EditAgentDialogBox__defineProperty(obj, key, value) { if (key in obj) {
 var EditAgentDialogBox_networkErrorMessage = "We're sorry. There was an error processing your request.";
 
 var EditAgentDialogBox_styles = function styles(theme) {
-  var _ref;
-
-  return _ref = {
+  return {
     paper: {
       width: '800px',
       maxWidth: '800px'
@@ -9461,15 +9463,6 @@ var EditAgentDialogBox_styles = function styles(theme) {
       color: theme.custom.submitBlue.main,
       '&:hover': {
         backgroundColor: theme.custom.submitBlue.transparentLightBackground
-      }
-    },
-    snackBar: {
-      marginBottom: '60px',
-      '@media (max-height: 500px)': {
-        marginBottom: '50px'
-      },
-      '@media (max-height: 390px)': {
-        marginBottom: '30px'
       }
     },
     popupMenuTitle: {
@@ -9518,15 +9511,17 @@ var EditAgentDialogBox_styles = function styles(theme) {
       '&:hover': {
         backgroundColor: theme.custom.submitBlue.transparentLightBackground
       }
+    },
+    snackBar: {
+      position: 'absolute',
+      bottom: 0
+    },
+    errorSnackbar: {
+      '& > div': {
+        backgroundColor: theme.palette.secondary.main
+      }
     }
-  }, EditAgentDialogBox__defineProperty(_ref, "snackBar", {
-    position: 'absolute',
-    bottom: 0
-  }), EditAgentDialogBox__defineProperty(_ref, "errorSnackbar", {
-    '& > div': {
-      backgroundColor: theme.palette.secondary.main
-    }
-  }), _ref;
+  };
 };
 
 var EditAgentDialogBox_EditAgentDialogBox = Object(external__mobx_react_["observer"])(EditAgentDialogBox__class =

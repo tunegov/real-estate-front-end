@@ -53,13 +53,8 @@ const styles = theme => ({
     },
   },
   snackBar: {
-    marginBottom: '60px',
-    '@media (max-height: 500px)': {
-      marginBottom: '50px',
-    },
-    '@media (max-height: 390px)': {
-      marginBottom: '30px',
-    },
+    position: 'absolute',
+    bottom: 0,
   },
   errorSnackbar: {
     '& > div': {
