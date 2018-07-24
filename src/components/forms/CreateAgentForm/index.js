@@ -317,110 +317,111 @@ class CreateAgentForm extends Component {
                 }}
               >
                 <Grid container spacing={8}>
-                  {isAdmin && (
-                    <div className={classes.profileItemsWrapper}>
-                      {(imageFile && !imageFileConfirmed) || loadingSetImg ? (
-                        <AvatarEditor
-                          ref={getProfilePicEditor}
-                          image={imageFile || null}
-                          width={lgViewport ? 200 : 250}
-                          height={lgViewport ? 200 : 250}
-                          border={50}
-                          color={[0, 0, 0, 0.3]}
-                          scale={adjustedImageScale || 1.2}
-                          rotate={0}
-                          style={{
-                            maxWidth: '100%',
-                            boxShadow:
-                              '0px 1px 5px 0px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 3px 1px -2px rgba(0, 0, 0, 0.12)',
-                            display: 'block',
-                            marginLeft: 'auto',
-                            marginRight: 'auto',
-                          }}
-                        />
-                      ) : null}
-                      {(imageFile && !imageFileConfirmed) || loadingSetImg ? (
-                        <div className={classes.sliderWrapper}>
-                          <Slider
-                            value={imageScale}
-                            min={0}
-                            max={100}
-                            onChange={value => setImageScale(value)}
-                            label="Scale:"
-                            rootClassName={classes.sliderRoot}
-                            labelClassName={classes.sliderLabel}
-                            inputClassName={classes.sliderInput}
-                          />
-                        </div>
-                      ) : null}
-                      <div
-                        className={classes.setImageWrapper}
-                        style={{
-                          display:
-                            !imageFile ||
-                            !confirmedImageDataURL ||
-                            loadingSetImg
-                              ? 'none'
-                              : undefined,
-                        }}
-                      >
-                        <img
-                          className={classes.setImage}
-                          src={confirmedImageDataURL}
-                          onLoad={setFinishedLoadingImg}
-                          alt="profile pic"
-                        />
-                      </div>
-                      <div>
-                        {!imageFileConfirmed || loadingSetImg ? (
-                          <CustomFileUploadInputBtn
-                            field="profilePicture"
-                            id={uuid()}
-                            label="Upload Agent's Profile Picture"
-                            btnClassName={classes.uploadBtnClassName}
-                            required
-                            customOnChange={setImageFile}
-                            customState={imageFile}
-                            helperInfo="Agent's Profile (JPEG/JPG file)"
-                            acceptedFileExtensions={acceptedFileExtensions}
-                            getInput={getFileUploadInput}
-                            accept=".jpg, .jpeg, .png"
+                  {isAdmin &&
+                    !isViewType && (
+                      <div className={classes.profileItemsWrapper}>
+                        {(imageFile && !imageFileConfirmed) || loadingSetImg ? (
+                          <AvatarEditor
+                            ref={getProfilePicEditor}
+                            image={imageFile || null}
+                            width={lgViewport ? 200 : 250}
+                            height={lgViewport ? 200 : 250}
+                            border={50}
+                            color={[0, 0, 0, 0.3]}
+                            scale={adjustedImageScale || 1.2}
+                            rotate={0}
+                            style={{
+                              maxWidth: '100%',
+                              boxShadow:
+                                '0px 1px 5px 0px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 3px 1px -2px rgba(0, 0, 0, 0.12)',
+                              display: 'block',
+                              marginLeft: 'auto',
+                              marginRight: 'auto',
+                            }}
                           />
                         ) : null}
+                        {(imageFile && !imageFileConfirmed) || loadingSetImg ? (
+                          <div className={classes.sliderWrapper}>
+                            <Slider
+                              value={imageScale}
+                              min={0}
+                              max={100}
+                              onChange={value => setImageScale(value)}
+                              label="Scale:"
+                              rootClassName={classes.sliderRoot}
+                              labelClassName={classes.sliderLabel}
+                              inputClassName={classes.sliderInput}
+                            />
+                          </div>
+                        ) : null}
+                        <div
+                          className={classes.setImageWrapper}
+                          style={{
+                            display:
+                              !imageFile ||
+                              !confirmedImageDataURL ||
+                              loadingSetImg
+                                ? 'none'
+                                : undefined,
+                          }}
+                        >
+                          <img
+                            className={classes.setImage}
+                            src={confirmedImageDataURL}
+                            onLoad={setFinishedLoadingImg}
+                            alt="profile pic"
+                          />
+                        </div>
                         <div>
-                          {imageFile ? (
-                            <Button
-                              classes={{ root: classes.removePaymentBtn }}
-                              variant="raised"
-                              color="secondary"
-                              onClick={() => clearImageFile()}
-                              type="button"
-                            >
-                              Clear File
-                            </Button>
+                          {!imageFileConfirmed || loadingSetImg ? (
+                            <CustomFileUploadInputBtn
+                              field="profilePicture"
+                              id={uuid()}
+                              label="Upload Agent's Profile Picture"
+                              btnClassName={classes.uploadBtnClassName}
+                              required
+                              customOnChange={setImageFile}
+                              customState={imageFile}
+                              helperInfo="Agent's Profile (JPEG/JPG file)"
+                              acceptedFileExtensions={acceptedFileExtensions}
+                              getInput={getFileUploadInput}
+                              accept=".jpg, .jpeg, .png"
+                            />
                           ) : null}
-                          {(imageFile && !imageFileConfirmed) ||
-                          loadingSetImg ? (
-                            <Button
-                              classes={{ root: classes.confirmImgBtn }}
-                              variant="raised"
-                              color="primary"
-                              onClick={() => confirmImageFile()}
-                              type="button"
-                            >
-                              Confirm File{' '}
-                              {loadingSetImg ? (
-                                <Icon
-                                  type="loading"
-                                  style={{ color: '#fff' }}
-                                />
-                              ) : null}
-                            </Button>
-                          ) : null}
+                          <div>
+                            {imageFile ? (
+                              <Button
+                                classes={{ root: classes.removePaymentBtn }}
+                                variant="raised"
+                                color="secondary"
+                                onClick={() => clearImageFile()}
+                                type="button"
+                              >
+                                Clear File
+                              </Button>
+                            ) : null}
+                            {(imageFile && !imageFileConfirmed) ||
+                            loadingSetImg ? (
+                              <Button
+                                classes={{ root: classes.confirmImgBtn }}
+                                variant="raised"
+                                color="primary"
+                                onClick={() => confirmImageFile()}
+                                type="button"
+                              >
+                                Confirm File{' '}
+                                {loadingSetImg ? (
+                                  <Icon
+                                    type="loading"
+                                    style={{ color: '#fff' }}
+                                  />
+                                ) : null}
+                              </Button>
+                            ) : null}
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  )}
+                    )}
                   {isAdmin && (
                     <Grid item xs={12} md={6}>
                       <div className={classes.formControlWrapper}>

@@ -7166,7 +7166,7 @@ function (_Component) {
         }, external__react__default.a.createElement(Grid__default.a, {
           container: true,
           spacing: 8
-        }, isAdmin && external__react__default.a.createElement("div", {
+        }, isAdmin && !isViewType && external__react__default.a.createElement("div", {
           className: classes.profileItemsWrapper
         }, imageFile && !imageFileConfirmed || loadingSetImg ? external__react__default.a.createElement(external__react_avatar_editor__default.a, {
           ref: getProfilePicEditor,
