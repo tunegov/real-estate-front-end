@@ -30,6 +30,7 @@ import TableContainerComponent from '../../utils/backEndTableUtils/TableContaine
 import NoDataCellComponent from '../../utils/backEndTableUtils/NoDataCellComponent';
 import ProfilePictureFormatter from '../dataTableFormatters/ProfilePictureFormatter';
 import ViewFormatter from '../dataTableFormatters/ViewFormatter';
+import AreaOfFocusFormatter from '../dataTableFormatters/AreaOfFocusFormatter';
 
 const styles = theme => ({
   root: {
@@ -108,6 +109,14 @@ const ViewTypeProvider = props => (
   <DataTypeProvider formatterComponent={ViewCellFormatter} {...props} />
 );
 
+const AreaOfFocusCellFormatter = ({ value }) => (
+  <AreaOfFocusFormatter value={value} />
+);
+
+const AreaOfFocusTypeProvider = props => (
+  <DataTypeProvider formatterComponent={AreaOfFocusCellFormatter} {...props} />
+);
+
 const TableContainerComponentWrapperBase = ({ classes, ...restProps }) => (
   <TableContainerComponent
     {...restProps}
@@ -154,6 +163,7 @@ class AgentsTable extends Component {
         <Grid rows={rows} columns={columns} getRowId={getRowId}>
           <PhotoTypeProvider for={['photo']} />
           <ViewTypeProvider for={['view']} />
+          <AreaOfFocusTypeProvider for={['areaOfFocus']} />
 
           <DragDropProvider />
           <SearchState />

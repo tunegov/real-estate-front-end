@@ -77,30 +77,21 @@ class ProfileContainer extends Component {
 
   setFinishedSubmittingForm = url => {
     const { user } = this.state;
-    this.setState(
-      {
-        user: {
-          ...user,
-          agent: {
-            ...user.agent,
-            profilePicURL: `${url}?cacheBust=${faker.random.uuid()}`,
-          },
+    this.setState({
+      user: {
+        ...user,
+        agent: {
+          ...user.agent,
+          profilePicURL: `${url}?cacheBust=${faker.random.uuid()}`,
         },
-        profilePicEditorDialogBoxOpen: false,
-        isLoadingProfilePicture: true,
-        submittingEditProfilePicForm: false,
-        editProfilePicFormSubmitted: false,
-        snackbarOpen: true,
-        snackbarText: 'Profile picture successfully changed!',
       },
-      () => {
-        const picEl = document.getElementById('agentProfilePic');
-
-        if (picEl) {
-          picEl.src = `${url}?cache=${faker.random.uuid()}`;
-        }
-      }
-    );
+      profilePicEditorDialogBoxOpen: false,
+      isLoadingProfilePicture: true,
+      submittingEditProfilePicForm: false,
+      editProfilePicFormSubmitted: false,
+      snackbarOpen: true,
+      snackbarText: 'Profile picture successfully changed!',
+    });
   };
 
   editPasswordFormSubmittedSuccessfully = () => {
@@ -177,10 +168,12 @@ class ProfileContainer extends Component {
   agentSuccessfullyDeleted = () => {
     this.setState({
       snackbarOpen: true,
-      snackbarText: 'Agent had been successfully deleted!',
+      snackbarText: 'Agent has been successfully deleted!',
     });
     this.props.setAgentDeleted();
   };
+
+  createProfilePicDataURL = blob => URL.createObjectURL(blob);
 
   render() {
     const {
@@ -259,6 +252,7 @@ class ProfileContainer extends Component {
           submittingEditProfilePicForm={submittingEditProfilePicForm}
           editProfilePicFormSubmitted={editProfilePicFormSubmitted}
           setFormSubmitted={this.setFormSubmitted}
+          createProfilePicDataURL={this.createProfilePicDataURL}
           toggleSubmittingEditProfilePicForm={
             this.toggleSubmittingEditProfilePicForm
           }

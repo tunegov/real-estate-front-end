@@ -67,7 +67,7 @@ module.exports =
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 206);
+/******/ 	return __webpack_require__(__webpack_require__.s = 207);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -159,6 +159,12 @@ module.exports = require("mobx-state-tree");
 /* 12 */
 /***/ (function(module, exports) {
 
+module.exports = require("material-ui/Tooltip");
+
+/***/ }),
+/* 13 */
+/***/ (function(module, exports) {
+
 var customer = 'customer';
 var agent = 'agent';
 var admin = 'admin';
@@ -171,12 +177,6 @@ module.exports = {
   superAdmin: superAdmin,
   anonymous: anonymous
 };
-
-/***/ }),
-/* 13 */
-/***/ (function(module, exports) {
-
-module.exports = require("material-ui/Tooltip");
 
 /***/ }),
 /* 14 */
@@ -1118,18 +1118,18 @@ module.exports = require("@material-ui/icons/Close");
 module.exports = require("material-ui/Drawer");
 
 /***/ }),
-/* 31 */,
-/* 32 */,
-/* 33 */
-/***/ (function(module, exports) {
-
-module.exports = require("@material-ui/icons/Add");
-
-/***/ }),
-/* 34 */
+/* 31 */
 /***/ (function(module, exports) {
 
 module.exports = require("@material-ui/icons/RemoveRedEye");
+
+/***/ }),
+/* 32 */,
+/* 33 */,
+/* 34 */
+/***/ (function(module, exports) {
+
+module.exports = require("@material-ui/icons/Add");
 
 /***/ }),
 /* 35 */,
@@ -1859,7 +1859,7 @@ var IconButton_ = __webpack_require__(15);
 var IconButton__default = /*#__PURE__*/__webpack_require__.n(IconButton_);
 
 // EXTERNAL MODULE: external "material-ui/Tooltip"
-var Tooltip_ = __webpack_require__(13);
+var Tooltip_ = __webpack_require__(12);
 var Tooltip__default = /*#__PURE__*/__webpack_require__.n(Tooltip_);
 
 // EXTERNAL MODULE: external "@material-ui/icons/ArrowBack"
@@ -1871,11 +1871,11 @@ var Notifications_ = __webpack_require__(59);
 var Notifications__default = /*#__PURE__*/__webpack_require__.n(Notifications_);
 
 // EXTERNAL MODULE: external "@material-ui/icons/Add"
-var Add_ = __webpack_require__(33);
+var Add_ = __webpack_require__(34);
 var Add__default = /*#__PURE__*/__webpack_require__.n(Add_);
 
 // EXTERNAL MODULE: external "@material-ui/icons/RemoveRedEye"
-var RemoveRedEye_ = __webpack_require__(34);
+var RemoveRedEye_ = __webpack_require__(31);
 var RemoveRedEye__default = /*#__PURE__*/__webpack_require__.n(RemoveRedEye_);
 
 // EXTERNAL MODULE: ./routes.js
@@ -3114,7 +3114,7 @@ function (_Component) {
 
 /* harmony default export */ var MenuDialogBox = (Object(styles_["withStyles"])(MenuDialogBox_styles)(MenuDialogBox_MenuDialoBox));
 // EXTERNAL MODULE: ./constants/userTypes.js
-var userTypes = __webpack_require__(12);
+var userTypes = __webpack_require__(13);
 var userTypes_default = /*#__PURE__*/__webpack_require__.n(userTypes);
 
 // CONCATENATED MODULE: ./components/InnerAppLayout/index.js
@@ -3850,14 +3850,15 @@ module.exports = require("material-ui/Portal");
 /* 203 */,
 /* 204 */,
 /* 205 */,
-/* 206 */
+/* 206 */,
+/* 207 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(207);
+module.exports = __webpack_require__(208);
 
 
 /***/ }),
-/* 207 */
+/* 208 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";

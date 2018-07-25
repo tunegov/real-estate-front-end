@@ -67,7 +67,7 @@ module.exports =
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 253);
+/******/ 	return __webpack_require__(__webpack_require__.s = 254);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -100,7 +100,7 @@ module.exports = require("mobx-state-tree");
 
 /***/ }),
 
-/***/ 12:
+/***/ 13:
 /***/ (function(module, exports) {
 
 var customer = 'customer';
@@ -146,14 +146,14 @@ module.exports = require("prop-types");
 
 /***/ }),
 
-/***/ 183:
+/***/ 182:
 /***/ (function(module, exports) {
 
 module.exports = require("react-transition-group/TransitionGroup");
 
 /***/ }),
 
-/***/ 184:
+/***/ 183:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -349,7 +349,7 @@ function fadesDown(Component) {
 
 /***/ }),
 
-/***/ 185:
+/***/ 184:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -381,7 +381,7 @@ var external__styled_components__default = /*#__PURE__*/__webpack_require__.n(ex
   componentId: "a0iz9s-0"
 })(["margin-top:10px;text-align:center;margin-bottom:30px;color:red;"]));
 // EXTERNAL MODULE: ./constants/userTypes.js
-var userTypes = __webpack_require__(12);
+var userTypes = __webpack_require__(13);
 var userTypes_default = /*#__PURE__*/__webpack_require__.n(userTypes);
 
 // EXTERNAL MODULE: external "@babel/runtime/regenerator"
@@ -1559,15 +1559,15 @@ var theme = {
 
 /***/ }),
 
-/***/ 253:
+/***/ 254:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(254);
+module.exports = __webpack_require__(255);
 
 
 /***/ }),
 
-/***/ 254:
+/***/ 255:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1578,14 +1578,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_mobx_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_mobx_react__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_is_browser__ = __webpack_require__(7);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_is_browser___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_is_browser__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_react_transition_group_TransitionGroup__ = __webpack_require__(183);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_react_transition_group_TransitionGroup__ = __webpack_require__(182);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_react_transition_group_TransitionGroup___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_react_transition_group_TransitionGroup__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_TransitionHOC__ = __webpack_require__(184);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_TransitionHOC__ = __webpack_require__(183);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__models__ = __webpack_require__(22);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__frontEndComponents_FrontEndLayout__ = __webpack_require__(92);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__routes__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__routes___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7__routes__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__containers_SignUpLoginForm__ = __webpack_require__(185);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__containers_SignUpLoginForm__ = __webpack_require__(184);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__lib_withData__ = __webpack_require__(49);
 var _class;
 
@@ -2676,7 +2676,7 @@ var HeaderAndAppContentWrapper = external__styled_components__default.a.div.with
   componentId: "s108z15f-1"
 })(["width:100%;height:100%;"]);
 // EXTERNAL MODULE: ./constants/userTypes.js
-var userTypes = __webpack_require__(12);
+var userTypes = __webpack_require__(13);
 var userTypes_default = /*#__PURE__*/__webpack_require__.n(userTypes);
 
 // CONCATENATED MODULE: ./frontEndComponents/FrontEndLayout/index.js

@@ -7,7 +7,6 @@ import Snackbar from 'material-ui/Snackbar';
 import Button from 'material-ui/Button';
 import IconButton from 'material-ui/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
-import Input from 'buildo-react-components/lib/Input';
 import Menu from 'material-ui/Menu';
 import MenuItem from 'material-ui/Menu/MenuItem';
 import { BounceLoader } from 'react-spinners';
@@ -16,7 +15,6 @@ import {
   admin,
   superAdmin,
 } from '../../constants/userTypes';
-import TextareaAutosize from 'react-textarea-autosize';
 import {
   FaFacebook,
   FaTwitter,
@@ -359,18 +357,21 @@ class Profile extends Component {
   errorTimeout;
 
   componentDidMount = () => {
-    if (this._img) {
-      this._img.src = this.props.agent.agent.profilePicURL;
-      this.errorTimeout = setTimeout(() => {
-        if (this.props.isLoadingProfilePicture) {
-          this.setState({ imageError: true });
-        }
-      }, 15000);
+    if (this._img && this._img.complete) {
+      this.props.toggleIsLoadingProfilePicture(false);
     }
   };
 
-  componentWillUnmount = () => {
-    if (this.errorTimeout) clearTimeout(this.errorTimeout);
+  componentDidUpdate = prevProps => {
+    console.log('did update');
+    if (
+      prevProps.agent.agent.profilePicURL !==
+      this.props.agent.agent.profilePicURL
+    ) {
+      this.setState({
+        imageError: false,
+      });
+    }
   };
 
   handleClick = () => {
@@ -448,6 +449,7 @@ class Profile extends Component {
               id="agentProfilePic"
               className={classes.profilePic}
               ref={img => (this._img = img)}
+              src={agent.agent.profilePicURL}
               alt="Agent"
               onLoad={() => {
                 this.setState({ imageError: false });

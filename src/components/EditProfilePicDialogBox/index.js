@@ -153,6 +153,7 @@ class EditProfilePicDialogBox extends Component {
                 setFinishedSubmittingForm={setFinishedSubmittingForm}
                 editProfilePicFormSubmitted={editProfilePicFormSubmitted}
                 openRequestErrorSnackbar={this.openRequestErrorSnackbar}
+                createProfilePicDataURL={this.props.createProfilePicDataURL}
                 toggleSubmittingEditProfilePicForm={
                   toggleSubmittingEditProfilePicForm
                 }

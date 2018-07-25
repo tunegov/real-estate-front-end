@@ -161,13 +161,15 @@ class MaterialCustomSelectInputWrapper extends React.Component {
                     ? null
                     : selected => (
                         <div className={classes.chips}>
-                          {selected.map(value => (
-                            <Chip
-                              key={value}
-                              label={value}
-                              className={classes.chip}
-                            />
-                          ))}
+                          {selected
+                            .filter(val => val !== '')
+                            .map(value => (
+                              <Chip
+                                key={value}
+                                label={value}
+                                className={classes.chip}
+                              />
+                            ))}
                         </div>
                       )
                 }

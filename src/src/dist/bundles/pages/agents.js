@@ -67,7 +67,7 @@ module.exports =
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 204);
+/******/ 	return __webpack_require__(__webpack_require__.s = 205);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -107,7 +107,7 @@ module.exports = require("@material-ui/icons/Search");
 
 /***/ }),
 
-/***/ 12:
+/***/ 13:
 /***/ (function(module, exports) {
 
 var customer = 'customer';
@@ -160,15 +160,15 @@ module.exports = require("material-ui/styles");
 
 /***/ }),
 
-/***/ 204:
+/***/ 205:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(205);
+module.exports = __webpack_require__(206);
 
 
 /***/ }),
 
-/***/ 205:
+/***/ 206:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -204,7 +204,7 @@ var styles_ = __webpack_require__(2);
 var styles__default = /*#__PURE__*/__webpack_require__.n(styles_);
 
 // EXTERNAL MODULE: external "material-ui/Grid"
-var Grid_ = __webpack_require__(32);
+var Grid_ = __webpack_require__(33);
 var Grid__default = /*#__PURE__*/__webpack_require__.n(Grid_);
 
 // EXTERNAL MODULE: external "@material-ui/icons/Search"
@@ -1091,7 +1091,7 @@ module.exports = require("@babel/runtime/regenerator");
 
 /***/ }),
 
-/***/ 32:
+/***/ 33:
 /***/ (function(module, exports) {
 
 module.exports = require("material-ui/Grid");
@@ -2098,7 +2098,7 @@ var HeaderAndAppContentWrapper = external__styled_components__default.a.div.with
   componentId: "s108z15f-1"
 })(["width:100%;height:100%;"]);
 // EXTERNAL MODULE: ./constants/userTypes.js
-var userTypes = __webpack_require__(12);
+var userTypes = __webpack_require__(13);
 var userTypes_default = /*#__PURE__*/__webpack_require__.n(userTypes);
 
 // CONCATENATED MODULE: ./frontEndComponents/FrontEndLayout/index.js

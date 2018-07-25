@@ -67,7 +67,7 @@ module.exports =
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 238);
+/******/ 	return __webpack_require__(__webpack_require__.s = 239);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -100,7 +100,7 @@ module.exports = require("mobx-state-tree");
 
 /***/ }),
 
-/***/ 12:
+/***/ 13:
 /***/ (function(module, exports) {
 
 var customer = 'customer';
@@ -617,15 +617,15 @@ function initStore(isServer) {
 
 /***/ }),
 
-/***/ 238:
+/***/ 239:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(239);
+module.exports = __webpack_require__(240);
 
 
 /***/ }),
 
-/***/ 239:
+/***/ 240:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -661,11 +661,11 @@ var external__classnames_ = __webpack_require__(8);
 var external__classnames__default = /*#__PURE__*/__webpack_require__.n(external__classnames_);
 
 // EXTERNAL MODULE: external "@material-ui/icons/ArrowDownward"
-var ArrowDownward_ = __webpack_require__(240);
+var ArrowDownward_ = __webpack_require__(241);
 var ArrowDownward__default = /*#__PURE__*/__webpack_require__.n(ArrowDownward_);
 
 // EXTERNAL MODULE: external "react-scroll"
-var external__react_scroll_ = __webpack_require__(241);
+var external__react_scroll_ = __webpack_require__(242);
 var external__react_scroll__default = /*#__PURE__*/__webpack_require__.n(external__react_scroll_);
 
 // CONCATENATED MODULE: ./frontEndComponents/ComingSoonWelcomeHeader/index.js
@@ -901,7 +901,7 @@ function (_Component) {
 
 /* harmony default export */ var ComingSoonJumbotronHeader = (ComingSoonJumbotronHeader_JumbotronHeader);
 // EXTERNAL MODULE: external "material-ui/Grid"
-var Grid_ = __webpack_require__(32);
+var Grid_ = __webpack_require__(33);
 var Grid__default = /*#__PURE__*/__webpack_require__.n(Grid_);
 
 // EXTERNAL MODULE: external "react-icons/lib/fa"
@@ -1230,14 +1230,14 @@ function (_React$Component) {
 
 /***/ }),
 
-/***/ 240:
+/***/ 241:
 /***/ (function(module, exports) {
 
 module.exports = require("@material-ui/icons/ArrowDownward");
 
 /***/ }),
 
-/***/ 241:
+/***/ 242:
 /***/ (function(module, exports) {
 
 module.exports = require("react-scroll");
@@ -1280,7 +1280,7 @@ module.exports = require("@babel/runtime/regenerator");
 
 /***/ }),
 
-/***/ 32:
+/***/ 33:
 /***/ (function(module, exports) {
 
 module.exports = require("material-ui/Grid");
@@ -2294,7 +2294,7 @@ var HeaderAndAppContentWrapper = external__styled_components__default.a.div.with
   componentId: "s108z15f-1"
 })(["width:100%;height:100%;"]);
 // EXTERNAL MODULE: ./constants/userTypes.js
-var userTypes = __webpack_require__(12);
+var userTypes = __webpack_require__(13);
 var userTypes_default = /*#__PURE__*/__webpack_require__.n(userTypes);
 
 // CONCATENATED MODULE: ./frontEndComponents/FrontEndLayout/index.js

@@ -129,7 +129,9 @@ class CreateAgentContainer extends Component {
               const loadedPercent =
                 (progressEvent.loaded / progressEvent.total) * 100;
               this.setState({
-                submittingFormToServer: false,
+                submittingFormToServer: Math.floor(loadedPercent)
+                  ? false
+                  : true,
                 formSubmitedSuccessfully: true,
                 uplodingImageProgress: Math.floor(loadedPercent),
                 isUploadingImage: loadedPercent >= 100 ? false : true,

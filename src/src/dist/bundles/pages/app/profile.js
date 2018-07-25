@@ -67,7 +67,7 @@ module.exports =
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 232);
+/******/ 	return __webpack_require__(__webpack_require__.s = 233);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -159,6 +159,12 @@ module.exports = require("mobx-state-tree");
 /* 12 */
 /***/ (function(module, exports) {
 
+module.exports = require("material-ui/Tooltip");
+
+/***/ }),
+/* 13 */
+/***/ (function(module, exports) {
+
 var customer = 'customer';
 var agent = 'agent';
 var admin = 'admin';
@@ -171,12 +177,6 @@ module.exports = {
   superAdmin: superAdmin,
   anonymous: anonymous
 };
-
-/***/ }),
-/* 13 */
-/***/ (function(module, exports) {
-
-module.exports = require("material-ui/Tooltip");
 
 /***/ }),
 /* 14 */
@@ -1126,25 +1126,25 @@ module.exports = require("material-ui/Drawer");
 /* 31 */
 /***/ (function(module, exports) {
 
-module.exports = require("material-ui/Button");
+module.exports = require("@material-ui/icons/RemoveRedEye");
 
 /***/ }),
 /* 32 */
 /***/ (function(module, exports) {
 
-module.exports = require("material-ui/Grid");
+module.exports = require("material-ui/Button");
 
 /***/ }),
 /* 33 */
 /***/ (function(module, exports) {
 
-module.exports = require("@material-ui/icons/Add");
+module.exports = require("material-ui/Grid");
 
 /***/ }),
 /* 34 */
 /***/ (function(module, exports) {
 
-module.exports = require("@material-ui/icons/RemoveRedEye");
+module.exports = require("@material-ui/icons/Add");
 
 /***/ }),
 /* 35 */
@@ -1938,7 +1938,7 @@ var IconButton_ = __webpack_require__(15);
 var IconButton__default = /*#__PURE__*/__webpack_require__.n(IconButton_);
 
 // EXTERNAL MODULE: external "material-ui/Tooltip"
-var Tooltip_ = __webpack_require__(13);
+var Tooltip_ = __webpack_require__(12);
 var Tooltip__default = /*#__PURE__*/__webpack_require__.n(Tooltip_);
 
 // EXTERNAL MODULE: external "@material-ui/icons/ArrowBack"
@@ -1950,11 +1950,11 @@ var Notifications_ = __webpack_require__(59);
 var Notifications__default = /*#__PURE__*/__webpack_require__.n(Notifications_);
 
 // EXTERNAL MODULE: external "@material-ui/icons/Add"
-var Add_ = __webpack_require__(33);
+var Add_ = __webpack_require__(34);
 var Add__default = /*#__PURE__*/__webpack_require__.n(Add_);
 
 // EXTERNAL MODULE: external "@material-ui/icons/RemoveRedEye"
-var RemoveRedEye_ = __webpack_require__(34);
+var RemoveRedEye_ = __webpack_require__(31);
 var RemoveRedEye__default = /*#__PURE__*/__webpack_require__.n(RemoveRedEye_);
 
 // EXTERNAL MODULE: ./routes.js
@@ -3193,7 +3193,7 @@ function (_Component) {
 
 /* harmony default export */ var MenuDialogBox = (Object(styles_["withStyles"])(MenuDialogBox_styles)(MenuDialogBox_MenuDialoBox));
 // EXTERNAL MODULE: ./constants/userTypes.js
-var userTypes = __webpack_require__(12);
+var userTypes = __webpack_require__(13);
 var userTypes_default = /*#__PURE__*/__webpack_require__.n(userTypes);
 
 // CONCATENATED MODULE: ./components/InnerAppLayout/index.js
@@ -4361,7 +4361,9 @@ function (_React$Component) {
           renderValue: !multiple ? null : function (selected) {
             return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", {
               className: classes.chips
-            }, selected.map(function (value) {
+            }, selected.filter(function (val) {
+              return val !== '';
+            }).map(function (value) {
               return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_7_material_ui_Chip___default.a, {
                 key: value,
                 label: value,
@@ -4425,7 +4427,7 @@ module.exports = require("react-input-mask");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_material_ui_Form___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_material_ui_Form__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_react_form__ = __webpack_require__(24);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_react_form___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_react_form__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_material_ui_Tooltip__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_material_ui_Tooltip__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_material_ui_Tooltip___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_material_ui_Tooltip__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_classnames__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_classnames___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_classnames__);
@@ -6023,7 +6025,7 @@ var styles_ = __webpack_require__(2);
 var styles__default = /*#__PURE__*/__webpack_require__.n(styles_);
 
 // EXTERNAL MODULE: external "material-ui/Grid"
-var Grid_ = __webpack_require__(32);
+var Grid_ = __webpack_require__(33);
 var Grid__default = /*#__PURE__*/__webpack_require__.n(Grid_);
 
 // EXTERNAL MODULE: external "react-sizes"
@@ -6031,7 +6033,7 @@ var external__react_sizes_ = __webpack_require__(67);
 var external__react_sizes__default = /*#__PURE__*/__webpack_require__.n(external__react_sizes_);
 
 // EXTERNAL MODULE: external "material-ui/Button"
-var Button_ = __webpack_require__(31);
+var Button_ = __webpack_require__(32);
 var Button__default = /*#__PURE__*/__webpack_require__.n(Button_);
 
 // EXTERNAL MODULE: external "material-ui/Typography"
@@ -6095,7 +6097,7 @@ var CustomInputMask = __webpack_require__(112);
 var constants = __webpack_require__(113);
 
 // EXTERNAL MODULE: ./constants/userTypes.js
-var userTypes = __webpack_require__(12);
+var userTypes = __webpack_require__(13);
 var userTypes_default = /*#__PURE__*/__webpack_require__.n(userTypes);
 
 // CONCATENATED MODULE: ./components/forms/CreateAgentForm/index.js
@@ -6325,8 +6327,6 @@ var radioInputAgentItems = [{
   value: '80'
 }];
 var areaOfFocusSelectItems = [{
-  label: ''
-}, {
   label: 'Residential Rentals'
 }, {
   label: 'Residential Sales'
@@ -6584,6 +6584,7 @@ function (_Component) {
           fullWidth: true,
           label: "Area of Focus",
           name: "areaOfFocus",
+          multiple: true,
           selectInputItems: areaOfFocusSelectItems,
           disabled: isViewType && !isEditingAgent
         }))), isAdmin && external__react__default.a.createElement(Grid__default.a, {
@@ -6914,18 +6915,6 @@ module.exports = require("buildo-react-components/lib/FormattedText");
 
 /***/ }),
 /* 161 */
-/***/ (function(module, exports) {
-
-module.exports = require("buildo-react-components/lib/Input");
-
-/***/ }),
-/* 162 */
-/***/ (function(module, exports) {
-
-module.exports = require("react-textarea-autosize");
-
-/***/ }),
-/* 163 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -6955,7 +6944,7 @@ var styles_ = __webpack_require__(2);
 var styles__default = /*#__PURE__*/__webpack_require__.n(styles_);
 
 // EXTERNAL MODULE: external "material-ui/Grid"
-var Grid_ = __webpack_require__(32);
+var Grid_ = __webpack_require__(33);
 var Grid__default = /*#__PURE__*/__webpack_require__.n(Grid_);
 
 // EXTERNAL MODULE: external "react-sizes"
@@ -7159,6 +7148,8 @@ function (_Component) {
 /* harmony default export */ var EditAgentPasswordForm = __webpack_exports__["a"] = (Object(styles_["withStyles"])(EditAgentPasswordForm_styles)(EditAgentPasswordForm_CreateAgentForm));
 
 /***/ }),
+/* 162 */,
+/* 163 */,
 /* 164 */,
 /* 165 */,
 /* 166 */,
@@ -7227,14 +7218,15 @@ function (_Component) {
 /* 229 */,
 /* 230 */,
 /* 231 */,
-/* 232 */
+/* 232 */,
+/* 233 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(233);
+module.exports = __webpack_require__(234);
 
 
 /***/ }),
-/* 233 */
+/* 234 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -7298,7 +7290,7 @@ var Close_ = __webpack_require__(29);
 var Close__default = /*#__PURE__*/__webpack_require__.n(Close_);
 
 // EXTERNAL MODULE: external "material-ui/Button"
-var Button_ = __webpack_require__(31);
+var Button_ = __webpack_require__(32);
 var Button__default = /*#__PURE__*/__webpack_require__.n(Button_);
 
 // EXTERNAL MODULE: external "classnames"
@@ -7309,10 +7301,6 @@ var external__classnames__default = /*#__PURE__*/__webpack_require__.n(external_
 var FormattedText_ = __webpack_require__(160);
 var FormattedText__default = /*#__PURE__*/__webpack_require__.n(FormattedText_);
 
-// EXTERNAL MODULE: external "buildo-react-components/lib/Input"
-var Input_ = __webpack_require__(161);
-var Input__default = /*#__PURE__*/__webpack_require__.n(Input_);
-
 // EXTERNAL MODULE: external "material-ui/Menu"
 var Menu_ = __webpack_require__(65);
 var Menu__default = /*#__PURE__*/__webpack_require__.n(Menu_);
@@ -7322,12 +7310,8 @@ var MenuItem_ = __webpack_require__(108);
 var MenuItem__default = /*#__PURE__*/__webpack_require__.n(MenuItem_);
 
 // EXTERNAL MODULE: ./constants/userTypes.js
-var userTypes = __webpack_require__(12);
+var userTypes = __webpack_require__(13);
 var userTypes_default = /*#__PURE__*/__webpack_require__.n(userTypes);
-
-// EXTERNAL MODULE: external "react-textarea-autosize"
-var external__react_textarea_autosize_ = __webpack_require__(162);
-var external__react_textarea_autosize__default = /*#__PURE__*/__webpack_require__.n(external__react_textarea_autosize_);
 
 // EXTERNAL MODULE: external "react-icons/lib/fa"
 var fa_ = __webpack_require__(54);
@@ -7357,8 +7341,6 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-
 
 
 
@@ -7699,24 +7681,23 @@ function (_Component) {
       enumerable: true,
       writable: true,
       value: function value() {
-        if (_this._img) {
-          _this._img.src = _this.props.agent.agent.profilePicURL;
-          _this.errorTimeout = setTimeout(function () {
-            if (_this.props.isLoadingProfilePicture) {
-              _this.setState({
-                imageError: true
-              });
-            }
-          }, 15000);
+        if (_this._img && _this._img.complete) {
+          _this.props.toggleIsLoadingProfilePicture(false);
         }
       }
     });
-    Object.defineProperty(_assertThisInitialized(_this), "componentWillUnmount", {
+    Object.defineProperty(_assertThisInitialized(_this), "componentDidUpdate", {
       configurable: true,
       enumerable: true,
       writable: true,
-      value: function value() {
-        if (_this.errorTimeout) clearTimeout(_this.errorTimeout);
+      value: function value(prevProps) {
+        console.log('did update');
+
+        if (prevProps.agent.agent.profilePicURL !== _this.props.agent.agent.profilePicURL) {
+          _this.setState({
+            imageError: false
+          });
+        }
       }
     });
     Object.defineProperty(_assertThisInitialized(_this), "handleClick", {
@@ -7823,6 +7804,7 @@ function (_Component) {
           ref: function ref(img) {
             return _this._img = img;
           },
+          src: agent.agent.profilePicURL,
           alt: "Agent",
           onLoad: function onLoad() {
             _this.setState({
@@ -8072,7 +8054,7 @@ var external__react_avatar_editor_ = __webpack_require__(139);
 var external__react_avatar_editor__default = /*#__PURE__*/__webpack_require__.n(external__react_avatar_editor_);
 
 // EXTERNAL MODULE: external "material-ui/Grid"
-var Grid_ = __webpack_require__(32);
+var Grid_ = __webpack_require__(33);
 var Grid__default = /*#__PURE__*/__webpack_require__.n(Grid_);
 
 // EXTERNAL MODULE: external "react-sizes"
@@ -8314,6 +8296,13 @@ var EditProfilePicForm_styles = function styles(theme) {
     progressBarExplanation: {
       marginTop: '20px',
       fontSize: '1.1rem'
+    },
+    formSubmittingWrapper: {
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'center',
+      alignItems: 'center',
+      width: '100%'
     }
   };
 };
@@ -8377,6 +8366,7 @@ function (_Component) {
           uplodingImageProgress = _props.uplodingImageProgress,
           formSubmitedSuccessfully = _props.formSubmitedSuccessfully,
           isUploadingImage = _props.isUploadingImage,
+          submittingFormToServer = _props.submittingFormToServer,
           onSubmit = _props.onSubmit;
       return external__react__default.a.createElement("div", {
         className: classes.root
@@ -8390,7 +8380,10 @@ function (_Component) {
         return external__react__default.a.createElement("form", {
           onSubmit: formApi.submitForm,
           id: "form1",
-          className: classes.formRoot
+          className: classes.formRoot,
+          style: {
+            display: submittingFormToServer ? 'none' : undefined
+          }
         }, external__react__default.a.createElement(Grid__default.a, {
           container: true
         }, external__react__default.a.createElement(Grid__default.a, {
@@ -8475,7 +8468,17 @@ function (_Component) {
             color: '#fff'
           }
         }) : null) : null))))));
-      }), uplodingImageProgress
+      }), submittingFormToServer ? external__react__default.a.createElement("div", {
+        className: classes.formSubmittingWrapper
+      }, external__react__default.a.createElement(icon__default.a, {
+        type: "loading",
+        style: {
+          color: '#000',
+          fontSize: '4rem'
+        }
+      }), external__react__default.a.createElement("div", {
+        className: classes.progressBarExplanation
+      }, "Finishing submission...")) : null, uplodingImageProgress
       /*&& isUploadingImage */
       ? external__react__default.a.createElement("div", {
         className: classes.progressBarWrapper
@@ -8698,7 +8701,10 @@ function (_Component) {
           fileType: imageFile.type,
           uuid: _this.props.uuid
         };
-        console.log(returnValues);
+
+        _this.setState({
+          submittingFormToServer: true
+        });
 
         _this.props.toggleSubmittingEditProfilePicForm(true);
 
@@ -8718,6 +8724,10 @@ function (_Component) {
           }
 
           if (hasError) {
+            _this.setState({
+              submittingFormToServer: false
+            });
+
             _this.props.openRequestErrorSnackbar();
 
             _this.props.toggleSubmittingEditProfilePicForm(false);
@@ -8738,6 +8748,7 @@ function (_Component) {
 
                 _this.setState({
                   formSubmitedSuccessfully: true,
+                  submittingFormToServer: Math.floor(loadedPercent) ? false : true,
                   uplodingImageProgress: Math.floor(loadedPercent),
                   isUploadingImage: loadedPercent >= 100 ? false : true
                 });
@@ -8761,7 +8772,7 @@ function (_Component) {
               }
 
               Object(setAgentProfilePic["a" /* default */])(_this.props.uuid, item[0].fileName).then(function (res) {
-                _this.props.setFinishedSubmittingForm(_this.state.confirmedImageDataURL);
+                _this.props.setFinishedSubmittingForm(res.url);
 
                 _this.props.setFormSubmitted(false);
               });
@@ -8770,7 +8781,11 @@ function (_Component) {
         }).catch(function (err) {
           console.log(err);
 
-          _this.props.openRequestErrorSnackbar();
+          _this.setState({
+            submittingFormToServer: false
+          });
+
+          _this.props.openRequestErrorSnackbar('There was an error uploading your image.');
 
           _this.props.setFormSubmitted(false);
 
@@ -8788,7 +8803,8 @@ function (_Component) {
       uplodingImageProgress: 0,
       isUploadingImage: false,
       formSubmitedSuccessfully: false,
-      imageBlob: null
+      imageBlob: null,
+      submittingFormToServer: false
     };
     return _this;
   }
@@ -8814,6 +8830,7 @@ function (_Component) {
           width: '100%'
         }
       }, external__react__default.a.createElement(forms_EditProfilePicForm, _extends({
+        submittingFormToServer: this.state.submittingFormToServer,
         onSubmit: this.onSubmit,
         onSubmitFailure: this.onSubmitFailure,
         setImageFile: this.setImageFile,
@@ -9045,6 +9062,7 @@ function (_Component) {
           setFinishedSubmittingForm: setFinishedSubmittingForm,
           editProfilePicFormSubmitted: editProfilePicFormSubmitted,
           openRequestErrorSnackbar: _this2.openRequestErrorSnackbar,
+          createProfilePicDataURL: _this2.props.createProfilePicDataURL,
           toggleSubmittingEditProfilePicForm: toggleSubmittingEditProfilePicForm,
           uuid: _this2.props.uuid
         });
@@ -9859,7 +9877,7 @@ function (_Component) {
 
 /* harmony default export */ var components_EditAgentDialogBox = (Object(Dialog_["withMobileDialog"])()(Object(styles_["withStyles"])(EditAgentDialogBox_styles)(EditAgentDialogBox_EditAgentDialogBox)));
 // EXTERNAL MODULE: ./components/forms/EditAgentPasswordForm/index.js + 1 modules
-var EditAgentPasswordForm = __webpack_require__(163);
+var EditAgentPasswordForm = __webpack_require__(161);
 
 // CONCATENATED MODULE: ./effects/users/editAgentPassword.js
 
@@ -10438,6 +10456,7 @@ function (_Component) {
         submittingEditProfilePicForm: submittingEditProfilePicForm,
         editProfilePicFormSubmitted: editProfilePicFormSubmitted,
         setFormSubmitted: this.setFormSubmitted,
+        createProfilePicDataURL: this.createProfilePicDataURL,
         toggleSubmittingEditProfilePicForm: this.toggleSubmittingEditProfilePicForm,
         uuid: this.props.uuid
       }), external__react__default.a.createElement(Snackbar__default.a, {
@@ -10543,12 +10562,6 @@ function (_Component) {
         editProfilePicFormSubmitted: false,
         snackbarOpen: true,
         snackbarText: 'Profile picture successfully changed!'
-      }, function () {
-        var picEl = document.getElementById('agentProfilePic');
-
-        if (picEl) {
-          picEl.src = "".concat(url, "?cache=").concat(external__faker__default.a.random.uuid());
-        }
       });
     }
   });
@@ -10667,10 +10680,18 @@ function (_Component) {
     value: function value() {
       _this3.setState({
         snackbarOpen: true,
-        snackbarText: 'Agent had been successfully deleted!'
+        snackbarText: 'Agent has been successfully deleted!'
       });
 
       _this3.props.setAgentDeleted();
+    }
+  });
+  Object.defineProperty(this, "createProfilePicDataURL", {
+    configurable: true,
+    enumerable: true,
+    writable: true,
+    value: function value(blob) {
+      return URL.createObjectURL(blob);
     }
   });
 }, _temp)) || Profile__class) || Profile__class);

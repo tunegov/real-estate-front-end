@@ -54,7 +54,7 @@ const styles = theme => ({
   },
   snackBar: {
     position: 'absolute',
-    bottom: 0,
+    bottom: 20,
   },
   errorSnackbar: {
     '& > div': {

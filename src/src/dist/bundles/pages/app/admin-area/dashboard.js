@@ -67,7 +67,7 @@ module.exports =
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 216);
+/******/ 	return __webpack_require__(__webpack_require__.s = 217);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -159,6 +159,12 @@ module.exports = require("mobx-state-tree");
 /* 12 */
 /***/ (function(module, exports) {
 
+module.exports = require("material-ui/Tooltip");
+
+/***/ }),
+/* 13 */
+/***/ (function(module, exports) {
+
 var customer = 'customer';
 var agent = 'agent';
 var admin = 'admin';
@@ -171,12 +177,6 @@ module.exports = {
   superAdmin: superAdmin,
   anonymous: anonymous
 };
-
-/***/ }),
-/* 13 */
-/***/ (function(module, exports) {
-
-module.exports = require("material-ui/Tooltip");
 
 /***/ }),
 /* 14 */
@@ -1121,25 +1121,25 @@ module.exports = require("material-ui/Drawer");
 /* 31 */
 /***/ (function(module, exports) {
 
-module.exports = require("material-ui/Button");
+module.exports = require("@material-ui/icons/RemoveRedEye");
 
 /***/ }),
 /* 32 */
 /***/ (function(module, exports) {
 
-module.exports = require("material-ui/Grid");
+module.exports = require("material-ui/Button");
 
 /***/ }),
 /* 33 */
 /***/ (function(module, exports) {
 
-module.exports = require("@material-ui/icons/Add");
+module.exports = require("material-ui/Grid");
 
 /***/ }),
 /* 34 */
 /***/ (function(module, exports) {
 
-module.exports = require("@material-ui/icons/RemoveRedEye");
+module.exports = require("@material-ui/icons/Add");
 
 /***/ }),
 /* 35 */,
@@ -1923,7 +1923,7 @@ var IconButton_ = __webpack_require__(15);
 var IconButton__default = /*#__PURE__*/__webpack_require__.n(IconButton_);
 
 // EXTERNAL MODULE: external "material-ui/Tooltip"
-var Tooltip_ = __webpack_require__(13);
+var Tooltip_ = __webpack_require__(12);
 var Tooltip__default = /*#__PURE__*/__webpack_require__.n(Tooltip_);
 
 // EXTERNAL MODULE: external "@material-ui/icons/ArrowBack"
@@ -1935,11 +1935,11 @@ var Notifications_ = __webpack_require__(59);
 var Notifications__default = /*#__PURE__*/__webpack_require__.n(Notifications_);
 
 // EXTERNAL MODULE: external "@material-ui/icons/Add"
-var Add_ = __webpack_require__(33);
+var Add_ = __webpack_require__(34);
 var Add__default = /*#__PURE__*/__webpack_require__.n(Add_);
 
 // EXTERNAL MODULE: external "@material-ui/icons/RemoveRedEye"
-var RemoveRedEye_ = __webpack_require__(34);
+var RemoveRedEye_ = __webpack_require__(31);
 var RemoveRedEye__default = /*#__PURE__*/__webpack_require__.n(RemoveRedEye_);
 
 // EXTERNAL MODULE: ./routes.js
@@ -3178,7 +3178,7 @@ function (_Component) {
 
 /* harmony default export */ var MenuDialogBox = (Object(styles_["withStyles"])(MenuDialogBox_styles)(MenuDialogBox_MenuDialoBox));
 // EXTERNAL MODULE: ./constants/userTypes.js
-var userTypes = __webpack_require__(12);
+var userTypes = __webpack_require__(13);
 var userTypes_default = /*#__PURE__*/__webpack_require__.n(userTypes);
 
 // CONCATENATED MODULE: ./components/InnerAppLayout/index.js
@@ -4046,14 +4046,13 @@ function (_Component) {
 /* 161 */,
 /* 162 */,
 /* 163 */,
-/* 164 */,
-/* 165 */
+/* 164 */
 /***/ (function(module, exports) {
 
 module.exports = require("@material-ui/icons/Star");
 
 /***/ }),
-/* 166 */
+/* 165 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -4091,7 +4090,7 @@ var external__moment_ = __webpack_require__(42);
 var external__moment__default = /*#__PURE__*/__webpack_require__.n(external__moment_);
 
 // EXTERNAL MODULE: external "material-ui/Grid"
-var Grid_ = __webpack_require__(32);
+var Grid_ = __webpack_require__(33);
 var Grid__default = /*#__PURE__*/__webpack_require__.n(Grid_);
 
 // EXTERNAL MODULE: external "@material-ui/icons/ExpandMore"
@@ -4111,11 +4110,11 @@ var List_ = __webpack_require__(27);
 var List__default = /*#__PURE__*/__webpack_require__.n(List_);
 
 // EXTERNAL MODULE: external "@material-ui/icons/Add"
-var Add_ = __webpack_require__(33);
+var Add_ = __webpack_require__(34);
 var Add__default = /*#__PURE__*/__webpack_require__.n(Add_);
 
 // EXTERNAL MODULE: external "react-truncate"
-var external__react_truncate_ = __webpack_require__(167);
+var external__react_truncate_ = __webpack_require__(166);
 var external__react_truncate__default = /*#__PURE__*/__webpack_require__.n(external__react_truncate_);
 
 // EXTERNAL MODULE: external "material-ui/ExpansionPanel"
@@ -4123,7 +4122,7 @@ var ExpansionPanel_ = __webpack_require__(107);
 var ExpansionPanel__default = /*#__PURE__*/__webpack_require__.n(ExpansionPanel_);
 
 // EXTERNAL MODULE: ./constants/userTypes.js
-var userTypes = __webpack_require__(12);
+var userTypes = __webpack_require__(13);
 var userTypes_default = /*#__PURE__*/__webpack_require__.n(userTypes);
 
 // CONCATENATED MODULE: ./components/CompanyNewsAlerts/index.js
@@ -4557,7 +4556,7 @@ var Divider_ = __webpack_require__(20);
 var Divider__default = /*#__PURE__*/__webpack_require__.n(Divider_);
 
 // EXTERNAL MODULE: external "material-ui/Button"
-var Button_ = __webpack_require__(31);
+var Button_ = __webpack_require__(32);
 var Button__default = /*#__PURE__*/__webpack_require__.n(Button_);
 
 // EXTERNAL MODULE: external "next/head"
@@ -4565,7 +4564,7 @@ var head_ = __webpack_require__(16);
 var head__default = /*#__PURE__*/__webpack_require__.n(head_);
 
 // EXTERNAL MODULE: ../node_modules/react-quill/dist/quill.snow.css
-var quill_snow = __webpack_require__(168);
+var quill_snow = __webpack_require__(167);
 var quill_snow_default = /*#__PURE__*/__webpack_require__.n(quill_snow);
 
 // EXTERNAL MODULE: external "is-browser"
@@ -4604,7 +4603,7 @@ var colorArray = ['#000', '#fff', '#FF6633', '#FFB399', '#FF33FF', '#FFFF99', '#
 var ReactQuill;
 
 if (external__is_browser__default.a) {
-  ReactQuill = __webpack_require__(169);
+  ReactQuill = __webpack_require__(168);
 }
 
 var RichTextEditor_MyRichTextEditor =
@@ -5481,24 +5480,25 @@ function (_React$Component) {
 /* harmony default export */ var containers_CompanyNewsAlerts = __webpack_exports__["a"] = (CompanyNewsAlerts_CompanyNewsAlertsContainer);
 
 /***/ }),
-/* 167 */
+/* 166 */
 /***/ (function(module, exports) {
 
 module.exports = require("react-truncate");
 
 /***/ }),
-/* 168 */
+/* 167 */
 /***/ (function(module, exports) {
 
 
 
 /***/ }),
-/* 169 */
+/* 168 */
 /***/ (function(module, exports) {
 
 module.exports = require("react-quill");
 
 /***/ }),
+/* 169 */,
 /* 170 */,
 /* 171 */,
 /* 172 */,
@@ -5545,14 +5545,15 @@ module.exports = require("react-quill");
 /* 213 */,
 /* 214 */,
 /* 215 */,
-/* 216 */
+/* 216 */,
+/* 217 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(217);
+module.exports = __webpack_require__(218);
 
 
 /***/ }),
-/* 217 */
+/* 218 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -5620,7 +5621,7 @@ var Close_ = __webpack_require__(29);
 var Close__default = /*#__PURE__*/__webpack_require__.n(Close_);
 
 // EXTERNAL MODULE: external "material-ui/Grid"
-var Grid_ = __webpack_require__(32);
+var Grid_ = __webpack_require__(33);
 var Grid__default = /*#__PURE__*/__webpack_require__.n(Grid_);
 
 // EXTERNAL MODULE: external "react-sizes"
@@ -5640,7 +5641,7 @@ var Help_ = __webpack_require__(122);
 var Help__default = /*#__PURE__*/__webpack_require__.n(Help_);
 
 // EXTERNAL MODULE: external "@material-ui/icons/Star"
-var Star_ = __webpack_require__(165);
+var Star_ = __webpack_require__(164);
 var Star__default = /*#__PURE__*/__webpack_require__.n(Star_);
 
 // EXTERNAL MODULE: external "@material-ui/icons/ExpandMore"
@@ -5674,7 +5675,7 @@ var StatNumberBox = __webpack_require__(123);
 var utils_Math = __webpack_require__(70);
 
 // EXTERNAL MODULE: ./containers/CompanyNewsAlerts.js + 6 modules
-var CompanyNewsAlerts = __webpack_require__(166);
+var CompanyNewsAlerts = __webpack_require__(165);
 
 // CONCATENATED MODULE: ./components/AdminDashboard/index.js
 var _dec, _class;

@@ -67,7 +67,7 @@ module.exports =
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 210);
+/******/ 	return __webpack_require__(__webpack_require__.s = 211);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -159,6 +159,12 @@ module.exports = require("mobx-state-tree");
 /* 12 */
 /***/ (function(module, exports) {
 
+module.exports = require("material-ui/Tooltip");
+
+/***/ }),
+/* 13 */
+/***/ (function(module, exports) {
+
 var customer = 'customer';
 var agent = 'agent';
 var admin = 'admin';
@@ -171,12 +177,6 @@ module.exports = {
   superAdmin: superAdmin,
   anonymous: anonymous
 };
-
-/***/ }),
-/* 13 */
-/***/ (function(module, exports) {
-
-module.exports = require("material-ui/Tooltip");
 
 /***/ }),
 /* 14 */
@@ -1126,25 +1126,25 @@ module.exports = require("material-ui/Drawer");
 /* 31 */
 /***/ (function(module, exports) {
 
-module.exports = require("material-ui/Button");
+module.exports = require("@material-ui/icons/RemoveRedEye");
 
 /***/ }),
 /* 32 */
 /***/ (function(module, exports) {
 
-module.exports = require("material-ui/Grid");
+module.exports = require("material-ui/Button");
 
 /***/ }),
 /* 33 */
 /***/ (function(module, exports) {
 
-module.exports = require("@material-ui/icons/Add");
+module.exports = require("material-ui/Grid");
 
 /***/ }),
 /* 34 */
 /***/ (function(module, exports) {
 
-module.exports = require("@material-ui/icons/RemoveRedEye");
+module.exports = require("@material-ui/icons/Add");
 
 /***/ }),
 /* 35 */
@@ -1953,7 +1953,7 @@ var IconButton_ = __webpack_require__(15);
 var IconButton__default = /*#__PURE__*/__webpack_require__.n(IconButton_);
 
 // EXTERNAL MODULE: external "material-ui/Tooltip"
-var Tooltip_ = __webpack_require__(13);
+var Tooltip_ = __webpack_require__(12);
 var Tooltip__default = /*#__PURE__*/__webpack_require__.n(Tooltip_);
 
 // EXTERNAL MODULE: external "@material-ui/icons/ArrowBack"
@@ -1965,11 +1965,11 @@ var Notifications_ = __webpack_require__(59);
 var Notifications__default = /*#__PURE__*/__webpack_require__.n(Notifications_);
 
 // EXTERNAL MODULE: external "@material-ui/icons/Add"
-var Add_ = __webpack_require__(33);
+var Add_ = __webpack_require__(34);
 var Add__default = /*#__PURE__*/__webpack_require__.n(Add_);
 
 // EXTERNAL MODULE: external "@material-ui/icons/RemoveRedEye"
-var RemoveRedEye_ = __webpack_require__(34);
+var RemoveRedEye_ = __webpack_require__(31);
 var RemoveRedEye__default = /*#__PURE__*/__webpack_require__.n(RemoveRedEye_);
 
 // EXTERNAL MODULE: ./routes.js
@@ -3208,7 +3208,7 @@ function (_Component) {
 
 /* harmony default export */ var MenuDialogBox = (Object(styles_["withStyles"])(MenuDialogBox_styles)(MenuDialogBox_MenuDialoBox));
 // EXTERNAL MODULE: ./constants/userTypes.js
-var userTypes = __webpack_require__(12);
+var userTypes = __webpack_require__(13);
 var userTypes_default = /*#__PURE__*/__webpack_require__.n(userTypes);
 
 // CONCATENATED MODULE: ./components/InnerAppLayout/index.js
@@ -4376,7 +4376,9 @@ function (_React$Component) {
           renderValue: !multiple ? null : function (selected) {
             return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", {
               className: classes.chips
-            }, selected.map(function (value) {
+            }, selected.filter(function (val) {
+              return val !== '';
+            }).map(function (value) {
               return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_7_material_ui_Chip___default.a, {
                 key: value,
                 label: value,
@@ -4783,9 +4785,9 @@ var NoDataCellComponentBase = function NoDataCellComponentBase(_ref) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_material_ui_styles___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_material_ui_styles__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_mobx_react__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_mobx_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_mobx_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__material_ui_icons_RemoveRedEye__ = __webpack_require__(34);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__material_ui_icons_RemoveRedEye__ = __webpack_require__(31);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__material_ui_icons_RemoveRedEye___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__material_ui_icons_RemoveRedEye__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_material_ui_Tooltip__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_material_ui_Tooltip__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_material_ui_Tooltip___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_material_ui_Tooltip__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__routes__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__routes___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5__routes__);
@@ -4928,7 +4930,7 @@ module.exports = require("react-input-mask");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_material_ui_Form___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_material_ui_Form__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_react_form__ = __webpack_require__(24);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_react_form___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_react_form__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_material_ui_Tooltip__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_material_ui_Tooltip__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_material_ui_Tooltip___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_material_ui_Tooltip__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_classnames__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_classnames___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_classnames__);
@@ -6364,7 +6366,7 @@ module.exports = require("@material-ui/icons/CheckCircle");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_material_ui_styles___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_material_ui_styles__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_mobx_react__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_mobx_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_mobx_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_material_ui_Tooltip__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_material_ui_Tooltip__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_material_ui_Tooltip___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_material_ui_Tooltip__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_react_lazyload__ = __webpack_require__(131);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_react_lazyload___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_react_lazyload__);
@@ -6488,7 +6490,11 @@ function (_React$Component) {
           params: {
             id: id
           }
-        }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("a", null, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", {
+        }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("a", {
+          style: {
+            textDecoration: 'none'
+          }
+        }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", {
           className: classes.noImagePlaceholder
         }, "?")))));
       }
@@ -6504,7 +6510,11 @@ function (_React$Component) {
         params: {
           id: id
         }
-      }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("a", null, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4_react_lazyload___default.a, {
+      }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("a", {
+        style: {
+          textDecoration: 'none'
+        }
+      }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4_react_lazyload___default.a, {
         height: 38,
         offset: 100,
         once: true
@@ -6514,7 +6524,8 @@ function (_React$Component) {
           return _this2._imgItem = imgItem;
         },
         src: imageURL,
-        alt: imageAltText || 'unable to load profile picture'
+        alt: imageAltText,
+        onError: this.hideBrokenImage
       }))))));
     }
   }]);
@@ -6721,7 +6732,7 @@ var styles_ = __webpack_require__(2);
 var styles__default = /*#__PURE__*/__webpack_require__.n(styles_);
 
 // EXTERNAL MODULE: external "material-ui/Grid"
-var Grid_ = __webpack_require__(32);
+var Grid_ = __webpack_require__(33);
 var Grid__default = /*#__PURE__*/__webpack_require__.n(Grid_);
 
 // EXTERNAL MODULE: external "react-sizes"
@@ -6729,7 +6740,7 @@ var external__react_sizes_ = __webpack_require__(67);
 var external__react_sizes__default = /*#__PURE__*/__webpack_require__.n(external__react_sizes_);
 
 // EXTERNAL MODULE: external "material-ui/Button"
-var Button_ = __webpack_require__(31);
+var Button_ = __webpack_require__(32);
 var Button__default = /*#__PURE__*/__webpack_require__.n(Button_);
 
 // EXTERNAL MODULE: external "material-ui/Typography"
@@ -6793,7 +6804,7 @@ var CustomInputMask = __webpack_require__(112);
 var constants = __webpack_require__(113);
 
 // EXTERNAL MODULE: ./constants/userTypes.js
-var userTypes = __webpack_require__(12);
+var userTypes = __webpack_require__(13);
 var userTypes_default = /*#__PURE__*/__webpack_require__.n(userTypes);
 
 // CONCATENATED MODULE: ./components/forms/CreateAgentForm/index.js
@@ -7023,8 +7034,6 @@ var radioInputAgentItems = [{
   value: '80'
 }];
 var areaOfFocusSelectItems = [{
-  label: ''
-}, {
   label: 'Residential Rentals'
 }, {
   label: 'Residential Sales'
@@ -7282,6 +7291,7 @@ function (_Component) {
           fullWidth: true,
           label: "Area of Focus",
           name: "areaOfFocus",
+          multiple: true,
           selectInputItems: areaOfFocusSelectItems,
           disabled: isViewType && !isEditingAgent
         }))), isAdmin && external__react__default.a.createElement(Grid__default.a, {
@@ -7607,9 +7617,7 @@ var setAgentProfilePic = function setAgentProfilePic(agentID, fileName) {
 /* 159 */,
 /* 160 */,
 /* 161 */,
-/* 162 */,
-/* 163 */,
-/* 164 */
+/* 162 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -7635,7 +7643,7 @@ var styles_ = __webpack_require__(2);
 var styles__default = /*#__PURE__*/__webpack_require__.n(styles_);
 
 // EXTERNAL MODULE: external "material-ui/Button"
-var Button_ = __webpack_require__(31);
+var Button_ = __webpack_require__(32);
 var Button__default = /*#__PURE__*/__webpack_require__.n(Button_);
 
 // EXTERNAL MODULE: external "material-ui/Snackbar"
@@ -7917,7 +7925,7 @@ function (_Component) {
                 var loadedPercent = progressEvent.loaded / progressEvent.total * 100;
 
                 _this.setState({
-                  submittingFormToServer: false,
+                  submittingFormToServer: Math.floor(loadedPercent) ? false : true,
                   formSubmitedSuccessfully: true,
                   uplodingImageProgress: Math.floor(loadedPercent),
                   isUploadingImage: loadedPercent >= 100 ? false : true
@@ -8135,7 +8143,7 @@ var styles = function styles(theme) {
     },
     snackBar: {
       position: 'absolute',
-      bottom: 0
+      bottom: 20
     },
     errorSnackbar: {
       '& > div': {
@@ -8324,6 +8332,99 @@ function (_Component) {
 /* harmony default export */ var components_CreateAgentDialogBox = __webpack_exports__["a"] = (Object(Dialog_["withMobileDialog"])()(Object(styles_["withStyles"])(styles)(CreateAgentDialogBox_CreateAgentDialogBox)));
 
 /***/ }),
+/* 163 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_material_ui_styles__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_material_ui_styles___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_material_ui_styles__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_mobx_react__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_mobx_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_mobx_react__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__material_ui_icons_RemoveRedEye__ = __webpack_require__(31);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__material_ui_icons_RemoveRedEye___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__material_ui_icons_RemoveRedEye__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_material_ui_Tooltip__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_material_ui_Tooltip___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_material_ui_Tooltip__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__routes__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__routes___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5__routes__);
+var _class;
+
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+
+
+
+
+
+
+
+var styles = function styles(theme) {
+  return {
+    wrapper: {
+      whiteSpace: 'nowrap',
+      overflow: 'hidden',
+      textOverflow: 'ellipsis'
+    }
+  };
+};
+
+var VeiwFormatter = Object(__WEBPACK_IMPORTED_MODULE_2_mobx_react__["observer"])(_class =
+/*#__PURE__*/
+function (_React$Component) {
+  _inherits(VeiwFormatter, _React$Component);
+
+  function VeiwFormatter() {
+    _classCallCheck(this, VeiwFormatter);
+
+    return _possibleConstructorReturn(this, (VeiwFormatter.__proto__ || Object.getPrototypeOf(VeiwFormatter)).apply(this, arguments));
+  }
+
+  _createClass(VeiwFormatter, [{
+    key: "render",
+    value: function render() {
+      var _props = this.props,
+          classes = _props.classes,
+          value = _props.value;
+      var finalVal = Array.isArray(value) ? value.filter(function (val) {
+        return val !== '';
+      }).join(', ') || 'None' : value || 'none';
+
+      if (Array.isArray(value) && value.length >= 2) {
+        return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4_material_ui_Tooltip___default.a, {
+          title: finalVal,
+          enterDelay: 400,
+          leaveDelay: 100
+        }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", {
+          className: classes.wrapper
+        }, finalVal));
+      }
+
+      return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", {
+        className: classes.wrapper
+      }, finalVal);
+    }
+  }]);
+
+  return VeiwFormatter;
+}(__WEBPACK_IMPORTED_MODULE_0_react___default.a.Component)) || _class;
+
+/* harmony default export */ __webpack_exports__["a"] = (Object(__WEBPACK_IMPORTED_MODULE_1_material_ui_styles__["withStyles"])(styles)(VeiwFormatter));
+
+/***/ }),
+/* 164 */,
 /* 165 */,
 /* 166 */,
 /* 167 */,
@@ -8369,14 +8470,15 @@ function (_Component) {
 /* 207 */,
 /* 208 */,
 /* 209 */,
-/* 210 */
+/* 210 */,
+/* 211 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(211);
+module.exports = __webpack_require__(212);
 
 
 /***/ }),
-/* 211 */
+/* 212 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -8412,7 +8514,7 @@ var styles_ = __webpack_require__(2);
 var styles__default = /*#__PURE__*/__webpack_require__.n(styles_);
 
 // EXTERNAL MODULE: external "material-ui/Button"
-var Button_ = __webpack_require__(31);
+var Button_ = __webpack_require__(32);
 var Button__default = /*#__PURE__*/__webpack_require__.n(Button_);
 
 // EXTERNAL MODULE: external "material-ui/Typography"
@@ -8420,7 +8522,7 @@ var Typography_ = __webpack_require__(26);
 var Typography__default = /*#__PURE__*/__webpack_require__.n(Typography_);
 
 // EXTERNAL MODULE: external "@material-ui/icons/Add"
-var Add_ = __webpack_require__(33);
+var Add_ = __webpack_require__(34);
 var Add__default = /*#__PURE__*/__webpack_require__.n(Add_);
 
 // EXTERNAL MODULE: external "@material-ui/icons/Search"
@@ -8432,7 +8534,7 @@ var external__moment_ = __webpack_require__(42);
 var external__moment__default = /*#__PURE__*/__webpack_require__.n(external__moment_);
 
 // EXTERNAL MODULE: external "material-ui/Grid"
-var Grid_ = __webpack_require__(32);
+var Grid_ = __webpack_require__(33);
 var Grid__default = /*#__PURE__*/__webpack_require__.n(Grid_);
 
 // EXTERNAL MODULE: external "material-ui-pickers"
@@ -8480,7 +8582,7 @@ var Close_ = __webpack_require__(29);
 var Close__default = /*#__PURE__*/__webpack_require__.n(Close_);
 
 // EXTERNAL MODULE: ./components/CreateAgentDialogBox/index.js + 2 modules
-var CreateAgentDialogBox = __webpack_require__(164);
+var CreateAgentDialogBox = __webpack_require__(162);
 
 // EXTERNAL MODULE: ./components/MaterialCustomSelectInput/index.js
 var MaterialCustomSelectInput = __webpack_require__(96);
@@ -8523,6 +8625,9 @@ var ProfilePictureFormatter = __webpack_require__(130);
 // EXTERNAL MODULE: ./components/dataTableFormatters/ViewFormatter.js
 var ViewFormatter = __webpack_require__(102);
 
+// EXTERNAL MODULE: ./components/dataTableFormatters/AreaOfFocusFormatter.js
+var AreaOfFocusFormatter = __webpack_require__(163);
+
 // CONCATENATED MODULE: ./components/AdminAreaAgentsTable/index.js
 var _dec, _dec2, _class;
 
@@ -8543,6 +8648,7 @@ function _assertThisInitialized(self) { if (self === void 0) { throw new Referen
 function _objectWithoutProperties(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i < sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) >= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }
 
 function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+
 
 
 
@@ -8689,9 +8795,22 @@ var AdminAreaAgentsTable_ViewTypeProvider = function ViewTypeProvider(props) {
   }, props));
 };
 
-var AdminAreaAgentsTable_TableContainerComponentWrapperBase = function TableContainerComponentWrapperBase(_ref4) {
-  var classes = _ref4.classes,
-      restProps = _objectWithoutProperties(_ref4, ["classes"]);
+var AdminAreaAgentsTable_AreaOfFocusCellFormatter = function AreaOfFocusCellFormatter(_ref4) {
+  var value = _ref4.value;
+  return external__react__default.a.createElement(AreaOfFocusFormatter["a" /* default */], {
+    value: value
+  });
+};
+
+var AdminAreaAgentsTable_AreaOfFocusTypeProvider = function AreaOfFocusTypeProvider(props) {
+  return external__react__default.a.createElement(dx_react_grid_["DataTypeProvider"], _extends({
+    formatterComponent: AdminAreaAgentsTable_AreaOfFocusCellFormatter
+  }, props));
+};
+
+var AdminAreaAgentsTable_TableContainerComponentWrapperBase = function TableContainerComponentWrapperBase(_ref5) {
+  var classes = _ref5.classes,
+      restProps = _objectWithoutProperties(_ref5, ["classes"]);
 
   return external__react__default.a.createElement(TableContainerComponent["a" /* default */], _extends({}, restProps, {
     className: classes.myTableContainer
@@ -8766,6 +8885,8 @@ function (_Component) {
         "for": ['photo']
       }), external__react__default.a.createElement(AdminAreaAgentsTable_ViewTypeProvider, {
         "for": ['view']
+      }), external__react__default.a.createElement(AdminAreaAgentsTable_AreaOfFocusTypeProvider, {
+        "for": ['areaOfFocus']
       }), external__react__default.a.createElement(dx_react_grid_material_ui_["DragDropProvider"], null), external__react__default.a.createElement(dx_react_grid_["SearchState"], null), external__react__default.a.createElement(dx_react_grid_["FilteringState"], {
         columnExtensions: filteringStateColumnExtensions
       }), external__react__default.a.createElement(dx_react_grid_["SortingState"], {
@@ -8959,7 +9080,7 @@ function (_Component) {
             },
             name: Object(stringUtils["a" /* capitalize */])("".concat(firstName, " ").concat(lastName)),
             email: email,
-            areaOfFocus: areaOfFocus || 'none',
+            areaOfFocus: areaOfFocus,
             mobileNumber: mobileNumber,
             companyNumberAndExt: officeNumber,
             branch: branch,

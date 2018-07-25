@@ -67,7 +67,7 @@ module.exports =
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 234);
+/******/ 	return __webpack_require__(__webpack_require__.s = 235);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -156,7 +156,8 @@ module.exports = require("polished");
 module.exports = require("mobx-state-tree");
 
 /***/ }),
-/* 12 */
+/* 12 */,
+/* 13 */
 /***/ (function(module, exports) {
 
 var customer = 'customer';
@@ -173,7 +174,6 @@ module.exports = {
 };
 
 /***/ }),
-/* 13 */,
 /* 14 */
 /***/ (function(module, exports) {
 
@@ -699,13 +699,13 @@ var theme = {
 /* 29 */,
 /* 30 */,
 /* 31 */,
-/* 32 */
+/* 32 */,
+/* 33 */
 /***/ (function(module, exports) {
 
 module.exports = require("material-ui/Grid");
 
 /***/ }),
-/* 33 */,
 /* 34 */,
 /* 35 */,
 /* 36 */,
@@ -1697,7 +1697,7 @@ var HeaderAndAppContentWrapper = external__styled_components__default.a.div.with
   componentId: "s108z15f-1"
 })(["width:100%;height:100%;"]);
 // EXTERNAL MODULE: ./constants/userTypes.js
-var userTypes = __webpack_require__(12);
+var userTypes = __webpack_require__(13);
 var userTypes_default = /*#__PURE__*/__webpack_require__.n(userTypes);
 
 // CONCATENATED MODULE: ./frontEndComponents/FrontEndLayout/index.js
@@ -2657,101 +2657,101 @@ module.exports = require("antd/lib/form");
 /* 169 */,
 /* 170 */,
 /* 171 */,
-/* 172 */,
-/* 173 */
+/* 172 */
 /***/ (function(module, exports) {
 
 module.exports = require("react-stripe-elements");
 
 /***/ }),
-/* 174 */
+/* 173 */
 /***/ (function(module, exports) {
 
 module.exports = require("antd/lib/modal/style/css");
 
 /***/ }),
-/* 175 */
+/* 174 */
 /***/ (function(module, exports) {
 
 module.exports = require("antd/lib/modal");
 
 /***/ }),
-/* 176 */
+/* 175 */
 /***/ (function(module, exports) {
 
 module.exports = require("antd/lib/divider/style/css");
 
 /***/ }),
-/* 177 */
+/* 176 */
 /***/ (function(module, exports) {
 
 module.exports = require("antd/lib/divider");
 
 /***/ }),
-/* 178 */
+/* 177 */
 /***/ (function(module, exports) {
 
 module.exports = require("antd/lib/select/style/css");
 
 /***/ }),
-/* 179 */
+/* 178 */
 /***/ (function(module, exports) {
 
 module.exports = require("antd/lib/select");
 
 /***/ }),
-/* 180 */
+/* 179 */
 /***/ (function(module, exports) {
 
 module.exports = require("antd/lib/button/style/css");
 
 /***/ }),
-/* 181 */
+/* 180 */
 /***/ (function(module, exports) {
 
 module.exports = require("antd/lib/button");
 
 /***/ }),
+/* 181 */,
 /* 182 */,
 /* 183 */,
 /* 184 */,
-/* 185 */,
-/* 186 */
+/* 185 */
 /***/ (function(module, exports) {
 
 module.exports = require("antd/lib/date-picker/style/css");
 
 /***/ }),
-/* 187 */
+/* 186 */
 /***/ (function(module, exports) {
 
 module.exports = require("antd/lib/date-picker");
 
 /***/ }),
-/* 188 */
+/* 187 */
 /***/ (function(module, exports) {
 
 module.exports = require("antd/lib/tabs/style/css");
 
 /***/ }),
-/* 189 */
+/* 188 */
 /***/ (function(module, exports) {
 
 module.exports = require("antd/lib/tabs");
 
 /***/ }),
-/* 190 */
+/* 189 */
 /***/ (function(module, exports) {
 
 module.exports = require("react-signature-canvas");
 
 /***/ }),
-/* 191 */
+/* 190 */
 /***/ (function(module, exports) {
 
 
 
 /***/ }),
+/* 191 */,
 /* 192 */,
 /* 193 */,
 /* 194 */,
@@ -2794,14 +2794,15 @@ module.exports = require("react-signature-canvas");
 /* 231 */,
 /* 232 */,
 /* 233 */,
-/* 234 */
+/* 234 */,
+/* 235 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(235);
+module.exports = __webpack_require__(236);
 
 
 /***/ }),
-/* 235 */
+/* 236 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2820,7 +2821,7 @@ var external__is_browser_ = __webpack_require__(7);
 var external__is_browser__default = /*#__PURE__*/__webpack_require__.n(external__is_browser_);
 
 // EXTERNAL MODULE: external "react-stripe-elements"
-var external__react_stripe_elements_ = __webpack_require__(173);
+var external__react_stripe_elements_ = __webpack_require__(172);
 var external__react_stripe_elements__default = /*#__PURE__*/__webpack_require__.n(external__react_stripe_elements_);
 
 // EXTERNAL MODULE: ./frontEndComponents/FrontEndLayout/index.js + 7 modules
@@ -2841,11 +2842,11 @@ var external__chance_ = __webpack_require__(63);
 var external__chance__default = /*#__PURE__*/__webpack_require__.n(external__chance_);
 
 // EXTERNAL MODULE: external "antd/lib/modal/style/css"
-var css_ = __webpack_require__(174);
+var css_ = __webpack_require__(173);
 var css__default = /*#__PURE__*/__webpack_require__.n(css_);
 
 // EXTERNAL MODULE: external "antd/lib/modal"
-var modal_ = __webpack_require__(175);
+var modal_ = __webpack_require__(174);
 var modal__default = /*#__PURE__*/__webpack_require__.n(modal_);
 
 // EXTERNAL MODULE: external "antd/lib/icon/style/css"
@@ -2865,19 +2866,19 @@ var input_ = __webpack_require__(118);
 var input__default = /*#__PURE__*/__webpack_require__.n(input_);
 
 // EXTERNAL MODULE: external "antd/lib/divider/style/css"
-var divider_style_css_ = __webpack_require__(176);
+var divider_style_css_ = __webpack_require__(175);
 var divider_style_css__default = /*#__PURE__*/__webpack_require__.n(divider_style_css_);
 
 // EXTERNAL MODULE: external "antd/lib/divider"
-var divider_ = __webpack_require__(177);
+var divider_ = __webpack_require__(176);
 var divider__default = /*#__PURE__*/__webpack_require__.n(divider_);
 
 // EXTERNAL MODULE: external "antd/lib/select/style/css"
-var select_style_css_ = __webpack_require__(178);
+var select_style_css_ = __webpack_require__(177);
 var select_style_css__default = /*#__PURE__*/__webpack_require__.n(select_style_css_);
 
 // EXTERNAL MODULE: external "antd/lib/select"
-var select_ = __webpack_require__(179);
+var select_ = __webpack_require__(178);
 var select__default = /*#__PURE__*/__webpack_require__.n(select_);
 
 // EXTERNAL MODULE: external "antd/lib/form/style/css"
@@ -2889,11 +2890,11 @@ var form_ = __webpack_require__(155);
 var form__default = /*#__PURE__*/__webpack_require__.n(form_);
 
 // EXTERNAL MODULE: external "antd/lib/button/style/css"
-var button_style_css_ = __webpack_require__(180);
+var button_style_css_ = __webpack_require__(179);
 var button_style_css__default = /*#__PURE__*/__webpack_require__.n(button_style_css_);
 
 // EXTERNAL MODULE: external "antd/lib/button"
-var button_ = __webpack_require__(181);
+var button_ = __webpack_require__(180);
 var button__default = /*#__PURE__*/__webpack_require__.n(button_);
 
 // EXTERNAL MODULE: external "material-ui/styles"
@@ -2905,34 +2906,34 @@ var external__classnames_ = __webpack_require__(8);
 var external__classnames__default = /*#__PURE__*/__webpack_require__.n(external__classnames_);
 
 // EXTERNAL MODULE: external "material-ui/Grid"
-var Grid_ = __webpack_require__(32);
+var Grid_ = __webpack_require__(33);
 var Grid__default = /*#__PURE__*/__webpack_require__.n(Grid_);
 
 // EXTERNAL MODULE: ./utils/constants.js
 var constants = __webpack_require__(113);
 
 // EXTERNAL MODULE: external "antd/lib/upload/style/css"
-var upload_style_css_ = __webpack_require__(236);
+var upload_style_css_ = __webpack_require__(237);
 var upload_style_css__default = /*#__PURE__*/__webpack_require__.n(upload_style_css_);
 
 // EXTERNAL MODULE: external "antd/lib/upload"
-var upload_ = __webpack_require__(237);
+var upload_ = __webpack_require__(238);
 var upload__default = /*#__PURE__*/__webpack_require__.n(upload_);
 
 // EXTERNAL MODULE: external "antd/lib/date-picker/style/css"
-var date_picker_style_css_ = __webpack_require__(186);
+var date_picker_style_css_ = __webpack_require__(185);
 var date_picker_style_css__default = /*#__PURE__*/__webpack_require__.n(date_picker_style_css_);
 
 // EXTERNAL MODULE: external "antd/lib/date-picker"
-var date_picker_ = __webpack_require__(187);
+var date_picker_ = __webpack_require__(186);
 var date_picker__default = /*#__PURE__*/__webpack_require__.n(date_picker_);
 
 // EXTERNAL MODULE: external "antd/lib/tabs/style/css"
-var tabs_style_css_ = __webpack_require__(188);
+var tabs_style_css_ = __webpack_require__(187);
 var tabs_style_css__default = /*#__PURE__*/__webpack_require__.n(tabs_style_css_);
 
 // EXTERNAL MODULE: external "antd/lib/tabs"
-var tabs_ = __webpack_require__(189);
+var tabs_ = __webpack_require__(188);
 var tabs__default = /*#__PURE__*/__webpack_require__.n(tabs_);
 
 // EXTERNAL MODULE: external "moment"
@@ -2944,13 +2945,13 @@ var external__react_input_mask_ = __webpack_require__(104);
 var external__react_input_mask__default = /*#__PURE__*/__webpack_require__.n(external__react_input_mask_);
 
 // EXTERNAL MODULE: external "react-signature-canvas"
-var external__react_signature_canvas_ = __webpack_require__(190);
+var external__react_signature_canvas_ = __webpack_require__(189);
 var external__react_signature_canvas__default = /*#__PURE__*/__webpack_require__.n(external__react_signature_canvas_);
 
 // CONCATENATED MODULE: ./frontEndComponents/ApplicationForm/legal.js
 /* harmony default export */ var legal = ('I hereby authorize Reyes & Elsamad Real Estate Group and any third-party credit agency to obtain any information regarding my employment, tenant history, and credit or background history.  I warrant that the above information is true.  I understand that any misrepresentation by me or the person filling out this application may be the cause of rejection by the landlord or management company.  The landlord or management company governing the above mentioned property makes no guarantees to the status of the application and the availability said apartment. We respect your privacy and hold your trust in us with high regards.  Your information is governed with strict policies that protect your privacy.  Reyes & Eslamad Real Estate Group is committed to comply with all federal, state and local fair housing laws.  I acknowledge and understand that this application has a fee and that this fee is non-refundable.  I agree to all the terms set forth in this agreement.');
 // EXTERNAL MODULE: ./static/css/property-application.css
-var property_application = __webpack_require__(191);
+var property_application = __webpack_require__(190);
 var property_application_default = /*#__PURE__*/__webpack_require__.n(property_application);
 
 // CONCATENATED MODULE: ./frontEndComponents/ApplicationForm/index.js
@@ -6010,13 +6011,13 @@ function (_React$Component) {
 /* harmony default export */ var apply = __webpack_exports__["default"] = (Object(withData["a" /* default */])(apply_Apply));
 
 /***/ }),
-/* 236 */
+/* 237 */
 /***/ (function(module, exports) {
 
 module.exports = require("antd/lib/upload/style/css");
 
 /***/ }),
-/* 237 */
+/* 238 */
 /***/ (function(module, exports) {
 
 module.exports = require("antd/lib/upload");

@@ -198,7 +198,6 @@ const radioInputAgentItems = [
 ];
 
 const areaOfFocusSelectItems = [
-  { label: '' },
   { label: 'Residential Rentals' },
   { label: 'Residential Sales' },
   { label: 'Commercial Rentals' },
@@ -458,6 +457,7 @@ class CreateAgentForm extends Component {
                         fullWidth
                         label="Area of Focus"
                         name="areaOfFocus"
+                        multiple
                         selectInputItems={areaOfFocusSelectItems}
                         disabled={isViewType && !isEditingAgent}
                       />

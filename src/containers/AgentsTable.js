@@ -109,7 +109,7 @@ class AgentsTableContainer extends Component {
         },
         name: capitalize(`${firstName} ${lastName}`),
         email,
-        areaOfFocus: areaOfFocus || 'none',
+        areaOfFocus: areaOfFocus,
         mobileNumber,
         companyNumberAndExt: officeNumber,
         branch,

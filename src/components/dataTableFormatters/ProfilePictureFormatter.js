@@ -66,7 +66,7 @@ class ProfilePictureFormatter extends React.Component {
         >
           <div className={classes.wrapper}>
             <Link route="profile" params={{ id }}>
-              <a>
+              <a style={{ textDecoration: 'none' }}>
                 <div className={classes.noImagePlaceholder}>?</div>
               </a>
             </Link>
@@ -79,13 +79,14 @@ class ProfilePictureFormatter extends React.Component {
       <Tooltip title="Click to view profile" enterDelay={400} leaveDelay={100}>
         <div className={classes.wrapper}>
           <Link route="profile" params={{ id }}>
-            <a>
+            <a style={{ textDecoration: 'none' }}>
               <LazyLoad height={38} offset={100} once>
                 <img
                   className={classes.image}
                   ref={imgItem => (this._imgItem = imgItem)}
                   src={imageURL}
-                  alt={imageAltText || 'unable to load profile picture'}
+                  alt={imageAltText}
+                  onError={this.hideBrokenImage}
                 />
               </LazyLoad>
             </a>

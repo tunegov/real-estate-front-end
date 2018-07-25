@@ -21,6 +21,7 @@ class EditProfilePicFormContainer extends Component {
       isUploadingImage: false,
       formSubmitedSuccessfully: false,
       imageBlob: null,
+      submittingFormToServer: false,
     };
   }
 
@@ -89,7 +90,9 @@ class EditProfilePicFormContainer extends Component {
       uuid: this.props.uuid,
     };
 
-    console.log(returnValues);
+    this.setState({
+      submittingFormToServer: true,
+    });
 
     this.props.toggleSubmittingEditProfilePicForm(true);
 
@@ -110,6 +113,9 @@ class EditProfilePicFormContainer extends Component {
         }
 
         if (hasError) {
+          this.setState({
+            submittingFormToServer: false,
+          });
           this.props.openRequestErrorSnackbar();
           this.props.toggleSubmittingEditProfilePicForm(false);
           this.props.setFormSubmitted(false);
@@ -128,6 +134,9 @@ class EditProfilePicFormContainer extends Component {
                   (progressEvent.loaded / progressEvent.total) * 100;
                 this.setState({
                   formSubmitedSuccessfully: true,
+                  submittingFormToServer: Math.floor(loadedPercent)
+                    ? false
+                    : true,
                   uplodingImageProgress: Math.floor(loadedPercent),
                   isUploadingImage: loadedPercent >= 100 ? false : true,
                 });
@@ -154,9 +163,7 @@ class EditProfilePicFormContainer extends Component {
 
               setAgentProfilePic(this.props.uuid, item[0].fileName).then(
                 res => {
-                  this.props.setFinishedSubmittingForm(
-                    this.state.confirmedImageDataURL
-                  );
+                  this.props.setFinishedSubmittingForm(res.url);
                   this.props.setFormSubmitted(false);
                 }
               );
@@ -165,7 +172,12 @@ class EditProfilePicFormContainer extends Component {
       })
       .catch(err => {
         console.log(err);
-        this.props.openRequestErrorSnackbar();
+        this.setState({
+          submittingFormToServer: false,
+        });
+        this.props.openRequestErrorSnackbar(
+          'There was an error uploading your image.'
+        );
         this.props.setFormSubmitted(false);
         this.props.toggleSubmittingEditProfilePicForm(true);
       });
@@ -182,6 +194,7 @@ class EditProfilePicFormContainer extends Component {
     return (
       <div style={{ width: '100%' }}>
         <EditProfilePicForm
+          submittingFormToServer={this.state.submittingFormToServer}
           onSubmit={this.onSubmit}
           onSubmitFailure={this.onSubmitFailure}
           setImageFile={this.setImageFile}

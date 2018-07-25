@@ -67,7 +67,7 @@ module.exports =
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 228);
+/******/ 	return __webpack_require__(__webpack_require__.s = 229);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -159,6 +159,12 @@ module.exports = require("mobx-state-tree");
 /* 12 */
 /***/ (function(module, exports) {
 
+module.exports = require("material-ui/Tooltip");
+
+/***/ }),
+/* 13 */
+/***/ (function(module, exports) {
+
 var customer = 'customer';
 var agent = 'agent';
 var admin = 'admin';
@@ -171,12 +177,6 @@ module.exports = {
   superAdmin: superAdmin,
   anonymous: anonymous
 };
-
-/***/ }),
-/* 13 */
-/***/ (function(module, exports) {
-
-module.exports = require("material-ui/Tooltip");
 
 /***/ }),
 /* 14 */
@@ -1126,25 +1126,25 @@ module.exports = require("material-ui/Drawer");
 /* 31 */
 /***/ (function(module, exports) {
 
-module.exports = require("material-ui/Button");
+module.exports = require("@material-ui/icons/RemoveRedEye");
 
 /***/ }),
 /* 32 */
 /***/ (function(module, exports) {
 
-module.exports = require("material-ui/Grid");
+module.exports = require("material-ui/Button");
 
 /***/ }),
 /* 33 */
 /***/ (function(module, exports) {
 
-module.exports = require("@material-ui/icons/Add");
+module.exports = require("material-ui/Grid");
 
 /***/ }),
 /* 34 */
 /***/ (function(module, exports) {
 
-module.exports = require("@material-ui/icons/RemoveRedEye");
+module.exports = require("@material-ui/icons/Add");
 
 /***/ }),
 /* 35 */
@@ -1953,7 +1953,7 @@ var IconButton_ = __webpack_require__(15);
 var IconButton__default = /*#__PURE__*/__webpack_require__.n(IconButton_);
 
 // EXTERNAL MODULE: external "material-ui/Tooltip"
-var Tooltip_ = __webpack_require__(13);
+var Tooltip_ = __webpack_require__(12);
 var Tooltip__default = /*#__PURE__*/__webpack_require__.n(Tooltip_);
 
 // EXTERNAL MODULE: external "@material-ui/icons/ArrowBack"
@@ -1965,11 +1965,11 @@ var Notifications_ = __webpack_require__(59);
 var Notifications__default = /*#__PURE__*/__webpack_require__.n(Notifications_);
 
 // EXTERNAL MODULE: external "@material-ui/icons/Add"
-var Add_ = __webpack_require__(33);
+var Add_ = __webpack_require__(34);
 var Add__default = /*#__PURE__*/__webpack_require__.n(Add_);
 
 // EXTERNAL MODULE: external "@material-ui/icons/RemoveRedEye"
-var RemoveRedEye_ = __webpack_require__(34);
+var RemoveRedEye_ = __webpack_require__(31);
 var RemoveRedEye__default = /*#__PURE__*/__webpack_require__.n(RemoveRedEye_);
 
 // EXTERNAL MODULE: ./routes.js
@@ -3208,7 +3208,7 @@ function (_Component) {
 
 /* harmony default export */ var MenuDialogBox = (Object(styles_["withStyles"])(MenuDialogBox_styles)(MenuDialogBox_MenuDialoBox));
 // EXTERNAL MODULE: ./constants/userTypes.js
-var userTypes = __webpack_require__(12);
+var userTypes = __webpack_require__(13);
 var userTypes_default = /*#__PURE__*/__webpack_require__.n(userTypes);
 
 // CONCATENATED MODULE: ./components/InnerAppLayout/index.js
@@ -4376,7 +4376,9 @@ function (_React$Component) {
           renderValue: !multiple ? null : function (selected) {
             return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", {
               className: classes.chips
-            }, selected.map(function (value) {
+            }, selected.filter(function (val) {
+              return val !== '';
+            }).map(function (value) {
               return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_7_material_ui_Chip___default.a, {
                 key: value,
                 label: value,
@@ -4783,9 +4785,9 @@ var NoDataCellComponentBase = function NoDataCellComponentBase(_ref) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_material_ui_styles___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_material_ui_styles__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_mobx_react__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_mobx_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_mobx_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__material_ui_icons_RemoveRedEye__ = __webpack_require__(34);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__material_ui_icons_RemoveRedEye__ = __webpack_require__(31);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__material_ui_icons_RemoveRedEye___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__material_ui_icons_RemoveRedEye__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_material_ui_Tooltip__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_material_ui_Tooltip__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_material_ui_Tooltip___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_material_ui_Tooltip__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__routes__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__routes___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5__routes__);
@@ -4923,7 +4925,7 @@ module.exports = require("react-input-mask");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_material_ui_Form___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_material_ui_Form__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_react_form__ = __webpack_require__(24);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_react_form___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_react_form__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_material_ui_Tooltip__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_material_ui_Tooltip__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_material_ui_Tooltip___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_material_ui_Tooltip__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_classnames__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_classnames___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_classnames__);
@@ -5794,7 +5796,7 @@ var Divider_ = __webpack_require__(20);
 var Divider__default = /*#__PURE__*/__webpack_require__.n(Divider_);
 
 // EXTERNAL MODULE: external "material-ui/Button"
-var Button_ = __webpack_require__(31);
+var Button_ = __webpack_require__(32);
 var Button__default = /*#__PURE__*/__webpack_require__.n(Button_);
 
 // EXTERNAL MODULE: external "react-form"
@@ -5810,11 +5812,11 @@ var v4_ = __webpack_require__(66);
 var v4__default = /*#__PURE__*/__webpack_require__.n(v4_);
 
 // EXTERNAL MODULE: external "material-ui/Grid"
-var Grid_ = __webpack_require__(32);
+var Grid_ = __webpack_require__(33);
 var Grid__default = /*#__PURE__*/__webpack_require__.n(Grid_);
 
 // EXTERNAL MODULE: external "@material-ui/icons/Add"
-var Add_ = __webpack_require__(33);
+var Add_ = __webpack_require__(34);
 var Add__default = /*#__PURE__*/__webpack_require__.n(Add_);
 
 // EXTERNAL MODULE: external "@material-ui/icons/Delete"
@@ -6933,8 +6935,7 @@ var acceptInvoice = function acceptInvoice(uuid) {
 /* 167 */,
 /* 168 */,
 /* 169 */,
-/* 170 */,
-/* 171 */
+/* 170 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -6972,7 +6973,7 @@ var styles_ = __webpack_require__(2);
 var styles__default = /*#__PURE__*/__webpack_require__.n(styles_);
 
 // EXTERNAL MODULE: external "material-ui/Button"
-var Button_ = __webpack_require__(31);
+var Button_ = __webpack_require__(32);
 var Button__default = /*#__PURE__*/__webpack_require__.n(Button_);
 
 // EXTERNAL MODULE: external "material-ui/Menu"
@@ -7389,7 +7390,7 @@ function (_Component) {
 
 /* harmony default export */ var ViewInvoiceForm = (ViewInvoiceForm_ViewInvoiceFormContainer);
 // EXTERNAL MODULE: ./constants/userTypes.js
-var userTypes = __webpack_require__(12);
+var userTypes = __webpack_require__(13);
 var userTypes_default = /*#__PURE__*/__webpack_require__.n(userTypes);
 
 // EXTERNAL MODULE: ./effects/invoices/acceptInvoice.js
@@ -7849,6 +7850,7 @@ function (_Component) {
 /* harmony default export */ var ViewInvoiceDialogBox = __webpack_exports__["a"] = (Object(Dialog_["withMobileDialog"])()(Object(styles_["withStyles"])(styles)(ViewInvoiceDialogBox_SubmitInvoiceDialogBox)));
 
 /***/ }),
+/* 171 */,
 /* 172 */,
 /* 173 */,
 /* 174 */,
@@ -7905,14 +7907,15 @@ function (_Component) {
 /* 225 */,
 /* 226 */,
 /* 227 */,
-/* 228 */
+/* 228 */,
+/* 229 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(229);
+module.exports = __webpack_require__(230);
 
 
 /***/ }),
-/* 229 */
+/* 230 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -7948,11 +7951,11 @@ var styles_ = __webpack_require__(2);
 var styles__default = /*#__PURE__*/__webpack_require__.n(styles_);
 
 // EXTERNAL MODULE: external "material-ui/Button"
-var Button_ = __webpack_require__(31);
+var Button_ = __webpack_require__(32);
 var Button__default = /*#__PURE__*/__webpack_require__.n(Button_);
 
 // EXTERNAL MODULE: external "@material-ui/icons/Add"
-var Add_ = __webpack_require__(33);
+var Add_ = __webpack_require__(34);
 var Add__default = /*#__PURE__*/__webpack_require__.n(Add_);
 
 // EXTERNAL MODULE: external "material-ui/Snackbar"
@@ -8600,7 +8603,7 @@ var external__react_sizes_ = __webpack_require__(67);
 var external__react_sizes__default = /*#__PURE__*/__webpack_require__.n(external__react_sizes_);
 
 // EXTERNAL MODULE: external "material-ui/Tooltip"
-var Tooltip_ = __webpack_require__(13);
+var Tooltip_ = __webpack_require__(12);
 var Tooltip__default = /*#__PURE__*/__webpack_require__.n(Tooltip_);
 
 // EXTERNAL MODULE: external "@devexpress/dx-react-grid"
@@ -9220,7 +9223,7 @@ function (_Component) {
 
 /* harmony default export */ var containers_InvoicesTable = (Object(styles_["withStyles"])(containers_InvoicesTable_styles)(InvoicesTable_InvoicesTableContainer));
 // EXTERNAL MODULE: ./components/ViewInvoiceDialogBox/index.js + 2 modules
-var ViewInvoiceDialogBox = __webpack_require__(171);
+var ViewInvoiceDialogBox = __webpack_require__(170);
 
 // EXTERNAL MODULE: ./effects/invoices/deleteInvoice.js
 var deleteInvoice = __webpack_require__(153);

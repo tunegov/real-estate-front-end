@@ -67,7 +67,7 @@ module.exports =
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 222);
+/******/ 	return __webpack_require__(__webpack_require__.s = 223);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -159,6 +159,12 @@ module.exports = require("mobx-state-tree");
 /* 12 */
 /***/ (function(module, exports) {
 
+module.exports = require("material-ui/Tooltip");
+
+/***/ }),
+/* 13 */
+/***/ (function(module, exports) {
+
 var customer = 'customer';
 var agent = 'agent';
 var admin = 'admin';
@@ -171,12 +177,6 @@ module.exports = {
   superAdmin: superAdmin,
   anonymous: anonymous
 };
-
-/***/ }),
-/* 13 */
-/***/ (function(module, exports) {
-
-module.exports = require("material-ui/Tooltip");
 
 /***/ }),
 /* 14 */
@@ -1118,18 +1118,18 @@ module.exports = require("@material-ui/icons/Close");
 module.exports = require("material-ui/Drawer");
 
 /***/ }),
-/* 31 */,
-/* 32 */,
-/* 33 */
-/***/ (function(module, exports) {
-
-module.exports = require("@material-ui/icons/Add");
-
-/***/ }),
-/* 34 */
+/* 31 */
 /***/ (function(module, exports) {
 
 module.exports = require("@material-ui/icons/RemoveRedEye");
+
+/***/ }),
+/* 32 */,
+/* 33 */,
+/* 34 */
+/***/ (function(module, exports) {
+
+module.exports = require("@material-ui/icons/Add");
 
 /***/ }),
 /* 35 */,
@@ -1879,7 +1879,7 @@ var IconButton_ = __webpack_require__(15);
 var IconButton__default = /*#__PURE__*/__webpack_require__.n(IconButton_);
 
 // EXTERNAL MODULE: external "material-ui/Tooltip"
-var Tooltip_ = __webpack_require__(13);
+var Tooltip_ = __webpack_require__(12);
 var Tooltip__default = /*#__PURE__*/__webpack_require__.n(Tooltip_);
 
 // EXTERNAL MODULE: external "@material-ui/icons/ArrowBack"
@@ -1891,11 +1891,11 @@ var Notifications_ = __webpack_require__(59);
 var Notifications__default = /*#__PURE__*/__webpack_require__.n(Notifications_);
 
 // EXTERNAL MODULE: external "@material-ui/icons/Add"
-var Add_ = __webpack_require__(33);
+var Add_ = __webpack_require__(34);
 var Add__default = /*#__PURE__*/__webpack_require__.n(Add_);
 
 // EXTERNAL MODULE: external "@material-ui/icons/RemoveRedEye"
-var RemoveRedEye_ = __webpack_require__(34);
+var RemoveRedEye_ = __webpack_require__(31);
 var RemoveRedEye__default = /*#__PURE__*/__webpack_require__.n(RemoveRedEye_);
 
 // EXTERNAL MODULE: ./routes.js
@@ -3134,7 +3134,7 @@ function (_Component) {
 
 /* harmony default export */ var MenuDialogBox = (Object(styles_["withStyles"])(MenuDialogBox_styles)(MenuDialogBox_MenuDialoBox));
 // EXTERNAL MODULE: ./constants/userTypes.js
-var userTypes = __webpack_require__(12);
+var userTypes = __webpack_require__(13);
 var userTypes_default = /*#__PURE__*/__webpack_require__.n(userTypes);
 
 // CONCATENATED MODULE: ./components/InnerAppLayout/index.js
@@ -3983,9 +3983,9 @@ var NoDataCellComponentBase = function NoDataCellComponentBase(_ref) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_material_ui_styles___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_material_ui_styles__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_mobx_react__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_mobx_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_mobx_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__material_ui_icons_RemoveRedEye__ = __webpack_require__(34);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__material_ui_icons_RemoveRedEye__ = __webpack_require__(31);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__material_ui_icons_RemoveRedEye___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__material_ui_icons_RemoveRedEye__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_material_ui_Tooltip__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_material_ui_Tooltip__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_material_ui_Tooltip___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_material_ui_Tooltip__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__routes__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__routes___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5__routes__);
@@ -4144,7 +4144,7 @@ module.exports = require("faker");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_material_ui_styles___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_material_ui_styles__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_mobx_react__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_mobx_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_mobx_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_material_ui_Tooltip__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_material_ui_Tooltip__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_material_ui_Tooltip___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_material_ui_Tooltip__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_react_lazyload__ = __webpack_require__(131);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_react_lazyload___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_react_lazyload__);
@@ -4268,7 +4268,11 @@ function (_React$Component) {
           params: {
             id: id
           }
-        }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("a", null, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", {
+        }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("a", {
+          style: {
+            textDecoration: 'none'
+          }
+        }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", {
           className: classes.noImagePlaceholder
         }, "?")))));
       }
@@ -4284,7 +4288,11 @@ function (_React$Component) {
         params: {
           id: id
         }
-      }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("a", null, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4_react_lazyload___default.a, {
+      }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("a", {
+        style: {
+          textDecoration: 'none'
+        }
+      }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4_react_lazyload___default.a, {
         height: 38,
         offset: 100,
         once: true
@@ -4294,7 +4302,8 @@ function (_React$Component) {
           return _this2._imgItem = imgItem;
         },
         src: imageURL,
-        alt: imageAltText || 'unable to load profile picture'
+        alt: imageAltText,
+        onError: this.hideBrokenImage
       }))))));
     }
   }]);
@@ -4342,7 +4351,98 @@ module.exports = require("react-lazyload");
 /* 160 */,
 /* 161 */,
 /* 162 */,
-/* 163 */,
+/* 163 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_material_ui_styles__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_material_ui_styles___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_material_ui_styles__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_mobx_react__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_mobx_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_mobx_react__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__material_ui_icons_RemoveRedEye__ = __webpack_require__(31);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__material_ui_icons_RemoveRedEye___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__material_ui_icons_RemoveRedEye__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_material_ui_Tooltip__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_material_ui_Tooltip___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_material_ui_Tooltip__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__routes__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__routes___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5__routes__);
+var _class;
+
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+
+
+
+
+
+
+
+var styles = function styles(theme) {
+  return {
+    wrapper: {
+      whiteSpace: 'nowrap',
+      overflow: 'hidden',
+      textOverflow: 'ellipsis'
+    }
+  };
+};
+
+var VeiwFormatter = Object(__WEBPACK_IMPORTED_MODULE_2_mobx_react__["observer"])(_class =
+/*#__PURE__*/
+function (_React$Component) {
+  _inherits(VeiwFormatter, _React$Component);
+
+  function VeiwFormatter() {
+    _classCallCheck(this, VeiwFormatter);
+
+    return _possibleConstructorReturn(this, (VeiwFormatter.__proto__ || Object.getPrototypeOf(VeiwFormatter)).apply(this, arguments));
+  }
+
+  _createClass(VeiwFormatter, [{
+    key: "render",
+    value: function render() {
+      var _props = this.props,
+          classes = _props.classes,
+          value = _props.value;
+      var finalVal = Array.isArray(value) ? value.filter(function (val) {
+        return val !== '';
+      }).join(', ') || 'None' : value || 'none';
+
+      if (Array.isArray(value) && value.length >= 2) {
+        return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4_material_ui_Tooltip___default.a, {
+          title: finalVal,
+          enterDelay: 400,
+          leaveDelay: 100
+        }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", {
+          className: classes.wrapper
+        }, finalVal));
+      }
+
+      return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", {
+        className: classes.wrapper
+      }, finalVal);
+    }
+  }]);
+
+  return VeiwFormatter;
+}(__WEBPACK_IMPORTED_MODULE_0_react___default.a.Component)) || _class;
+
+/* harmony default export */ __webpack_exports__["a"] = (Object(__WEBPACK_IMPORTED_MODULE_1_material_ui_styles__["withStyles"])(styles)(VeiwFormatter));
+
+/***/ }),
 /* 164 */,
 /* 165 */,
 /* 166 */,
@@ -4401,14 +4501,15 @@ module.exports = require("react-lazyload");
 /* 219 */,
 /* 220 */,
 /* 221 */,
-/* 222 */
+/* 222 */,
+/* 223 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(223);
+module.exports = __webpack_require__(224);
 
 
 /***/ }),
-/* 223 */
+/* 224 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -4493,6 +4594,9 @@ var ProfilePictureFormatter = __webpack_require__(130);
 // EXTERNAL MODULE: ./components/dataTableFormatters/ViewFormatter.js
 var ViewFormatter = __webpack_require__(102);
 
+// EXTERNAL MODULE: ./components/dataTableFormatters/AreaOfFocusFormatter.js
+var AreaOfFocusFormatter = __webpack_require__(163);
+
 // CONCATENATED MODULE: ./components/AgentsTable/index.js
 var _dec, _dec2, _class;
 
@@ -4513,6 +4617,7 @@ function _assertThisInitialized(self) { if (self === void 0) { throw new Referen
 function _objectWithoutProperties(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i < sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) >= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }
 
 function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+
 
 
 
@@ -4646,9 +4751,22 @@ var AgentsTable_ViewTypeProvider = function ViewTypeProvider(props) {
   }, props));
 };
 
-var AgentsTable_TableContainerComponentWrapperBase = function TableContainerComponentWrapperBase(_ref4) {
-  var classes = _ref4.classes,
-      restProps = _objectWithoutProperties(_ref4, ["classes"]);
+var AgentsTable_AreaOfFocusCellFormatter = function AreaOfFocusCellFormatter(_ref4) {
+  var value = _ref4.value;
+  return external__react__default.a.createElement(AreaOfFocusFormatter["a" /* default */], {
+    value: value
+  });
+};
+
+var AgentsTable_AreaOfFocusTypeProvider = function AreaOfFocusTypeProvider(props) {
+  return external__react__default.a.createElement(dx_react_grid_["DataTypeProvider"], _extends({
+    formatterComponent: AgentsTable_AreaOfFocusCellFormatter
+  }, props));
+};
+
+var AgentsTable_TableContainerComponentWrapperBase = function TableContainerComponentWrapperBase(_ref5) {
+  var classes = _ref5.classes,
+      restProps = _objectWithoutProperties(_ref5, ["classes"]);
 
   return external__react__default.a.createElement(TableContainerComponent["a" /* default */], _extends({}, restProps, {
     className: classes.myTableContainer
@@ -4722,6 +4840,8 @@ function (_Component) {
         "for": ['photo']
       }), external__react__default.a.createElement(AgentsTable_ViewTypeProvider, {
         "for": ['view']
+      }), external__react__default.a.createElement(AgentsTable_AreaOfFocusTypeProvider, {
+        "for": ['areaOfFocus']
       }), external__react__default.a.createElement(dx_react_grid_material_ui_["DragDropProvider"], null), external__react__default.a.createElement(dx_react_grid_["SearchState"], null), external__react__default.a.createElement(dx_react_grid_["FilteringState"], {
         columnExtensions: filteringStateColumnExtensions
       }), external__react__default.a.createElement(dx_react_grid_["SortingState"], {
@@ -4900,7 +5020,7 @@ function (_Component) {
             },
             name: Object(stringUtils["a" /* capitalize */])("".concat(firstName, " ").concat(lastName)),
             email: email,
-            areaOfFocus: areaOfFocus || 'none',
+            areaOfFocus: areaOfFocus,
             mobileNumber: mobileNumber,
             companyNumberAndExt: officeNumber,
             branch: branch,

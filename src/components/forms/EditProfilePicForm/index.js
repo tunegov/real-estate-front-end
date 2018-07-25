@@ -173,6 +173,13 @@ const styles = theme => ({
     marginTop: '20px',
     fontSize: '1.1rem',
   },
+  formSubmittingWrapper: {
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: '100%',
+  },
 });
 
 const radioInputAgentItems = [
@@ -214,6 +221,7 @@ class EditProfilePicForm extends Component {
       uplodingImageProgress,
       formSubmitedSuccessfully,
       isUploadingImage,
+      submittingFormToServer,
       onSubmit,
     } = this.props;
 
@@ -233,6 +241,9 @@ class EditProfilePicForm extends Component {
                   onSubmit={formApi.submitForm}
                   id="form1"
                   className={classes.formRoot}
+                  style={{
+                    display: submittingFormToServer ? 'none' : undefined,
+                  }}
                 >
                   <Grid container>
                     <Grid item xs={12}>
@@ -345,6 +356,15 @@ class EditProfilePicForm extends Component {
             }}
           </Form>
         )}
+
+        {submittingFormToServer ? (
+          <div className={classes.formSubmittingWrapper}>
+            <Icon type="loading" style={{ color: '#000', fontSize: '4rem' }} />
+            <div className={classes.progressBarExplanation}>
+              Finishing submission...
+            </div>
+          </div>
+        ) : null}
 
         {uplodingImageProgress /*&& isUploadingImage */ ? (
           <div className={classes.progressBarWrapper}>
