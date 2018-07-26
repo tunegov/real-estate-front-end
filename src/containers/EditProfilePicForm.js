@@ -101,14 +101,18 @@ class EditProfilePicFormContainer extends Component {
         const { item, error } = result;
 
         let hasError;
+        let errorMessage;
 
         if (error) {
           console.log(error);
+          errorMessage = error;
           hasError = true;
         }
 
-        if (!item && item[0] && item[0].error) {
-          console.log(item[0].error);
+        if (!item) {
+          hasError = true;
+        } else if (item[0] && item[0].error) {
+          errorMessage = item[0].error;
           hasError = true;
         }
 
@@ -116,7 +120,7 @@ class EditProfilePicFormContainer extends Component {
           this.setState({
             submittingFormToServer: false,
           });
-          this.props.openRequestErrorSnackbar();
+          this.props.openRequestErrorSnackbar(errorMessage);
           this.props.toggleSubmittingEditProfilePicForm(false);
           this.props.setFormSubmitted(false);
           return;
@@ -161,12 +165,25 @@ class EditProfilePicFormContainer extends Component {
                 return;
               }
 
-              setAgentProfilePic(this.props.uuid, item[0].fileName).then(
-                res => {
+              setAgentProfilePic(this.props.uuid, item[0].fileName)
+                .then(res => {
+                  const { otherError, userErrors } = res;
+                  if (otherError) {
+                    this.props.openRequestErrorSnackbar(otherError);
+                    this.props.setFormSubmitted(false);
+                    return;
+                  } else if (userErrors && userErrors.length) {
+                    this.props.openRequestErrorSnackbar(userErrors[0].message);
+                    this.props.setFormSubmitted(false);
+                  }
+
                   this.props.setFinishedSubmittingForm(res.url);
                   this.props.setFormSubmitted(false);
-                }
-              );
+                })
+                .catch(err => {
+                  this.props.openRequestErrorSnackbar(error);
+                  this.props.setFormSubmitted(false);
+                });
             });
         }
       })

@@ -22,6 +22,7 @@ export const dealFormQuery = gql`
           agentType
           state
           ACHAccountNumber
+          ACHAccountBankRoutingNumber
         }
       }
       agents {

@@ -148,6 +148,7 @@ class Invoices extends Component {
         query={invoicesQuery}
         variables={{ uuid: userUUID || this.state.userUUID }}
         ssr={false}
+        fetchPolicy="cache-and-network"
       >
         {({ loading, error, data }) => {
           if (loading)

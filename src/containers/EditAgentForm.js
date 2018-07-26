@@ -27,6 +27,7 @@ export const agentQuery = gql`
         realEstateLicenseNumber
         agentType
         ACHAccountNumber
+        ACHAccountBankRoutingNumber
         title
         facebook
         instagram
@@ -105,7 +106,6 @@ class CreateAgentContainer extends Component {
   onSubmitFailure = (errs, onSubmitError) => {
     console.log(errs);
     console.log(onSubmitError);
-    this.props.setFormSubmitted(false);
   };
 
   render() {

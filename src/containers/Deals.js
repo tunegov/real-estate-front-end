@@ -168,6 +168,7 @@ class Deals extends Component {
         query={dealsQuery}
         variables={{ uuid: userUUID || this.state.userUUID }}
         ssr={false}
+        fetchPolicy="cache-and-network"
       >
         {({ loading, error, data }) => {
           if (loading)

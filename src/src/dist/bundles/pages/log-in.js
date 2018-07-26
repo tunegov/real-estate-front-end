@@ -363,7 +363,7 @@ var external__mobx_react_ = __webpack_require__(1);
 var external__mobx_react__default = /*#__PURE__*/__webpack_require__.n(external__mobx_react_);
 
 // EXTERNAL MODULE: external "debounce"
-var external__debounce_ = __webpack_require__(91);
+var external__debounce_ = __webpack_require__(58);
 var external__debounce__default = /*#__PURE__*/__webpack_require__.n(external__debounce_);
 
 // EXTERNAL MODULE: ./routes.js
@@ -393,7 +393,7 @@ var external__react_form_ = __webpack_require__(24);
 var external__react_form__default = /*#__PURE__*/__webpack_require__.n(external__react_form_);
 
 // EXTERNAL MODULE: external "email-validator"
-var external__email_validator_ = __webpack_require__(89);
+var external__email_validator_ = __webpack_require__(90);
 var external__email_validator__default = /*#__PURE__*/__webpack_require__.n(external__email_validator_);
 
 // CONCATENATED MODULE: ./components/CustomTextFieldWrapper/styledComponents/index.js
@@ -1102,15 +1102,15 @@ var regenerator_ = __webpack_require__(3);
 var regenerator__default = /*#__PURE__*/__webpack_require__.n(regenerator_);
 
 // EXTERNAL MODULE: external "is-browser"
-var external__is_browser_ = __webpack_require__(7);
+var external__is_browser_ = __webpack_require__(8);
 var external__is_browser__default = /*#__PURE__*/__webpack_require__.n(external__is_browser_);
 
 // EXTERNAL MODULE: external "graphql-request"
-var external__graphql_request_ = __webpack_require__(5);
+var external__graphql_request_ = __webpack_require__(6);
 var external__graphql_request__default = /*#__PURE__*/__webpack_require__.n(external__graphql_request_);
 
 // EXTERNAL MODULE: ./constants/graphQLEndpoint.js
-var graphQLEndpoint = __webpack_require__(6);
+var graphQLEndpoint = __webpack_require__(7);
 
 // CONCATENATED MODULE: ./models/UserStore/userEffects/signUpCustomer.js
 
@@ -1547,13 +1547,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_mobx_react__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_mobx_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_mobx_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_is_browser__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_is_browser__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_is_browser___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_is_browser__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_react_transition_group_TransitionGroup__ = __webpack_require__(182);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_react_transition_group_TransitionGroup___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_react_transition_group_TransitionGroup__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_TransitionHOC__ = __webpack_require__(183);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__models__ = __webpack_require__(22);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__frontEndComponents_FrontEndLayout__ = __webpack_require__(92);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__frontEndComponents_FrontEndLayout__ = __webpack_require__(91);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__routes__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__routes___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7__routes__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__containers_SignUpLoginForm__ = __webpack_require__(184);
@@ -2003,8 +2003,10 @@ function create(initialState) {
     ssrMode: !process.browser,
     // Disables forceFetch on the server (so queries are only run once)
     link: new external__apollo_link_http_["HttpLink"]({
-      uri: "".concat(constants_websiteURL),
-      // 'http://localhost/api/graphql', // Server URL (must be absolute)
+      uri:
+      /* `${websiteURL}`, */
+      'http://localhost/api/graphql',
+      // Server URL (must be absolute)
       credentials: 'same-origin',
       // Additional fetch() options like `credentials` or `headers`
       headers: {
@@ -2184,13 +2186,6 @@ function getComponentDisplayName(Component) {
 
 /***/ }),
 
-/***/ 5:
-/***/ (function(module, exports) {
-
-module.exports = require("graphql-request");
-
-/***/ }),
-
 /***/ 50:
 /***/ (function(module, exports) {
 
@@ -2219,7 +2214,21 @@ module.exports = require("isomorphic-unfetch");
 
 /***/ }),
 
+/***/ 58:
+/***/ (function(module, exports) {
+
+module.exports = require("debounce");
+
+/***/ }),
+
 /***/ 6:
+/***/ (function(module, exports) {
+
+module.exports = require("graphql-request");
+
+/***/ }),
+
+/***/ 7:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2228,17 +2237,10 @@ var endpoint = '/api/graphql';
 
 /***/ }),
 
-/***/ 7:
+/***/ 8:
 /***/ (function(module, exports) {
 
 module.exports = require("is-browser");
-
-/***/ }),
-
-/***/ 89:
-/***/ (function(module, exports) {
-
-module.exports = require("email-validator");
 
 /***/ }),
 
@@ -2249,14 +2251,14 @@ module.exports = require("styled-components");
 
 /***/ }),
 
-/***/ 91:
+/***/ 90:
 /***/ (function(module, exports) {
 
-module.exports = require("debounce");
+module.exports = require("email-validator");
 
 /***/ }),
 
-/***/ 92:
+/***/ 91:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2282,7 +2284,7 @@ var router_ = __webpack_require__(14);
 var router__default = /*#__PURE__*/__webpack_require__.n(router_);
 
 // EXTERNAL MODULE: external "is-browser"
-var external__is_browser_ = __webpack_require__(7);
+var external__is_browser_ = __webpack_require__(8);
 var external__is_browser__default = /*#__PURE__*/__webpack_require__.n(external__is_browser_);
 
 // EXTERNAL MODULE: external "styled-components"
@@ -2297,7 +2299,7 @@ var regenerator_ = __webpack_require__(3);
 var regenerator__default = /*#__PURE__*/__webpack_require__.n(regenerator_);
 
 // EXTERNAL MODULE: external "debounce"
-var external__debounce_ = __webpack_require__(91);
+var external__debounce_ = __webpack_require__(58);
 var external__debounce__default = /*#__PURE__*/__webpack_require__.n(external__debounce_);
 
 // EXTERNAL MODULE: ./routes.js

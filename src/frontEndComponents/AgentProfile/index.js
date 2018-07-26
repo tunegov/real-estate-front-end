@@ -232,10 +232,12 @@ class Profile extends Component {
                 <div className={classes.detailsTitle}>Email</div>
                 <div className={classes.detailsInfo}>{email}</div>
               </div>
-              <div className={classNames(classes.mobile, classes.details)}>
-                <div className={classes.detailsTitle}>Office</div>
-                <div className={classes.detailsInfo}>{officeNumber}</div>
-              </div>
+              {officeNumber && (
+                <div className={classNames(classes.mobile, classes.details)}>
+                  <div className={classes.detailsTitle}>Office</div>
+                  <div className={classes.detailsInfo}>{officeNumber}</div>
+                </div>
+              )}
               <div className={classNames(classes.mobile, classes.details)}>
                 <div className={classes.detailsTitle}>Mobile</div>
                 <div className={classes.detailsInfo}>{mobileNumber}</div>

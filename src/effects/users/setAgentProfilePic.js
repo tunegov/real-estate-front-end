@@ -8,6 +8,10 @@ const query = `
         url
         wasSuccessful
         otherError
+        userErrors {
+          field
+          message
+        }
       }
     }
   `;
@@ -30,7 +34,8 @@ const setAgentProfilePic = (agentID, fileName) => {
 
   const finalResponseObj = {
     url: null,
-    error,
+    otherError: null,
+    userErrors: null,
   };
 
   return client
@@ -39,9 +44,11 @@ const setAgentProfilePic = (agentID, fileName) => {
       res = result;
 
       const { setAgentProfilePic: data } = res;
+      const { otherError, userErrors } = data;
 
       if (!data.wasSuccessful) {
-        finalResponseObj.error = data.otherError;
+        if (otherError) finalResponseObj.error = otherError;
+        if (userErrors) finalResponseObj.userErrors = userErrors;
       } else {
         finalResponseObj.url = data.url;
       }

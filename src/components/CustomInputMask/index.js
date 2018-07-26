@@ -21,7 +21,6 @@ class Input extends React.Component {
     let { selection } = newState;
     let cursorPosition = selection ? selection.start : null;
 
-    // keep minus if entered by user
     if (
       value.endsWith('x') &&
       userInput !== 'x' &&

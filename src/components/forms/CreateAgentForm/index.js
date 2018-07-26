@@ -254,6 +254,7 @@ class CreateAgentForm extends Component {
         realEstateLicenseNumber,
         agentType,
         ACHAccountNumber,
+        ACHAccountBankRoutingNumber,
         title,
         twitter,
         facebook,
@@ -273,6 +274,7 @@ class CreateAgentForm extends Component {
         branch,
         state,
         ACHAccountNumber,
+        ACHAccountBankRoutingNumber,
         title,
         facebook: facebook ? facebook.split('/').pop() : undefined,
         twitter: twitter ? twitter.split('/').pop() : undefined,
@@ -384,7 +386,7 @@ class CreateAgentForm extends Component {
                               helperInfo="Agent's Profile (JPEG/JPG file)"
                               acceptedFileExtensions={acceptedFileExtensions}
                               getInput={getFileUploadInput}
-                              accept=".jpg, .jpeg, .png"
+                              accept=".jpg, .jpeg"
                             />
                           ) : null}
                           <div>
@@ -592,7 +594,6 @@ class CreateAgentForm extends Component {
                               id={uuid()}
                               label="Office Number"
                               fullWidth
-                              required
                               type="tel"
                               isInputMasked
                               requiresDefaultOnChange
@@ -661,12 +662,24 @@ class CreateAgentForm extends Component {
                     </Typography>
                   </div>
 
-                  <Grid item xs={12}>
+                  <Grid item xs={12} md={6}>
                     <div className={classes.formControlWrapper}>
                       <CustomTextField
                         field="ACHAccountNumber"
                         id={uuid()}
                         label="ACH Account Number"
+                        fullWidth
+                        disabled={isViewType && !isEditingAgent}
+                      />
+                    </div>
+                  </Grid>
+
+                  <Grid item xs={12} md={6}>
+                    <div className={classes.formControlWrapper}>
+                      <CustomTextField
+                        field="ACHAccountBankRoutingNumber"
+                        id={uuid()}
+                        label="ACH Account's Bank Routing Number"
                         fullWidth
                         disabled={isViewType && !isEditingAgent}
                       />

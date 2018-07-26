@@ -115,10 +115,16 @@ module.exports = routes;
 /* 5 */
 /***/ (function(module, exports) {
 
-module.exports = require("graphql-request");
+module.exports = require("classnames");
 
 /***/ }),
 /* 6 */
+/***/ (function(module, exports) {
+
+module.exports = require("graphql-request");
+
+/***/ }),
+/* 7 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -126,16 +132,10 @@ var endpoint = '/api/graphql';
 /* harmony default export */ __webpack_exports__["a"] = (endpoint);
 
 /***/ }),
-/* 7 */
-/***/ (function(module, exports) {
-
-module.exports = require("is-browser");
-
-/***/ }),
 /* 8 */
 /***/ (function(module, exports) {
 
-module.exports = require("classnames");
+module.exports = require("is-browser");
 
 /***/ }),
 /* 9 */
@@ -633,15 +633,15 @@ var regenerator_ = __webpack_require__(3);
 var regenerator__default = /*#__PURE__*/__webpack_require__.n(regenerator_);
 
 // EXTERNAL MODULE: external "is-browser"
-var external__is_browser_ = __webpack_require__(7);
+var external__is_browser_ = __webpack_require__(8);
 var external__is_browser__default = /*#__PURE__*/__webpack_require__.n(external__is_browser_);
 
 // EXTERNAL MODULE: external "graphql-request"
-var external__graphql_request_ = __webpack_require__(5);
+var external__graphql_request_ = __webpack_require__(6);
 var external__graphql_request__default = /*#__PURE__*/__webpack_require__.n(external__graphql_request_);
 
 // EXTERNAL MODULE: ./constants/graphQLEndpoint.js
-var graphQLEndpoint = __webpack_require__(6);
+var graphQLEndpoint = __webpack_require__(7);
 
 // CONCATENATED MODULE: ./models/UserStore/userEffects/signUpCustomer.js
 
@@ -1471,8 +1471,10 @@ function create(initialState) {
     ssrMode: !process.browser,
     // Disables forceFetch on the server (so queries are only run once)
     link: new external__apollo_link_http_["HttpLink"]({
-      uri: "".concat(constants_websiteURL),
-      // 'http://localhost/api/graphql', // Server URL (must be absolute)
+      uri:
+      /* `${websiteURL}`, */
+      'http://localhost/api/graphql',
+      // Server URL (must be absolute)
       credentials: 'same-origin',
       // Additional fetch() options like `credentials` or `headers`
       headers: {
@@ -1702,64 +1704,70 @@ module.exports = require("antd/lib/icon");
 /* 58 */
 /***/ (function(module, exports) {
 
-module.exports = require("@material-ui/icons/Settings");
+module.exports = require("debounce");
 
 /***/ }),
 /* 59 */
 /***/ (function(module, exports) {
 
-module.exports = require("@material-ui/icons/Notifications");
+module.exports = require("@material-ui/icons/Settings");
 
 /***/ }),
 /* 60 */
 /***/ (function(module, exports) {
 
-module.exports = require("@material-ui/icons/ExitToApp");
+module.exports = require("@material-ui/icons/Notifications");
 
 /***/ }),
 /* 61 */
 /***/ (function(module, exports) {
 
-module.exports = require("@material-ui/icons/SupervisorAccount");
+module.exports = require("@material-ui/icons/ExitToApp");
 
 /***/ }),
 /* 62 */
 /***/ (function(module, exports) {
 
-module.exports = require("material-ui/Input");
+module.exports = require("@material-ui/icons/SupervisorAccount");
 
 /***/ }),
 /* 63 */
 /***/ (function(module, exports) {
 
-module.exports = require("chance");
+module.exports = require("material-ui/Input");
 
 /***/ }),
 /* 64 */
 /***/ (function(module, exports) {
 
-module.exports = require("graphql-tag");
+module.exports = require("chance");
 
 /***/ }),
 /* 65 */
 /***/ (function(module, exports) {
 
-module.exports = require("material-ui/Menu");
+module.exports = require("graphql-tag");
 
 /***/ }),
 /* 66 */
 /***/ (function(module, exports) {
 
-module.exports = require("uuid/v4");
+module.exports = require("material-ui/Menu");
 
 /***/ }),
 /* 67 */
 /***/ (function(module, exports) {
 
-module.exports = require("react-sizes");
+module.exports = require("uuid/v4");
 
 /***/ }),
 /* 68 */
+/***/ (function(module, exports) {
+
+module.exports = require("react-sizes");
+
+/***/ }),
+/* 69 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1821,13 +1829,13 @@ function (_React$Component) {
 
 
 /***/ }),
-/* 69 */
+/* 70 */
 /***/ (function(module, exports) {
 
 
 
 /***/ }),
-/* 70 */
+/* 71 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1862,7 +1870,7 @@ var padStringToDecimalString = function padStringToDecimalString(s) {
 };
 
 /***/ }),
-/* 71 */
+/* 72 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1888,7 +1896,7 @@ var router_ = __webpack_require__(14);
 var router__default = /*#__PURE__*/__webpack_require__.n(router_);
 
 // EXTERNAL MODULE: external "is-browser"
-var external__is_browser_ = __webpack_require__(7);
+var external__is_browser_ = __webpack_require__(8);
 var external__is_browser__default = /*#__PURE__*/__webpack_require__.n(external__is_browser_);
 
 // EXTERNAL MODULE: external "styled-components"
@@ -1917,11 +1925,11 @@ var styles_ = __webpack_require__(2);
 var styles__default = /*#__PURE__*/__webpack_require__.n(styles_);
 
 // EXTERNAL MODULE: external "@material-ui/icons/Settings"
-var Settings_ = __webpack_require__(58);
+var Settings_ = __webpack_require__(59);
 var Settings__default = /*#__PURE__*/__webpack_require__.n(Settings_);
 
 // EXTERNAL MODULE: external "material-ui-pickers/utils/moment-utils"
-var moment_utils_ = __webpack_require__(72);
+var moment_utils_ = __webpack_require__(73);
 var moment_utils__default = /*#__PURE__*/__webpack_require__.n(moment_utils_);
 
 // EXTERNAL MODULE: external "material-ui/Snackbar"
@@ -1929,11 +1937,11 @@ var Snackbar_ = __webpack_require__(28);
 var Snackbar__default = /*#__PURE__*/__webpack_require__.n(Snackbar_);
 
 // EXTERNAL MODULE: external "material-ui-pickers/utils/MuiPickersUtilsProvider"
-var MuiPickersUtilsProvider_ = __webpack_require__(73);
+var MuiPickersUtilsProvider_ = __webpack_require__(74);
 var MuiPickersUtilsProvider__default = /*#__PURE__*/__webpack_require__.n(MuiPickersUtilsProvider_);
 
 // EXTERNAL MODULE: external "material-ui/Hidden"
-var Hidden_ = __webpack_require__(74);
+var Hidden_ = __webpack_require__(75);
 var Hidden__default = /*#__PURE__*/__webpack_require__.n(Hidden_);
 
 // EXTERNAL MODULE: external "material-ui/Drawer"
@@ -1957,11 +1965,11 @@ var Tooltip_ = __webpack_require__(12);
 var Tooltip__default = /*#__PURE__*/__webpack_require__.n(Tooltip_);
 
 // EXTERNAL MODULE: external "@material-ui/icons/ArrowBack"
-var ArrowBack_ = __webpack_require__(75);
+var ArrowBack_ = __webpack_require__(76);
 var ArrowBack__default = /*#__PURE__*/__webpack_require__.n(ArrowBack_);
 
 // EXTERNAL MODULE: external "@material-ui/icons/Notifications"
-var Notifications_ = __webpack_require__(59);
+var Notifications_ = __webpack_require__(60);
 var Notifications__default = /*#__PURE__*/__webpack_require__.n(Notifications_);
 
 // EXTERNAL MODULE: external "@material-ui/icons/Add"
@@ -1971,6 +1979,10 @@ var Add__default = /*#__PURE__*/__webpack_require__.n(Add_);
 // EXTERNAL MODULE: external "@material-ui/icons/RemoveRedEye"
 var RemoveRedEye_ = __webpack_require__(31);
 var RemoveRedEye__default = /*#__PURE__*/__webpack_require__.n(RemoveRedEye_);
+
+// EXTERNAL MODULE: external "classnames"
+var external__classnames_ = __webpack_require__(5);
+var external__classnames__default = /*#__PURE__*/__webpack_require__.n(external__classnames_);
 
 // EXTERNAL MODULE: ./routes.js
 var routes = __webpack_require__(4);
@@ -1996,22 +2008,18 @@ var SideNavLinkItemWrapper = external__styled_components__default.a.div.withConf
 var SideNavLinkItemAnchor = external__styled_components__default.a.a.withConfig({
   displayName: "styledComponents__SideNavLinkItemAnchor",
   componentId: "s1oz5fjl-1"
-})(["display:flex !important;height:100%;flex-direction:column;justify-content:center;padding-right:15px;padding-left:", ";vertical-align:middle;display:table-cell;min-width:100%;text-decoration:none;color:#fff;&:hover{color:#fff !important;}"], function (props) {
-  return props.isAdminLinks ? '55px' : '65px';
-});
+})(["display:flex !important;height:100%;flex-direction:column;justify-content:center;padding-right:15px;padding-left:55px;vertical-align:middle;display:table-cell;min-width:100%;text-decoration:none;color:#fff;&:hover{color:#fff !important;}"]);
 var SideNavLinkItemDiv = external__styled_components__default.a.div.withConfig({
   displayName: "styledComponents__SideNavLinkItemDiv",
   componentId: "s1oz5fjl-2"
-})(["display:flex !important;height:100%;flex-direction:column;justify-content:center;padding-right:15px;padding-left:", ";vertical-align:middle;display:table-cell;min-width:100%;text-decoration:none;"], function (props) {
-  return props.isAdminLinks ? '55px' : '65px';
-});
+})(["display:flex !important;height:100%;flex-direction:column;justify-content:center;padding-right:15px;padding-left:55px;vertical-align:middle;display:table-cell;min-width:100%;text-decoration:none;"]);
 var IconWrapper = external__styled_components__default.a.span.withConfig({
   displayName: "styledComponents__IconWrapper",
   componentId: "s1oz5fjl-3"
 })(["margin-right:35px;position:absolute;left:", ";@media screen and (max-width:600px){left:", ";}"], function (props) {
   return props.iconLeft ? props.iconLeft : '15px';
 }, function (props) {
-  return props.isAdminLinks ? props.iconLeftSmall ? props.iconLeftSmall : '8px' : '15px';
+  return props.iconLeftSmall ? props.iconLeftSmall : '8px';
 });
 // CONCATENATED MODULE: ./components/SideNavLinkItem/index.js
 var _class;
@@ -2138,15 +2146,15 @@ var fa_ = __webpack_require__(54);
 var fa__default = /*#__PURE__*/__webpack_require__.n(fa_);
 
 // EXTERNAL MODULE: external "@material-ui/icons/ExitToApp"
-var ExitToApp_ = __webpack_require__(60);
+var ExitToApp_ = __webpack_require__(61);
 var ExitToApp__default = /*#__PURE__*/__webpack_require__.n(ExitToApp_);
 
 // EXTERNAL MODULE: external "@material-ui/icons/SupervisorAccount"
-var SupervisorAccount_ = __webpack_require__(61);
+var SupervisorAccount_ = __webpack_require__(62);
 var SupervisorAccount__default = /*#__PURE__*/__webpack_require__.n(SupervisorAccount_);
 
 // EXTERNAL MODULE: external "@material-ui/icons/Assignment"
-var Assignment_ = __webpack_require__(76);
+var Assignment_ = __webpack_require__(77);
 var Assignment__default = /*#__PURE__*/__webpack_require__.n(Assignment_);
 
 // CONCATENATED MODULE: ./components/SideNav/navItems.js
@@ -2206,6 +2214,9 @@ function SideNav__inherits(subClass, superClass) { if (typeof superClass !== "fu
 
 function SideNav__assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
 
 
 
@@ -2224,6 +2235,8 @@ function SideNav__assertThisInitialized(self) { if (self === void 0) { throw new
 var drawerWidth = 240;
 
 var SideNav_styles = function styles(theme) {
+  var _drawerPaperClose;
+
   return {
     root: {
       position: 'relative',
@@ -2231,13 +2244,29 @@ var SideNav_styles = function styles(theme) {
     },
     drawerPaper: {
       position: 'relative',
-      paddingBottom: '60px',
+      paddingBottom: '50px',
       overflow: 'auto',
+      whiteSpace: 'nowrap',
       width: drawerWidth,
-      zIndex: 1,
       backgroundColor: 'rgba(36, 68, 109, .75)',
-      color: '#fff'
+      color: '#fff',
+      transition: theme.transitions.create('width', {
+        easing: theme.transitions.easing.sharp,
+        duration: theme.transitions.duration.enteringScreen
+      })
     },
+    drawerPaperClose: (_drawerPaperClose = {
+      overflowX: 'hidden',
+      transition: theme.transitions.create('width', {
+        easing: theme.transitions.easing.sharp,
+        duration: theme.transitions.duration.leavingScreen
+      }),
+      width: theme.spacing.unit * 5
+    }, _defineProperty(_drawerPaperClose, theme.breakpoints.up('sm'), {
+      width: theme.spacing.unit * 6.8
+    }), _defineProperty(_drawerPaperClose, '&:hover', {
+      width: drawerWidth
+    }), _drawerPaperClose),
     tempDrawer: {
       minWidth: '240px',
       width: '240px'
@@ -2268,7 +2297,7 @@ var SideNav_styles = function styles(theme) {
     },
     listRoot: {
       height: '100%',
-      overflow: 'auto' //borderBottom: '1px solid rgba(255,255,255,.2)',
+      overflow: 'hidden' //borderBottom: '1px solid rgba(255,255,255,.2)',
 
     },
     icon: {
@@ -2355,58 +2384,10 @@ function (_Component) {
           toggleDrawer = _props.toggleDrawer;
       return external__react__default.a.createElement("div", {
         className: classes.root
-      }, external__react__default.a.createElement(Hidden__default.a, {
-        mdUp: true,
-        implementation: "css"
-      }, external__react__default.a.createElement(Drawer__default.a, {
-        variant: "temporary",
-        className: classes.tempDrawer,
-        classes: {
-          paper: classes.drawerPaper
-        },
-        open: drawerOpen,
-        anchor: "left",
-        ModalProps: {
-          keepMounted: true // Better open performance on mobile.
-
-        },
-        onClose: toggleDrawer
-      }, external__react__default.a.createElement("div", {
-        className: "".concat(classes.toolbar, " ").concat(classes.topToolbar)
-      }, external__react__default.a.createElement(Tooltip__default.a, {
-        id: "tooltip-icon",
-        title: "Close Sidebar",
-        enterDelay: 400,
-        leaveDelay: 200,
-        placement: "bottom",
-        PopperProps: {
-          style: {
-            minWidth: '30px'
-          }
-        }
-      }, external__react__default.a.createElement(IconButton__default.a, {
-        color: "inherit",
-        className: "".concat(classes.icon, " ").concat(classes.arrowBackBtn),
-        onClick: toggleDrawer
-      }, external__react__default.a.createElement(ArrowBack__default.a, {
-        style: {
-          fontSize: '24px'
-        }
-      })))), external__react__default.a.createElement(Divider__default.a, {
-        classes: {
-          root: classes.topDivider
-        }
-      }), external__react__default.a.createElement(List__default.a, {
-        classes: {
-          root: classes.listRoot
-        }
-      }, this.renderSideLinkComponents(currentPath)))), external__react__default.a.createElement(Hidden__default.a, {
-        smDown: true,
-        implementation: "css"
       }, external__react__default.a.createElement(Drawer__default.a, {
         variant: "permanent",
         classes: {
-          paper: classes.drawerPaper
+          paper: external__classnames__default()(classes.drawerPaper, !drawerOpen && classes.drawerPaperClose)
         }
       }, external__react__default.a.createElement("div", {
         className: classes.toolbar
@@ -2414,7 +2395,7 @@ function (_Component) {
         classes: {
           root: classes.listRoot
         }
-      }, this.renderSideLinkComponents(currentPath)))));
+      }, this.renderSideLinkComponents(currentPath))));
     }
   }]);
 
@@ -2422,16 +2403,12 @@ function (_Component) {
 }(external__react_["Component"])) || SideNav__class;
 
 /* harmony default export */ var components_SideNav = (Object(styles_["withStyles"])(SideNav_styles)(SideNav_SideNav));
-// EXTERNAL MODULE: external "classnames"
-var external__classnames_ = __webpack_require__(8);
-var external__classnames__default = /*#__PURE__*/__webpack_require__.n(external__classnames_);
-
 // EXTERNAL MODULE: external "@material-ui/icons/Contacts"
-var Contacts_ = __webpack_require__(77);
+var Contacts_ = __webpack_require__(78);
 var Contacts__default = /*#__PURE__*/__webpack_require__.n(Contacts_);
 
 // EXTERNAL MODULE: external "@material-ui/icons/RecentActors"
-var RecentActors_ = __webpack_require__(78);
+var RecentActors_ = __webpack_require__(79);
 var RecentActors__default = /*#__PURE__*/__webpack_require__.n(RecentActors_);
 
 // CONCATENATED MODULE: ./components/AdminSideNav/navItems.js
@@ -2511,7 +2488,7 @@ function AdminSideNav__inherits(subClass, superClass) { if (typeof superClass !=
 
 function AdminSideNav__assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function AdminSideNav__defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 
 
@@ -2581,9 +2558,9 @@ var AdminSideNav_styles = function styles(theme) {
         duration: theme.transitions.duration.leavingScreen
       }),
       width: theme.spacing.unit * 5
-    }, _defineProperty(_drawerPaperClose, theme.breakpoints.up('sm'), {
+    }, AdminSideNav__defineProperty(_drawerPaperClose, theme.breakpoints.up('sm'), {
       width: theme.spacing.unit * 6.8
-    }), _defineProperty(_drawerPaperClose, '&:hover', {
+    }), AdminSideNav__defineProperty(_drawerPaperClose, '&:hover', {
       width: AdminSideNav_drawerWidth
     }), _drawerPaperClose),
     notificationIconBtn: {
@@ -2597,7 +2574,7 @@ var AdminSideNav_styles = function styles(theme) {
     },
     listRoot: {
       height: '100%',
-      overflow: 'auto' // borderBottom: '1px solid rgba(255,255,255,.5)',
+      overflow: 'hidden' // borderBottom: '1px solid rgba(255,255,255,.5)',
 
     }
   };
@@ -2677,19 +2654,19 @@ function (_Component) {
 
 /* harmony default export */ var components_AdminSideNav = (Object(styles_["withStyles"])(AdminSideNav_styles)(AdminSideNav_AdminSideNav));
 // EXTERNAL MODULE: external "@material-ui/icons/Menu"
-var Menu_ = __webpack_require__(79);
+var Menu_ = __webpack_require__(80);
 var Menu__default = /*#__PURE__*/__webpack_require__.n(Menu_);
 
 // EXTERNAL MODULE: external "@material-ui/icons/Home"
-var Home_ = __webpack_require__(80);
+var Home_ = __webpack_require__(81);
 var Home__default = /*#__PURE__*/__webpack_require__.n(Home_);
 
 // EXTERNAL MODULE: external "material-ui/AppBar"
-var AppBar_ = __webpack_require__(81);
+var AppBar_ = __webpack_require__(82);
 var AppBar__default = /*#__PURE__*/__webpack_require__.n(AppBar_);
 
 // EXTERNAL MODULE: external "material-ui/Toolbar"
-var Toolbar_ = __webpack_require__(82);
+var Toolbar_ = __webpack_require__(83);
 var Toolbar__default = /*#__PURE__*/__webpack_require__.n(Toolbar_);
 
 // EXTERNAL MODULE: external "material-ui/Typography"
@@ -2817,9 +2794,7 @@ function (_Component) {
         className: classes.uppercase
       }, Object(stringUtils["a" /* capitalize */])(Object(stringUtils["b" /* unhyphenate */])(path)))), external__react__default.a.createElement("div", {
         className: classes.leftTopNavIconWrapper
-      }, external__react__default.a.createElement("div", {
-        className: external__classnames__default()(!isAdmin && classes.menuHiddenWrapper)
-      }, external__react__default.a.createElement(IconButton__default.a, {
+      }, external__react__default.a.createElement("div", null, external__react__default.a.createElement(IconButton__default.a, {
         color: "inherit",
         "aria-label": "open drawer",
         className: classes.menuIcon,
@@ -2840,7 +2815,7 @@ var Close_ = __webpack_require__(29);
 var Close__default = /*#__PURE__*/__webpack_require__.n(Close_);
 
 // EXTERNAL MODULE: external "material-ui/Switch"
-var Switch_ = __webpack_require__(83);
+var Switch_ = __webpack_require__(84);
 var Switch__default = /*#__PURE__*/__webpack_require__.n(Switch_);
 
 // CONCATENATED MODULE: ./components/SettingsDrawer/index.js
@@ -3049,7 +3024,7 @@ var blue_ = __webpack_require__(21);
 var blue__default = /*#__PURE__*/__webpack_require__.n(blue_);
 
 // EXTERNAL MODULE: external "material-ui/Avatar"
-var Avatar_ = __webpack_require__(84);
+var Avatar_ = __webpack_require__(85);
 var Avatar__default = /*#__PURE__*/__webpack_require__.n(Avatar_);
 
 // CONCATENATED MODULE: ./components/MenuDialogBox/index.js
@@ -3251,7 +3226,7 @@ var Offline = function Offline() {
 };
 
 if (external__is_browser__default.a) {
-  var _require = __webpack_require__(85),
+  var _require = __webpack_require__(86),
       OfflineComp = _require.Offline;
 
   Offline = OfflineComp;
@@ -3480,7 +3455,7 @@ function (_React$Component) {
 }, InnerAppLayout__temp);
 /* harmony default export */ var components_InnerAppLayout = (Object(router_["withRouter"])(Object(styles_["withStyles"])(InnerAppLayout_styles)(InnerAppLayout_InnerAppLayout)));
 // EXTERNAL MODULE: external "material-ui/Portal"
-var Portal_ = __webpack_require__(86);
+var Portal_ = __webpack_require__(87);
 var Portal__default = /*#__PURE__*/__webpack_require__.n(Portal_);
 
 // EXTERNAL MODULE: external "react-spinners"
@@ -3581,10 +3556,10 @@ function (_Component) {
 var models = __webpack_require__(22);
 
 // EXTERNAL MODULE: ./AppGlobalStateProvider/index.js
-var AppGlobalStateProvider = __webpack_require__(68);
+var AppGlobalStateProvider = __webpack_require__(69);
 
 // EXTERNAL MODULE: ./static/css/main.css
-var main = __webpack_require__(69);
+var main = __webpack_require__(70);
 var main_default = /*#__PURE__*/__webpack_require__.n(main);
 
 // CONCATENATED MODULE: ./components/Layout/index.js
@@ -3735,141 +3710,116 @@ function (_Component) {
 /* harmony default export */ var components_Layout = __webpack_exports__["a"] = (Object(router_["withRouter"])(Object(withRoot["a" /* default */])(Layout_Layout)));
 
 /***/ }),
-/* 72 */
+/* 73 */
 /***/ (function(module, exports) {
 
 module.exports = require("material-ui-pickers/utils/moment-utils");
 
 /***/ }),
-/* 73 */
+/* 74 */
 /***/ (function(module, exports) {
 
 module.exports = require("material-ui-pickers/utils/MuiPickersUtilsProvider");
 
 /***/ }),
-/* 74 */
+/* 75 */
 /***/ (function(module, exports) {
 
 module.exports = require("material-ui/Hidden");
 
 /***/ }),
-/* 75 */
+/* 76 */
 /***/ (function(module, exports) {
 
 module.exports = require("@material-ui/icons/ArrowBack");
 
 /***/ }),
-/* 76 */
+/* 77 */
 /***/ (function(module, exports) {
 
 module.exports = require("@material-ui/icons/Assignment");
 
 /***/ }),
-/* 77 */
+/* 78 */
 /***/ (function(module, exports) {
 
 module.exports = require("@material-ui/icons/Contacts");
 
 /***/ }),
-/* 78 */
+/* 79 */
 /***/ (function(module, exports) {
 
 module.exports = require("@material-ui/icons/RecentActors");
 
 /***/ }),
-/* 79 */
+/* 80 */
 /***/ (function(module, exports) {
 
 module.exports = require("@material-ui/icons/Menu");
 
 /***/ }),
-/* 80 */
+/* 81 */
 /***/ (function(module, exports) {
 
 module.exports = require("@material-ui/icons/Home");
 
 /***/ }),
-/* 81 */
+/* 82 */
 /***/ (function(module, exports) {
 
 module.exports = require("material-ui/AppBar");
 
 /***/ }),
-/* 82 */
+/* 83 */
 /***/ (function(module, exports) {
 
 module.exports = require("material-ui/Toolbar");
 
 /***/ }),
-/* 83 */
+/* 84 */
 /***/ (function(module, exports) {
 
 module.exports = require("material-ui/Switch");
 
 /***/ }),
-/* 84 */
+/* 85 */
 /***/ (function(module, exports) {
 
 module.exports = require("material-ui/Avatar");
 
 /***/ }),
-/* 85 */
+/* 86 */
 /***/ (function(module, exports) {
 
 module.exports = require("react-detect-offline");
 
 /***/ }),
-/* 86 */
+/* 87 */
 /***/ (function(module, exports) {
 
 module.exports = require("material-ui/Portal");
 
 /***/ }),
-/* 87 */
+/* 88 */
 /***/ (function(module, exports) {
 
 module.exports = require("material-ui/Select");
 
 /***/ }),
-/* 88 */
+/* 89 */
 /***/ (function(module, exports) {
 
 module.exports = require("material-ui/Chip");
 
 /***/ }),
-/* 89 */
+/* 90 */
 /***/ (function(module, exports) {
 
 module.exports = require("email-validator");
 
 /***/ }),
-/* 90 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-function debounce(func, wait, immediate) {
-  var timeout;
-  return function () {
-    var args = arguments;
-
-    var later = function later() {
-      timeout = null;
-      if (!immediate) func.apply(null, args);
-    };
-
-    var callNow = immediate && !timeout;
-    clearTimeout(timeout);
-    timeout = setTimeout(later, wait);
-    if (callNow) func.apply(null, args);
-  };
-}
-
-/* harmony default export */ __webpack_exports__["a"] = (debounce);
-
-/***/ }),
 /* 91 */,
-/* 92 */,
-/* 93 */
+/* 92 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3879,17 +3829,18 @@ function debounce(func, wait, immediate) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_mobx_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_mobx_react__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_material_ui_styles__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_material_ui_styles___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_material_ui_styles__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_material_ui_Input__ = __webpack_require__(62);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_material_ui_Input__ = __webpack_require__(63);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_material_ui_Input___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_material_ui_Input__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_material_ui_Form__ = __webpack_require__(35);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_material_ui_Form___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_material_ui_Form__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_react_form__ = __webpack_require__(24);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_react_form___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_react_form__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_uuid_v4__ = __webpack_require__(66);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_uuid_v4__ = __webpack_require__(67);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_uuid_v4___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_uuid_v4__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_classnames__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_classnames__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_classnames___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7_classnames__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__utils_debounce__ = __webpack_require__(90);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_debounce__ = __webpack_require__(58);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_debounce___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8_debounce__);
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
@@ -4098,7 +4049,9 @@ function (_React$Component) {
 
             if (isInputMasked) {
               if (mask && mask.length && newValue.length <= mask.length) {
-                setValue(newValue);
+                __WEBPACK_IMPORTED_MODULE_8_debounce___default()(function () {
+                  return setValue(_this2._input.value);
+                }, 100)();
               }
             }
 
@@ -4165,7 +4118,7 @@ function (_React$Component) {
 */
 
 /***/ }),
-/* 94 */
+/* 93 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -4177,17 +4130,17 @@ function (_React$Component) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_material_ui_styles___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_material_ui_styles__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_material_ui_Form__ = __webpack_require__(35);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_material_ui_Form___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_material_ui_Form__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_material_ui_Select__ = __webpack_require__(87);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_material_ui_Select__ = __webpack_require__(88);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_material_ui_Select___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_material_ui_Select__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_material_ui_Input__ = __webpack_require__(62);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_material_ui_Input__ = __webpack_require__(63);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_material_ui_Input___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_material_ui_Input__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_material_ui_Menu__ = __webpack_require__(65);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_material_ui_Menu__ = __webpack_require__(66);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_material_ui_Menu___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_material_ui_Menu__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_material_ui_Chip__ = __webpack_require__(88);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_material_ui_Chip__ = __webpack_require__(89);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_material_ui_Chip___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7_material_ui_Chip__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_react_form__ = __webpack_require__(24);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_react_form___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8_react_form__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_classnames__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_classnames__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_classnames___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_9_classnames__);
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
@@ -4408,13 +4361,13 @@ function (_React$Component) {
 */
 
 /***/ }),
-/* 95 */
+/* 94 */
 /***/ (function(module, exports) {
 
 module.exports = require("material-ui/TextField");
 
 /***/ }),
-/* 96 */
+/* 95 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -4426,13 +4379,13 @@ module.exports = require("material-ui/TextField");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_material_ui_styles___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_material_ui_styles__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_material_ui_Form__ = __webpack_require__(35);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_material_ui_Form___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_material_ui_Form__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_material_ui_Select__ = __webpack_require__(87);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_material_ui_Select__ = __webpack_require__(88);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_material_ui_Select___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_material_ui_Select__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_material_ui_Input__ = __webpack_require__(62);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_material_ui_Input__ = __webpack_require__(63);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_material_ui_Input___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_material_ui_Input__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_material_ui_Menu__ = __webpack_require__(65);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_material_ui_Menu__ = __webpack_require__(66);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_material_ui_Menu___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_material_ui_Menu__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_material_ui_Chip__ = __webpack_require__(88);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_material_ui_Chip__ = __webpack_require__(89);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_material_ui_Chip___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7_material_ui_Chip__);
 function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 
@@ -4563,13 +4516,13 @@ var MaterialCustomSelectInput = function MaterialCustomSelectInput(props) {
 /* harmony default export */ __webpack_exports__["a"] = (Object(__WEBPACK_IMPORTED_MODULE_2_material_ui_styles__["withStyles"])(styles)(Object(__WEBPACK_IMPORTED_MODULE_1_mobx_react__["observer"])(MaterialCustomSelectInput)));
 
 /***/ }),
-/* 97 */
+/* 96 */
 /***/ (function(module, exports) {
 
 module.exports = require("@devexpress/dx-react-grid");
 
 /***/ }),
-/* 98 */
+/* 97 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -4587,7 +4540,7 @@ var VirtualCell = function VirtualCell(props) {
 /* harmony default export */ __webpack_exports__["a"] = (VirtualCell);
 
 /***/ }),
-/* 99 */
+/* 98 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -4649,7 +4602,7 @@ var TableComponentBase = function TableComponentBase(_ref) {
 })(TableComponentBase));
 
 /***/ }),
-/* 100 */
+/* 99 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -4713,7 +4666,7 @@ var TableContainerBase = function TableContainerBase(_ref) {
 })(TableContainerBase));
 
 /***/ }),
-/* 101 */
+/* 100 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -4775,7 +4728,7 @@ var NoDataCellComponentBase = function NoDataCellComponentBase(_ref) {
 })(NoDataCellComponentBase));
 
 /***/ }),
-/* 102 */
+/* 101 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -4904,19 +4857,19 @@ function (_React$Component) {
 /* harmony default export */ __webpack_exports__["a"] = (Object(__WEBPACK_IMPORTED_MODULE_1_material_ui_styles__["withStyles"])(styles)(VeiwFormatter));
 
 /***/ }),
-/* 103 */
+/* 102 */
 /***/ (function(module, exports) {
 
 
 
 /***/ }),
-/* 104 */
+/* 103 */
 /***/ (function(module, exports) {
 
 module.exports = require("react-input-mask");
 
 /***/ }),
-/* 105 */
+/* 104 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -4932,7 +4885,7 @@ module.exports = require("react-input-mask");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_react_form___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_react_form__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_material_ui_Tooltip__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_material_ui_Tooltip___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_material_ui_Tooltip__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_classnames__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_classnames__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_classnames___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_classnames__);
 var _class;
 
@@ -5173,7 +5126,7 @@ function (_React$Component) {
                 if (!touched) setTouched();
                 setTimeout(function () {
                   if (!error) setError();
-                }, 5000);
+                }, 8000);
                 return;
               }
 
@@ -5249,7 +5202,7 @@ function (_React$Component) {
 */
 
 /***/ }),
-/* 106 */
+/* 105 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -5259,13 +5212,13 @@ function (_React$Component) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_mobx_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_mobx_react__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_material_ui_styles__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_material_ui_styles___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_material_ui_styles__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_material_ui_Radio__ = __webpack_require__(110);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_material_ui_Radio__ = __webpack_require__(109);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_material_ui_Radio___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_material_ui_Radio__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_material_ui_Form__ = __webpack_require__(35);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_material_ui_Form___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_material_ui_Form__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_react_form__ = __webpack_require__(24);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_react_form___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_react_form__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_classnames__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_classnames__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_classnames___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_classnames__);
 function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 
@@ -5409,38 +5362,39 @@ var MaterialCustomRadioInputWrapper = function MaterialCustomRadioInputWrapper(p
 */
 
 /***/ }),
-/* 107 */
+/* 106 */
 /***/ (function(module, exports) {
 
 module.exports = require("material-ui/ExpansionPanel");
 
 /***/ }),
-/* 108 */,
-/* 109 */
+/* 107 */,
+/* 108 */
 /***/ (function(module, exports) {
 
 module.exports = require("@material-ui/icons/ExpandMore");
 
 /***/ }),
-/* 110 */
+/* 109 */
 /***/ (function(module, exports) {
 
 module.exports = require("material-ui/Radio");
 
 /***/ }),
-/* 111 */
+/* 110 */
 /***/ (function(module, exports) {
 
 module.exports = require("faker");
 
 /***/ }),
+/* 111 */,
 /* 112 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_input_mask__ = __webpack_require__(104);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_input_mask__ = __webpack_require__(103);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_input_mask___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_react_input_mask__);
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
@@ -5506,7 +5460,7 @@ function (_React$Component) {
       value: function value(newState, oldState, userInput) {
         var value = newState.value;
         var selection = newState.selection;
-        var cursorPosition = selection ? selection.start : null; // keep minus if entered by user
+        var cursorPosition = selection ? selection.start : null;
 
         if (value.endsWith('x') && userInput !== 'x' && !_this.state.value.endsWith('x')) {
           if (cursorPosition === value.length) {
@@ -6563,11 +6517,11 @@ module.exports = require("react-avatar-editor");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_mobx_react__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_mobx_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_mobx_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_uuid_v4__ = __webpack_require__(66);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_uuid_v4__ = __webpack_require__(67);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_uuid_v4___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_uuid_v4__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_material_ui_styles__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_material_ui_styles___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_material_ui_styles__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_classnames__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_classnames__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_classnames___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_classnames__);
 var _class;
 
@@ -6720,7 +6674,7 @@ var external__react_form_ = __webpack_require__(24);
 var external__react_form__default = /*#__PURE__*/__webpack_require__.n(external__react_form_);
 
 // EXTERNAL MODULE: external "uuid/v4"
-var v4_ = __webpack_require__(66);
+var v4_ = __webpack_require__(67);
 var v4__default = /*#__PURE__*/__webpack_require__.n(v4_);
 
 // EXTERNAL MODULE: external "react-avatar-editor"
@@ -6736,7 +6690,7 @@ var Grid_ = __webpack_require__(33);
 var Grid__default = /*#__PURE__*/__webpack_require__.n(Grid_);
 
 // EXTERNAL MODULE: external "react-sizes"
-var external__react_sizes_ = __webpack_require__(67);
+var external__react_sizes_ = __webpack_require__(68);
 var external__react_sizes__default = /*#__PURE__*/__webpack_require__.n(external__react_sizes_);
 
 // EXTERNAL MODULE: external "material-ui/Button"
@@ -6752,14 +6706,14 @@ var external__react_circular_progressbar_ = __webpack_require__(115);
 var external__react_circular_progressbar__default = /*#__PURE__*/__webpack_require__.n(external__react_circular_progressbar_);
 
 // EXTERNAL MODULE: ../node_modules/react-circular-progressbar/dist/styles.css
-var styles = __webpack_require__(103);
+var styles = __webpack_require__(102);
 var styles_default = /*#__PURE__*/__webpack_require__.n(styles);
 
 // EXTERNAL MODULE: ./components/CustomSlider/index.js
 var CustomSlider = __webpack_require__(140);
 
 // EXTERNAL MODULE: external "email-validator"
-var external__email_validator_ = __webpack_require__(89);
+var external__email_validator_ = __webpack_require__(90);
 var external__email_validator__default = /*#__PURE__*/__webpack_require__.n(external__email_validator_);
 
 // CONCATENATED MODULE: ./components/forms/CreateAgentForm/formValidation.js
@@ -6773,7 +6727,7 @@ var formValidation_validator = function validator(values) {
     agentType: !values.agentType ? 'This value is required' : null,
     branch: !values.branch ? 'This value is required' : null,
     state: !values.state ? 'This value is required' : null,
-    officeNumber: !values.officeNumber || values.officeNumber && values.officeNumber.length < 14 ? 'This value is required and must be a full tel number with area code' : null,
+    officeNumber: values.officeNumber && values.officeNumber.length < 14 ? 'If provided, this value must be a full tel number with area code' : null,
     mobileNumber: !values.mobileNumber || values.mobileNumber && values.mobileNumber.length < 14 ? 'This value is required and must be a full tel number with area code' : null,
     email: !values.email || !external__email_validator_["validate"](values.email) ? 'This value is required and must be a valid email' : null
   };
@@ -6786,16 +6740,16 @@ var temporaryPasswordValidator = function temporaryPasswordValidator(value) {
 };
 /* harmony default export */ var formValidation = (formValidation_validator);
 // EXTERNAL MODULE: ./components/CustomFileUploadInputWrapper/index.js
-var CustomFileUploadInputWrapper = __webpack_require__(105);
+var CustomFileUploadInputWrapper = __webpack_require__(104);
 
 // EXTERNAL MODULE: ./components/MaterialCustomTextFieldWrapper/index.js
-var MaterialCustomTextFieldWrapper = __webpack_require__(93);
+var MaterialCustomTextFieldWrapper = __webpack_require__(92);
 
 // EXTERNAL MODULE: ./components/MaterialCustomRadioInputWrapper/index.js
-var MaterialCustomRadioInputWrapper = __webpack_require__(106);
+var MaterialCustomRadioInputWrapper = __webpack_require__(105);
 
 // EXTERNAL MODULE: ./components/MaterialCustomSelectInputWrapper/index.js
-var MaterialCustomSelectInputWrapper = __webpack_require__(94);
+var MaterialCustomSelectInputWrapper = __webpack_require__(93);
 
 // EXTERNAL MODULE: ./components/CustomInputMask/index.js
 var CustomInputMask = __webpack_require__(112);
@@ -7120,6 +7074,7 @@ function (_Component) {
             realEstateLicenseNumber = agent.realEstateLicenseNumber,
             agentType = agent.agentType,
             ACHAccountNumber = agent.ACHAccountNumber,
+            ACHAccountBankRoutingNumber = agent.ACHAccountBankRoutingNumber,
             title = agent.title,
             twitter = agent.twitter,
             facebook = agent.facebook,
@@ -7137,6 +7092,7 @@ function (_Component) {
           branch: branch,
           state: state,
           ACHAccountNumber: ACHAccountNumber,
+          ACHAccountBankRoutingNumber: ACHAccountBankRoutingNumber,
           title: title,
           facebook: facebook ? facebook.split('/').pop() : undefined,
           twitter: twitter ? twitter.split('/').pop() : undefined,
@@ -7227,7 +7183,7 @@ function (_Component) {
           helperInfo: "Agent's Profile (JPEG/JPG file)",
           acceptedFileExtensions: acceptedFileExtensions,
           getInput: getFileUploadInput,
-          accept: ".jpg, .jpeg, .png"
+          accept: ".jpg, .jpeg"
         }) : null, external__react__default.a.createElement("div", null, imageFile ? external__react__default.a.createElement(Button__default.a, {
           classes: {
             root: classes.removePaymentBtn
@@ -7398,7 +7354,6 @@ function (_Component) {
             id: v4__default()(),
             label: "Office Number",
             fullWidth: true,
-            required: true,
             type: "tel",
             isInputMasked: true,
             requiresDefaultOnChange: true,
@@ -7452,13 +7407,26 @@ function (_Component) {
           }
         }, "Other Information")), external__react__default.a.createElement(Grid__default.a, {
           item: true,
-          xs: 12
+          xs: 12,
+          md: 6
         }, external__react__default.a.createElement("div", {
           className: classes.formControlWrapper
         }, external__react__default.a.createElement(CustomTextField, {
           field: "ACHAccountNumber",
           id: v4__default()(),
           label: "ACH Account Number",
+          fullWidth: true,
+          disabled: isViewType && !isEditingAgent
+        }))), external__react__default.a.createElement(Grid__default.a, {
+          item: true,
+          xs: 12,
+          md: 6
+        }, external__react__default.a.createElement("div", {
+          className: classes.formControlWrapper
+        }, external__react__default.a.createElement(CustomTextField, {
+          field: "ACHAccountBankRoutingNumber",
+          id: v4__default()(),
+          label: "ACH Account's Bank Routing Number",
           fullWidth: true,
           disabled: isViewType && !isEditingAgent
         }))), external__react__default.a.createElement(Grid__default.a, {
@@ -7554,12 +7522,12 @@ function (_Component) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_graphql_request__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_graphql_request__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_graphql_request___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_graphql_request__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__constants_graphQLEndpoint__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__constants_graphQLEndpoint__ = __webpack_require__(7);
 
 
-var query = "\n    mutation setAgentProfilePic($input: SetAgentProfilePicInput!) {\n      setAgentProfilePic(input: $input) {\n        url\n        wasSuccessful\n        otherError\n      }\n    }\n  ";
+var query = "\n    mutation setAgentProfilePic($input: SetAgentProfilePicInput!) {\n      setAgentProfilePic(input: $input) {\n        url\n        wasSuccessful\n        otherError\n        userErrors {\n          field\n          message\n        }\n      }\n    }\n  ";
 var client = new __WEBPACK_IMPORTED_MODULE_0_graphql_request__["GraphQLClient"](__WEBPACK_IMPORTED_MODULE_1__constants_graphQLEndpoint__["a" /* default */], {
   credentials: 'same-origin'
 });
@@ -7576,15 +7544,19 @@ var setAgentProfilePic = function setAgentProfilePic(agentID, fileName) {
   };
   var finalResponseObj = {
     url: null,
-    error: error
+    otherError: null,
+    userErrors: null
   };
   return client.request(query, variables).then(function (result) {
     res = result;
     var _res = res,
         data = _res.setAgentProfilePic;
+    var otherError = data.otherError,
+        userErrors = data.userErrors;
 
     if (!data.wasSuccessful) {
-      finalResponseObj.error = data.otherError;
+      if (otherError) finalResponseObj.error = otherError;
+      if (userErrors) finalResponseObj.userErrors = userErrors;
     } else {
       finalResponseObj.url = data.url;
     }
@@ -7659,7 +7631,7 @@ var Close_ = __webpack_require__(29);
 var Close__default = /*#__PURE__*/__webpack_require__.n(Close_);
 
 // EXTERNAL MODULE: external "classnames"
-var external__classnames_ = __webpack_require__(8);
+var external__classnames_ = __webpack_require__(5);
 var external__classnames__default = /*#__PURE__*/__webpack_require__.n(external__classnames_);
 
 // EXTERNAL MODULE: external "axios"
@@ -7670,17 +7642,17 @@ var external__axios__default = /*#__PURE__*/__webpack_require__.n(external__axio
 var CreateAgentForm = __webpack_require__(143);
 
 // EXTERNAL MODULE: ./utils/Math.js
-var utils_Math = __webpack_require__(70);
+var utils_Math = __webpack_require__(71);
 
 // EXTERNAL MODULE: ./utils/stringUtils.js
 var stringUtils = __webpack_require__(17);
 
 // EXTERNAL MODULE: external "graphql-request"
-var external__graphql_request_ = __webpack_require__(5);
+var external__graphql_request_ = __webpack_require__(6);
 var external__graphql_request__default = /*#__PURE__*/__webpack_require__.n(external__graphql_request_);
 
 // EXTERNAL MODULE: ./constants/graphQLEndpoint.js
-var graphQLEndpoint = __webpack_require__(6);
+var graphQLEndpoint = __webpack_require__(7);
 
 // CONCATENATED MODULE: ./effects/users/createAgent.js
 
@@ -7954,7 +7926,8 @@ function (_Component) {
 
               Object(setAgentProfilePic["a" /* default */])(agent.uuid, _this.state.imageFile.name).then(function (_ref) {
                 var url = _ref.url,
-                    otherError = _ref.otherError;
+                    otherError = _ref.otherError,
+                    userErrors = _ref.userErrors;
 
                 _this.setState({
                   submittingFormToServer: false
@@ -7962,6 +7935,12 @@ function (_Component) {
 
                 if (otherError) {
                   _this.props.openRequestErrorSnackbar(otherError);
+
+                  return;
+                }
+
+                if (userErrors && userErrors.length) {
+                  _this.props.openRequestErrorSnackbar(userErrors[0].message);
 
                   return;
                 }
@@ -8075,7 +8054,7 @@ function (_Component) {
 
 /* harmony default export */ var containers_CreateAgentForm = (CreateAgentForm_CreateAgentContainer);
 // EXTERNAL MODULE: ./AppGlobalStateProvider/index.js
-var AppGlobalStateProvider = __webpack_require__(68);
+var AppGlobalStateProvider = __webpack_require__(69);
 
 // CONCATENATED MODULE: ./components/CreateAgentDialogBox/index.js
 var CreateAgentDialogBox__class;
@@ -8406,11 +8385,11 @@ var external__mobx_react_ = __webpack_require__(1);
 var external__mobx_react__default = /*#__PURE__*/__webpack_require__.n(external__mobx_react_);
 
 // EXTERNAL MODULE: external "is-browser"
-var external__is_browser_ = __webpack_require__(7);
+var external__is_browser_ = __webpack_require__(8);
 var external__is_browser__default = /*#__PURE__*/__webpack_require__.n(external__is_browser_);
 
 // EXTERNAL MODULE: ./components/Layout/index.js + 11 modules
-var Layout = __webpack_require__(71);
+var Layout = __webpack_require__(72);
 
 // EXTERNAL MODULE: ./models/index.js + 8 modules
 var models = __webpack_require__(22);
@@ -8455,15 +8434,15 @@ var external__material_ui_pickers_ = __webpack_require__(119);
 var external__material_ui_pickers__default = /*#__PURE__*/__webpack_require__.n(external__material_ui_pickers_);
 
 // EXTERNAL MODULE: external "material-ui/TextField"
-var TextField_ = __webpack_require__(95);
+var TextField_ = __webpack_require__(94);
 var TextField__default = /*#__PURE__*/__webpack_require__.n(TextField_);
 
 // EXTERNAL MODULE: external "material-ui/ExpansionPanel"
-var ExpansionPanel_ = __webpack_require__(107);
+var ExpansionPanel_ = __webpack_require__(106);
 var ExpansionPanel__default = /*#__PURE__*/__webpack_require__.n(ExpansionPanel_);
 
 // EXTERNAL MODULE: external "@material-ui/icons/ExpandMore"
-var ExpandMore_ = __webpack_require__(109);
+var ExpandMore_ = __webpack_require__(108);
 var ExpandMore__default = /*#__PURE__*/__webpack_require__.n(ExpandMore_);
 
 // EXTERNAL MODULE: external "@material-ui/icons/CheckCircle"
@@ -8471,7 +8450,7 @@ var CheckCircle_ = __webpack_require__(120);
 var CheckCircle__default = /*#__PURE__*/__webpack_require__.n(CheckCircle_);
 
 // EXTERNAL MODULE: external "graphql-tag"
-var external__graphql_tag_ = __webpack_require__(64);
+var external__graphql_tag_ = __webpack_require__(65);
 var external__graphql_tag__default = /*#__PURE__*/__webpack_require__.n(external__graphql_tag_);
 
 // EXTERNAL MODULE: external "react-apollo"
@@ -8498,22 +8477,22 @@ var Close__default = /*#__PURE__*/__webpack_require__.n(Close_);
 var CreateAgentDialogBox = __webpack_require__(162);
 
 // EXTERNAL MODULE: ./components/MaterialCustomSelectInput/index.js
-var MaterialCustomSelectInput = __webpack_require__(96);
+var MaterialCustomSelectInput = __webpack_require__(95);
 
 // EXTERNAL MODULE: external "chance"
-var external__chance_ = __webpack_require__(63);
+var external__chance_ = __webpack_require__(64);
 var external__chance__default = /*#__PURE__*/__webpack_require__.n(external__chance_);
 
 // EXTERNAL MODULE: external "faker"
-var external__faker_ = __webpack_require__(111);
+var external__faker_ = __webpack_require__(110);
 var external__faker__default = /*#__PURE__*/__webpack_require__.n(external__faker_);
 
 // EXTERNAL MODULE: external "react-sizes"
-var external__react_sizes_ = __webpack_require__(67);
+var external__react_sizes_ = __webpack_require__(68);
 var external__react_sizes__default = /*#__PURE__*/__webpack_require__.n(external__react_sizes_);
 
 // EXTERNAL MODULE: external "@devexpress/dx-react-grid"
-var dx_react_grid_ = __webpack_require__(97);
+var dx_react_grid_ = __webpack_require__(96);
 var dx_react_grid__default = /*#__PURE__*/__webpack_require__.n(dx_react_grid_);
 
 // EXTERNAL MODULE: external "@devexpress/dx-react-grid-material-ui"
@@ -8521,22 +8500,22 @@ var dx_react_grid_material_ui_ = __webpack_require__(36);
 var dx_react_grid_material_ui__default = /*#__PURE__*/__webpack_require__.n(dx_react_grid_material_ui_);
 
 // EXTERNAL MODULE: ./utils/backEndTableUtils/DefaultVirtualTableCell.js
-var DefaultVirtualTableCell = __webpack_require__(98);
+var DefaultVirtualTableCell = __webpack_require__(97);
 
 // EXTERNAL MODULE: ./utils/backEndTableUtils/TableComponent.js
-var TableComponent = __webpack_require__(99);
+var TableComponent = __webpack_require__(98);
 
 // EXTERNAL MODULE: ./utils/backEndTableUtils/TableContainerComponent.js
-var TableContainerComponent = __webpack_require__(100);
+var TableContainerComponent = __webpack_require__(99);
 
 // EXTERNAL MODULE: ./utils/backEndTableUtils/NoDataCellComponent.js
-var NoDataCellComponent = __webpack_require__(101);
+var NoDataCellComponent = __webpack_require__(100);
 
 // EXTERNAL MODULE: ./components/dataTableFormatters/ProfilePictureFormatter.js
 var ProfilePictureFormatter = __webpack_require__(130);
 
 // EXTERNAL MODULE: ./components/dataTableFormatters/ViewFormatter.js
-var ViewFormatter = __webpack_require__(102);
+var ViewFormatter = __webpack_require__(101);
 
 // CONCATENATED MODULE: ./components/AdminAreaCustomersTable/index.js
 var _dec, _dec2, _class;
@@ -9128,7 +9107,8 @@ function (_Component) {
       var classes = this.props.classes;
       var createAgentModalOpen = this.state.createAgentModalOpen;
       return external__react__default.a.createElement(external__react_apollo_["Query"], {
-        query: customersQuery
+        query: customersQuery,
+        ssr: false
       }, function (_ref2) {
         var loading = _ref2.loading,
             error = _ref2.error,

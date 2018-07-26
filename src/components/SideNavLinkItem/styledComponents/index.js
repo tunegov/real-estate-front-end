@@ -25,7 +25,7 @@ export const SideNavLinkItemAnchor = styled.a`
   flex-direction: column;
   justify-content: center;
   padding-right: 15px;
-  padding-left: ${props => (props.isAdminLinks ? '55px' : '65px')};
+  padding-left: 55px;
   vertical-align: middle;
   display: table-cell;
   min-width: 100%;
@@ -42,7 +42,7 @@ export const SideNavLinkItemDiv = styled.div`
   flex-direction: column;
   justify-content: center;
   padding-right: 15px;
-  padding-left: ${props => (props.isAdminLinks ? '55px' : '65px')};
+  padding-left: 55px;
   vertical-align: middle;
   display: table-cell;
   min-width: 100%;
@@ -54,11 +54,6 @@ export const IconWrapper = styled.span`
   position: absolute;
   left: ${props => (props.iconLeft ? props.iconLeft : '15px')};
   @media screen and (max-width: 600px) {
-    left: ${props =>
-      props.isAdminLinks
-        ? props.iconLeftSmall
-          ? props.iconLeftSmall
-          : '8px'
-        : '15px'};
+    left: ${props => (props.iconLeftSmall ? props.iconLeftSmall : '8px')};
   }
 `;

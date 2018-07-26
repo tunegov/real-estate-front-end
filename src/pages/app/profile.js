@@ -57,6 +57,7 @@ class Profile extends React.Component {
 
     this.state = {
       agentDeleted: false,
+      userUUID: this.store.UserStore.uuid,
     };
   }
 
@@ -70,7 +71,8 @@ class Profile extends React.Component {
       <Layout UserStore={this.store.UserStore} UIStore={this.store.UIStore}>
         <Query
           query={agentQuery}
-          variables={{ uuid: profileID || this.store.UserStore.uuid }}
+          variables={{ uuid: profileID || this.state.userUUID }}
+          ssr={false}
         >
           {({ loading, error, data }) => {
             if (loading)

@@ -82,7 +82,7 @@ const styles = theme => ({
   },
   listRoot: {
     height: '100%',
-    overflow: 'auto',
+    overflow: 'hidden',
     // borderBottom: '1px solid rgba(255,255,255,.5)',
   },
 });

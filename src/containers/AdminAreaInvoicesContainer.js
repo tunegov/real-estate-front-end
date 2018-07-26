@@ -384,7 +384,7 @@ class AdminAreaDealsContainer extends Component {
           </Grid>
                           </div>*/}
 
-        <Query query={invoicesQuery}>
+        <Query query={invoicesQuery} ssr={false}>
           {({ loading, error, data }) => {
             if (loading)
               return (

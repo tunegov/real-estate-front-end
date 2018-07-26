@@ -11,9 +11,8 @@ const validator = values => {
     branch: !values.branch ? 'This value is required' : null,
     state: !values.state ? 'This value is required' : null,
     officeNumber:
-      !values.officeNumber ||
-      (values.officeNumber && values.officeNumber.length < 14)
-        ? 'This value is required and must be a full tel number with area code'
+      values.officeNumber && values.officeNumber.length < 14
+        ? 'If provided, this value must be a full tel number with area code'
         : null,
     mobileNumber:
       !values.mobileNumber ||

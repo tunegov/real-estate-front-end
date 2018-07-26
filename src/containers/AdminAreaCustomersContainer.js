@@ -125,7 +125,7 @@ class AdminAreaCustomersContainer extends Component {
     const { createAgentModalOpen } = this.state;
 
     return (
-      <Query query={customersQuery}>
+      <Query query={customersQuery} ssr={false}>
         {({ loading, error, data }) => {
           console.log(data);
           if (loading)

@@ -6,7 +6,7 @@ import { FormControl, FormHelperText } from 'material-ui/Form';
 import { Field } from 'react-form';
 import uuid from 'uuid/v4';
 import classnames from 'classnames';
-import debounce from '../../utils/debounce';
+import debounce from 'debounce';
 
 const numbersOnlyRegex = /^\d+$/;
 const noLettersRegex = /^[^a-zA-Z]+$/;
@@ -202,7 +202,7 @@ class CustomTextFieldWrapper extends React.Component {
 
                   if (isInputMasked) {
                     if (mask && mask.length && newValue.length <= mask.length) {
-                      setValue(newValue);
+                      debounce(() => setValue(this._input.value), 100)();
                     }
                   }
 

@@ -58,6 +58,7 @@ const viewDealFormQuery = gql`
         contractOrLeaseForms
         agentPaymentType
         ACHAccountNumber
+        ACHAccountBankRoutingNumber
         fundsPaidBy
         alreadyTurnedFundsIn
         shouldSendApprovalTextMessageNotification
@@ -478,7 +479,6 @@ class ViewDealFormContainer extends Component {
     console.log(errs);
     console.log(onSubmitError);
     console.log(formApi.errors);
-    this.props.setFormSubmitted(false);
   };
 
   render() {

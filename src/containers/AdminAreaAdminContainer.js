@@ -233,7 +233,7 @@ class AdminAreaAdminContainer extends Component {
     } = this.state;
 
     return (
-      <Query query={adminQuery} ssr={false}>
+      <Query query={adminQuery} ssr={false} fetchPolicy="cache-and-network">
         {({ loading, error, data }) => {
           console.log(data);
           if (loading)

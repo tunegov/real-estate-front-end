@@ -313,7 +313,7 @@ class EditProfilePicForm extends Component {
                               helperInfo="Agent's Profile (JPEG/JPG file)"
                               acceptedFileExtensions={acceptedFileExtensions}
                               getInput={getFileUploadInput}
-                              accept=".jpg, .jpeg, .png"
+                              accept=".jpg, .jpeg"
                             />
                           ) : null}
                           <div>

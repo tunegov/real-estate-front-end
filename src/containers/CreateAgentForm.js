@@ -158,7 +158,7 @@ class CreateAgentContainer extends Component {
               submittingFormToServer: true,
             });
             setAgentProfilePic(agent.uuid, this.state.imageFile.name)
-              .then(({ url, otherError }) => {
+              .then(({ url, otherError, userErrors }) => {
                 this.setState({
                   submittingFormToServer: false,
                 });
@@ -168,6 +168,12 @@ class CreateAgentContainer extends Component {
 
                   return;
                 }
+
+                if (userErrors && userErrors.length) {
+                  this.props.openRequestErrorSnackbar(userErrors[0].message);
+                  return;
+                }
+
                 if (url) {
                   agent.agent.profilePicURL = this.state.confirmedImageDataURL;
                 }

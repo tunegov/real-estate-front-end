@@ -512,7 +512,7 @@ class AdminAreaDealsContainer extends Component {
     } = this;
 
     return (
-      <Query query={dealsQuery} ssr={false}>
+      <Query query={dealsQuery} ssr={false} fetchPolicy="cache-and-network">
         {({ loading, error, data }) => {
           if (loading)
             return (

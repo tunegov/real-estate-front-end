@@ -212,7 +212,7 @@ class CustomFileUploadInputWrapper extends React.Component {
                       if (!touched) setTouched();
                       setTimeout(() => {
                         if (!error) setError();
-                      }, 5000);
+                      }, 8000);
                       return;
                     }
                     setValue(files[0]);

@@ -115,10 +115,16 @@ module.exports = routes;
 /* 5 */
 /***/ (function(module, exports) {
 
-module.exports = require("graphql-request");
+module.exports = require("classnames");
 
 /***/ }),
 /* 6 */
+/***/ (function(module, exports) {
+
+module.exports = require("graphql-request");
+
+/***/ }),
+/* 7 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -126,16 +132,10 @@ var endpoint = '/api/graphql';
 /* harmony default export */ __webpack_exports__["a"] = (endpoint);
 
 /***/ }),
-/* 7 */
-/***/ (function(module, exports) {
-
-module.exports = require("is-browser");
-
-/***/ }),
 /* 8 */
 /***/ (function(module, exports) {
 
-module.exports = require("classnames");
+module.exports = require("is-browser");
 
 /***/ }),
 /* 9 */
@@ -628,15 +628,15 @@ var regenerator_ = __webpack_require__(3);
 var regenerator__default = /*#__PURE__*/__webpack_require__.n(regenerator_);
 
 // EXTERNAL MODULE: external "is-browser"
-var external__is_browser_ = __webpack_require__(7);
+var external__is_browser_ = __webpack_require__(8);
 var external__is_browser__default = /*#__PURE__*/__webpack_require__.n(external__is_browser_);
 
 // EXTERNAL MODULE: external "graphql-request"
-var external__graphql_request_ = __webpack_require__(5);
+var external__graphql_request_ = __webpack_require__(6);
 var external__graphql_request__default = /*#__PURE__*/__webpack_require__.n(external__graphql_request_);
 
 // EXTERNAL MODULE: ./constants/graphQLEndpoint.js
-var graphQLEndpoint = __webpack_require__(6);
+var graphQLEndpoint = __webpack_require__(7);
 
 // CONCATENATED MODULE: ./models/UserStore/userEffects/signUpCustomer.js
 
@@ -1411,8 +1411,10 @@ function create(initialState) {
     ssrMode: !process.browser,
     // Disables forceFetch on the server (so queries are only run once)
     link: new external__apollo_link_http_["HttpLink"]({
-      uri: "".concat(constants_websiteURL),
-      // 'http://localhost/api/graphql', // Server URL (must be absolute)
+      uri:
+      /* `${websiteURL}`, */
+      'http://localhost/api/graphql',
+      // Server URL (must be absolute)
       credentials: 'same-origin',
       // Additional fetch() options like `credentials` or `headers`
       headers: {
@@ -1624,18 +1626,23 @@ module.exports = require("react-icons/lib/fa");
 /* 55 */,
 /* 56 */,
 /* 57 */,
-/* 58 */,
+/* 58 */
+/***/ (function(module, exports) {
+
+module.exports = require("debounce");
+
+/***/ }),
 /* 59 */,
 /* 60 */,
 /* 61 */,
 /* 62 */,
-/* 63 */
+/* 63 */,
+/* 64 */
 /***/ (function(module, exports) {
 
 module.exports = require("chance");
 
 /***/ }),
-/* 64 */,
 /* 65 */,
 /* 66 */,
 /* 67 */,
@@ -1663,12 +1670,6 @@ module.exports = require("chance");
 /* 89 */,
 /* 90 */,
 /* 91 */
-/***/ (function(module, exports) {
-
-module.exports = require("debounce");
-
-/***/ }),
-/* 92 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1694,7 +1695,7 @@ var router_ = __webpack_require__(14);
 var router__default = /*#__PURE__*/__webpack_require__.n(router_);
 
 // EXTERNAL MODULE: external "is-browser"
-var external__is_browser_ = __webpack_require__(7);
+var external__is_browser_ = __webpack_require__(8);
 var external__is_browser__default = /*#__PURE__*/__webpack_require__.n(external__is_browser_);
 
 // EXTERNAL MODULE: external "styled-components"
@@ -1709,7 +1710,7 @@ var regenerator_ = __webpack_require__(3);
 var regenerator__default = /*#__PURE__*/__webpack_require__.n(regenerator_);
 
 // EXTERNAL MODULE: external "debounce"
-var external__debounce_ = __webpack_require__(91);
+var external__debounce_ = __webpack_require__(58);
 var external__debounce__default = /*#__PURE__*/__webpack_require__.n(external__debounce_);
 
 // EXTERNAL MODULE: ./routes.js
@@ -2200,6 +2201,7 @@ function (_Component) {
 /* harmony default export */ var FrontEndLayout = __webpack_exports__["a"] = (Object(router_["withRouter"])(Object(withRoot["a" /* default */])(FrontEndLayout_Layout)));
 
 /***/ }),
+/* 92 */,
 /* 93 */,
 /* 94 */,
 /* 95 */,
@@ -2217,13 +2219,13 @@ function (_Component) {
 /* 107 */,
 /* 108 */,
 /* 109 */,
-/* 110 */,
-/* 111 */
+/* 110 */
 /***/ (function(module, exports) {
 
 module.exports = require("faker");
 
 /***/ }),
+/* 111 */,
 /* 112 */,
 /* 113 */,
 /* 114 */,
@@ -2278,7 +2280,7 @@ module.exports = require("@material-ui/icons/Favorite");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__material_ui_icons_FavoriteBorder___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__material_ui_icons_FavoriteBorder__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__material_ui_icons_Favorite__ = __webpack_require__(138);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__material_ui_icons_Favorite___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__material_ui_icons_Favorite__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_classnames__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_classnames__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_classnames___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_classnames__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__utils_stringUtils__ = __webpack_require__(17);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__routes__ = __webpack_require__(4);
@@ -2585,11 +2587,11 @@ var external__mobx_react_ = __webpack_require__(1);
 var external__mobx_react__default = /*#__PURE__*/__webpack_require__.n(external__mobx_react_);
 
 // EXTERNAL MODULE: external "is-browser"
-var external__is_browser_ = __webpack_require__(7);
+var external__is_browser_ = __webpack_require__(8);
 var external__is_browser__default = /*#__PURE__*/__webpack_require__.n(external__is_browser_);
 
 // EXTERNAL MODULE: ./frontEndComponents/FrontEndLayout/index.js + 7 modules
-var FrontEndLayout = __webpack_require__(92);
+var FrontEndLayout = __webpack_require__(91);
 
 // EXTERNAL MODULE: ./models/index.js + 8 modules
 var models = __webpack_require__(22);
@@ -2598,11 +2600,11 @@ var models = __webpack_require__(22);
 var withData = __webpack_require__(49);
 
 // EXTERNAL MODULE: external "chance"
-var external__chance_ = __webpack_require__(63);
+var external__chance_ = __webpack_require__(64);
 var external__chance__default = /*#__PURE__*/__webpack_require__.n(external__chance_);
 
 // EXTERNAL MODULE: external "faker"
-var external__faker_ = __webpack_require__(111);
+var external__faker_ = __webpack_require__(110);
 var external__faker__default = /*#__PURE__*/__webpack_require__.n(external__faker_);
 
 // EXTERNAL MODULE: external "material-ui/styles"
@@ -2610,7 +2612,7 @@ var styles_ = __webpack_require__(2);
 var styles__default = /*#__PURE__*/__webpack_require__.n(styles_);
 
 // EXTERNAL MODULE: external "classnames"
-var external__classnames_ = __webpack_require__(8);
+var external__classnames_ = __webpack_require__(5);
 var external__classnames__default = /*#__PURE__*/__webpack_require__.n(external__classnames_);
 
 // EXTERNAL MODULE: external "buildo-react-components/lib/FormattedText"
@@ -3089,7 +3091,7 @@ function (_Component) {
         className: classes.detailsTitle
       }, "Email"), external__react__default.a.createElement("div", {
         className: classes.detailsInfo
-      }, email)), external__react__default.a.createElement("div", {
+      }, email)), officeNumber && external__react__default.a.createElement("div", {
         className: external__classnames__default()(classes.mobile, classes.details)
       }, external__react__default.a.createElement("div", {
         className: classes.detailsTitle

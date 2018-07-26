@@ -529,6 +529,7 @@ class SubmitDealForm extends Component {
         total,
         bonusPercentageAddedByAdmin,
         ACHAccountNumber,
+        ACHAccountBankRoutingNumber,
       } = submittedDeal;
       finalDefaultValues = {
         agent: agentName,
@@ -570,6 +571,7 @@ class SubmitDealForm extends Component {
           : '0',
         financialsTotal: total ? total.toLocaleString() : '0',
         ACHAccountNumber,
+        ACHAccountBankRoutingNumber,
         bonusPercentageAddedByAdmin: `${bonusPercentageAddedByAdmin}`,
       };
     }
@@ -588,9 +590,13 @@ class SubmitDealForm extends Component {
                   )} ${capitalize(this.props.agent.lastName)}`,
                   paymentsSubtotal: this.props.paymentsTotal,
                   deductionsSubtotal: this.props.deductionsTotal,
-                  ACHAccountNumber: `${
-                    this.props.agent.agent.ACHAccountNumber
-                  }`,
+                  ACHAccountNumber: this.props.agent.agent.ACHAccountNumber
+                    ? `${this.props.agent.agent.ACHAccountNumber}`
+                    : undefined,
+                  ACHAccountBankRoutingNumber: this.props.agent.agent
+                    .ACHAccountBankRoutingNumber
+                    ? `${this.props.agent.agent.ACHAccountBankRoutingNumber}`
+                    : undefined,
                 }
               : finalDefaultValues
           }
@@ -1536,12 +1542,30 @@ class SubmitDealForm extends Component {
 
                   {(agentPaymentTypeIsACH ||
                     (submittedDeal && submittedDeal.ACHAccountNumber)) && (
-                    <Grid item xs={12}>
+                    <Grid item xs={12} md={6}>
                       <div className={classes.formControlWrapper}>
                         <CustomTextField
                           field="ACHAccountNumber"
                           id={uuid()}
                           label="ACH Account Number"
+                          required
+                          fullWidth
+                          validate={ACHAccountNumberValidator}
+                          disabled={submittedDeal && !isEditingDeal}
+                        />
+                      </div>
+                    </Grid>
+                  )}
+
+                  {(agentPaymentTypeIsACH ||
+                    (submittedDeal &&
+                      submittedDeal.ACHAccountBankRoutingNumber)) && (
+                    <Grid item xs={12} md={6}>
+                      <div className={classes.formControlWrapper}>
+                        <CustomTextField
+                          field="ACHAccountBankRoutingNumber"
+                          id={uuid()}
+                          label="ACH Account's Bank Routing Number"
                           required
                           fullWidth
                           validate={ACHAccountNumberValidator}

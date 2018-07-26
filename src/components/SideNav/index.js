@@ -11,6 +11,7 @@ import NotificationIcon from '@material-ui/icons/Notifications';
 import { withStyles } from 'material-ui/styles';
 import AddIcon from '@material-ui/icons/Add';
 import ViewIcon from '@material-ui/icons/RemoveRedEye';
+import classnames from 'classnames';
 import SideNavLinkItem from '../SideNavLinkItem';
 import navLinks from './navItems';
 
@@ -23,12 +24,30 @@ const styles = theme => ({
   },
   drawerPaper: {
     position: 'relative',
-    paddingBottom: '60px',
+    paddingBottom: '50px',
     overflow: 'auto',
+    whiteSpace: 'nowrap',
     width: drawerWidth,
-    zIndex: 1,
     backgroundColor: 'rgba(36, 68, 109, .75)',
     color: '#fff',
+    transition: theme.transitions.create('width', {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.enteringScreen,
+    }),
+  },
+  drawerPaperClose: {
+    overflowX: 'hidden',
+    transition: theme.transitions.create('width', {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.leavingScreen,
+    }),
+    width: theme.spacing.unit * 5,
+    [theme.breakpoints.up('sm')]: {
+      width: theme.spacing.unit * 6.8,
+    },
+    '&:hover': {
+      width: drawerWidth,
+    },
   },
   tempDrawer: {
     minWidth: '240px',
@@ -60,7 +79,7 @@ const styles = theme => ({
   },
   listRoot: {
     height: '100%',
-    overflow: 'auto',
+    overflow: 'hidden',
     //borderBottom: '1px solid rgba(255,255,255,.2)',
   },
   icon: {
@@ -124,86 +143,37 @@ class SideNav extends Component {
 
     return (
       <div className={classes.root}>
-        <Hidden mdUp implementation="css">
-          <Drawer
-            variant="temporary"
-            className={classes.tempDrawer}
-            classes={{
-              paper: classes.drawerPaper,
-            }}
-            open={drawerOpen}
-            anchor="left"
-            ModalProps={{
-              keepMounted: true, // Better open performance on mobile.
-            }}
-            onClose={toggleDrawer}
-          >
-            <div className={`${classes.toolbar} ${classes.topToolbar}`}>
-              <Tooltip
-                id="tooltip-icon"
-                title="Close Sidebar"
-                enterDelay={400}
-                leaveDelay={200}
-                placement="bottom"
-                PopperProps={{ style: { minWidth: '30px' } }}
+        <Drawer
+          variant="permanent"
+          classes={{
+            paper: classnames(
+              classes.drawerPaper,
+              !drawerOpen && classes.drawerPaperClose
+            ),
+          }}
+        >
+          <div className={classes.toolbar} />
+          <List classes={{ root: classes.listRoot }}>
+            {this.renderSideLinkComponents(currentPath)}
+          </List>
+          {/*<div className={classes.notificationIcon}>
+            <Tooltip
+              id="tooltip-icon"
+              title="Notifications"
+              enterDelay={200}
+              leaveDelay={200}
+              PopperProps={{ style: { minWidth: '30px' } }}
+              placement="top-end"
+            >
+              <IconButton
+                color="primary"
+                classes={{ root: classes.notificationIconBtn }}
               >
-                <IconButton
-                  color="inherit"
-                  className={`${classes.icon} ${classes.arrowBackBtn}`}
-                  onClick={toggleDrawer}
-                >
-                  <ArrowBackIcon style={{ fontSize: '24px' }} />
-                </IconButton>
-              </Tooltip>
-            </div>
-            <Divider classes={{ root: classes.topDivider }} />
-            <List classes={{ root: classes.listRoot }}>
-              {this.renderSideLinkComponents(currentPath)}
-            </List>
-            {/*<div className={classes.notificationIcon}>
-              <Tooltip
-                id="tooltip-icon"
-                title="Notifications"
-                enterDelay={200}
-                leaveDelay={200}
-                placement="bottom"
-                PopperProps={{ style: { minWidth: '30px' } }}
-              >
-                <IconButton color="inherit" className={classes.icon}>
-                  <NotificationIcon />
-                </IconButton>
-              </Tooltip>
+                <NotificationIcon />
+              </IconButton>
+            </Tooltip>
           </div>*/}
-          </Drawer>
-        </Hidden>
-        <Hidden smDown implementation="css">
-          <Drawer
-            variant="permanent"
-            classes={{
-              paper: classes.drawerPaper,
-            }}
-          >
-            <div className={classes.toolbar} />
-            <List classes={{ root: classes.listRoot }}>
-              {this.renderSideLinkComponents(currentPath)}
-            </List>
-
-            {/*<div className={classes.notificationIcon}>
-              <Tooltip
-                id="tooltip-icon"
-                title="Notifications"
-                enterDelay={200}
-                leaveDelay={200}
-                placement="bottom"
-                PopperProps={{ style: { minWidth: '30px' } }}
-              >
-                <IconButton color="inherit" className={classes.icon}>
-                  <NotificationIcon />
-                </IconButton>
-              </Tooltip>
-          </div>*/}
-          </Drawer>
-        </Hidden>
+        </Drawer>
       </div>
     );
   }

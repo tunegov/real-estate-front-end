@@ -90,7 +90,7 @@ class AppTopNav extends Component {
             </span>
           </Typography>
           <div className={classes.leftTopNavIconWrapper}>
-            <div className={classNames(!isAdmin && classes.menuHiddenWrapper)}>
+            <div>
               <IconButton
                 color="inherit"
                 aria-label="open drawer"

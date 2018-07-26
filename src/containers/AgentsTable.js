@@ -130,7 +130,7 @@ class AgentsTableContainer extends Component {
     const { tableIsLoading, rows } = this.state;
     const { classes, ...rest } = this.props;
     return (
-      <Query query={agentsQuery}>
+      <Query query={agentsQuery} ssr={false} fetchPolicy="cache-and-network">
         {({ loading, error, data }) => {
           console.log(data);
           if (loading)
@@ -148,8 +148,7 @@ class AgentsTableContainer extends Component {
                 <Loader color="#f44336" loading />
               </div>
             );
-          // TODO: change the error message to a generic
-          // 'error connecting to server' message
+
           if (error) {
             console.log(error);
             return (
