@@ -67,7 +67,7 @@ module.exports =
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 201);
+/******/ 	return __webpack_require__(__webpack_require__.s = 210);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -96,9 +96,15 @@ module.exports = require("@babel/runtime/regenerator");
 
 /***/ }),
 /* 4 */
+/***/ (function(module, exports) {
+
+module.exports = require("classnames");
+
+/***/ }),
+/* 5 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var routes = __webpack_require__(46)();
+var routes = __webpack_require__(51)();
 
 routes.add('home', '/', '/').add('dashboard', '/app/dashbaord', 'app/dashboard').add('profile', '/app/profile', 'app/profile').add('deals', '/app/deals', 'app/deals').add('invoices', '/app/invoices', 'app/invoices').add('agents', '/app/agents', 'app/agents').add('create-listing', '/app/listing/new', '/app/listing/new').add('admin-dashboard', '/app/admin-area/dashboard', 'app/admin-area/dashboard').add('create-agent', '/app/admin-area/agents/create', 'app/admin-area/agents/create').add('view-agents', '/app/admin-area/agents/view', 'app/admin-area/agents/view').add('create-user', '/app/admin-area/customers/create', 'app/admin-area/customers/create').add('view-customers', '/app/admin-area/customers/view', 'app/admin-area/customers/view').add('create-admin', '/app/admin-area/admin/create', 'app/admin-area/admin/create').add('view-admin', '/app/admin-area/admin/view', 'app/admin-area/admin/view').add('view-deals', '/app/admin-area/deals/view', 'app/admin-area/deals/view')
 /*
@@ -110,12 +116,6 @@ routes.add('home', '/', '/').add('dashboard', '/app/dashbaord', 'app/dashboard')
 */
 .add('log-in', '/log-in').add('sign-up', '/sign-up').add('listings', '/listings').add('listing', '/listing').add('agent', '/agent').add('agents-front-end', '/agents', '/agents').add('new-developments', '/new-developments').add('apply', '/apply').add('about', '/about');
 module.exports = routes;
-
-/***/ }),
-/* 5 */
-/***/ (function(module, exports) {
-
-module.exports = require("classnames");
 
 /***/ }),
 /* 6 */
@@ -153,18 +153,6 @@ module.exports = require("polished");
 /* 11 */
 /***/ (function(module, exports) {
 
-module.exports = require("mobx-state-tree");
-
-/***/ }),
-/* 12 */
-/***/ (function(module, exports) {
-
-module.exports = require("material-ui/Tooltip");
-
-/***/ }),
-/* 13 */
-/***/ (function(module, exports) {
-
 var customer = 'customer';
 var agent = 'agent';
 var admin = 'admin';
@@ -177,6 +165,18 @@ module.exports = {
   superAdmin: superAdmin,
   anonymous: anonymous
 };
+
+/***/ }),
+/* 12 */
+/***/ (function(module, exports) {
+
+module.exports = require("mobx-state-tree");
+
+/***/ }),
+/* 13 */
+/***/ (function(module, exports) {
+
+module.exports = require("material-ui/Tooltip");
 
 /***/ }),
 /* 14 */
@@ -576,29 +576,48 @@ function abbreviate(str) {
 /* 18 */
 /***/ (function(module, exports) {
 
-module.exports = require("prop-types");
+module.exports = require("react-apollo");
 
 /***/ }),
 /* 19 */
 /***/ (function(module, exports) {
 
-module.exports = require("react-apollo");
+module.exports = require("prop-types");
 
 /***/ }),
-/* 20 */,
-/* 21 */
+/* 20 */
+/***/ (function(module, exports) {
+
+module.exports = require("material-ui/Grid");
+
+/***/ }),
+/* 21 */,
+/* 22 */
+/***/ (function(module, exports) {
+
+module.exports = require("antd/lib/icon/style/css");
+
+/***/ }),
+/* 23 */
+/***/ (function(module, exports) {
+
+module.exports = require("antd/lib/icon");
+
+/***/ }),
+/* 24 */
 /***/ (function(module, exports) {
 
 module.exports = require("material-ui/colors/blue");
 
 /***/ }),
-/* 22 */
+/* 25 */,
+/* 26 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 
 // EXTERNAL MODULE: external "mobx-state-tree"
-var external__mobx_state_tree_ = __webpack_require__(11);
+var external__mobx_state_tree_ = __webpack_require__(12);
 var external__mobx_state_tree__default = /*#__PURE__*/__webpack_require__.n(external__mobx_state_tree_);
 
 // CONCATENATED MODULE: ./models/UIStore/index.js
@@ -758,7 +777,7 @@ function _logoutUser() {
               finalResponseObj.error = data.userError;
             }
 
-            if (!finalResponseObj.error) {
+            if (data.wasSuccessful) {
               self.unsetUser();
             }
 
@@ -860,7 +879,7 @@ var UserEffects = external__mobx_state_tree_["types"].model({}).actions(function
 });
 /* harmony default export */ var userEffects = (UserEffects);
 // EXTERNAL MODULE: external "urlsafe-base64"
-var external__urlsafe_base64_ = __webpack_require__(48);
+var external__urlsafe_base64_ = __webpack_require__(53);
 var external__urlsafe_base64__default = /*#__PURE__*/__webpack_require__.n(external__urlsafe_base64_);
 
 // CONCATENATED MODULE: ./utils/jwtUtils.js
@@ -1048,9 +1067,7 @@ function initStore(isServer) {
 }
 
 /***/ }),
-/* 23 */,
-/* 24 */,
-/* 25 */
+/* 27 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1078,22 +1095,15 @@ var theme = {
 /* harmony default export */ __webpack_exports__["a"] = (theme);
 
 /***/ }),
-/* 26 */,
-/* 27 */,
-/* 28 */
+/* 28 */,
+/* 29 */,
+/* 30 */,
+/* 31 */
 /***/ (function(module, exports) {
 
 module.exports = require("material-ui/Snackbar");
 
 /***/ }),
-/* 29 */
-/***/ (function(module, exports) {
-
-module.exports = require("@material-ui/icons/Close");
-
-/***/ }),
-/* 30 */,
-/* 31 */,
 /* 32 */
 /***/ (function(module, exports) {
 
@@ -1103,24 +1113,34 @@ module.exports = require("material-ui/Button");
 /* 33 */
 /***/ (function(module, exports) {
 
-module.exports = require("material-ui/Grid");
+module.exports = require("@material-ui/icons/Close");
 
 /***/ }),
 /* 34 */,
 /* 35 */,
 /* 36 */,
-/* 37 */
+/* 37 */,
+/* 38 */
+/***/ (function(module, exports) {
+
+module.exports = require("debounce");
+
+/***/ }),
+/* 39 */,
+/* 40 */,
+/* 41 */,
+/* 42 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = getPageContext;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react_jss__ = __webpack_require__(38);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react_jss__ = __webpack_require__(43);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react_jss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react_jss__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__material_ui_core_styles__ = __webpack_require__(39);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__material_ui_core_styles__ = __webpack_require__(44);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__material_ui_core_styles___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__material_ui_core_styles__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_material_ui_colors_red__ = __webpack_require__(40);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_material_ui_colors_red__ = __webpack_require__(45);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_material_ui_colors_red___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_material_ui_colors_red__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_material_ui_colors_blue__ = __webpack_require__(21);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_material_ui_colors_blue__ = __webpack_require__(24);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_material_ui_colors_blue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_material_ui_colors_blue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_polished__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_polished___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_polished__);
@@ -1204,45 +1224,50 @@ function getPageContext() {
 }
 
 /***/ }),
-/* 38 */
+/* 43 */
 /***/ (function(module, exports) {
 
 module.exports = require("react-jss");
 
 /***/ }),
-/* 39 */
+/* 44 */
 /***/ (function(module, exports) {
 
 module.exports = require("@material-ui/core/styles");
 
 /***/ }),
-/* 40 */
+/* 45 */
 /***/ (function(module, exports) {
 
 module.exports = require("material-ui/colors/red");
 
 /***/ }),
-/* 41 */,
-/* 42 */,
-/* 43 */
+/* 46 */,
+/* 47 */
 /***/ (function(module, exports) {
 
 module.exports = require("nprogress");
 
 /***/ }),
-/* 44 */
+/* 48 */
+/***/ (function(module, exports) {
+
+
+
+/***/ }),
+/* 49 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_prop_types__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_prop_types__ = __webpack_require__(19);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_prop_types___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_prop_types__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_material_ui_styles__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_material_ui_styles___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_material_ui_styles__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_material_ui_CssBaseline__ = __webpack_require__(45);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_material_ui_CssBaseline__ = __webpack_require__(50);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_material_ui_CssBaseline___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_material_ui_CssBaseline__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__getPageContext__ = __webpack_require__(37);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__getPageContext__ = __webpack_require__(42);
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -1323,33 +1348,33 @@ function withRoot(Component) {
 /* harmony default export */ __webpack_exports__["a"] = (withRoot);
 
 /***/ }),
-/* 45 */
+/* 50 */
 /***/ (function(module, exports) {
 
 module.exports = require("material-ui/CssBaseline");
 
 /***/ }),
-/* 46 */
+/* 51 */
 /***/ (function(module, exports) {
 
 module.exports = require("next-routes");
 
 /***/ }),
-/* 47 */
+/* 52 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-var globalStyles = "\n  html {\n    height: 100%;\n  }\n  body {\n    overflow: hidden;\n    position: relative;\n    min-height: 100%;\n    min-width: 100%;\n    margin: 0;\n    -webkit-font-smoothing: antialiased;\n    background-color: #fafafa;\n  }\n  body > :first-child {\n    display: flex;\n    min-width: 100%;\n    max-width: 100%;\n    max-height: 100%;\n    position: absolute;\n  }\n  body > :first-child > #__next {\n    display: flex;\n    min-width: 100%;\n  }\n  body > :first-child > #__next > div {\n    display: flex;\n    min-width: 100%;\n  }\n  body > :first-child > #__next > div > div {\n    display: flex;\n    min-width: 100%;\n  }\n  .react-grid-HeaderCell {\n    font-weight: 500 !important;\n  }\n  .pull-right {\n    float: right;\n  }\n  .react-grid-Toolbar {\n    padding: 7px 14px !important;\n  }\n  .tools {\n    margin-top: 0 !important;\n  }\n  .customRow .react-grid-Cell {\n    background-color: initial !important;\n  }\n  .react-grid-Cell {\n    border-right: none !important;\n  }\n  .react-grid-Cell__value > div > span > div {\n    white-space: nowrap;\n    overflow: hidden;\n    text-overflow: ellipsis;\n  }\n  .oddRow .react-grid-Cell {\n    background-color: #fff !important;\n  }\n  .evenRow .react-grid-Cell {\n    background-color: #ECEBFE !important;\n  }\n  .react-grid-HeaderCell .form-group input {\n    width: 100%;\n    padding: 5px 10px;\n    font-size: 12px;\n    line-height: 1.5;\n    border-radius: 3px;\n    border: 1px solid #ccc;\n  }\n  .react-grid-HeaderCell input.form-control {\n    width: 100%;\n    padding: 5px 10px;\n    font-size: 12px;\n    line-height: 1.5;\n    border-radius: 3px;\n    border: 1px solid #ccc;\n  }\n  .react-grid-HeaderCell .form-group {\n    height: 100%;\n  }\n  .react-grid-HeaderCell > div {\n    white-space: nowrap;\n    overflow: hidden;\n    text-overflow: ellipsis;\n  }\n  .react-grid-HeaderCell > .Select {\n    overflow: initial;\n  }\n  #__next > div {\n    max-width: 100%;\n    width: 100%;\n  }\n  thead[class^=\"MuiTableHead\"] > tr th:hover div[class^=\"TableHeaderCell-resizeHandleLine\"] {\n    background-color: #64b5f6;\n  }\n  .deal-table-wrapper div[class^=\"TableHeaderCell-container\"] {\n    display: flex\n  }\n  .deal-table-wrapper div[class^=\"TableHeaderCell-container\"] > div[class^=\"TableHeaderCell-content\"] {\n    order: 2;\n  }\n  .deal-table-wrapper div[class^=\"TableHeaderCell-container\"] > div:not([class^=\"TableHeaderCell-content\"]) {\n    margin-right: 5px;\n  }\n  \n";
+var globalStyles = "\n  html {\n    height: 100%;\n  }\n  body {\n    position: relative;\n    min-height: 100%;\n    min-width: 100%;\n    margin: 0;\n    -webkit-font-smoothing: antialiased;\n    background-color: #fafafa;\n  }\n  .app-body-class {\n    overflow: hidden;\n  }\n\n  body:not(.app-body-class) #__next {\n    height: 100% !important;\n  }\n\n  body:not(.app-body-class) #__next > div {\n    height: 100% !important;\n  }\n\n  body > :first-child {\n    display: flex;\n    min-width: 100%;\n    max-width: 100%;\n    max-height: 100%;\n    position: absolute;\n  }\n  body > :first-child > #__next {\n    display: flex;\n    min-width: 100%;\n  }\n  body > :first-child > #__next > div {\n    display: flex;\n    min-width: 100%;\n  }\n  body > :first-child > #__next > div > div {\n    display: flex;\n    min-width: 100%;\n  }\n  .react-grid-HeaderCell {\n    font-weight: 500 !important;\n  }\n  .pull-right {\n    float: right;\n  }\n  .react-grid-Toolbar {\n    padding: 7px 14px !important;\n  }\n  .tools {\n    margin-top: 0 !important;\n  }\n  .customRow .react-grid-Cell {\n    background-color: initial !important;\n  }\n  .react-grid-Cell {\n    border-right: none !important;\n  }\n  .react-grid-Cell__value > div > span > div {\n    white-space: nowrap;\n    overflow: hidden;\n    text-overflow: ellipsis;\n  }\n  .oddRow .react-grid-Cell {\n    background-color: #fff !important;\n  }\n  .evenRow .react-grid-Cell {\n    background-color: #ECEBFE !important;\n  }\n  .react-grid-HeaderCell .form-group input {\n    width: 100%;\n    padding: 5px 10px;\n    font-size: 12px;\n    line-height: 1.5;\n    border-radius: 3px;\n    border: 1px solid #ccc;\n  }\n  .react-grid-HeaderCell input.form-control {\n    width: 100%;\n    padding: 5px 10px;\n    font-size: 12px;\n    line-height: 1.5;\n    border-radius: 3px;\n    border: 1px solid #ccc;\n  }\n  .react-grid-HeaderCell .form-group {\n    height: 100%;\n  }\n  .react-grid-HeaderCell > div {\n    white-space: nowrap;\n    overflow: hidden;\n    text-overflow: ellipsis;\n  }\n  .react-grid-HeaderCell > .Select {\n    overflow: initial;\n  }\n  #__next > div {\n    max-width: 100%;\n    width: 100%;\n  }\n  thead[class^=\"MuiTableHead\"] > tr th:hover div[class^=\"TableHeaderCell-resizeHandleLine\"] {\n    background-color: #64b5f6;\n  }\n  .deal-table-wrapper div[class^=\"TableHeaderCell-container\"] {\n    display: flex\n  }\n  .deal-table-wrapper div[class^=\"TableHeaderCell-container\"] > div[class^=\"TableHeaderCell-content\"] {\n    order: 2;\n  }\n  .deal-table-wrapper div[class^=\"TableHeaderCell-container\"] > div:not([class^=\"TableHeaderCell-content\"]) {\n    margin-right: 5px;\n  }\n  \n";
 /* harmony default export */ __webpack_exports__["a"] = (globalStyles);
 
 /***/ }),
-/* 48 */
+/* 53 */
 /***/ (function(module, exports) {
 
 module.exports = require("urlsafe-base64");
 
 /***/ }),
-/* 49 */
+/* 54 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1363,11 +1388,11 @@ var external__react_ = __webpack_require__(0);
 var external__react__default = /*#__PURE__*/__webpack_require__.n(external__react_);
 
 // EXTERNAL MODULE: external "prop-types"
-var external__prop_types_ = __webpack_require__(18);
+var external__prop_types_ = __webpack_require__(19);
 var external__prop_types__default = /*#__PURE__*/__webpack_require__.n(external__prop_types_);
 
 // EXTERNAL MODULE: external "react-apollo"
-var external__react_apollo_ = __webpack_require__(19);
+var external__react_apollo_ = __webpack_require__(18);
 var external__react_apollo__default = /*#__PURE__*/__webpack_require__.n(external__react_apollo_);
 
 // EXTERNAL MODULE: external "next/head"
@@ -1375,19 +1400,19 @@ var head_ = __webpack_require__(16);
 var head__default = /*#__PURE__*/__webpack_require__.n(head_);
 
 // EXTERNAL MODULE: external "apollo-client"
-var external__apollo_client_ = __webpack_require__(50);
+var external__apollo_client_ = __webpack_require__(55);
 var external__apollo_client__default = /*#__PURE__*/__webpack_require__.n(external__apollo_client_);
 
 // EXTERNAL MODULE: external "apollo-link-http"
-var external__apollo_link_http_ = __webpack_require__(51);
+var external__apollo_link_http_ = __webpack_require__(56);
 var external__apollo_link_http__default = /*#__PURE__*/__webpack_require__.n(external__apollo_link_http_);
 
 // EXTERNAL MODULE: external "apollo-cache-inmemory"
-var external__apollo_cache_inmemory_ = __webpack_require__(52);
+var external__apollo_cache_inmemory_ = __webpack_require__(57);
 var external__apollo_cache_inmemory__default = /*#__PURE__*/__webpack_require__.n(external__apollo_cache_inmemory_);
 
 // EXTERNAL MODULE: external "isomorphic-unfetch"
-var external__isomorphic_unfetch_ = __webpack_require__(53);
+var external__isomorphic_unfetch_ = __webpack_require__(58);
 var external__isomorphic_unfetch__default = /*#__PURE__*/__webpack_require__.n(external__isomorphic_unfetch_);
 
 // CONCATENATED MODULE: ./constants/websiteURL.js
@@ -1591,46 +1616,36 @@ function getComponentDisplayName(Component) {
 });
 
 /***/ }),
-/* 50 */
+/* 55 */
 /***/ (function(module, exports) {
 
 module.exports = require("apollo-client");
 
 /***/ }),
-/* 51 */
+/* 56 */
 /***/ (function(module, exports) {
 
 module.exports = require("apollo-link-http");
 
 /***/ }),
-/* 52 */
+/* 57 */
 /***/ (function(module, exports) {
 
 module.exports = require("apollo-cache-inmemory");
 
 /***/ }),
-/* 53 */
+/* 58 */
 /***/ (function(module, exports) {
 
 module.exports = require("isomorphic-unfetch");
 
 /***/ }),
-/* 54 */
+/* 59 */
 /***/ (function(module, exports) {
 
 module.exports = require("react-icons/lib/fa");
 
 /***/ }),
-/* 55 */,
-/* 56 */,
-/* 57 */,
-/* 58 */
-/***/ (function(module, exports) {
-
-module.exports = require("debounce");
-
-/***/ }),
-/* 59 */,
 /* 60 */,
 /* 61 */,
 /* 62 */,
@@ -1646,16 +1661,58 @@ module.exports = require("chance");
 /* 67 */,
 /* 68 */,
 /* 69 */,
-/* 70 */,
-/* 71 */,
+/* 70 */
+/***/ (function(module, exports) {
+
+module.exports = require("antd/lib/input/style/css");
+
+/***/ }),
+/* 71 */
+/***/ (function(module, exports) {
+
+module.exports = require("antd/lib/input");
+
+/***/ }),
 /* 72 */,
 /* 73 */,
-/* 74 */,
+/* 74 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_styled_components__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_styled_components___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_styled_components__);
+
+/* harmony default export */ __webpack_exports__["a"] = (__WEBPACK_IMPORTED_MODULE_0_styled_components___default.a.h3.withConfig({
+  displayName: "ServerErrorMessage",
+  componentId: "a0iz9s-0"
+})(["margin-top:0px;text-align:center;margin-bottom:10px;color:red;"]));
+
+/***/ }),
 /* 75 */,
-/* 76 */,
-/* 77 */,
-/* 78 */,
-/* 79 */,
+/* 76 */
+/***/ (function(module, exports) {
+
+module.exports = require("antd/lib/form/style/css");
+
+/***/ }),
+/* 77 */
+/***/ (function(module, exports) {
+
+module.exports = require("antd/lib/form");
+
+/***/ }),
+/* 78 */
+/***/ (function(module, exports) {
+
+module.exports = require("antd/lib/button/style/css");
+
+/***/ }),
+/* 79 */
+/***/ (function(module, exports) {
+
+module.exports = require("antd/lib/button");
+
+/***/ }),
 /* 80 */,
 /* 81 */,
 /* 82 */,
@@ -1667,7 +1724,53 @@ module.exports = require("chance");
 /* 88 */,
 /* 89 */,
 /* 90 */,
-/* 91 */
+/* 91 */,
+/* 92 */,
+/* 93 */,
+/* 94 */,
+/* 95 */,
+/* 96 */,
+/* 97 */,
+/* 98 */
+/***/ (function(module, exports) {
+
+module.exports = require("antd/lib/modal/style/css");
+
+/***/ }),
+/* 99 */
+/***/ (function(module, exports) {
+
+module.exports = require("antd/lib/modal");
+
+/***/ }),
+/* 100 */,
+/* 101 */
+/***/ (function(module, exports) {
+
+module.exports = require("react-google-recaptcha");
+
+/***/ }),
+/* 102 */
+/***/ (function(module, exports) {
+
+module.exports = require("react-portal");
+
+/***/ }),
+/* 103 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+var siteKey = '6LeV22cUAAAAAKfTTNudUknY3QzyXbe145H3m80f';
+/* harmony default export */ __webpack_exports__["a"] = (siteKey);
+
+/***/ }),
+/* 104 */
+/***/ (function(module, exports) {
+
+
+
+/***/ }),
+/* 105 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1685,7 +1788,7 @@ var head_ = __webpack_require__(16);
 var head__default = /*#__PURE__*/__webpack_require__.n(head_);
 
 // EXTERNAL MODULE: external "nprogress"
-var external__nprogress_ = __webpack_require__(43);
+var external__nprogress_ = __webpack_require__(47);
 var external__nprogress__default = /*#__PURE__*/__webpack_require__.n(external__nprogress_);
 
 // EXTERNAL MODULE: external "next/router"
@@ -1700,19 +1803,23 @@ var external__is_browser__default = /*#__PURE__*/__webpack_require__.n(external_
 var external__styled_components_ = __webpack_require__(9);
 var external__styled_components__default = /*#__PURE__*/__webpack_require__.n(external__styled_components_);
 
+// EXTERNAL MODULE: ../node_modules/antd/dist/antd.css
+var antd = __webpack_require__(48);
+var antd_default = /*#__PURE__*/__webpack_require__.n(antd);
+
 // EXTERNAL MODULE: ./lib/withRoot.js
-var withRoot = __webpack_require__(44);
+var withRoot = __webpack_require__(49);
 
 // EXTERNAL MODULE: external "@babel/runtime/regenerator"
 var regenerator_ = __webpack_require__(3);
 var regenerator__default = /*#__PURE__*/__webpack_require__.n(regenerator_);
 
 // EXTERNAL MODULE: external "debounce"
-var external__debounce_ = __webpack_require__(58);
+var external__debounce_ = __webpack_require__(38);
 var external__debounce__default = /*#__PURE__*/__webpack_require__.n(external__debounce_);
 
 // EXTERNAL MODULE: ./routes.js
-var routes = __webpack_require__(4);
+var routes = __webpack_require__(5);
 var routes_default = /*#__PURE__*/__webpack_require__.n(routes);
 
 // EXTERNAL MODULE: external "material-ui/styles"
@@ -1724,7 +1831,7 @@ var external__polished_ = __webpack_require__(10);
 var external__polished__default = /*#__PURE__*/__webpack_require__.n(external__polished_);
 
 // EXTERNAL MODULE: ./themeStyles/index.js
-var themeStyles = __webpack_require__(25);
+var themeStyles = __webpack_require__(27);
 
 // CONCATENATED MODULE: ./sharedStyledComponents/headerStyles.js
 
@@ -1786,7 +1893,19 @@ var HeaderNavLink_ActiveLink = function ActiveLink(_ref) {
 var styledComponents_HeaderLink = external__styled_components__default.a.a.withConfig({
   displayName: "styledComponents__HeaderLink",
   componentId: "x7gq1s-0"
-})(["box-sizing:border-box;position:relative;color:", ";text-decoration:none;transition:color 0.1s ease-in-out;cursor:pointer;padding:5px 5px;&:after{margin-top:6px;background:", ";max-width:", ";right:", ";bottom:0;content:\"  \";display:block;height:2px;left:10px;position:absolute;z-index:5;transition:max-width .2s ease-in-out;}&:hover{color:#fff;&:after{right:10px;max-width:100%;}}&:not(:first-of-type){margin-left:20px;}"], function (props) {
+})(["box-sizing:border-box;position:relative;color:", ";text-decoration:none;transition:color 0.1s ease-in-out;cursor:pointer;padding:5px 5px;&:after{margin-top:6px;background:", ";max-width:", ";right:", ";bottom:0;content:'  ';display:block;height:2px;left:10px;position:absolute;z-index:5;transition:max-width 0.2s ease-in-out;}&:hover{color:#fff;&:after{right:10px;max-width:100%;}}&:not(:first-of-type){margin-left:20px;}"], function (props) {
+  return props.active ? 'rgba(255,255,255,1);' : 'rgba(255,255,255,.9)';
+}, function (props) {
+  return props.theme.accentColor;
+}, function (props) {
+  return props.active ? '100%' : '0px';
+}, function (props) {
+  return props.active ? '10px' : '0';
+});
+var NavItem = external__styled_components__default.a.button.withConfig({
+  displayName: "styledComponents__NavItem",
+  componentId: "x7gq1s-1"
+})(["box-sizing:border-box;position:relative;color:", ";text-decoration:none;transition:color 0.1s ease-in-out;cursor:pointer;padding:5px 5px;font-weight:800;font-size:14px;background:transparent;border:none;outline:none;&:after{margin-top:6px;background:", ";max-width:", ";right:", ";bottom:0;content:'  ';display:block;height:2px;left:10px;position:absolute;z-index:5;transition:max-width 0.2s ease-in-out;}&:hover{color:#fff;&:after{right:10px;max-width:100%;}}&:not(:first-of-type){margin-left:20px;}"], function (props) {
   return props.active ? 'rgba(255,255,255,1);' : 'rgba(255,255,255,.9)';
 }, function (props) {
   return props.theme.accentColor;
@@ -1840,7 +1959,8 @@ var HeaderNav_styles = function styles(theme) {
     },
     loginWrapper: {
       display: 'flex',
-      marginRight: '5px'
+      marginRight: '5px',
+      fontSize: '14px'
     },
     logo: {
       height: 30
@@ -1871,24 +1991,20 @@ function (_React$Component) {
       value: function value() {
         var _this$props = _this.props,
             classes = _this$props.classes,
-            isAdmin = _this$props.isAdmin;
+            isAdmin = _this$props.isAdmin,
+            openLoginModal = _this$props.openLoginModal;
 
         if (_this.props.isLoggedIn) {
-          return external__react__default.a.createElement(LeftHeaderLinkWrapper, null, external__react__default.a.createElement(HeaderNavLink, {
-            route: isAdmin ? 'admin-dashboard' : 'dashboard',
-            prefetch: true
-          }, external__react__default.a.createElement(styledComponents_HeaderLink, null, "Dashboard")), external__react__default.a.createElement(styledComponents_HeaderLink, {
+          return external__react__default.a.createElement(LeftHeaderLinkWrapper, null, external__react__default.a.createElement(styledComponents_HeaderLink, {
             onClick: _this.props.onLogout
           }, "Log Out"));
         }
 
         return external__react__default.a.createElement(LeftHeaderLinkWrapper, null, external__react__default.a.createElement("span", {
           className: classes.loginWrapper
-        }, external__react__default.a.createElement(HeaderNavLink, {
-          route: "log-in",
-          href: "/log-in",
-          prefetch: true
-        }, external__react__default.a.createElement(styledComponents_HeaderLink, null, "Log In"))));
+        }, external__react__default.a.createElement(NavItem, {
+          onClick: openLoginModal
+        }, "Log In")));
       }
     }), Object.defineProperty(_assertThisInitialized(_this), "renderMiddleLinks", {
       configurable: true,
@@ -1901,7 +2017,7 @@ function (_React$Component) {
           prefetch: true
         }, external__react__default.a.createElement(styledComponents_HeaderLink, null, "Listings")), external__react__default.a.createElement(HeaderNavLink, {
           route: "listings",
-          href: "/listings",
+          href: "#",
           prefetch: true
         }, external__react__default.a.createElement(styledComponents_HeaderLink, null, "New Developments")), external__react__default.a.createElement(HeaderNavLink, {
           route: "about",
@@ -1926,8 +2042,9 @@ function (_React$Component) {
         prefetch: true
       }, external__react__default.a.createElement(HeaderLink, null, external__react__default.a.createElement("img", {
         className: classes.logo,
-        src: "/static/images/logo.png"
-      })))), this.renderLinks());
+        src: "/static/images/logo.png",
+        alt: "logo"
+      })))), this.renderMiddleLinks(), this.renderLinks());
     }
   }]);
 
@@ -2053,7 +2170,8 @@ function (_React$Component) {
       return external__react__default.a.createElement(frontEndComponents_HeaderNav, {
         isAdmin: this.props.isAdmin,
         isLoggedIn: this.props.isLoggedIn,
-        onLogout: this.onLogout
+        onLogout: this.onLogout,
+        openLoginModal: this.props.openLoginModal
       });
     }
   }]);
@@ -2071,7 +2189,7 @@ function (_React$Component) {
   componentId: "s1jy6wuu-0"
 })(["padding-top:60px;min-width:100%;height:100%;background-color:#fafafa;"]));
 // EXTERNAL MODULE: ./globalStyles/index.js
-var globalStyles = __webpack_require__(47);
+var globalStyles = __webpack_require__(52);
 
 // CONCATENATED MODULE: ./frontEndComponents/FrontEndLayout/styledComponents/index.js
 
@@ -2086,9 +2204,737 @@ var HeaderAndAppContentWrapper = external__styled_components__default.a.div.with
   componentId: "s108z15f-1"
 })(["width:100%;height:100%;"]);
 // EXTERNAL MODULE: ./constants/userTypes.js
-var userTypes = __webpack_require__(13);
+var userTypes = __webpack_require__(11);
 var userTypes_default = /*#__PURE__*/__webpack_require__.n(userTypes);
 
+// EXTERNAL MODULE: external "antd/lib/modal/style/css"
+var css_ = __webpack_require__(98);
+var css__default = /*#__PURE__*/__webpack_require__.n(css_);
+
+// EXTERNAL MODULE: external "antd/lib/modal"
+var modal_ = __webpack_require__(99);
+var modal__default = /*#__PURE__*/__webpack_require__.n(modal_);
+
+// EXTERNAL MODULE: external "antd/lib/button/style/css"
+var style_css_ = __webpack_require__(78);
+var style_css__default = /*#__PURE__*/__webpack_require__.n(style_css_);
+
+// EXTERNAL MODULE: external "antd/lib/button"
+var button_ = __webpack_require__(79);
+var button__default = /*#__PURE__*/__webpack_require__.n(button_);
+
+// EXTERNAL MODULE: external "antd/lib/icon/style/css"
+var icon_style_css_ = __webpack_require__(22);
+var icon_style_css__default = /*#__PURE__*/__webpack_require__.n(icon_style_css_);
+
+// EXTERNAL MODULE: external "antd/lib/icon"
+var icon_ = __webpack_require__(23);
+var icon__default = /*#__PURE__*/__webpack_require__.n(icon_);
+
+// EXTERNAL MODULE: external "antd/lib/form/style/css"
+var form_style_css_ = __webpack_require__(76);
+var form_style_css__default = /*#__PURE__*/__webpack_require__.n(form_style_css_);
+
+// EXTERNAL MODULE: external "antd/lib/form"
+var form_ = __webpack_require__(77);
+var form__default = /*#__PURE__*/__webpack_require__.n(form_);
+
+// EXTERNAL MODULE: external "antd/lib/input/style/css"
+var input_style_css_ = __webpack_require__(70);
+var input_style_css__default = /*#__PURE__*/__webpack_require__.n(input_style_css_);
+
+// EXTERNAL MODULE: external "antd/lib/input"
+var input_ = __webpack_require__(71);
+var input__default = /*#__PURE__*/__webpack_require__.n(input_);
+
+// EXTERNAL MODULE: external "material-ui/Grid"
+var Grid_ = __webpack_require__(20);
+var Grid__default = /*#__PURE__*/__webpack_require__.n(Grid_);
+
+// EXTERNAL MODULE: external "classnames"
+var external__classnames_ = __webpack_require__(4);
+var external__classnames__default = /*#__PURE__*/__webpack_require__.n(external__classnames_);
+
+// EXTERNAL MODULE: external "react-google-recaptcha"
+var external__react_google_recaptcha_ = __webpack_require__(101);
+var external__react_google_recaptcha__default = /*#__PURE__*/__webpack_require__.n(external__react_google_recaptcha_);
+
+// EXTERNAL MODULE: external "react-portal"
+var external__react_portal_ = __webpack_require__(102);
+var external__react_portal__default = /*#__PURE__*/__webpack_require__.n(external__react_portal_);
+
+// EXTERNAL MODULE: ./sharedStyledComponents/ServerErrorMessage.js
+var ServerErrorMessage = __webpack_require__(74);
+
+// EXTERNAL MODULE: ./constants/recaptchaSiteKey.js
+var recaptchaSiteKey = __webpack_require__(103);
+
+// EXTERNAL MODULE: ./static/css/login-sign-up-modals.css
+var login_sign_up_modals = __webpack_require__(104);
+var login_sign_up_modals_default = /*#__PURE__*/__webpack_require__.n(login_sign_up_modals);
+
+// CONCATENATED MODULE: ./frontEndComponents/LoginFormModal/index.js
+
+
+
+
+
+
+
+
+
+
+
+var LoginFormModal__dec, LoginFormModal__class;
+
+function LoginFormModal__typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { LoginFormModal__typeof = function _typeof(obj) { return typeof obj; }; } else { LoginFormModal__typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return LoginFormModal__typeof(obj); }
+
+function LoginFormModal__classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function LoginFormModal__defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function LoginFormModal__createClass(Constructor, protoProps, staticProps) { if (protoProps) LoginFormModal__defineProperties(Constructor.prototype, protoProps); if (staticProps) LoginFormModal__defineProperties(Constructor, staticProps); return Constructor; }
+
+function LoginFormModal__possibleConstructorReturn(self, call) { if (call && (LoginFormModal__typeof(call) === "object" || typeof call === "function")) { return call; } return LoginFormModal__assertThisInitialized(self); }
+
+function LoginFormModal__inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+function LoginFormModal__assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+var TextArea = input__default.a.TextArea;
+var FormItem = form__default.a.Item;
+
+var LoginFormModal_styles = function styles(theme) {
+  return {
+    root: {
+      display: 'flex',
+      flexDirection: 'column'
+    },
+    titleSection: {
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      height: 300,
+      width: '100%',
+      marginBottom: '50px',
+      fontFamily: theme.frontEnd.typography.fontFamily.sansSerif,
+      fontSize: '2.8rem',
+      color: '#fff',
+      backgroundColor: 'black'
+    },
+    formWrapper: {
+      padding: '20px 20px'
+    },
+    applicationTypeBtnsWrapper: {
+      display: 'flex',
+      justifyContent: 'center'
+    },
+    activePrimaryToggleBtn: {
+      backgroundColor: '#1890ff !important',
+      borderColor: '#1890ff !important',
+      color: '#fff !important',
+      '&:hover': {
+        backgroundColor: '#1890ff',
+        borderColor: '#1890ff',
+        color: '#fff'
+      }
+    },
+    verticalModalWrapper: {
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      '& .ant-modal': {
+        top: 0
+      }
+    },
+    forgotPassword: {
+      marginLeft: 'auto',
+      color: Object(external__polished_["lighten"])(0.1, '#16b'),
+      backgroundColor: 'transparent',
+      border: 'none',
+      cursor: 'pointer',
+      transition: 'color .2s ease-in-out',
+      outline: 'none',
+      '&:hover': {
+        color: Object(external__polished_["darken"])(0.05, '#16b'),
+        transition: 'color .3s ease-in-out'
+      }
+    },
+    forgotPasswordWrapper: {
+      display: 'flex',
+      justifyContent: 'flex-end',
+      width: '100%',
+      marginTop: 5
+    },
+    submitBtnWrapper: {
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      width: '100%',
+      height: 42,
+      marginTop: 15,
+      marginBottom: 10,
+      paddingLeft: '0',
+      paddingRight: '0',
+      fontSize: '1rem',
+      backgroundColor: '#272A2E !important',
+      borderColor: '#272A2E !important',
+      borderRadius: '3px',
+      color: '#fff !important',
+      transition: 'background-color .2s ease-in-out',
+      cursor: 'pointer',
+      '&:hover': {
+        backgroundColor: "".concat(Object(external__polished_["lighten"])(0.1, '#272A2E'), " !important"),
+        borderColor: "".concat(Object(external__polished_["lighten"])(0.1, '#272A2E'), " !important")
+      }
+    },
+    btnLoading: {
+      opacity: '.7',
+      pointerEvents: 'none'
+    },
+    formSubmittingWrapper: {
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'center',
+      alignItems: 'center',
+      width: '100%'
+    },
+    recaptchaWrapper: {
+      '& div div': {
+        display: 'flex',
+        justifyContent: 'center'
+      }
+    }
+  };
+};
+
+var LoginFormModal_LoginModal = (LoginFormModal__dec = Object(styles_["withStyles"])(LoginFormModal_styles), LoginFormModal__dec(LoginFormModal__class = Object(external__mobx_react_["observer"])(LoginFormModal__class =
+/*#__PURE__*/
+function (_React$Component) {
+  LoginFormModal__inherits(LoginModal, _React$Component);
+
+  function LoginModal(props) {
+    var _this;
+
+    LoginFormModal__classCallCheck(this, LoginModal);
+
+    _this = LoginFormModal__possibleConstructorReturn(this, (LoginModal.__proto__ || Object.getPrototypeOf(LoginModal)).call(this, props));
+    Object.defineProperty(LoginFormModal__assertThisInitialized(_this), "formSubmitted", {
+      configurable: true,
+      enumerable: true,
+      writable: true,
+      value: false
+    });
+    Object.defineProperty(LoginFormModal__assertThisInitialized(_this), "state", {
+      configurable: true,
+      enumerable: true,
+      writable: true,
+      value: {
+        errorsFromServer: '',
+        submittingFormToServer: false,
+        formSuccessfullySubmitted: false,
+        loadingNextPage: false,
+        isForgotPasswordType: false,
+        passwordSuccessfullyReset: false,
+        formValues: null,
+        captchaCompleted: false
+      }
+    });
+    Object.defineProperty(LoginFormModal__assertThisInitialized(_this), "componentDidMount", {
+      configurable: true,
+      enumerable: true,
+      writable: true,
+      value: function value() {
+        _this.props.getFormApi(_this.props.form);
+      }
+    });
+    Object.defineProperty(LoginFormModal__assertThisInitialized(_this), "resetState", {
+      configurable: true,
+      enumerable: true,
+      writable: true,
+      value: function value() {
+        _this.setState({
+          errorsFromServer: '',
+          submittingFormToServer: false,
+          formSuccessfullySubmitted: false,
+          loadingNextPage: false,
+          isForgotPasswordType: false,
+          passwordSuccessfullyReset: false,
+          formValues: null,
+          captchaCompleted: false
+        });
+      }
+    });
+    Object.defineProperty(LoginFormModal__assertThisInitialized(_this), "renderServerErrorMessage", {
+      configurable: true,
+      enumerable: true,
+      writable: true,
+      value: function value() {
+        return external__react__default.a.createElement(ServerErrorMessage["a" /* default */], null, "".concat(_this.state.errorsFromServer));
+      }
+    });
+    Object.defineProperty(LoginFormModal__assertThisInitialized(_this), "toggleSubmittingFormToServer", {
+      configurable: true,
+      enumerable: true,
+      writable: true,
+      value: function value() {
+        var bool = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : !_this.state.submittingFormToServer;
+        var options = arguments.length > 1 ? arguments[1] : undefined;
+
+        _this.setState({
+          submittingFormToServer: bool,
+          loadingNextPage: options && options.loadingNextPage ? true : _this.state.loadingNextPage
+        });
+      }
+    });
+    Object.defineProperty(LoginFormModal__assertThisInitialized(_this), "toggleIsForgotPasswordType", {
+      configurable: true,
+      enumerable: true,
+      writable: true,
+      value: function value() {
+        if (_this.state.errorsFromServer === "Please complete the captcha to ensure that you're not a robot.") {
+          _this.setState({
+            errorsFromServer: '',
+            isForgotPasswordType: !_this.state.isForgotPasswordType,
+            captchaCompleted: false
+          });
+        } else {
+          _this.setState({
+            isForgotPasswordType: !_this.state.isForgotPasswordType,
+            captchaCompleted: false
+          });
+        }
+      }
+    });
+    Object.defineProperty(LoginFormModal__assertThisInitialized(_this), "closeLoginModal", {
+      configurable: true,
+      enumerable: true,
+      writable: true,
+      value: function value() {
+        _this.props.closeLoginModal();
+
+        _this.setState({
+          isForgotPasswordType: false,
+          formValues: null
+        });
+
+        if (_this._Recaptcha) {
+          _this._Recaptcha.reset();
+        }
+      }
+    });
+    Object.defineProperty(LoginFormModal__assertThisInitialized(_this), "handleValidate", {
+      configurable: true,
+      enumerable: true,
+      writable: true,
+      value: function value(e) {
+        if (e && e.preventDefault) e.preventDefault();
+        _this.formSubmitted = true;
+
+        if (!_this.state.captchaCompleted) {
+          _this.setState({
+            errorsFromServer: "Please complete the captcha to ensure that you're not a robot."
+          });
+
+          return;
+        } else if (_this.state.errorsFromServer === "Please complete the captcha to ensure that you're not a robot.") {
+          _this.setState({
+            errorsFromServer: ''
+          });
+        }
+
+        _this.props.form.validateFields(function (err, values) {
+          if (!err) {
+            if (_this.state.isForgotPasswordType) {
+              _this.handleSubmitForgotPassword(values);
+            } else {
+              _this.handleSubmitLogin(values);
+            }
+          }
+        });
+      }
+    });
+    Object.defineProperty(LoginFormModal__assertThisInitialized(_this), "handleSubmitLogin", {
+      configurable: true,
+      enumerable: true,
+      writable: true,
+      value: function value(values) {
+        _this.toggleSubmittingFormToServer(true);
+
+        _this.props.loginUser(values).then(function (res) {
+          var hasErrors;
+
+          if (res.error) {
+            _this.setState({
+              errorsFromServer: typeof res.error === 'string' ? res.error : res.error.message
+            });
+
+            hasErrors = true;
+          }
+
+          if (_this.state.errorsFromServer && !hasErrors) {
+            _this.setState({
+              errorsFromServer: ''
+            });
+          }
+
+          if (hasErrors) {
+            _this.toggleSubmittingFormToServer(false);
+
+            return;
+          }
+
+          var canAccessBackend = [userTypes["agent"], userTypes["admin"], userTypes["superAdmin"]].includes(res.user.role);
+
+          if (canAccessBackend) {
+            _this.toggleSubmittingFormToServer(false, {
+              loadingNextPage: true
+            });
+          } else {
+            _this.toggleSubmittingFormToServer(false);
+          }
+
+          console.log(routes["Router"].pathname);
+
+          if (res.user) {
+            _this.setState({
+              formSuccessfullySubmitted: true
+            });
+
+            console.log(res.user.role);
+
+            if (res.user.role === userTypes["agent"]) {
+              routes["Router"].pushRoute('dashboard');
+            } else if (res.user.role === userTypes["admin"] || res.user.role === userTypes["superAdmin"]) {
+              routes["Router"].pushRoute('admin-dashboard');
+            } else if (routes["Router"].pathname === '/forgot-password') {
+              routes["Router"].pushRoute('/');
+            } else {
+              _this.closeLoginModal();
+            }
+          } else {
+            _this.setState({
+              errorsFromServer: "We're sorry, there was an error processing your request."
+            });
+          }
+        }).catch(function (err) {
+          _this.toggleSubmittingFormToServer(false);
+
+          console.log(err);
+        });
+      }
+    });
+    Object.defineProperty(LoginFormModal__assertThisInitialized(_this), "handleSubmitForgotPassword", {
+      configurable: true,
+      enumerable: true,
+      writable: true,
+      value: function value(values) {
+        _this.toggleSubmittingFormToServer(true);
+
+        _this.props.userForgotPassword(values.email).then(function (res) {
+          console.log(res);
+
+          _this.toggleSubmittingFormToServer(false);
+
+          var hasErrors;
+
+          if (res.error) {
+            _this.setState({
+              errorsFromServer: typeof res.error === 'string' ? res.error : res.error.message
+            });
+
+            hasErrors = true;
+            return;
+          }
+
+          if (_this.state.errorsFromServer) {
+            _this.setState({
+              errorsFromServer: ''
+            });
+          }
+
+          if (!hasErrors) {
+            _this.setState({
+              formSuccessfullySubmitted: true,
+              passwordSuccessfullyReset: true
+            });
+          }
+        }).catch(function (err) {
+          _this.toggleSubmittingFormToServer(false);
+
+          console.log(err);
+        });
+      }
+    });
+    _this.handleSubmit = external__debounce__default()(_this.handleSubmit, 300);
+    return _this;
+  }
+
+  LoginFormModal__createClass(LoginModal, [{
+    key: "render",
+    value: function render() {
+      var _this2 = this;
+
+      var _props = this.props,
+          classes = _props.classes,
+          loginModalOpen = _props.loginModalOpen;
+      var _state = this.state,
+          formSuccessfullySubmitted = _state.formSuccessfullySubmitted,
+          isForgotPasswordType = _state.isForgotPasswordType,
+          submittingFormToServer = _state.submittingFormToServer,
+          loadingNextPage = _state.loadingNextPage,
+          passwordSuccessfullyReset = _state.passwordSuccessfullyReset;
+      var _props$form = this.props.form,
+          getFieldDecorator = _props$form.getFieldDecorator,
+          getFieldsError = _props$form.getFieldsError,
+          getFieldError = _props$form.getFieldError,
+          isFieldTouched = _props$form.isFieldTouched;
+      var emailError = (isFieldTouched('email') || this.formSubmitted) && getFieldError('email');
+      var passwordError = (isFieldTouched('password') || this.formSubmitted) && getFieldError('password');
+      return external__react__default.a.createElement(modal__default.a, {
+        title: this.state.isForgotPasswordType ? 'Forgot Password' : 'Log In',
+        visible: loginModalOpen,
+        onCancel: this.closeLoginModal,
+        wrapClassName: external__classnames__default()(classes.verticalModalWrapper, 'login-modal'),
+        footer: null,
+        destroyOnClose: true,
+        closable: !submittingFormToServer && !loadingNextPage,
+        maskClosable: !submittingFormToServer && !loadingNextPage,
+        afterClose: function afterClose() {
+          return _this2.resetState();
+        }
+      }, this.state.errorsFromServer ? this.renderServerErrorMessage() : null, external__react__default.a.createElement("div", {
+        style: {
+          display: submittingFormToServer || loadingNextPage || passwordSuccessfullyReset ? 'none' : undefined
+        }
+      }, external__react__default.a.createElement(form__default.a, {
+        layout: "horizontal",
+        onSubmit: this.handleSubmit
+      }, !isForgotPasswordType && external__react__default.a.createElement(Grid__default.a, {
+        container: true,
+        spacing: 16
+      }, external__react__default.a.createElement(Grid__default.a, {
+        item: true,
+        xs: 12
+      }, external__react__default.a.createElement(FormItem, {
+        validateStatus: emailError ? 'error' : '',
+        help: emailError || ''
+      }, getFieldDecorator('email', {
+        rules: [{
+          required: true,
+          message: 'Please input your email address!'
+        }]
+      })(external__react__default.a.createElement(input__default.a, {
+        type: "email",
+        id: "email1",
+        required: true,
+        size: "large",
+        disabled: formSuccessfullySubmitted,
+        prefix: external__react__default.a.createElement(icon__default.a, {
+          type: "mail",
+          style: {
+            color: 'rgba(0,0,0,.25)'
+          }
+        }),
+        placeholder: "Email"
+      })))), external__react__default.a.createElement(Grid__default.a, {
+        item: true,
+        xs: 12
+      }, external__react__default.a.createElement(FormItem, {
+        validateStatus: passwordError ? 'error' : '',
+        help: passwordError || ''
+      }, getFieldDecorator('password', {
+        rules: [{
+          required: true,
+          message: 'Please input your password!'
+        }]
+      })(external__react__default.a.createElement(input__default.a, {
+        type: "password",
+        size: "large",
+        required: true,
+        disabled: formSuccessfullySubmitted,
+        prefix: external__react__default.a.createElement(icon__default.a, {
+          type: "lock",
+          style: {
+            color: 'rgba(0,0,0,.25)'
+          }
+        }),
+        placeholder: "Password"
+      }))))), isForgotPasswordType && external__react__default.a.createElement(Grid__default.a, {
+        container: true,
+        spacing: 16
+      }, external__react__default.a.createElement(Grid__default.a, {
+        item: true,
+        xs: 12
+      }, external__react__default.a.createElement(FormItem, {
+        validateStatus: emailError ? 'error' : '',
+        help: emailError || ''
+      }, getFieldDecorator('email', {
+        rules: [{
+          required: true,
+          message: 'Please input your email address!'
+        }]
+      })(external__react__default.a.createElement(input__default.a, {
+        type: "email",
+        required: true,
+        size: "large",
+        disabled: formSuccessfullySubmitted,
+        prefix: external__react__default.a.createElement(icon__default.a, {
+          type: "mail",
+          style: {
+            color: 'rgba(0,0,0,.25)'
+          }
+        }),
+        placeholder: "Email"
+      })))))), !this.state.isForgotPasswordType && external__react__default.a.createElement("div", {
+        className: classes.recaptchaWrapper
+      }, external__react__default.a.createElement(external__react_google_recaptcha__default.a, {
+        ref: function ref(_ref) {
+          return _this2._Recaptcha = _ref;
+        },
+        sitekey: recaptchaSiteKey["a" /* default */],
+        onChange: function onChange(val) {
+          if (!val) {
+            _this2.setState({
+              captchaCompleted: false
+            });
+          } else {
+            if (_this2.state.errorsFromServer === "Please complete the captcha to ensure that you're not a robot.") {
+              _this2.setState({
+                errorsFromServer: '',
+                captchaCompleted: true
+              });
+            } else {
+              _this2.setState({
+                captchaCompleted: true
+              });
+            }
+          }
+        }
+      })), this.state.isForgotPasswordType && external__react__default.a.createElement("div", {
+        className: classes.recaptchaWrapper
+      }, external__react__default.a.createElement(external__react_google_recaptcha__default.a, {
+        ref: function ref(_ref2) {
+          return _this2._Recaptcha = _ref2;
+        },
+        sitekey: recaptchaSiteKey["a" /* default */],
+        onChange: function onChange(val) {
+          if (!val) {
+            _this2.setState({
+              captchaCompleted: false
+            });
+          } else {
+            if (_this2.state.errorsFromServer === "Please complete the captcha to ensure that you're not a robot.") {
+              _this2.setState({
+                errorsFromServer: '',
+                captchaCompleted: true
+              });
+            } else {
+              _this2.setState({
+                captchaCompleted: true
+              });
+            }
+          }
+        }
+      })), external__react__default.a.createElement(button__default.a, {
+        onClick: this.handleValidate,
+        disabled: formSuccessfullySubmitted || submittingFormToServer,
+        className: external__classnames__default()(classes.submitBtnWrapper, submittingFormToServer && classes.btnLoading),
+        type: "primary"
+      }, external__react__default.a.createElement("span", null, this.state.submittingFormToServer && external__react__default.a.createElement(icon__default.a, {
+        type: "loading",
+        style: {
+          marginRight: '10px',
+          color: '#fff'
+        }
+      }), isForgotPasswordType ? 'Reset Password' : 'Submit')), !formSuccessfullySubmitted && !isForgotPasswordType && external__react__default.a.createElement("div", {
+        className: classes.forgotPasswordWrapper
+      }, external__react__default.a.createElement("button", {
+        onClick: this.toggleIsForgotPasswordType,
+        className: classes.forgotPassword
+      }, "Forgot Password?")), !formSuccessfullySubmitted && isForgotPasswordType && external__react__default.a.createElement("div", {
+        className: classes.forgotPasswordWrapper
+      }, external__react__default.a.createElement("button", {
+        onClick: this.toggleIsForgotPasswordType,
+        className: classes.forgotPassword
+      }, "Log In?"))), passwordSuccessfullyReset ? external__react__default.a.createElement("div", {
+        className: classes.formSubmittingWrapper
+      }, external__react__default.a.createElement("div", {
+        className: classes.progressBarExplanation
+      }, "Password reset email sent!")) : null, submittingFormToServer || loadingNextPage ? external__react__default.a.createElement("div", {
+        className: classes.formSubmittingWrapper
+      }, external__react__default.a.createElement(icon__default.a, {
+        type: "loading",
+        style: {
+          color: '#000',
+          fontSize: '4rem',
+          paddingBottom: '10px'
+        }
+      }), external__react__default.a.createElement("div", {
+        className: classes.progressBarExplanation
+      }, loadingNextPage ? 'Loading Page...' : 'Finishing submission...')) : null);
+    }
+  }]);
+
+  return LoginModal;
+}(external__react__default.a.Component)) || LoginFormModal__class) || LoginFormModal__class);
+/* harmony default export */ var LoginFormModal = (form__default.a.create()(LoginFormModal_LoginModal));
+// EXTERNAL MODULE: external "graphql-request"
+var external__graphql_request_ = __webpack_require__(6);
+var external__graphql_request__default = /*#__PURE__*/__webpack_require__.n(external__graphql_request_);
+
+// EXTERNAL MODULE: ./constants/graphQLEndpoint.js
+var graphQLEndpoint = __webpack_require__(7);
+
+// CONCATENATED MODULE: ./effects/users/userForgotPassword.js
+
+
+var query = "\n    mutation userForgotPassword($email: String!) {\n      userForgotPassword(email: $email) {\n        wasSuccessful\n        userErrors {\n          field\n          message\n        }\n      }\n    }\n  ";
+var client = new external__graphql_request_["GraphQLClient"](graphQLEndpoint["a" /* default */], {
+  credentials: 'same-origin'
+});
+
+var createAgent = function createAgent(email) {
+  var variables = {
+    email: email
+  };
+  var finalResponseObj = {
+    error: null
+  };
+  return client.request(query, variables).then(function (result) {
+    var res = result;
+    var data = res.userForgotPassword;
+
+    if (data.userErrors.length) {
+      finalResponseObj.error = {
+        message: data.userErrors[0].message,
+        field: data.userErrors[0].field
+      };
+    }
+
+    return finalResponseObj;
+  }).catch(function (err) {
+    console.log(err);
+    finalResponseObj.error = 'Error reaching the server';
+    return finalResponseObj;
+  });
+};
+
+/* harmony default export */ var userForgotPassword = (createAgent);
 // CONCATENATED MODULE: ./frontEndComponents/FrontEndLayout/index.js
 var FrontEndLayout__class;
 
@@ -2102,12 +2948,15 @@ function FrontEndLayout__createClass(Constructor, protoProps, staticProps) { if 
 
 function FrontEndLayout__possibleConstructorReturn(self, call) { if (call && (FrontEndLayout__typeof(call) === "object" || typeof call === "function")) { return call; } return FrontEndLayout__assertThisInitialized(self); }
 
-function FrontEndLayout__assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
 function FrontEndLayout__inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+function FrontEndLayout__assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 
 
  // import DevTools from 'mobx-react-devtools';
+
+
+
 
 
 
@@ -2153,18 +3002,45 @@ function (_Component) {
     FrontEndLayout__classCallCheck(this, Layout);
 
     _this = FrontEndLayout__possibleConstructorReturn(this, (Layout.__proto__ || Object.getPrototypeOf(Layout)).call(this, props));
-    _this.state = {};
+    Object.defineProperty(FrontEndLayout__assertThisInitialized(_this), "openLoginModal", {
+      configurable: true,
+      enumerable: true,
+      writable: true,
+      value: function value() {
+        console.log('run');
+
+        _this.setState({
+          loginModalOpen: true
+        });
+      }
+    });
+    Object.defineProperty(FrontEndLayout__assertThisInitialized(_this), "closeLoginModal", {
+      configurable: true,
+      enumerable: true,
+      writable: true,
+      value: function value() {
+        _this.setState({
+          loginModalOpen: false
+        });
+      }
+    });
+    _this.state = {
+      loginModalOpen: false
+    };
     return _this;
   }
 
   FrontEndLayout__createClass(Layout, [{
     key: "render",
     value: function render() {
+      var _this2 = this;
+
       var pathname = this.props.router.pathname;
       var _props$UserStore = this.props.UserStore,
           isLoggedIn = _props$UserStore.isLoggedIn,
           logoutUser = _props$UserStore.logoutUser,
-          userRole = _props$UserStore.userRole;
+          userRole = _props$UserStore.userRole,
+          loginUser = _props$UserStore.loginUser;
       var isAdmin = userRole === userTypes["admin"] || userRole === userTypes["superAdmin"];
       return external__react__default.a.createElement("div", null, external__react__default.a.createElement(head__default.a, null, external__react__default.a.createElement("title", null, this.props.title ? this.props.title : 'Real Estate App'), external__react__default.a.createElement("link", {
         rel: "stylesheet",
@@ -2188,8 +3064,17 @@ function (_Component) {
         isLoggedIn: isLoggedIn,
         logoutUser: logoutUser,
         headerBoxShadowOff: this.props.headerBoxShadowOff,
-        isAdmin: isAdmin
-      }), external__react__default.a.createElement(AppContentWrapper, null, this.props.children)))));
+        isAdmin: isAdmin,
+        openLoginModal: this.openLoginModal
+      }), external__react__default.a.createElement(AppContentWrapper, null, this.props.children), external__react__default.a.createElement(LoginFormModal, {
+        loginUser: loginUser,
+        loginModalOpen: this.state.loginModalOpen,
+        closeLoginModal: this.closeLoginModal,
+        getFormApi: function getFormApi(formApi) {
+          return _this2._formApi = formApi;
+        },
+        userForgotPassword: userForgotPassword
+      })))));
     }
   }]);
 
@@ -2199,30 +3084,11 @@ function (_Component) {
 /* harmony default export */ var FrontEndLayout = __webpack_exports__["a"] = (Object(router_["withRouter"])(Object(withRoot["a" /* default */])(FrontEndLayout_Layout)));
 
 /***/ }),
-/* 92 */,
-/* 93 */,
-/* 94 */,
-/* 95 */,
-/* 96 */,
-/* 97 */,
-/* 98 */,
-/* 99 */,
-/* 100 */,
-/* 101 */,
-/* 102 */,
-/* 103 */,
-/* 104 */,
-/* 105 */,
 /* 106 */,
 /* 107 */,
 /* 108 */,
 /* 109 */,
-/* 110 */
-/***/ (function(module, exports) {
-
-module.exports = require("faker");
-
-/***/ }),
+/* 110 */,
 /* 111 */,
 /* 112 */,
 /* 113 */,
@@ -2238,7 +3104,12 @@ module.exports = require("faker");
 /* 123 */,
 /* 124 */,
 /* 125 */,
-/* 126 */,
+/* 126 */
+/***/ (function(module, exports) {
+
+module.exports = require("faker");
+
+/***/ }),
 /* 127 */,
 /* 128 */,
 /* 129 */,
@@ -2249,22 +3120,42 @@ module.exports = require("faker");
 /* 134 */,
 /* 135 */,
 /* 136 */,
-/* 137 */
+/* 137 */,
+/* 138 */,
+/* 139 */,
+/* 140 */,
+/* 141 */,
+/* 142 */,
+/* 143 */,
+/* 144 */,
+/* 145 */,
+/* 146 */,
+/* 147 */,
+/* 148 */,
+/* 149 */,
+/* 150 */,
+/* 151 */,
+/* 152 */,
+/* 153 */,
+/* 154 */,
+/* 155 */,
+/* 156 */,
+/* 157 */,
+/* 158 */
 /***/ (function(module, exports) {
 
 module.exports = require("@material-ui/icons/FavoriteBorder");
 
 /***/ }),
-/* 138 */
+/* 159 */
 /***/ (function(module, exports) {
 
 module.exports = require("@material-ui/icons/Favorite");
 
 /***/ }),
-/* 139 */,
-/* 140 */,
-/* 141 */,
-/* 142 */
+/* 160 */,
+/* 161 */,
+/* 162 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2274,14 +3165,14 @@ module.exports = require("@material-ui/icons/Favorite");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_mobx_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_mobx_react__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_material_ui_styles__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_material_ui_styles___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_material_ui_styles__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__material_ui_icons_FavoriteBorder__ = __webpack_require__(137);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__material_ui_icons_FavoriteBorder__ = __webpack_require__(158);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__material_ui_icons_FavoriteBorder___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__material_ui_icons_FavoriteBorder__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__material_ui_icons_Favorite__ = __webpack_require__(138);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__material_ui_icons_Favorite__ = __webpack_require__(159);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__material_ui_icons_Favorite___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__material_ui_icons_Favorite__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_classnames__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_classnames__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_classnames___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_classnames__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__utils_stringUtils__ = __webpack_require__(17);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__routes__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__routes__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__routes___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7__routes__);
 var _dec, _class;
 
@@ -2500,31 +3391,6 @@ function (_Component) {
 /* harmony default export */ __webpack_exports__["a"] = (ListingCard);
 
 /***/ }),
-/* 143 */,
-/* 144 */,
-/* 145 */,
-/* 146 */,
-/* 147 */,
-/* 148 */,
-/* 149 */,
-/* 150 */,
-/* 151 */,
-/* 152 */,
-/* 153 */,
-/* 154 */,
-/* 155 */,
-/* 156 */,
-/* 157 */,
-/* 158 */,
-/* 159 */,
-/* 160 */
-/***/ (function(module, exports) {
-
-module.exports = require("buildo-react-components/lib/FormattedText");
-
-/***/ }),
-/* 161 */,
-/* 162 */,
 /* 163 */,
 /* 164 */,
 /* 165 */,
@@ -2536,7 +3402,12 @@ module.exports = require("buildo-react-components/lib/FormattedText");
 /* 171 */,
 /* 172 */,
 /* 173 */,
-/* 174 */,
+/* 174 */
+/***/ (function(module, exports) {
+
+module.exports = require("buildo-react-components/lib/FormattedText");
+
+/***/ }),
 /* 175 */,
 /* 176 */,
 /* 177 */,
@@ -2563,14 +3434,23 @@ module.exports = require("buildo-react-components/lib/FormattedText");
 /* 198 */,
 /* 199 */,
 /* 200 */,
-/* 201 */
+/* 201 */,
+/* 202 */,
+/* 203 */,
+/* 204 */,
+/* 205 */,
+/* 206 */,
+/* 207 */,
+/* 208 */,
+/* 209 */,
+/* 210 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(202);
+module.exports = __webpack_require__(211);
 
 
 /***/ }),
-/* 202 */
+/* 211 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2588,21 +3468,21 @@ var external__mobx_react__default = /*#__PURE__*/__webpack_require__.n(external_
 var external__is_browser_ = __webpack_require__(8);
 var external__is_browser__default = /*#__PURE__*/__webpack_require__.n(external__is_browser_);
 
-// EXTERNAL MODULE: ./frontEndComponents/FrontEndLayout/index.js + 7 modules
-var FrontEndLayout = __webpack_require__(91);
+// EXTERNAL MODULE: ./frontEndComponents/FrontEndLayout/index.js + 9 modules
+var FrontEndLayout = __webpack_require__(105);
 
 // EXTERNAL MODULE: ./models/index.js + 8 modules
-var models = __webpack_require__(22);
+var models = __webpack_require__(26);
 
 // EXTERNAL MODULE: ./lib/withData.js + 2 modules
-var withData = __webpack_require__(49);
+var withData = __webpack_require__(54);
 
 // EXTERNAL MODULE: external "chance"
 var external__chance_ = __webpack_require__(64);
 var external__chance__default = /*#__PURE__*/__webpack_require__.n(external__chance_);
 
 // EXTERNAL MODULE: external "faker"
-var external__faker_ = __webpack_require__(110);
+var external__faker_ = __webpack_require__(126);
 var external__faker__default = /*#__PURE__*/__webpack_require__.n(external__faker_);
 
 // EXTERNAL MODULE: external "material-ui/styles"
@@ -2610,15 +3490,15 @@ var styles_ = __webpack_require__(2);
 var styles__default = /*#__PURE__*/__webpack_require__.n(styles_);
 
 // EXTERNAL MODULE: external "classnames"
-var external__classnames_ = __webpack_require__(5);
+var external__classnames_ = __webpack_require__(4);
 var external__classnames__default = /*#__PURE__*/__webpack_require__.n(external__classnames_);
 
 // EXTERNAL MODULE: external "buildo-react-components/lib/FormattedText"
-var FormattedText_ = __webpack_require__(160);
+var FormattedText_ = __webpack_require__(174);
 var FormattedText__default = /*#__PURE__*/__webpack_require__.n(FormattedText_);
 
 // EXTERNAL MODULE: external "material-ui/Snackbar"
-var Snackbar_ = __webpack_require__(28);
+var Snackbar_ = __webpack_require__(31);
 var Snackbar__default = /*#__PURE__*/__webpack_require__.n(Snackbar_);
 
 // EXTERNAL MODULE: external "material-ui/Button"
@@ -2630,31 +3510,31 @@ var IconButton_ = __webpack_require__(15);
 var IconButton__default = /*#__PURE__*/__webpack_require__.n(IconButton_);
 
 // EXTERNAL MODULE: external "@material-ui/icons/Close"
-var Close_ = __webpack_require__(29);
+var Close_ = __webpack_require__(33);
 var Close__default = /*#__PURE__*/__webpack_require__.n(Close_);
 
 // EXTERNAL MODULE: external "buildo-react-components/lib/Input"
-var Input_ = __webpack_require__(203);
+var Input_ = __webpack_require__(212);
 var Input__default = /*#__PURE__*/__webpack_require__.n(Input_);
 
 // EXTERNAL MODULE: external "react-textarea-autosize"
-var external__react_textarea_autosize_ = __webpack_require__(204);
+var external__react_textarea_autosize_ = __webpack_require__(213);
 var external__react_textarea_autosize__default = /*#__PURE__*/__webpack_require__.n(external__react_textarea_autosize_);
 
 // EXTERNAL MODULE: external "material-ui/Tooltip"
-var Tooltip_ = __webpack_require__(12);
+var Tooltip_ = __webpack_require__(13);
 var Tooltip__default = /*#__PURE__*/__webpack_require__.n(Tooltip_);
 
 // EXTERNAL MODULE: external "react-icons/lib/fa"
-var fa_ = __webpack_require__(54);
+var fa_ = __webpack_require__(59);
 var fa__default = /*#__PURE__*/__webpack_require__.n(fa_);
 
 // EXTERNAL MODULE: external "material-ui/Grid"
-var Grid_ = __webpack_require__(33);
+var Grid_ = __webpack_require__(20);
 var Grid__default = /*#__PURE__*/__webpack_require__.n(Grid_);
 
 // EXTERNAL MODULE: ./frontEndComponents/ListingCard/index.js
-var ListingCard = __webpack_require__(142);
+var ListingCard = __webpack_require__(162);
 
 // CONCATENATED MODULE: ./frontEndComponents/AgentProfile/ListingsSection.js
 var _dec, _class;
@@ -3236,7 +4116,7 @@ function (_Component) {
 
 /* harmony default export */ var frontEndContainers_AgentProfile = (AgentProfile_ProfileContainer);
 // EXTERNAL MODULE: ./routes.js
-var routes = __webpack_require__(4);
+var routes = __webpack_require__(5);
 var routes_default = /*#__PURE__*/__webpack_require__.n(routes);
 
 // CONCATENATED MODULE: ./pages/agent.js
@@ -3315,13 +4195,13 @@ function (_React$Component) {
 /* harmony default export */ var pages_agent = __webpack_exports__["default"] = (Object(withData["a" /* default */])(agent_Listing));
 
 /***/ }),
-/* 203 */
+/* 212 */
 /***/ (function(module, exports) {
 
 module.exports = require("buildo-react-components/lib/Input");
 
 /***/ }),
-/* 204 */
+/* 213 */
 /***/ (function(module, exports) {
 
 module.exports = require("react-textarea-autosize");

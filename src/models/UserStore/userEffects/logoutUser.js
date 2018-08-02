@@ -38,7 +38,7 @@ async function logoutUser(self) {
     finalResponseObj.error = data.userError;
   }
 
-  if (!finalResponseObj.error) {
+  if (data.wasSuccessful) {
     self.unsetUser();
   }
 

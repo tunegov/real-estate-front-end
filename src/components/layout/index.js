@@ -6,6 +6,7 @@ import NProgress from 'nprogress';
 import Router, { withRouter } from 'next/router';
 import isBrowser from 'is-browser';
 import { ThemeProvider } from 'styled-components';
+import 'antd/dist/antd.css';
 import withRoot from '../../lib/withRoot';
 import themeStyles from '../../themeStyles';
 import globalStyles from '../../globalStyles';
@@ -43,6 +44,17 @@ class Layout extends Component {
     this.state = {};
   }
 
+  componentDidMount() {
+    document.body.classList.add('app-body-class');
+  }
+
+  componentWillUnmount() {
+    document.body.className = document.body.className.replace(
+      /\bapp-body-class\b/g,
+      ''
+    );
+  }
+
   render() {
     const { UIStore, UserStore } = this.props;
 
@@ -53,8 +65,8 @@ class Layout extends Component {
       fullScreenLoaderText,
       toggleFullScreenLoader,
     } = UIStore;
-    const logoutUser = () => {
-      const { error } = logout();
+    const logoutUser = async () => {
+      const { error } = await logout();
       if (error) {
         // TODO: add user notification of an logout error
         console.log(error);
@@ -71,7 +83,7 @@ class Layout extends Component {
               ? this.props.title
               : 'Reyes & Elsamad Real Estate'}
           </title>
-          {/* Import CSS for nprogress */}
+
           <link
             rel="stylesheet"
             type="text/css"

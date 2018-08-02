@@ -19,7 +19,7 @@ export const agentSideLinks = [
     iconFontSize: 28,
     iconLeft: '12px',
   },
-  { name: 'Deals', route: 'deals', icon: DealsIcon },
+  { name: 'The Vault', route: 'deals', icon: DealsIcon },
   { name: 'Invoices', route: 'invoices', icon: InvoicesIcon, iconFontSize: 20 },
   { name: 'Agents', route: 'agents', icon: AgentsIcon, iconFontSize: 24 },
   /*

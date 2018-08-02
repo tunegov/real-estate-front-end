@@ -2,7 +2,6 @@ import React from 'react';
 import { observer } from 'mobx-react';
 import { withStyles } from 'material-ui/styles';
 import classnames from 'classnames';
-import { CardElement } from 'react-stripe-elements';
 import Grid from 'material-ui/Grid';
 import { Form, Icon, Input, Button, Divider, Select, Modal } from 'antd';
 import { states, countriesArrayWithCodes } from '../../utils/constants';
@@ -352,12 +351,7 @@ class Application extends React.Component {
                   <Divider>Card Details</Divider>
                 </Grid>
               </Grid>
-              <label>
-                <CardElement
-                  style={{ base: { fontSize: '18px' } }}
-                  onChange={cardElementOnChange}
-                />
-              </label>
+
               <div className={classnames(classes.paymentBtnWrapper)}>
                 <Button
                   htmlType="submit"

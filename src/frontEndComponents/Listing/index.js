@@ -104,6 +104,12 @@ class Listing extends React.Component {
     });
   };
 
+  onClickThumbnail = index => {
+    this.setState({
+      currentLightBoxIndex: index,
+    });
+  };
+
   renderListingImages = images => {
     const { classes } = this.props;
 
@@ -184,6 +190,9 @@ class Listing extends React.Component {
           onClickNext={this.onClickNext}
           currentImage={this.state.currentLightBoxIndex}
           backdropClosesModal
+          showThumbnails
+          preloadNextImage
+          onClickThumbnail={this.onClickThumbnail}
         />
 
         <ContactAgentModal

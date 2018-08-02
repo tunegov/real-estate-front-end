@@ -96,7 +96,12 @@ class DashboardContainer extends Component {
   render() {
     const { userUUID, classes } = this.props;
     return (
-      <Query query={dealsQuery} variables={{ uuid: userUUID }} ssr={false}>
+      <Query
+        query={dealsQuery}
+        variables={{ uuid: userUUID }}
+        ssr={false}
+        fetchPolicy="cache-and-network"
+      >
         {({ loading, error, data }) => {
           if (loading) {
             return (

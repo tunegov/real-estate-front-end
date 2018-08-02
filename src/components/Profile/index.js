@@ -2,14 +2,27 @@ import React, { Component } from 'react';
 import { observer } from 'mobx-react';
 import { withStyles } from 'material-ui/styles';
 import classNames from 'classnames';
+import Grid from 'material-ui/Grid';
+import DollarIcon from '@material-ui/icons/AttachMoney';
+import PendingIcon from '@material-ui/icons/Help';
+import StarIcon from '@material-ui/icons/Star';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import FormattedText from 'buildo-react-components/lib/FormattedText';
 import Snackbar from 'material-ui/Snackbar';
 import Button from 'material-ui/Button';
+import moment from 'moment';
 import IconButton from 'material-ui/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 import Menu from 'material-ui/Menu';
 import MenuItem from 'material-ui/Menu/MenuItem';
 import { BounceLoader } from 'react-spinners';
+import ExpansionPanel, {
+  ExpansionPanelSummary,
+  ExpansionPanelDetails,
+} from 'material-ui/ExpansionPanel';
+import Typography from 'material-ui/Typography';
+import { round } from '../../utils/Math';
+import StatNumberBox from '../StatNumberBox';
 import {
   agent as agentRole,
   admin,
@@ -25,13 +38,31 @@ import {
 } from 'react-icons/lib/fa';
 import { capitalize } from '../../utils/stringUtils';
 import CustomInputMask from '../CustomInputMask';
+import AgentDealsSection from '../../containers/DealsWithGQLQuery';
 
 const Loader = BounceLoader;
 
+const months = [
+  'January',
+  'February',
+  'March',
+  'April',
+  'May',
+  'June',
+  'July',
+  'August',
+  'September',
+  'October',
+  'November',
+  'December',
+];
+8;
+
 const styles = theme => ({
-  root: {
+  profileInfoWrapper: {
     position: 'relative',
     display: 'flex',
+    marginBottom: '20px',
     backgroundColor: '#fff',
     padding: '20px 20px',
     borderRadius: '10px',
@@ -63,6 +94,9 @@ const styles = theme => ({
     color: 'rgba(0,0,0,.7)',
     display: 'block',
     marginBottom: '30px',
+    [theme.breakpoints.down('sm')]: {
+      fontSize: '.9rem',
+    },
   },
   profilePicWrapper: {
     position: 'relative',
@@ -338,6 +372,25 @@ const styles = theme => ({
       color: '#fff !important',
     },
   },
+  lightHeading: {
+    color: '#fff',
+  },
+  statNumberBoxWrapper: {
+    backgroundColor: '#fff',
+    height: '175px',
+  },
+  statBoxQuestionIcon: {
+    fontSize: '40px',
+    color: '#F57C00',
+  },
+  statBoxMoneyIcon: {
+    fontSize: '40px',
+    color: '#388E3C',
+  },
+  statBoxStarIcon: {
+    fontSize: '40px',
+    color: '#1976D2',
+  },
 });
 
 @withStyles(styles)
@@ -534,167 +587,201 @@ class Profile extends Component {
       currentUserUUID === uuid ||
       currentUserRole === admin ||
       currentUserRole === superAdmin;
+    const isAdmin = currentUserRole === admin || currentUserRole === superAdmin;
 
     const editingOwnProfile = currentUserUUID === uuid;
+    const currentDate = moment();
 
     return (
-      <div className={classes.root}>
-        {canEdit && (
-          <span className={classes.editBtnsWrapper}>
-            <button
-              className={classes.editBtn}
-              onClick={this.handleEditAgentMenuClick}
-            >
-              <FaPencil />
-            </button>
-          </span>
-        )}
-        <Menu
-          id="simple-menu"
-          anchorEl={editAgentAnchorEl}
-          open={Boolean(editAgentAnchorEl)}
-          onClose={this.handleEditAgentMenuClose}
-        >
-          <div className={classes.popupMenuTitle}>Edit</div>
-          <MenuItem
-            classes={{ root: classes.menuItemAccept }}
-            onClick={() => {
-              this.handleEditAgentMenuClose();
-              openEditAgentDialogBox();
-            }}
+      <div>
+        <div className={classes.profileInfoWrapper}>
+          {canEdit && (
+            <span className={classes.editBtnsWrapper}>
+              <button
+                className={classes.editBtn}
+                onClick={this.handleEditAgentMenuClick}
+              >
+                <FaPencil />
+              </button>
+            </span>
+          )}
+          <Menu
+            id="simple-menu"
+            anchorEl={editAgentAnchorEl}
+            open={Boolean(editAgentAnchorEl)}
+            onClose={this.handleEditAgentMenuClose}
           >
-            Information
-          </MenuItem>
-          <MenuItem
-            classes={{ root: classes.menuItemAccept }}
-            onClick={() => {
-              this.handleEditAgentMenuClose();
-              openEditAgentPasswordDialogBox();
-            }}
-          >
-            Password
-          </MenuItem>
-          <MenuItem
-            classes={{ root: classes.menuItem }}
-            onClick={() => {
-              this.handleEditAgentMenuClose();
-            }}
-          >
-            Cancel
-          </MenuItem>
-        </Menu>
-        <div className={classes.leftColumnWrapper}>
-          {this.renderProfilePic()}
-
-          <div className={classes.detailsWrapper}>
-            <div className={classNames(classes.email, classes.details)}>
-              <div className={classes.detailsTitle}>Email</div>
-              <div className={classes.detailsInfo}>{email}</div>
-            </div>
-            {officeNumber && (
-              <div className={classNames(classes.mobile, classes.details)}>
-                <div className={classes.detailsTitle}>Office</div>
-                <div className={classes.detailsInfo}>{officeNumber}</div>
-              </div>
-            )}
-            <div className={classNames(classes.mobile, classes.details)}>
-              <div className={classes.detailsTitle}>Mobile</div>
-              <div className={classes.detailsInfo}>{mobileNumber}</div>
-            </div>
-            <div className={classNames(classes.region, classes.details)}>
-              <div className={classes.detailsTitle}>Branch</div>
-              <div className={classes.detailsInfo}>{branch}</div>
-            </div>
-
-            {facebook || instagram || twitter ? (
-              <div className={classes.socialMediaWrapper}>
-                <div className={classes.socialMediaTitle}>Social Media:</div>
-                <div className={classes.socialMediaItemsWrapper}>
-                  {facebook && (
-                    <a
-                      href={facebook}
-                      target="_blank"
-                      className={classes.socialMediaItemWrapper}
-                    >
-                      <FaFacebook />
-                    </a>
-                  )}
-                  {twitter && (
-                    <a
-                      href={twitter}
-                      target="_blank"
-                      className={classes.socialMediaItemWrapper}
-                    >
-                      <FaTwitter />
-                    </a>
-                  )}
-                  {instagram && (
-                    <a
-                      href={instagram}
-                      target="_blank"
-                      className={classes.socialMediaItemWrapper}
-                    >
-                      <FaInstagram />
-                    </a>
-                  )}
-                </div>
-              </div>
-            ) : null}
-          </div>
-        </div>
-        <div className={classes.rightColumnWrapper}>
-          <div>
-            <h1 className={classes.name}>{name}</h1>
-            <small className={classes.title}>
-              {this.returnTitle(role, title)}
-            </small>
-            <div className={classes.descriptionWrapper}>
-              <div className={classes.descriptionTitle}>
-                About {name.split(' ')[0]}
-              </div>
-              <FormattedText className={classes.descriptionDetails}>
-                {profileDescription || 'No description available yet...'}
-              </FormattedText>
-            </div>
-          </div>
-        </div>
-
-        <Snackbar
-          classes={{ root: classes.snackBar }}
-          anchorOrigin={{
-            vertical: 'bottom',
-            horizontal: 'center',
-          }}
-          open={isEditing ? false : this.state.open}
-          autoHideDuration={6000}
-          onClose={this.handleClose}
-          ContentProps={{
-            'aria-describedby': 'message-id',
-          }}
-          message={<span id="message-id">Profile saved</span>}
-          action={[
-            <Button
-              key="undo"
-              color="secondary"
-              size="small"
+            <div className={classes.popupMenuTitle}>Edit</div>
+            <MenuItem
+              classes={{ root: classes.menuItemAccept }}
               onClick={() => {
-                this.handleClose();
-                undoSave();
+                this.handleEditAgentMenuClose();
+                openEditAgentDialogBox();
               }}
             >
-              UNDO
-            </Button>,
-            <IconButton
-              key="close"
-              aria-label="Close"
-              color="inherit"
-              className={classes.close}
-              onClick={this.handleClose}
+              Information
+            </MenuItem>
+            <MenuItem
+              classes={{ root: classes.menuItemAccept }}
+              onClick={() => {
+                this.handleEditAgentMenuClose();
+                openEditAgentPasswordDialogBox();
+              }}
             >
-              <CloseIcon />
-            </IconButton>,
-          ]}
-        />
+              Password
+            </MenuItem>
+            <MenuItem
+              classes={{ root: classes.menuItem }}
+              onClick={() => {
+                this.handleEditAgentMenuClose();
+              }}
+            >
+              Cancel
+            </MenuItem>
+          </Menu>
+          <div className={classes.leftColumnWrapper}>
+            {this.renderProfilePic()}
+
+            <div className={classes.detailsWrapper}>
+              <div className={classNames(classes.email, classes.details)}>
+                <div className={classes.detailsTitle}>Email</div>
+                <div className={classes.detailsInfo}>{email}</div>
+              </div>
+              {officeNumber && (
+                <div className={classNames(classes.mobile, classes.details)}>
+                  <div className={classes.detailsTitle}>Office</div>
+                  <div className={classes.detailsInfo}>{officeNumber}</div>
+                </div>
+              )}
+              <div className={classNames(classes.mobile, classes.details)}>
+                <div className={classes.detailsTitle}>Mobile</div>
+                <div className={classes.detailsInfo}>{mobileNumber}</div>
+              </div>
+              <div className={classNames(classes.region, classes.details)}>
+                <div className={classes.detailsTitle}>Branch</div>
+                <div className={classes.detailsInfo}>{branch}</div>
+              </div>
+
+              {facebook || instagram || twitter ? (
+                <div className={classes.socialMediaWrapper}>
+                  <div className={classes.socialMediaTitle}>Social Media:</div>
+                  <div className={classes.socialMediaItemsWrapper}>
+                    {facebook && (
+                      <a
+                        href={facebook}
+                        target="_blank"
+                        className={classes.socialMediaItemWrapper}
+                      >
+                        <FaFacebook />
+                      </a>
+                    )}
+                    {twitter && (
+                      <a
+                        href={twitter}
+                        target="_blank"
+                        className={classes.socialMediaItemWrapper}
+                      >
+                        <FaTwitter />
+                      </a>
+                    )}
+                    {instagram && (
+                      <a
+                        href={instagram}
+                        target="_blank"
+                        className={classes.socialMediaItemWrapper}
+                      >
+                        <FaInstagram />
+                      </a>
+                    )}
+                  </div>
+                </div>
+              ) : null}
+            </div>
+          </div>
+          <div className={classes.rightColumnWrapper}>
+            <div>
+              <h1 className={classes.name}>{name}</h1>
+              <div className={classes.title}>
+                {this.returnTitle(role, title)}
+              </div>
+              <div className={classes.descriptionWrapper}>
+                <div className={classes.descriptionTitle}>
+                  About {name.split(' ')[0]}
+                </div>
+                <FormattedText className={classes.descriptionDetails}>
+                  {profileDescription || 'No description available yet...'}
+                </FormattedText>
+              </div>
+            </div>
+          </div>
+
+          <Snackbar
+            classes={{ root: classes.snackBar }}
+            anchorOrigin={{
+              vertical: 'bottom',
+              horizontal: 'center',
+            }}
+            open={isEditing ? false : this.state.open}
+            autoHideDuration={6000}
+            onClose={this.handleClose}
+            ContentProps={{
+              'aria-describedby': 'message-id',
+            }}
+            message={<span id="message-id">Profile saved</span>}
+            action={[
+              <Button
+                key="undo"
+                color="secondary"
+                size="small"
+                onClick={() => {
+                  this.handleClose();
+                  undoSave();
+                }}
+              >
+                UNDO
+              </Button>,
+              <IconButton
+                key="close"
+                aria-label="Close"
+                color="inherit"
+                className={classes.close}
+                onClick={this.handleClose}
+              >
+                <CloseIcon />
+              </IconButton>,
+            ]}
+          />
+        </div>
+
+        {isAdmin && (
+          <Grid container spacing={16}>
+            <Grid item xs={12}>
+              <div
+                className={classes.expansionPanelWrapper}
+                style={{ marginBottom: '20px' }}
+              >
+                <ExpansionPanel>
+                  <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
+                    <Typography className={classes.heading}>
+                      Agent Deals &#38; Statistics
+                    </Typography>
+                  </ExpansionPanelSummary>
+                  <ExpansionPanelDetails>
+                    <Grid container spacing={16}>
+                      <Grid item xs={12}>
+                        <AgentDealsSection
+                          userRole={currentUserRole}
+                          isAdmin={isAdmin}
+                          userUUID={uuid}
+                        />
+                      </Grid>
+                    </Grid>
+                  </ExpansionPanelDetails>
+                </ExpansionPanel>
+              </div>
+            </Grid>
+          </Grid>
+        )}
       </div>
     );
   }

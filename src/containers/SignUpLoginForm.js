@@ -41,6 +41,7 @@ class SignUpLoginForm extends React.Component {
         }
 
         if (res.user) {
+          console.log(res.user.role);
           if (res.user.role === agent) {
             Router.pushRoute('dashboard');
           } else if (res.user.role === admin || res.user.role === superAdmin) {

@@ -123,23 +123,33 @@ class DealsTableContainer extends Component {
         propertyCity: city,
         propertyState: state,
         managementOrCobrokeCompany,
-        rentOrSalePrice: `$${Number(price).toLocaleString()}`,
-        deductionsTotal: `$${Number(deductionsTotal).toLocaleString()}`,
-        paymentsTotal: `$${Number(paymentsTotal).toLocaleString()}`,
-        netPaymentsTotal: `$${Number(total).toLocaleString()}`,
+        rentOrSalePrice: `$${padStringToDecimalString(
+          Number(price || 0).toLocaleString()
+        )}`,
+        deductionsTotal: `$${padStringToDecimalString(
+          Number(deductionsTotal || 0).toLocaleString()
+        )}`,
+        paymentsTotal: `$${padStringToDecimalString(
+          Number(paymentsTotal || 0).toLocaleString()
+        )}`,
+        netPaymentsTotal: `$${padStringToDecimalString(
+          Number(total || 0).toLocaleString()
+        )}`,
         bonusPercentageAddedByAdmin:
-          status === 'pending' ? undefined : `%${bonusPercentageAddedByAdmin}`,
+          status === 'pending'
+            ? undefined
+            : `%${bonusPercentageAddedByAdmin || 0}`,
         netAgentCommission:
           status === 'pending'
             ? undefined
             : `$${padStringToDecimalString(
-                Number(netAgentCommission).toLocaleString()
+                Number(netAgentCommission || 0).toLocaleString()
               )}`,
         netCompanyCommission:
           status === 'pending'
             ? undefined
             : `$${padStringToDecimalString(
-                Number(netCompanyCommission).toLocaleString()
+                Number(netCompanyCommission || 0).toLocaleString()
               )}`,
         status: capitalize(status),
         view: {

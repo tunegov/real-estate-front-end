@@ -13,10 +13,15 @@ import AddIcon from '@material-ui/icons/Add';
 import DeleteIcon from '@material-ui/icons/Delete';
 import CircularProgressbar from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
+import { MdFileDownload } from 'react-icons/lib/md';
+import Tooltip from 'material-ui/Tooltip';
 import { Icon } from 'antd';
 import Lightbox from 'react-images';
+import Dialog from 'material-ui/Dialog';
 import classnames from 'classnames';
 import EyeIcon from '@material-ui/icons/RemoveRedEye';
+import Menu from 'material-ui/Menu';
+import MenuItem from 'material-ui/Menu/MenuItem';
 import MaterialCustomTextFieldWrapper from '../../MaterialCustomTextFieldWrapper';
 import MaterialCustomRadioInputWrapper from '../../MaterialCustomRadioInputWrapper';
 import MaterialCustomSelectInputWrapper from '../../MaterialCustomSelectInputWrapper';
@@ -273,6 +278,52 @@ const styles = theme => ({
   fullwidthInput: {
     width: '100%',
   },
+  downloadFileBtn: {
+    display: 'flex',
+    alignSelf: 'center',
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: '26px',
+    width: '26px',
+    border: 'none',
+    borderRadius: '50%',
+    fontSize: '1rem',
+    color: '#fff !important',
+    backgroundColor: '#646d64',
+    boxShadow: theme.shadows[2],
+    zIndex: '2',
+    cursor: 'pointer',
+    outline: 'none',
+    transition: 'transform .2s ease-in-out',
+    '&:hover': {
+      transform: 'scale(1.1,1.1)',
+    },
+  },
+  popupMenuTitle: {
+    display: 'flex',
+    justifyContent: 'center',
+    outline: 'none',
+    padding: '12px 16px',
+    width: 'auto',
+    color: 'rgba(0, 0, 0, 0.87)',
+    height: '24px',
+    overflow: 'hidden',
+    fontSize: '1rem',
+    boxSizing: 'content-box',
+    fontWeight: '400',
+    lineHeight: '1.5em',
+    fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
+    whiteSpace: 'nowrap',
+    paddingLeft: '16px',
+    textOverflow: 'ellipsis',
+    paddingRight: '16px',
+    borderBottom: '1px solid rgba(0,0,0,.1)',
+    pointerEvents: 'none',
+  },
+  menuItem: {
+    display: 'flex !important',
+    justifyContent: 'center !important',
+  },
 });
 
 const radioInputAgentItems = [
@@ -296,7 +347,7 @@ const dealTypeSelectItems = [
 ];
 
 const fundsPaidBySelectItems = [
-  { label: 'Bringing a ckeck to the office' },
+  { label: 'Bringing a certified check to the office' },
   { label: 'Remote deposit to Chase account' },
   { label: 'Check or "OP" mailed to office' },
   { label: 'Credit card payment' },
@@ -304,10 +355,9 @@ const fundsPaidBySelectItems = [
 ];
 
 const paymentTypeSelectItems = [
-  { label: 'Check' },
+  { label: 'Certified Check' },
   { label: 'Money Order' },
   { label: 'Wire' },
-  { label: 'Cash' },
   { label: 'Owner Pays (OP)' },
 ];
 
@@ -320,6 +370,20 @@ const deductionTypeSelectItems = [
   { label: 'Agent Split' },
 ];
 
+const imagePreloader = images => {
+  images.forEach(imageItem => {
+    if (imageItem && imageItem.src) {
+      const fileType = imageItem.src.split('.').pop();
+
+      if (fileType.toLowerCase === 'pdf') return;
+
+      const newImage = new Image();
+
+      newImage.src = imageItem.src;
+    }
+  });
+};
+
 @observer
 class SubmitDealForm extends Component {
   constructor(props) {
@@ -329,6 +393,13 @@ class SubmitDealForm extends Component {
       lightboxIsOpen: false,
       currentLightBoxIndex: 0,
       lightboxType: 'agencyDisclosure',
+      contractLeaseAnchorEl: null,
+      agencyDisclosureAnchorEl: null,
+      currentLightboxItem: [{ src: '' }],
+      numPDFPages: null,
+      pdfPageNumber: 1,
+      pdfDialogOpen: false,
+      currentlyViewingPDF: null,
     };
   }
   isFirstTimeRender = true;
@@ -340,6 +411,11 @@ class SubmitDealForm extends Component {
         deductionsTotal: this.props.submittedDeal.deductionsTotal,
         total: this.props.submittedDeal.total,
       });
+
+      imagePreloader([
+        ...this.returnContractLeaseURLS(),
+        ...this.returnAgencyDisclosureURL(),
+      ]);
     }
 
     if (this.props.resetDealBonus) {
@@ -369,19 +445,39 @@ class SubmitDealForm extends Component {
     }
   };
 
-  openContractLeaseLightBox = () => {
+  openFileLightBox = item => {
     this.setState({
       lightboxIsOpen: true,
       currentLightBoxIndex: 0,
       lightboxType: 'contractLease',
+      currentLightboxItem: [item],
     });
   };
 
-  openAgencyDisclosureLightBox = () => {
+  openPDFViewerModal = src => {
     this.setState({
-      lightboxIsOpen: true,
-      currentLightBoxIndex: 0,
-      lightboxType: 'agencyDisclosure',
+      pdfDialogOpen: true,
+      currentlyViewingPDF: src,
+      pdfPageNumber: 1,
+    });
+  };
+
+  closePDFViewerModal = src => {
+    this.setState({
+      pdfDialogOpen: false,
+      currentlyViewingPDF: null,
+      numPDFPages: null,
+    });
+  };
+
+  openFileViewer = (src, fileName, fileType) => {
+    if (fileType === 'pdf' && fileType === 'PDF') {
+      openPDFViewerModal(src);
+      return;
+    }
+
+    this.openFileLightBox({
+      src,
     });
   };
 
@@ -403,6 +499,76 @@ class SubmitDealForm extends Component {
     this.setState({
       currentLightBoxIndex: currentLightBoxIndex + 1,
     });
+  };
+
+  onClickThumbnail = index => {
+    this.setState({
+      currentLightBoxIndex: index,
+    });
+  };
+
+  downloadFile = async () => {
+    const urls =
+      this.state.lightboxType === 'agencyDisclosure'
+        ? this.returnAgencyDisclosureURL()
+        : this.returnContractLeaseURLS();
+
+    const fileType = urls[this.state.currentLightBoxIndex].src.split('.').pop();
+
+    let objectURL;
+
+    try {
+      const res = await fetch(
+        `${urls[this.state.currentLightBoxIndex].src}?v=10`
+      );
+      console.log(res);
+      objectURL = URL.createObjectURL(await res.blob());
+    } catch (err) {
+      console.log(err);
+      return;
+    }
+
+    if (this._fileLink) {
+      this._fileLink.setAttribute('href', objectURL);
+      this._fileLink.setAttribute(
+        'download',
+        `${this.state.lightboxType}${this.state.currentLightBoxIndex + 1}`
+      );
+      this._fileLink.click();
+    }
+  };
+
+  returnDownloadFileBtn = () => {
+    const { classes } = this.props;
+
+    return (
+      <Tooltip
+        title="Download current file."
+        enterDelay={300}
+        leaveDelay={100}
+        PopperProps={{ style: { zIndex: 2100 } }}
+      >
+        <button className={classes.downloadFileBtn} onClick={this.downloadFile}>
+          <MdFileDownload />
+        </button>
+      </Tooltip>
+    );
+  };
+
+  handleContractLeaseMenuClick = event => {
+    this.setState({ contractLeaseAnchorEl: event.currentTarget });
+  };
+
+  handleContractLeaseMenuClose = () => {
+    this.setState({ contractLeaseAnchorEl: null });
+  };
+
+  handleAgencyDisclosureMenuClick = event => {
+    this.setState({ agencyDisclosureAnchorEl: event.currentTarget });
+  };
+
+  handleAgencyDisclosureMenuClose = () => {
+    this.setState({ agencyDisclosureAnchorEl: null });
   };
 
   render() {
@@ -434,6 +600,8 @@ class SubmitDealForm extends Component {
       agentPaymentTypeIsACH,
       onSubmit,
     } = this.props;
+
+    const { contractLeaseAnchorEl, agencyDisclosureAnchorEl } = this.state;
 
     const managementCobrokeCompanies =
       managementCobrokeCompanyItems && managementCobrokeCompanyItems.length
@@ -576,8 +744,117 @@ class SubmitDealForm extends Component {
       };
     }
 
+    const renderContractLeaseMenuItems = () => {
+      return this.returnContractLeaseURLS().map(({ src }) => {
+        const fileName = src.split('/').pop();
+        const fileType = src.split('.').pop();
+
+        if (fileType.toLowerCase() === 'pdf') {
+          return (
+            <a href={src} target="_blank">
+              <MenuItem
+                classes={{ root: classes.menuItem }}
+                onClick={() => {
+                  this.handleContractLeaseMenuClose();
+                }}
+              >
+                {fileName}
+              </MenuItem>
+            </a>
+          );
+        }
+
+        return (
+          <MenuItem
+            classes={{ root: classes.menuItem }}
+            onClick={() => {
+              this.handleContractLeaseMenuClose();
+              this.openFileViewer(src, fileName, fileType);
+            }}
+          >
+            {fileName}
+          </MenuItem>
+        );
+      });
+    };
+    renderAgencyDisclosureMenuItems;
+
+    const renderAgencyDisclosureMenuItems = () => {
+      return this.returnAgencyDisclosureURL().map(({ src }) => {
+        const fileName = src.split('/').pop();
+        const fileType = src.split('.').pop();
+
+        if (fileType.toLowerCase() === 'pdf') {
+          return (
+            <MenuItem
+              classes={{ root: classes.menuItem }}
+              onClick={() => {
+                this.handleAgencyDisclosureMenuClose();
+              }}
+            >
+              <a href={src} target="_blank">
+                {fileName}
+              </a>
+            </MenuItem>
+          );
+        }
+
+        return (
+          <MenuItem
+            classes={{ root: classes.menuItem }}
+            onClick={() => {
+              this.handleAgencyDisclosureMenuClose();
+              this.openFileViewer(src, fileName, fileType);
+            }}
+          >
+            {fileName}
+          </MenuItem>
+        );
+      });
+    };
+
+    const onClickAgencyDisclosureView = () => {
+      const src = this.returnAgencyDisclosureURL()[0].src;
+
+      const fileName = src.split('/').pop();
+      const fileType = src.split('.').pop();
+
+      this.openFileViewer(src, fileName, fileType);
+    };
+
     return (
       <div className={classes.formWrapper}>
+        <a
+          href="#"
+          id="fileLink"
+          ref={ref => (this._fileLink = ref)}
+          style={{
+            visibility: 'hidden',
+            position: 'absolute',
+            poniterEvents: 'none',
+          }}
+        />
+
+        <Menu
+          id="simple-menu"
+          anchorEl={contractLeaseAnchorEl}
+          open={Boolean(contractLeaseAnchorEl)}
+          onClose={this.handleContractLeaseMenuClose}
+        >
+          <div className={classes.popupMenuTitle}>Contract/Lease Items</div>
+          {renderContractLeaseMenuItems()}
+        </Menu>
+
+        <Menu
+          id="simple-menu2"
+          anchorEl={agencyDisclosureAnchorEl}
+          open={Boolean(agencyDisclosureAnchorEl)}
+          onClose={this.handleAgencyDisclosureMenuClose}
+        >
+          <div className={classes.popupMenuTitle}>Agency Disclosure Form</div>
+          {renderAgencyDisclosureMenuItems()}
+        </Menu>
+
         <Form
           defaultValues={
             !finalDefaultValues && this.props.agent
@@ -768,7 +1045,7 @@ class SubmitDealForm extends Component {
                           field="otherAgents"
                           id={uuid()}
                           fullWidth
-                          label="Other Agents"
+                          label="Co-Brokering Agents"
                           name="otherAgents"
                           multiple
                           disabled={submittedDeal && !isEditingDeal}
@@ -1399,7 +1676,7 @@ class SubmitDealForm extends Component {
                           aria-label="add"
                           size="small"
                           classes={{ root: classes.smallFileViewBtn }}
-                          onClick={this.openAgencyDisclosureLightBox}
+                          onClick={this.handleAgencyDisclosureMenuClick}
                         >
                           <EyeIcon className={classes.viewIcon} />
                         </Button>
@@ -1446,7 +1723,7 @@ class SubmitDealForm extends Component {
                           aria-label="add"
                           size="small"
                           classes={{ root: classes.smallFileViewBtn }}
-                          onClick={this.openContractLeaseLightBox}
+                          onClick={this.handleContractLeaseMenuClick}
                         >
                           <EyeIcon className={classes.viewIcon} />
                         </Button>
@@ -1737,7 +2014,6 @@ class SubmitDealForm extends Component {
                   {(this.props.userRole === admin ||
                     this.props.userRole === superAdmin) &&
                   submittedDeal &&
-                  submittedDeal.netCompanyCommission &&
                   submittedDeal.status === 'approved' ? (
                     <Grid item xs={12}>
                       <div className={classes.formControlWrapper}>
@@ -1755,13 +2031,14 @@ class SubmitDealForm extends Component {
                           <Input
                             id="netCompanyCommission"
                             value={
-                              submittedDeal &&
-                              submittedDeal.netCompanyCommission
-                                ? padStringToDecimalString(
-                                    Number(
-                                      submittedDeal.netCompanyCommission
-                                    ).toLocaleString()
-                                  )
+                              submittedDeal
+                                ? submittedDeal.netCompanyCommission
+                                  ? padStringToDecimalString(
+                                      Number(
+                                        submittedDeal.netCompanyCommission
+                                      ).toLocaleString()
+                                    )
+                                  : 0
                                 : null
                             }
                             className={classnames(
@@ -1814,17 +2091,14 @@ class SubmitDealForm extends Component {
         ) : null}
 
         <Lightbox
-          images={
-            this.state.lightboxType === 'agencyDisclosure'
-              ? this.returnAgencyDisclosureURL()
-              : this.returnContractLeaseURLS()
-          }
+          images={this.state.currentLightboxItem}
           isOpen={this.state.lightboxIsOpen}
           onClose={this.closeLightbox}
           onClickPrev={this.onClickPrev}
           onClickNext={this.onClickNext}
           currentImage={this.state.currentLightBoxIndex}
           backdropClosesModal
+          customControls={[this.returnDownloadFileBtn()]}
         />
       </div>
     );

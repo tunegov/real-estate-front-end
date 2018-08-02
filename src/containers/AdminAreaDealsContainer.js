@@ -297,7 +297,6 @@ class AdminAreaDealsContainer extends Component {
       viewingDealStatus: '',
       deletedDealIDS: [],
       acceptedDealIDS: [],
-      dealBonus: '0',
     };
   }
 

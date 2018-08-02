@@ -1,7 +1,6 @@
 import React from 'react';
 import { observer } from 'mobx-react';
 import isBrowser from 'is-browser';
-import { Elements, StripeProvider } from 'react-stripe-elements';
 import Layout from '../frontEndComponents/FrontEndLayout';
 import { initStore } from '../models';
 import withData from '../lib/withData';
@@ -24,39 +23,15 @@ class Apply extends React.Component {
 
     // for debugging only!!!
     if (isBrowser && !window._appStore) window._appStore = this.store;
-
-    this.state = { stripe: null };
-  }
-
-  componentDidMount() {
-    // Create Stripe instance in componentDidMount
-    // (componentDidMount only fires in browser/DOM environment)
-
-    if (window.Stripe) {
-      this.setState({
-        stripe: window.Stripe('pk_test_xCYvxzjkWdoHBCMKdJ3aYv4Y'),
-      });
-    } else {
-      document.getElementById('stripe-js').addEventListener('load', () => {
-        // Create Stripe instance once Stripe.js loads
-        this.setState({
-          stripe: window.Stripe('pk_test_xCYvxzjkWdoHBCMKdJ3aYv4Y'),
-        });
-      });
-    }
   }
 
   render() {
     const { listingID } = this.props;
 
     return (
-      <StripeProvider stripe={this.state.stripe}>
-        <Layout UserStore={this.store.UserStore}>
-          <Elements>
-            <ApplicationContainer listingID={listingID} />
-          </Elements>
-        </Layout>
-      </StripeProvider>
+      <Layout UserStore={this.store.UserStore}>
+        <ApplicationContainer listingID={listingID} />
+      </Layout>
     );
   }
 }

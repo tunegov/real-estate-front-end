@@ -97,16 +97,22 @@ class DealsTableContainer extends Component {
         propertyAddress,
         propertyCity: city,
         managementOrCobrokeCompany,
-        rentOrSalePrice: `$${Number(price).toLocaleString()}`,
+        rentOrSalePrice: `$${padStringToDecimalString(
+          Number(price || 0).toLocaleString()
+        )}`,
         bonusPercentageAddedByAdmin:
-          status === 'pending' ? undefined : `%${bonusPercentageAddedByAdmin}`,
+          status === 'pending'
+            ? undefined
+            : `%${bonusPercentageAddedByAdmin || 0}`,
         netAgentCommission:
           status === 'pending'
             ? undefined
             : `$${padStringToDecimalString(
-                Number(netAgentCommission).toLocaleString()
+                Number(netAgentCommission || 0).toLocaleString()
               )}`,
-        dealTotal: `$${Number(total).toLocaleString()}`,
+        dealTotal: `$${padStringToDecimalString(
+          Number(total || 0).toLocaleString()
+        )}`,
         status: capitalize(status),
         view: {
           type: 'action',
@@ -179,6 +185,8 @@ class DealsTableContainer extends Component {
           }
           columns={columns}
           rows={this.createRows()}
+          toggleDealsSummaryDialogBox={this.props.toggleDealsSummaryDialogBox}
+          isDealsWithGQLQuery={this.props.isDealsWithGQLQuery}
         />
         <a
           href="#"

@@ -1,7 +1,6 @@
 import React from 'react';
 import { observer } from 'mobx-react';
 import Chance from 'chance';
-import { injectStripe } from 'react-stripe-elements';
 import Application from '../frontEndComponents/Application';
 
 const chance = new Chance();
@@ -120,4 +119,4 @@ class ApplicationContainer extends React.Component {
   }
 }
 
-export default injectStripe(ApplicationContainer);
+export default ApplicationContainer;

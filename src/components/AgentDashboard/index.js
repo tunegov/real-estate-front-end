@@ -215,7 +215,7 @@ class AgentDashboard extends Component {
                         rootClassName={classes.statNumberBoxWrapper}
                         icon={StarIcon}
                         iconClass={classes.statBoxStarIcon}
-                        stat={this.props.currentMonthNumOfDealsCommissions}
+                        stat={this.props.currentMonthNumOfDealsCommissions || 0}
                         statTitle={`${
                           months[currentDate.month()]
                         } - Number of Deals`}
@@ -226,7 +226,7 @@ class AgentDashboard extends Component {
                         rootClassName={classes.statNumberBoxWrapper}
                         icon={PendingIcon}
                         iconClass={classes.statBoxQuestionIcon}
-                        stat={this.props.numOfPendingDeals}
+                        stat={this.props.numOfPendingDeals || 0}
                         statTitle="Number of Pending Deals"
                       />
                     </Grid>
