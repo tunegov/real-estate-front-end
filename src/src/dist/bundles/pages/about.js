@@ -1634,7 +1634,7 @@ function (_React$Component) {
         className: classes.logo,
         src: "/static/images/logo.png",
         alt: "logo"
-      })))), this.renderMiddleLinks(), this.renderLinks());
+      })))), this.renderLinks());
     }
   }]);
 
