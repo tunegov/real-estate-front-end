@@ -226,7 +226,7 @@ class AdminDealsSummary extends Component {
     return (
       <div className={classes.root}>
         <Grid container spacing={16}>
-          <Grid item xs={12} md={6}>
+          <Grid item xs={12}>
             <StatNumberBox
               icon={DollarIcon}
               iconClass={classes.statBoxMoneyIcon}
@@ -240,6 +240,14 @@ class AdminDealsSummary extends Component {
               iconClass={classes.statBoxMoneyIcon}
               stat={`$${this.props.netDealCommissions.toLocaleString()}`}
               statTitle="Net Commissions to Date"
+            />
+          </Grid>
+          <Grid item xs={12} md={6}>
+            <StatNumberBox
+              icon={DollarIcon}
+              iconClass={classes.statBoxMoneyIcon}
+              stat={`$${this.props.netCurrentYearDealCommissions.toLocaleString()}`}
+              statTitle={`${moment().year()} Net Commissions to Date`}
             />
           </Grid>
           <Grid item xs={12}>

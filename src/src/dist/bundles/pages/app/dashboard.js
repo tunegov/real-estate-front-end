@@ -5013,7 +5013,7 @@ function (_Component) {
         classes: {
           root: classes.formTitle
         }
-      }, "Veiwing ", dialogBoxType === 'news' ? 'News' : 'Alert'), external__react__default.a.createElement(Divider__default.a, null), external__react__default.a.createElement(Dialog_["DialogContent"], {
+      }, "Viewing ", dialogBoxType === 'news' ? 'News' : 'Alert'), external__react__default.a.createElement(Divider__default.a, null), external__react__default.a.createElement(Dialog_["DialogContent"], {
         classes: {
           root: classes.dialogContent
         },

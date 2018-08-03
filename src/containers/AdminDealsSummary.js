@@ -253,6 +253,15 @@ class AdminDealsSummaryContainer extends Component {
     );
   };
 
+  returnNetCurrentYearDealCommissions = (deals = []) => {
+    return deals.reduce((grossAmount, deal) => {
+      if (deal.status === 'pending') return grossAmount;
+      if (moment(deal.date).year() !== moment().year()) return grossAmount;
+
+      return (grossAmount += deal.netCompanyCommission);
+    }, 0);
+  };
+
   returnMonthlyAndYearlyDealsData = (deals = []) => {
     const monthlyDollarData = returnMonthlyDollarDataContainer();
     const grossMonthlyDollarData = returnMonthlyDollarDataContainer();
@@ -467,6 +476,9 @@ class AdminDealsSummaryContainer extends Component {
           numberOfPendingDeals={this.returnNumberOfPendingDeals(deals)}
           grossDealCommissions={this.returnGrossDealCommissions(deals)}
           netDealCommissions={this.returnNetDealCommissions(deals)}
+          netCurrentYearDealCommissions={this.returnNetCurrentYearDealCommissions(
+            deals
+          )}
           monthlyDealsDollarBarData={monthlyDealsDollarBarData}
           grossMonthlyDealsDollarBarData={grossMonthlyDealsDollarBarData}
           monthlyDealsNumberBarData={monthlyDealsNumberBarData}

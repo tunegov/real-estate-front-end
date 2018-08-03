@@ -75,7 +75,7 @@ class CompanyAlertsNewsDialogBox extends Component {
           id="form-dialog-title"
           classes={{ root: classes.formTitle }}
         >
-          Veiwing {dialogBoxType === 'news' ? 'News' : 'Alert'}
+          Viewing {dialogBoxType === 'news' ? 'News' : 'Alert'}
         </DialogTitle>
         <Divider />
         <DialogContent

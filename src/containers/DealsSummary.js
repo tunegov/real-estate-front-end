@@ -72,6 +72,8 @@ class DealsSummaryContainer extends Component {
   returnNumberOfTotalDealsData = (deals = []) => {
     if (!deals.length) return false;
 
+    if (!deals.some(deal => deal.status !== 'pending')) return false;
+
     const dealDataCounts = {
       'Res. Sales': 0,
       'Res. Rentals': 0,
@@ -81,6 +83,8 @@ class DealsSummaryContainer extends Component {
 
     if (deals && Array.isArray(deals)) {
       deals.forEach(deal => {
+        if (deal.status === 'pending') return;
+
         switch (deal.dealType) {
           case commercialRental:
             dealDataCounts['Com. Rentals'] += 1;
@@ -128,6 +132,8 @@ class DealsSummaryContainer extends Component {
 
   returnGrossDollarAmtOfTotalDealsData = (deals = []) => {
     if (!deals.length) return false;
+
+    if (!deals.some(deal => deal.status !== 'pending')) return false;
 
     const dealDataCounts = {
       'Res. Sales': 0,
@@ -200,6 +206,15 @@ class DealsSummaryContainer extends Component {
   returnGrossDealCommissions = (deals = []) => {
     return deals.reduce((grossAmount, deal) => {
       if (deal.status === 'pending') return grossAmount;
+
+      return (grossAmount += deal.total);
+    }, 0);
+  };
+
+  returnGrossCurrentYearDealCommissions = (deals = []) => {
+    return deals.reduce((grossAmount, deal) => {
+      if (deal.status === 'pending') return grossAmount;
+      if (moment(deal.date).year() !== moment().year()) return grossAmount;
 
       return (grossAmount += deal.total);
     }, 0);
@@ -361,6 +376,9 @@ class DealsSummaryContainer extends Component {
           )}
           numberOfPendingDeals={this.returnNumberOfPendingDeals(deals)}
           grossDealCommissions={this.returnGrossDealCommissions(deals)}
+          grossCurrentYearDealCommissions={this.returnGrossCurrentYearDealCommissions(
+            deals
+          )}
           monthlyDealsDollarBarData={monthlyDealsDollarBarData}
           monthlyDealsNumberBarData={monthlyDealsNumberBarData}
           monthlyDealsDollarLineData={monthlyDealsDollarLineData}

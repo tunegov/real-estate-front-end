@@ -13896,6 +13896,14 @@ function (_Component) {
         xs: 12,
         md: 6
       }, external__react__default.a.createElement(StatNumberBox["a" /* default */], {
+        icon: AttachMoney__default.a,
+        iconClass: classes.statBoxMoneyIcon,
+        stat: "$".concat(this.props.grossCurrentYearDealCommissions.toLocaleString()),
+        statTitle: "".concat(external__moment__default()().year(), " Gross Commissions to Date")
+      })), external__react__default.a.createElement(Grid__default.a, {
+        item: true,
+        xs: 12
+      }, external__react__default.a.createElement(StatNumberBox["a" /* default */], {
         icon: Help__default.a,
         iconClass: classes.statBoxQuestionIcon,
         stat: this.props.numberOfPendingDeals,
@@ -14451,6 +14459,7 @@ function (_Component) {
         grossDollarAmtOfTotalDealsData: this.returnGrossDollarAmtOfTotalDealsData(deals),
         numberOfPendingDeals: this.returnNumberOfPendingDeals(deals),
         grossDealCommissions: this.returnGrossDealCommissions(deals),
+        grossCurrentYearDealCommissions: this.returnGrossCurrentYearDealCommissions(deals),
         monthlyDealsDollarBarData: monthlyDealsDollarBarData,
         monthlyDealsNumberBarData: monthlyDealsNumberBarData,
         monthlyDealsDollarLineData: monthlyDealsDollarLineData,
@@ -14474,6 +14483,9 @@ function (_Component) {
     value: function value() {
       var deals = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
       if (!deals.length) return false;
+      if (!deals.some(function (deal) {
+        return deal.status !== 'pending';
+      })) return false;
       var dealDataCounts = {
         'Res. Sales': 0,
         'Res. Rentals': 0,
@@ -14483,6 +14495,8 @@ function (_Component) {
 
       if (deals && Array.isArray(deals)) {
         deals.forEach(function (deal) {
+          if (deal.status === 'pending') return;
+
           switch (deal.dealType) {
             case dealTypes["a" /* commercialRental */]:
               dealDataCounts['Com. Rentals'] += 1;
@@ -14533,6 +14547,9 @@ function (_Component) {
     value: function value() {
       var deals = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
       if (!deals.length) return false;
+      if (!deals.some(function (deal) {
+        return deal.status !== 'pending';
+      })) return false;
       var dealDataCounts = {
         'Res. Sales': 0,
         'Res. Rentals': 0,
@@ -14611,6 +14628,19 @@ function (_Component) {
       var deals = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
       return deals.reduce(function (grossAmount, deal) {
         if (deal.status === 'pending') return grossAmount;
+        return grossAmount += deal.total;
+      }, 0);
+    }
+  });
+  Object.defineProperty(this, "returnGrossCurrentYearDealCommissions", {
+    configurable: true,
+    enumerable: true,
+    writable: true,
+    value: function value() {
+      var deals = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
+      return deals.reduce(function (grossAmount, deal) {
+        if (deal.status === 'pending') return grossAmount;
+        if (external__moment__default()(deal.date).year() !== external__moment__default()().year()) return grossAmount;
         return grossAmount += deal.total;
       }, 0);
     }

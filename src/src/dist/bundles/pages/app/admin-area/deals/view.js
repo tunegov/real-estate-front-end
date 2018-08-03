@@ -11156,8 +11156,7 @@ function (_Component) {
         spacing: 16
       }, external__react__default.a.createElement(Grid__default.a, {
         item: true,
-        xs: 12,
-        md: 6
+        xs: 12
       }, external__react__default.a.createElement(StatNumberBox["a" /* default */], {
         icon: AttachMoney__default.a,
         iconClass: classes.statBoxMoneyIcon,
@@ -11172,6 +11171,15 @@ function (_Component) {
         iconClass: classes.statBoxMoneyIcon,
         stat: "$".concat(this.props.netDealCommissions.toLocaleString()),
         statTitle: "Net Commissions to Date"
+      })), external__react__default.a.createElement(Grid__default.a, {
+        item: true,
+        xs: 12,
+        md: 6
+      }, external__react__default.a.createElement(StatNumberBox["a" /* default */], {
+        icon: AttachMoney__default.a,
+        iconClass: classes.statBoxMoneyIcon,
+        stat: "$".concat(this.props.netCurrentYearDealCommissions.toLocaleString()),
+        statTitle: "".concat(external__moment__default()().year(), " Net Commissions to Date")
       })), external__react__default.a.createElement(Grid__default.a, {
         item: true,
         xs: 12
@@ -11923,6 +11931,7 @@ function (_Component) {
         numberOfPendingDeals: this.returnNumberOfPendingDeals(deals),
         grossDealCommissions: this.returnGrossDealCommissions(deals),
         netDealCommissions: this.returnNetDealCommissions(deals),
+        netCurrentYearDealCommissions: this.returnNetCurrentYearDealCommissions(deals),
         monthlyDealsDollarBarData: monthlyDealsDollarBarData,
         grossMonthlyDealsDollarBarData: grossMonthlyDealsDollarBarData,
         monthlyDealsNumberBarData: monthlyDealsNumberBarData,
@@ -12131,6 +12140,19 @@ function (_Component) {
         if (deal.status === 'pending') return grossAmount;
         return grossAmount += deal.netCompanyCommission;
       }, 0), 0);
+    }
+  });
+  Object.defineProperty(this, "returnNetCurrentYearDealCommissions", {
+    configurable: true,
+    enumerable: true,
+    writable: true,
+    value: function value() {
+      var deals = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
+      return deals.reduce(function (grossAmount, deal) {
+        if (deal.status === 'pending') return grossAmount;
+        if (external__moment__default()(deal.date).year() !== external__moment__default()().year()) return grossAmount;
+        return grossAmount += deal.netCompanyCommission;
+      }, 0);
     }
   });
   Object.defineProperty(this, "returnMonthlyAndYearlyDealsData", {
