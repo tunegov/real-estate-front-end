@@ -12560,7 +12560,7 @@ function (_Component) {
       }, {
         id: 'Res. Rentals',
         label: 'Res. Rentals',
-        value: dealDataCounts['Res. Sales'] || 0
+        value: dealDataCounts['Res. Rentals'] || 0
       }, {
         id: 'Com. Sales',
         label: 'Com. Sales',
