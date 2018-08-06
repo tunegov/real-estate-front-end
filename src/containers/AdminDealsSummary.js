@@ -236,7 +236,7 @@ class AdminDealsSummaryContainer extends Component {
       deals.reduce((grossAmount, deal) => {
         if (deal.status === 'pending') return grossAmount;
 
-        return (grossAmount += deal.total);
+        return Math.floor((grossAmount += deal.total));
       }, 0),
       0
     );
@@ -247,7 +247,7 @@ class AdminDealsSummaryContainer extends Component {
       deals.reduce((grossAmount, deal) => {
         if (deal.status === 'pending') return grossAmount;
 
-        return (grossAmount += deal.netCompanyCommission);
+        return Math.floor((grossAmount += deal.netCompanyCommission));
       }, 0),
       0
     );
@@ -258,7 +258,7 @@ class AdminDealsSummaryContainer extends Component {
       if (deal.status === 'pending') return grossAmount;
       if (moment(deal.date).year() !== moment().year()) return grossAmount;
 
-      return (grossAmount += deal.netCompanyCommission);
+      return Math.floor((grossAmount += deal.netCompanyCommission));
     }, 0);
   };
 

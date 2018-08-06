@@ -412,8 +412,8 @@ class AgentDashboard extends Component {
             <StatNumberBox
               icon={DollarIcon}
               iconClass={classes.statBoxMoneyIcon}
-              stat={`$${this.props.grossCurrentYearDealCommissions.toLocaleString()}`}
-              statTitle={`${moment().year()} Gross Commissions to Date`}
+              stat={`$${this.props.netCurrentYearDealCommissions.toLocaleString()}`}
+              statTitle={`${moment().year()} Net Commissions to Date`}
             />
           </Grid>
           <Grid item xs={12}>
