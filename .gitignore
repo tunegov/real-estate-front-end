@@ -11,3 +11,7 @@ server-logs
 .next
 
 docs
+
+.vscode
+.idea
+

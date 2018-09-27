@@ -1,5 +1,4 @@
-import { GraphQLClient } from 'graphql-request';
-import graphQLEndpoint from '../../../constants/graphQLEndpoint';
+import { graphQlClient } from '../../../effects/client';
 
 const query = `
     mutation logoutUser {
@@ -9,10 +8,6 @@ const query = `
       }
     }
   `;
-
-const client = new GraphQLClient(graphQLEndpoint, {
-  credentials: 'same-origin',
-});
 
 async function logoutUser(self) {
   let res;
@@ -25,7 +20,7 @@ async function logoutUser(self) {
   };
 
   try {
-    res = await client.request(query);
+    res = await graphQlClient.request(query);
   } catch (err) {
     console.log(err);
     finalResponseObj.error = 'Error reaching the server';

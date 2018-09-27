@@ -304,7 +304,7 @@ class AdminAreaDealsContainer extends Component {
     const { currentSearchType, fineGrainSearchType } = this.state;
     if (currentSearchType === searchTypes.dateRange) {
       return allDealsByDateRangeQuery;
-    } else if (currentSearchType === searchTypes.specific) {
+    } if (currentSearchType === searchTypes.specific) {
       switch (fineGrainSearchType) {
         case 'Deal ID':
           return dealQuery;
@@ -326,7 +326,7 @@ class AdminAreaDealsContainer extends Component {
     const { currentSearchType, fineGrainSearchType } = this.state;
     if (currentSearchType === searchTypes.dateRange) {
       return 'allDealsByDateRange';
-    } else if (currentSearchType === searchTypes.specific) {
+    } if (currentSearchType === searchTypes.specific) {
       switch (fineGrainSearchType) {
         case 'Deal ID':
           return 'deal';
@@ -359,7 +359,7 @@ class AdminAreaDealsContainer extends Component {
           endDate: endDate.toISOString(),
         },
       };
-    } else if (currentSearchType === searchTypes.specific) {
+    } if (currentSearchType === searchTypes.specific) {
       switch (fineGrainSearchType) {
         case 'Deal ID':
           return {
@@ -417,10 +417,9 @@ class AdminAreaDealsContainer extends Component {
     const { currentSearchType, fineGrainSearchValue } = this.state;
 
     if (
-      !fineGrainSearchValue ||
-      (fineGrainSearchValue && !fineGrainSearchValue.trim())
-    )
-      return;
+      !fineGrainSearchValue
+      || (fineGrainSearchValue && !fineGrainSearchValue.trim())
+    ) return;
 
     if (currentSearchType !== searchTypes.specific) {
       this.setState({ currentSearchType: searchTypes.specific });
@@ -513,7 +512,7 @@ class AdminAreaDealsContainer extends Component {
     return (
       <Query query={dealsQuery} ssr={false} fetchPolicy="cache-and-network">
         {({ loading, error, data }) => {
-          if (loading)
+          if (loading) {
             return (
               <div
                 style={{
@@ -528,6 +527,7 @@ class AdminAreaDealsContainer extends Component {
                 <Loader color="#f44336" loading />
               </div>
             );
+          }
           const intDeals = {};
 
           if (error) {
@@ -560,9 +560,8 @@ class AdminAreaDealsContainer extends Component {
             .map(deal => {
               if (this.state.acceptedDealIDS.includes(deal.dealID)) {
                 return { ...deal, status: 'accepted' };
-              } else {
-                return deal;
               }
+              return deal;
             });
 
           console.log(uniqueDeals);
@@ -582,7 +581,7 @@ class AdminAreaDealsContainer extends Component {
                 </div>
               </div>
 
-              {/*<div className={classes.searchWrapper}>
+              {/* <div className={classes.searchWrapper}>
                 <Grid container spacing={16}>
                   <Grid item xs={12} lg={6}>
                     <ExpansionPanel>
@@ -735,7 +734,7 @@ class AdminAreaDealsContainer extends Component {
                     </ExpansionPanel>
                   </Grid>
                 </Grid>
-                                </div>*/}
+                                </div> */}
 
               <ViewDealDialogBox
                 dealsViewDialogBoxOpen={dealsViewDialogBoxOpen}
@@ -781,8 +780,8 @@ class AdminAreaDealsContainer extends Component {
                       onClick={() => {
                         this.handleCloseSnackbar();
                         if (
-                          this.state.snackbarUndoFunction &&
-                          typeof snackbarUndoFunction === 'function'
+                          this.state.snackbarUndoFunction
+                          && typeof snackbarUndoFunction === 'function'
                         ) {
                           this.snackbarUndoFunction();
                         }

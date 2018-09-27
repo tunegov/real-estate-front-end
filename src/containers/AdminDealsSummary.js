@@ -16,6 +16,7 @@ import {
   returnNumberDealsDataContainer,
   returnYearlyDollarDealsDataContainer,
 } from '../constants/graphDataModels';
+import { toLocaleCurrency } from '../utils/currency';
 
 const get = (p, o) => p.reduce((xs, x) => (xs && xs[x] ? xs[x] : null), o);
 
@@ -64,7 +65,6 @@ const returnGraphMonth = month => {
 class AdminDealsSummaryContainer extends Component {
   constructor(props) {
     super(props);
-    const { deals } = this.props;
 
     this.state = {};
   }
@@ -95,7 +95,6 @@ class AdminDealsSummaryContainer extends Component {
             dealDataCounts['Res. Sales'] += 1;
             break;
           default:
-            return;
         }
       });
     }
@@ -165,7 +164,6 @@ class AdminDealsSummaryContainer extends Component {
             netDealDataCounts['Res. Sales'] += deal.netCompanyCommission;
             break;
           default:
-            return;
         }
       });
     }
@@ -174,22 +172,22 @@ class AdminDealsSummaryContainer extends Component {
       {
         id: 'Res. Sales',
         label: 'Res. Sales',
-        value: round(grossDealDataCounts['Res. Sales'] || 0, 0),
+        value: grossDealDataCounts['Res. Sales'] || 0,
       },
       {
         id: 'Res. Rentals',
         label: 'Res. Rentals',
-        value: round(grossDealDataCounts['Res. Sales'] || 0, 0),
+        value: grossDealDataCounts['Res. Rentals'] || 0,
       },
       {
         id: 'Com. Sales',
         label: 'Com. Sales',
-        value: round(grossDealDataCounts['Com. Sales'] || 0, 0),
+        value: grossDealDataCounts['Com. Sales'] || 0,
       },
       {
         id: 'Com. Rentals',
         label: 'Com. Rentals',
-        value: round(grossDealDataCounts['Com. Rentals'] || 0, 0),
+        value: grossDealDataCounts['Com. Rentals'] || 0,
       },
     ];
 
@@ -197,22 +195,22 @@ class AdminDealsSummaryContainer extends Component {
       {
         id: 'Res. Sales',
         label: 'Res. Sales',
-        value: round(netDealDataCounts['Res. Sales'] || 0, 0),
+        value: netDealDataCounts['Res. Sales'] || 0,
       },
       {
         id: 'Res. Rentals',
         label: 'Res. Rentals',
-        value: round(netDealDataCounts['Res. Sales'] || 0, 0),
+        value: netDealDataCounts['Res. Rentals'] || 0,
       },
       {
         id: 'Com. Sales',
         label: 'Com. Sales',
-        value: round(netDealDataCounts['Com. Sales'] || 0, 0),
+        value: netDealDataCounts['Com. Sales'] || 0,
       },
       {
         id: 'Com. Rentals',
         label: 'Com. Rentals',
-        value: round(netDealDataCounts['Com. Rentals'] || 0, 0),
+        value: netDealDataCounts['Com. Rentals'] || 0,
       },
     ];
 
@@ -231,36 +229,24 @@ class AdminDealsSummaryContainer extends Component {
     return numOfPendingDeals || 0;
   };
 
-  returnGrossDealCommissions = (deals = []) => {
-    return round(
-      deals.reduce((grossAmount, deal) => {
-        if (deal.status === 'pending') return grossAmount;
+  returnGrossDealCommissions = (deals = []) => toLocaleCurrency(deals.reduce((grossAmount, deal) => {
+    if (deal.status === 'pending') return grossAmount;
 
-        return Math.floor((grossAmount += deal.total));
-      }, 0),
-      0
-    );
-  };
+    return grossAmount += deal.total;
+  }, 0));
 
-  returnNetDealCommissions = (deals = []) => {
-    return round(
-      deals.reduce((grossAmount, deal) => {
-        if (deal.status === 'pending') return grossAmount;
+  returnNetDealCommissions = (deals = []) => toLocaleCurrency(deals.reduce((grossAmount, deal) => {
+    if (deal.status === 'pending') return grossAmount;
 
-        return Math.floor((grossAmount += deal.netCompanyCommission));
-      }, 0),
-      0
-    );
-  };
+    return grossAmount += deal.netCompanyCommission;
+  }, 0));
 
-  returnNetCurrentYearDealCommissions = (deals = []) => {
-    return deals.reduce((grossAmount, deal) => {
-      if (deal.status === 'pending') return grossAmount;
-      if (moment(deal.date).year() !== moment().year()) return grossAmount;
+  returnNetCurrentYearDealCommissions = (deals = []) => toLocaleCurrency(deals.reduce((grossAmount, deal) => {
+    if (deal.status === 'pending') return grossAmount;
+    if (moment(deal.date).year() !== moment().year()) return grossAmount;
 
-      return Math.floor((grossAmount += deal.netCompanyCommission));
-    }, 0);
-  };
+    return grossAmount += deal.netCompanyCommission;
+  }, 0));
 
   returnMonthlyAndYearlyDealsData = (deals = []) => {
     const monthlyDollarData = returnMonthlyDollarDataContainer();
@@ -382,14 +368,13 @@ class AdminDealsSummaryContainer extends Component {
     };
   };
 
-  generateDealsBarData = data =>
-    Object.keys(data).map(month => ({
-      month,
-      'Com Sales': data[month]['Com Sales'],
-      'Com Rentals': data[month]['Com Rentals'],
-      'Res Sales': data[month]['Res Sales'],
-      'Res Rentals': data[month]['Res Rentals'],
-    }));
+  generateDealsBarData = data => Object.keys(data).map(month => ({
+    month,
+    'Com Sales': data[month]['Com Sales'],
+    'Com Rentals': data[month]['Com Rentals'],
+    'Res Sales': data[month]['Res Sales'],
+    'Res Rentals': data[month]['Res Rentals'],
+  }));
 
   generateDealsLineData = data => {
     const types = ['Com Sales', 'Com Rentals', 'Res Sales', 'Res Rentals'];

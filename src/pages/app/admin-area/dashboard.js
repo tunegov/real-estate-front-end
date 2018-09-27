@@ -1,7 +1,6 @@
 import React from 'react';
 import { observer } from 'mobx-react';
 import isBrowser from 'is-browser';
-import Head from 'next/head';
 import Layout from '../../../components/Layout';
 import { initStore } from '../../../models';
 import withData from '../../../lib/withData';
@@ -35,12 +34,13 @@ class Dashboard extends React.Component {
   }
 
   render() {
-    const userUUID = this.store.UserStore.uuid || this.state.userUUID;
+    const { userUUID } = this.state;
+    const UUID = this.store.UserStore.uuid || userUUID;
 
     return (
       <Layout UserStore={this.store.UserStore} UIStore={this.store.UIStore}>
         <AdminDashboardContainer
-          userUUID={userUUID}
+          userUUID={UUID}
           userRole={this.store.UserStore.userRole}
         />
       </Layout>

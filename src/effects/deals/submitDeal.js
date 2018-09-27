@@ -1,6 +1,4 @@
-import { GraphQLClient } from 'graphql-request';
-
-import graphQLEndpoint from '../../constants/graphQLEndpoint';
+import { graphQlClient } from '../client';
 
 const query = `
   mutation submitDeal($input: SubmitDealInput!) {
@@ -27,10 +25,6 @@ const query = `
   }
 `;
 
-const client = new GraphQLClient(graphQLEndpoint, {
-  credentials: 'same-origin',
-});
-
 const submitDeal = values => {
   let res;
 
@@ -44,11 +38,10 @@ const submitDeal = values => {
     userErrors: [],
   };
 
-  return client
+  return graphQlClient
     .request(query, variables)
     .then(result => {
       res = result;
-      console.log(res);
 
       const { submitDeal: data } = res;
       const { deal, otherError, userErrors } = data;

@@ -9,6 +9,7 @@ import Snackbar from 'material-ui/Snackbar';
 import IconButton from 'material-ui/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 import AdminDashboard from '../components/AdminDashboard';
+import {toLocaleCurrency} from "../utils/currency";
 
 const Loader = DotLoader;
 
@@ -23,7 +24,7 @@ const dealsQuery = gql`
   }
 `;
 
-const styles = theme => ({
+const styles = () => ({
   root: {
     maxWidth: '100%',
     marginBottom: 10,
@@ -40,6 +41,7 @@ class DashboardContainer extends Component {
     snackbarText: '',
     snackbarOpen: false,
   };
+
   returnDealData = (deals = []) => {
     const currentMonth = moment().month();
     let netCommissionsToDate = 0;
@@ -65,11 +67,11 @@ class DashboardContainer extends Component {
     });
 
     return {
-      netCommissionsToDate,
-      currentMonthNetCommissions,
+      netCommissionsToDate: toLocaleCurrency(netCommissionsToDate),
+      currentMonthNetCommissions: toLocaleCurrency(currentMonthNetCommissions),
       currentMonthNumOfDealsCommissions,
       numOfPendingDeals,
-      grossCommissionsToDate,
+      grossCommissionsToDate: toLocaleCurrency(grossCommissionsToDate),
     };
   };
 
@@ -149,9 +151,6 @@ class DashboardContainer extends Component {
                   this.submittedNewsAlertSuccessfully
                 }
                 deletedNewsAlertSuccessfully={this.deletedNewsAlertSuccessfully}
-                submittedNewsAlertSuccessfully={
-                  this.submittedNewsAlertSuccessfully
-                }
                 currentMonthNumOfDealsCommissions={
                   currentMonthNumOfDealsCommissions
                 }

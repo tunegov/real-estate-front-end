@@ -1,6 +1,4 @@
-import { GraphQLClient } from 'graphql-request';
-
-import graphQLEndpoint from '../../constants/graphQLEndpoint';
+import { graphQlClient } from '../client';
 
 const query = `
   mutation updateAgent($input: UpdateAgentInput!) {
@@ -32,10 +30,6 @@ const query = `
   }
 `;
 
-const client = new GraphQLClient(graphQLEndpoint, {
-  credentials: 'same-origin',
-});
-
 const updateAgent = values => {
   let res;
 
@@ -49,7 +43,7 @@ const updateAgent = values => {
     userErrors: [],
   };
 
-  return client
+  return graphQlClient
     .request(query, variables)
     .then(result => {
       res = result;

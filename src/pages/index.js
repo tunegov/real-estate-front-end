@@ -5,8 +5,8 @@ import Layout from '../frontEndComponents/FrontEndLayout';
 import { initStore } from '../models';
 import withData from '../lib/withData';
 import ComingSoonJumbotronHeader from '../frontEndContainers/ComingSoonJumbotronHeader';
-import HowItWorksSection from '../frontEndComponents/HowItWorksSection';
-import FeaturedPropertySection from '../frontEndComponents/FeaturedPropertySection';
+// import HowItWorksSection from '../frontEndComponents/HowItWorksSection';
+// import FeaturedPropertySection from '../frontEndComponents/FeaturedPropertySection';
 
 @observer
 class Home extends React.Component {

@@ -1,6 +1,4 @@
-import { GraphQLClient } from 'graphql-request';
-
-import graphQLEndpoint from '../../constants/graphQLEndpoint';
+import { graphQlClient } from '../client';
 
 const query = `
     mutation createAgent($input: CreateAgentInput!) {
@@ -34,13 +32,8 @@ const query = `
     }
   `;
 
-const client = new GraphQLClient(graphQLEndpoint, {
-  credentials: 'same-origin',
-});
-
 const createAgent = values => {
   let res;
-  let response;
   let error;
 
   const variables = {
@@ -53,7 +46,7 @@ const createAgent = values => {
     error,
   };
 
-  return client
+  return graphQlClient
     .request(query, variables)
     .then(result => {
       res = result;
@@ -64,9 +57,9 @@ const createAgent = values => {
       if (!data.wasSuccessful) {
         finalResponseObj.error = data.userErrors.length
           ? {
-              message: data.userErrors[0].message,
-              field: data.userErrors[0].field,
-            }
+            message: data.userErrors[0].message,
+            field: data.userErrors[0].field,
+          }
           : data.otherError;
       }
 

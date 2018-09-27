@@ -1,6 +1,4 @@
-import { GraphQLClient } from 'graphql-request';
-
-import graphQLEndpoint from '../../constants/graphQLEndpoint';
+import { graphQlClient } from '../client';
 
 const query = `
   mutation submitNewsAlertItem($input: SubmitNewsAlertItemInput!) {
@@ -17,10 +15,6 @@ const query = `
   }
 `;
 
-const client = new GraphQLClient(graphQLEndpoint, {
-  credentials: 'same-origin',
-});
-
 const submitNewsAlertItem = values => {
   let res;
 
@@ -33,7 +27,7 @@ const submitNewsAlertItem = values => {
     error: null,
   };
 
-  return client
+  return graphQlClient
     .request(query, variables)
     .then(result => {
       res = result;

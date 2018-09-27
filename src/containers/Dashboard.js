@@ -5,6 +5,7 @@ import { Query } from 'react-apollo';
 import { DotLoader } from 'react-spinners';
 import moment from 'moment';
 import AgentDashboard from '../components/AgentDashboard';
+import { toLocaleCurrency } from '../utils/currency';
 
 const Loader = DotLoader;
 
@@ -43,8 +44,8 @@ class DashboardContainer extends Component {
     });
 
     return {
-      netCommissionsToDate,
-      currentMonthNetCommissions,
+      netCommissionsToDate: toLocaleCurrency(netCommissionsToDate),
+      currentMonthNetCommissions: toLocaleCurrency(currentMonthNetCommissions),
       currentMonthNumOfDealsCommissions,
       numOfPendingDeals,
     };

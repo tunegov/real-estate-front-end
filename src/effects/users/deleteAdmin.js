@@ -1,6 +1,4 @@
-import { GraphQLClient } from 'graphql-request';
-
-import graphQLEndpoint from '../../constants/graphQLEndpoint';
+import { graphQlClient } from '../client';
 
 const query = `
   mutation deleteAdmin($uuid: String!) {
@@ -9,10 +7,6 @@ const query = `
     }
   }
 `;
-
-const client = new GraphQLClient(graphQLEndpoint, {
-  credentials: 'same-origin',
-});
 
 const deleteAdmin = uuid => {
   let res;
@@ -25,7 +19,7 @@ const deleteAdmin = uuid => {
     error: null,
   };
 
-  return client
+  return graphQlClient
     .request(query, variables)
     .then(result => {
       res = result;
