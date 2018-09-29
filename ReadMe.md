@@ -4,11 +4,11 @@
 First of all, clone the repository:
 by https
 ```sh
-git clone https://puneet_123@bitbucket.org/reyeselsamad1/front-end.git -b master --single-branch
+git clone https://puneet_123@bitbucket.org/reyeselsamad1/front-end.git -b master
 ```
 or ssh
 ```sh
-git clone git@bitbucket.org:reyeselsamad1/front-end.git -b master --single-branch
+git clone git@bitbucket.org:reyeselsamad1/front-end.git -b master
 ```
 Go to the repository folder
 ```sh
