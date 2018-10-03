@@ -2,16 +2,12 @@ import React, { Component } from 'react';
 import { observer } from 'mobx-react';
 import { withStyles } from 'material-ui/styles';
 import { DotLoader } from 'react-spinners';
-import Chance from 'chance';
-import isBrowser from 'is-browser';
 import moment from 'moment';
 import Papa from 'papaparse';
 import DealsTable from '../components/DealsTable';
 import { capitalize } from '../utils/stringUtils';
 import debounce from '../utils/debounce';
 import { padStringToDecimalString } from '../utils/Math';
-
-const chance = new Chance();
 
 const Loader = DotLoader;
 
@@ -69,63 +65,60 @@ class DealsTableContainer extends Component {
     };
   }
 
-  createRows = () => {
-    return this.props.deals.map(deal => {
-      const {
-        dealID,
-        date,
-        agentID,
-        dealType,
-        clientName,
-        clientEmail,
-        propertyAddress,
-        city,
-        managementOrCobrokeCompany,
-        price,
-        bonusPercentageAddedByAdmin,
-        netAgentCommission,
-        status,
-        total,
-      } = deal;
+  createRows = () => this.props.deals.map(deal => {
+    const {
+      dealID,
+      date,
+      dealType,
+      clientName,
+      clientEmail,
+      propertyAddress,
+      city,
+      managementOrCobrokeCompany,
+      price,
+      bonusPercentageAddedByAdmin,
+      netAgentCommission,
+      status,
+      total,
+      isCoAgent,
+    } = deal;
 
-      return {
-        dealID,
-        date: moment(date).format('MM/DD/YYYY'),
-        dealType,
-        clientName,
-        clientEmail,
-        propertyAddress,
-        propertyCity: city,
-        managementOrCobrokeCompany,
-        rentOrSalePrice: `$${padStringToDecimalString(
-          Number(price || 0).toLocaleString()
-        )}`,
-        bonusPercentageAddedByAdmin:
+    return {
+      dealID,
+      date: moment(date).format('MM/DD/YYYY'),
+      dealType,
+      clientName,
+      clientEmail,
+      propertyAddress,
+      propertyCity: city,
+      managementOrCobrokeCompany,
+      rentOrSalePrice: `$${padStringToDecimalString(
+        Number(price || 0).toLocaleString()
+      )}`,
+      bonusPercentageAddedByAdmin:
           status === 'pending'
             ? undefined
             : `%${bonusPercentageAddedByAdmin || 0}`,
-        netAgentCommission:
+      netAgentCommission:
           status === 'pending'
             ? undefined
             : `$${padStringToDecimalString(
-                Number(netAgentCommission || 0).toLocaleString()
-              )}`,
-        dealTotal: `$${padStringToDecimalString(
-          Number(total || 0).toLocaleString()
-        )}`,
-        status: capitalize(status),
-        view: {
-          type: 'action',
-          onClick: () =>
-            debounce(
-              this.props.openDealsViewDialogBox.bind(null, dealID, status),
-              1000,
-              true
-            )(),
-        },
-      };
-    });
-  };
+              Number(netAgentCommission || 0).toLocaleString()
+            )}`,
+      dealTotal: `$${padStringToDecimalString(
+        Number(total || 0).toLocaleString()
+      )}`,
+      status: capitalize(status),
+      view: {
+        type: 'action',
+        onClick: () => debounce(
+          this.props.openDealsViewDialogBox.bind(null, dealID, status, isCoAgent),
+          1000,
+          true
+        )(),
+      },
+    };
+  });
 
   convertDealsToCSV = () => {
     const { deals } = this.props;
@@ -180,8 +173,7 @@ class DealsTableContainer extends Component {
           convertDealsToCSV={this.convertDealsToCSV}
           changeSelection={this.changeSelection}
           selection={selection}
-          onMount={() =>
-            tableIsLoading ? this.setState({ tableIsLoading: false }) : null
+          onMount={() => tableIsLoading ? this.setState({ tableIsLoading: false }) : null
           }
           columns={columns}
           rows={this.createRows()}

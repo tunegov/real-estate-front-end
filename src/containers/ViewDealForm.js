@@ -25,10 +25,6 @@ const viewDealFormQuery = gql`
         dealID
         date
         agentName
-        otherAgents {
-          agentID
-          agentName
-        }
         agentType
         leadSource
         dealType
@@ -49,6 +45,7 @@ const viewDealFormQuery = gql`
         deductionItems {
           deductionType
           description
+          agentID
           amount
         }
         deductionsTotal
@@ -100,6 +97,7 @@ class ViewDealFormContainer extends Component {
   }
 
   uploadItemsNum = 0;
+
   itemsUploaded = 0;
 
   paymentAmountChangeHandler = (id, value) => {
@@ -281,7 +279,6 @@ class ViewDealFormContainer extends Component {
     delete returnObject.agent;
     delete returnObject.agentType;
     delete returnObject.state;
-    delete returnObject.otherAgents;
 
     if (this.props.userRole !== admin && this.props.userRole !== superAdmin) {
       delete returnObject.bonusPercentageAddedByAdmin;
@@ -358,7 +355,7 @@ class ViewDealFormContainer extends Component {
         return;
       }
 
-      let errors = [];
+      const errors = [];
 
       const { items } = response;
 
@@ -447,26 +444,24 @@ class ViewDealFormContainer extends Component {
           url: item.signedURL,
           onUploadProgress: progressEvent => {
             // Do whatever you want with the native progress event
-            const loadedPercent =
-              (progressEvent.loaded / progressEvent.total) * 100;
+            const loadedPercent = (progressEvent.loaded / progressEvent.total) * 100;
 
             thisRef.setState({
               formSubmissionBegun: true,
               uplodingFileProgress: Math.floor(loadedPercent),
-              uplodingFileText: `Now uploading file ${uploadItemIndex +
-                1} of ${uploadItemsNum}...`,
+              uplodingFileText: `Now uploading file ${uploadItemIndex
+                + 1} of ${uploadItemsNum}...`,
               isUploadingFile: true,
             });
           },
         })
-          .then(() =>
-            recursiveHelper(
-              items,
-              uploadItemIndex + 1,
-              uploadItemsNum,
-              returnObject,
-              thisRef
-            )
+          .then(() => recursiveHelper(
+            items,
+            uploadItemIndex + 1,
+            uploadItemsNum,
+            returnObject,
+            thisRef
+          )
           )
           .catch(err => this.props.openRequestErrorSnackbar());
       };
@@ -498,12 +493,13 @@ class ViewDealFormContainer extends Component {
         fetchPolicy="cache-and-network"
       >
         {({ loading, error, data }) => {
-          if (loading)
+          if (loading) {
             return (
               <div style={{ display: 'flex', justifyContent: 'center' }}>
                 <Loader color="#f44336" loading />
               </div>
             );
+          }
 
           if (error) {
             console.log(error);
@@ -522,18 +518,14 @@ class ViewDealFormContainer extends Component {
 
           const agents = agentItems || [];
 
-          const submittedDeal = deal;
-
           return (
             <SubmitDealForm
               setInitialContainerState={this.setInitialContainerState}
               paymentsTotal={`${this.state.paymentsTotal}`}
               deductionsTotal={`${this.state.deductionsTotal}`}
               total={this.state.total}
-              submittedDeal={submittedDeal}
-              agents={agents.filter(
-                agent => (uuid ? agent.uuid !== uuid : agent)
-              )}
+              submittedDeal={deal}
+              agents={agents}
               managementCobrokeCompanyItems={formSelectItems || []}
               onSubmit={this.onSubmit}
               setAgencyDisclosureForm={this.setAgencyDisclosureForm}
@@ -548,8 +540,8 @@ class ViewDealFormContainer extends Component {
               uplodingFileText={this.state.uplodingFileText}
               formSubmissionBegun={this.state.formSubmissionBegun}
               submittingFormToServer={
-                this.state.submittingFormToServer ||
-                this.props.submittingRequestToServer
+                this.state.submittingFormToServer
+                || this.props.submittingRequestToServer
               }
               isEditingDeal={isEditingDeal}
               isViewType={isViewType}

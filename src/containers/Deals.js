@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { withStyles } from 'material-ui/styles';
 import Button from 'material-ui/Button';
-import Tooltip from 'material-ui/Tooltip';
 import AddIcon from '@material-ui/icons/Add';
 import GraphIcon from '@material-ui/icons/Equalizer';
 import { observer } from 'mobx-react';
@@ -15,7 +14,6 @@ import SubmitDealDialogBox from '../components/SubmitDealDialogBox';
 import DealsTableContainer from './DealsTable';
 import DealsSummarDialogBox from '../components/DealsSummarDialogBox';
 import ViewDealDialogBox from '../components/ViewDealDialogBox';
-import deleteDeal from '../effects/deals/deleteDeal';
 
 const Loader = DotLoader;
 
@@ -37,6 +35,7 @@ const dealsQuery = gql`
       bonusPercentageAddedByAdmin
       netAgentCommission
       total
+      isCoAgent
     }
   }
 `;
@@ -81,6 +80,7 @@ class Deals extends Component {
       viewingDealStatus: '',
       deletedDealIDS: [],
       userUUID: this.props.userUUID,
+      isCoAgent: false,
     };
   }
 
@@ -122,11 +122,12 @@ class Deals extends Component {
     });
   };
 
-  openDealsViewDialogBox = (dealID, status) => {
+  openDealsViewDialogBox = (dealID, status, isCoAgent) => {
     this.setState({
       dealsViewDialogBoxOpen: true,
       viewingDealID: dealID,
       viewingDealStatus: status,
+      isCoAgent,
     });
   };
 
@@ -155,6 +156,7 @@ class Deals extends Component {
       dealsViewDialogBoxOpen,
       viewingDealID,
       viewingDealStatus,
+      isCoAgent,
     } = this.state;
     const {
       toggleAddDealDialogBox,
@@ -162,6 +164,7 @@ class Deals extends Component {
       openDealsViewDialogBox,
       closeDealsViewDialogBox,
     } = this;
+
 
     return (
       <Query
@@ -171,7 +174,7 @@ class Deals extends Component {
         fetchPolicy="cache-and-network"
       >
         {({ loading, error, data }) => {
-          if (loading)
+          if (loading) {
             return (
               <div
                 style={{
@@ -186,6 +189,7 @@ class Deals extends Component {
                 <Loader color="#f44336" loading />
               </div>
             );
+          }
           const intDeals = {};
 
           if (error) {
@@ -258,6 +262,7 @@ class Deals extends Component {
                   setDealSuccessfullySubmitted={this.setDealSuccessfullyEditted}
                   userRole={this.props.userRole}
                   dealDeleted={this.dealDeleted}
+                  isCoAgent={isCoAgent}
                 />
               </div>
               <DealsTableContainer
@@ -292,8 +297,8 @@ class Deals extends Component {
                       onClick={() => {
                         this.handleCloseSnackbar();
                         if (
-                          this.state.snackbarUndoFunction &&
-                          typeof snackbarUndoFunction === 'function'
+                          this.state.snackbarUndoFunction
+                          && typeof snackbarUndoFunction === 'function'
                         ) {
                           this.snackbarUndoFunction();
                         }

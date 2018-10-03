@@ -67,7 +67,7 @@ module.exports =
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 243);
+/******/ 	return __webpack_require__(__webpack_require__.s = 242);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -98,7 +98,7 @@ module.exports = require("@babel/runtime/regenerator");
 /* 4 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var routes = __webpack_require__(50)();
+var routes = __webpack_require__(46)();
 
 routes.add('home', '/', '/').add('dashboard', '/app/dashbaord', 'app/dashboard').add('profile', '/app/profile', 'app/profile').add('deals', '/app/deals', 'app/deals').add('invoices', '/app/invoices', 'app/invoices').add('agents', '/app/agents', 'app/agents').add('create-listing', '/app/listing/new', '/app/listing/new').add('admin-dashboard', '/app/admin-area/dashboard', 'app/admin-area/dashboard').add('create-agent', '/app/admin-area/agents/create', 'app/admin-area/agents/create').add('view-agents', '/app/admin-area/agents/view', 'app/admin-area/agents/view').add('create-user', '/app/admin-area/customers/create', 'app/admin-area/customers/create').add('view-customers', '/app/admin-area/customers/view', 'app/admin-area/customers/view').add('create-admin', '/app/admin-area/admin/create', 'app/admin-area/admin/create').add('view-admin', '/app/admin-area/admin/view', 'app/admin-area/admin/view').add('view-deals', '/app/admin-area/deals/view', 'app/admin-area/deals/view')
 /*
@@ -123,7 +123,7 @@ module.exports = require("classnames");
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return graphQlClient; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_graphql_request__ = __webpack_require__(52);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_graphql_request__ = __webpack_require__(48);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_graphql_request___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_graphql_request__);
 
 var isDev = "production" !== 'production';
@@ -194,6 +194,24 @@ module.exports = require("material-ui/IconButton");
 
 /***/ }),
 /* 15 */
+/***/ (function(module, exports) {
+
+module.exports = require("next/head");
+
+/***/ }),
+/* 16 */
+/***/ (function(module, exports) {
+
+module.exports = require("prop-types");
+
+/***/ }),
+/* 17 */
+/***/ (function(module, exports) {
+
+module.exports = require("react-apollo");
+
+/***/ }),
+/* 18 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -569,61 +587,37 @@ function abbreviate(str) {
 }
 
 /***/ }),
-/* 16 */
-/***/ (function(module, exports) {
-
-module.exports = require("next/head");
-
-/***/ }),
-/* 17 */
-/***/ (function(module, exports) {
-
-module.exports = require("react-apollo");
-
-/***/ }),
-/* 18 */
-/***/ (function(module, exports) {
-
-module.exports = require("prop-types");
-
-/***/ }),
 /* 19 */
-/***/ (function(module, exports) {
-
-module.exports = require("material-ui/Divider");
-
-/***/ }),
-/* 20 */
 /***/ (function(module, exports) {
 
 module.exports = require("material-ui/Grid");
 
 /***/ }),
+/* 20 */
+/***/ (function(module, exports) {
+
+module.exports = require("material-ui/Divider");
+
+/***/ }),
 /* 21 */
-/***/ (function(module, exports) {
-
-module.exports = require("antd/lib/icon/style/css");
-
-/***/ }),
-/* 22 */
-/***/ (function(module, exports) {
-
-module.exports = require("antd/lib/icon");
-
-/***/ }),
-/* 23 */
 /***/ (function(module, exports) {
 
 module.exports = require("material-ui/colors/blue");
 
 /***/ }),
-/* 24 */
+/* 22 */
 /***/ (function(module, exports) {
 
-module.exports = require("react-spinners");
+module.exports = require("antd/lib/icon/style/css");
 
 /***/ }),
-/* 25 */
+/* 23 */
+/***/ (function(module, exports) {
+
+module.exports = require("antd/lib/icon");
+
+/***/ }),
+/* 24 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -875,7 +869,7 @@ var UserEffects = external__mobx_state_tree_["types"].model({}).actions(function
 });
 /* harmony default export */ var userEffects = (UserEffects);
 // EXTERNAL MODULE: external "urlsafe-base64"
-var external__urlsafe_base64_ = __webpack_require__(53);
+var external__urlsafe_base64_ = __webpack_require__(49);
 var external__urlsafe_base64__default = /*#__PURE__*/__webpack_require__.n(external__urlsafe_base64_);
 
 // CONCATENATED MODULE: ./utils/jwtUtils.js
@@ -1063,7 +1057,7 @@ function initStore(isServer) {
 }
 
 /***/ }),
-/* 26 */
+/* 25 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1091,22 +1085,28 @@ var theme = {
 /* harmony default export */ __webpack_exports__["a"] = (theme);
 
 /***/ }),
-/* 27 */
+/* 26 */
 /***/ (function(module, exports) {
 
-module.exports = require("react-form");
+module.exports = require("react-spinners");
 
 /***/ }),
-/* 28 */
+/* 27 */
 /***/ (function(module, exports) {
 
 module.exports = require("material-ui/Typography");
 
 /***/ }),
+/* 28 */
+/***/ (function(module, exports) {
+
+module.exports = require("material-ui/List");
+
+/***/ }),
 /* 29 */
 /***/ (function(module, exports) {
 
-module.exports = require("@devexpress/dx-react-grid-material-ui");
+module.exports = require("react-form");
 
 /***/ }),
 /* 30 */
@@ -1118,75 +1118,45 @@ module.exports = require("material-ui/Snackbar");
 /* 31 */
 /***/ (function(module, exports) {
 
-module.exports = require("material-ui/Button");
+module.exports = require("@material-ui/icons/Close");
 
 /***/ }),
 /* 32 */
 /***/ (function(module, exports) {
 
-module.exports = require("@material-ui/icons/Close");
+module.exports = require("material-ui/Drawer");
 
 /***/ }),
 /* 33 */
 /***/ (function(module, exports) {
 
-module.exports = require("moment");
+module.exports = require("@material-ui/icons/RemoveRedEye");
 
 /***/ }),
 /* 34 */
 /***/ (function(module, exports) {
 
-module.exports = require("material-ui/List");
+module.exports = require("debounce");
 
 /***/ }),
 /* 35 */
 /***/ (function(module, exports) {
 
-module.exports = require("@material-ui/icons/RemoveRedEye");
+module.exports = require("@devexpress/dx-react-grid-material-ui");
 
 /***/ }),
 /* 36 */
-/***/ (function(module, exports) {
-
-module.exports = require("material-ui/Dialog");
-
-/***/ }),
-/* 37 */
-/***/ (function(module, exports) {
-
-module.exports = require("debounce");
-
-/***/ }),
-/* 38 */
-/***/ (function(module, exports) {
-
-module.exports = require("@material-ui/icons/Add");
-
-/***/ }),
-/* 39 */
-/***/ (function(module, exports) {
-
-module.exports = require("material-ui/Drawer");
-
-/***/ }),
-/* 40 */
-/***/ (function(module, exports) {
-
-module.exports = require("material-ui/Form");
-
-/***/ }),
-/* 41 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = getPageContext;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react_jss__ = __webpack_require__(42);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react_jss__ = __webpack_require__(37);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react_jss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react_jss__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__material_ui_core_styles__ = __webpack_require__(43);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__material_ui_core_styles__ = __webpack_require__(38);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__material_ui_core_styles___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__material_ui_core_styles__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_material_ui_colors_red__ = __webpack_require__(44);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_material_ui_colors_red__ = __webpack_require__(39);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_material_ui_colors_red___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_material_ui_colors_red__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_material_ui_colors_blue__ = __webpack_require__(23);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_material_ui_colors_blue__ = __webpack_require__(21);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_material_ui_colors_blue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_material_ui_colors_blue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_polished__ = __webpack_require__(9);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_polished___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_polished__);
@@ -1270,55 +1240,61 @@ function getPageContext() {
 }
 
 /***/ }),
-/* 42 */
+/* 37 */
 /***/ (function(module, exports) {
 
 module.exports = require("react-jss");
 
 /***/ }),
-/* 43 */
+/* 38 */
 /***/ (function(module, exports) {
 
 module.exports = require("@material-ui/core/styles");
 
 /***/ }),
-/* 44 */
+/* 39 */
 /***/ (function(module, exports) {
 
 module.exports = require("material-ui/colors/red");
 
 /***/ }),
-/* 45 */
+/* 40 */
 /***/ (function(module, exports) {
 
-module.exports = require("react-icons/lib/md");
+module.exports = require("material-ui/Button");
 
 /***/ }),
-/* 46 */
+/* 41 */
+/***/ (function(module, exports) {
+
+module.exports = require("moment");
+
+/***/ }),
+/* 42 */
 /***/ (function(module, exports) {
 
 module.exports = require("nprogress");
 
 /***/ }),
-/* 47 */
+/* 43 */
 /***/ (function(module, exports) {
 
 
 
 /***/ }),
-/* 48 */
+/* 44 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_prop_types__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_prop_types__ = __webpack_require__(16);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_prop_types___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_prop_types__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_material_ui_styles__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_material_ui_styles___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_material_ui_styles__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_material_ui_CssBaseline__ = __webpack_require__(49);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_material_ui_CssBaseline__ = __webpack_require__(45);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_material_ui_CssBaseline___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_material_ui_CssBaseline__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__getPageContext__ = __webpack_require__(41);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__getPageContext__ = __webpack_require__(36);
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -1399,19 +1375,19 @@ function withRoot(Component) {
 /* harmony default export */ __webpack_exports__["a"] = (withRoot);
 
 /***/ }),
-/* 49 */
+/* 45 */
 /***/ (function(module, exports) {
 
 module.exports = require("material-ui/CssBaseline");
 
 /***/ }),
-/* 50 */
+/* 46 */
 /***/ (function(module, exports) {
 
 module.exports = require("next-routes");
 
 /***/ }),
-/* 51 */
+/* 47 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1419,19 +1395,19 @@ var globalStyles = "\n  html {\n    height: 100%;\n  }\n  body {\n    position: 
 /* harmony default export */ __webpack_exports__["a"] = (globalStyles);
 
 /***/ }),
-/* 52 */
+/* 48 */
 /***/ (function(module, exports) {
 
 module.exports = require("graphql-request");
 
 /***/ }),
-/* 53 */
+/* 49 */
 /***/ (function(module, exports) {
 
 module.exports = require("urlsafe-base64");
 
 /***/ }),
-/* 54 */
+/* 50 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1445,7 +1421,7 @@ var external__react_ = __webpack_require__(0);
 var external__react__default = /*#__PURE__*/__webpack_require__.n(external__react_);
 
 // EXTERNAL MODULE: external "prop-types"
-var external__prop_types_ = __webpack_require__(18);
+var external__prop_types_ = __webpack_require__(16);
 var external__prop_types__default = /*#__PURE__*/__webpack_require__.n(external__prop_types_);
 
 // EXTERNAL MODULE: external "react-apollo"
@@ -1453,23 +1429,23 @@ var external__react_apollo_ = __webpack_require__(17);
 var external__react_apollo__default = /*#__PURE__*/__webpack_require__.n(external__react_apollo_);
 
 // EXTERNAL MODULE: external "next/head"
-var head_ = __webpack_require__(16);
+var head_ = __webpack_require__(15);
 var head__default = /*#__PURE__*/__webpack_require__.n(head_);
 
 // EXTERNAL MODULE: external "apollo-client"
-var external__apollo_client_ = __webpack_require__(55);
+var external__apollo_client_ = __webpack_require__(51);
 var external__apollo_client__default = /*#__PURE__*/__webpack_require__.n(external__apollo_client_);
 
 // EXTERNAL MODULE: external "apollo-link-http"
-var external__apollo_link_http_ = __webpack_require__(56);
+var external__apollo_link_http_ = __webpack_require__(52);
 var external__apollo_link_http__default = /*#__PURE__*/__webpack_require__.n(external__apollo_link_http_);
 
 // EXTERNAL MODULE: external "apollo-cache-inmemory"
-var external__apollo_cache_inmemory_ = __webpack_require__(57);
+var external__apollo_cache_inmemory_ = __webpack_require__(53);
 var external__apollo_cache_inmemory__default = /*#__PURE__*/__webpack_require__.n(external__apollo_cache_inmemory_);
 
 // EXTERNAL MODULE: external "isomorphic-unfetch"
-var external__isomorphic_unfetch_ = __webpack_require__(58);
+var external__isomorphic_unfetch_ = __webpack_require__(54);
 var external__isomorphic_unfetch__default = /*#__PURE__*/__webpack_require__.n(external__isomorphic_unfetch_);
 
 // CONCATENATED MODULE: ./constants/config.js
@@ -1677,28 +1653,52 @@ function getComponentDisplayName(Component) {
 });
 
 /***/ }),
-/* 55 */
+/* 51 */
 /***/ (function(module, exports) {
 
 module.exports = require("apollo-client");
 
 /***/ }),
-/* 56 */
+/* 52 */
 /***/ (function(module, exports) {
 
 module.exports = require("apollo-link-http");
 
 /***/ }),
-/* 57 */
+/* 53 */
 /***/ (function(module, exports) {
 
 module.exports = require("apollo-cache-inmemory");
 
 /***/ }),
-/* 58 */
+/* 54 */
 /***/ (function(module, exports) {
 
 module.exports = require("isomorphic-unfetch");
+
+/***/ }),
+/* 55 */
+/***/ (function(module, exports) {
+
+module.exports = require("@material-ui/icons/Add");
+
+/***/ }),
+/* 56 */
+/***/ (function(module, exports) {
+
+module.exports = require("react-icons/lib/md");
+
+/***/ }),
+/* 57 */
+/***/ (function(module, exports) {
+
+module.exports = require("material-ui/Dialog");
+
+/***/ }),
+/* 58 */
+/***/ (function(module, exports) {
+
+module.exports = require("material-ui/Form");
 
 /***/ }),
 /* 59 */
@@ -1746,10 +1746,28 @@ module.exports = require("graphql-tag");
 /* 66 */
 /***/ (function(module, exports) {
 
-module.exports = require("material-ui/Input");
+module.exports = require("antd/lib/input/style/css");
 
 /***/ }),
 /* 67 */
+/***/ (function(module, exports) {
+
+module.exports = require("antd/lib/input");
+
+/***/ }),
+/* 68 */
+/***/ (function(module, exports) {
+
+module.exports = require("material-ui/Input");
+
+/***/ }),
+/* 69 */
+/***/ (function(module, exports) {
+
+module.exports = require("react-sizes");
+
+/***/ }),
+/* 70 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1784,37 +1802,13 @@ var padStringToDecimalString = function padStringToDecimalString(s) {
 };
 
 /***/ }),
-/* 68 */
+/* 71 */
 /***/ (function(module, exports) {
 
 module.exports = require("chance");
 
 /***/ }),
-/* 69 */
-/***/ (function(module, exports) {
-
-module.exports = require("react-sizes");
-
-/***/ }),
-/* 70 */
-/***/ (function(module, exports) {
-
-module.exports = require("antd/lib/input/style/css");
-
-/***/ }),
-/* 71 */
-/***/ (function(module, exports) {
-
-module.exports = require("antd/lib/input");
-
-/***/ }),
 /* 72 */
-/***/ (function(module, exports) {
-
-module.exports = require("uuid/v4");
-
-/***/ }),
-/* 73 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1876,7 +1870,13 @@ function (_React$Component) {
 
 
 /***/ }),
-/* 74 */,
+/* 73 */,
+/* 74 */
+/***/ (function(module, exports) {
+
+module.exports = require("uuid/v4");
+
+/***/ }),
 /* 75 */
 /***/ (function(module, exports) {
 
@@ -1905,11 +1905,11 @@ var external__mobx_react_ = __webpack_require__(1);
 var external__mobx_react__default = /*#__PURE__*/__webpack_require__.n(external__mobx_react_);
 
 // EXTERNAL MODULE: external "next/head"
-var head_ = __webpack_require__(16);
+var head_ = __webpack_require__(15);
 var head__default = /*#__PURE__*/__webpack_require__.n(head_);
 
 // EXTERNAL MODULE: external "nprogress"
-var external__nprogress_ = __webpack_require__(46);
+var external__nprogress_ = __webpack_require__(42);
 var external__nprogress__default = /*#__PURE__*/__webpack_require__.n(external__nprogress_);
 
 // EXTERNAL MODULE: external "next/router"
@@ -1925,24 +1925,24 @@ var external__styled_components_ = __webpack_require__(8);
 var external__styled_components__default = /*#__PURE__*/__webpack_require__.n(external__styled_components_);
 
 // EXTERNAL MODULE: ../node_modules/antd/dist/antd.css
-var antd = __webpack_require__(47);
+var antd = __webpack_require__(43);
 var antd_default = /*#__PURE__*/__webpack_require__.n(antd);
 
 // EXTERNAL MODULE: ./lib/withRoot.js
-var withRoot = __webpack_require__(48);
+var withRoot = __webpack_require__(44);
 
 // EXTERNAL MODULE: ./themeStyles/index.js
-var themeStyles = __webpack_require__(26);
+var themeStyles = __webpack_require__(25);
 
 // EXTERNAL MODULE: ./globalStyles/index.js
-var globalStyles = __webpack_require__(51);
+var globalStyles = __webpack_require__(47);
 
 // EXTERNAL MODULE: external "antd/lib/icon/style/css"
-var css_ = __webpack_require__(21);
+var css_ = __webpack_require__(22);
 var css__default = /*#__PURE__*/__webpack_require__.n(css_);
 
 // EXTERNAL MODULE: external "antd/lib/icon"
-var icon_ = __webpack_require__(22);
+var icon_ = __webpack_require__(23);
 var icon__default = /*#__PURE__*/__webpack_require__.n(icon_);
 
 // EXTERNAL MODULE: external "material-ui/styles"
@@ -1970,15 +1970,15 @@ var Hidden_ = __webpack_require__(83);
 var Hidden__default = /*#__PURE__*/__webpack_require__.n(Hidden_);
 
 // EXTERNAL MODULE: external "material-ui/Drawer"
-var Drawer_ = __webpack_require__(39);
+var Drawer_ = __webpack_require__(32);
 var Drawer__default = /*#__PURE__*/__webpack_require__.n(Drawer_);
 
 // EXTERNAL MODULE: external "material-ui/List"
-var List_ = __webpack_require__(34);
+var List_ = __webpack_require__(28);
 var List__default = /*#__PURE__*/__webpack_require__.n(List_);
 
 // EXTERNAL MODULE: external "material-ui/Divider"
-var Divider_ = __webpack_require__(19);
+var Divider_ = __webpack_require__(20);
 var Divider__default = /*#__PURE__*/__webpack_require__.n(Divider_);
 
 // EXTERNAL MODULE: external "material-ui/IconButton"
@@ -1998,11 +1998,11 @@ var Notifications_ = __webpack_require__(61);
 var Notifications__default = /*#__PURE__*/__webpack_require__.n(Notifications_);
 
 // EXTERNAL MODULE: external "@material-ui/icons/Add"
-var Add_ = __webpack_require__(38);
+var Add_ = __webpack_require__(55);
 var Add__default = /*#__PURE__*/__webpack_require__.n(Add_);
 
 // EXTERNAL MODULE: external "@material-ui/icons/RemoveRedEye"
-var RemoveRedEye_ = __webpack_require__(35);
+var RemoveRedEye_ = __webpack_require__(33);
 var RemoveRedEye__default = /*#__PURE__*/__webpack_require__.n(RemoveRedEye_);
 
 // EXTERNAL MODULE: external "classnames"
@@ -2163,7 +2163,7 @@ function (_Component) {
 
 /* harmony default export */ var components_SideNavLinkItem = (Object(styles_["withStyles"])(styles)(SideNavLinkItem_SideNavLinkItem));
 // EXTERNAL MODULE: external "react-icons/lib/md"
-var md_ = __webpack_require__(45);
+var md_ = __webpack_require__(56);
 var md__default = /*#__PURE__*/__webpack_require__.n(md_);
 
 // EXTERNAL MODULE: external "react-icons/lib/fa"
@@ -2695,11 +2695,11 @@ var Toolbar_ = __webpack_require__(91);
 var Toolbar__default = /*#__PURE__*/__webpack_require__.n(Toolbar_);
 
 // EXTERNAL MODULE: external "material-ui/Typography"
-var Typography_ = __webpack_require__(28);
+var Typography_ = __webpack_require__(27);
 var Typography__default = /*#__PURE__*/__webpack_require__.n(Typography_);
 
 // EXTERNAL MODULE: ./utils/stringUtils.js
-var stringUtils = __webpack_require__(15);
+var stringUtils = __webpack_require__(18);
 
 // CONCATENATED MODULE: ./components/AppTopNav/index.js
 var AppTopNav__class;
@@ -2836,7 +2836,7 @@ function (_Component) {
 
 /* harmony default export */ var components_AppTopNav = (Object(styles_["withStyles"])(AppTopNav_styles)(AppTopNav_AppTopNav));
 // EXTERNAL MODULE: external "@material-ui/icons/Close"
-var Close_ = __webpack_require__(32);
+var Close_ = __webpack_require__(31);
 var Close__default = /*#__PURE__*/__webpack_require__.n(Close_);
 
 // EXTERNAL MODULE: external "material-ui/Switch"
@@ -3041,11 +3041,11 @@ function (_Component) {
 
 /* harmony default export */ var components_SettingsDrawer = (Object(styles_["withStyles"])(SettingsDrawer_styles)(SettingsDrawer_SettingsDrawer));
 // EXTERNAL MODULE: external "material-ui/Dialog"
-var Dialog_ = __webpack_require__(36);
+var Dialog_ = __webpack_require__(57);
 var Dialog__default = /*#__PURE__*/__webpack_require__.n(Dialog_);
 
 // EXTERNAL MODULE: external "material-ui/colors/blue"
-var blue_ = __webpack_require__(23);
+var blue_ = __webpack_require__(21);
 var blue__default = /*#__PURE__*/__webpack_require__.n(blue_);
 
 // EXTERNAL MODULE: external "material-ui/Avatar"
@@ -3484,7 +3484,7 @@ var Portal_ = __webpack_require__(95);
 var Portal__default = /*#__PURE__*/__webpack_require__.n(Portal_);
 
 // EXTERNAL MODULE: external "react-spinners"
-var external__react_spinners_ = __webpack_require__(24);
+var external__react_spinners_ = __webpack_require__(26);
 var external__react_spinners__default = /*#__PURE__*/__webpack_require__.n(external__react_spinners_);
 
 // CONCATENATED MODULE: ./components/FullScreenLoader/index.js
@@ -3578,10 +3578,10 @@ function (_Component) {
 
 /* harmony default export */ var components_FullScreenLoader = (Object(styles_["withStyles"])(FullScreenLoader_styles)(FullScreenLoader_FullScreenLoader));
 // EXTERNAL MODULE: ./models/index.js + 8 modules
-var models = __webpack_require__(25);
+var models = __webpack_require__(24);
 
 // EXTERNAL MODULE: ./AppGlobalStateProvider/index.js
-var AppGlobalStateProvider = __webpack_require__(73);
+var AppGlobalStateProvider = __webpack_require__(72);
 
 // EXTERNAL MODULE: ./static/css/main.css
 var main = __webpack_require__(75);
@@ -3871,31 +3871,31 @@ module.exports = require("react-detect-offline");
 module.exports = require("material-ui/Portal");
 
 /***/ }),
-/* 96 */
-/***/ (function(module, exports) {
-
-module.exports = require("material-ui/Select");
-
-/***/ }),
-/* 97 */
-/***/ (function(module, exports) {
-
-module.exports = require("material-ui/Chip");
-
-/***/ }),
+/* 96 */,
+/* 97 */,
 /* 98 */,
 /* 99 */,
-/* 100 */
+/* 100 */,
+/* 101 */,
+/* 102 */,
+/* 103 */
 /***/ (function(module, exports) {
 
 module.exports = require("email-validator");
 
 /***/ }),
-/* 101 */,
-/* 102 */,
-/* 103 */,
-/* 104 */,
-/* 105 */,
+/* 104 */
+/***/ (function(module, exports) {
+
+module.exports = require("material-ui/Select");
+
+/***/ }),
+/* 105 */
+/***/ (function(module, exports) {
+
+module.exports = require("material-ui/Chip");
+
+/***/ }),
 /* 106 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -3906,17 +3906,17 @@ module.exports = require("email-validator");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_mobx_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_mobx_react__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_material_ui_styles__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_material_ui_styles___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_material_ui_styles__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_material_ui_Input__ = __webpack_require__(66);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_material_ui_Input__ = __webpack_require__(68);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_material_ui_Input___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_material_ui_Input__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_material_ui_Form__ = __webpack_require__(40);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_material_ui_Form__ = __webpack_require__(58);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_material_ui_Form___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_material_ui_Form__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_react_form__ = __webpack_require__(27);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_react_form__ = __webpack_require__(29);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_react_form___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_react_form__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_uuid_v4__ = __webpack_require__(72);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_uuid_v4__ = __webpack_require__(74);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_uuid_v4___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_uuid_v4__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_classnames__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_classnames___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7_classnames__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_debounce__ = __webpack_require__(37);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_debounce__ = __webpack_require__(34);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_debounce___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8_debounce__);
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
@@ -4198,22 +4198,16 @@ function (_React$Component) {
 /* 107 */
 /***/ (function(module, exports) {
 
-module.exports = require("material-ui/Menu/MenuItem");
-
-/***/ }),
-/* 108 */
-/***/ (function(module, exports) {
-
 module.exports = require("@devexpress/dx-react-grid");
 
 /***/ }),
-/* 109 */
+/* 108 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__devexpress_dx_react_grid_material_ui__ = __webpack_require__(29);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__devexpress_dx_react_grid_material_ui__ = __webpack_require__(35);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__devexpress_dx_react_grid_material_ui___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__devexpress_dx_react_grid_material_ui__);
 
 
@@ -4225,13 +4219,13 @@ var VirtualCell = function VirtualCell(props) {
 /* harmony default export */ __webpack_exports__["a"] = (VirtualCell);
 
 /***/ }),
-/* 110 */
+/* 109 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__devexpress_dx_react_grid_material_ui__ = __webpack_require__(29);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__devexpress_dx_react_grid_material_ui__ = __webpack_require__(35);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__devexpress_dx_react_grid_material_ui___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__devexpress_dx_react_grid_material_ui__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_material_ui_styles__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_material_ui_styles___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_material_ui_styles__);
@@ -4287,13 +4281,13 @@ var TableComponentBase = function TableComponentBase(_ref) {
 })(TableComponentBase));
 
 /***/ }),
-/* 111 */
+/* 110 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__devexpress_dx_react_grid_material_ui__ = __webpack_require__(29);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__devexpress_dx_react_grid_material_ui__ = __webpack_require__(35);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__devexpress_dx_react_grid_material_ui___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__devexpress_dx_react_grid_material_ui__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_material_ui_styles__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_material_ui_styles___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_material_ui_styles__);
@@ -4354,13 +4348,13 @@ var TableContainerBase = function TableContainerBase(_ref) {
 })(TableContainerBase));
 
 /***/ }),
-/* 112 */
+/* 111 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__devexpress_dx_react_grid_material_ui__ = __webpack_require__(29);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__devexpress_dx_react_grid_material_ui__ = __webpack_require__(35);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__devexpress_dx_react_grid_material_ui___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__devexpress_dx_react_grid_material_ui__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_material_ui_styles__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_material_ui_styles___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_material_ui_styles__);
@@ -4416,7 +4410,7 @@ var NoDataCellComponentBase = function NoDataCellComponentBase(_ref) {
 })(NoDataCellComponentBase));
 
 /***/ }),
-/* 113 */
+/* 112 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -4426,7 +4420,7 @@ var NoDataCellComponentBase = function NoDataCellComponentBase(_ref) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_material_ui_styles___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_material_ui_styles__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_mobx_react__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_mobx_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_mobx_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__material_ui_icons_RemoveRedEye__ = __webpack_require__(35);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__material_ui_icons_RemoveRedEye__ = __webpack_require__(33);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__material_ui_icons_RemoveRedEye___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__material_ui_icons_RemoveRedEye__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_material_ui_Tooltip__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_material_ui_Tooltip___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_material_ui_Tooltip__);
@@ -4545,13 +4539,31 @@ function (_React$Component) {
 /* harmony default export */ __webpack_exports__["a"] = (Object(__WEBPACK_IMPORTED_MODULE_1_material_ui_styles__["withStyles"])(styles)(VeiwFormatter));
 
 /***/ }),
-/* 114 */
+/* 113 */
 /***/ (function(module, exports) {
 
 module.exports = require("material-ui/TextField");
 
 /***/ }),
+/* 114 */
+/***/ (function(module, exports) {
+
+module.exports = require("material-ui/ExpansionPanel");
+
+/***/ }),
 /* 115 */
+/***/ (function(module, exports) {
+
+module.exports = require("material-ui/Menu/MenuItem");
+
+/***/ }),
+/* 116 */
+/***/ (function(module, exports) {
+
+module.exports = require("@material-ui/icons/ExpandMore");
+
+/***/ }),
+/* 117 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -4561,17 +4573,17 @@ module.exports = require("material-ui/TextField");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_mobx_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_mobx_react__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_material_ui_styles__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_material_ui_styles___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_material_ui_styles__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_material_ui_Form__ = __webpack_require__(40);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_material_ui_Form__ = __webpack_require__(58);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_material_ui_Form___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_material_ui_Form__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_material_ui_Select__ = __webpack_require__(96);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_material_ui_Select__ = __webpack_require__(104);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_material_ui_Select___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_material_ui_Select__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_material_ui_Input__ = __webpack_require__(66);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_material_ui_Input__ = __webpack_require__(68);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_material_ui_Input___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_material_ui_Input__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_material_ui_Menu__ = __webpack_require__(64);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_material_ui_Menu___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_material_ui_Menu__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_material_ui_Chip__ = __webpack_require__(97);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_material_ui_Chip__ = __webpack_require__(105);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_material_ui_Chip___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7_material_ui_Chip__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_react_form__ = __webpack_require__(27);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_react_form__ = __webpack_require__(29);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_react_form___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8_react_form__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_classnames__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_classnames___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_9_classnames__);
@@ -4794,7 +4806,7 @@ function (_React$Component) {
 */
 
 /***/ }),
-/* 116 */
+/* 118 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -4804,15 +4816,15 @@ function (_React$Component) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_mobx_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_mobx_react__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_material_ui_styles__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_material_ui_styles___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_material_ui_styles__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_material_ui_Form__ = __webpack_require__(40);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_material_ui_Form__ = __webpack_require__(58);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_material_ui_Form___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_material_ui_Form__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_material_ui_Select__ = __webpack_require__(96);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_material_ui_Select__ = __webpack_require__(104);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_material_ui_Select___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_material_ui_Select__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_material_ui_Input__ = __webpack_require__(66);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_material_ui_Input__ = __webpack_require__(68);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_material_ui_Input___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_material_ui_Input__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_material_ui_Menu__ = __webpack_require__(64);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_material_ui_Menu___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_material_ui_Menu__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_material_ui_Chip__ = __webpack_require__(97);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_material_ui_Chip__ = __webpack_require__(105);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_material_ui_Chip___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7_material_ui_Chip__);
 function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 
@@ -4943,25 +4955,19 @@ var MaterialCustomSelectInput = function MaterialCustomSelectInput(props) {
 /* harmony default export */ __webpack_exports__["a"] = (Object(__WEBPACK_IMPORTED_MODULE_2_material_ui_styles__["withStyles"])(styles)(Object(__WEBPACK_IMPORTED_MODULE_1_mobx_react__["observer"])(MaterialCustomSelectInput)));
 
 /***/ }),
-/* 117 */
-/***/ (function(module, exports) {
-
-module.exports = require("material-ui/ExpansionPanel");
-
-/***/ }),
-/* 118 */
-/***/ (function(module, exports) {
-
-module.exports = require("@material-ui/icons/ExpandMore");
-
-/***/ }),
 /* 119 */
 /***/ (function(module, exports) {
 
-
+module.exports = require("react-input-mask");
 
 /***/ }),
 /* 120 */
+/***/ (function(module, exports) {
+
+
+
+/***/ }),
+/* 121 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -4971,9 +4977,9 @@ module.exports = require("@material-ui/icons/ExpandMore");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_mobx_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_mobx_react__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_material_ui_styles__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_material_ui_styles___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_material_ui_styles__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_material_ui_Form__ = __webpack_require__(40);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_material_ui_Form__ = __webpack_require__(58);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_material_ui_Form___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_material_ui_Form__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_react_form__ = __webpack_require__(27);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_react_form__ = __webpack_require__(29);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_react_form___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_react_form__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_material_ui_Tooltip__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_material_ui_Tooltip___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_material_ui_Tooltip__);
@@ -5294,7 +5300,7 @@ function (_React$Component) {
 */
 
 /***/ }),
-/* 121 */
+/* 122 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -5304,11 +5310,11 @@ function (_React$Component) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_mobx_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_mobx_react__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_material_ui_styles__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_material_ui_styles___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_material_ui_styles__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_material_ui_Radio__ = __webpack_require__(124);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_material_ui_Radio__ = __webpack_require__(125);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_material_ui_Radio___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_material_ui_Radio__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_material_ui_Form__ = __webpack_require__(40);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_material_ui_Form__ = __webpack_require__(58);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_material_ui_Form___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_material_ui_Form__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_react_form__ = __webpack_require__(27);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_react_form__ = __webpack_require__(29);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_react_form___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_react_form__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_classnames__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_classnames___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_classnames__);
@@ -5454,12 +5460,6 @@ var MaterialCustomRadioInputWrapper = function MaterialCustomRadioInputWrapper(p
 */
 
 /***/ }),
-/* 122 */
-/***/ (function(module, exports) {
-
-module.exports = require("react-input-mask");
-
-/***/ }),
 /* 123 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -5487,40 +5487,22 @@ function debounce(func, wait, immediate) {
 /* 124 */
 /***/ (function(module, exports) {
 
-module.exports = require("material-ui/Radio");
+module.exports = require("faker");
 
 /***/ }),
 /* 125 */
 /***/ (function(module, exports) {
 
-module.exports = require("@material-ui/icons/Equalizer");
+module.exports = require("material-ui/Radio");
 
 /***/ }),
 /* 126 */
-/***/ (function(module, exports) {
-
-module.exports = require("faker");
-
-/***/ }),
-/* 127 */
-/***/ (function(module, exports) {
-
-module.exports = require("axios");
-
-/***/ }),
-/* 128 */
-/***/ (function(module, exports) {
-
-module.exports = require("react-circular-progressbar");
-
-/***/ }),
-/* 129 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_input_mask__ = __webpack_require__(122);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_input_mask__ = __webpack_require__(119);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_input_mask___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_react_input_mask__);
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
@@ -5641,7 +5623,7 @@ function (_React$Component) {
 /* harmony default export */ __webpack_exports__["a"] = (Input);
 
 /***/ }),
-/* 130 */
+/* 127 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -6385,19 +6367,38 @@ var countriesArrayWithCodes = [{
 }];
 
 /***/ }),
+/* 128 */,
+/* 129 */
+/***/ (function(module, exports) {
+
+module.exports = require("axios");
+
+/***/ }),
+/* 130 */
+/***/ (function(module, exports) {
+
+module.exports = require("react-circular-progressbar");
+
+/***/ }),
 /* 131 */
 /***/ (function(module, exports) {
 
-module.exports = require("@material-ui/icons/AttachMoney");
+module.exports = require("@material-ui/icons/Equalizer");
 
 /***/ }),
 /* 132 */
 /***/ (function(module, exports) {
 
-module.exports = require("@material-ui/icons/Help");
+module.exports = require("@material-ui/icons/AttachMoney");
 
 /***/ }),
 /* 133 */
+/***/ (function(module, exports) {
+
+module.exports = require("@material-ui/icons/Help");
+
+/***/ }),
+/* 134 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -6552,13 +6553,13 @@ function (_Component) {
 /* harmony default export */ __webpack_exports__["a"] = (Object(__WEBPACK_IMPORTED_MODULE_2_material_ui_styles__["withStyles"])(styles)(StatNumberBox));
 
 /***/ }),
-/* 134 */
+/* 135 */
 /***/ (function(module, exports) {
 
 module.exports = require("papaparse");
 
 /***/ }),
-/* 135 */
+/* 136 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -6566,9 +6567,9 @@ module.exports = require("papaparse");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_material_ui_styles__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_material_ui_styles___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_material_ui_styles__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_material_ui_Table__ = __webpack_require__(139);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_material_ui_Table__ = __webpack_require__(141);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_material_ui_Table___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_material_ui_Table__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_MaterialCustomSelectInput__ = __webpack_require__(116);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_MaterialCustomSelectInput__ = __webpack_require__(118);
 
 
 
@@ -6616,13 +6617,13 @@ var SelectFilterCell = Object(__WEBPACK_IMPORTED_MODULE_1_material_ui_styles__["
 /* harmony default export */ __webpack_exports__["a"] = (SelectFilterCell);
 
 /***/ }),
-/* 136 */
+/* 137 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return compareDate; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return compareNumber; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_moment__ = __webpack_require__(33);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_moment__ = __webpack_require__(41);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_moment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_moment__);
 
 var compareDate = function compareDate(a, b) {
@@ -6667,13 +6668,14 @@ var compareNumber = function compareNumber(a, b) {
 };
 
 /***/ }),
-/* 137 */,
-/* 138 */
+/* 138 */,
+/* 139 */,
+/* 140 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return toLocaleCurrency; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Math__ = __webpack_require__(67);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Math__ = __webpack_require__(70);
 
 var toLocaleCurrency = function toLocaleCurrency(amount) {
   var percision = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 2;
@@ -6684,73 +6686,31 @@ var toLocaleCurrency = function toLocaleCurrency(amount) {
 };
 
 /***/ }),
-/* 139 */
+/* 141 */
 /***/ (function(module, exports) {
 
 module.exports = require("material-ui/Table");
 
 /***/ }),
-/* 140 */
+/* 142 */
 /***/ (function(module, exports) {
 
 module.exports = require("@material-ui/icons/Delete");
 
 /***/ }),
-/* 141 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__client__ = __webpack_require__(6);
-
-var query = "\n  mutation deleteDeal($uuid: String!) {\n    deleteDeal(uuid: $uuid) {\n      dealID\n      error\n    }\n  }\n";
-
-var deleteDeal = function deleteDeal(uuid) {
-  var res;
-  var variables = {
-    uuid: uuid
-  };
-  var finalResponseObj = {
-    dealID: null,
-    error: null
-  };
-  return __WEBPACK_IMPORTED_MODULE_0__client__["a" /* graphQlClient */].request(query, variables).then(function (result) {
-    res = result;
-    console.log(res);
-    var _res = res,
-        data = _res.deleteDeal;
-    var dealID = data.dealID,
-        error = data.error;
-
-    if (error) {
-      finalResponseObj.error = error;
-    }
-
-    if (!finalResponseObj.error) {
-      finalResponseObj.dealID = dealID;
-    }
-
-    return finalResponseObj;
-  }).catch(function (err) {
-    console.log(err);
-    finalResponseObj.error = 'Error reaching the server';
-    return finalResponseObj;
-  });
-};
-
-/* harmony default export */ __webpack_exports__["a"] = (deleteDeal);
-
-/***/ }),
-/* 142 */
+/* 143 */,
+/* 144 */,
+/* 145 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 
 // EXTERNAL MODULE: external "antd/lib/icon/style/css"
-var css_ = __webpack_require__(21);
+var css_ = __webpack_require__(22);
 var css__default = /*#__PURE__*/__webpack_require__.n(css_);
 
 // EXTERNAL MODULE: external "antd/lib/icon"
-var icon_ = __webpack_require__(22);
+var icon_ = __webpack_require__(23);
 var icon__default = /*#__PURE__*/__webpack_require__.n(icon_);
 
 // EXTERNAL MODULE: external "@babel/runtime/regenerator"
@@ -6770,55 +6730,51 @@ var styles_ = __webpack_require__(2);
 var styles__default = /*#__PURE__*/__webpack_require__.n(styles_);
 
 // EXTERNAL MODULE: external "material-ui/Typography"
-var Typography_ = __webpack_require__(28);
+var Typography_ = __webpack_require__(27);
 var Typography__default = /*#__PURE__*/__webpack_require__.n(Typography_);
 
 // EXTERNAL MODULE: external "material-ui/Divider"
-var Divider_ = __webpack_require__(19);
+var Divider_ = __webpack_require__(20);
 var Divider__default = /*#__PURE__*/__webpack_require__.n(Divider_);
 
 // EXTERNAL MODULE: external "material-ui/Button"
-var Button_ = __webpack_require__(31);
+var Button_ = __webpack_require__(40);
 var Button__default = /*#__PURE__*/__webpack_require__.n(Button_);
 
 // EXTERNAL MODULE: external "react-form"
-var external__react_form_ = __webpack_require__(27);
+var external__react_form_ = __webpack_require__(29);
 var external__react_form__default = /*#__PURE__*/__webpack_require__.n(external__react_form_);
 
 // EXTERNAL MODULE: external "moment"
-var external__moment_ = __webpack_require__(33);
+var external__moment_ = __webpack_require__(41);
 var external__moment__default = /*#__PURE__*/__webpack_require__.n(external__moment_);
 
 // EXTERNAL MODULE: external "uuid/v4"
-var v4_ = __webpack_require__(72);
+var v4_ = __webpack_require__(74);
 var v4__default = /*#__PURE__*/__webpack_require__.n(v4_);
 
 // EXTERNAL MODULE: external "material-ui/Grid"
-var Grid_ = __webpack_require__(20);
+var Grid_ = __webpack_require__(19);
 var Grid__default = /*#__PURE__*/__webpack_require__.n(Grid_);
 
 // EXTERNAL MODULE: external "material-ui/TextField"
-var TextField_ = __webpack_require__(114);
+var TextField_ = __webpack_require__(113);
 var TextField__default = /*#__PURE__*/__webpack_require__.n(TextField_);
 
-// EXTERNAL MODULE: external "@material-ui/icons/Add"
-var Add_ = __webpack_require__(38);
-var Add__default = /*#__PURE__*/__webpack_require__.n(Add_);
-
 // EXTERNAL MODULE: external "@material-ui/icons/Delete"
-var Delete_ = __webpack_require__(140);
+var Delete_ = __webpack_require__(142);
 var Delete__default = /*#__PURE__*/__webpack_require__.n(Delete_);
 
 // EXTERNAL MODULE: external "react-circular-progressbar"
-var external__react_circular_progressbar_ = __webpack_require__(128);
+var external__react_circular_progressbar_ = __webpack_require__(130);
 var external__react_circular_progressbar__default = /*#__PURE__*/__webpack_require__.n(external__react_circular_progressbar_);
 
 // EXTERNAL MODULE: ../node_modules/react-circular-progressbar/dist/styles.css
-var styles = __webpack_require__(119);
+var styles = __webpack_require__(120);
 var styles_default = /*#__PURE__*/__webpack_require__.n(styles);
 
 // EXTERNAL MODULE: external "react-icons/lib/md"
-var md_ = __webpack_require__(45);
+var md_ = __webpack_require__(56);
 var md__default = /*#__PURE__*/__webpack_require__.n(md_);
 
 // EXTERNAL MODULE: external "material-ui/Tooltip"
@@ -6826,19 +6782,15 @@ var Tooltip_ = __webpack_require__(12);
 var Tooltip__default = /*#__PURE__*/__webpack_require__.n(Tooltip_);
 
 // EXTERNAL MODULE: external "react-images"
-var external__react_images_ = __webpack_require__(147);
+var external__react_images_ = __webpack_require__(146);
 var external__react_images__default = /*#__PURE__*/__webpack_require__.n(external__react_images_);
-
-// EXTERNAL MODULE: external "material-ui/Dialog"
-var Dialog_ = __webpack_require__(36);
-var Dialog__default = /*#__PURE__*/__webpack_require__.n(Dialog_);
 
 // EXTERNAL MODULE: external "classnames"
 var external__classnames_ = __webpack_require__(5);
 var external__classnames__default = /*#__PURE__*/__webpack_require__.n(external__classnames_);
 
 // EXTERNAL MODULE: external "@material-ui/icons/RemoveRedEye"
-var RemoveRedEye_ = __webpack_require__(35);
+var RemoveRedEye_ = __webpack_require__(33);
 var RemoveRedEye__default = /*#__PURE__*/__webpack_require__.n(RemoveRedEye_);
 
 // EXTERNAL MODULE: external "material-ui/Menu"
@@ -6846,34 +6798,34 @@ var Menu_ = __webpack_require__(64);
 var Menu__default = /*#__PURE__*/__webpack_require__.n(Menu_);
 
 // EXTERNAL MODULE: external "material-ui/Menu/MenuItem"
-var MenuItem_ = __webpack_require__(107);
+var MenuItem_ = __webpack_require__(115);
 var MenuItem__default = /*#__PURE__*/__webpack_require__.n(MenuItem_);
+
+// EXTERNAL MODULE: external "material-ui/Input"
+var Input_ = __webpack_require__(68);
+var Input__default = /*#__PURE__*/__webpack_require__.n(Input_);
+
+// EXTERNAL MODULE: external "material-ui/Form"
+var Form_ = __webpack_require__(58);
+var Form__default = /*#__PURE__*/__webpack_require__.n(Form_);
 
 // EXTERNAL MODULE: ./components/MaterialCustomTextFieldWrapper/index.js
 var MaterialCustomTextFieldWrapper = __webpack_require__(106);
 
 // EXTERNAL MODULE: ./components/MaterialCustomRadioInputWrapper/index.js
-var MaterialCustomRadioInputWrapper = __webpack_require__(121);
+var MaterialCustomRadioInputWrapper = __webpack_require__(122);
 
 // EXTERNAL MODULE: ./components/MaterialCustomSelectInputWrapper/index.js
-var MaterialCustomSelectInputWrapper = __webpack_require__(115);
+var MaterialCustomSelectInputWrapper = __webpack_require__(117);
 
 // EXTERNAL MODULE: ./components/CustomFileUploadInputWrapper/index.js
-var CustomFileUploadInputWrapper = __webpack_require__(120);
+var CustomFileUploadInputWrapper = __webpack_require__(121);
 
 // EXTERNAL MODULE: ./utils/stringUtils.js
-var stringUtils = __webpack_require__(15);
-
-// EXTERNAL MODULE: external "material-ui/Input"
-var Input_ = __webpack_require__(66);
-var Input__default = /*#__PURE__*/__webpack_require__.n(Input_);
-
-// EXTERNAL MODULE: external "material-ui/Form"
-var Form_ = __webpack_require__(40);
-var Form__default = /*#__PURE__*/__webpack_require__.n(Form_);
+var stringUtils = __webpack_require__(18);
 
 // EXTERNAL MODULE: external "email-validator"
-var external__email_validator_ = __webpack_require__(100);
+var external__email_validator_ = __webpack_require__(103);
 var external__email_validator__default = /*#__PURE__*/__webpack_require__.n(external__email_validator_);
 
 // CONCATENATED MODULE: ./components/forms/SubmitDealForm/formValidation.js
@@ -6948,7 +6900,7 @@ var userTypes = __webpack_require__(10);
 var userTypes_default = /*#__PURE__*/__webpack_require__.n(userTypes);
 
 // EXTERNAL MODULE: ./utils/Math.js
-var utils_Math = __webpack_require__(67);
+var utils_Math = __webpack_require__(70);
 
 // CONCATENATED MODULE: ./components/forms/SubmitDealForm/index.js
 
@@ -6982,8 +6934,6 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-
 
 
 
@@ -7343,17 +7293,11 @@ var paymentTypeSelectItems = [{
   label: 'Owner Pays (OP)'
 }];
 var deductionTypeSelectItems = [{
-  label: 'Deal Fee'
+  label: 'Co-Brokering Split'
 }, {
-  label: 'Dues'
+  label: 'Company Deal Fee'
 }, {
-  label: '3rd Party Check'
-}, {
-  label: 'Processing Fee'
-}, {
-  label: 'Payment'
-}, {
-  label: 'Agent Split'
+  label: 'Outside Party Check'
 }];
 
 var imagePreloader = function imagePreloader(images) {
@@ -7378,12 +7322,6 @@ function (_Component) {
     _classCallCheck(this, SubmitDealForm);
 
     _this = _possibleConstructorReturn(this, (SubmitDealForm.__proto__ || Object.getPrototypeOf(SubmitDealForm)).call(this, props));
-    Object.defineProperty(_assertThisInitialized(_this), "isFirstTimeRender", {
-      configurable: true,
-      enumerable: true,
-      writable: true,
-      value: true
-    });
     Object.defineProperty(_assertThisInitialized(_this), "returnAgencyDisclosureURL", {
       configurable: true,
       enumerable: true,
@@ -7427,37 +7365,12 @@ function (_Component) {
         });
       }
     });
-    Object.defineProperty(_assertThisInitialized(_this), "openPDFViewerModal", {
-      configurable: true,
-      enumerable: true,
-      writable: true,
-      value: function value(src) {
-        _this.setState({
-          pdfDialogOpen: true,
-          currentlyViewingPDF: src,
-          pdfPageNumber: 1
-        });
-      }
-    });
-    Object.defineProperty(_assertThisInitialized(_this), "closePDFViewerModal", {
-      configurable: true,
-      enumerable: true,
-      writable: true,
-      value: function value(src) {
-        _this.setState({
-          pdfDialogOpen: false,
-          currentlyViewingPDF: null,
-          numPDFPages: null
-        });
-      }
-    });
     Object.defineProperty(_assertThisInitialized(_this), "openFileViewer", {
       configurable: true,
       enumerable: true,
       writable: true,
       value: function value(src, fileName, fileType) {
         if (fileType === 'pdf' && fileType === 'PDF') {
-          openPDFViewerModal(src);
           return;
         }
 
@@ -7640,11 +7553,7 @@ function (_Component) {
       agencyDisclosureAnchorEl: null,
       currentLightboxItem: [{
         src: ''
-      }],
-      numPDFPages: null,
-      pdfPageNumber: 1,
-      pdfDialogOpen: false,
-      currentlyViewingPDF: null
+      }]
     };
     return _this;
   }
@@ -7666,37 +7575,144 @@ function (_Component) {
       }
     }
   }, {
+    key: "renderRestDeductionItems",
+    value: function renderRestDeductionItems(formApi, splitAgents) {
+      var _props = this.props,
+          classes = _props.classes,
+          submittedDeal = _props.submittedDeal,
+          isEditingDeal = _props.isEditingDeal,
+          deductionAmountChangeHandler = _props.deductionAmountChangeHandler,
+          subtractDeductionValueFromState = _props.subtractDeductionValueFromState;
+      var shouldRenderInitialDeductionItem = this.state.shouldRenderInitialDeductionItem;
+      if (!formApi.values.deductionItems || !formApi.values.deductionItems.length) return;
+      var deductionItems = formApi.values.deductionItems.map(function (deductionItem, i) {
+        var isAgentSplit = deductionItem && deductionItem.deductionType === 'Co-Brokering Split';
+        var canRenderSplitAgentId = !!splitAgents.length && isAgentSplit;
+        var rowSize = canRenderSplitAgentId ? 3 : 4;
+        return external__react__default.a.createElement("div", {
+          className: classes.paymentItemsWrapper,
+          key: "Deduction-item-".concat(i.toString())
+        }, external__react__default.a.createElement(external__react_form_["NestedField"], {
+          field: ['deductionItems', i]
+        }, external__react__default.a.createElement(Grid__default.a, {
+          item: true,
+          sm: rowSize,
+          xs: 12
+        }, external__react__default.a.createElement("div", {
+          className: classes.formControlWrapper
+        }, external__react__default.a.createElement(MaterialCustomSelectInput, {
+          field: "deductionType",
+          id: v4__default()(),
+          fullWidth: true,
+          label: "Deduction Type",
+          name: "deductionType",
+          required: true,
+          selectInputItems: deductionTypeSelectItems,
+          validate: deductionTypeValidator,
+          disabled: submittedDeal && !isEditingDeal
+        }))), canRenderSplitAgentId && external__react__default.a.createElement(Grid__default.a, {
+          item: true,
+          sm: rowSize,
+          xs: 12
+        }, external__react__default.a.createElement("div", {
+          className: classes.formControlWrapper
+        }, external__react__default.a.createElement(MaterialCustomSelectInput, {
+          field: "agentID",
+          id: v4__default()(),
+          fullWidth: true,
+          label: "Select Agent",
+          name: "agentID",
+          required: true,
+          selectInputItems: splitAgents
+        }))), external__react__default.a.createElement(Grid__default.a, {
+          item: true,
+          sm: rowSize,
+          xs: 12
+        }, external__react__default.a.createElement("div", {
+          className: classes.formControlWrapper
+        }, external__react__default.a.createElement(CustomTextField, {
+          field: "description",
+          id: v4__default()(),
+          label: "Description",
+          fullWidth: true,
+          required: true,
+          validate: descriptionValidator,
+          disabled: submittedDeal && !isEditingDeal
+        }))), external__react__default.a.createElement(Grid__default.a, {
+          item: true,
+          sm: rowSize,
+          xs: 12
+        }, external__react__default.a.createElement("div", {
+          className: classes.formControlWrapper
+        }, external__react__default.a.createElement(CustomTextField, {
+          field: "amount",
+          id: v4__default()(),
+          label: "Amount",
+          fullWidth: true,
+          validate: deductionsAmountValidator,
+          noLetters: true,
+          required: true,
+          noNegativeSign: true,
+          onChangeWithID: deductionAmountChangeHandler,
+          isDollarAmount: true,
+          disabled: submittedDeal && !isEditingDeal
+        })))), external__react__default.a.createElement(Button__default.a, {
+          classes: {
+            root: classes.removePaymentBtn
+          },
+          variant: "raised",
+          color: "secondary",
+          onClick: function onClick() {
+            var amount = Number(formApi.values.deductionItems[i].amount);
+
+            if (amount) {
+              subtractDeductionValueFromState(amount);
+            }
+
+            formApi.removeValue('deductionItems', i);
+          },
+          type: "button"
+        }, "Remove"));
+      });
+
+      if (shouldRenderInitialDeductionItem) {
+        return deductionItems.slice(1);
+      }
+
+      return deductionItems;
+    }
+  }, {
     key: "render",
     value: function render() {
       var _this2 = this;
 
-      var _props = this.props,
-          classes = _props.classes,
-          setAgencyDisclosureForm = _props.setAgencyDisclosureForm,
-          setContractOrLeaseForms = _props.setContractOrLeaseForms,
-          agencyDisclosureForm = _props.agencyDisclosureForm,
-          contractOrLeaseForms = _props.contractOrLeaseForms,
-          subtractPaymentValueFromState = _props.subtractPaymentValueFromState,
-          subtractDeductionValueFromState = _props.subtractDeductionValueFromState,
-          choosingMgmtCoBrokeCompany = _props.choosingMgmtCoBrokeCompany,
-          toggleChoosingMgmtCoBrokeCompany = _props.toggleChoosingMgmtCoBrokeCompany,
-          handleMgmtOrCobrokeCompanyChange = _props.handleMgmtOrCobrokeCompanyChange,
-          setHasSetNewMgmtOrCobrokeCompany = _props.setHasSetNewMgmtOrCobrokeCompany,
-          newMgmtOrCobrokeCompany = _props.newMgmtOrCobrokeCompany,
-          addedManagementCompanies = _props.addedManagementCompanies,
-          agents = _props.agents,
-          uplodingFileProgress = _props.uplodingFileProgress,
-          isUploadingFile = _props.isUploadingFile,
-          uplodingFileText = _props.uplodingFileText,
-          formSubmissionBegun = _props.formSubmissionBegun,
-          submittingFormToServer = _props.submittingFormToServer,
-          submittedDeal = _props.submittedDeal,
-          isEditingDeal = _props.isEditingDeal,
-          isViewType = _props.isViewType,
-          agentUUID = _props.agentUUID,
-          managementCobrokeCompanyItems = _props.managementCobrokeCompanyItems,
-          agentPaymentTypeIsACH = _props.agentPaymentTypeIsACH,
-          _onSubmit = _props.onSubmit;
+      var _props2 = this.props,
+          classes = _props2.classes,
+          setAgencyDisclosureForm = _props2.setAgencyDisclosureForm,
+          setContractOrLeaseForms = _props2.setContractOrLeaseForms,
+          agencyDisclosureForm = _props2.agencyDisclosureForm,
+          contractOrLeaseForms = _props2.contractOrLeaseForms,
+          subtractPaymentValueFromState = _props2.subtractPaymentValueFromState,
+          subtractDeductionValueFromState = _props2.subtractDeductionValueFromState,
+          choosingMgmtCoBrokeCompany = _props2.choosingMgmtCoBrokeCompany,
+          toggleChoosingMgmtCoBrokeCompany = _props2.toggleChoosingMgmtCoBrokeCompany,
+          handleMgmtOrCobrokeCompanyChange = _props2.handleMgmtOrCobrokeCompanyChange,
+          setHasSetNewMgmtOrCobrokeCompany = _props2.setHasSetNewMgmtOrCobrokeCompany,
+          newMgmtOrCobrokeCompany = _props2.newMgmtOrCobrokeCompany,
+          addedManagementCompanies = _props2.addedManagementCompanies,
+          agents = _props2.agents,
+          uplodingFileProgress = _props2.uplodingFileProgress,
+          isUploadingFile = _props2.isUploadingFile,
+          uplodingFileText = _props2.uplodingFileText,
+          formSubmissionBegun = _props2.formSubmissionBegun,
+          submittingFormToServer = _props2.submittingFormToServer,
+          submittedDeal = _props2.submittedDeal,
+          isEditingDeal = _props2.isEditingDeal,
+          isViewType = _props2.isViewType,
+          agentUUID = _props2.agentUUID,
+          managementCobrokeCompanyItems = _props2.managementCobrokeCompanyItems,
+          agentPaymentTypeIsACH = _props2.agentPaymentTypeIsACH,
+          _onSubmit = _props2.onSubmit;
       var _state = this.state,
           contractLeaseAnchorEl = _state.contractLeaseAnchorEl,
           agencyDisclosureAnchorEl = _state.agencyDisclosureAnchorEl;
@@ -7721,17 +7737,20 @@ function (_Component) {
         };
       });
 
-      if (isViewType && submittedDeal && submittedDeal.otherAgents.length) {
-        var nonAvailableAgentUUIDS = [];
-        var agentUUIDS = agents.map(function (agent) {
-          return agent.uuid;
-        });
-        submittedDeal.otherAgents.forEach(function (agent) {
-          if (!agentUUIDS.includes(agent.agentID)) {
+      if (isViewType && submittedDeal && submittedDeal.deductionItems.length) {
+        submittedDeal.deductionItems.forEach(function (item) {
+          if (item.deductionType === 'Co-Brokering Split') {
+            var _agents$find = agents.find(function (agent) {
+              return agent.uuid === item.agentID;
+            }),
+                firstName = _agents$find.firstName,
+                lastName = _agents$find.lastName;
+
+            var agentName = "".concat(Object(stringUtils["a" /* capitalize */])(firstName), " ").concat(Object(stringUtils["a" /* capitalize */])(lastName), " (Agent ID - ").concat(item.agentID, ")");
             agentsSelectItems.push({
-              label: "".concat(agent.agentName, " (Agent ID - ").concat(agent.agentID, ")"),
-              key: agent.agentID,
-              value: agent.agentID
+              label: agentName,
+              key: item.agentID,
+              value: item.agentID
             });
           }
         });
@@ -7771,7 +7790,6 @@ function (_Component) {
             clientName = submittedDeal.clientName,
             date = submittedDeal.date,
             dealType = submittedDeal.dealType,
-            otherAgents = submittedDeal.otherAgents,
             leadSource = submittedDeal.leadSource,
             managementOrCobrokeCompany = submittedDeal.managementOrCobrokeCompany,
             propertyAddress = submittedDeal.propertyAddress,
@@ -7793,9 +7811,6 @@ function (_Component) {
           agent: agentName,
           agentNotes: agentNotes,
           agentType: agentType,
-          otherAgents: otherAgents.map(function (agent) {
-            return agent.agentID;
-          }),
           alreadyTurnedFundsIn: alreadyTurnedFundsIn,
           city: city,
           apartmentNumber: apartmentNumber,
@@ -7823,12 +7838,14 @@ function (_Component) {
           }),
           deductionItems: deductionItems.map(function (_ref3) {
             var deductionType = _ref3.deductionType,
+                agentID = _ref3.agentID,
                 description = _ref3.description,
                 amount = _ref3.amount;
             return {
               deductionType: deductionType,
               description: description,
-              amount: amount
+              amount: amount,
+              agentID: agentID
             };
           }),
           paymentsSubtotal: paymentsTotal ? paymentsTotal.toLocaleString() : '0',
@@ -7873,8 +7890,6 @@ function (_Component) {
         });
       };
 
-      renderAgencyDisclosureMenuItems;
-
       var renderAgencyDisclosureMenuItems = function renderAgencyDisclosureMenuItems() {
         return _this2.returnAgencyDisclosureURL().map(function (_ref5) {
           var src = _ref5.src;
@@ -7906,15 +7921,6 @@ function (_Component) {
             }
           }, fileName);
         });
-      };
-
-      var onClickAgencyDisclosureView = function onClickAgencyDisclosureView() {
-        var src = _this2.returnAgencyDisclosureURL()[0].src;
-
-        var fileName = src.split('/').pop();
-        var fileType = src.split('.').pop();
-
-        _this2.openFileViewer(src, fileName, fileType);
       };
 
       return external__react__default.a.createElement("div", {
@@ -7968,109 +7974,9 @@ function (_Component) {
           _this2.props.getFormApi(formApi);
         }
       }, function (formApi) {
-        /*
-          console.log(formApi.errors);
-          console.log(formApi.values);
-          console.log(formApi.values.deductionItems);
-          
-          if (this.isFirstTimeRender) {
-            this.isFirstTimeRender = false;
-            formApi.setValue('date', `${moment().format('MMMM Do YYYY')}`);
-            formApi.setValue('agentType', `${agentType}`);
-            formApi.setValue('state', state);
-            formApi.setValue(
-              'agent',
-              `${capitalize(firstName)} ${capitalize(lastName)}`
-            );
-            formApi.setValue('paymentsSubtotal', this.props.paymentsTotal);
-            formApi.setValue(
-              'deductionsSubtotal',
-              this.props.deductionsTotal
-            );
-          }
-          */
-        var renderRestDeductionItems = function renderRestDeductionItems() {
-          if (!formApi.values.deductionItems || !formApi.values.deductionItems.length) return;
-          var deductionItems = formApi.values.deductionItems.map(function (deductionItem, i) {
-            return external__react__default.a.createElement("div", {
-              className: classes.paymentItemsWrapper,
-              key: i
-            }, external__react__default.a.createElement(external__react_form_["NestedField"], {
-              field: ['deductionItems', i]
-            }, external__react__default.a.createElement(Grid__default.a, {
-              item: true,
-              sm: 4,
-              xs: 12
-            }, external__react__default.a.createElement("div", {
-              className: classes.formControlWrapper
-            }, external__react__default.a.createElement(MaterialCustomSelectInput, {
-              field: "deductionType",
-              id: v4__default()(),
-              fullWidth: true,
-              label: "Deduction Type",
-              name: "deductionType",
-              required: true,
-              selectInputItems: deductionTypeSelectItems,
-              validate: deductionTypeValidator,
-              disabled: submittedDeal && !isEditingDeal
-            }))), external__react__default.a.createElement(Grid__default.a, {
-              item: true,
-              sm: 4,
-              xs: 12
-            }, external__react__default.a.createElement("div", {
-              className: classes.formControlWrapper
-            }, external__react__default.a.createElement(CustomTextField, {
-              field: "description",
-              id: v4__default()(),
-              label: "Description",
-              fullWidth: true,
-              required: true,
-              validate: descriptionValidator,
-              disabled: submittedDeal && !isEditingDeal
-            }))), external__react__default.a.createElement(Grid__default.a, {
-              item: true,
-              sm: 4,
-              xs: 12
-            }, external__react__default.a.createElement("div", {
-              className: classes.formControlWrapper
-            }, external__react__default.a.createElement(CustomTextField, {
-              field: "amount",
-              id: v4__default()(),
-              label: "Amount",
-              fullWidth: true,
-              validate: deductionsAmountValidator,
-              noLetters: true,
-              required: true,
-              noNegativeSign: true,
-              onChangeWithID: _this2.props.deductionAmountChangeHandler,
-              isDollarAmount: true,
-              disabled: submittedDeal && !isEditingDeal
-            })))), external__react__default.a.createElement(Button__default.a, {
-              classes: {
-                root: classes.removePaymentBtn
-              },
-              variant: "raised",
-              color: "secondary",
-              onClick: function onClick() {
-                var amount = Number(formApi.values.deductionItems[i].amount);
-
-                if (amount) {
-                  subtractDeductionValueFromState(amount);
-                }
-
-                formApi.removeValue('deductionItems', i);
-              },
-              type: "button"
-            }, "Remove"));
-          });
-
-          if (_this2.state.shouldRenderInitialDeductionItem) {
-            return deductionItems.slice(1);
-          }
-
-          return deductionItems;
-        };
-
+        var isAgentSplit = formApi.values.deductionItems && formApi.values.deductionItems[0] && formApi.values.deductionItems[0].deductionType === 'Co-Brokering Split';
+        var canRenderSplitAgentId = !!agentsSelectItems.length && isAgentSplit;
+        var rowSize = canRenderSplitAgentId ? 3 : 4;
         return external__react__default.a.createElement("form", {
           onSubmit: formApi.submitForm,
           id: "form1",
@@ -8107,21 +8013,7 @@ function (_Component) {
           disabled: true,
           fullWidth: true,
           required: true
-        }))), agentsSelectItems.length ? external__react__default.a.createElement(Grid__default.a, {
-          item: true,
-          xs: 12
-        }, external__react__default.a.createElement("div", {
-          className: classes.formControlWrapper
-        }, external__react__default.a.createElement(MaterialCustomSelectInput, _defineProperty({
-          field: "otherAgents",
-          id: v4__default()(),
-          fullWidth: true,
-          label: "Co-Brokering Agents",
-          name: "otherAgents",
-          multiple: true,
-          disabled: submittedDeal && !isEditingDeal,
-          selectInputItems: agentsSelectItems
-        }, "disabled", isViewType)))) : null, external__react__default.a.createElement("div", {
+        }))), external__react__default.a.createElement("div", {
           className: "".concat(classes.formControlWrapper, " ").concat(classes.radioInputWrapper)
         }, external__react__default.a.createElement(MaterialCustomRadioInput, {
           field: "agentType",
@@ -8155,7 +8047,7 @@ function (_Component) {
           xs: 12
         }, external__react__default.a.createElement("div", {
           className: classes.formControlWrapper
-        }, external__react__default.a.createElement(MaterialCustomSelectInput, _defineProperty({
+        }, external__react__default.a.createElement(MaterialCustomSelectInput, {
           field: "dealType",
           id: v4__default()(),
           required: true,
@@ -8164,7 +8056,7 @@ function (_Component) {
           label: "Deal Type",
           name: "dealType",
           selectInputItems: dealTypeSelectItems
-        }, "disabled", submittedDeal && !isEditingDeal)))), external__react__default.a.createElement(Grid__default.a, {
+        }))), external__react__default.a.createElement(Grid__default.a, {
           item: true,
           sm: 6,
           xs: 12
@@ -8315,7 +8207,7 @@ function (_Component) {
           classes: {
             subheading: classes.h3
           }
-        }, "Client's", " Information")), external__react__default.a.createElement(Grid__default.a, {
+        }, "Client's", ' ', "Information")), external__react__default.a.createElement(Grid__default.a, {
           item: true,
           sm: 6,
           xs: 12
@@ -8522,7 +8414,7 @@ function (_Component) {
           field: ['deductionItems', 0]
         }, external__react__default.a.createElement(Grid__default.a, {
           item: true,
-          sm: 4,
+          sm: rowSize,
           xs: 12
         }, external__react__default.a.createElement("div", {
           className: classes.formControlWrapper
@@ -8536,9 +8428,24 @@ function (_Component) {
           selectInputItems: deductionTypeSelectItems,
           validate: deductionTypeValidator,
           disabled: submittedDeal && !isEditingDeal
+        }))), canRenderSplitAgentId && external__react__default.a.createElement(Grid__default.a, {
+          item: true,
+          sm: rowSize,
+          xs: 12
+        }, external__react__default.a.createElement("div", {
+          className: classes.formControlWrapper
+        }, external__react__default.a.createElement(MaterialCustomSelectInput, {
+          field: "agentID",
+          id: v4__default()(),
+          fullWidth: true,
+          label: "Select Agent",
+          name: "agentID",
+          required: true,
+          disabled: submittedDeal && !isEditingDeal || isViewType,
+          selectInputItems: agentsSelectItems
         }))), external__react__default.a.createElement(Grid__default.a, {
           item: true,
-          sm: 4,
+          sm: rowSize,
           xs: 12
         }, external__react__default.a.createElement("div", {
           className: classes.formControlWrapper
@@ -8552,7 +8459,7 @@ function (_Component) {
           disabled: submittedDeal && !isEditingDeal
         }))), external__react__default.a.createElement(Grid__default.a, {
           item: true,
-          sm: 4,
+          sm: rowSize,
           xs: 12
         }, external__react__default.a.createElement("div", {
           className: classes.formControlWrapper
@@ -8588,7 +8495,7 @@ function (_Component) {
             formApi.removeValue('deductionItems', 0);
           },
           type: "button"
-        }, "Remove")) : null, renderRestDeductionItems(), external__react__default.a.createElement(Grid__default.a, {
+        }, "Remove")) : null, _this2.renderRestDeductionItems(formApi, agentsSelectItems), external__react__default.a.createElement(Grid__default.a, {
           item: true,
           xs: 12
         }, external__react__default.a.createElement(Button__default.a, {
@@ -8930,7 +8837,13 @@ function (_Component) {
 /* harmony default export */ var forms_SubmitDealForm = __webpack_exports__["a"] = (Object(styles_["withStyles"])(SubmitDealForm_styles)(SubmitDealForm_SubmitDealForm));
 
 /***/ }),
-/* 143 */
+/* 146 */
+/***/ (function(module, exports) {
+
+module.exports = require("react-images");
+
+/***/ }),
+/* 147 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -8977,11 +8890,11 @@ var getDealUploadsSignedURLS = function getDealUploadsSignedURLS(values) {
 /* harmony default export */ __webpack_exports__["a"] = (getDealUploadsSignedURLS);
 
 /***/ }),
-/* 144 */
+/* 148 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios__ = __webpack_require__(127);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios__ = __webpack_require__(129);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_axios__);
 
 
@@ -9001,54 +8914,37 @@ var uploadFile = function uploadFile(_ref) {
 /* harmony default export */ __webpack_exports__["a"] = (uploadFile);
 
 /***/ }),
-/* 145 */,
-/* 146 */,
-/* 147 */
-/***/ (function(module, exports) {
-
-module.exports = require("react-images");
-
-/***/ }),
-/* 148 */
+/* 149 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__client__ = __webpack_require__(6);
 
-var query = "\n  mutation acceptDeal($input: AcceptDealInput!) {\n    acceptDeal(input: $input) {\n      deal {\n        dealID\n        date\n        agentName\n        agentType\n        leadSource\n        dealType\n        propertyAddress\n        state\n        city\n        apartmentNumber\n        managementOrCobrokeCompany\n        price\n        clientName\n        clientEmail\n        paymentsTotal\n        deductionsTotal\n        total\n        agentNotes\n        status\n        bonusPercentageAddedByAdmin\n        netAgentCommission\n        netCompanyCommission\n      }\n      userErrors {\n        field\n        message\n      }\n      otherError\n    }\n  }\n";
+var query = "\n  mutation deleteDeal($uuid: String!) {\n    deleteDeal(uuid: $uuid) {\n      dealID\n      error\n    }\n  }\n";
 
-var acceptDeal = function acceptDeal(dealID, bonusPercentageAddedByAdmin) {
+var deleteDeal = function deleteDeal(uuid) {
   var res;
   var variables = {
-    input: {
-      uuid: dealID,
-      bonusPercentageAddedByAdmin: bonusPercentageAddedByAdmin
-    }
+    uuid: uuid
   };
   var finalResponseObj = {
-    deal: null,
-    otherError: null,
-    userErrors: []
+    dealID: null,
+    error: null
   };
   return __WEBPACK_IMPORTED_MODULE_0__client__["a" /* graphQlClient */].request(query, variables).then(function (result) {
     res = result;
     console.log(res);
     var _res = res,
-        data = _res.acceptDeal;
-    var deal = data.deal,
-        otherError = data.otherError,
-        userErrors = data.userErrors;
+        data = _res.deleteDeal;
+    var dealID = data.dealID,
+        error = data.error;
 
-    if (userErrors && userErrors.length) {
-      finalResponseObj.userErrors = userErrors;
+    if (error) {
+      finalResponseObj.error = error;
     }
 
-    if (otherError) {
-      finalResponseObj.otherError = otherError;
-    }
-
-    if (!finalResponseObj.error && !finalResponseObj.userErrors.length) {
-      finalResponseObj.deal = deal;
+    if (!finalResponseObj.error) {
+      finalResponseObj.dealID = dealID;
     }
 
     return finalResponseObj;
@@ -9059,1527 +8955,18 @@ var acceptDeal = function acceptDeal(dealID, bonusPercentageAddedByAdmin) {
   });
 };
 
-/* harmony default export */ __webpack_exports__["a"] = (acceptDeal);
+/* harmony default export */ __webpack_exports__["a"] = (deleteDeal);
 
 /***/ }),
-/* 149 */,
 /* 150 */,
-/* 151 */
-/***/ (function(module, exports) {
-
-module.exports = require("set-value");
-
-/***/ }),
+/* 151 */,
 /* 152 */
-/***/ (function(module, exports) {
-
-module.exports = require("@nivo/pie");
-
-/***/ }),
-/* 153 */
-/***/ (function(module, exports) {
-
-module.exports = require("@nivo/bar");
-
-/***/ }),
-/* 154 */
-/***/ (function(module, exports) {
-
-module.exports = require("@nivo/line");
-
-/***/ }),
-/* 155 */
-/***/ (function(module, exports) {
-
-module.exports = require("react-toggle-button");
-
-/***/ }),
-/* 156 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return residentialRental; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return residentialSale; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return commercialRental; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return commercialSale; });
-var residentialRental = 'Residential Rental';
-var residentialSale = 'Residential Sale';
-var commercialRental = 'Commercial Rental';
-var commercialSale = 'Commercial Sale';
-
-/***/ }),
-/* 157 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return returnMonthlyDollarDataContainer; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return returnMonthlyDealNumberDataContainer; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return returnNumberDealsDataContainer; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return returnYearlyDollarDealsDataContainer; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_moment__ = __webpack_require__(33);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_moment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_moment__);
-
-var returnMonthlyDollarDataContainer = function returnMonthlyDollarDataContainer() {
-  return {
-    Jan: {
-      'Com Sales': 0.001,
-      'Com Rentals': 0.001,
-      'Res Sales': 0.001,
-      'Res Rentals': 0.001
-    },
-    Feb: {
-      'Com Sales': 0.001,
-      'Com Rentals': 0.001,
-      'Res Sales': 0.001,
-      'Res Rentals': 0.001
-    },
-    Mar: {
-      'Com Sales': 0.001,
-      'Com Rentals': 0.001,
-      'Res Sales': 0.001,
-      'Res Rentals': 0.001
-    },
-    Apr: {
-      'Com Sales': 0.001,
-      'Com Rentals': 0.001,
-      'Res Sales': 0.001,
-      'Res Rentals': 0.001
-    },
-    May: {
-      'Com Sales': 0.001,
-      'Com Rentals': 0.001,
-      'Res Sales': 0.001,
-      'Res Rentals': 0.001
-    },
-    June: {
-      'Com Sales': 0.001,
-      'Com Rentals': 0.001,
-      'Res Sales': 0.001,
-      'Res Rentals': 0.001
-    },
-    Jul: {
-      'Com Sales': 0.001,
-      'Com Rentals': 0.001,
-      'Res Sales': 0.001,
-      'Res Rentals': 0.001
-    },
-    Aug: {
-      'Com Sales': 0.001,
-      'Com Rentals': 0.001,
-      'Res Sales': 0.001,
-      'Res Rentals': 0.001
-    },
-    Sep: {
-      'Com Sales': 0.001,
-      'Com Rentals': 0.001,
-      'Res Sales': 0.001,
-      'Res Rentals': 0.001
-    },
-    Oct: {
-      'Com Sales': 0.001,
-      'Com Rentals': 0.001,
-      'Res Sales': 0.001,
-      'Res Rentals': 0.001
-    },
-    Nov: {
-      'Com Sales': 0.001,
-      'Com Rentals': 0.001,
-      'Res Sales': 0.001,
-      'Res Rentals': 0.001
-    },
-    Dec: {
-      'Com Sales': 0.001,
-      'Com Rentals': 0.001,
-      'Res Sales': 0.001,
-      'Res Rentals': 0.001
-    }
-  };
-};
-var returnMonthlyDealNumberDataContainer = function returnMonthlyDealNumberDataContainer() {
-  return {
-    Jan: {
-      'Com Sales': 0.001,
-      'Com Rentals': 0.001,
-      'Res Sales': 0.001,
-      'Res Rentals': 0.001
-    },
-    Feb: {
-      'Com Sales': 0.001,
-      'Com Rentals': 0.001,
-      'Res Sales': 0.001,
-      'Res Rentals': 0.001
-    },
-    Mar: {
-      'Com Sales': 0.001,
-      'Com Rentals': 0.001,
-      'Res Sales': 0.001,
-      'Res Rentals': 0.001
-    },
-    Apr: {
-      'Com Sales': 0.001,
-      'Com Rentals': 0.001,
-      'Res Sales': 0.001,
-      'Res Rentals': 0.001
-    },
-    May: {
-      'Com Sales': 0.001,
-      'Com Rentals': 0.001,
-      'Res Sales': 0.001,
-      'Res Rentals': 0.001
-    },
-    June: {
-      'Com Sales': 0.001,
-      'Com Rentals': 0.001,
-      'Res Sales': 0.001,
-      'Res Rentals': 0.001
-    },
-    Jul: {
-      'Com Sales': 0.001,
-      'Com Rentals': 0.001,
-      'Res Sales': 0.001,
-      'Res Rentals': 0.001
-    },
-    Aug: {
-      'Com Sales': 0.001,
-      'Com Rentals': 0.001,
-      'Res Sales': 0.001,
-      'Res Rentals': 0.001
-    },
-    Sep: {
-      'Com Sales': 0.001,
-      'Com Rentals': 0.001,
-      'Res Sales': 0.001,
-      'Res Rentals': 0.001
-    },
-    Oct: {
-      'Com Sales': 0.001,
-      'Com Rentals': 0.001,
-      'Res Sales': 0.001,
-      'Res Rentals': 0.001
-    },
-    Nov: {
-      'Com Sales': 0.001,
-      'Com Rentals': 0.001,
-      'Res Sales': 0.001,
-      'Res Rentals': 0.001
-    },
-    Dec: {
-      'Com Sales': 0.001,
-      'Com Rentals': 0.001,
-      'Res Sales': 0.001,
-      'Res Rentals': 0.001
-    }
-  };
-};
-var returnNumberDealsDataContainer = function returnNumberDealsDataContainer() {
-  var currentYear = __WEBPACK_IMPORTED_MODULE_0_moment___default()().year();
-  var years = [currentYear, currentYear - 1, currentYear - 2, currentYear - 3, currentYear - 4];
-  var data = {};
-  years.forEach(function (year) {
-    data[year] = {
-      'Com Sales': 0.001,
-      'Com Rentals': 0.001,
-      'Res Sales': 0.001,
-      'Res Rentals': 0.001
-    };
-  });
-  return data;
-};
-var returnYearlyDollarDealsDataContainer = function returnYearlyDollarDealsDataContainer() {
-  var currentYear = __WEBPACK_IMPORTED_MODULE_0_moment___default()().year();
-  var years = [currentYear, currentYear - 1, currentYear - 2, currentYear - 3, currentYear - 4];
-  var data = {};
-  years.forEach(function (year) {
-    data[year] = {
-      'Com Sales': 0.001,
-      'Com Rentals': 0.001,
-      'Res Sales': 0.001,
-      'Res Rentals': 0.001
-    };
-  });
-  return data;
-};
-
-/***/ }),
-/* 158 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-
-// EXTERNAL MODULE: external "react"
-var external__react_ = __webpack_require__(0);
-var external__react__default = /*#__PURE__*/__webpack_require__.n(external__react_);
-
-// EXTERNAL MODULE: external "mobx-react"
-var external__mobx_react_ = __webpack_require__(1);
-var external__mobx_react__default = /*#__PURE__*/__webpack_require__.n(external__mobx_react_);
-
-// EXTERNAL MODULE: external "material-ui/Dialog"
-var Dialog_ = __webpack_require__(36);
-var Dialog__default = /*#__PURE__*/__webpack_require__.n(Dialog_);
-
-// EXTERNAL MODULE: external "material-ui/Snackbar"
-var Snackbar_ = __webpack_require__(30);
-var Snackbar__default = /*#__PURE__*/__webpack_require__.n(Snackbar_);
-
-// EXTERNAL MODULE: external "material-ui/IconButton"
-var IconButton_ = __webpack_require__(14);
-var IconButton__default = /*#__PURE__*/__webpack_require__.n(IconButton_);
-
-// EXTERNAL MODULE: external "@material-ui/icons/Close"
-var Close_ = __webpack_require__(32);
-var Close__default = /*#__PURE__*/__webpack_require__.n(Close_);
-
-// EXTERNAL MODULE: external "material-ui/Divider"
-var Divider_ = __webpack_require__(19);
-var Divider__default = /*#__PURE__*/__webpack_require__.n(Divider_);
-
-// EXTERNAL MODULE: external "material-ui/styles"
-var styles_ = __webpack_require__(2);
-var styles__default = /*#__PURE__*/__webpack_require__.n(styles_);
-
-// EXTERNAL MODULE: external "material-ui/Button"
-var Button_ = __webpack_require__(31);
-var Button__default = /*#__PURE__*/__webpack_require__.n(Button_);
-
-// EXTERNAL MODULE: external "material-ui/Menu"
-var Menu_ = __webpack_require__(64);
-var Menu__default = /*#__PURE__*/__webpack_require__.n(Menu_);
-
-// EXTERNAL MODULE: external "classnames"
-var external__classnames_ = __webpack_require__(5);
-var external__classnames__default = /*#__PURE__*/__webpack_require__.n(external__classnames_);
-
-// EXTERNAL MODULE: external "material-ui/Menu/MenuItem"
-var MenuItem_ = __webpack_require__(107);
-var MenuItem__default = /*#__PURE__*/__webpack_require__.n(MenuItem_);
-
-// EXTERNAL MODULE: external "react-apollo"
-var external__react_apollo_ = __webpack_require__(17);
-var external__react_apollo__default = /*#__PURE__*/__webpack_require__.n(external__react_apollo_);
-
-// EXTERNAL MODULE: external "graphql-tag"
-var external__graphql_tag_ = __webpack_require__(65);
-var external__graphql_tag__default = /*#__PURE__*/__webpack_require__.n(external__graphql_tag_);
-
-// EXTERNAL MODULE: external "react-spinners"
-var external__react_spinners_ = __webpack_require__(24);
-var external__react_spinners__default = /*#__PURE__*/__webpack_require__.n(external__react_spinners_);
-
-// EXTERNAL MODULE: ./components/forms/SubmitDealForm/index.js + 1 modules
-var SubmitDealForm = __webpack_require__(142);
-
-// EXTERNAL MODULE: ./effects/deals/getDealUploadsSignedURLS.js
-var getDealUploadsSignedURLS = __webpack_require__(143);
-
-// EXTERNAL MODULE: ./effects/uploadFile.js
-var uploadFile = __webpack_require__(144);
-
-// EXTERNAL MODULE: ./effects/client.js
-var client = __webpack_require__(6);
-
-// CONCATENATED MODULE: ./effects/deals/updateDeal.js
-
-var query = "\n  mutation updateDeal($input: UpdateDealInput!) {\n    updateDeal(input: $input) {\n      deal {\n        dealID\n        date\n        dealType\n        clientName\n        clientEmail\n        propertyAddress\n        city\n        managementOrCobrokeCompany\n        price\n        status\n      }\n      userErrors {\n        field\n        message\n      }\n      otherError\n    }\n  }\n";
-
-var updateDeal_updateDeal = function updateDeal(values) {
-  var res;
-  var variables = {
-    input: values
-  };
-  var finalResponseObj = {
-    deal: null,
-    otherError: null,
-    userErrors: []
-  };
-  return client["a" /* graphQlClient */].request(query, variables).then(function (result) {
-    res = result;
-    console.log(res);
-    var _res = res,
-        data = _res.updateDeal;
-    var deal = data.deal,
-        otherError = data.otherError,
-        userErrors = data.userErrors;
-
-    if (userErrors && userErrors.length) {
-      finalResponseObj.userErrors = userErrors;
-    }
-
-    if (otherError) {
-      finalResponseObj.otherError = otherError;
-    }
-
-    if (!finalResponseObj.error && !finalResponseObj.userErrors.length) {
-      finalResponseObj.deal = deal;
-    }
-
-    return finalResponseObj;
-  }).catch(function (err) {
-    console.log(err);
-    finalResponseObj.error = 'Error reaching the server';
-    return finalResponseObj;
-  });
-};
-
-/* harmony default export */ var deals_updateDeal = (updateDeal_updateDeal);
-// EXTERNAL MODULE: ./utils/stringUtils.js
-var stringUtils = __webpack_require__(15);
-
-// EXTERNAL MODULE: ./constants/userTypes.js
-var userTypes = __webpack_require__(10);
-var userTypes_default = /*#__PURE__*/__webpack_require__.n(userTypes);
-
-// CONCATENATED MODULE: ./containers/ViewDealForm.js
-var _class;
-
-var _templateObject = /*#__PURE__*/ _taggedTemplateLiteral(["\n  query viewDealForm($uuid: String!) {\n    viewDealForm(uuid: $uuid) {\n      formSelectItems\n      agents {\n        firstName\n        lastName\n        uuid\n      }\n      deal {\n        dealID\n        date\n        agentName\n        otherAgents {\n          agentID\n          agentName\n        }\n        agentType\n        leadSource\n        dealType\n        propertyAddress\n        state\n        city\n        apartmentNumber\n        managementOrCobrokeCompany\n        price\n        clientName\n        clientEmail\n        paymentItems {\n          paymentType\n          checkOrTransactionNumber\n          amount\n        }\n        paymentsTotal\n        deductionItems {\n          deductionType\n          description\n          amount\n        }\n        deductionsTotal\n        total\n        agentNotes\n        agencyDisclosureForm\n        contractOrLeaseForms\n        agentPaymentType\n        ACHAccountNumber\n        ACHAccountBankRoutingNumber\n        fundsPaidBy\n        alreadyTurnedFundsIn\n        shouldSendApprovalTextMessageNotification\n        status\n        bonusPercentageAddedByAdmin\n        netAgentCommission\n        netCompanyCommission\n      }\n    }\n  }\n"]);
-
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
-
-function _objectWithoutProperties(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i < sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) >= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }
-
-function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
-
-function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance"); }
-
-function _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter); }
-
-function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
-
-
-
-
-
-
-
-
-
-
-
-
-var Loader = external__react_spinners_["BounceLoader"];
-var viewDealFormQuery = external__graphql_tag__default()(_templateObject);
-
-var ViewDealForm_ViewDealFormContainer = Object(external__mobx_react_["observer"])(_class =
-/*#__PURE__*/
-function (_Component) {
-  _inherits(ViewDealFormContainer, _Component);
-
-  function ViewDealFormContainer(props) {
-    var _this;
-
-    _classCallCheck(this, ViewDealFormContainer);
-
-    _this = _possibleConstructorReturn(this, (ViewDealFormContainer.__proto__ || Object.getPrototypeOf(ViewDealFormContainer)).call(this, props));
-    Object.defineProperty(_assertThisInitialized(_this), "uploadItemsNum", {
-      configurable: true,
-      enumerable: true,
-      writable: true,
-      value: 0
-    });
-    Object.defineProperty(_assertThisInitialized(_this), "itemsUploaded", {
-      configurable: true,
-      enumerable: true,
-      writable: true,
-      value: 0
-    });
-    Object.defineProperty(_assertThisInitialized(_this), "paymentAmountChangeHandler", {
-      configurable: true,
-      enumerable: true,
-      writable: true,
-      value: function value(id, _value) {
-        _value = Number(_value);
-
-        var paymentsTotal = _this.getTotalPaymentsAmount({
-          id: id,
-          value: _value || 0
-        });
-
-        _this.setState({
-          paymentAmountItems: _objectSpread({}, _this.state.paymentAmountItems, _defineProperty({}, id, _value || 0)),
-          paymentsTotal: paymentsTotal,
-          total: paymentsTotal - _this.state.deductionsTotal
-        });
-      }
-    });
-    Object.defineProperty(_assertThisInitialized(_this), "deductionAmountChangeHandler", {
-      configurable: true,
-      enumerable: true,
-      writable: true,
-      value: function value(id, _value2) {
-        _value2 = Number(_value2);
-
-        var deductionsTotal = _this.getTotalDeductionsAmount({
-          id: id,
-          value: _value2 || 0
-        });
-
-        _this.setState({
-          deductionAmountItems: _objectSpread({}, _this.state.deductionAmountItems, _defineProperty({}, id, _value2 || 0)),
-          deductionsTotal: deductionsTotal,
-          total: _this.state.paymentsTotal - deductionsTotal
-        });
-      }
-    });
-    Object.defineProperty(_assertThisInitialized(_this), "getTotalPaymentsAmount", {
-      configurable: true,
-      enumerable: true,
-      writable: true,
-      value: function value(newItem) {
-        var total = 0;
-        var _this$state = _this.state,
-            paymentAmountItems = _this$state.paymentAmountItems,
-            permanentPaymentSubtractions = _this$state.permanentPaymentSubtractions;
-        Object.keys(paymentAmountItems).filter(function (itemID) {
-          return newItem ? itemID !== newItem.id : true;
-        }).forEach(function (key) {
-          total += paymentAmountItems[key];
-        });
-        if (newItem && newItem.value) total += newItem.value;
-        return total - permanentPaymentSubtractions;
-      }
-    });
-    Object.defineProperty(_assertThisInitialized(_this), "getTotalDeductionsAmount", {
-      configurable: true,
-      enumerable: true,
-      writable: true,
-      value: function value(newItem) {
-        var total = 0;
-        var _this$state2 = _this.state,
-            deductionAmountItems = _this$state2.deductionAmountItems,
-            permanentDeductionSubtractions = _this$state2.permanentDeductionSubtractions;
-        Object.keys(deductionAmountItems).filter(function (itemID) {
-          return newItem ? itemID !== newItem.id : true;
-        }).forEach(function (key) {
-          total += deductionAmountItems[key];
-        });
-        if (newItem && newItem.value) total += newItem.value;
-        return total - permanentDeductionSubtractions;
-      }
-    });
-    Object.defineProperty(_assertThisInitialized(_this), "subtractPaymentValueFromState", {
-      configurable: true,
-      enumerable: true,
-      writable: true,
-      value: function value(payment) {
-        var paymentsTotal = _this.getTotalPaymentsAmount() - payment;
-
-        _this.setState({
-          permanentPaymentSubtractions: _this.state.permanentPaymentSubtractions + payment,
-          paymentsTotal: paymentsTotal,
-          total: paymentsTotal - _this.state.deductionsTotal
-        });
-      }
-    });
-    Object.defineProperty(_assertThisInitialized(_this), "subtractDeductionValueFromState", {
-      configurable: true,
-      enumerable: true,
-      writable: true,
-      value: function value(deduction) {
-        var deductionsTotal = _this.getTotalDeductionsAmount() - deduction;
-
-        _this.setState({
-          permanentDeductionSubtractions: _this.state.permanentDeductionSubtractions + deduction,
-          deductionsTotal: deductionsTotal,
-          total: _this.state.paymentsTotal - deductionsTotal
-        });
-      }
-    });
-    Object.defineProperty(_assertThisInitialized(_this), "setAgencyDisclosureForm", {
-      configurable: true,
-      enumerable: true,
-      writable: true,
-      value: function value(file) {
-        _this.setState({
-          agencyDisclosureForm: file
-        });
-
-        if (!file) {
-          var uploadBtn = document.getElementById('agencyDisclosureUploadForm');
-
-          if (uploadBtn) {
-            uploadBtn.value = null;
-          }
-        }
-      }
-    });
-    Object.defineProperty(_assertThisInitialized(_this), "setContractOrLeaseForms", {
-      configurable: true,
-      enumerable: true,
-      writable: true,
-      value: function value(filesObject) {
-        if (Array.isArray(filesObject)) {
-          _this.setState({
-            contractOrLeaseForms: filesObject
-          });
-
-          if (filesObject.length === 0) {
-            var uploadBtn = document.getElementById('contractOrLeaseItemsUploadForm');
-
-            if (uploadBtn) {
-              uploadBtn.value = null;
-            }
-          }
-
-          return;
-        }
-
-        var fileArray = Object.keys(filesObject).map(function (key) {
-          return filesObject[key];
-        });
-
-        _this.setState({
-          contractOrLeaseForms: fileArray
-        });
-      }
-    });
-    Object.defineProperty(_assertThisInitialized(_this), "handleMgmtOrCobrokeCompanyChange", {
-      configurable: true,
-      enumerable: true,
-      writable: true,
-      value: function value(event) {
-        _this.setState({
-          newMgmtOrCobrokeCompany: event.target.value
-        });
-      }
-    });
-    Object.defineProperty(_assertThisInitialized(_this), "toggleChoosingMgmtCoBrokeCompany", {
-      configurable: true,
-      enumerable: true,
-      writable: true,
-      value: function value(bool) {
-        var choosingMgmtCoBrokeCompany = _this.state.choosingMgmtCoBrokeCompany;
-
-        _this.setState({
-          choosingMgmtCoBrokeCompany: typeof bool === 'boolean' ? bool : !choosingMgmtCoBrokeCompany,
-          newMgmtOrCobrokeCompany: ''
-        });
-      }
-    });
-    Object.defineProperty(_assertThisInitialized(_this), "setHasSetNewMgmtOrCobrokeCompany", {
-      configurable: true,
-      enumerable: true,
-      writable: true,
-      value: function value(bool) {
-        var _this$state3 = _this.state,
-            addedManagementCompanies = _this$state3.addedManagementCompanies,
-            newMgmtOrCobrokeCompany = _this$state3.newMgmtOrCobrokeCompany;
-
-        _this.setState({
-          choosingMgmtCoBrokeCompany: false,
-          hasSetNewMgmtOrCobrokeCompany: true,
-          newMgmtOrCobrokeCompany: '',
-          addedManagementCompanies: _toConsumableArray(addedManagementCompanies).concat([Object(stringUtils["a" /* capitalize */])(newMgmtOrCobrokeCompany.trim())])
-        });
-      }
-    });
-    Object.defineProperty(_assertThisInitialized(_this), "setInitialContainerState", {
-      configurable: true,
-      enumerable: true,
-      writable: true,
-      value: function value(_ref) {
-        var paymentsTotal = _ref.paymentsTotal,
-            deductionsTotal = _ref.deductionsTotal,
-            total = _ref.total;
-
-        _this.setState({
-          paymentsTotal: paymentsTotal,
-          deductionsTotal: deductionsTotal,
-          total: total
-        });
-      }
-    });
-    Object.defineProperty(_assertThisInitialized(_this), "onSubmit", {
-      configurable: true,
-      enumerable: true,
-      writable: true,
-      value: function value(values) {
-        _this.props.setFormSubmitted();
-
-        var _this$state4 = _this.state,
-            contractOrLeaseForms = _this$state4.contractOrLeaseForms,
-            agencyDisclosureForm = _this$state4.agencyDisclosureForm,
-            addedManagementCompanies = _this$state4.addedManagementCompanies,
-            hasSetNewMgmtOrCobrokeCompany = _this$state4.hasSetNewMgmtOrCobrokeCompany,
-            paymentsTotal = _this$state4.paymentsTotal,
-            deductionsTotal = _this$state4.deductionsTotal,
-            total = _this$state4.total;
-
-        var returnObject = _objectSpread({}, values, {
-          addedManagementCompanies: addedManagementCompanies,
-          paymentsTotal: paymentsTotal,
-          deductionsTotal: deductionsTotal,
-          total: total,
-          agencyDisclosureForm: null,
-          contractOrLeaseForms: [],
-          dealID: _this.props.dealID
-        });
-
-        delete returnObject.contractOrLeaseItems;
-        delete returnObject.deductionsSubtotal;
-        delete returnObject.paymentsSubtotal;
-        delete returnObject.financialsTotal;
-        delete returnObject.date;
-        delete returnObject.agent;
-        delete returnObject.agentType;
-        delete returnObject.state;
-        delete returnObject.otherAgents;
-
-        if (_this.props.userRole !== userTypes["admin"] && _this.props.userRole !== userTypes["superAdmin"]) {
-          delete returnObject.bonusPercentageAddedByAdmin;
-        }
-
-        returnObject.price = Number(returnObject.price);
-        returnObject.paymentItems = returnObject.paymentItems.map(function (item) {
-          return _objectSpread({}, item, {
-            amount: Number(item.amount)
-          });
-        });
-        returnObject.deductionItems = returnObject.deductionItems.map(function (item) {
-          return _objectSpread({}, item, {
-            amount: Number(item.amount)
-          });
-        });
-        var uploadItems = [];
-
-        if (agencyDisclosureForm) {
-          uploadItems.push({
-            itemName: 'agencyDisclosureForm',
-            fileName: agencyDisclosureForm.name,
-            fileType: agencyDisclosureForm.type
-          });
-        }
-
-        if (contractOrLeaseForms && contractOrLeaseForms.length) {
-          contractOrLeaseForms.forEach(function (file, i) {
-            uploadItems.push({
-              itemName: "contractOrLeaseForm".concat(i),
-              fileName: file.name,
-              fileType: file.type
-            });
-          });
-        }
-
-        if (!uploadItems.length) {
-          _this.setState({
-            submittingFormToServer: true
-          });
-
-          deals_updateDeal(returnObject).then(function (res) {
-            var failed = false;
-
-            if (res.otherError) {
-              _this.props.openRequestErrorSnackbar(res.otherError);
-
-              failed = true;
-            }
-
-            if (res.userErrors.length) {
-              failed = true;
-            }
-
-            if (!failed) {
-              _this.props.setDealSuccessfullySubmitted(res.deal);
-            }
-
-            _this.setState({
-              submittingFormToServer: false
-            });
-
-            _this.props.setFormSubmitted(false);
-          }).catch(function (err) {
-            _this.props.setFormSubmitted(false);
-
-            _this.props.openRequestErrorSnackbar();
-          });
-          return;
-        }
-
-        Object(getDealUploadsSignedURLS["a" /* default */])(uploadItems).then(function (response) {
-          if (response.error) {
-            _this.props.openRequestErrorSnackbar(response.error);
-
-            return;
-          }
-
-          var errors = [];
-          var items = response.items;
-          returnObject.dealID = _this.props.dealID;
-          items.forEach(function (item) {
-            if (item.error) errors.push(item.error);
-          });
-
-          if (errors.length) {
-            _this.props.openRequestErrorSnackbar(errors[0]);
-
-            return;
-          }
-
-          _this.uploadItemsNum = items.length;
-
-          var recursiveUploads = function recursiveUploads(items, returnObject, thisRef) {
-            var uploadItemsNum = items.length;
-            var uploadItemIndex = 0;
-            recursiveHelper(items, uploadItemIndex, uploadItemsNum, returnObject, thisRef);
-          };
-
-          var recursiveHelper = function recursiveHelper(items, uploadItemIndex, uploadItemsNum, returnObject, thisRef) {
-            if (uploadItemIndex >= items.length) {
-              thisRef.setState({
-                isUploadingFile: false,
-                uplodingFileProgress: 0,
-                filesUploadedSuccessfully: true,
-                submittingFormToServer: true
-              });
-              deals_updateDeal(returnObject).then(function (res) {
-                var failed = false;
-
-                if (res.otherError) {
-                  _this.props.openRequestErrorSnackbar(res.otherError);
-
-                  failed = true;
-                }
-
-                if (res.userErrors.length) {
-                  failed = true;
-                }
-
-                if (!failed) {
-                  _this.props.setDealSuccessfullySubmitted(res.deal);
-                }
-
-                _this.props.setFormSubmitted(false);
-              }).catch(function (err) {
-                _this.props.setFormSubmitted(false);
-
-                _this.props.openRequestErrorSnackbar();
-              });
-              return;
-            }
-
-            var item = items[uploadItemIndex];
-            var file;
-            var fileIndex;
-
-            if (item.itemName === 'agencyDisclosureForm') {
-              file = thisRef.state.agencyDisclosureForm;
-              returnObject.agencyDisclosureForm = item.fileName;
-            } else {
-              fileIndex = item.itemName.slice(-1);
-              file = thisRef.state.contractOrLeaseForms[fileIndex];
-              returnObject.contractOrLeaseForms.push(item.fileName);
-            }
-
-            Object(uploadFile["a" /* default */])({
-              file: file,
-              url: item.signedURL,
-              onUploadProgress: function onUploadProgress(progressEvent) {
-                // Do whatever you want with the native progress event
-                var loadedPercent = progressEvent.loaded / progressEvent.total * 100;
-                thisRef.setState({
-                  formSubmissionBegun: true,
-                  uplodingFileProgress: Math.floor(loadedPercent),
-                  uplodingFileText: "Now uploading file ".concat(uploadItemIndex + 1, " of ").concat(uploadItemsNum, "..."),
-                  isUploadingFile: true
-                });
-              }
-            }).then(function () {
-              return recursiveHelper(items, uploadItemIndex + 1, uploadItemsNum, returnObject, thisRef);
-            }).catch(function (err) {
-              return _this.props.openRequestErrorSnackbar();
-            });
-          };
-
-          recursiveUploads(items, returnObject, _assertThisInitialized(_this));
-        });
-      }
-    });
-    Object.defineProperty(_assertThisInitialized(_this), "onSubmitFailure", {
-      configurable: true,
-      enumerable: true,
-      writable: true,
-      value: function value(errs, onSubmitError, formApi) {
-        console.log(errs);
-        console.log(onSubmitError);
-        console.log(formApi.errors);
-      }
-    });
-    _this.state = {
-      paymentAmountItems: {},
-      deductionAmountItems: {},
-      paymentsTotal: 0,
-      deductionsTotal: 0,
-      total: 0,
-      contractOrLeaseForms: [],
-      agencyDisclosureForm: null,
-      permanentPaymentSubtractions: 0,
-      // not submitted
-      permanentDeductionSubtractions: 0,
-      // not submitted
-      choosingMgmtCoBrokeCompany: false,
-      newMgmtOrCobrokeCompany: '',
-      hasSetNewMgmtOrCobrokeCompany: false,
-      addedManagementCompanies: [],
-      uplodingFileProgress: 0,
-      isUploadingFile: false,
-      uplodingFileText: '',
-      filesUploadedSuccessfully: null,
-      formSubmissionBegun: false,
-      submittingFormToServer: false,
-      dealBonus: '0'
-    };
-    return _this;
-  }
-
-  _createClass(ViewDealFormContainer, [{
-    key: "render",
-    value: function render() {
-      var _this2 = this;
-
-      var _props = this.props,
-          uuid = _props.userUUID,
-          dealID = _props.dealID,
-          isEditingDeal = _props.isEditingDeal,
-          isViewType = _props.isViewType,
-          rest = _objectWithoutProperties(_props, ["userUUID", "dealID", "isEditingDeal", "isViewType"]);
-
-      var _state = this.state,
-          agencyDisclosureForm = _state.agencyDisclosureForm,
-          contractOrLeaseForms = _state.contractOrLeaseForms;
-      return external__react__default.a.createElement(external__react_apollo_["Query"], {
-        query: viewDealFormQuery,
-        variables: {
-          uuid: dealID
-        },
-        fetchPolicy: "cache-and-network"
-      }, function (_ref2) {
-        var loading = _ref2.loading,
-            error = _ref2.error,
-            data = _ref2.data;
-        if (loading) return external__react__default.a.createElement("div", {
-          style: {
-            display: 'flex',
-            justifyContent: 'center'
-          }
-        }, external__react__default.a.createElement(Loader, {
-          color: "#f44336",
-          loading: true
-        }));
-
-        if (error) {
-          console.log(error);
-          return external__react__default.a.createElement("div", {
-            style: {
-              textAlign: 'center'
-            }
-          }, "We're sorry. There was an error processing your request.");
-        }
-
-        var _data$viewDealForm = data.viewDealForm,
-            deal = _data$viewDealForm.deal,
-            agentItems = _data$viewDealForm.agents,
-            formSelectItems = _data$viewDealForm.formSelectItems;
-        var agents = agentItems || [];
-        var submittedDeal = deal;
-        return external__react__default.a.createElement(SubmitDealForm["a" /* default */], _extends({
-          setInitialContainerState: _this2.setInitialContainerState,
-          paymentsTotal: "".concat(_this2.state.paymentsTotal),
-          deductionsTotal: "".concat(_this2.state.deductionsTotal),
-          total: _this2.state.total,
-          submittedDeal: submittedDeal,
-          agents: agents.filter(function (agent) {
-            return uuid ? agent.uuid !== uuid : agent;
-          }),
-          managementCobrokeCompanyItems: formSelectItems || [],
-          onSubmit: _this2.onSubmit,
-          setAgencyDisclosureForm: _this2.setAgencyDisclosureForm,
-          setContractOrLeaseForms: _this2.setContractOrLeaseForms,
-          agencyDisclosureForm: agencyDisclosureForm,
-          contractOrLeaseForms: contractOrLeaseForms,
-          paymentAmountChangeHandler: _this2.paymentAmountChangeHandler,
-          addedManagementCompanies: _this2.state.addedManagementCompanies,
-          newMgmtOrCobrokeCompany: _this2.state.newMgmtOrCobrokeCompany,
-          uplodingFileProgress: _this2.state.uplodingFileProgress,
-          isUploadingFile: _this2.state.isUploadingFile,
-          uplodingFileText: _this2.state.uplodingFileText,
-          formSubmissionBegun: _this2.state.formSubmissionBegun,
-          submittingFormToServer: _this2.state.submittingFormToServer || _this2.props.submittingRequestToServer,
-          isEditingDeal: isEditingDeal,
-          isViewType: isViewType,
-          userRole: _this2.props.userRole,
-          onBonusChange: _this2.props.onBonusChange,
-          dealBonus: _this2.props.dealBonus,
-          resetDealBonus: _this2.props.resetDealBonus,
-          setHasSetNewMgmtOrCobrokeCompany: _this2.setHasSetNewMgmtOrCobrokeCompany,
-          toggleChoosingMgmtCoBrokeCompany: _this2.toggleChoosingMgmtCoBrokeCompany,
-          handleMgmtOrCobrokeCompanyChange: _this2.handleMgmtOrCobrokeCompanyChange,
-          choosingMgmtCoBrokeCompany: _this2.state.choosingMgmtCoBrokeCompany,
-          deductionAmountChangeHandler: _this2.deductionAmountChangeHandler,
-          subtractPaymentValueFromState: _this2.subtractPaymentValueFromState,
-          subtractDeductionValueFromState: _this2.subtractDeductionValueFromState
-        }, rest));
-      });
-    }
-  }]);
-
-  return ViewDealFormContainer;
-}(external__react_["Component"])) || _class;
-
-/* harmony default export */ var ViewDealForm = (ViewDealForm_ViewDealFormContainer);
-// EXTERNAL MODULE: ./effects/deals/acceptDeal.js
-var acceptDeal = __webpack_require__(148);
-
-// EXTERNAL MODULE: ./effects/deals/deleteDeal.js
-var deleteDeal = __webpack_require__(141);
-
-// CONCATENATED MODULE: ./components/ViewDealDialogBox/index.js
-var ViewDealDialogBox__class;
-
-function ViewDealDialogBox__typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { ViewDealDialogBox__typeof = function _typeof(obj) { return typeof obj; }; } else { ViewDealDialogBox__typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return ViewDealDialogBox__typeof(obj); }
-
-function ViewDealDialogBox__classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function ViewDealDialogBox__defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function ViewDealDialogBox__createClass(Constructor, protoProps, staticProps) { if (protoProps) ViewDealDialogBox__defineProperties(Constructor.prototype, protoProps); if (staticProps) ViewDealDialogBox__defineProperties(Constructor, staticProps); return Constructor; }
-
-function ViewDealDialogBox__possibleConstructorReturn(self, call) { if (call && (ViewDealDialogBox__typeof(call) === "object" || typeof call === "function")) { return call; } return ViewDealDialogBox__assertThisInitialized(self); }
-
-function ViewDealDialogBox__inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-function ViewDealDialogBox__assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-var networkErrorMessage = "We're sorry. There was an error processing your request.";
-
-var styles = function styles(theme) {
-  return {
-    paper: {
-      width: '800px',
-      maxWidth: '800px'
-    },
-    dialogActions: {
-      margin: '8px 0'
-    },
-    formTitle: {
-      padding: 'theme.spacing.unit theme.spacing.unit * 3',
-      textAlign: 'center'
-    },
-    formSubheader: {
-      paddingLeft: theme.spacing.unit * 4,
-      paddingRight: theme.spacing.unit * 4,
-      marginBottom: theme.spacing.unit * 6,
-      marginTop: theme.spacing.unit * 2,
-      textAlign: 'center'
-    },
-    dialogContent: {
-      paddingTop: '32px'
-    },
-    editDealBtn: {
-      color: theme.custom.submitBlue.main,
-      '&:hover': {
-        backgroundColor: theme.custom.submitBlue.transparentLightBackground
-      }
-    },
-    popupMenuTitle: {
-      outline: 'none',
-      padding: '12px 16px',
-      width: 'auto',
-      color: 'rgba(0, 0, 0, 0.87)',
-      height: '24px',
-      overflow: 'hidden',
-      fontSize: '1rem',
-      boxSizing: 'content-box',
-      fontWeight: '400',
-      lineHeight: '1.5em',
-      fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
-      whiteSpace: 'nowrap',
-      paddingLeft: '16px',
-      textOverflow: 'ellipsis',
-      paddingRight: '16px',
-      borderBottom: '1px solid rgba(0,0,0,.1)',
-      pointerEvents: 'none'
-    },
-    menuItem: {
-      display: 'flex !important',
-      justifyContent: 'center !important'
-    },
-    menuItemDelete: {
-      display: 'flex !important',
-      justifyContent: 'center !important',
-      transition: 'background-color 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, color 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms !important',
-      '&:hover': {
-        backgroundColor: "".concat(theme.palette.secondary.light, " !important"),
-        color: '#fff !important'
-      }
-    },
-    menuItemAccept: {
-      display: 'flex !important',
-      justifyContent: 'center !important',
-      transition: 'background-color 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, color 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms !important',
-      '&:hover': {
-        backgroundColor: "".concat(theme.custom.submitBlue.light, " !important"),
-        color: '#fff !important'
-      }
-    },
-    snackBar: {
-      position: 'absolute',
-      bottom: 20
-    },
-    errorSnackbar: {
-      '& > div': {
-        backgroundColor: theme.palette.secondary.main
-      }
-    }
-  };
-};
-
-var ViewDealDialogBox_SubmitDealDialogBox = Object(external__mobx_react_["observer"])(ViewDealDialogBox__class =
-/*#__PURE__*/
-function (_Component) {
-  ViewDealDialogBox__inherits(SubmitDealDialogBox, _Component);
-
-  function SubmitDealDialogBox(props) {
-    var _this;
-
-    ViewDealDialogBox__classCallCheck(this, SubmitDealDialogBox);
-
-    _this = ViewDealDialogBox__possibleConstructorReturn(this, (SubmitDealDialogBox.__proto__ || Object.getPrototypeOf(SubmitDealDialogBox)).call(this, props));
-    Object.defineProperty(ViewDealDialogBox__assertThisInitialized(_this), "setFormSubmitted", {
-      configurable: true,
-      enumerable: true,
-      writable: true,
-      value: function value() {
-        var bool = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : true;
-
-        _this.setState({
-          formSubmitted: bool,
-          isEditingDeal: false
-        });
-      }
-    });
-    Object.defineProperty(ViewDealDialogBox__assertThisInitialized(_this), "toggleSnackbarOpen", {
-      configurable: true,
-      enumerable: true,
-      writable: true,
-      value: function value(text) {
-        _this.setState({
-          snackbarOpen: true,
-          snackbarText: text
-        });
-      }
-    });
-    Object.defineProperty(ViewDealDialogBox__assertThisInitialized(_this), "handleCloseSnackbar", {
-      configurable: true,
-      enumerable: true,
-      writable: true,
-      value: function value() {
-        _this.setState({
-          snackbarOpen: false,
-          snackbarUndoFunction: null,
-          isErrorSnackbar: false,
-          snackbarText: ''
-        });
-      }
-    });
-    Object.defineProperty(ViewDealDialogBox__assertThisInitialized(_this), "openRequestErrorSnackbar", {
-      configurable: true,
-      enumerable: true,
-      writable: true,
-      value: function value() {
-        var text = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : networkErrorMessage;
-
-        _this.setState({
-          snackbarOpen: true,
-          snackbarText: text,
-          isErrorSnackbar: true
-        });
-      }
-    });
-    Object.defineProperty(ViewDealDialogBox__assertThisInitialized(_this), "toggleEditingDeal", {
-      configurable: true,
-      enumerable: true,
-      writable: true,
-      value: function value(bool) {
-        _this.setState({
-          isEditingDeal: typeof bool === 'boolean' ? bool : !_this.state.isEditingDeal
-        });
-      }
-    });
-    Object.defineProperty(ViewDealDialogBox__assertThisInitialized(_this), "handleCancelMenuClick", {
-      configurable: true,
-      enumerable: true,
-      writable: true,
-      value: function value(event) {
-        _this.setState({
-          cancelAnchorEl: event.currentTarget
-        });
-      }
-    });
-    Object.defineProperty(ViewDealDialogBox__assertThisInitialized(_this), "handleCancelMenuClose", {
-      configurable: true,
-      enumerable: true,
-      writable: true,
-      value: function value() {
-        _this.setState({
-          cancelAnchorEl: null
-        });
-      }
-    });
-    Object.defineProperty(ViewDealDialogBox__assertThisInitialized(_this), "handleAcceptMenuClick", {
-      configurable: true,
-      enumerable: true,
-      writable: true,
-      value: function value(event) {
-        _this.setState({
-          acceptAnchorEl: event.currentTarget
-        });
-      }
-    });
-    Object.defineProperty(ViewDealDialogBox__assertThisInitialized(_this), "handleAcceptMenuClose", {
-      configurable: true,
-      enumerable: true,
-      writable: true,
-      value: function value() {
-        _this.setState({
-          acceptAnchorEl: null
-        });
-      }
-    });
-    Object.defineProperty(ViewDealDialogBox__assertThisInitialized(_this), "onBonusChange", {
-      configurable: true,
-      enumerable: true,
-      writable: true,
-      value: function value(_ref) {
-        var target = _ref.target;
-        var dollarRegex = /^\d*(\.\d*)?$/;
-        var val = target.value;
-        if (!dollarRegex.test(val)) return;
-
-        _this.setState({
-          dealBonus: val
-        });
-      }
-    });
-    Object.defineProperty(ViewDealDialogBox__assertThisInitialized(_this), "resetDealBonus", {
-      configurable: true,
-      enumerable: true,
-      writable: true,
-      value: function value() {
-        _this.setState({
-          dealBonus: ''
-        });
-      }
-    });
-    Object.defineProperty(ViewDealDialogBox__assertThisInitialized(_this), "acceptDeal", {
-      configurable: true,
-      enumerable: true,
-      writable: true,
-      value: function value(dealID) {
-        var dealBonus = _this.state.dealBonus;
-
-        _this.toggleSubmittingRequestToServer(true);
-
-        Object(acceptDeal["a" /* default */])(dealID, Number(dealBonus) ? Number(dealBonus) : undefined).then(function (res) {
-          _this.toggleSubmittingRequestToServer(false);
-
-          if (res.error) {
-            _this.openRequestErrorSnackbar(res.error);
-
-            return;
-          } else if (res.userErrors.length) {
-            _this.openRequestErrorSnackbar(res.userErrors[0]);
-
-            return;
-          }
-
-          _this.props.dealAccepted(dealID);
-        }).catch(function (err) {
-          _this.openRequestErrorSnackbar();
-        });
-      }
-    });
-    Object.defineProperty(ViewDealDialogBox__assertThisInitialized(_this), "deleteDeal", {
-      configurable: true,
-      enumerable: true,
-      writable: true,
-      value: function value(dealID) {
-        _this.toggleSubmittingRequestToServer(true);
-
-        Object(deleteDeal["a" /* default */])(dealID).then(function (res) {
-          _this.toggleSubmittingRequestToServer(false);
-
-          if (res.error) {
-            _this.openRequestErrorSnackbar(res.error);
-
-            return;
-          }
-
-          _this.props.dealDeleted(dealID);
-        }).catch(function (err) {
-          _this.toggleSubmittingRequestToServer(true);
-
-          _this.openRequestErrorSnackbar();
-        });
-      }
-    });
-    Object.defineProperty(ViewDealDialogBox__assertThisInitialized(_this), "toggleSubmittingRequestToServer", {
-      configurable: true,
-      enumerable: true,
-      writable: true,
-      value: function value() {
-        var bool = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : !_this.state.submittingRequestToServer;
-
-        _this.setState({
-          submittingRequestToServer: bool,
-          formSubmitted: bool
-        });
-      }
-    });
-    _this.state = {
-      formApi: null,
-      formSubmitted: false,
-      snackbarOpen: false,
-      snackbarText: '',
-      snackbarUndoFunction: null,
-      isEditingDeal: false,
-      cancelAnchorEl: null,
-      acceptAnchorEl: null,
-      dealBonus: '',
-      submittingRequestToServer: false,
-      isErrorSnackbar: false
-    };
-    return _this;
-  }
-
-  ViewDealDialogBox__createClass(SubmitDealDialogBox, [{
-    key: "render",
-    value: function render() {
-      var _this2 = this;
-
-      var _props = this.props,
-          fullScreen = _props.fullScreen,
-          classes = _props.classes,
-          closeDealsViewDialogBox = _props.closeDealsViewDialogBox,
-          dealsViewDialogBoxOpen = _props.dealsViewDialogBoxOpen,
-          setDealSuccessfullySubmitted = _props.setDealSuccessfullySubmitted,
-          viewingDealID = _props.viewingDealID,
-          viewingDealStatus = _props.viewingDealStatus;
-      var _state = this.state,
-          isEditingDeal = _state.isEditingDeal,
-          cancelAnchorEl = _state.cancelAnchorEl,
-          acceptAnchorEl = _state.acceptAnchorEl;
-      return external__react__default.a.createElement(Dialog__default.a, {
-        disableBackdropClick: true,
-        disableEscapeKeyDown: true,
-        open: dealsViewDialogBoxOpen,
-        classes: {
-          paper: classes.paper
-        },
-        fullScreen: fullScreen
-      }, external__react__default.a.createElement(Dialog_["DialogTitle"], {
-        id: "form-dialog-title",
-        classes: {
-          root: classes.formTitle
-        }
-      }, "View Deal"), external__react__default.a.createElement(Divider__default.a, null), external__react__default.a.createElement(Dialog_["DialogContent"], {
-        classes: {
-          root: classes.dialogContent
-        }
-      }, external__react__default.a.createElement(ViewDealForm, {
-        userUUID: this.props.userUUID,
-        getFormApi: function getFormApi(formApi) {
-          return _this2.setState({
-            formApi: formApi
-          });
-        },
-        setFormSubmitted: this.setFormSubmitted,
-        setDealSuccessfullySubmitted: setDealSuccessfullySubmitted,
-        dealID: viewingDealID,
-        isEditingDeal: isEditingDeal,
-        isViewType: true,
-        userRole: this.props.userRole,
-        dealAccepted: this.props.dealAccepted,
-        onBonusChange: this.onBonusChange,
-        dealBonus: this.state.dealBonus,
-        resetDealBonus: this.resetDealBonus,
-        submittingRequestToServer: this.state.submittingRequestToServer,
-        openRequestErrorSnackbar: this.openRequestErrorSnackbar
-      }), external__react__default.a.createElement(Snackbar__default.a, {
-        classes: {
-          root: external__classnames__default()(classes.snackBar, this.state.isErrorSnackbar && classes.errorSnackbar)
-        },
-        anchorOrigin: {
-          vertical: 'bottom',
-          horizontal: 'center'
-        },
-        open: this.state.snackbarOpen,
-        autoHideDuration: 4000,
-        onClose: this.handleCloseSnackbar,
-        message: external__react__default.a.createElement("span", {
-          id: "snackbar-id"
-        }, this.state.snackbarText),
-        action: [this.snackbarUndoFunction ? external__react__default.a.createElement(Button__default.a, {
-          key: "undo",
-          color: "secondary",
-          size: "small",
-          onClick: function onClick() {
-            _this2.handleCloseSnackbar();
-
-            if (_this2.state.snackbarUndoFunction && typeof snackbarUndoFunction === 'function') {
-              _this2.snackbarUndoFunction();
-            }
-          }
-        }, "UNDO") : undefined, external__react__default.a.createElement(IconButton__default.a, {
-          key: "close",
-          "aria-label": "Close",
-          color: "inherit",
-          className: classes.close,
-          onClick: this.handleCloseSnackbar
-        }, external__react__default.a.createElement(Close__default.a, null))]
-      })), !this.state.formSubmitted ? external__react__default.a.createElement(Dialog_["DialogActions"], {
-        classes: {
-          root: classes.dialogActions
-        }
-      }, external__react__default.a.createElement(Button__default.a, {
-        disabled: this.state.formSubmitted,
-        onClick: function onClick() {
-          _this2.toggleEditingDeal(false);
-
-          closeDealsViewDialogBox();
-        },
-        color: "primary"
-      }, "Cancel"), this.props.userRole === userTypes["agent"] && viewingDealStatus === 'pending' || this.props.userRole === userTypes["superAdmin"] || this.props.userRole === userTypes["admin"] ? external__react__default.a.createElement(Button__default.a, {
-        disabled: this.state.formSubmitted,
-        onClick: this.handleCancelMenuClick,
-        color: "secondary"
-      }, "Delete") : null, external__react__default.a.createElement(Menu__default.a, {
-        id: "simple-menu",
-        anchorEl: cancelAnchorEl,
-        open: Boolean(cancelAnchorEl),
-        onClose: this.handleCancelMenuClose
-      }, external__react__default.a.createElement("div", {
-        className: classes.popupMenuTitle
-      }, "Are you sure?"), external__react__default.a.createElement(MenuItem__default.a, {
-        classes: {
-          root: classes.menuItemDelete
-        },
-        onClick: function onClick() {
-          _this2.handleCancelMenuClose();
-
-          _this2.deleteDeal(viewingDealID);
-        }
-      }, "Yes"), external__react__default.a.createElement(MenuItem__default.a, {
-        classes: {
-          root: classes.menuItem
-        },
-        onClick: this.handleCancelMenuClose
-      }, "No")), !isEditingDeal && this.props.userRole === userTypes["agent"] && viewingDealStatus === 'pending' ? external__react__default.a.createElement(Button__default.a, {
-        className: classes.editDealBtn,
-        disabled: this.state.formSubmitted,
-        onClick: function onClick() {
-          return _this2.toggleEditingDeal(true);
-        },
-        color: "primary"
-      }, "Edit") : null, (this.props.userRole === userTypes["admin"] || this.props.userRole === userTypes["superAdmin"]) && viewingDealStatus === 'pending' ? external__react__default.a.createElement(Button__default.a, {
-        className: classes.editDealBtn,
-        disabled: this.state.formSubmitted,
-        onClick: this.handleAcceptMenuClick,
-        color: "primary"
-      }, "Accept Deal") : null, external__react__default.a.createElement(Menu__default.a, {
-        id: "simple-menu",
-        anchorEl: acceptAnchorEl,
-        open: Boolean(acceptAnchorEl),
-        onClose: this.handleAcceptMenuClose
-      }, external__react__default.a.createElement("div", {
-        className: classes.popupMenuTitle
-      }, "Are you sure?"), external__react__default.a.createElement(MenuItem__default.a, {
-        classes: {
-          root: classes.menuItemAccept
-        },
-        onClick: function onClick() {
-          _this2.handleAcceptMenuClose();
-
-          _this2.acceptDeal(viewingDealID);
-        }
-      }, "Yes"), external__react__default.a.createElement(MenuItem__default.a, {
-        classes: {
-          root: classes.menuItem
-        },
-        onClick: this.handleAcceptMenuClose
-      }, "No")), isEditingDeal ? external__react__default.a.createElement(Button__default.a, {
-        disabled: this.state.formSubmitted,
-        onClick: function onClick() {
-          var errors = _this2.state.formApi.getError();
-
-          var errorCount;
-          console.log(_this2.state.formApi.getError());
-
-          if (errors) {
-            errorCount = Object.keys(_this2.state.formApi.getError()).length;
-          }
-
-          if (errorCount) {
-            _this2.toggleSnackbarOpen("Please correct ".concat(errorCount, " form error").concat(errorCount > 1 ? 's' : ''));
-          }
-
-          _this2.state.formApi.submitForm();
-        },
-        color: "primary"
-      }, "Submit") : null) : null);
-    }
-  }]);
-
-  return SubmitDealDialogBox;
-}(external__react_["Component"])) || ViewDealDialogBox__class;
-
-/* harmony default export */ var ViewDealDialogBox = __webpack_exports__["a"] = (Object(Dialog_["withMobileDialog"])()(Object(styles_["withStyles"])(styles)(ViewDealDialogBox_SubmitDealDialogBox)));
-
-/***/ }),
-/* 159 */,
-/* 160 */,
-/* 161 */
 /***/ (function(module, exports) {
 
 module.exports = require("react-avatar-editor");
 
 /***/ }),
-/* 162 */
+/* 153 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -10587,7 +8974,7 @@ module.exports = require("react-avatar-editor");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_mobx_react__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_mobx_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_mobx_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_uuid_v4__ = __webpack_require__(72);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_uuid_v4__ = __webpack_require__(74);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_uuid_v4___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_uuid_v4__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_material_ui_styles__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_material_ui_styles___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_material_ui_styles__);
@@ -10712,26 +9099,79 @@ function (_Component) {
 /* harmony default export */ __webpack_exports__["a"] = (Object(__WEBPACK_IMPORTED_MODULE_3_material_ui_styles__["withStyles"])(styles)(CustomSlider));
 
 /***/ }),
-/* 163 */,
-/* 164 */
+/* 154 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__client__ = __webpack_require__(6);
+
+var query = "\n  mutation acceptDeal($input: AcceptDealInput!) {\n    acceptDeal(input: $input) {\n      deal {\n        dealID\n        date\n        agentName\n        agentType\n        leadSource\n        dealType\n        propertyAddress\n        state\n        city\n        apartmentNumber\n        managementOrCobrokeCompany\n        price\n        clientName\n        clientEmail\n        paymentsTotal\n        deductionsTotal\n        total\n        agentNotes\n        status\n        bonusPercentageAddedByAdmin\n        netAgentCommission\n        netCompanyCommission\n      }\n      userErrors {\n        field\n        message\n      }\n      otherError\n    }\n  }\n";
+
+var acceptDeal = function acceptDeal(dealID, bonusPercentageAddedByAdmin) {
+  var res;
+  var variables = {
+    input: {
+      uuid: dealID,
+      bonusPercentageAddedByAdmin: bonusPercentageAddedByAdmin
+    }
+  };
+  var finalResponseObj = {
+    deal: null,
+    otherError: null,
+    userErrors: []
+  };
+  return __WEBPACK_IMPORTED_MODULE_0__client__["a" /* graphQlClient */].request(query, variables).then(function (result) {
+    res = result;
+    console.log(res);
+    var _res = res,
+        data = _res.acceptDeal;
+    var deal = data.deal,
+        otherError = data.otherError,
+        userErrors = data.userErrors;
+
+    if (userErrors && userErrors.length) {
+      finalResponseObj.userErrors = userErrors;
+    }
+
+    if (otherError) {
+      finalResponseObj.otherError = otherError;
+    }
+
+    if (!finalResponseObj.error && !finalResponseObj.userErrors.length) {
+      finalResponseObj.deal = deal;
+    }
+
+    return finalResponseObj;
+  }).catch(function (err) {
+    console.log(err);
+    finalResponseObj.error = 'Error reaching the server';
+    return finalResponseObj;
+  });
+};
+
+/* harmony default export */ __webpack_exports__["a"] = (acceptDeal);
+
+/***/ }),
+/* 155 */,
+/* 156 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 
 // EXTERNAL MODULE: external "antd/lib/icon/style/css"
-var css_ = __webpack_require__(21);
+var css_ = __webpack_require__(22);
 var css__default = /*#__PURE__*/__webpack_require__.n(css_);
 
 // EXTERNAL MODULE: external "antd/lib/icon"
-var icon_ = __webpack_require__(22);
+var icon_ = __webpack_require__(23);
 var icon__default = /*#__PURE__*/__webpack_require__.n(icon_);
 
 // EXTERNAL MODULE: external "antd/lib/input/style/css"
-var style_css_ = __webpack_require__(70);
+var style_css_ = __webpack_require__(66);
 var style_css__default = /*#__PURE__*/__webpack_require__.n(style_css_);
 
 // EXTERNAL MODULE: external "antd/lib/input"
-var input_ = __webpack_require__(71);
+var input_ = __webpack_require__(67);
 var input__default = /*#__PURE__*/__webpack_require__.n(input_);
 
 // EXTERNAL MODULE: external "react"
@@ -10739,15 +9179,15 @@ var external__react_ = __webpack_require__(0);
 var external__react__default = /*#__PURE__*/__webpack_require__.n(external__react_);
 
 // EXTERNAL MODULE: external "react-form"
-var external__react_form_ = __webpack_require__(27);
+var external__react_form_ = __webpack_require__(29);
 var external__react_form__default = /*#__PURE__*/__webpack_require__.n(external__react_form_);
 
 // EXTERNAL MODULE: external "uuid/v4"
-var v4_ = __webpack_require__(72);
+var v4_ = __webpack_require__(74);
 var v4__default = /*#__PURE__*/__webpack_require__.n(v4_);
 
 // EXTERNAL MODULE: external "react-avatar-editor"
-var external__react_avatar_editor_ = __webpack_require__(161);
+var external__react_avatar_editor_ = __webpack_require__(152);
 var external__react_avatar_editor__default = /*#__PURE__*/__webpack_require__.n(external__react_avatar_editor_);
 
 // EXTERNAL MODULE: external "material-ui/styles"
@@ -10755,7 +9195,7 @@ var styles_ = __webpack_require__(2);
 var styles__default = /*#__PURE__*/__webpack_require__.n(styles_);
 
 // EXTERNAL MODULE: external "material-ui/Grid"
-var Grid_ = __webpack_require__(20);
+var Grid_ = __webpack_require__(19);
 var Grid__default = /*#__PURE__*/__webpack_require__.n(Grid_);
 
 // EXTERNAL MODULE: external "react-sizes"
@@ -10763,26 +9203,26 @@ var external__react_sizes_ = __webpack_require__(69);
 var external__react_sizes__default = /*#__PURE__*/__webpack_require__.n(external__react_sizes_);
 
 // EXTERNAL MODULE: external "material-ui/Button"
-var Button_ = __webpack_require__(31);
+var Button_ = __webpack_require__(40);
 var Button__default = /*#__PURE__*/__webpack_require__.n(Button_);
 
 // EXTERNAL MODULE: external "material-ui/Typography"
-var Typography_ = __webpack_require__(28);
+var Typography_ = __webpack_require__(27);
 var Typography__default = /*#__PURE__*/__webpack_require__.n(Typography_);
 
 // EXTERNAL MODULE: external "react-circular-progressbar"
-var external__react_circular_progressbar_ = __webpack_require__(128);
+var external__react_circular_progressbar_ = __webpack_require__(130);
 var external__react_circular_progressbar__default = /*#__PURE__*/__webpack_require__.n(external__react_circular_progressbar_);
 
 // EXTERNAL MODULE: ../node_modules/react-circular-progressbar/dist/styles.css
-var styles = __webpack_require__(119);
+var styles = __webpack_require__(120);
 var styles_default = /*#__PURE__*/__webpack_require__.n(styles);
 
 // EXTERNAL MODULE: ./components/CustomSlider/index.js
-var CustomSlider = __webpack_require__(162);
+var CustomSlider = __webpack_require__(153);
 
 // EXTERNAL MODULE: external "email-validator"
-var external__email_validator_ = __webpack_require__(100);
+var external__email_validator_ = __webpack_require__(103);
 var external__email_validator__default = /*#__PURE__*/__webpack_require__.n(external__email_validator_);
 
 // CONCATENATED MODULE: ./components/forms/CreateAgentForm/formValidation.js
@@ -10809,22 +9249,22 @@ var temporaryPasswordValidator = function temporaryPasswordValidator(value) {
 };
 /* harmony default export */ var formValidation = (formValidation_validator);
 // EXTERNAL MODULE: ./components/CustomFileUploadInputWrapper/index.js
-var CustomFileUploadInputWrapper = __webpack_require__(120);
+var CustomFileUploadInputWrapper = __webpack_require__(121);
 
 // EXTERNAL MODULE: ./components/MaterialCustomTextFieldWrapper/index.js
 var MaterialCustomTextFieldWrapper = __webpack_require__(106);
 
 // EXTERNAL MODULE: ./components/MaterialCustomRadioInputWrapper/index.js
-var MaterialCustomRadioInputWrapper = __webpack_require__(121);
+var MaterialCustomRadioInputWrapper = __webpack_require__(122);
 
 // EXTERNAL MODULE: ./components/MaterialCustomSelectInputWrapper/index.js
-var MaterialCustomSelectInputWrapper = __webpack_require__(115);
+var MaterialCustomSelectInputWrapper = __webpack_require__(117);
 
 // EXTERNAL MODULE: ./components/CustomInputMask/index.js
-var CustomInputMask = __webpack_require__(129);
+var CustomInputMask = __webpack_require__(126);
 
 // EXTERNAL MODULE: ./utils/constants.js
-var constants = __webpack_require__(130);
+var constants = __webpack_require__(127);
 
 // EXTERNAL MODULE: ./constants/userTypes.js
 var userTypes = __webpack_require__(10);
@@ -11587,7 +10027,7 @@ function (_Component) {
 /* harmony default export */ var forms_CreateAgentForm = __webpack_exports__["a"] = (Object(styles_["withStyles"])(CreateAgentForm_styles)(CreateAgentForm_CreateAgentForm));
 
 /***/ }),
-/* 165 */
+/* 157 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -11633,14 +10073,250 @@ var setAgentProfilePic = function setAgentProfilePic(agentID, fileName) {
 /* harmony default export */ __webpack_exports__["a"] = (setAgentProfilePic);
 
 /***/ }),
-/* 166 */
+/* 158 */
 /***/ (function(module, exports) {
 
 module.exports = require("@material-ui/icons/Star");
 
 /***/ }),
-/* 167 */,
-/* 168 */
+/* 159 */
+/***/ (function(module, exports) {
+
+module.exports = require("set-value");
+
+/***/ }),
+/* 160 */
+/***/ (function(module, exports) {
+
+module.exports = require("@nivo/pie");
+
+/***/ }),
+/* 161 */
+/***/ (function(module, exports) {
+
+module.exports = require("@nivo/bar");
+
+/***/ }),
+/* 162 */
+/***/ (function(module, exports) {
+
+module.exports = require("@nivo/line");
+
+/***/ }),
+/* 163 */
+/***/ (function(module, exports) {
+
+module.exports = require("react-toggle-button");
+
+/***/ }),
+/* 164 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return residentialRental; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return residentialSale; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return commercialRental; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return commercialSale; });
+var residentialRental = 'Residential Rental';
+var residentialSale = 'Residential Sale';
+var commercialRental = 'Commercial Rental';
+var commercialSale = 'Commercial Sale';
+
+/***/ }),
+/* 165 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return returnMonthlyDollarDataContainer; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return returnMonthlyDealNumberDataContainer; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return returnNumberDealsDataContainer; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return returnYearlyDollarDealsDataContainer; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_moment__ = __webpack_require__(41);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_moment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_moment__);
+
+var returnMonthlyDollarDataContainer = function returnMonthlyDollarDataContainer() {
+  return {
+    Jan: {
+      'Com Sales': 0.001,
+      'Com Rentals': 0.001,
+      'Res Sales': 0.001,
+      'Res Rentals': 0.001
+    },
+    Feb: {
+      'Com Sales': 0.001,
+      'Com Rentals': 0.001,
+      'Res Sales': 0.001,
+      'Res Rentals': 0.001
+    },
+    Mar: {
+      'Com Sales': 0.001,
+      'Com Rentals': 0.001,
+      'Res Sales': 0.001,
+      'Res Rentals': 0.001
+    },
+    Apr: {
+      'Com Sales': 0.001,
+      'Com Rentals': 0.001,
+      'Res Sales': 0.001,
+      'Res Rentals': 0.001
+    },
+    May: {
+      'Com Sales': 0.001,
+      'Com Rentals': 0.001,
+      'Res Sales': 0.001,
+      'Res Rentals': 0.001
+    },
+    June: {
+      'Com Sales': 0.001,
+      'Com Rentals': 0.001,
+      'Res Sales': 0.001,
+      'Res Rentals': 0.001
+    },
+    Jul: {
+      'Com Sales': 0.001,
+      'Com Rentals': 0.001,
+      'Res Sales': 0.001,
+      'Res Rentals': 0.001
+    },
+    Aug: {
+      'Com Sales': 0.001,
+      'Com Rentals': 0.001,
+      'Res Sales': 0.001,
+      'Res Rentals': 0.001
+    },
+    Sep: {
+      'Com Sales': 0.001,
+      'Com Rentals': 0.001,
+      'Res Sales': 0.001,
+      'Res Rentals': 0.001
+    },
+    Oct: {
+      'Com Sales': 0.001,
+      'Com Rentals': 0.001,
+      'Res Sales': 0.001,
+      'Res Rentals': 0.001
+    },
+    Nov: {
+      'Com Sales': 0.001,
+      'Com Rentals': 0.001,
+      'Res Sales': 0.001,
+      'Res Rentals': 0.001
+    },
+    Dec: {
+      'Com Sales': 0.001,
+      'Com Rentals': 0.001,
+      'Res Sales': 0.001,
+      'Res Rentals': 0.001
+    }
+  };
+};
+var returnMonthlyDealNumberDataContainer = function returnMonthlyDealNumberDataContainer() {
+  return {
+    Jan: {
+      'Com Sales': 0.001,
+      'Com Rentals': 0.001,
+      'Res Sales': 0.001,
+      'Res Rentals': 0.001
+    },
+    Feb: {
+      'Com Sales': 0.001,
+      'Com Rentals': 0.001,
+      'Res Sales': 0.001,
+      'Res Rentals': 0.001
+    },
+    Mar: {
+      'Com Sales': 0.001,
+      'Com Rentals': 0.001,
+      'Res Sales': 0.001,
+      'Res Rentals': 0.001
+    },
+    Apr: {
+      'Com Sales': 0.001,
+      'Com Rentals': 0.001,
+      'Res Sales': 0.001,
+      'Res Rentals': 0.001
+    },
+    May: {
+      'Com Sales': 0.001,
+      'Com Rentals': 0.001,
+      'Res Sales': 0.001,
+      'Res Rentals': 0.001
+    },
+    June: {
+      'Com Sales': 0.001,
+      'Com Rentals': 0.001,
+      'Res Sales': 0.001,
+      'Res Rentals': 0.001
+    },
+    Jul: {
+      'Com Sales': 0.001,
+      'Com Rentals': 0.001,
+      'Res Sales': 0.001,
+      'Res Rentals': 0.001
+    },
+    Aug: {
+      'Com Sales': 0.001,
+      'Com Rentals': 0.001,
+      'Res Sales': 0.001,
+      'Res Rentals': 0.001
+    },
+    Sep: {
+      'Com Sales': 0.001,
+      'Com Rentals': 0.001,
+      'Res Sales': 0.001,
+      'Res Rentals': 0.001
+    },
+    Oct: {
+      'Com Sales': 0.001,
+      'Com Rentals': 0.001,
+      'Res Sales': 0.001,
+      'Res Rentals': 0.001
+    },
+    Nov: {
+      'Com Sales': 0.001,
+      'Com Rentals': 0.001,
+      'Res Sales': 0.001,
+      'Res Rentals': 0.001
+    },
+    Dec: {
+      'Com Sales': 0.001,
+      'Com Rentals': 0.001,
+      'Res Sales': 0.001,
+      'Res Rentals': 0.001
+    }
+  };
+};
+var returnNumberDealsDataContainer = function returnNumberDealsDataContainer() {
+  var currentYear = __WEBPACK_IMPORTED_MODULE_0_moment___default()().year();
+  var years = [currentYear, currentYear - 1, currentYear - 2, currentYear - 3, currentYear - 4];
+  var data = {};
+  years.forEach(function (year) {
+    data[year] = {
+      'Com Sales': 0.001,
+      'Com Rentals': 0.001,
+      'Res Sales': 0.001,
+      'Res Rentals': 0.001
+    };
+  });
+  return data;
+};
+var returnYearlyDollarDealsDataContainer = function returnYearlyDollarDealsDataContainer() {
+  var currentYear = __WEBPACK_IMPORTED_MODULE_0_moment___default()().year();
+  var years = [currentYear, currentYear - 1, currentYear - 2, currentYear - 3, currentYear - 4];
+  var data = {};
+  years.forEach(function (year) {
+    data[year] = {
+      'Com Sales': 0.001,
+      'Com Rentals': 0.001,
+      'Res Sales': 0.001,
+      'Res Rentals': 0.001
+    };
+  });
+  return data;
+};
+
+/***/ }),
+/* 166 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -11654,7 +10330,7 @@ var external__mobx_react_ = __webpack_require__(1);
 var external__mobx_react__default = /*#__PURE__*/__webpack_require__.n(external__mobx_react_);
 
 // EXTERNAL MODULE: external "material-ui/Dialog"
-var Dialog_ = __webpack_require__(36);
+var Dialog_ = __webpack_require__(57);
 var Dialog__default = /*#__PURE__*/__webpack_require__.n(Dialog_);
 
 // EXTERNAL MODULE: external "material-ui/Snackbar"
@@ -11666,11 +10342,11 @@ var IconButton_ = __webpack_require__(14);
 var IconButton__default = /*#__PURE__*/__webpack_require__.n(IconButton_);
 
 // EXTERNAL MODULE: external "@material-ui/icons/Close"
-var Close_ = __webpack_require__(32);
+var Close_ = __webpack_require__(31);
 var Close__default = /*#__PURE__*/__webpack_require__.n(Close_);
 
 // EXTERNAL MODULE: external "material-ui/Divider"
-var Divider_ = __webpack_require__(19);
+var Divider_ = __webpack_require__(20);
 var Divider__default = /*#__PURE__*/__webpack_require__.n(Divider_);
 
 // EXTERNAL MODULE: external "material-ui/styles"
@@ -11678,8 +10354,20 @@ var styles_ = __webpack_require__(2);
 var styles__default = /*#__PURE__*/__webpack_require__.n(styles_);
 
 // EXTERNAL MODULE: external "material-ui/Button"
-var Button_ = __webpack_require__(31);
+var Button_ = __webpack_require__(40);
 var Button__default = /*#__PURE__*/__webpack_require__.n(Button_);
+
+// EXTERNAL MODULE: external "material-ui/Menu"
+var Menu_ = __webpack_require__(64);
+var Menu__default = /*#__PURE__*/__webpack_require__.n(Menu_);
+
+// EXTERNAL MODULE: external "classnames"
+var external__classnames_ = __webpack_require__(5);
+var external__classnames__default = /*#__PURE__*/__webpack_require__.n(external__classnames_);
+
+// EXTERNAL MODULE: external "material-ui/Menu/MenuItem"
+var MenuItem_ = __webpack_require__(115);
+var MenuItem__default = /*#__PURE__*/__webpack_require__.n(MenuItem_);
 
 // EXTERNAL MODULE: external "react-apollo"
 var external__react_apollo_ = __webpack_require__(17);
@@ -11690,17 +10378,2418 @@ var external__graphql_tag_ = __webpack_require__(65);
 var external__graphql_tag__default = /*#__PURE__*/__webpack_require__.n(external__graphql_tag_);
 
 // EXTERNAL MODULE: external "react-spinners"
-var external__react_spinners_ = __webpack_require__(24);
+var external__react_spinners_ = __webpack_require__(26);
 var external__react_spinners__default = /*#__PURE__*/__webpack_require__.n(external__react_spinners_);
 
 // EXTERNAL MODULE: ./components/forms/SubmitDealForm/index.js + 1 modules
-var SubmitDealForm = __webpack_require__(142);
+var SubmitDealForm = __webpack_require__(145);
 
 // EXTERNAL MODULE: ./effects/deals/getDealUploadsSignedURLS.js
-var getDealUploadsSignedURLS = __webpack_require__(143);
+var getDealUploadsSignedURLS = __webpack_require__(147);
 
 // EXTERNAL MODULE: ./effects/uploadFile.js
-var uploadFile = __webpack_require__(144);
+var uploadFile = __webpack_require__(148);
+
+// EXTERNAL MODULE: ./effects/client.js
+var client = __webpack_require__(6);
+
+// CONCATENATED MODULE: ./effects/deals/updateDeal.js
+
+var query = "\n  mutation updateDeal($input: UpdateDealInput!) {\n    updateDeal(input: $input) {\n      deal {\n        dealID\n        date\n        dealType\n        clientName\n        clientEmail\n        propertyAddress\n        city\n        managementOrCobrokeCompany\n        price\n        status\n      }\n      userErrors {\n        field\n        message\n      }\n      otherError\n    }\n  }\n";
+
+var updateDeal_updateDeal = function updateDeal(values) {
+  var res;
+  var variables = {
+    input: values
+  };
+  var finalResponseObj = {
+    deal: null,
+    otherError: null,
+    userErrors: []
+  };
+  return client["a" /* graphQlClient */].request(query, variables).then(function (result) {
+    res = result;
+    console.log(res);
+    var _res = res,
+        data = _res.updateDeal;
+    var deal = data.deal,
+        otherError = data.otherError,
+        userErrors = data.userErrors;
+
+    if (userErrors && userErrors.length) {
+      finalResponseObj.userErrors = userErrors;
+    }
+
+    if (otherError) {
+      finalResponseObj.otherError = otherError;
+    }
+
+    if (!finalResponseObj.error && !finalResponseObj.userErrors.length) {
+      finalResponseObj.deal = deal;
+    }
+
+    return finalResponseObj;
+  }).catch(function (err) {
+    console.log(err);
+    finalResponseObj.error = 'Error reaching the server';
+    return finalResponseObj;
+  });
+};
+
+/* harmony default export */ var deals_updateDeal = (updateDeal_updateDeal);
+// EXTERNAL MODULE: ./utils/stringUtils.js
+var stringUtils = __webpack_require__(18);
+
+// EXTERNAL MODULE: ./constants/userTypes.js
+var userTypes = __webpack_require__(10);
+var userTypes_default = /*#__PURE__*/__webpack_require__.n(userTypes);
+
+// CONCATENATED MODULE: ./containers/ViewDealForm.js
+var _class;
+
+var _templateObject = /*#__PURE__*/ _taggedTemplateLiteral(["\n  query viewDealForm($uuid: String!) {\n    viewDealForm(uuid: $uuid) {\n      formSelectItems\n      agents {\n        firstName\n        lastName\n        uuid\n      }\n      deal {\n        dealID\n        date\n        agentName\n        agentType\n        leadSource\n        dealType\n        propertyAddress\n        state\n        city\n        apartmentNumber\n        managementOrCobrokeCompany\n        price\n        clientName\n        clientEmail\n        paymentItems {\n          paymentType\n          checkOrTransactionNumber\n          amount\n        }\n        paymentsTotal\n        deductionItems {\n          deductionType\n          description\n          agentID\n          amount\n        }\n        deductionsTotal\n        total\n        agentNotes\n        agencyDisclosureForm\n        contractOrLeaseForms\n        agentPaymentType\n        ACHAccountNumber\n        ACHAccountBankRoutingNumber\n        fundsPaidBy\n        alreadyTurnedFundsIn\n        shouldSendApprovalTextMessageNotification\n        status\n        bonusPercentageAddedByAdmin\n        netAgentCommission\n        netCompanyCommission\n      }\n    }\n  }\n"]);
+
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+
+function _objectWithoutProperties(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i < sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) >= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }
+
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance"); }
+
+function _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
+
+
+
+
+
+
+
+
+
+
+
+
+var Loader = external__react_spinners_["BounceLoader"];
+var viewDealFormQuery = external__graphql_tag__default()(_templateObject);
+
+var ViewDealForm_ViewDealFormContainer = Object(external__mobx_react_["observer"])(_class =
+/*#__PURE__*/
+function (_Component) {
+  _inherits(ViewDealFormContainer, _Component);
+
+  function ViewDealFormContainer(props) {
+    var _this;
+
+    _classCallCheck(this, ViewDealFormContainer);
+
+    _this = _possibleConstructorReturn(this, (ViewDealFormContainer.__proto__ || Object.getPrototypeOf(ViewDealFormContainer)).call(this, props));
+    Object.defineProperty(_assertThisInitialized(_this), "uploadItemsNum", {
+      configurable: true,
+      enumerable: true,
+      writable: true,
+      value: 0
+    });
+    Object.defineProperty(_assertThisInitialized(_this), "itemsUploaded", {
+      configurable: true,
+      enumerable: true,
+      writable: true,
+      value: 0
+    });
+    Object.defineProperty(_assertThisInitialized(_this), "paymentAmountChangeHandler", {
+      configurable: true,
+      enumerable: true,
+      writable: true,
+      value: function value(id, _value) {
+        _value = Number(_value);
+
+        var paymentsTotal = _this.getTotalPaymentsAmount({
+          id: id,
+          value: _value || 0
+        });
+
+        _this.setState({
+          paymentAmountItems: _objectSpread({}, _this.state.paymentAmountItems, _defineProperty({}, id, _value || 0)),
+          paymentsTotal: paymentsTotal,
+          total: paymentsTotal - _this.state.deductionsTotal
+        });
+      }
+    });
+    Object.defineProperty(_assertThisInitialized(_this), "deductionAmountChangeHandler", {
+      configurable: true,
+      enumerable: true,
+      writable: true,
+      value: function value(id, _value2) {
+        _value2 = Number(_value2);
+
+        var deductionsTotal = _this.getTotalDeductionsAmount({
+          id: id,
+          value: _value2 || 0
+        });
+
+        _this.setState({
+          deductionAmountItems: _objectSpread({}, _this.state.deductionAmountItems, _defineProperty({}, id, _value2 || 0)),
+          deductionsTotal: deductionsTotal,
+          total: _this.state.paymentsTotal - deductionsTotal
+        });
+      }
+    });
+    Object.defineProperty(_assertThisInitialized(_this), "getTotalPaymentsAmount", {
+      configurable: true,
+      enumerable: true,
+      writable: true,
+      value: function value(newItem) {
+        var total = 0;
+        var _this$state = _this.state,
+            paymentAmountItems = _this$state.paymentAmountItems,
+            permanentPaymentSubtractions = _this$state.permanentPaymentSubtractions;
+        Object.keys(paymentAmountItems).filter(function (itemID) {
+          return newItem ? itemID !== newItem.id : true;
+        }).forEach(function (key) {
+          total += paymentAmountItems[key];
+        });
+        if (newItem && newItem.value) total += newItem.value;
+        return total - permanentPaymentSubtractions;
+      }
+    });
+    Object.defineProperty(_assertThisInitialized(_this), "getTotalDeductionsAmount", {
+      configurable: true,
+      enumerable: true,
+      writable: true,
+      value: function value(newItem) {
+        var total = 0;
+        var _this$state2 = _this.state,
+            deductionAmountItems = _this$state2.deductionAmountItems,
+            permanentDeductionSubtractions = _this$state2.permanentDeductionSubtractions;
+        Object.keys(deductionAmountItems).filter(function (itemID) {
+          return newItem ? itemID !== newItem.id : true;
+        }).forEach(function (key) {
+          total += deductionAmountItems[key];
+        });
+        if (newItem && newItem.value) total += newItem.value;
+        return total - permanentDeductionSubtractions;
+      }
+    });
+    Object.defineProperty(_assertThisInitialized(_this), "subtractPaymentValueFromState", {
+      configurable: true,
+      enumerable: true,
+      writable: true,
+      value: function value(payment) {
+        var paymentsTotal = _this.getTotalPaymentsAmount() - payment;
+
+        _this.setState({
+          permanentPaymentSubtractions: _this.state.permanentPaymentSubtractions + payment,
+          paymentsTotal: paymentsTotal,
+          total: paymentsTotal - _this.state.deductionsTotal
+        });
+      }
+    });
+    Object.defineProperty(_assertThisInitialized(_this), "subtractDeductionValueFromState", {
+      configurable: true,
+      enumerable: true,
+      writable: true,
+      value: function value(deduction) {
+        var deductionsTotal = _this.getTotalDeductionsAmount() - deduction;
+
+        _this.setState({
+          permanentDeductionSubtractions: _this.state.permanentDeductionSubtractions + deduction,
+          deductionsTotal: deductionsTotal,
+          total: _this.state.paymentsTotal - deductionsTotal
+        });
+      }
+    });
+    Object.defineProperty(_assertThisInitialized(_this), "setAgencyDisclosureForm", {
+      configurable: true,
+      enumerable: true,
+      writable: true,
+      value: function value(file) {
+        _this.setState({
+          agencyDisclosureForm: file
+        });
+
+        if (!file) {
+          var uploadBtn = document.getElementById('agencyDisclosureUploadForm');
+
+          if (uploadBtn) {
+            uploadBtn.value = null;
+          }
+        }
+      }
+    });
+    Object.defineProperty(_assertThisInitialized(_this), "setContractOrLeaseForms", {
+      configurable: true,
+      enumerable: true,
+      writable: true,
+      value: function value(filesObject) {
+        if (Array.isArray(filesObject)) {
+          _this.setState({
+            contractOrLeaseForms: filesObject
+          });
+
+          if (filesObject.length === 0) {
+            var uploadBtn = document.getElementById('contractOrLeaseItemsUploadForm');
+
+            if (uploadBtn) {
+              uploadBtn.value = null;
+            }
+          }
+
+          return;
+        }
+
+        var fileArray = Object.keys(filesObject).map(function (key) {
+          return filesObject[key];
+        });
+
+        _this.setState({
+          contractOrLeaseForms: fileArray
+        });
+      }
+    });
+    Object.defineProperty(_assertThisInitialized(_this), "handleMgmtOrCobrokeCompanyChange", {
+      configurable: true,
+      enumerable: true,
+      writable: true,
+      value: function value(event) {
+        _this.setState({
+          newMgmtOrCobrokeCompany: event.target.value
+        });
+      }
+    });
+    Object.defineProperty(_assertThisInitialized(_this), "toggleChoosingMgmtCoBrokeCompany", {
+      configurable: true,
+      enumerable: true,
+      writable: true,
+      value: function value(bool) {
+        var choosingMgmtCoBrokeCompany = _this.state.choosingMgmtCoBrokeCompany;
+
+        _this.setState({
+          choosingMgmtCoBrokeCompany: typeof bool === 'boolean' ? bool : !choosingMgmtCoBrokeCompany,
+          newMgmtOrCobrokeCompany: ''
+        });
+      }
+    });
+    Object.defineProperty(_assertThisInitialized(_this), "setHasSetNewMgmtOrCobrokeCompany", {
+      configurable: true,
+      enumerable: true,
+      writable: true,
+      value: function value(bool) {
+        var _this$state3 = _this.state,
+            addedManagementCompanies = _this$state3.addedManagementCompanies,
+            newMgmtOrCobrokeCompany = _this$state3.newMgmtOrCobrokeCompany;
+
+        _this.setState({
+          choosingMgmtCoBrokeCompany: false,
+          hasSetNewMgmtOrCobrokeCompany: true,
+          newMgmtOrCobrokeCompany: '',
+          addedManagementCompanies: _toConsumableArray(addedManagementCompanies).concat([Object(stringUtils["a" /* capitalize */])(newMgmtOrCobrokeCompany.trim())])
+        });
+      }
+    });
+    Object.defineProperty(_assertThisInitialized(_this), "setInitialContainerState", {
+      configurable: true,
+      enumerable: true,
+      writable: true,
+      value: function value(_ref) {
+        var paymentsTotal = _ref.paymentsTotal,
+            deductionsTotal = _ref.deductionsTotal,
+            total = _ref.total;
+
+        _this.setState({
+          paymentsTotal: paymentsTotal,
+          deductionsTotal: deductionsTotal,
+          total: total
+        });
+      }
+    });
+    Object.defineProperty(_assertThisInitialized(_this), "onSubmit", {
+      configurable: true,
+      enumerable: true,
+      writable: true,
+      value: function value(values) {
+        _this.props.setFormSubmitted();
+
+        var _this$state4 = _this.state,
+            contractOrLeaseForms = _this$state4.contractOrLeaseForms,
+            agencyDisclosureForm = _this$state4.agencyDisclosureForm,
+            addedManagementCompanies = _this$state4.addedManagementCompanies,
+            hasSetNewMgmtOrCobrokeCompany = _this$state4.hasSetNewMgmtOrCobrokeCompany,
+            paymentsTotal = _this$state4.paymentsTotal,
+            deductionsTotal = _this$state4.deductionsTotal,
+            total = _this$state4.total;
+
+        var returnObject = _objectSpread({}, values, {
+          addedManagementCompanies: addedManagementCompanies,
+          paymentsTotal: paymentsTotal,
+          deductionsTotal: deductionsTotal,
+          total: total,
+          agencyDisclosureForm: null,
+          contractOrLeaseForms: [],
+          dealID: _this.props.dealID
+        });
+
+        delete returnObject.contractOrLeaseItems;
+        delete returnObject.deductionsSubtotal;
+        delete returnObject.paymentsSubtotal;
+        delete returnObject.financialsTotal;
+        delete returnObject.date;
+        delete returnObject.agent;
+        delete returnObject.agentType;
+        delete returnObject.state;
+
+        if (_this.props.userRole !== userTypes["admin"] && _this.props.userRole !== userTypes["superAdmin"]) {
+          delete returnObject.bonusPercentageAddedByAdmin;
+        }
+
+        returnObject.price = Number(returnObject.price);
+        returnObject.paymentItems = returnObject.paymentItems.map(function (item) {
+          return _objectSpread({}, item, {
+            amount: Number(item.amount)
+          });
+        });
+        returnObject.deductionItems = returnObject.deductionItems.map(function (item) {
+          return _objectSpread({}, item, {
+            amount: Number(item.amount)
+          });
+        });
+        var uploadItems = [];
+
+        if (agencyDisclosureForm) {
+          uploadItems.push({
+            itemName: 'agencyDisclosureForm',
+            fileName: agencyDisclosureForm.name,
+            fileType: agencyDisclosureForm.type
+          });
+        }
+
+        if (contractOrLeaseForms && contractOrLeaseForms.length) {
+          contractOrLeaseForms.forEach(function (file, i) {
+            uploadItems.push({
+              itemName: "contractOrLeaseForm".concat(i),
+              fileName: file.name,
+              fileType: file.type
+            });
+          });
+        }
+
+        if (!uploadItems.length) {
+          _this.setState({
+            submittingFormToServer: true
+          });
+
+          deals_updateDeal(returnObject).then(function (res) {
+            var failed = false;
+
+            if (res.otherError) {
+              _this.props.openRequestErrorSnackbar(res.otherError);
+
+              failed = true;
+            }
+
+            if (res.userErrors.length) {
+              failed = true;
+            }
+
+            if (!failed) {
+              _this.props.setDealSuccessfullySubmitted(res.deal);
+            }
+
+            _this.setState({
+              submittingFormToServer: false
+            });
+
+            _this.props.setFormSubmitted(false);
+          }).catch(function (err) {
+            _this.props.setFormSubmitted(false);
+
+            _this.props.openRequestErrorSnackbar();
+          });
+          return;
+        }
+
+        Object(getDealUploadsSignedURLS["a" /* default */])(uploadItems).then(function (response) {
+          if (response.error) {
+            _this.props.openRequestErrorSnackbar(response.error);
+
+            return;
+          }
+
+          var errors = [];
+          var items = response.items;
+          returnObject.dealID = _this.props.dealID;
+          items.forEach(function (item) {
+            if (item.error) errors.push(item.error);
+          });
+
+          if (errors.length) {
+            _this.props.openRequestErrorSnackbar(errors[0]);
+
+            return;
+          }
+
+          _this.uploadItemsNum = items.length;
+
+          var recursiveUploads = function recursiveUploads(items, returnObject, thisRef) {
+            var uploadItemsNum = items.length;
+            var uploadItemIndex = 0;
+            recursiveHelper(items, uploadItemIndex, uploadItemsNum, returnObject, thisRef);
+          };
+
+          var recursiveHelper = function recursiveHelper(items, uploadItemIndex, uploadItemsNum, returnObject, thisRef) {
+            if (uploadItemIndex >= items.length) {
+              thisRef.setState({
+                isUploadingFile: false,
+                uplodingFileProgress: 0,
+                filesUploadedSuccessfully: true,
+                submittingFormToServer: true
+              });
+              deals_updateDeal(returnObject).then(function (res) {
+                var failed = false;
+
+                if (res.otherError) {
+                  _this.props.openRequestErrorSnackbar(res.otherError);
+
+                  failed = true;
+                }
+
+                if (res.userErrors.length) {
+                  failed = true;
+                }
+
+                if (!failed) {
+                  _this.props.setDealSuccessfullySubmitted(res.deal);
+                }
+
+                _this.props.setFormSubmitted(false);
+              }).catch(function (err) {
+                _this.props.setFormSubmitted(false);
+
+                _this.props.openRequestErrorSnackbar();
+              });
+              return;
+            }
+
+            var item = items[uploadItemIndex];
+            var file;
+            var fileIndex;
+
+            if (item.itemName === 'agencyDisclosureForm') {
+              file = thisRef.state.agencyDisclosureForm;
+              returnObject.agencyDisclosureForm = item.fileName;
+            } else {
+              fileIndex = item.itemName.slice(-1);
+              file = thisRef.state.contractOrLeaseForms[fileIndex];
+              returnObject.contractOrLeaseForms.push(item.fileName);
+            }
+
+            Object(uploadFile["a" /* default */])({
+              file: file,
+              url: item.signedURL,
+              onUploadProgress: function onUploadProgress(progressEvent) {
+                // Do whatever you want with the native progress event
+                var loadedPercent = progressEvent.loaded / progressEvent.total * 100;
+                thisRef.setState({
+                  formSubmissionBegun: true,
+                  uplodingFileProgress: Math.floor(loadedPercent),
+                  uplodingFileText: "Now uploading file ".concat(uploadItemIndex + 1, " of ").concat(uploadItemsNum, "..."),
+                  isUploadingFile: true
+                });
+              }
+            }).then(function () {
+              return recursiveHelper(items, uploadItemIndex + 1, uploadItemsNum, returnObject, thisRef);
+            }).catch(function (err) {
+              return _this.props.openRequestErrorSnackbar();
+            });
+          };
+
+          recursiveUploads(items, returnObject, _assertThisInitialized(_this));
+        });
+      }
+    });
+    Object.defineProperty(_assertThisInitialized(_this), "onSubmitFailure", {
+      configurable: true,
+      enumerable: true,
+      writable: true,
+      value: function value(errs, onSubmitError, formApi) {
+        console.log(errs);
+        console.log(onSubmitError);
+        console.log(formApi.errors);
+      }
+    });
+    _this.state = {
+      paymentAmountItems: {},
+      deductionAmountItems: {},
+      paymentsTotal: 0,
+      deductionsTotal: 0,
+      total: 0,
+      contractOrLeaseForms: [],
+      agencyDisclosureForm: null,
+      permanentPaymentSubtractions: 0,
+      // not submitted
+      permanentDeductionSubtractions: 0,
+      // not submitted
+      choosingMgmtCoBrokeCompany: false,
+      newMgmtOrCobrokeCompany: '',
+      hasSetNewMgmtOrCobrokeCompany: false,
+      addedManagementCompanies: [],
+      uplodingFileProgress: 0,
+      isUploadingFile: false,
+      uplodingFileText: '',
+      filesUploadedSuccessfully: null,
+      formSubmissionBegun: false,
+      submittingFormToServer: false,
+      dealBonus: '0'
+    };
+    return _this;
+  }
+
+  _createClass(ViewDealFormContainer, [{
+    key: "render",
+    value: function render() {
+      var _this2 = this;
+
+      var _props = this.props,
+          uuid = _props.userUUID,
+          dealID = _props.dealID,
+          isEditingDeal = _props.isEditingDeal,
+          isViewType = _props.isViewType,
+          rest = _objectWithoutProperties(_props, ["userUUID", "dealID", "isEditingDeal", "isViewType"]);
+
+      var _state = this.state,
+          agencyDisclosureForm = _state.agencyDisclosureForm,
+          contractOrLeaseForms = _state.contractOrLeaseForms;
+      return external__react__default.a.createElement(external__react_apollo_["Query"], {
+        query: viewDealFormQuery,
+        variables: {
+          uuid: dealID
+        },
+        fetchPolicy: "cache-and-network"
+      }, function (_ref2) {
+        var loading = _ref2.loading,
+            error = _ref2.error,
+            data = _ref2.data;
+
+        if (loading) {
+          return external__react__default.a.createElement("div", {
+            style: {
+              display: 'flex',
+              justifyContent: 'center'
+            }
+          }, external__react__default.a.createElement(Loader, {
+            color: "#f44336",
+            loading: true
+          }));
+        }
+
+        if (error) {
+          console.log(error);
+          return external__react__default.a.createElement("div", {
+            style: {
+              textAlign: 'center'
+            }
+          }, "We're sorry. There was an error processing your request.");
+        }
+
+        var _data$viewDealForm = data.viewDealForm,
+            deal = _data$viewDealForm.deal,
+            agentItems = _data$viewDealForm.agents,
+            formSelectItems = _data$viewDealForm.formSelectItems;
+        var agents = agentItems || [];
+        return external__react__default.a.createElement(SubmitDealForm["a" /* default */], _extends({
+          setInitialContainerState: _this2.setInitialContainerState,
+          paymentsTotal: "".concat(_this2.state.paymentsTotal),
+          deductionsTotal: "".concat(_this2.state.deductionsTotal),
+          total: _this2.state.total,
+          submittedDeal: deal,
+          agents: agents,
+          managementCobrokeCompanyItems: formSelectItems || [],
+          onSubmit: _this2.onSubmit,
+          setAgencyDisclosureForm: _this2.setAgencyDisclosureForm,
+          setContractOrLeaseForms: _this2.setContractOrLeaseForms,
+          agencyDisclosureForm: agencyDisclosureForm,
+          contractOrLeaseForms: contractOrLeaseForms,
+          paymentAmountChangeHandler: _this2.paymentAmountChangeHandler,
+          addedManagementCompanies: _this2.state.addedManagementCompanies,
+          newMgmtOrCobrokeCompany: _this2.state.newMgmtOrCobrokeCompany,
+          uplodingFileProgress: _this2.state.uplodingFileProgress,
+          isUploadingFile: _this2.state.isUploadingFile,
+          uplodingFileText: _this2.state.uplodingFileText,
+          formSubmissionBegun: _this2.state.formSubmissionBegun,
+          submittingFormToServer: _this2.state.submittingFormToServer || _this2.props.submittingRequestToServer,
+          isEditingDeal: isEditingDeal,
+          isViewType: isViewType,
+          userRole: _this2.props.userRole,
+          onBonusChange: _this2.props.onBonusChange,
+          dealBonus: _this2.props.dealBonus,
+          resetDealBonus: _this2.props.resetDealBonus,
+          setHasSetNewMgmtOrCobrokeCompany: _this2.setHasSetNewMgmtOrCobrokeCompany,
+          toggleChoosingMgmtCoBrokeCompany: _this2.toggleChoosingMgmtCoBrokeCompany,
+          handleMgmtOrCobrokeCompanyChange: _this2.handleMgmtOrCobrokeCompanyChange,
+          choosingMgmtCoBrokeCompany: _this2.state.choosingMgmtCoBrokeCompany,
+          deductionAmountChangeHandler: _this2.deductionAmountChangeHandler,
+          subtractPaymentValueFromState: _this2.subtractPaymentValueFromState,
+          subtractDeductionValueFromState: _this2.subtractDeductionValueFromState
+        }, rest));
+      });
+    }
+  }]);
+
+  return ViewDealFormContainer;
+}(external__react_["Component"])) || _class;
+
+/* harmony default export */ var ViewDealForm = (ViewDealForm_ViewDealFormContainer);
+// EXTERNAL MODULE: ./effects/deals/acceptDeal.js
+var acceptDeal = __webpack_require__(154);
+
+// EXTERNAL MODULE: ./effects/deals/deleteDeal.js
+var deleteDeal = __webpack_require__(149);
+
+// CONCATENATED MODULE: ./components/ViewDealDialogBox/index.js
+var ViewDealDialogBox__class;
+
+function ViewDealDialogBox__typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { ViewDealDialogBox__typeof = function _typeof(obj) { return typeof obj; }; } else { ViewDealDialogBox__typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return ViewDealDialogBox__typeof(obj); }
+
+function ViewDealDialogBox__classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function ViewDealDialogBox__defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function ViewDealDialogBox__createClass(Constructor, protoProps, staticProps) { if (protoProps) ViewDealDialogBox__defineProperties(Constructor.prototype, protoProps); if (staticProps) ViewDealDialogBox__defineProperties(Constructor, staticProps); return Constructor; }
+
+function ViewDealDialogBox__possibleConstructorReturn(self, call) { if (call && (ViewDealDialogBox__typeof(call) === "object" || typeof call === "function")) { return call; } return ViewDealDialogBox__assertThisInitialized(self); }
+
+function ViewDealDialogBox__inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+function ViewDealDialogBox__assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+var networkErrorMessage = "We're sorry. There was an error processing your request.";
+
+var styles = function styles(theme) {
+  return {
+    paper: {
+      width: '800px',
+      maxWidth: '800px'
+    },
+    dialogActions: {
+      margin: '8px 0'
+    },
+    formTitle: {
+      padding: 'theme.spacing.unit theme.spacing.unit * 3',
+      textAlign: 'center'
+    },
+    formSubheader: {
+      paddingLeft: theme.spacing.unit * 4,
+      paddingRight: theme.spacing.unit * 4,
+      marginBottom: theme.spacing.unit * 6,
+      marginTop: theme.spacing.unit * 2,
+      textAlign: 'center'
+    },
+    dialogContent: {
+      paddingTop: '32px'
+    },
+    editDealBtn: {
+      color: theme.custom.submitBlue.main,
+      '&:hover': {
+        backgroundColor: theme.custom.submitBlue.transparentLightBackground
+      }
+    },
+    popupMenuTitle: {
+      outline: 'none',
+      padding: '12px 16px',
+      width: 'auto',
+      color: 'rgba(0, 0, 0, 0.87)',
+      height: '24px',
+      overflow: 'hidden',
+      fontSize: '1rem',
+      boxSizing: 'content-box',
+      fontWeight: '400',
+      lineHeight: '1.5em',
+      fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
+      whiteSpace: 'nowrap',
+      paddingLeft: '16px',
+      textOverflow: 'ellipsis',
+      paddingRight: '16px',
+      borderBottom: '1px solid rgba(0,0,0,.1)',
+      pointerEvents: 'none'
+    },
+    menuItem: {
+      display: 'flex !important',
+      justifyContent: 'center !important'
+    },
+    menuItemDelete: {
+      display: 'flex !important',
+      justifyContent: 'center !important',
+      transition: 'background-color 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, color 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms !important',
+      '&:hover': {
+        backgroundColor: "".concat(theme.palette.secondary.light, " !important"),
+        color: '#fff !important'
+      }
+    },
+    menuItemAccept: {
+      display: 'flex !important',
+      justifyContent: 'center !important',
+      transition: 'background-color 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, color 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms !important',
+      '&:hover': {
+        backgroundColor: "".concat(theme.custom.submitBlue.light, " !important"),
+        color: '#fff !important'
+      }
+    },
+    snackBar: {
+      position: 'absolute',
+      bottom: 20
+    },
+    errorSnackbar: {
+      '& > div': {
+        backgroundColor: theme.palette.secondary.main
+      }
+    }
+  };
+};
+
+var ViewDealDialogBox_SubmitDealDialogBox = Object(external__mobx_react_["observer"])(ViewDealDialogBox__class =
+/*#__PURE__*/
+function (_Component) {
+  ViewDealDialogBox__inherits(SubmitDealDialogBox, _Component);
+
+  function SubmitDealDialogBox(props) {
+    var _this;
+
+    ViewDealDialogBox__classCallCheck(this, SubmitDealDialogBox);
+
+    _this = ViewDealDialogBox__possibleConstructorReturn(this, (SubmitDealDialogBox.__proto__ || Object.getPrototypeOf(SubmitDealDialogBox)).call(this, props));
+    Object.defineProperty(ViewDealDialogBox__assertThisInitialized(_this), "setFormSubmitted", {
+      configurable: true,
+      enumerable: true,
+      writable: true,
+      value: function value() {
+        var bool = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : true;
+
+        _this.setState({
+          formSubmitted: bool,
+          isEditingDeal: false
+        });
+      }
+    });
+    Object.defineProperty(ViewDealDialogBox__assertThisInitialized(_this), "toggleSnackbarOpen", {
+      configurable: true,
+      enumerable: true,
+      writable: true,
+      value: function value(text) {
+        _this.setState({
+          snackbarOpen: true,
+          snackbarText: text
+        });
+      }
+    });
+    Object.defineProperty(ViewDealDialogBox__assertThisInitialized(_this), "handleCloseSnackbar", {
+      configurable: true,
+      enumerable: true,
+      writable: true,
+      value: function value() {
+        _this.setState({
+          snackbarOpen: false,
+          snackbarUndoFunction: null,
+          isErrorSnackbar: false,
+          snackbarText: ''
+        });
+      }
+    });
+    Object.defineProperty(ViewDealDialogBox__assertThisInitialized(_this), "openRequestErrorSnackbar", {
+      configurable: true,
+      enumerable: true,
+      writable: true,
+      value: function value() {
+        var text = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : networkErrorMessage;
+
+        _this.setState({
+          snackbarOpen: true,
+          snackbarText: text,
+          isErrorSnackbar: true
+        });
+      }
+    });
+    Object.defineProperty(ViewDealDialogBox__assertThisInitialized(_this), "toggleEditingDeal", {
+      configurable: true,
+      enumerable: true,
+      writable: true,
+      value: function value(bool) {
+        _this.setState({
+          isEditingDeal: typeof bool === 'boolean' ? bool : !_this.state.isEditingDeal
+        });
+      }
+    });
+    Object.defineProperty(ViewDealDialogBox__assertThisInitialized(_this), "handleCancelMenuClick", {
+      configurable: true,
+      enumerable: true,
+      writable: true,
+      value: function value(event) {
+        _this.setState({
+          cancelAnchorEl: event.currentTarget
+        });
+      }
+    });
+    Object.defineProperty(ViewDealDialogBox__assertThisInitialized(_this), "handleCancelMenuClose", {
+      configurable: true,
+      enumerable: true,
+      writable: true,
+      value: function value() {
+        _this.setState({
+          cancelAnchorEl: null
+        });
+      }
+    });
+    Object.defineProperty(ViewDealDialogBox__assertThisInitialized(_this), "handleAcceptMenuClick", {
+      configurable: true,
+      enumerable: true,
+      writable: true,
+      value: function value(event) {
+        _this.setState({
+          acceptAnchorEl: event.currentTarget
+        });
+      }
+    });
+    Object.defineProperty(ViewDealDialogBox__assertThisInitialized(_this), "handleAcceptMenuClose", {
+      configurable: true,
+      enumerable: true,
+      writable: true,
+      value: function value() {
+        _this.setState({
+          acceptAnchorEl: null
+        });
+      }
+    });
+    Object.defineProperty(ViewDealDialogBox__assertThisInitialized(_this), "onBonusChange", {
+      configurable: true,
+      enumerable: true,
+      writable: true,
+      value: function value(_ref) {
+        var target = _ref.target;
+        var dollarRegex = /^\d*(\.\d*)?$/;
+        var val = target.value;
+        if (!dollarRegex.test(val)) return;
+
+        _this.setState({
+          dealBonus: val
+        });
+      }
+    });
+    Object.defineProperty(ViewDealDialogBox__assertThisInitialized(_this), "resetDealBonus", {
+      configurable: true,
+      enumerable: true,
+      writable: true,
+      value: function value() {
+        _this.setState({
+          dealBonus: ''
+        });
+      }
+    });
+    Object.defineProperty(ViewDealDialogBox__assertThisInitialized(_this), "acceptDeal", {
+      configurable: true,
+      enumerable: true,
+      writable: true,
+      value: function value(dealID) {
+        var dealBonus = _this.state.dealBonus;
+
+        _this.toggleSubmittingRequestToServer(true);
+
+        Object(acceptDeal["a" /* default */])(dealID, Number(dealBonus) ? Number(dealBonus) : undefined).then(function (res) {
+          _this.toggleSubmittingRequestToServer(false);
+
+          if (res.error) {
+            _this.openRequestErrorSnackbar(res.error);
+
+            return;
+          }
+
+          if (res.userErrors.length) {
+            _this.openRequestErrorSnackbar(res.userErrors[0]);
+
+            return;
+          }
+
+          _this.props.dealAccepted(dealID);
+        }).catch(function (err) {
+          _this.openRequestErrorSnackbar();
+        });
+      }
+    });
+    Object.defineProperty(ViewDealDialogBox__assertThisInitialized(_this), "deleteDeal", {
+      configurable: true,
+      enumerable: true,
+      writable: true,
+      value: function value(dealID) {
+        _this.toggleSubmittingRequestToServer(true);
+
+        Object(deleteDeal["a" /* default */])(dealID).then(function (res) {
+          _this.toggleSubmittingRequestToServer(false);
+
+          if (res.error) {
+            _this.openRequestErrorSnackbar(res.error);
+
+            return;
+          }
+
+          _this.props.dealDeleted(dealID);
+        }).catch(function (err) {
+          _this.toggleSubmittingRequestToServer(true);
+
+          _this.openRequestErrorSnackbar();
+        });
+      }
+    });
+    Object.defineProperty(ViewDealDialogBox__assertThisInitialized(_this), "toggleSubmittingRequestToServer", {
+      configurable: true,
+      enumerable: true,
+      writable: true,
+      value: function value() {
+        var bool = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : !_this.state.submittingRequestToServer;
+
+        _this.setState({
+          submittingRequestToServer: bool,
+          formSubmitted: bool
+        });
+      }
+    });
+    _this.state = {
+      formApi: null,
+      formSubmitted: false,
+      snackbarOpen: false,
+      snackbarText: '',
+      snackbarUndoFunction: null,
+      isEditingDeal: false,
+      cancelAnchorEl: null,
+      acceptAnchorEl: null,
+      dealBonus: '',
+      submittingRequestToServer: false,
+      isErrorSnackbar: false
+    };
+    return _this;
+  }
+
+  ViewDealDialogBox__createClass(SubmitDealDialogBox, [{
+    key: "render",
+    value: function render() {
+      var _this2 = this;
+
+      var _props = this.props,
+          fullScreen = _props.fullScreen,
+          classes = _props.classes,
+          closeDealsViewDialogBox = _props.closeDealsViewDialogBox,
+          dealsViewDialogBoxOpen = _props.dealsViewDialogBoxOpen,
+          setDealSuccessfullySubmitted = _props.setDealSuccessfullySubmitted,
+          viewingDealID = _props.viewingDealID,
+          viewingDealStatus = _props.viewingDealStatus,
+          isCoAgent = _props.isCoAgent;
+      var _state = this.state,
+          isEditingDeal = _state.isEditingDeal,
+          cancelAnchorEl = _state.cancelAnchorEl,
+          acceptAnchorEl = _state.acceptAnchorEl;
+      return external__react__default.a.createElement(Dialog__default.a, {
+        disableBackdropClick: true,
+        disableEscapeKeyDown: true,
+        open: dealsViewDialogBoxOpen,
+        classes: {
+          paper: classes.paper
+        },
+        fullScreen: fullScreen
+      }, external__react__default.a.createElement(Dialog_["DialogTitle"], {
+        id: "form-dialog-title",
+        classes: {
+          root: classes.formTitle
+        }
+      }, "View Deal"), external__react__default.a.createElement(Divider__default.a, null), external__react__default.a.createElement(Dialog_["DialogContent"], {
+        classes: {
+          root: classes.dialogContent
+        }
+      }, external__react__default.a.createElement(ViewDealForm, {
+        userUUID: this.props.userUUID,
+        getFormApi: function getFormApi(formApi) {
+          return _this2.setState({
+            formApi: formApi
+          });
+        },
+        setFormSubmitted: this.setFormSubmitted,
+        setDealSuccessfullySubmitted: setDealSuccessfullySubmitted,
+        dealID: viewingDealID,
+        isEditingDeal: isEditingDeal,
+        isViewType: true,
+        userRole: this.props.userRole,
+        dealAccepted: this.props.dealAccepted,
+        onBonusChange: this.onBonusChange,
+        dealBonus: this.state.dealBonus,
+        resetDealBonus: this.resetDealBonus,
+        submittingRequestToServer: this.state.submittingRequestToServer,
+        openRequestErrorSnackbar: this.openRequestErrorSnackbar
+      }), external__react__default.a.createElement(Snackbar__default.a, {
+        classes: {
+          root: external__classnames__default()(classes.snackBar, this.state.isErrorSnackbar && classes.errorSnackbar)
+        },
+        anchorOrigin: {
+          vertical: 'bottom',
+          horizontal: 'center'
+        },
+        open: this.state.snackbarOpen,
+        autoHideDuration: 4000,
+        onClose: this.handleCloseSnackbar,
+        message: external__react__default.a.createElement("span", {
+          id: "snackbar-id"
+        }, this.state.snackbarText),
+        action: [this.snackbarUndoFunction ? external__react__default.a.createElement(Button__default.a, {
+          key: "undo",
+          color: "secondary",
+          size: "small",
+          onClick: function onClick() {
+            _this2.handleCloseSnackbar();
+
+            if (_this2.state.snackbarUndoFunction && typeof snackbarUndoFunction === 'function') {
+              _this2.snackbarUndoFunction();
+            }
+          }
+        }, "UNDO") : undefined, external__react__default.a.createElement(IconButton__default.a, {
+          key: "close",
+          "aria-label": "Close",
+          color: "inherit",
+          className: classes.close,
+          onClick: this.handleCloseSnackbar
+        }, external__react__default.a.createElement(Close__default.a, null))]
+      })), !this.state.formSubmitted ? external__react__default.a.createElement(Dialog_["DialogActions"], {
+        classes: {
+          root: classes.dialogActions
+        }
+      }, external__react__default.a.createElement(Button__default.a, {
+        disabled: this.state.formSubmitted,
+        onClick: function onClick() {
+          _this2.toggleEditingDeal(false);
+
+          closeDealsViewDialogBox();
+        },
+        color: "primary"
+      }, "Cancel"), this.props.userRole === userTypes["agent"] && viewingDealStatus === 'pending' || this.props.userRole === userTypes["superAdmin"] || this.props.userRole === userTypes["admin"] ? external__react__default.a.createElement(Button__default.a, {
+        disabled: this.state.formSubmitted,
+        onClick: this.handleCancelMenuClick,
+        color: "secondary"
+      }, "Delete") : null, external__react__default.a.createElement(Menu__default.a, {
+        id: "simple-menu",
+        anchorEl: cancelAnchorEl,
+        open: Boolean(cancelAnchorEl),
+        onClose: this.handleCancelMenuClose
+      }, external__react__default.a.createElement("div", {
+        className: classes.popupMenuTitle
+      }, "Are you sure?"), external__react__default.a.createElement(MenuItem__default.a, {
+        classes: {
+          root: classes.menuItemDelete
+        },
+        onClick: function onClick() {
+          _this2.handleCancelMenuClose();
+
+          _this2.deleteDeal(viewingDealID);
+        }
+      }, "Yes"), external__react__default.a.createElement(MenuItem__default.a, {
+        classes: {
+          root: classes.menuItem
+        },
+        onClick: this.handleCancelMenuClose
+      }, "No")), !isEditingDeal && this.props.userRole === userTypes["agent"] && viewingDealStatus === 'pending' && !isCoAgent ? external__react__default.a.createElement(Button__default.a, {
+        className: classes.editDealBtn,
+        disabled: this.state.formSubmitted,
+        onClick: function onClick() {
+          return _this2.toggleEditingDeal(true);
+        },
+        color: "primary"
+      }, "Edit") : null, (this.props.userRole === userTypes["admin"] || this.props.userRole === userTypes["superAdmin"]) && viewingDealStatus === 'pending' ? external__react__default.a.createElement(Button__default.a, {
+        className: classes.editDealBtn,
+        disabled: this.state.formSubmitted,
+        onClick: this.handleAcceptMenuClick,
+        color: "primary"
+      }, "Accept Deal") : null, external__react__default.a.createElement(Menu__default.a, {
+        id: "simple-menu",
+        anchorEl: acceptAnchorEl,
+        open: Boolean(acceptAnchorEl),
+        onClose: this.handleAcceptMenuClose
+      }, external__react__default.a.createElement("div", {
+        className: classes.popupMenuTitle
+      }, "Are you sure?"), external__react__default.a.createElement(MenuItem__default.a, {
+        classes: {
+          root: classes.menuItemAccept
+        },
+        onClick: function onClick() {
+          _this2.handleAcceptMenuClose();
+
+          _this2.acceptDeal(viewingDealID);
+        }
+      }, "Yes"), external__react__default.a.createElement(MenuItem__default.a, {
+        classes: {
+          root: classes.menuItem
+        },
+        onClick: this.handleAcceptMenuClose
+      }, "No")), isEditingDeal ? external__react__default.a.createElement(Button__default.a, {
+        disabled: this.state.formSubmitted,
+        onClick: function onClick() {
+          var errors = _this2.state.formApi.getError();
+
+          var errorCount;
+          console.log(_this2.state.formApi.getError());
+
+          if (errors) {
+            errorCount = Object.keys(_this2.state.formApi.getError()).length;
+          }
+
+          if (errorCount) {
+            _this2.toggleSnackbarOpen("Please correct ".concat(errorCount, " form error").concat(errorCount > 1 ? 's' : ''));
+          }
+
+          _this2.state.formApi.submitForm();
+        },
+        color: "primary"
+      }, "Submit") : null) : null);
+    }
+  }]);
+
+  return SubmitDealDialogBox;
+}(external__react_["Component"])) || ViewDealDialogBox__class;
+
+/* harmony default export */ var ViewDealDialogBox = __webpack_exports__["a"] = (Object(Dialog_["withMobileDialog"])()(Object(styles_["withStyles"])(styles)(ViewDealDialogBox_SubmitDealDialogBox)));
+
+/***/ }),
+/* 167 */,
+/* 168 */,
+/* 169 */,
+/* 170 */,
+/* 171 */,
+/* 172 */
+/***/ (function(module, exports) {
+
+module.exports = require("buildo-react-components/lib/FormattedText");
+
+/***/ }),
+/* 173 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+
+// EXTERNAL MODULE: external "antd/lib/icon/style/css"
+var css_ = __webpack_require__(22);
+var css__default = /*#__PURE__*/__webpack_require__.n(css_);
+
+// EXTERNAL MODULE: external "antd/lib/icon"
+var icon_ = __webpack_require__(23);
+var icon__default = /*#__PURE__*/__webpack_require__.n(icon_);
+
+// EXTERNAL MODULE: external "react"
+var external__react_ = __webpack_require__(0);
+var external__react__default = /*#__PURE__*/__webpack_require__.n(external__react_);
+
+// EXTERNAL MODULE: external "react-form"
+var external__react_form_ = __webpack_require__(29);
+var external__react_form__default = /*#__PURE__*/__webpack_require__.n(external__react_form_);
+
+// EXTERNAL MODULE: external "uuid/v4"
+var v4_ = __webpack_require__(74);
+var v4__default = /*#__PURE__*/__webpack_require__.n(v4_);
+
+// EXTERNAL MODULE: external "material-ui/styles"
+var styles_ = __webpack_require__(2);
+var styles__default = /*#__PURE__*/__webpack_require__.n(styles_);
+
+// EXTERNAL MODULE: external "material-ui/Grid"
+var Grid_ = __webpack_require__(19);
+var Grid__default = /*#__PURE__*/__webpack_require__.n(Grid_);
+
+// EXTERNAL MODULE: external "react-sizes"
+var external__react_sizes_ = __webpack_require__(69);
+var external__react_sizes__default = /*#__PURE__*/__webpack_require__.n(external__react_sizes_);
+
+// EXTERNAL MODULE: ../node_modules/react-circular-progressbar/dist/styles.css
+var styles = __webpack_require__(120);
+var styles_default = /*#__PURE__*/__webpack_require__.n(styles);
+
+// CONCATENATED MODULE: ./components/forms/EditAgentPasswordForm/formValidation.js
+var validator = function validator(values) {
+  return {
+    password: !values.password || values.password.length < 8 ? 'This value is required and must be at least 8 characters long!' : null,
+    passwordConfirmation: !values.passwordConfirmation || values.passwordConfirmation !== values.password ? 'This value is required and must match your new password!' : null
+  };
+};
+
+/* harmony default export */ var formValidation = (validator);
+// EXTERNAL MODULE: ./components/MaterialCustomTextFieldWrapper/index.js
+var MaterialCustomTextFieldWrapper = __webpack_require__(106);
+
+// CONCATENATED MODULE: ./components/forms/EditAgentPasswordForm/index.js
+
+
+
+var _dec, _class;
+
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+
+
+
+
+
+
+
+
+var CustomTextField = MaterialCustomTextFieldWrapper["a" /* default */];
+
+var mapSizesToProps = function mapSizesToProps(_ref) {
+  var width = _ref.width;
+  return {
+    smViewport: width < 600,
+    mdViewport: width < 960,
+    lgViewport: width < 1280
+  };
+};
+
+var EditAgentPasswordForm_styles = function styles(theme) {
+  var _root;
+
+  return {
+    root: (_root = {
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      justifyContent: 'center',
+      height: '100%',
+      padding: '30px 40px'
+    }, _defineProperty(_root, theme.breakpoints.down('md'), {
+      padding: '30px 0'
+    }), _defineProperty(_root, "backgroundColor", '#fff'), _root),
+    formRoot: {
+      maxWidth: '100%'
+    },
+    formControlWrapper: {
+      paddingLeft: theme.spacing.unit,
+      paddingRight: theme.spacing.unit
+    },
+    sliderWrapper: {
+      width: '100%'
+    },
+    formSubheading: {
+      width: '100%',
+      textAlign: 'center',
+      paddingTop: '82px'
+    },
+    h3: {
+      fontWeight: theme.typography.fontWeightMedium
+    },
+    formMiniHeading: {
+      width: '100%',
+      textAlign: 'left',
+      paddingLeft: '28px'
+    },
+    formMiniHeading2: {
+      width: '100%',
+      textAlign: 'left',
+      paddingLeft: '28px',
+      marginTop: '60px'
+    },
+    progressBarExplanation: {
+      marginTop: '20px',
+      fontSize: '1.1rem'
+    },
+    formSubmittingWrapper: {
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'center',
+      alignItems: 'center',
+      width: '100%'
+    }
+  };
+};
+
+var EditAgentPasswordForm_CreateAgentForm = (_dec = external__react_sizes__default()(mapSizesToProps), _dec(_class =
+/*#__PURE__*/
+function (_Component) {
+  _inherits(CreateAgentForm, _Component);
+
+  function CreateAgentForm() {
+    _classCallCheck(this, CreateAgentForm);
+
+    return _possibleConstructorReturn(this, (CreateAgentForm.__proto__ || Object.getPrototypeOf(CreateAgentForm)).apply(this, arguments));
+  }
+
+  _createClass(CreateAgentForm, [{
+    key: "render",
+    value: function render() {
+      var _props = this.props,
+          classes = _props.classes,
+          onSubmit = _props.onSubmit,
+          submittingFormToServer = _props.submittingFormToServer;
+      return external__react__default.a.createElement("div", {
+        className: classes.root
+      }, external__react__default.a.createElement(external__react_form_["Form"], {
+        preValidate: this.preValidate,
+        onSubmit: onSubmit,
+        onSubmitFailure: this.props.onSubmitFailure,
+        validate: formValidation,
+        validateOnMount: true,
+        getApi: this.props.getFormApi
+      }, function (formApi) {
+        return external__react__default.a.createElement("form", {
+          onSubmit: formApi.submitForm,
+          id: "form1",
+          className: classes.formRoot,
+          style: {
+            display: submittingFormToServer ? 'none' : undefined
+          }
+        }, external__react__default.a.createElement(Grid__default.a, {
+          container: true,
+          spacing: 8
+        }, external__react__default.a.createElement(Grid__default.a, {
+          item: true,
+          xs: 12
+        }, external__react__default.a.createElement("div", {
+          className: classes.formControlWrapper
+        }, external__react__default.a.createElement(CustomTextField, {
+          field: "password",
+          id: v4__default()(),
+          label: "New Password",
+          fullWidth: true,
+          required: true,
+          type: "password"
+        }))), external__react__default.a.createElement(Grid__default.a, {
+          item: true,
+          xs: 12
+        }, external__react__default.a.createElement("div", {
+          className: classes.formControlWrapper
+        }, external__react__default.a.createElement(CustomTextField, {
+          field: "passwordConfirmation",
+          id: v4__default()(),
+          label: "New Password Confirmation",
+          fullWidth: true,
+          required: true,
+          type: "password"
+        })))));
+      }), submittingFormToServer ? external__react__default.a.createElement("div", {
+        className: classes.formSubmittingWrapper
+      }, external__react__default.a.createElement(icon__default.a, {
+        type: "loading",
+        style: {
+          color: '#000',
+          fontSize: '4rem'
+        }
+      }), external__react__default.a.createElement("div", {
+        className: classes.progressBarExplanation
+      }, "Finishing submission...")) : null);
+    }
+  }]);
+
+  return CreateAgentForm;
+}(external__react_["Component"])) || _class);
+/* harmony default export */ var EditAgentPasswordForm = __webpack_exports__["a"] = (Object(styles_["withStyles"])(EditAgentPasswordForm_styles)(EditAgentPasswordForm_CreateAgentForm));
+
+/***/ }),
+/* 174 */,
+/* 175 */,
+/* 176 */,
+/* 177 */,
+/* 178 */,
+/* 179 */,
+/* 180 */,
+/* 181 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+
+// EXTERNAL MODULE: external "react"
+var external__react_ = __webpack_require__(0);
+var external__react__default = /*#__PURE__*/__webpack_require__.n(external__react_);
+
+// EXTERNAL MODULE: external "mobx-react"
+var external__mobx_react_ = __webpack_require__(1);
+var external__mobx_react__default = /*#__PURE__*/__webpack_require__.n(external__mobx_react_);
+
+// EXTERNAL MODULE: external "material-ui/styles"
+var styles_ = __webpack_require__(2);
+var styles__default = /*#__PURE__*/__webpack_require__.n(styles_);
+
+// EXTERNAL MODULE: external "react-spinners"
+var external__react_spinners_ = __webpack_require__(26);
+var external__react_spinners__default = /*#__PURE__*/__webpack_require__.n(external__react_spinners_);
+
+// EXTERNAL MODULE: external "chance"
+var external__chance_ = __webpack_require__(71);
+var external__chance__default = /*#__PURE__*/__webpack_require__.n(external__chance_);
+
+// EXTERNAL MODULE: external "is-browser"
+var external__is_browser_ = __webpack_require__(7);
+var external__is_browser__default = /*#__PURE__*/__webpack_require__.n(external__is_browser_);
+
+// EXTERNAL MODULE: external "moment"
+var external__moment_ = __webpack_require__(41);
+var external__moment__default = /*#__PURE__*/__webpack_require__.n(external__moment_);
+
+// EXTERNAL MODULE: external "papaparse"
+var external__papaparse_ = __webpack_require__(135);
+var external__papaparse__default = /*#__PURE__*/__webpack_require__.n(external__papaparse_);
+
+// EXTERNAL MODULE: external "react-sizes"
+var external__react_sizes_ = __webpack_require__(69);
+var external__react_sizes__default = /*#__PURE__*/__webpack_require__.n(external__react_sizes_);
+
+// EXTERNAL MODULE: external "material-ui/Tooltip"
+var Tooltip_ = __webpack_require__(12);
+var Tooltip__default = /*#__PURE__*/__webpack_require__.n(Tooltip_);
+
+// EXTERNAL MODULE: external "classnames"
+var external__classnames_ = __webpack_require__(5);
+var external__classnames__default = /*#__PURE__*/__webpack_require__.n(external__classnames_);
+
+// EXTERNAL MODULE: external "@devexpress/dx-react-grid"
+var dx_react_grid_ = __webpack_require__(107);
+var dx_react_grid__default = /*#__PURE__*/__webpack_require__.n(dx_react_grid_);
+
+// EXTERNAL MODULE: external "@devexpress/dx-react-grid-material-ui"
+var dx_react_grid_material_ui_ = __webpack_require__(35);
+var dx_react_grid_material_ui__default = /*#__PURE__*/__webpack_require__.n(dx_react_grid_material_ui_);
+
+// EXTERNAL MODULE: external "react-icons/lib/md"
+var md_ = __webpack_require__(56);
+var md__default = /*#__PURE__*/__webpack_require__.n(md_);
+
+// EXTERNAL MODULE: external "@material-ui/icons/Equalizer"
+var Equalizer_ = __webpack_require__(131);
+var Equalizer__default = /*#__PURE__*/__webpack_require__.n(Equalizer_);
+
+// EXTERNAL MODULE: ./utils/backEndTableUtils/SelectFilterCell.js
+var SelectFilterCell = __webpack_require__(136);
+
+// EXTERNAL MODULE: ./utils/backEndTableUtils/tableSortingUtils.js
+var tableSortingUtils = __webpack_require__(137);
+
+// EXTERNAL MODULE: ./utils/backEndTableUtils/DefaultVirtualTableCell.js
+var DefaultVirtualTableCell = __webpack_require__(108);
+
+// EXTERNAL MODULE: ./utils/backEndTableUtils/TableComponent.js
+var TableComponent = __webpack_require__(109);
+
+// EXTERNAL MODULE: ./utils/backEndTableUtils/TableContainerComponent.js
+var TableContainerComponent = __webpack_require__(110);
+
+// EXTERNAL MODULE: ./utils/backEndTableUtils/NoDataCellComponent.js
+var NoDataCellComponent = __webpack_require__(111);
+
+// EXTERNAL MODULE: ./components/dataTableFormatters/ViewFormatter.js
+var ViewFormatter = __webpack_require__(112);
+
+// CONCATENATED MODULE: ./components/AdminAreaDealsTable/index.js
+var _dec, _dec2, _class;
+
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+var styles = function styles(theme) {
+  return {
+    root: {
+      boxShadow: theme.shadows[1],
+      backgroundColor: '#fff',
+      borderRadius: '3px',
+      '& [class^="Pager-pager-"]': {
+        borderTop: '1px solid rgba(224, 224, 224, 1)'
+      }
+    },
+    cell: {
+      width: '100%',
+      paddingLeft: theme.spacing.unit,
+      paddingRight: theme.spacing.unit
+    },
+    input: {
+      width: '100%'
+    },
+    myTable: {},
+    myTableContainer: {
+      minHeight: '300px',
+      height: 'calc(100vh - 310px) !important' // maxHeight: '800px',
+
+    },
+    myTableContainerSmallViewPort: {
+      minHeight: '300px',
+      height: 'calc(100vh - 445px) !important'
+    },
+    myNoDataCellComponent: {
+      borderBottom: 'none !important'
+    },
+    editBtnsWrapper: {
+      display: 'flex',
+      position: 'absolute',
+      top: '-13px',
+      left: '-13px'
+    },
+    downloadCSVBtn: {
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      height: '34px',
+      width: '34px',
+      border: 'none',
+      borderRadius: '50%',
+      fontSize: '1rem',
+      color: '#fff',
+      backgroundColor: '#646d64',
+      boxShadow: theme.shadows[2],
+      zIndex: '2',
+      cursor: 'pointer',
+      outline: 'none',
+      transition: 'transform .2s ease-in-out',
+      '&:hover': {
+        transform: 'scale(1.1,1.1)'
+      }
+    },
+    tableDealsSummaryBtnsWrapper: {
+      display: 'flex',
+      position: 'absolute',
+      top: '-13px',
+      right: '-13px'
+    },
+    tableDealsSummaryBtn: {
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      height: '34px',
+      width: '34px',
+      border: 'none',
+      borderRadius: '50%',
+      fontSize: '1rem',
+      color: '#fff',
+      backgroundColor: '#2995F3',
+      boxShadow: theme.shadows[2],
+      zIndex: '2',
+      cursor: 'pointer',
+      outline: 'none',
+      transition: 'transform .2s ease-in-out, color .2s ease-in-out',
+      '&:hover': {
+        transform: 'scale(1.1,1.1)',
+        backgroundColor: '#2380D1'
+      }
+    }
+  };
+};
+
+var sortingStateColumnExtensions = [{
+  columnName: 'dealID',
+  sortingEnabled: false
+}, {
+  columnName: 'view',
+  filteringEnabled: false
+}];
+var filteringStateColumnExtensions = [{
+  columnName: 'view',
+  filteringEnabled: false
+}];
+
+var getRowId = function getRowId(row) {
+  return row.dealID;
+};
+
+var statusSelectInputItems = [{
+  label: ''
+}, {
+  label: 'Pending'
+}, {
+  label: 'Approved'
+}];
+
+var AdminAreaDealsTable_FilterCell = function FilterCell(props) {
+  if (props.column.name === 'status') {
+    return external__react__default.a.createElement(SelectFilterCell["a" /* default */], _extends({
+      selectInputItems: statusSelectInputItems
+    }, props));
+  }
+
+  return external__react__default.a.createElement(dx_react_grid_material_ui_["TableFilterRow"].Cell, props);
+};
+
+var integratedSortingColumnExtensions = [{
+  columnName: 'date',
+  compare: tableSortingUtils["a" /* compareDate */]
+}, {
+  columnName: 'rentOrSalePrice',
+  compare: tableSortingUtils["b" /* compareNumber */]
+}, {
+  columnName: 'deductionsTotal',
+  compare: tableSortingUtils["b" /* compareNumber */]
+}, {
+  columnName: 'paymentsTotal',
+  compare: tableSortingUtils["b" /* compareNumber */]
+}, {
+  columnName: 'netPaymentsTotal',
+  compare: tableSortingUtils["b" /* compareNumber */]
+}];
+var defaultColumnWidths = [{
+  columnName: 'dealID',
+  width: 120
+}, {
+  columnName: 'date',
+  width: 120
+}, {
+  columnName: 'agentName',
+  width: 140
+}, {
+  columnName: 'agentType',
+  width: 120
+}, {
+  columnName: 'dealType',
+  width: 120
+}, {
+  columnName: 'clientName',
+  width: 140
+}, {
+  columnName: 'clientEmail',
+  width: 140
+}, {
+  columnName: 'propertyAddress',
+  width: 140
+}, {
+  columnName: 'propertyCity',
+  width: 120
+}, {
+  columnName: 'propertyState',
+  width: 120
+}, {
+  columnName: 'managementOrCobrokeCompany',
+  width: 160
+}, {
+  columnName: 'rentOrSalePrice',
+  width: 110
+}, {
+  columnName: 'deductionsTotal',
+  width: 110
+}, {
+  columnName: 'paymentsTotal',
+  width: 110
+}, {
+  columnName: 'netPaymentsTotal',
+  width: 110
+}, {
+  columnName: 'bonusPercentageAddedByAdmin',
+  width: 120
+}, {
+  columnName: 'netAgentCommission',
+  width: 170
+}, {
+  columnName: 'netCompanyCommission',
+  width: 170
+}, {
+  columnName: 'status',
+  width: 120
+}, {
+  columnName: 'view',
+  width: 100
+}];
+var defaultHiddenColumnNames = ['deductionsTotal', 'paymentsTotal', 'netPaymentsTotal', 'propertyState', 'clientEmail', 'managementOrCobrokeCompany', 'bonusPercentageAddedByAdmin', 'netAgentCommission', 'netCompanyCommission'];
+
+var AdminAreaDealsTable_ViewCellFormatter = function ViewCellFormatter(_ref) {
+  var value = _ref.value;
+  return external__react__default.a.createElement(ViewFormatter["a" /* default */], {
+    value: value
+  });
+};
+
+var AdminAreaDealsTable_ViewTypeProvider = function ViewTypeProvider(props) {
+  return external__react__default.a.createElement(dx_react_grid_["DataTypeProvider"], _extends({
+    formatterComponent: AdminAreaDealsTable_ViewCellFormatter
+  }, props));
+};
+
+var pageSizes = [5, 10, 15, 20, 50, 100, 0];
+
+var mapSizesToProps = function mapSizesToProps(_ref2) {
+  var width = _ref2.width;
+  return {
+    xsViewport: width < 412,
+    smViewport: width < 600,
+    mdViewport: width < 960,
+    lgViewport: width < 1280
+  };
+};
+
+var AdminAreaDealsTable_DealsTable = (_dec = Object(styles_["withStyles"])(styles), _dec2 = external__react_sizes__default()(mapSizesToProps), _dec(_class = _dec2(_class =
+/*#__PURE__*/
+function (_Component) {
+  _inherits(DealsTable, _Component);
+
+  function DealsTable(props) {
+    var _this;
+
+    _classCallCheck(this, DealsTable);
+
+    _this = _possibleConstructorReturn(this, (DealsTable.__proto__ || Object.getPrototypeOf(DealsTable)).call(this, props));
+    Object.defineProperty(_assertThisInitialized(_this), "changePageSize", {
+      configurable: true,
+      enumerable: true,
+      writable: true,
+      value: function value(pageSize) {
+        _this.setState({
+          pageSize: pageSize
+        });
+
+        if (_this.state.pageSize < pageSize) {
+          document.getElementById('myTableContainer').scrollTop = 0;
+        }
+      }
+    });
+    Object.defineProperty(_assertThisInitialized(_this), "currentPageChange", {
+      configurable: true,
+      enumerable: true,
+      writable: true,
+      value: function value(currentPage) {
+        _this.setState({
+          currentPage: currentPage
+        });
+
+        document.getElementById('myTableContainer').scrollTop = 0;
+      }
+    });
+    _this.state = {
+      pageSize: 10,
+      currentPage: 0,
+      grouping: [{
+        columnName: 'status'
+      }],
+      groupingStateColumnExtensions: [{
+        columnName: 'dealID',
+        groupingEnabled: false
+      }, {
+        columnName: 'date',
+        groupingEnabled: false
+      }, {
+        columnName: 'clientName',
+        groupingEnabled: false
+      }, {
+        columnName: 'clientEmail',
+        groupingEnabled: false
+      }, {
+        columnName: 'propertyAddress',
+        groupingEnabled: false
+      }, {
+        columnName: 'propertyCity',
+        groupingEnabled: false
+      }, {
+        columnName: 'propertyState',
+        groupingEnabled: false
+      }, {
+        columnName: 'managementOrCobrokeCompany',
+        groupingEnabled: false
+      }, {
+        columnName: 'rentOrSalePrice',
+        groupingEnabled: false
+      }, {
+        columnName: 'deductionsTotal',
+        groupingEnabled: false
+      }, {
+        columnName: 'paymentsTotal',
+        groupingEnabled: false
+      }, {
+        columnName: 'netPaymentsTotal',
+        groupingEnabled: false
+      }, {
+        columnName: 'bonusPercentageAddedByAdmin',
+        groupingEnabled: false
+      }, {
+        columnName: 'netAgentCommission',
+        groupingEnabled: false
+      }, {
+        columnName: 'netCompanyCommission',
+        groupingEnabled: false
+      }, {
+        columnName: 'view',
+        groupingEnabled: false
+      }],
+      integratedGroupingColumnExtensions: [{
+        columnName: 'view',
+        criteria: function criteria(value) {
+          return {
+            key: value.id
+          };
+        }
+      }],
+      defaultExpandedGroups: ['Pending']
+    };
+    return _this;
+  }
+
+  _createClass(DealsTable, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      if (this.props.onMount) this.props.onMount();
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var _props = this.props,
+          classes = _props.classes,
+          columns = _props.columns,
+          rows = _props.rows,
+          lgViewport = _props.lgViewport,
+          changeSelection = _props.changeSelection,
+          convertDealsToCSV = _props.convertDealsToCSV;
+      var _state = this.state,
+          grouping = _state.grouping,
+          groupingStateColumnExtensions = _state.groupingStateColumnExtensions,
+          integratedGroupingColumnExtensions = _state.integratedGroupingColumnExtensions,
+          defaultExpandedGroups = _state.defaultExpandedGroups;
+      return external__react__default.a.createElement("div", {
+        className: external__classnames__default()(classes.root, 'deal-table-wrapper')
+      }, external__react__default.a.createElement(dx_react_grid_material_ui_["Grid"], {
+        rows: rows,
+        columns: columns,
+        getRowId: getRowId
+      }, external__react__default.a.createElement(AdminAreaDealsTable_ViewTypeProvider, {
+        "for": ['view']
+      }), external__react__default.a.createElement(dx_react_grid_material_ui_["DragDropProvider"], null), external__react__default.a.createElement(dx_react_grid_["SearchState"], null), external__react__default.a.createElement(dx_react_grid_["FilteringState"], {
+        columnExtensions: filteringStateColumnExtensions
+      }), external__react__default.a.createElement(dx_react_grid_["SortingState"], {
+        defaultSorting: [{
+          columnName: 'date',
+          direction: 'desc'
+        }],
+        columnExtensions: sortingStateColumnExtensions
+      }), external__react__default.a.createElement(dx_react_grid_["SelectionState"], {
+        selection: this.props.selection,
+        onSelectionChange: changeSelection
+      }), external__react__default.a.createElement(dx_react_grid_["GroupingState"], {
+        defaultGrouping: grouping,
+        columnExtensions: groupingStateColumnExtensions,
+        defaultExpandedGroups: defaultExpandedGroups
+      }), external__react__default.a.createElement(dx_react_grid_["PagingState"], {
+        currentPage: this.state.currentPage,
+        pageSize: this.state.pageSize,
+        onPageSizeChange: this.changePageSize,
+        onCurrentPageChange: this.currentPageChange
+      }), external__react__default.a.createElement(dx_react_grid_["IntegratedFiltering"], null), external__react__default.a.createElement(dx_react_grid_["IntegratedSorting"], {
+        columnExtensions: integratedSortingColumnExtensions
+      }), external__react__default.a.createElement(dx_react_grid_["IntegratedGrouping"], {
+        columnExtensions: integratedGroupingColumnExtensions
+      }), external__react__default.a.createElement(dx_react_grid_["IntegratedSelection"], null), external__react__default.a.createElement(dx_react_grid_["IntegratedPaging"], null), external__react__default.a.createElement(dx_react_grid_material_ui_["VirtualTable"], {
+        height: external__is_browser__default.a ? window.innerHeight - 310 : undefined,
+        tableComponent: TableComponent["a" /* default */],
+        containerComponent: function containerComponent(props) {
+          return external__react__default.a.createElement(TableContainerComponent["a" /* default */], _extends({
+            className: lgViewport ? classes.myTableContainerSmallViewPort : classes.myTableContainer
+          }, props));
+        },
+        cellComponent: DefaultVirtualTableCell["a" /* default */],
+        noDataCellComponent: NoDataCellComponent["a" /* default */]
+      }), external__react__default.a.createElement(dx_react_grid_material_ui_["TableColumnReordering"], {
+        defaultOrder: columns.map(function (column) {
+          return column.name;
+        })
+      }), external__react__default.a.createElement(dx_react_grid_material_ui_["TableColumnResizing"], {
+        defaultColumnWidths: defaultColumnWidths
+      }), external__react__default.a.createElement(dx_react_grid_material_ui_["TableFilterRow"], {
+        cellComponent: AdminAreaDealsTable_FilterCell
+      }), external__react__default.a.createElement(dx_react_grid_material_ui_["TableGroupRow"], null), external__react__default.a.createElement(dx_react_grid_material_ui_["Toolbar"], null), external__react__default.a.createElement(dx_react_grid_material_ui_["SearchPanel"], null), external__react__default.a.createElement(dx_react_grid_material_ui_["TableColumnVisibility"], {
+        defaultHiddenColumnNames: defaultHiddenColumnNames
+      }), external__react__default.a.createElement(dx_react_grid_material_ui_["ColumnChooser"], null), external__react__default.a.createElement(dx_react_grid_material_ui_["TableHeaderRow"], {
+        showSortingControls: true,
+        showGroupingControls: true
+      }), external__react__default.a.createElement(dx_react_grid_material_ui_["TableSelection"], {
+        showSelectAll: true,
+        selectByRowClick: true
+      }), external__react__default.a.createElement(dx_react_grid_material_ui_["GroupingPanel"], {
+        showGroupingControls: true
+      }), external__react__default.a.createElement(dx_react_grid_material_ui_["PagingPanel"], {
+        pageSizes: pageSizes
+      })), rows && rows.length ? external__react__default.a.createElement(Tooltip__default.a, {
+        title: "Download selected rows from table as CSV file.",
+        enterDelay: 300,
+        leaveDelay: 100
+      }, external__react__default.a.createElement("span", {
+        className: classes.editBtnsWrapper
+      }, external__react__default.a.createElement("button", {
+        className: classes.downloadCSVBtn,
+        onClick: convertDealsToCSV
+      }, external__react__default.a.createElement(md_["MdFileDownload"], null)))) : null, this.props.isDealsWithGQLQuery ? external__react__default.a.createElement(Tooltip__default.a, {
+        title: "Click to view deals summary",
+        enterDelay: 300,
+        leaveDelay: 100
+      }, external__react__default.a.createElement("span", {
+        className: classes.tableDealsSummaryBtnsWrapper
+      }, external__react__default.a.createElement("button", {
+        className: classes.tableDealsSummaryBtn,
+        onClick: this.props.toggleDealsSummaryDialogBox
+      }, external__react__default.a.createElement(Equalizer__default.a, null)))) : null);
+    }
+  }]);
+
+  return DealsTable;
+}(external__react_["Component"])) || _class) || _class);
+/* harmony default export */ var AdminAreaDealsTable = (AdminAreaDealsTable_DealsTable);
+// EXTERNAL MODULE: ./utils/debounce.js
+var debounce = __webpack_require__(123);
+
+// EXTERNAL MODULE: ./utils/stringUtils.js
+var stringUtils = __webpack_require__(18);
+
+// EXTERNAL MODULE: ./utils/Math.js
+var utils_Math = __webpack_require__(70);
+
+// CONCATENATED MODULE: ./containers/AdminAreaDealsTableContainer.js
+var AdminAreaDealsTableContainer__class;
+
+function AdminAreaDealsTableContainer__typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { AdminAreaDealsTableContainer__typeof = function _typeof(obj) { return typeof obj; }; } else { AdminAreaDealsTableContainer__typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return AdminAreaDealsTableContainer__typeof(obj); }
+
+function AdminAreaDealsTableContainer__extends() { AdminAreaDealsTableContainer__extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return AdminAreaDealsTableContainer__extends.apply(this, arguments); }
+
+function _objectWithoutProperties(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i < sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) >= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function AdminAreaDealsTableContainer__classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function AdminAreaDealsTableContainer__defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function AdminAreaDealsTableContainer__createClass(Constructor, protoProps, staticProps) { if (protoProps) AdminAreaDealsTableContainer__defineProperties(Constructor.prototype, protoProps); if (staticProps) AdminAreaDealsTableContainer__defineProperties(Constructor, staticProps); return Constructor; }
+
+function AdminAreaDealsTableContainer__possibleConstructorReturn(self, call) { if (call && (AdminAreaDealsTableContainer__typeof(call) === "object" || typeof call === "function")) { return call; } return AdminAreaDealsTableContainer__assertThisInitialized(self); }
+
+function AdminAreaDealsTableContainer__inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+function AdminAreaDealsTableContainer__assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+
+
+
+
+
+
+
+
+
+
+
+
+var chance = new external__chance__default.a();
+var Loader = external__react_spinners_["DotLoader"];
+
+var returnAgentType = function returnAgentType(number) {
+  if (number < 33) {
+    return 60;
+  } else if (number < 66) {
+    return 70;
+  } else {
+    return 80;
+  }
+};
+
+var AdminAreaDealsTableContainer_styles = function styles(theme) {
+  return {
+    root: {
+      position: 'relative'
+    },
+    progress: {
+      margin: theme.spacing.unit * 2,
+      marginRight: 'auto',
+      marginLeft: 'auto',
+      display: 'block'
+    },
+    progressWrapper: {
+      position: 'absolute',
+      top: 0,
+      bottom: 0,
+      left: 0,
+      right: 0,
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      flexDirection: 'column',
+      padding: '60px 20px',
+      borderRadius: '3px',
+      backgroundColor: '#fff',
+      zIndex: 2
+    }
+  };
+};
+
+var AdminAreaDealsTableContainer_columns = [{
+  name: 'dealID',
+  title: 'Deal ID'
+}, {
+  name: 'date',
+  title: 'Date'
+}, {
+  name: 'agentName',
+  title: 'Agent Name'
+}, {
+  name: 'agentType',
+  title: 'Agent Type'
+}, {
+  name: 'dealType',
+  title: 'Deal Type'
+}, {
+  name: 'clientName',
+  title: 'Client Name'
+}, {
+  name: 'clientEmail',
+  title: 'Client Email'
+}, {
+  name: 'propertyAddress',
+  title: 'Property Address'
+}, {
+  name: 'propertyCity',
+  title: 'Property City'
+}, {
+  name: 'propertyState',
+  title: 'Property State'
+}, {
+  name: 'managementOrCobrokeCompany',
+  title: 'Mgmt/Co-Broke Co.'
+}, {
+  name: 'rentOrSalePrice',
+  title: 'Rent/Sale Price'
+}, {
+  name: 'deductionsTotal',
+  title: 'Deductions Total'
+}, {
+  name: 'paymentsTotal',
+  title: 'Payments Total'
+}, {
+  name: 'netPaymentsTotal',
+  title: 'Net Payments Total'
+}, {
+  name: 'bonusPercentageAddedByAdmin',
+  title: "Agent's Bonus %"
+}, {
+  name: 'netAgentCommission',
+  title: 'Net Agent Commission'
+}, {
+  name: 'netCompanyCommission',
+  title: 'Net Company Commission'
+}, {
+  name: 'status',
+  title: 'Status'
+}, {
+  name: 'view',
+  title: 'View'
+}];
+
+var AdminAreaDealsTableContainer_DealsTableContainer = Object(external__mobx_react_["observer"])(AdminAreaDealsTableContainer__class =
+/*#__PURE__*/
+function (_Component) {
+  AdminAreaDealsTableContainer__inherits(DealsTableContainer, _Component);
+
+  function DealsTableContainer(props) {
+    var _this;
+
+    AdminAreaDealsTableContainer__classCallCheck(this, DealsTableContainer);
+
+    _this = AdminAreaDealsTableContainer__possibleConstructorReturn(this, (DealsTableContainer.__proto__ || Object.getPrototypeOf(DealsTableContainer)).call(this, props));
+    Object.defineProperty(AdminAreaDealsTableContainer__assertThisInitialized(_this), "createRows", {
+      configurable: true,
+      enumerable: true,
+      writable: true,
+      value: function value() {
+        return _this.props.deals.map(function (deal) {
+          var dealID = deal.dealID,
+              date = deal.date,
+              agentName = deal.agentName,
+              agentType = deal.agentType,
+              leadSource = deal.leadSource,
+              dealType = deal.dealType,
+              propertyAddress = deal.propertyAddress,
+              state = deal.state,
+              city = deal.city,
+              apartmentNumber = deal.apartmentNumber,
+              managementOrCobrokeCompany = deal.managementOrCobrokeCompany,
+              price = deal.price,
+              clientName = deal.clientName,
+              clientEmail = deal.clientEmail,
+              paymentsTotal = deal.paymentsTotal,
+              deductionsTotal = deal.deductionsTotal,
+              total = deal.total,
+              status = deal.status,
+              bonusPercentageAddedByAdmin = deal.bonusPercentageAddedByAdmin,
+              netAgentCommission = deal.netAgentCommission,
+              netCompanyCommission = deal.netCompanyCommission;
+          return {
+            dealID: dealID,
+            date: external__moment__default()(date).format('MM/DD/YYYY'),
+            agentName: agentName,
+            agentType: "".concat(agentType, "%"),
+            dealType: dealType,
+            clientName: clientName,
+            clientEmail: clientEmail,
+            propertyAddress: propertyAddress,
+            propertyCity: city,
+            propertyState: state,
+            managementOrCobrokeCompany: managementOrCobrokeCompany,
+            rentOrSalePrice: "$".concat(Object(utils_Math["a" /* padStringToDecimalString */])(Number(price || 0).toLocaleString())),
+            deductionsTotal: "$".concat(Object(utils_Math["a" /* padStringToDecimalString */])(Number(deductionsTotal || 0).toLocaleString())),
+            paymentsTotal: "$".concat(Object(utils_Math["a" /* padStringToDecimalString */])(Number(paymentsTotal || 0).toLocaleString())),
+            netPaymentsTotal: "$".concat(Object(utils_Math["a" /* padStringToDecimalString */])(Number(total || 0).toLocaleString())),
+            bonusPercentageAddedByAdmin: status === 'pending' ? undefined : "%".concat(bonusPercentageAddedByAdmin || 0),
+            netAgentCommission: status === 'pending' ? undefined : "$".concat(Object(utils_Math["a" /* padStringToDecimalString */])(Number(netAgentCommission || 0).toLocaleString())),
+            netCompanyCommission: status === 'pending' ? undefined : "$".concat(Object(utils_Math["a" /* padStringToDecimalString */])(Number(netCompanyCommission || 0).toLocaleString())),
+            status: Object(stringUtils["a" /* capitalize */])(status),
+            view: {
+              type: 'action',
+              onClick: function onClick() {
+                return Object(debounce["a" /* default */])(_this.props.openDealsViewDialogBox.bind(null, dealID, status), 1000, true)();
+              }
+            }
+          };
+        });
+      }
+    });
+    Object.defineProperty(AdminAreaDealsTableContainer__assertThisInitialized(_this), "convertDealsToCSV", {
+      configurable: true,
+      enumerable: true,
+      writable: true,
+      value: function value() {
+        var deals = _this.props.deals;
+        var selection = _this.state.selection;
+        console.log(selection);
+        console.log(deals);
+        if (!selection || !selection.length) return;
+        var csvContent = external__papaparse__default.a.unparse(deals.filter(function (deal) {
+          return selection.includes(deal.dealID);
+        }).map(function (deal) {
+          return _objectSpread({}, deal, {
+            date: external__moment__default()(deal.date).format('MM/DD/YYYY')
+          });
+        }), {
+          header: true
+        });
+
+        if (_this._csvLink) {
+          _this._csvLink.setAttribute('href', "data:text/csv;charset=utf-8,".concat(encodeURIComponent(csvContent)));
+
+          _this._csvLink.setAttribute('download', 'deals_data.csv');
+
+          _this._csvLink.click();
+        }
+      }
+    });
+    Object.defineProperty(AdminAreaDealsTableContainer__assertThisInitialized(_this), "changeSelection", {
+      configurable: true,
+      enumerable: true,
+      writable: true,
+      value: function value(selection) {
+        _this.setState({
+          selection: selection
+        });
+      }
+    });
+    _this.state = {
+      tableIsLoading: true,
+      selection: []
+    };
+    return _this;
+  }
+
+  AdminAreaDealsTableContainer__createClass(DealsTableContainer, [{
+    key: "render",
+    value: function render() {
+      var _this2 = this;
+
+      var _state = this.state,
+          tableIsLoading = _state.tableIsLoading,
+          selection = _state.selection;
+
+      var _props = this.props,
+          classes = _props.classes,
+          small = _props.small,
+          rest = _objectWithoutProperties(_props, ["classes", "small"]);
+
+      return external__react__default.a.createElement("div", {
+        className: classes.root
+      }, tableIsLoading ? external__react__default.a.createElement("div", {
+        className: classes.progressWrapper,
+        style: {
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          height: 'calc(100vh - 180px)'
+        }
+      }, external__react__default.a.createElement(Loader, {
+        color: "#f44336",
+        loading: true
+      })) : null, external__react__default.a.createElement(AdminAreaDealsTable, AdminAreaDealsTableContainer__extends({}, rest, {
+        changeSelection: this.changeSelection,
+        selection: selection,
+        convertDealsToCSV: this.convertDealsToCSV,
+        small: small,
+        onMount: function onMount() {
+          return tableIsLoading ? _this2.setState({
+            tableIsLoading: false
+          }) : null;
+        },
+        columns: AdminAreaDealsTableContainer_columns,
+        rows: this.createRows()
+      })), external__react__default.a.createElement("a", {
+        href: "#",
+        id: "csvLink",
+        ref: function ref(_ref) {
+          return _this2._csvLink = _ref;
+        },
+        style: {
+          visibility: 'hidden',
+          position: 'absolute',
+          poniterEvents: 'none'
+        }
+      }));
+    }
+  }]);
+
+  return DealsTableContainer;
+}(external__react_["Component"])) || AdminAreaDealsTableContainer__class;
+
+/* harmony default export */ var AdminAreaDealsTableContainer = __webpack_exports__["a"] = (Object(styles_["withStyles"])(AdminAreaDealsTableContainer_styles)(AdminAreaDealsTableContainer_DealsTableContainer));
+
+/***/ }),
+/* 182 */,
+/* 183 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+
+// EXTERNAL MODULE: external "react"
+var external__react_ = __webpack_require__(0);
+var external__react__default = /*#__PURE__*/__webpack_require__.n(external__react_);
+
+// EXTERNAL MODULE: external "mobx-react"
+var external__mobx_react_ = __webpack_require__(1);
+var external__mobx_react__default = /*#__PURE__*/__webpack_require__.n(external__mobx_react_);
+
+// EXTERNAL MODULE: external "material-ui/Dialog"
+var Dialog_ = __webpack_require__(57);
+var Dialog__default = /*#__PURE__*/__webpack_require__.n(Dialog_);
+
+// EXTERNAL MODULE: external "material-ui/Snackbar"
+var Snackbar_ = __webpack_require__(30);
+var Snackbar__default = /*#__PURE__*/__webpack_require__.n(Snackbar_);
+
+// EXTERNAL MODULE: external "material-ui/IconButton"
+var IconButton_ = __webpack_require__(14);
+var IconButton__default = /*#__PURE__*/__webpack_require__.n(IconButton_);
+
+// EXTERNAL MODULE: external "@material-ui/icons/Close"
+var Close_ = __webpack_require__(31);
+var Close__default = /*#__PURE__*/__webpack_require__.n(Close_);
+
+// EXTERNAL MODULE: external "material-ui/Divider"
+var Divider_ = __webpack_require__(20);
+var Divider__default = /*#__PURE__*/__webpack_require__.n(Divider_);
+
+// EXTERNAL MODULE: external "material-ui/styles"
+var styles_ = __webpack_require__(2);
+var styles__default = /*#__PURE__*/__webpack_require__.n(styles_);
+
+// EXTERNAL MODULE: external "material-ui/Button"
+var Button_ = __webpack_require__(40);
+var Button__default = /*#__PURE__*/__webpack_require__.n(Button_);
+
+// EXTERNAL MODULE: external "classnames"
+var external__classnames_ = __webpack_require__(5);
+var external__classnames__default = /*#__PURE__*/__webpack_require__.n(external__classnames_);
+
+// EXTERNAL MODULE: external "react-apollo"
+var external__react_apollo_ = __webpack_require__(17);
+var external__react_apollo__default = /*#__PURE__*/__webpack_require__.n(external__react_apollo_);
+
+// EXTERNAL MODULE: external "graphql-tag"
+var external__graphql_tag_ = __webpack_require__(65);
+var external__graphql_tag__default = /*#__PURE__*/__webpack_require__.n(external__graphql_tag_);
+
+// EXTERNAL MODULE: external "react-spinners"
+var external__react_spinners_ = __webpack_require__(26);
+var external__react_spinners__default = /*#__PURE__*/__webpack_require__.n(external__react_spinners_);
+
+// EXTERNAL MODULE: ./components/forms/SubmitDealForm/index.js + 1 modules
+var SubmitDealForm = __webpack_require__(145);
+
+// EXTERNAL MODULE: ./effects/deals/getDealUploadsSignedURLS.js
+var getDealUploadsSignedURLS = __webpack_require__(147);
+
+// EXTERNAL MODULE: ./effects/uploadFile.js
+var uploadFile = __webpack_require__(148);
 
 // EXTERNAL MODULE: ./effects/client.js
 var client = __webpack_require__(6);
@@ -11749,7 +12838,7 @@ var submitDeal_submitDeal = function submitDeal(values) {
 
 /* harmony default export */ var deals_submitDeal = (submitDeal_submitDeal);
 // EXTERNAL MODULE: ./utils/stringUtils.js
-var stringUtils = __webpack_require__(15);
+var stringUtils = __webpack_require__(18);
 
 // CONCATENATED MODULE: ./containers/SubmitDealForm.js
 var _class;
@@ -12037,13 +13126,11 @@ function (_Component) {
             contractOrLeaseForms = _this$state4.contractOrLeaseForms,
             agencyDisclosureForm = _this$state4.agencyDisclosureForm,
             addedManagementCompanies = _this$state4.addedManagementCompanies,
-            hasSetNewMgmtOrCobrokeCompany = _this$state4.hasSetNewMgmtOrCobrokeCompany,
             paymentsTotal = _this$state4.paymentsTotal,
             deductionsTotal = _this$state4.deductionsTotal,
             total = _this$state4.total;
 
         var returnObject = _objectSpread({}, values, {
-          otherAgents: values.otherAgents || [],
           addedManagementCompanies: addedManagementCompanies,
           paymentsTotal: paymentsTotal,
           deductionsTotal: deductionsTotal,
@@ -12278,15 +13365,18 @@ function (_Component) {
         var loading = _ref2.loading,
             error = _ref2.error,
             data = _ref2.data;
-        if (loading) return external__react__default.a.createElement("div", {
-          style: {
-            display: 'flex',
-            justifyContent: 'center'
-          }
-        }, external__react__default.a.createElement(Loader, {
-          color: "#f44336",
-          loading: true
-        }));
+
+        if (loading) {
+          return external__react__default.a.createElement("div", {
+            style: {
+              display: 'flex',
+              justifyContent: 'center'
+            }
+          }, external__react__default.a.createElement(Loader, {
+            color: "#f44336",
+            loading: true
+          }));
+        }
 
         if (error) {
           console.log(error);
@@ -12341,10 +13431,6 @@ function (_Component) {
 }(external__react_["Component"])) || _class;
 
 /* harmony default export */ var containers_SubmitDealForm = (SubmitDealForm_SubmitDealFormContainer);
-// EXTERNAL MODULE: external "classnames"
-var external__classnames_ = __webpack_require__(5);
-var external__classnames__default = /*#__PURE__*/__webpack_require__.n(external__classnames_);
-
 // CONCATENATED MODULE: ./components/SubmitDealDialogBox/index.js
 var SubmitDealDialogBox__class;
 
@@ -12589,7 +13675,7 @@ function (_Component) {
 /* harmony default export */ var components_SubmitDealDialogBox = __webpack_exports__["a"] = (Object(Dialog_["withMobileDialog"])()(Object(styles_["withStyles"])(styles)(SubmitDealDialogBox_SubmitDealDialogBox)));
 
 /***/ }),
-/* 169 */
+/* 184 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -12607,69 +13693,65 @@ var styles_ = __webpack_require__(2);
 var styles__default = /*#__PURE__*/__webpack_require__.n(styles_);
 
 // EXTERNAL MODULE: external "react-spinners"
-var external__react_spinners_ = __webpack_require__(24);
+var external__react_spinners_ = __webpack_require__(26);
 var external__react_spinners__default = /*#__PURE__*/__webpack_require__.n(external__react_spinners_);
 
-// EXTERNAL MODULE: external "chance"
-var external__chance_ = __webpack_require__(68);
-var external__chance__default = /*#__PURE__*/__webpack_require__.n(external__chance_);
-
-// EXTERNAL MODULE: external "is-browser"
-var external__is_browser_ = __webpack_require__(7);
-var external__is_browser__default = /*#__PURE__*/__webpack_require__.n(external__is_browser_);
-
 // EXTERNAL MODULE: external "moment"
-var external__moment_ = __webpack_require__(33);
+var external__moment_ = __webpack_require__(41);
 var external__moment__default = /*#__PURE__*/__webpack_require__.n(external__moment_);
 
 // EXTERNAL MODULE: external "papaparse"
-var external__papaparse_ = __webpack_require__(134);
+var external__papaparse_ = __webpack_require__(135);
 var external__papaparse__default = /*#__PURE__*/__webpack_require__.n(external__papaparse_);
 
 // EXTERNAL MODULE: external "react-sizes"
 var external__react_sizes_ = __webpack_require__(69);
 var external__react_sizes__default = /*#__PURE__*/__webpack_require__.n(external__react_sizes_);
 
+// EXTERNAL MODULE: external "is-browser"
+var external__is_browser_ = __webpack_require__(7);
+var external__is_browser__default = /*#__PURE__*/__webpack_require__.n(external__is_browser_);
+
 // EXTERNAL MODULE: external "material-ui/Tooltip"
 var Tooltip_ = __webpack_require__(12);
 var Tooltip__default = /*#__PURE__*/__webpack_require__.n(Tooltip_);
 
 // EXTERNAL MODULE: external "@devexpress/dx-react-grid"
-var dx_react_grid_ = __webpack_require__(108);
+var dx_react_grid_ = __webpack_require__(107);
 var dx_react_grid__default = /*#__PURE__*/__webpack_require__.n(dx_react_grid_);
 
 // EXTERNAL MODULE: external "@devexpress/dx-react-grid-material-ui"
-var dx_react_grid_material_ui_ = __webpack_require__(29);
+var dx_react_grid_material_ui_ = __webpack_require__(35);
 var dx_react_grid_material_ui__default = /*#__PURE__*/__webpack_require__.n(dx_react_grid_material_ui_);
 
 // EXTERNAL MODULE: external "react-icons/lib/md"
-var md_ = __webpack_require__(45);
+var md_ = __webpack_require__(56);
 var md__default = /*#__PURE__*/__webpack_require__.n(md_);
 
 // EXTERNAL MODULE: external "@material-ui/icons/Equalizer"
-var Equalizer_ = __webpack_require__(125);
+var Equalizer_ = __webpack_require__(131);
 var Equalizer__default = /*#__PURE__*/__webpack_require__.n(Equalizer_);
 
 // EXTERNAL MODULE: ./utils/backEndTableUtils/SelectFilterCell.js
-var SelectFilterCell = __webpack_require__(135);
+var SelectFilterCell = __webpack_require__(136);
 
 // EXTERNAL MODULE: ./utils/backEndTableUtils/tableSortingUtils.js
-var tableSortingUtils = __webpack_require__(136);
+var tableSortingUtils = __webpack_require__(137);
 
 // EXTERNAL MODULE: ./utils/backEndTableUtils/DefaultVirtualTableCell.js
-var DefaultVirtualTableCell = __webpack_require__(109);
+var DefaultVirtualTableCell = __webpack_require__(108);
 
 // EXTERNAL MODULE: ./utils/backEndTableUtils/TableComponent.js
-var TableComponent = __webpack_require__(110);
+var TableComponent = __webpack_require__(109);
 
 // EXTERNAL MODULE: ./utils/backEndTableUtils/TableContainerComponent.js
-var TableContainerComponent = __webpack_require__(111);
+var TableContainerComponent = __webpack_require__(110);
 
 // EXTERNAL MODULE: ./utils/backEndTableUtils/NoDataCellComponent.js
-var NoDataCellComponent = __webpack_require__(112);
+var NoDataCellComponent = __webpack_require__(111);
 
 // EXTERNAL MODULE: ./components/dataTableFormatters/ViewFormatter.js
-var ViewFormatter = __webpack_require__(113);
+var ViewFormatter = __webpack_require__(112);
 
 // CONCATENATED MODULE: ./components/DealsTable/index.js
 var _dec, _dec2, _class;
@@ -13031,13 +14113,13 @@ function (_Component) {
 }(external__react_["Component"])) || _class) || _class);
 /* harmony default export */ var components_DealsTable = (DealsTable_DealsTable);
 // EXTERNAL MODULE: ./utils/stringUtils.js
-var stringUtils = __webpack_require__(15);
+var stringUtils = __webpack_require__(18);
 
 // EXTERNAL MODULE: ./utils/debounce.js
 var debounce = __webpack_require__(123);
 
 // EXTERNAL MODULE: ./utils/Math.js
-var utils_Math = __webpack_require__(67);
+var utils_Math = __webpack_require__(70);
 
 // CONCATENATED MODULE: ./containers/DealsTable.js
 var DealsTable__class;
@@ -13074,9 +14156,6 @@ function DealsTable__assertThisInitialized(self) { if (self === void 0) { throw 
 
 
 
-
-
-var chance = new external__chance__default.a();
 var Loader = external__react_spinners_["DotLoader"];
 
 var DealsTable_styles = function styles(theme) {
@@ -13171,7 +14250,6 @@ function (_Component) {
         return _this.props.deals.map(function (deal) {
           var dealID = deal.dealID,
               date = deal.date,
-              agentID = deal.agentID,
               dealType = deal.dealType,
               clientName = deal.clientName,
               clientEmail = deal.clientEmail,
@@ -13182,7 +14260,8 @@ function (_Component) {
               bonusPercentageAddedByAdmin = deal.bonusPercentageAddedByAdmin,
               netAgentCommission = deal.netAgentCommission,
               status = deal.status,
-              total = deal.total;
+              total = deal.total,
+              isCoAgent = deal.isCoAgent;
           return {
             dealID: dealID,
             date: external__moment__default()(date).format('MM/DD/YYYY'),
@@ -13200,7 +14279,7 @@ function (_Component) {
             view: {
               type: 'action',
               onClick: function onClick() {
-                return Object(debounce["a" /* default */])(_this.props.openDealsViewDialogBox.bind(null, dealID, status), 1000, true)();
+                return Object(debounce["a" /* default */])(_this.props.openDealsViewDialogBox.bind(null, dealID, status, isCoAgent), 1000, true)();
               }
             }
           };
@@ -13312,7 +14391,7 @@ function (_Component) {
 /* harmony default export */ var containers_DealsTable = __webpack_exports__["a"] = (Object(styles_["withStyles"])(DealsTable_styles)(DealsTable_DealsTableContainer));
 
 /***/ }),
-/* 170 */
+/* 185 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -13326,11 +14405,11 @@ var external__mobx_react_ = __webpack_require__(1);
 var external__mobx_react__default = /*#__PURE__*/__webpack_require__.n(external__mobx_react_);
 
 // EXTERNAL MODULE: external "material-ui/Dialog"
-var Dialog_ = __webpack_require__(36);
+var Dialog_ = __webpack_require__(57);
 var Dialog__default = /*#__PURE__*/__webpack_require__.n(Dialog_);
 
 // EXTERNAL MODULE: external "material-ui/Divider"
-var Divider_ = __webpack_require__(19);
+var Divider_ = __webpack_require__(20);
 var Divider__default = /*#__PURE__*/__webpack_require__.n(Divider_);
 
 // EXTERNAL MODULE: external "material-ui/styles"
@@ -13338,31 +14417,31 @@ var styles_ = __webpack_require__(2);
 var styles__default = /*#__PURE__*/__webpack_require__.n(styles_);
 
 // EXTERNAL MODULE: external "material-ui/Button"
-var Button_ = __webpack_require__(31);
+var Button_ = __webpack_require__(40);
 var Button__default = /*#__PURE__*/__webpack_require__.n(Button_);
 
 // EXTERNAL MODULE: external "moment"
-var external__moment_ = __webpack_require__(33);
+var external__moment_ = __webpack_require__(41);
 var external__moment__default = /*#__PURE__*/__webpack_require__.n(external__moment_);
 
 // EXTERNAL MODULE: external "set-value"
-var external__set_value_ = __webpack_require__(151);
+var external__set_value_ = __webpack_require__(159);
 var external__set_value__default = /*#__PURE__*/__webpack_require__.n(external__set_value_);
 
 // EXTERNAL MODULE: external "material-ui/Grid"
-var Grid_ = __webpack_require__(20);
+var Grid_ = __webpack_require__(19);
 var Grid__default = /*#__PURE__*/__webpack_require__.n(Grid_);
 
 // EXTERNAL MODULE: external "@nivo/pie"
-var pie_ = __webpack_require__(152);
+var pie_ = __webpack_require__(160);
 var pie__default = /*#__PURE__*/__webpack_require__.n(pie_);
 
 // EXTERNAL MODULE: external "@nivo/bar"
-var bar_ = __webpack_require__(153);
+var bar_ = __webpack_require__(161);
 var bar__default = /*#__PURE__*/__webpack_require__.n(bar_);
 
 // EXTERNAL MODULE: external "@nivo/line"
-var line_ = __webpack_require__(154);
+var line_ = __webpack_require__(162);
 var line__default = /*#__PURE__*/__webpack_require__.n(line_);
 
 // EXTERNAL MODULE: external "react-sizes"
@@ -13370,26 +14449,26 @@ var external__react_sizes_ = __webpack_require__(69);
 var external__react_sizes__default = /*#__PURE__*/__webpack_require__.n(external__react_sizes_);
 
 // EXTERNAL MODULE: external "chance"
-var external__chance_ = __webpack_require__(68);
+var external__chance_ = __webpack_require__(71);
 var external__chance__default = /*#__PURE__*/__webpack_require__.n(external__chance_);
 
 // EXTERNAL MODULE: external "react-toggle-button"
-var external__react_toggle_button_ = __webpack_require__(155);
+var external__react_toggle_button_ = __webpack_require__(163);
 var external__react_toggle_button__default = /*#__PURE__*/__webpack_require__.n(external__react_toggle_button_);
 
 // EXTERNAL MODULE: external "@material-ui/icons/AttachMoney"
-var AttachMoney_ = __webpack_require__(131);
+var AttachMoney_ = __webpack_require__(132);
 var AttachMoney__default = /*#__PURE__*/__webpack_require__.n(AttachMoney_);
 
 // EXTERNAL MODULE: external "@material-ui/icons/Help"
-var Help_ = __webpack_require__(132);
+var Help_ = __webpack_require__(133);
 var Help__default = /*#__PURE__*/__webpack_require__.n(Help_);
 
 // EXTERNAL MODULE: ./utils/Math.js
-var utils_Math = __webpack_require__(67);
+var utils_Math = __webpack_require__(70);
 
 // EXTERNAL MODULE: ./components/StatNumberBox/index.js
-var StatNumberBox = __webpack_require__(133);
+var StatNumberBox = __webpack_require__(134);
 
 // CONCATENATED MODULE: ./components/DealsSummary/index.js
 var _dec, _class;
@@ -14336,13 +15415,13 @@ function (_Component) {
 }(external__react_["Component"])) || _class) || _class);
 /* harmony default export */ var DealsSummary = (Object(styles_["withStyles"])(styles)(DealsSummary_AgentDashboard));
 // EXTERNAL MODULE: ./constants/dealTypes.js
-var dealTypes = __webpack_require__(156);
+var dealTypes = __webpack_require__(164);
 
 // EXTERNAL MODULE: ./constants/graphDataModels.js
-var graphDataModels = __webpack_require__(157);
+var graphDataModels = __webpack_require__(165);
 
 // EXTERNAL MODULE: ./utils/currency.js
-var currency = __webpack_require__(138);
+var currency = __webpack_require__(140);
 
 // CONCATENATED MODULE: ./containers/DealsSummary.js
 var DealsSummary__class;
@@ -14852,1142 +15931,6 @@ function (_Component) {
 /* harmony default export */ var DealsSummarDialogBox = __webpack_exports__["a"] = (Object(Dialog_["withMobileDialog"])()(Object(styles_["withStyles"])(DealsSummarDialogBox_styles)(DealsSummarDialogBox_DealsSummaryDialogBox)));
 
 /***/ }),
-/* 171 */,
-/* 172 */,
-/* 173 */,
-/* 174 */,
-/* 175 */
-/***/ (function(module, exports) {
-
-module.exports = require("buildo-react-components/lib/FormattedText");
-
-/***/ }),
-/* 176 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-
-// EXTERNAL MODULE: external "antd/lib/icon/style/css"
-var css_ = __webpack_require__(21);
-var css__default = /*#__PURE__*/__webpack_require__.n(css_);
-
-// EXTERNAL MODULE: external "antd/lib/icon"
-var icon_ = __webpack_require__(22);
-var icon__default = /*#__PURE__*/__webpack_require__.n(icon_);
-
-// EXTERNAL MODULE: external "react"
-var external__react_ = __webpack_require__(0);
-var external__react__default = /*#__PURE__*/__webpack_require__.n(external__react_);
-
-// EXTERNAL MODULE: external "react-form"
-var external__react_form_ = __webpack_require__(27);
-var external__react_form__default = /*#__PURE__*/__webpack_require__.n(external__react_form_);
-
-// EXTERNAL MODULE: external "uuid/v4"
-var v4_ = __webpack_require__(72);
-var v4__default = /*#__PURE__*/__webpack_require__.n(v4_);
-
-// EXTERNAL MODULE: external "material-ui/styles"
-var styles_ = __webpack_require__(2);
-var styles__default = /*#__PURE__*/__webpack_require__.n(styles_);
-
-// EXTERNAL MODULE: external "material-ui/Grid"
-var Grid_ = __webpack_require__(20);
-var Grid__default = /*#__PURE__*/__webpack_require__.n(Grid_);
-
-// EXTERNAL MODULE: external "react-sizes"
-var external__react_sizes_ = __webpack_require__(69);
-var external__react_sizes__default = /*#__PURE__*/__webpack_require__.n(external__react_sizes_);
-
-// EXTERNAL MODULE: ../node_modules/react-circular-progressbar/dist/styles.css
-var styles = __webpack_require__(119);
-var styles_default = /*#__PURE__*/__webpack_require__.n(styles);
-
-// CONCATENATED MODULE: ./components/forms/EditAgentPasswordForm/formValidation.js
-var validator = function validator(values) {
-  return {
-    password: !values.password || values.password.length < 8 ? 'This value is required and must be at least 8 characters long!' : null,
-    passwordConfirmation: !values.passwordConfirmation || values.passwordConfirmation !== values.password ? 'This value is required and must match your new password!' : null
-  };
-};
-
-/* harmony default export */ var formValidation = (validator);
-// EXTERNAL MODULE: ./components/MaterialCustomTextFieldWrapper/index.js
-var MaterialCustomTextFieldWrapper = __webpack_require__(106);
-
-// CONCATENATED MODULE: ./components/forms/EditAgentPasswordForm/index.js
-
-
-
-var _dec, _class;
-
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
-
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-
-
-
-
-
-
-
-
-
-var CustomTextField = MaterialCustomTextFieldWrapper["a" /* default */];
-
-var mapSizesToProps = function mapSizesToProps(_ref) {
-  var width = _ref.width;
-  return {
-    smViewport: width < 600,
-    mdViewport: width < 960,
-    lgViewport: width < 1280
-  };
-};
-
-var EditAgentPasswordForm_styles = function styles(theme) {
-  var _root;
-
-  return {
-    root: (_root = {
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'center',
-      justifyContent: 'center',
-      height: '100%',
-      padding: '30px 40px'
-    }, _defineProperty(_root, theme.breakpoints.down('md'), {
-      padding: '30px 0'
-    }), _defineProperty(_root, "backgroundColor", '#fff'), _root),
-    formRoot: {
-      maxWidth: '100%'
-    },
-    formControlWrapper: {
-      paddingLeft: theme.spacing.unit,
-      paddingRight: theme.spacing.unit
-    },
-    sliderWrapper: {
-      width: '100%'
-    },
-    formSubheading: {
-      width: '100%',
-      textAlign: 'center',
-      paddingTop: '82px'
-    },
-    h3: {
-      fontWeight: theme.typography.fontWeightMedium
-    },
-    formMiniHeading: {
-      width: '100%',
-      textAlign: 'left',
-      paddingLeft: '28px'
-    },
-    formMiniHeading2: {
-      width: '100%',
-      textAlign: 'left',
-      paddingLeft: '28px',
-      marginTop: '60px'
-    },
-    progressBarExplanation: {
-      marginTop: '20px',
-      fontSize: '1.1rem'
-    },
-    formSubmittingWrapper: {
-      display: 'flex',
-      flexDirection: 'column',
-      justifyContent: 'center',
-      alignItems: 'center',
-      width: '100%'
-    }
-  };
-};
-
-var EditAgentPasswordForm_CreateAgentForm = (_dec = external__react_sizes__default()(mapSizesToProps), _dec(_class =
-/*#__PURE__*/
-function (_Component) {
-  _inherits(CreateAgentForm, _Component);
-
-  function CreateAgentForm() {
-    _classCallCheck(this, CreateAgentForm);
-
-    return _possibleConstructorReturn(this, (CreateAgentForm.__proto__ || Object.getPrototypeOf(CreateAgentForm)).apply(this, arguments));
-  }
-
-  _createClass(CreateAgentForm, [{
-    key: "render",
-    value: function render() {
-      var _props = this.props,
-          classes = _props.classes,
-          onSubmit = _props.onSubmit,
-          submittingFormToServer = _props.submittingFormToServer;
-      return external__react__default.a.createElement("div", {
-        className: classes.root
-      }, external__react__default.a.createElement(external__react_form_["Form"], {
-        preValidate: this.preValidate,
-        onSubmit: onSubmit,
-        onSubmitFailure: this.props.onSubmitFailure,
-        validate: formValidation,
-        validateOnMount: true,
-        getApi: this.props.getFormApi
-      }, function (formApi) {
-        return external__react__default.a.createElement("form", {
-          onSubmit: formApi.submitForm,
-          id: "form1",
-          className: classes.formRoot,
-          style: {
-            display: submittingFormToServer ? 'none' : undefined
-          }
-        }, external__react__default.a.createElement(Grid__default.a, {
-          container: true,
-          spacing: 8
-        }, external__react__default.a.createElement(Grid__default.a, {
-          item: true,
-          xs: 12
-        }, external__react__default.a.createElement("div", {
-          className: classes.formControlWrapper
-        }, external__react__default.a.createElement(CustomTextField, {
-          field: "password",
-          id: v4__default()(),
-          label: "New Password",
-          fullWidth: true,
-          required: true,
-          type: "password"
-        }))), external__react__default.a.createElement(Grid__default.a, {
-          item: true,
-          xs: 12
-        }, external__react__default.a.createElement("div", {
-          className: classes.formControlWrapper
-        }, external__react__default.a.createElement(CustomTextField, {
-          field: "passwordConfirmation",
-          id: v4__default()(),
-          label: "New Password Confirmation",
-          fullWidth: true,
-          required: true,
-          type: "password"
-        })))));
-      }), submittingFormToServer ? external__react__default.a.createElement("div", {
-        className: classes.formSubmittingWrapper
-      }, external__react__default.a.createElement(icon__default.a, {
-        type: "loading",
-        style: {
-          color: '#000',
-          fontSize: '4rem'
-        }
-      }), external__react__default.a.createElement("div", {
-        className: classes.progressBarExplanation
-      }, "Finishing submission...")) : null);
-    }
-  }]);
-
-  return CreateAgentForm;
-}(external__react_["Component"])) || _class);
-/* harmony default export */ var EditAgentPasswordForm = __webpack_exports__["a"] = (Object(styles_["withStyles"])(EditAgentPasswordForm_styles)(EditAgentPasswordForm_CreateAgentForm));
-
-/***/ }),
-/* 177 */,
-/* 178 */,
-/* 179 */,
-/* 180 */,
-/* 181 */,
-/* 182 */,
-/* 183 */,
-/* 184 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-
-// EXTERNAL MODULE: external "react"
-var external__react_ = __webpack_require__(0);
-var external__react__default = /*#__PURE__*/__webpack_require__.n(external__react_);
-
-// EXTERNAL MODULE: external "mobx-react"
-var external__mobx_react_ = __webpack_require__(1);
-var external__mobx_react__default = /*#__PURE__*/__webpack_require__.n(external__mobx_react_);
-
-// EXTERNAL MODULE: external "material-ui/styles"
-var styles_ = __webpack_require__(2);
-var styles__default = /*#__PURE__*/__webpack_require__.n(styles_);
-
-// EXTERNAL MODULE: external "react-spinners"
-var external__react_spinners_ = __webpack_require__(24);
-var external__react_spinners__default = /*#__PURE__*/__webpack_require__.n(external__react_spinners_);
-
-// EXTERNAL MODULE: external "chance"
-var external__chance_ = __webpack_require__(68);
-var external__chance__default = /*#__PURE__*/__webpack_require__.n(external__chance_);
-
-// EXTERNAL MODULE: external "is-browser"
-var external__is_browser_ = __webpack_require__(7);
-var external__is_browser__default = /*#__PURE__*/__webpack_require__.n(external__is_browser_);
-
-// EXTERNAL MODULE: external "moment"
-var external__moment_ = __webpack_require__(33);
-var external__moment__default = /*#__PURE__*/__webpack_require__.n(external__moment_);
-
-// EXTERNAL MODULE: external "papaparse"
-var external__papaparse_ = __webpack_require__(134);
-var external__papaparse__default = /*#__PURE__*/__webpack_require__.n(external__papaparse_);
-
-// EXTERNAL MODULE: external "react-sizes"
-var external__react_sizes_ = __webpack_require__(69);
-var external__react_sizes__default = /*#__PURE__*/__webpack_require__.n(external__react_sizes_);
-
-// EXTERNAL MODULE: external "material-ui/Tooltip"
-var Tooltip_ = __webpack_require__(12);
-var Tooltip__default = /*#__PURE__*/__webpack_require__.n(Tooltip_);
-
-// EXTERNAL MODULE: external "classnames"
-var external__classnames_ = __webpack_require__(5);
-var external__classnames__default = /*#__PURE__*/__webpack_require__.n(external__classnames_);
-
-// EXTERNAL MODULE: external "@devexpress/dx-react-grid"
-var dx_react_grid_ = __webpack_require__(108);
-var dx_react_grid__default = /*#__PURE__*/__webpack_require__.n(dx_react_grid_);
-
-// EXTERNAL MODULE: external "@devexpress/dx-react-grid-material-ui"
-var dx_react_grid_material_ui_ = __webpack_require__(29);
-var dx_react_grid_material_ui__default = /*#__PURE__*/__webpack_require__.n(dx_react_grid_material_ui_);
-
-// EXTERNAL MODULE: external "react-icons/lib/md"
-var md_ = __webpack_require__(45);
-var md__default = /*#__PURE__*/__webpack_require__.n(md_);
-
-// EXTERNAL MODULE: external "@material-ui/icons/Equalizer"
-var Equalizer_ = __webpack_require__(125);
-var Equalizer__default = /*#__PURE__*/__webpack_require__.n(Equalizer_);
-
-// EXTERNAL MODULE: ./utils/backEndTableUtils/SelectFilterCell.js
-var SelectFilterCell = __webpack_require__(135);
-
-// EXTERNAL MODULE: ./utils/backEndTableUtils/tableSortingUtils.js
-var tableSortingUtils = __webpack_require__(136);
-
-// EXTERNAL MODULE: ./utils/backEndTableUtils/DefaultVirtualTableCell.js
-var DefaultVirtualTableCell = __webpack_require__(109);
-
-// EXTERNAL MODULE: ./utils/backEndTableUtils/TableComponent.js
-var TableComponent = __webpack_require__(110);
-
-// EXTERNAL MODULE: ./utils/backEndTableUtils/TableContainerComponent.js
-var TableContainerComponent = __webpack_require__(111);
-
-// EXTERNAL MODULE: ./utils/backEndTableUtils/NoDataCellComponent.js
-var NoDataCellComponent = __webpack_require__(112);
-
-// EXTERNAL MODULE: ./components/dataTableFormatters/ViewFormatter.js
-var ViewFormatter = __webpack_require__(113);
-
-// CONCATENATED MODULE: ./components/AdminAreaDealsTable/index.js
-var _dec, _dec2, _class;
-
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-var styles = function styles(theme) {
-  return {
-    root: {
-      boxShadow: theme.shadows[1],
-      backgroundColor: '#fff',
-      borderRadius: '3px',
-      '& [class^="Pager-pager-"]': {
-        borderTop: '1px solid rgba(224, 224, 224, 1)'
-      }
-    },
-    cell: {
-      width: '100%',
-      paddingLeft: theme.spacing.unit,
-      paddingRight: theme.spacing.unit
-    },
-    input: {
-      width: '100%'
-    },
-    myTable: {},
-    myTableContainer: {
-      minHeight: '300px',
-      height: 'calc(100vh - 310px) !important' // maxHeight: '800px',
-
-    },
-    myTableContainerSmallViewPort: {
-      minHeight: '300px',
-      height: 'calc(100vh - 445px) !important'
-    },
-    myNoDataCellComponent: {
-      borderBottom: 'none !important'
-    },
-    editBtnsWrapper: {
-      display: 'flex',
-      position: 'absolute',
-      top: '-13px',
-      left: '-13px'
-    },
-    downloadCSVBtn: {
-      display: 'flex',
-      justifyContent: 'center',
-      alignItems: 'center',
-      height: '34px',
-      width: '34px',
-      border: 'none',
-      borderRadius: '50%',
-      fontSize: '1rem',
-      color: '#fff',
-      backgroundColor: '#646d64',
-      boxShadow: theme.shadows[2],
-      zIndex: '2',
-      cursor: 'pointer',
-      outline: 'none',
-      transition: 'transform .2s ease-in-out',
-      '&:hover': {
-        transform: 'scale(1.1,1.1)'
-      }
-    },
-    tableDealsSummaryBtnsWrapper: {
-      display: 'flex',
-      position: 'absolute',
-      top: '-13px',
-      right: '-13px'
-    },
-    tableDealsSummaryBtn: {
-      display: 'flex',
-      justifyContent: 'center',
-      alignItems: 'center',
-      height: '34px',
-      width: '34px',
-      border: 'none',
-      borderRadius: '50%',
-      fontSize: '1rem',
-      color: '#fff',
-      backgroundColor: '#2995F3',
-      boxShadow: theme.shadows[2],
-      zIndex: '2',
-      cursor: 'pointer',
-      outline: 'none',
-      transition: 'transform .2s ease-in-out, color .2s ease-in-out',
-      '&:hover': {
-        transform: 'scale(1.1,1.1)',
-        backgroundColor: '#2380D1'
-      }
-    }
-  };
-};
-
-var sortingStateColumnExtensions = [{
-  columnName: 'dealID',
-  sortingEnabled: false
-}, {
-  columnName: 'view',
-  filteringEnabled: false
-}];
-var filteringStateColumnExtensions = [{
-  columnName: 'view',
-  filteringEnabled: false
-}];
-
-var getRowId = function getRowId(row) {
-  return row.dealID;
-};
-
-var statusSelectInputItems = [{
-  label: ''
-}, {
-  label: 'Pending'
-}, {
-  label: 'Approved'
-}];
-
-var AdminAreaDealsTable_FilterCell = function FilterCell(props) {
-  if (props.column.name === 'status') {
-    return external__react__default.a.createElement(SelectFilterCell["a" /* default */], _extends({
-      selectInputItems: statusSelectInputItems
-    }, props));
-  }
-
-  return external__react__default.a.createElement(dx_react_grid_material_ui_["TableFilterRow"].Cell, props);
-};
-
-var integratedSortingColumnExtensions = [{
-  columnName: 'date',
-  compare: tableSortingUtils["a" /* compareDate */]
-}, {
-  columnName: 'rentOrSalePrice',
-  compare: tableSortingUtils["b" /* compareNumber */]
-}, {
-  columnName: 'deductionsTotal',
-  compare: tableSortingUtils["b" /* compareNumber */]
-}, {
-  columnName: 'paymentsTotal',
-  compare: tableSortingUtils["b" /* compareNumber */]
-}, {
-  columnName: 'netPaymentsTotal',
-  compare: tableSortingUtils["b" /* compareNumber */]
-}];
-var defaultColumnWidths = [{
-  columnName: 'dealID',
-  width: 120
-}, {
-  columnName: 'date',
-  width: 120
-}, {
-  columnName: 'agentName',
-  width: 140
-}, {
-  columnName: 'agentType',
-  width: 120
-}, {
-  columnName: 'dealType',
-  width: 120
-}, {
-  columnName: 'clientName',
-  width: 140
-}, {
-  columnName: 'clientEmail',
-  width: 140
-}, {
-  columnName: 'propertyAddress',
-  width: 140
-}, {
-  columnName: 'propertyCity',
-  width: 120
-}, {
-  columnName: 'propertyState',
-  width: 120
-}, {
-  columnName: 'managementOrCobrokeCompany',
-  width: 160
-}, {
-  columnName: 'rentOrSalePrice',
-  width: 110
-}, {
-  columnName: 'deductionsTotal',
-  width: 110
-}, {
-  columnName: 'paymentsTotal',
-  width: 110
-}, {
-  columnName: 'netPaymentsTotal',
-  width: 110
-}, {
-  columnName: 'bonusPercentageAddedByAdmin',
-  width: 120
-}, {
-  columnName: 'netAgentCommission',
-  width: 170
-}, {
-  columnName: 'netCompanyCommission',
-  width: 170
-}, {
-  columnName: 'status',
-  width: 120
-}, {
-  columnName: 'view',
-  width: 100
-}];
-var defaultHiddenColumnNames = ['deductionsTotal', 'paymentsTotal', 'netPaymentsTotal', 'propertyState', 'clientEmail', 'managementOrCobrokeCompany', 'bonusPercentageAddedByAdmin', 'netAgentCommission', 'netCompanyCommission'];
-
-var AdminAreaDealsTable_ViewCellFormatter = function ViewCellFormatter(_ref) {
-  var value = _ref.value;
-  return external__react__default.a.createElement(ViewFormatter["a" /* default */], {
-    value: value
-  });
-};
-
-var AdminAreaDealsTable_ViewTypeProvider = function ViewTypeProvider(props) {
-  return external__react__default.a.createElement(dx_react_grid_["DataTypeProvider"], _extends({
-    formatterComponent: AdminAreaDealsTable_ViewCellFormatter
-  }, props));
-};
-
-var pageSizes = [5, 10, 15, 20, 50, 100, 0];
-
-var mapSizesToProps = function mapSizesToProps(_ref2) {
-  var width = _ref2.width;
-  return {
-    xsViewport: width < 412,
-    smViewport: width < 600,
-    mdViewport: width < 960,
-    lgViewport: width < 1280
-  };
-};
-
-var AdminAreaDealsTable_DealsTable = (_dec = Object(styles_["withStyles"])(styles), _dec2 = external__react_sizes__default()(mapSizesToProps), _dec(_class = _dec2(_class =
-/*#__PURE__*/
-function (_Component) {
-  _inherits(DealsTable, _Component);
-
-  function DealsTable(props) {
-    var _this;
-
-    _classCallCheck(this, DealsTable);
-
-    _this = _possibleConstructorReturn(this, (DealsTable.__proto__ || Object.getPrototypeOf(DealsTable)).call(this, props));
-    Object.defineProperty(_assertThisInitialized(_this), "changePageSize", {
-      configurable: true,
-      enumerable: true,
-      writable: true,
-      value: function value(pageSize) {
-        _this.setState({
-          pageSize: pageSize
-        });
-
-        if (_this.state.pageSize < pageSize) {
-          document.getElementById('myTableContainer').scrollTop = 0;
-        }
-      }
-    });
-    Object.defineProperty(_assertThisInitialized(_this), "currentPageChange", {
-      configurable: true,
-      enumerable: true,
-      writable: true,
-      value: function value(currentPage) {
-        _this.setState({
-          currentPage: currentPage
-        });
-
-        document.getElementById('myTableContainer').scrollTop = 0;
-      }
-    });
-    _this.state = {
-      pageSize: 10,
-      currentPage: 0,
-      grouping: [{
-        columnName: 'status'
-      }],
-      groupingStateColumnExtensions: [{
-        columnName: 'dealID',
-        groupingEnabled: false
-      }, {
-        columnName: 'date',
-        groupingEnabled: false
-      }, {
-        columnName: 'clientName',
-        groupingEnabled: false
-      }, {
-        columnName: 'clientEmail',
-        groupingEnabled: false
-      }, {
-        columnName: 'propertyAddress',
-        groupingEnabled: false
-      }, {
-        columnName: 'propertyCity',
-        groupingEnabled: false
-      }, {
-        columnName: 'propertyState',
-        groupingEnabled: false
-      }, {
-        columnName: 'managementOrCobrokeCompany',
-        groupingEnabled: false
-      }, {
-        columnName: 'rentOrSalePrice',
-        groupingEnabled: false
-      }, {
-        columnName: 'deductionsTotal',
-        groupingEnabled: false
-      }, {
-        columnName: 'paymentsTotal',
-        groupingEnabled: false
-      }, {
-        columnName: 'netPaymentsTotal',
-        groupingEnabled: false
-      }, {
-        columnName: 'bonusPercentageAddedByAdmin',
-        groupingEnabled: false
-      }, {
-        columnName: 'netAgentCommission',
-        groupingEnabled: false
-      }, {
-        columnName: 'netCompanyCommission',
-        groupingEnabled: false
-      }, {
-        columnName: 'view',
-        groupingEnabled: false
-      }],
-      integratedGroupingColumnExtensions: [{
-        columnName: 'view',
-        criteria: function criteria(value) {
-          return {
-            key: value.id
-          };
-        }
-      }],
-      defaultExpandedGroups: ['Pending']
-    };
-    return _this;
-  }
-
-  _createClass(DealsTable, [{
-    key: "componentDidMount",
-    value: function componentDidMount() {
-      if (this.props.onMount) this.props.onMount();
-    }
-  }, {
-    key: "render",
-    value: function render() {
-      var _props = this.props,
-          classes = _props.classes,
-          columns = _props.columns,
-          rows = _props.rows,
-          lgViewport = _props.lgViewport,
-          changeSelection = _props.changeSelection,
-          convertDealsToCSV = _props.convertDealsToCSV;
-      var _state = this.state,
-          grouping = _state.grouping,
-          groupingStateColumnExtensions = _state.groupingStateColumnExtensions,
-          integratedGroupingColumnExtensions = _state.integratedGroupingColumnExtensions,
-          defaultExpandedGroups = _state.defaultExpandedGroups;
-      return external__react__default.a.createElement("div", {
-        className: external__classnames__default()(classes.root, 'deal-table-wrapper')
-      }, external__react__default.a.createElement(dx_react_grid_material_ui_["Grid"], {
-        rows: rows,
-        columns: columns,
-        getRowId: getRowId
-      }, external__react__default.a.createElement(AdminAreaDealsTable_ViewTypeProvider, {
-        "for": ['view']
-      }), external__react__default.a.createElement(dx_react_grid_material_ui_["DragDropProvider"], null), external__react__default.a.createElement(dx_react_grid_["SearchState"], null), external__react__default.a.createElement(dx_react_grid_["FilteringState"], {
-        columnExtensions: filteringStateColumnExtensions
-      }), external__react__default.a.createElement(dx_react_grid_["SortingState"], {
-        defaultSorting: [{
-          columnName: 'date',
-          direction: 'desc'
-        }],
-        columnExtensions: sortingStateColumnExtensions
-      }), external__react__default.a.createElement(dx_react_grid_["SelectionState"], {
-        selection: this.props.selection,
-        onSelectionChange: changeSelection
-      }), external__react__default.a.createElement(dx_react_grid_["GroupingState"], {
-        defaultGrouping: grouping,
-        columnExtensions: groupingStateColumnExtensions,
-        defaultExpandedGroups: defaultExpandedGroups
-      }), external__react__default.a.createElement(dx_react_grid_["PagingState"], {
-        currentPage: this.state.currentPage,
-        pageSize: this.state.pageSize,
-        onPageSizeChange: this.changePageSize,
-        onCurrentPageChange: this.currentPageChange
-      }), external__react__default.a.createElement(dx_react_grid_["IntegratedFiltering"], null), external__react__default.a.createElement(dx_react_grid_["IntegratedSorting"], {
-        columnExtensions: integratedSortingColumnExtensions
-      }), external__react__default.a.createElement(dx_react_grid_["IntegratedGrouping"], {
-        columnExtensions: integratedGroupingColumnExtensions
-      }), external__react__default.a.createElement(dx_react_grid_["IntegratedSelection"], null), external__react__default.a.createElement(dx_react_grid_["IntegratedPaging"], null), external__react__default.a.createElement(dx_react_grid_material_ui_["VirtualTable"], {
-        height: external__is_browser__default.a ? window.innerHeight - 310 : undefined,
-        tableComponent: TableComponent["a" /* default */],
-        containerComponent: function containerComponent(props) {
-          return external__react__default.a.createElement(TableContainerComponent["a" /* default */], _extends({
-            className: lgViewport ? classes.myTableContainerSmallViewPort : classes.myTableContainer
-          }, props));
-        },
-        cellComponent: DefaultVirtualTableCell["a" /* default */],
-        noDataCellComponent: NoDataCellComponent["a" /* default */]
-      }), external__react__default.a.createElement(dx_react_grid_material_ui_["TableColumnReordering"], {
-        defaultOrder: columns.map(function (column) {
-          return column.name;
-        })
-      }), external__react__default.a.createElement(dx_react_grid_material_ui_["TableColumnResizing"], {
-        defaultColumnWidths: defaultColumnWidths
-      }), external__react__default.a.createElement(dx_react_grid_material_ui_["TableFilterRow"], {
-        cellComponent: AdminAreaDealsTable_FilterCell
-      }), external__react__default.a.createElement(dx_react_grid_material_ui_["TableGroupRow"], null), external__react__default.a.createElement(dx_react_grid_material_ui_["Toolbar"], null), external__react__default.a.createElement(dx_react_grid_material_ui_["SearchPanel"], null), external__react__default.a.createElement(dx_react_grid_material_ui_["TableColumnVisibility"], {
-        defaultHiddenColumnNames: defaultHiddenColumnNames
-      }), external__react__default.a.createElement(dx_react_grid_material_ui_["ColumnChooser"], null), external__react__default.a.createElement(dx_react_grid_material_ui_["TableHeaderRow"], {
-        showSortingControls: true,
-        showGroupingControls: true
-      }), external__react__default.a.createElement(dx_react_grid_material_ui_["TableSelection"], {
-        showSelectAll: true,
-        selectByRowClick: true
-      }), external__react__default.a.createElement(dx_react_grid_material_ui_["GroupingPanel"], {
-        showGroupingControls: true
-      }), external__react__default.a.createElement(dx_react_grid_material_ui_["PagingPanel"], {
-        pageSizes: pageSizes
-      })), rows && rows.length ? external__react__default.a.createElement(Tooltip__default.a, {
-        title: "Download selected rows from table as CSV file.",
-        enterDelay: 300,
-        leaveDelay: 100
-      }, external__react__default.a.createElement("span", {
-        className: classes.editBtnsWrapper
-      }, external__react__default.a.createElement("button", {
-        className: classes.downloadCSVBtn,
-        onClick: convertDealsToCSV
-      }, external__react__default.a.createElement(md_["MdFileDownload"], null)))) : null, this.props.isDealsWithGQLQuery ? external__react__default.a.createElement(Tooltip__default.a, {
-        title: "Click to view deals summary",
-        enterDelay: 300,
-        leaveDelay: 100
-      }, external__react__default.a.createElement("span", {
-        className: classes.tableDealsSummaryBtnsWrapper
-      }, external__react__default.a.createElement("button", {
-        className: classes.tableDealsSummaryBtn,
-        onClick: this.props.toggleDealsSummaryDialogBox
-      }, external__react__default.a.createElement(Equalizer__default.a, null)))) : null);
-    }
-  }]);
-
-  return DealsTable;
-}(external__react_["Component"])) || _class) || _class);
-/* harmony default export */ var AdminAreaDealsTable = (AdminAreaDealsTable_DealsTable);
-// EXTERNAL MODULE: ./utils/debounce.js
-var debounce = __webpack_require__(123);
-
-// EXTERNAL MODULE: ./utils/stringUtils.js
-var stringUtils = __webpack_require__(15);
-
-// EXTERNAL MODULE: ./utils/Math.js
-var utils_Math = __webpack_require__(67);
-
-// CONCATENATED MODULE: ./containers/AdminAreaDealsTableContainer.js
-var AdminAreaDealsTableContainer__class;
-
-function AdminAreaDealsTableContainer__typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { AdminAreaDealsTableContainer__typeof = function _typeof(obj) { return typeof obj; }; } else { AdminAreaDealsTableContainer__typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return AdminAreaDealsTableContainer__typeof(obj); }
-
-function AdminAreaDealsTableContainer__extends() { AdminAreaDealsTableContainer__extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return AdminAreaDealsTableContainer__extends.apply(this, arguments); }
-
-function _objectWithoutProperties(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i < sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) >= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-function AdminAreaDealsTableContainer__classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function AdminAreaDealsTableContainer__defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function AdminAreaDealsTableContainer__createClass(Constructor, protoProps, staticProps) { if (protoProps) AdminAreaDealsTableContainer__defineProperties(Constructor.prototype, protoProps); if (staticProps) AdminAreaDealsTableContainer__defineProperties(Constructor, staticProps); return Constructor; }
-
-function AdminAreaDealsTableContainer__possibleConstructorReturn(self, call) { if (call && (AdminAreaDealsTableContainer__typeof(call) === "object" || typeof call === "function")) { return call; } return AdminAreaDealsTableContainer__assertThisInitialized(self); }
-
-function AdminAreaDealsTableContainer__inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-function AdminAreaDealsTableContainer__assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-
-
-
-
-
-
-
-
-
-
-
-
-var chance = new external__chance__default.a();
-var Loader = external__react_spinners_["DotLoader"];
-
-var returnAgentType = function returnAgentType(number) {
-  if (number < 33) {
-    return 60;
-  } else if (number < 66) {
-    return 70;
-  } else {
-    return 80;
-  }
-};
-
-var AdminAreaDealsTableContainer_styles = function styles(theme) {
-  return {
-    root: {
-      position: 'relative'
-    },
-    progress: {
-      margin: theme.spacing.unit * 2,
-      marginRight: 'auto',
-      marginLeft: 'auto',
-      display: 'block'
-    },
-    progressWrapper: {
-      position: 'absolute',
-      top: 0,
-      bottom: 0,
-      left: 0,
-      right: 0,
-      display: 'flex',
-      justifyContent: 'center',
-      alignItems: 'center',
-      flexDirection: 'column',
-      padding: '60px 20px',
-      borderRadius: '3px',
-      backgroundColor: '#fff',
-      zIndex: 2
-    }
-  };
-};
-
-var AdminAreaDealsTableContainer_columns = [{
-  name: 'dealID',
-  title: 'Deal ID'
-}, {
-  name: 'date',
-  title: 'Date'
-}, {
-  name: 'agentName',
-  title: 'Agent Name'
-}, {
-  name: 'agentType',
-  title: 'Agent Type'
-}, {
-  name: 'dealType',
-  title: 'Deal Type'
-}, {
-  name: 'clientName',
-  title: 'Client Name'
-}, {
-  name: 'clientEmail',
-  title: 'Client Email'
-}, {
-  name: 'propertyAddress',
-  title: 'Property Address'
-}, {
-  name: 'propertyCity',
-  title: 'Property City'
-}, {
-  name: 'propertyState',
-  title: 'Property State'
-}, {
-  name: 'managementOrCobrokeCompany',
-  title: 'Mgmt/Co-Broke Co.'
-}, {
-  name: 'rentOrSalePrice',
-  title: 'Rent/Sale Price'
-}, {
-  name: 'deductionsTotal',
-  title: 'Deductions Total'
-}, {
-  name: 'paymentsTotal',
-  title: 'Payments Total'
-}, {
-  name: 'netPaymentsTotal',
-  title: 'Net Payments Total'
-}, {
-  name: 'bonusPercentageAddedByAdmin',
-  title: "Agent's Bonus %"
-}, {
-  name: 'netAgentCommission',
-  title: 'Net Agent Commission'
-}, {
-  name: 'netCompanyCommission',
-  title: 'Net Company Commission'
-}, {
-  name: 'status',
-  title: 'Status'
-}, {
-  name: 'view',
-  title: 'View'
-}];
-
-var AdminAreaDealsTableContainer_DealsTableContainer = Object(external__mobx_react_["observer"])(AdminAreaDealsTableContainer__class =
-/*#__PURE__*/
-function (_Component) {
-  AdminAreaDealsTableContainer__inherits(DealsTableContainer, _Component);
-
-  function DealsTableContainer(props) {
-    var _this;
-
-    AdminAreaDealsTableContainer__classCallCheck(this, DealsTableContainer);
-
-    _this = AdminAreaDealsTableContainer__possibleConstructorReturn(this, (DealsTableContainer.__proto__ || Object.getPrototypeOf(DealsTableContainer)).call(this, props));
-    Object.defineProperty(AdminAreaDealsTableContainer__assertThisInitialized(_this), "createRows", {
-      configurable: true,
-      enumerable: true,
-      writable: true,
-      value: function value() {
-        return _this.props.deals.map(function (deal) {
-          var dealID = deal.dealID,
-              date = deal.date,
-              agentName = deal.agentName,
-              agentType = deal.agentType,
-              leadSource = deal.leadSource,
-              dealType = deal.dealType,
-              propertyAddress = deal.propertyAddress,
-              state = deal.state,
-              city = deal.city,
-              apartmentNumber = deal.apartmentNumber,
-              managementOrCobrokeCompany = deal.managementOrCobrokeCompany,
-              price = deal.price,
-              clientName = deal.clientName,
-              clientEmail = deal.clientEmail,
-              paymentsTotal = deal.paymentsTotal,
-              deductionsTotal = deal.deductionsTotal,
-              total = deal.total,
-              status = deal.status,
-              bonusPercentageAddedByAdmin = deal.bonusPercentageAddedByAdmin,
-              netAgentCommission = deal.netAgentCommission,
-              netCompanyCommission = deal.netCompanyCommission;
-          return {
-            dealID: dealID,
-            date: external__moment__default()(date).format('MM/DD/YYYY'),
-            agentName: agentName,
-            agentType: "".concat(agentType, "%"),
-            dealType: dealType,
-            clientName: clientName,
-            clientEmail: clientEmail,
-            propertyAddress: propertyAddress,
-            propertyCity: city,
-            propertyState: state,
-            managementOrCobrokeCompany: managementOrCobrokeCompany,
-            rentOrSalePrice: "$".concat(Object(utils_Math["a" /* padStringToDecimalString */])(Number(price || 0).toLocaleString())),
-            deductionsTotal: "$".concat(Object(utils_Math["a" /* padStringToDecimalString */])(Number(deductionsTotal || 0).toLocaleString())),
-            paymentsTotal: "$".concat(Object(utils_Math["a" /* padStringToDecimalString */])(Number(paymentsTotal || 0).toLocaleString())),
-            netPaymentsTotal: "$".concat(Object(utils_Math["a" /* padStringToDecimalString */])(Number(total || 0).toLocaleString())),
-            bonusPercentageAddedByAdmin: status === 'pending' ? undefined : "%".concat(bonusPercentageAddedByAdmin || 0),
-            netAgentCommission: status === 'pending' ? undefined : "$".concat(Object(utils_Math["a" /* padStringToDecimalString */])(Number(netAgentCommission || 0).toLocaleString())),
-            netCompanyCommission: status === 'pending' ? undefined : "$".concat(Object(utils_Math["a" /* padStringToDecimalString */])(Number(netCompanyCommission || 0).toLocaleString())),
-            status: Object(stringUtils["a" /* capitalize */])(status),
-            view: {
-              type: 'action',
-              onClick: function onClick() {
-                return Object(debounce["a" /* default */])(_this.props.openDealsViewDialogBox.bind(null, dealID, status), 1000, true)();
-              }
-            }
-          };
-        });
-      }
-    });
-    Object.defineProperty(AdminAreaDealsTableContainer__assertThisInitialized(_this), "convertDealsToCSV", {
-      configurable: true,
-      enumerable: true,
-      writable: true,
-      value: function value() {
-        var deals = _this.props.deals;
-        var selection = _this.state.selection;
-        console.log(selection);
-        console.log(deals);
-        if (!selection || !selection.length) return;
-        var csvContent = external__papaparse__default.a.unparse(deals.filter(function (deal) {
-          return selection.includes(deal.dealID);
-        }).map(function (deal) {
-          return _objectSpread({}, deal, {
-            date: external__moment__default()(deal.date).format('MM/DD/YYYY')
-          });
-        }), {
-          header: true
-        });
-
-        if (_this._csvLink) {
-          _this._csvLink.setAttribute('href', "data:text/csv;charset=utf-8,".concat(encodeURIComponent(csvContent)));
-
-          _this._csvLink.setAttribute('download', 'deals_data.csv');
-
-          _this._csvLink.click();
-        }
-      }
-    });
-    Object.defineProperty(AdminAreaDealsTableContainer__assertThisInitialized(_this), "changeSelection", {
-      configurable: true,
-      enumerable: true,
-      writable: true,
-      value: function value(selection) {
-        _this.setState({
-          selection: selection
-        });
-      }
-    });
-    _this.state = {
-      tableIsLoading: true,
-      selection: []
-    };
-    return _this;
-  }
-
-  AdminAreaDealsTableContainer__createClass(DealsTableContainer, [{
-    key: "render",
-    value: function render() {
-      var _this2 = this;
-
-      var _state = this.state,
-          tableIsLoading = _state.tableIsLoading,
-          selection = _state.selection;
-
-      var _props = this.props,
-          classes = _props.classes,
-          small = _props.small,
-          rest = _objectWithoutProperties(_props, ["classes", "small"]);
-
-      return external__react__default.a.createElement("div", {
-        className: classes.root
-      }, tableIsLoading ? external__react__default.a.createElement("div", {
-        className: classes.progressWrapper,
-        style: {
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-          height: 'calc(100vh - 180px)'
-        }
-      }, external__react__default.a.createElement(Loader, {
-        color: "#f44336",
-        loading: true
-      })) : null, external__react__default.a.createElement(AdminAreaDealsTable, AdminAreaDealsTableContainer__extends({}, rest, {
-        changeSelection: this.changeSelection,
-        selection: selection,
-        convertDealsToCSV: this.convertDealsToCSV,
-        small: small,
-        onMount: function onMount() {
-          return tableIsLoading ? _this2.setState({
-            tableIsLoading: false
-          }) : null;
-        },
-        columns: AdminAreaDealsTableContainer_columns,
-        rows: this.createRows()
-      })), external__react__default.a.createElement("a", {
-        href: "#",
-        id: "csvLink",
-        ref: function ref(_ref) {
-          return _this2._csvLink = _ref;
-        },
-        style: {
-          visibility: 'hidden',
-          position: 'absolute',
-          poniterEvents: 'none'
-        }
-      }));
-    }
-  }]);
-
-  return DealsTableContainer;
-}(external__react_["Component"])) || AdminAreaDealsTableContainer__class;
-
-/* harmony default export */ var AdminAreaDealsTableContainer = __webpack_exports__["a"] = (Object(styles_["withStyles"])(AdminAreaDealsTableContainer_styles)(AdminAreaDealsTableContainer_DealsTableContainer));
-
-/***/ }),
-/* 185 */,
 /* 186 */,
 /* 187 */,
 /* 188 */,
@@ -16044,15 +15987,14 @@ function (_Component) {
 /* 239 */,
 /* 240 */,
 /* 241 */,
-/* 242 */,
-/* 243 */
+/* 242 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(244);
+module.exports = __webpack_require__(243);
 
 
 /***/ }),
-/* 244 */
+/* 243 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -16079,24 +16021,24 @@ var external__react_apollo_ = __webpack_require__(17);
 var external__react_apollo__default = /*#__PURE__*/__webpack_require__.n(external__react_apollo_);
 
 // EXTERNAL MODULE: external "react-spinners"
-var external__react_spinners_ = __webpack_require__(24);
+var external__react_spinners_ = __webpack_require__(26);
 var external__react_spinners__default = /*#__PURE__*/__webpack_require__.n(external__react_spinners_);
 
 // EXTERNAL MODULE: ./components/Layout/index.js + 11 modules
 var Layout = __webpack_require__(80);
 
 // EXTERNAL MODULE: ./models/index.js + 8 modules
-var models = __webpack_require__(25);
+var models = __webpack_require__(24);
 
 // EXTERNAL MODULE: ./lib/withData.js + 3 modules
-var withData = __webpack_require__(54);
+var withData = __webpack_require__(50);
 
 // EXTERNAL MODULE: ./routes.js
 var routes = __webpack_require__(4);
 var routes_default = /*#__PURE__*/__webpack_require__.n(routes);
 
 // EXTERNAL MODULE: external "faker"
-var external__faker_ = __webpack_require__(126);
+var external__faker_ = __webpack_require__(124);
 var external__faker__default = /*#__PURE__*/__webpack_require__.n(external__faker_);
 
 // EXTERNAL MODULE: external "material-ui/styles"
@@ -16112,11 +16054,11 @@ var IconButton_ = __webpack_require__(14);
 var IconButton__default = /*#__PURE__*/__webpack_require__.n(IconButton_);
 
 // EXTERNAL MODULE: external "@material-ui/icons/Close"
-var Close_ = __webpack_require__(32);
+var Close_ = __webpack_require__(31);
 var Close__default = /*#__PURE__*/__webpack_require__.n(Close_);
 
 // EXTERNAL MODULE: external "material-ui/Button"
-var Button_ = __webpack_require__(31);
+var Button_ = __webpack_require__(40);
 var Button__default = /*#__PURE__*/__webpack_require__.n(Button_);
 
 // EXTERNAL MODULE: external "classnames"
@@ -16124,31 +16066,31 @@ var external__classnames_ = __webpack_require__(5);
 var external__classnames__default = /*#__PURE__*/__webpack_require__.n(external__classnames_);
 
 // EXTERNAL MODULE: external "material-ui/Grid"
-var Grid_ = __webpack_require__(20);
+var Grid_ = __webpack_require__(19);
 var Grid__default = /*#__PURE__*/__webpack_require__.n(Grid_);
 
 // EXTERNAL MODULE: external "@material-ui/icons/AttachMoney"
-var AttachMoney_ = __webpack_require__(131);
+var AttachMoney_ = __webpack_require__(132);
 var AttachMoney__default = /*#__PURE__*/__webpack_require__.n(AttachMoney_);
 
 // EXTERNAL MODULE: external "@material-ui/icons/Help"
-var Help_ = __webpack_require__(132);
+var Help_ = __webpack_require__(133);
 var Help__default = /*#__PURE__*/__webpack_require__.n(Help_);
 
 // EXTERNAL MODULE: external "@material-ui/icons/Star"
-var Star_ = __webpack_require__(166);
+var Star_ = __webpack_require__(158);
 var Star__default = /*#__PURE__*/__webpack_require__.n(Star_);
 
 // EXTERNAL MODULE: external "@material-ui/icons/ExpandMore"
-var ExpandMore_ = __webpack_require__(118);
+var ExpandMore_ = __webpack_require__(116);
 var ExpandMore__default = /*#__PURE__*/__webpack_require__.n(ExpandMore_);
 
 // EXTERNAL MODULE: external "buildo-react-components/lib/FormattedText"
-var FormattedText_ = __webpack_require__(175);
+var FormattedText_ = __webpack_require__(172);
 var FormattedText__default = /*#__PURE__*/__webpack_require__.n(FormattedText_);
 
 // EXTERNAL MODULE: external "moment"
-var external__moment_ = __webpack_require__(33);
+var external__moment_ = __webpack_require__(41);
 var external__moment__default = /*#__PURE__*/__webpack_require__.n(external__moment_);
 
 // EXTERNAL MODULE: external "material-ui/Menu"
@@ -16156,22 +16098,22 @@ var Menu_ = __webpack_require__(64);
 var Menu__default = /*#__PURE__*/__webpack_require__.n(Menu_);
 
 // EXTERNAL MODULE: external "material-ui/Menu/MenuItem"
-var MenuItem_ = __webpack_require__(107);
+var MenuItem_ = __webpack_require__(115);
 var MenuItem__default = /*#__PURE__*/__webpack_require__.n(MenuItem_);
 
 // EXTERNAL MODULE: external "material-ui/ExpansionPanel"
-var ExpansionPanel_ = __webpack_require__(117);
+var ExpansionPanel_ = __webpack_require__(114);
 var ExpansionPanel__default = /*#__PURE__*/__webpack_require__.n(ExpansionPanel_);
 
 // EXTERNAL MODULE: external "material-ui/Typography"
-var Typography_ = __webpack_require__(28);
+var Typography_ = __webpack_require__(27);
 var Typography__default = /*#__PURE__*/__webpack_require__.n(Typography_);
 
 // EXTERNAL MODULE: ./utils/Math.js
-var utils_Math = __webpack_require__(67);
+var utils_Math = __webpack_require__(70);
 
 // EXTERNAL MODULE: ./components/StatNumberBox/index.js
-var StatNumberBox = __webpack_require__(133);
+var StatNumberBox = __webpack_require__(134);
 
 // EXTERNAL MODULE: ./constants/userTypes.js
 var userTypes = __webpack_require__(10);
@@ -16182,40 +16124,40 @@ var fa_ = __webpack_require__(59);
 var fa__default = /*#__PURE__*/__webpack_require__.n(fa_);
 
 // EXTERNAL MODULE: ./utils/stringUtils.js
-var stringUtils = __webpack_require__(15);
+var stringUtils = __webpack_require__(18);
 
 // EXTERNAL MODULE: ./components/CustomInputMask/index.js
-var CustomInputMask = __webpack_require__(129);
+var CustomInputMask = __webpack_require__(126);
 
 // EXTERNAL MODULE: external "material-ui/Tooltip"
 var Tooltip_ = __webpack_require__(12);
 var Tooltip__default = /*#__PURE__*/__webpack_require__.n(Tooltip_);
 
 // EXTERNAL MODULE: external "@material-ui/icons/Add"
-var Add_ = __webpack_require__(38);
+var Add_ = __webpack_require__(55);
 var Add__default = /*#__PURE__*/__webpack_require__.n(Add_);
 
 // EXTERNAL MODULE: external "@material-ui/icons/Equalizer"
-var Equalizer_ = __webpack_require__(125);
+var Equalizer_ = __webpack_require__(131);
 var Equalizer__default = /*#__PURE__*/__webpack_require__.n(Equalizer_);
 
 // EXTERNAL MODULE: ./components/SubmitDealDialogBox/index.js + 2 modules
-var SubmitDealDialogBox = __webpack_require__(168);
+var SubmitDealDialogBox = __webpack_require__(183);
 
 // EXTERNAL MODULE: ./containers/DealsTable.js + 1 modules
-var DealsTable = __webpack_require__(169);
+var DealsTable = __webpack_require__(184);
 
 // EXTERNAL MODULE: ./containers/AdminAreaDealsTableContainer.js + 1 modules
-var AdminAreaDealsTableContainer = __webpack_require__(184);
+var AdminAreaDealsTableContainer = __webpack_require__(181);
 
 // EXTERNAL MODULE: ./components/DealsSummarDialogBox/index.js + 2 modules
-var DealsSummarDialogBox = __webpack_require__(170);
+var DealsSummarDialogBox = __webpack_require__(185);
 
 // EXTERNAL MODULE: ./components/ViewDealDialogBox/index.js + 2 modules
-var ViewDealDialogBox = __webpack_require__(158);
+var ViewDealDialogBox = __webpack_require__(166);
 
 // EXTERNAL MODULE: ./effects/deals/deleteDeal.js
-var deleteDeal = __webpack_require__(141);
+var deleteDeal = __webpack_require__(149);
 
 // CONCATENATED MODULE: ./containers/DealsWithGQLQuery.js
 var _class;
@@ -17363,35 +17305,35 @@ function (_Component) {
 }(external__react_["Component"])) || Profile__class) || Profile__class);
 /* harmony default export */ var components_Profile = (Profile_Profile);
 // EXTERNAL MODULE: external "material-ui/Dialog"
-var Dialog_ = __webpack_require__(36);
+var Dialog_ = __webpack_require__(57);
 var Dialog__default = /*#__PURE__*/__webpack_require__.n(Dialog_);
 
 // EXTERNAL MODULE: external "material-ui/Divider"
-var Divider_ = __webpack_require__(19);
+var Divider_ = __webpack_require__(20);
 var Divider__default = /*#__PURE__*/__webpack_require__.n(Divider_);
 
 // EXTERNAL MODULE: external "axios"
-var external__axios_ = __webpack_require__(127);
+var external__axios_ = __webpack_require__(129);
 var external__axios__default = /*#__PURE__*/__webpack_require__.n(external__axios_);
 
 // EXTERNAL MODULE: external "antd/lib/icon/style/css"
-var css_ = __webpack_require__(21);
+var css_ = __webpack_require__(22);
 var css__default = /*#__PURE__*/__webpack_require__.n(css_);
 
 // EXTERNAL MODULE: external "antd/lib/icon"
-var icon_ = __webpack_require__(22);
+var icon_ = __webpack_require__(23);
 var icon__default = /*#__PURE__*/__webpack_require__.n(icon_);
 
 // EXTERNAL MODULE: external "react-form"
-var external__react_form_ = __webpack_require__(27);
+var external__react_form_ = __webpack_require__(29);
 var external__react_form__default = /*#__PURE__*/__webpack_require__.n(external__react_form_);
 
 // EXTERNAL MODULE: external "uuid/v4"
-var v4_ = __webpack_require__(72);
+var v4_ = __webpack_require__(74);
 var v4__default = /*#__PURE__*/__webpack_require__.n(v4_);
 
 // EXTERNAL MODULE: external "react-avatar-editor"
-var external__react_avatar_editor_ = __webpack_require__(161);
+var external__react_avatar_editor_ = __webpack_require__(152);
 var external__react_avatar_editor__default = /*#__PURE__*/__webpack_require__.n(external__react_avatar_editor_);
 
 // EXTERNAL MODULE: external "react-sizes"
@@ -17399,18 +17341,18 @@ var external__react_sizes_ = __webpack_require__(69);
 var external__react_sizes__default = /*#__PURE__*/__webpack_require__.n(external__react_sizes_);
 
 // EXTERNAL MODULE: external "react-circular-progressbar"
-var external__react_circular_progressbar_ = __webpack_require__(128);
+var external__react_circular_progressbar_ = __webpack_require__(130);
 var external__react_circular_progressbar__default = /*#__PURE__*/__webpack_require__.n(external__react_circular_progressbar_);
 
 // EXTERNAL MODULE: ../node_modules/react-circular-progressbar/dist/styles.css
-var dist_styles = __webpack_require__(119);
+var dist_styles = __webpack_require__(120);
 var styles_default = /*#__PURE__*/__webpack_require__.n(dist_styles);
 
 // EXTERNAL MODULE: ./components/CustomSlider/index.js
-var CustomSlider = __webpack_require__(162);
+var CustomSlider = __webpack_require__(153);
 
 // EXTERNAL MODULE: external "email-validator"
-var external__email_validator_ = __webpack_require__(100);
+var external__email_validator_ = __webpack_require__(103);
 var external__email_validator__default = /*#__PURE__*/__webpack_require__.n(external__email_validator_);
 
 // CONCATENATED MODULE: ./components/forms/EditProfilePicForm/formValidation.js
@@ -17422,19 +17364,19 @@ var validator = function validator(values) {
 
 /* harmony default export */ var formValidation = (validator);
 // EXTERNAL MODULE: ./components/CustomFileUploadInputWrapper/index.js
-var CustomFileUploadInputWrapper = __webpack_require__(120);
+var CustomFileUploadInputWrapper = __webpack_require__(121);
 
 // EXTERNAL MODULE: ./components/MaterialCustomTextFieldWrapper/index.js
 var MaterialCustomTextFieldWrapper = __webpack_require__(106);
 
 // EXTERNAL MODULE: ./components/MaterialCustomRadioInputWrapper/index.js
-var MaterialCustomRadioInputWrapper = __webpack_require__(121);
+var MaterialCustomRadioInputWrapper = __webpack_require__(122);
 
 // EXTERNAL MODULE: ./components/MaterialCustomSelectInputWrapper/index.js
-var MaterialCustomSelectInputWrapper = __webpack_require__(115);
+var MaterialCustomSelectInputWrapper = __webpack_require__(117);
 
 // EXTERNAL MODULE: ./utils/constants.js
-var constants = __webpack_require__(130);
+var constants = __webpack_require__(127);
 
 // CONCATENATED MODULE: ./components/forms/EditProfilePicForm/index.js
 
@@ -17874,7 +17816,7 @@ var getProfilePicSignedURL_getProfilePicSignedURL = function getProfilePicSigned
 
 /* harmony default export */ var effects_getProfilePicSignedURL = (getProfilePicSignedURL_getProfilePicSignedURL);
 // EXTERNAL MODULE: ./effects/users/setAgentProfilePic.js
-var setAgentProfilePic = __webpack_require__(165);
+var setAgentProfilePic = __webpack_require__(157);
 
 // CONCATENATED MODULE: ./containers/EditProfilePicForm.js
 var containers_EditProfilePicForm__class;
@@ -18206,7 +18148,7 @@ function (_Component) {
 
 /* harmony default export */ var containers_EditProfilePicForm = (EditProfilePicForm_EditProfilePicFormContainer);
 // EXTERNAL MODULE: ./AppGlobalStateProvider/index.js
-var AppGlobalStateProvider = __webpack_require__(73);
+var AppGlobalStateProvider = __webpack_require__(72);
 
 // CONCATENATED MODULE: ./components/EditProfilePicDialogBox/index.js
 var EditProfilePicDialogBox__class;
@@ -18463,7 +18405,7 @@ function (_Component) {
 
 /* harmony default export */ var components_EditProfilePicDialogBox = (Object(Dialog_["withMobileDialog"])()(Object(styles_["withStyles"])(EditProfilePicDialogBox_styles)(EditProfilePicDialogBox_EditProfilePicDialogBox)));
 // EXTERNAL MODULE: ./components/forms/CreateAgentForm/index.js + 1 modules
-var CreateAgentForm = __webpack_require__(164);
+var CreateAgentForm = __webpack_require__(156);
 
 // CONCATENATED MODULE: ./effects/users/updateAgent.js
 
@@ -19211,7 +19153,7 @@ function (_Component) {
 
 /* harmony default export */ var components_EditAgentDialogBox = (Object(Dialog_["withMobileDialog"])()(Object(styles_["withStyles"])(EditAgentDialogBox_styles)(EditAgentDialogBox_EditAgentDialogBox)));
 // EXTERNAL MODULE: ./components/forms/EditAgentPasswordForm/index.js + 1 modules
-var EditAgentPasswordForm = __webpack_require__(176);
+var EditAgentPasswordForm = __webpack_require__(173);
 
 // CONCATENATED MODULE: ./effects/users/editAgentPassword.js
 

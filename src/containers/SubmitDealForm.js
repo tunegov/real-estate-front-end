@@ -63,6 +63,7 @@ class SubmitDealFormContainer extends Component {
   }
 
   uploadItemsNum = 0;
+
   itemsUploaded = 0;
 
   paymentAmountChangeHandler = (id, value) => {
@@ -215,7 +216,6 @@ class SubmitDealFormContainer extends Component {
       contractOrLeaseForms,
       agencyDisclosureForm,
       addedManagementCompanies,
-      hasSetNewMgmtOrCobrokeCompany,
       paymentsTotal,
       deductionsTotal,
       total,
@@ -223,7 +223,6 @@ class SubmitDealFormContainer extends Component {
 
     const returnObject = {
       ...values,
-      otherAgents: values.otherAgents || [],
       addedManagementCompanies,
       paymentsTotal,
       deductionsTotal,
@@ -276,7 +275,7 @@ class SubmitDealFormContainer extends Component {
         return;
       }
 
-      let errors = [];
+      const errors = [];
 
       const { items, dealID } = response;
 
@@ -373,14 +372,13 @@ class SubmitDealFormContainer extends Component {
           url: item.signedURL,
           onUploadProgress: progressEvent => {
             // Do whatever you want with the native progress event
-            const loadedPercent =
-              (progressEvent.loaded / progressEvent.total) * 100;
+            const loadedPercent = (progressEvent.loaded / progressEvent.total) * 100;
 
             thisRef.setState({
               formSubmissionBegun: true,
               uplodingFileProgress: Math.floor(loadedPercent),
-              uplodingFileText: `Now uploading file ${uploadItemIndex +
-                1} of ${uploadItemsNum}...`,
+              uplodingFileText: `Now uploading file ${uploadItemIndex
+                + 1} of ${uploadItemsNum}...`,
               isUploadingFile: true,
             });
           },
@@ -436,12 +434,13 @@ class SubmitDealFormContainer extends Component {
     return (
       <Query query={dealFormQuery} fetchPolicy="cache-and-network">
         {({ loading, error, data }) => {
-          if (loading)
+          if (loading) {
             return (
               <div style={{ display: 'flex', justifyContent: 'center' }}>
                 <Loader color="#f44336" loading />
               </div>
             );
+          }
 
           if (error) {
             console.log(error);

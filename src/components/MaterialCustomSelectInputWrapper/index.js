@@ -93,15 +93,14 @@ class MaterialCustomSelectInputWrapper extends React.Component {
 
           this._fieldApi = fieldApi;
 
-          const renderSelectInputItems = selectInputItems =>
-            selectInputItems.map(item => (
-              <MenuItem
-                key={item.key || item.label}
-                value={item.value || item.label}
-              >
-                {item.label}
-              </MenuItem>
-            ));
+          const renderSelectInputItems = selectInputItems => selectInputItems.map(item => (
+            <MenuItem
+              key={item.key || item.label}
+              value={item.value || item.label}
+            >
+              {item.label}
+            </MenuItem>
+          ));
 
           return (
             <FormControl
@@ -138,7 +137,7 @@ class MaterialCustomSelectInputWrapper extends React.Component {
                     onInput(event);
                   }
                 }}
-                input={
+                input={(
                   <Input
                     name={name}
                     id={`${id}-helper`}
@@ -148,7 +147,7 @@ class MaterialCustomSelectInputWrapper extends React.Component {
                       disabled && classes.disabled
                     )}
                   />
-                }
+                )}
                 onBlur={event => {
                   if (event.target.value || touched) setTouched();
                   if (onBlur) {
@@ -160,18 +159,18 @@ class MaterialCustomSelectInputWrapper extends React.Component {
                   !multiple
                     ? null
                     : selected => (
-                        <div className={classes.chips}>
-                          {selected
-                            .filter(val => val !== '')
-                            .map(value => (
-                              <Chip
-                                key={value}
-                                label={value}
-                                className={classes.chip}
-                              />
-                            ))}
-                        </div>
-                      )
+                      <div className={classes.chips}>
+                        {selected
+                          .filter(val => val !== '')
+                          .map(value => (
+                            <Chip
+                              key={value}
+                              label={value}
+                              className={classes.chip}
+                            />
+                          ))}
+                      </div>
+                    )
                 }
                 {...rest}
               >
