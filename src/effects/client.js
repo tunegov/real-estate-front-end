@@ -1,10 +1,7 @@
 import { GraphQLClient } from 'graphql-request';
+import getConfig from 'next/config';
+const { publicRuntimeConfig } = getConfig();
 
-const isDev = process.env.NODE_ENV !== 'production';
-
-const endpoint = isDev ? 'http://localhost:4000/graphql' : '/api/graphql';
-const credentials = isDev ? 'include' : 'same-origin';
-
-export const graphQlClient = new GraphQLClient(endpoint, {
-  credentials,
+export const graphQlClient = new GraphQLClient(publicRuntimeConfig.ENDPOINT, {
+  credentials: publicRuntimeConfig.CREDENTIALS,
 });

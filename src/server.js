@@ -17,9 +17,8 @@ helmet.hsts({
 
 // morgan logging function
 const skipMiscLogging = req => {
-  const isNextRelated =
-    req.url.includes('/_next/on-demand-entries-ping') ||
-    req.url.includes('/_next/webpack-hmr');
+  const isNextRelated = req.url.includes('/_next/on-demand-entries-ping')
+    || req.url.includes('/_next/webpack-hmr');
   return !!isNextRelated;
 };
 

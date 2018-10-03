@@ -1,20 +1,20 @@
 import React from 'react';
 import { observer } from 'mobx-react';
-import { Form, Icon, Input, Modal, Button } from 'antd';
+import {
+  Form, Icon, Input, Modal, Button,
+} from 'antd';
 import Grid from 'material-ui/Grid';
 import classnames from 'classnames';
 import debounce from 'debounce';
 import { darken, lighten } from 'polished';
 import { withStyles } from 'material-ui/styles';
 import ReCAPTCHA from 'react-google-recaptcha';
-import { Portal } from 'react-portal';
 import { Router } from '../../routes';
 import { agent, admin, superAdmin } from '../../constants/userTypes';
 import ServerErrorMessage from '../../sharedStyledComponents/ServerErrorMessage';
 import recaptchaSiteKey from '../../constants/recaptchaSiteKey';
 import '../../static/css/login-sign-up-modals.css';
-
-const { TextArea } = Input;
+import { isProd } from '../../constants/config';
 
 const FormItem = Form.Item;
 
@@ -130,6 +130,7 @@ class LoginModal extends React.Component {
   }
 
   formSubmitted = false;
+
   state = {
     errorsFromServer: '',
     submittingFormToServer: false,
@@ -138,7 +139,7 @@ class LoginModal extends React.Component {
     isForgotPasswordType: false,
     passwordSuccessfullyReset: false,
     formValues: null,
-    captchaCompleted: false,
+    captchaCompleted: !isProd,
   };
 
   componentDidMount = () => {
@@ -175,8 +176,8 @@ class LoginModal extends React.Component {
 
   toggleIsForgotPasswordType = () => {
     if (
-      this.state.errorsFromServer ===
-      "Please complete the captcha to ensure that you're not a robot."
+      this.state.errorsFromServer
+      === "Please complete the captcha to ensure that you're not a robot."
     ) {
       this.setState({
         errorsFromServer: '',
@@ -212,9 +213,9 @@ class LoginModal extends React.Component {
           "Please complete the captcha to ensure that you're not a robot.",
       });
       return;
-    } else if (
-      this.state.errorsFromServer ===
-      "Please complete the captcha to ensure that you're not a robot."
+    } if (
+      this.state.errorsFromServer
+      === "Please complete the captcha to ensure that you're not a robot."
     ) {
       this.setState({
         errorsFromServer: '',
@@ -350,12 +351,10 @@ class LoginModal extends React.Component {
       isFieldTouched,
     } = this.props.form;
 
-    const emailError =
-      (isFieldTouched('email') || this.formSubmitted) && getFieldError('email');
+    const emailError = (isFieldTouched('email') || this.formSubmitted) && getFieldError('email');
 
-    const passwordError =
-      (isFieldTouched('password') || this.formSubmitted) &&
-      getFieldError('password');
+    const passwordError = (isFieldTouched('password') || this.formSubmitted)
+      && getFieldError('password');
 
     return (
       <Modal
@@ -374,9 +373,9 @@ class LoginModal extends React.Component {
         <div
           style={{
             display:
-              submittingFormToServer ||
-              loadingNextPage ||
-              passwordSuccessfullyReset
+              submittingFormToServer
+              || loadingNextPage
+              || passwordSuccessfullyReset
                 ? 'none'
                 : undefined,
           }}
@@ -403,12 +402,12 @@ class LoginModal extends React.Component {
                         required
                         size="large"
                         disabled={formSuccessfullySubmitted}
-                        prefix={
+                        prefix={(
                           <Icon
                             type="mail"
                             style={{ color: 'rgba(0,0,0,.25)' }}
                           />
-                        }
+                        )}
                         placeholder="Email"
                       />
                     )}
@@ -433,12 +432,12 @@ class LoginModal extends React.Component {
                         size="large"
                         required
                         disabled={formSuccessfullySubmitted}
-                        prefix={
+                        prefix={(
                           <Icon
                             type="lock"
                             style={{ color: 'rgba(0,0,0,.25)' }}
                           />
-                        }
+                        )}
                         placeholder="Password"
                       />
                     )}
@@ -467,12 +466,12 @@ class LoginModal extends React.Component {
                         required
                         size="large"
                         disabled={formSuccessfullySubmitted}
-                        prefix={
+                        prefix={(
                           <Icon
                             type="mail"
                             style={{ color: 'rgba(0,0,0,.25)' }}
                           />
-                        }
+                        )}
                         placeholder="Email"
                       />
                     )}
@@ -482,7 +481,7 @@ class LoginModal extends React.Component {
             )}
           </Form>
 
-          {!this.state.isForgotPasswordType && (
+          {(!this.state.isForgotPasswordType && isProd) && (
             <div className={classes.recaptchaWrapper}>
               <ReCAPTCHA
                 ref={ref => (this._Recaptcha = ref)}
@@ -492,27 +491,25 @@ class LoginModal extends React.Component {
                     this.setState({
                       captchaCompleted: false,
                     });
+                  } else if (
+                    this.state.errorsFromServer
+                      === "Please complete the captcha to ensure that you're not a robot."
+                  ) {
+                    this.setState({
+                      errorsFromServer: '',
+                      captchaCompleted: true,
+                    });
                   } else {
-                    if (
-                      this.state.errorsFromServer ===
-                      "Please complete the captcha to ensure that you're not a robot."
-                    ) {
-                      this.setState({
-                        errorsFromServer: '',
-                        captchaCompleted: true,
-                      });
-                    } else {
-                      this.setState({
-                        captchaCompleted: true,
-                      });
-                    }
+                    this.setState({
+                      captchaCompleted: true,
+                    });
                   }
                 }}
               />
             </div>
           )}
 
-          {this.state.isForgotPasswordType && (
+          {(this.state.isForgotPasswordType && isProd) && (
             <div className={classes.recaptchaWrapper}>
               <ReCAPTCHA
                 ref={ref => (this._Recaptcha = ref)}
@@ -522,20 +519,18 @@ class LoginModal extends React.Component {
                     this.setState({
                       captchaCompleted: false,
                     });
+                  } else if (
+                    this.state.errorsFromServer
+                      === "Please complete the captcha to ensure that you're not a robot."
+                  ) {
+                    this.setState({
+                      errorsFromServer: '',
+                      captchaCompleted: true,
+                    });
                   } else {
-                    if (
-                      this.state.errorsFromServer ===
-                      "Please complete the captcha to ensure that you're not a robot."
-                    ) {
-                      this.setState({
-                        errorsFromServer: '',
-                        captchaCompleted: true,
-                      });
-                    } else {
-                      this.setState({
-                        captchaCompleted: true,
-                      });
-                    }
+                    this.setState({
+                      captchaCompleted: true,
+                    });
                   }
                 }}
               />
@@ -562,29 +557,29 @@ class LoginModal extends React.Component {
             </span>
           </Button>
 
-          {!formSuccessfullySubmitted &&
-            !isForgotPasswordType && (
-              <div className={classes.forgotPasswordWrapper}>
-                <button
-                  onClick={this.toggleIsForgotPasswordType}
-                  className={classes.forgotPassword}
-                >
+          {!formSuccessfullySubmitted
+            && !isForgotPasswordType && (
+            <div className={classes.forgotPasswordWrapper}>
+              <button
+                onClick={this.toggleIsForgotPasswordType}
+                className={classes.forgotPassword}
+              >
                   Forgot Password?
-                </button>
-              </div>
-            )}
+              </button>
+            </div>
+          )}
 
-          {!formSuccessfullySubmitted &&
-            isForgotPasswordType && (
-              <div className={classes.forgotPasswordWrapper}>
-                <button
-                  onClick={this.toggleIsForgotPasswordType}
-                  className={classes.forgotPassword}
-                >
+          {!formSuccessfullySubmitted
+            && isForgotPasswordType && (
+            <div className={classes.forgotPasswordWrapper}>
+              <button
+                onClick={this.toggleIsForgotPasswordType}
+                className={classes.forgotPassword}
+              >
                   Log In?
-                </button>
-              </div>
-            )}
+              </button>
+            </div>
+          )}
         </div>
 
         {passwordSuccessfullyReset ? (

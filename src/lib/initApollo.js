@@ -2,8 +2,8 @@ import { ApolloClient } from 'apollo-client';
 import { HttpLink } from 'apollo-link-http';
 import { InMemoryCache } from 'apollo-cache-inmemory';
 import fetch from 'isomorphic-unfetch';
-import websiteURL from '../constants/websiteURL';
-import { isDev } from '../constants/config';
+import getConfig from 'next/config';
+const { publicRuntimeConfig } = getConfig();
 
 let apolloClient = null;
 
@@ -17,8 +17,8 @@ function create(initialState) {
     connectToDevTools: process.browser,
     ssrMode: !process.browser, // Disables forceFetch on the server (so queries are only run once)
     link: new HttpLink({
-      uri: `${websiteURL}`, // 'http://localhost/api/graphql', // Server URL (must be absolute)
-      credentials: isDev ? 'include' : 'same-origin', // Additional fetch() options like `credentials` or `headers`
+      uri: publicRuntimeConfig.WEBSITE_URL, // 'http://localhost/api/graphql', // Server URL (must be absolute)
+      credentials: publicRuntimeConfig.CREDENTIALS, // Additional fetch() options like `credentials` or `headers`
       headers: { Accept: 'application/json' },
     }),
     cache: new InMemoryCache().restore(initialState || {}),

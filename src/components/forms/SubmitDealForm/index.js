@@ -362,7 +362,7 @@ const paymentTypeSelectItems = [
 const deductionTypeSelectItems = [
   { label: 'Co-Brokering Split' },
   { label: 'Company Deal Fee' },
-  { label: 'Outside Party Check' },
+  { label: 'Outside Company Check' },
 ];
 
 const imagePreloader = images => {
@@ -546,6 +546,7 @@ class SubmitDealForm extends Component {
   renderRestDeductionItems(formApi, splitAgents) {
     const {
       classes, submittedDeal, isEditingDeal, deductionAmountChangeHandler, subtractDeductionValueFromState,
+      isViewType,
     } = this.props;
     const { shouldRenderInitialDeductionItem } = this.state;
     if (
@@ -587,6 +588,7 @@ class SubmitDealForm extends Component {
                       name="agentID"
                       required
                       selectInputItems={splitAgents}
+                      disabled={(submittedDeal && !isEditingDeal) || isViewType}
                     />
                   </div>
                 </Grid>

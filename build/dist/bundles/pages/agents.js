@@ -98,7 +98,7 @@ module.exports = require("@babel/runtime/regenerator");
 /* 4 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var routes = __webpack_require__(46)();
+var routes = __webpack_require__(47)();
 
 routes.add('home', '/', '/').add('dashboard', '/app/dashbaord', 'app/dashboard').add('profile', '/app/profile', 'app/profile').add('deals', '/app/deals', 'app/deals').add('invoices', '/app/invoices', 'app/invoices').add('agents', '/app/agents', 'app/agents').add('create-listing', '/app/listing/new', '/app/listing/new').add('admin-dashboard', '/app/admin-area/dashboard', 'app/admin-area/dashboard').add('create-agent', '/app/admin-area/agents/create', 'app/admin-area/agents/create').add('view-agents', '/app/admin-area/agents/view', 'app/admin-area/agents/view').add('create-user', '/app/admin-area/customers/create', 'app/admin-area/customers/create').add('view-customers', '/app/admin-area/customers/view', 'app/admin-area/customers/view').add('create-admin', '/app/admin-area/admin/create', 'app/admin-area/admin/create').add('view-admin', '/app/admin-area/admin/view', 'app/admin-area/admin/view').add('view-deals', '/app/admin-area/deals/view', 'app/admin-area/deals/view')
 /*
@@ -123,14 +123,18 @@ module.exports = require("classnames");
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return graphQlClient; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_graphql_request__ = __webpack_require__(48);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_graphql_request__ = __webpack_require__(49);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_graphql_request___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_graphql_request__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_next_config__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_next_config___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_next_config__);
 
-var isDev = "production" !== 'production';
-var endpoint = isDev ? 'http://localhost:4000/graphql' : '/api/graphql';
-var credentials = isDev ? 'include' : 'same-origin';
-var graphQlClient = new __WEBPACK_IMPORTED_MODULE_0_graphql_request__["GraphQLClient"](endpoint, {
-  credentials: credentials
+
+
+var _getConfig = __WEBPACK_IMPORTED_MODULE_1_next_config___default()(),
+    publicRuntimeConfig = _getConfig.publicRuntimeConfig;
+
+var graphQlClient = new __WEBPACK_IMPORTED_MODULE_0_graphql_request__["GraphQLClient"](publicRuntimeConfig.ENDPOINT, {
+  credentials: publicRuntimeConfig.CREDENTIALS
 });
 
 /***/ }),
@@ -198,36 +202,42 @@ module.exports = require("prop-types");
 /* 17 */
 /***/ (function(module, exports) {
 
+module.exports = require("next/config");
+
+/***/ }),
+/* 18 */
+/***/ (function(module, exports) {
+
 module.exports = require("react-apollo");
 
 /***/ }),
-/* 18 */,
-/* 19 */
+/* 19 */,
+/* 20 */
 /***/ (function(module, exports) {
 
 module.exports = require("material-ui/Grid");
 
 /***/ }),
-/* 20 */,
-/* 21 */
+/* 21 */,
+/* 22 */
 /***/ (function(module, exports) {
 
 module.exports = require("material-ui/colors/blue");
 
 /***/ }),
-/* 22 */
+/* 23 */
 /***/ (function(module, exports) {
 
 module.exports = require("antd/lib/icon/style/css");
 
 /***/ }),
-/* 23 */
+/* 24 */
 /***/ (function(module, exports) {
 
 module.exports = require("antd/lib/icon");
 
 /***/ }),
-/* 24 */
+/* 25 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -479,7 +489,7 @@ var UserEffects = external__mobx_state_tree_["types"].model({}).actions(function
 });
 /* harmony default export */ var userEffects = (UserEffects);
 // EXTERNAL MODULE: external "urlsafe-base64"
-var external__urlsafe_base64_ = __webpack_require__(49);
+var external__urlsafe_base64_ = __webpack_require__(50);
 var external__urlsafe_base64__default = /*#__PURE__*/__webpack_require__.n(external__urlsafe_base64_);
 
 // CONCATENATED MODULE: ./utils/jwtUtils.js
@@ -667,7 +677,7 @@ function initStore(isServer) {
 }
 
 /***/ }),
-/* 25 */
+/* 26 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -695,7 +705,6 @@ var theme = {
 /* harmony default export */ __webpack_exports__["a"] = (theme);
 
 /***/ }),
-/* 26 */,
 /* 27 */,
 /* 28 */,
 /* 29 */,
@@ -703,25 +712,26 @@ var theme = {
 /* 31 */,
 /* 32 */,
 /* 33 */,
-/* 34 */
+/* 34 */,
+/* 35 */
 /***/ (function(module, exports) {
 
 module.exports = require("debounce");
 
 /***/ }),
-/* 35 */,
-/* 36 */
+/* 36 */,
+/* 37 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = getPageContext;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react_jss__ = __webpack_require__(37);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react_jss__ = __webpack_require__(38);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react_jss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react_jss__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__material_ui_core_styles__ = __webpack_require__(38);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__material_ui_core_styles__ = __webpack_require__(39);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__material_ui_core_styles___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__material_ui_core_styles__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_material_ui_colors_red__ = __webpack_require__(39);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_material_ui_colors_red__ = __webpack_require__(40);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_material_ui_colors_red___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_material_ui_colors_red__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_material_ui_colors_blue__ = __webpack_require__(21);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_material_ui_colors_blue__ = __webpack_require__(22);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_material_ui_colors_blue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_material_ui_colors_blue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_polished__ = __webpack_require__(9);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_polished___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_polished__);
@@ -805,39 +815,39 @@ function getPageContext() {
 }
 
 /***/ }),
-/* 37 */
+/* 38 */
 /***/ (function(module, exports) {
 
 module.exports = require("react-jss");
 
 /***/ }),
-/* 38 */
+/* 39 */
 /***/ (function(module, exports) {
 
 module.exports = require("@material-ui/core/styles");
 
 /***/ }),
-/* 39 */
+/* 40 */
 /***/ (function(module, exports) {
 
 module.exports = require("material-ui/colors/red");
 
 /***/ }),
-/* 40 */,
 /* 41 */,
-/* 42 */
+/* 42 */,
+/* 43 */
 /***/ (function(module, exports) {
 
 module.exports = require("nprogress");
 
 /***/ }),
-/* 43 */
+/* 44 */
 /***/ (function(module, exports) {
 
 
 
 /***/ }),
-/* 44 */
+/* 45 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -847,9 +857,9 @@ module.exports = require("nprogress");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_prop_types___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_prop_types__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_material_ui_styles__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_material_ui_styles___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_material_ui_styles__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_material_ui_CssBaseline__ = __webpack_require__(45);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_material_ui_CssBaseline__ = __webpack_require__(46);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_material_ui_CssBaseline___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_material_ui_CssBaseline__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__getPageContext__ = __webpack_require__(36);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__getPageContext__ = __webpack_require__(37);
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -930,19 +940,19 @@ function withRoot(Component) {
 /* harmony default export */ __webpack_exports__["a"] = (withRoot);
 
 /***/ }),
-/* 45 */
+/* 46 */
 /***/ (function(module, exports) {
 
 module.exports = require("material-ui/CssBaseline");
 
 /***/ }),
-/* 46 */
+/* 47 */
 /***/ (function(module, exports) {
 
 module.exports = require("next-routes");
 
 /***/ }),
-/* 47 */
+/* 48 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -950,19 +960,19 @@ var globalStyles = "\n  html {\n    height: 100%;\n  }\n  body {\n    position: 
 /* harmony default export */ __webpack_exports__["a"] = (globalStyles);
 
 /***/ }),
-/* 48 */
+/* 49 */
 /***/ (function(module, exports) {
 
 module.exports = require("graphql-request");
 
 /***/ }),
-/* 49 */
+/* 50 */
 /***/ (function(module, exports) {
 
 module.exports = require("urlsafe-base64");
 
 /***/ }),
-/* 50 */
+/* 51 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -980,7 +990,7 @@ var external__prop_types_ = __webpack_require__(16);
 var external__prop_types__default = /*#__PURE__*/__webpack_require__.n(external__prop_types_);
 
 // EXTERNAL MODULE: external "react-apollo"
-var external__react_apollo_ = __webpack_require__(17);
+var external__react_apollo_ = __webpack_require__(18);
 var external__react_apollo__default = /*#__PURE__*/__webpack_require__.n(external__react_apollo_);
 
 // EXTERNAL MODULE: external "next/head"
@@ -988,33 +998,34 @@ var head_ = __webpack_require__(15);
 var head__default = /*#__PURE__*/__webpack_require__.n(head_);
 
 // EXTERNAL MODULE: external "apollo-client"
-var external__apollo_client_ = __webpack_require__(51);
+var external__apollo_client_ = __webpack_require__(52);
 var external__apollo_client__default = /*#__PURE__*/__webpack_require__.n(external__apollo_client_);
 
 // EXTERNAL MODULE: external "apollo-link-http"
-var external__apollo_link_http_ = __webpack_require__(52);
+var external__apollo_link_http_ = __webpack_require__(53);
 var external__apollo_link_http__default = /*#__PURE__*/__webpack_require__.n(external__apollo_link_http_);
 
 // EXTERNAL MODULE: external "apollo-cache-inmemory"
-var external__apollo_cache_inmemory_ = __webpack_require__(53);
+var external__apollo_cache_inmemory_ = __webpack_require__(54);
 var external__apollo_cache_inmemory__default = /*#__PURE__*/__webpack_require__.n(external__apollo_cache_inmemory_);
 
 // EXTERNAL MODULE: external "isomorphic-unfetch"
-var external__isomorphic_unfetch_ = __webpack_require__(54);
+var external__isomorphic_unfetch_ = __webpack_require__(55);
 var external__isomorphic_unfetch__default = /*#__PURE__*/__webpack_require__.n(external__isomorphic_unfetch_);
 
-// CONCATENATED MODULE: ./constants/config.js
-var isDev = "production" !== 'production';
-// CONCATENATED MODULE: ./constants/websiteURL.js
+// EXTERNAL MODULE: external "next/config"
+var config_ = __webpack_require__(17);
+var config__default = /*#__PURE__*/__webpack_require__.n(config_);
 
-var websiteURL = isDev ? 'http://localhost:4000/graphql' : 'https://reyeselsamad.com/api/graphql';
-/* harmony default export */ var constants_websiteURL = (websiteURL);
 // CONCATENATED MODULE: ./lib/initApollo.js
 
 
 
 
 
+
+var _getConfig = config__default()(),
+    publicRuntimeConfig = _getConfig.publicRuntimeConfig;
 
 var apolloClient = null; // Polyfill fetch() on the server (used by apollo-client)
 
@@ -1028,9 +1039,9 @@ function create(initialState) {
     ssrMode: !process.browser,
     // Disables forceFetch on the server (so queries are only run once)
     link: new external__apollo_link_http_["HttpLink"]({
-      uri: "".concat(constants_websiteURL),
+      uri: publicRuntimeConfig.WEBSITE_URL,
       // 'http://localhost/api/graphql', // Server URL (must be absolute)
-      credentials: isDev ? 'include' : 'same-origin',
+      credentials: publicRuntimeConfig.CREDENTIALS,
       // Additional fetch() options like `credentials` or `headers`
       headers: {
         Accept: 'application/json'
@@ -1208,31 +1219,30 @@ function getComponentDisplayName(Component) {
 });
 
 /***/ }),
-/* 51 */
+/* 52 */
 /***/ (function(module, exports) {
 
 module.exports = require("apollo-client");
 
 /***/ }),
-/* 52 */
+/* 53 */
 /***/ (function(module, exports) {
 
 module.exports = require("apollo-link-http");
 
 /***/ }),
-/* 53 */
+/* 54 */
 /***/ (function(module, exports) {
 
 module.exports = require("apollo-cache-inmemory");
 
 /***/ }),
-/* 54 */
+/* 55 */
 /***/ (function(module, exports) {
 
 module.exports = require("isomorphic-unfetch");
 
 /***/ }),
-/* 55 */,
 /* 56 */,
 /* 57 */,
 /* 58 */,
@@ -1243,29 +1253,30 @@ module.exports = require("isomorphic-unfetch");
 /* 63 */,
 /* 64 */,
 /* 65 */,
-/* 66 */
+/* 66 */,
+/* 67 */
 /***/ (function(module, exports) {
 
 module.exports = require("antd/lib/input/style/css");
 
 /***/ }),
-/* 67 */
+/* 68 */
 /***/ (function(module, exports) {
 
 module.exports = require("antd/lib/input");
 
 /***/ }),
-/* 68 */,
 /* 69 */,
 /* 70 */,
-/* 71 */
+/* 71 */,
+/* 72 */
 /***/ (function(module, exports) {
 
 module.exports = require("chance");
 
 /***/ }),
-/* 72 */,
-/* 73 */
+/* 73 */,
+/* 74 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1278,33 +1289,32 @@ module.exports = require("chance");
 })(["margin-top:0px;text-align:center;margin-bottom:10px;color:red;"]));
 
 /***/ }),
-/* 74 */,
 /* 75 */,
-/* 76 */
+/* 76 */,
+/* 77 */
 /***/ (function(module, exports) {
 
 module.exports = require("antd/lib/form/style/css");
 
 /***/ }),
-/* 77 */
+/* 78 */
 /***/ (function(module, exports) {
 
 module.exports = require("antd/lib/form");
 
 /***/ }),
-/* 78 */
+/* 79 */
 /***/ (function(module, exports) {
 
 module.exports = require("antd/lib/button/style/css");
 
 /***/ }),
-/* 79 */
+/* 80 */
 /***/ (function(module, exports) {
 
 module.exports = require("antd/lib/button");
 
 /***/ }),
-/* 80 */,
 /* 81 */,
 /* 82 */,
 /* 83 */,
@@ -1320,28 +1330,23 @@ module.exports = require("antd/lib/button");
 /* 93 */,
 /* 94 */,
 /* 95 */,
-/* 96 */
+/* 96 */,
+/* 97 */
 /***/ (function(module, exports) {
 
 module.exports = require("antd/lib/modal/style/css");
 
 /***/ }),
-/* 97 */
+/* 98 */
 /***/ (function(module, exports) {
 
 module.exports = require("antd/lib/modal");
 
 /***/ }),
-/* 98 */
-/***/ (function(module, exports) {
-
-module.exports = require("react-google-recaptcha");
-
-/***/ }),
 /* 99 */
 /***/ (function(module, exports) {
 
-module.exports = require("react-portal");
+module.exports = require("react-google-recaptcha");
 
 /***/ }),
 /* 100 */
@@ -1376,7 +1381,7 @@ var head_ = __webpack_require__(15);
 var head__default = /*#__PURE__*/__webpack_require__.n(head_);
 
 // EXTERNAL MODULE: external "nprogress"
-var external__nprogress_ = __webpack_require__(42);
+var external__nprogress_ = __webpack_require__(43);
 var external__nprogress__default = /*#__PURE__*/__webpack_require__.n(external__nprogress_);
 
 // EXTERNAL MODULE: external "next/router"
@@ -1392,18 +1397,18 @@ var external__styled_components_ = __webpack_require__(8);
 var external__styled_components__default = /*#__PURE__*/__webpack_require__.n(external__styled_components_);
 
 // EXTERNAL MODULE: ../node_modules/antd/dist/antd.css
-var antd = __webpack_require__(43);
+var antd = __webpack_require__(44);
 var antd_default = /*#__PURE__*/__webpack_require__.n(antd);
 
 // EXTERNAL MODULE: ./lib/withRoot.js
-var withRoot = __webpack_require__(44);
+var withRoot = __webpack_require__(45);
 
 // EXTERNAL MODULE: external "@babel/runtime/regenerator"
 var regenerator_ = __webpack_require__(3);
 var regenerator__default = /*#__PURE__*/__webpack_require__.n(regenerator_);
 
 // EXTERNAL MODULE: external "debounce"
-var external__debounce_ = __webpack_require__(34);
+var external__debounce_ = __webpack_require__(35);
 var external__debounce__default = /*#__PURE__*/__webpack_require__.n(external__debounce_);
 
 // EXTERNAL MODULE: ./routes.js
@@ -1419,7 +1424,7 @@ var external__polished_ = __webpack_require__(9);
 var external__polished__default = /*#__PURE__*/__webpack_require__.n(external__polished_);
 
 // EXTERNAL MODULE: ./themeStyles/index.js
-var themeStyles = __webpack_require__(25);
+var themeStyles = __webpack_require__(26);
 
 // CONCATENATED MODULE: ./sharedStyledComponents/headerStyles.js
 
@@ -1777,7 +1782,7 @@ function (_React$Component) {
   componentId: "s1jy6wuu-0"
 })(["padding-top:60px;min-width:100%;height:100%;background-color:#fafafa;"]));
 // EXTERNAL MODULE: ./globalStyles/index.js
-var globalStyles = __webpack_require__(47);
+var globalStyles = __webpack_require__(48);
 
 // CONCATENATED MODULE: ./frontEndComponents/FrontEndLayout/styledComponents/index.js
 
@@ -1796,47 +1801,47 @@ var userTypes = __webpack_require__(10);
 var userTypes_default = /*#__PURE__*/__webpack_require__.n(userTypes);
 
 // EXTERNAL MODULE: external "antd/lib/modal/style/css"
-var css_ = __webpack_require__(96);
+var css_ = __webpack_require__(97);
 var css__default = /*#__PURE__*/__webpack_require__.n(css_);
 
 // EXTERNAL MODULE: external "antd/lib/modal"
-var modal_ = __webpack_require__(97);
+var modal_ = __webpack_require__(98);
 var modal__default = /*#__PURE__*/__webpack_require__.n(modal_);
 
 // EXTERNAL MODULE: external "antd/lib/button/style/css"
-var style_css_ = __webpack_require__(78);
+var style_css_ = __webpack_require__(79);
 var style_css__default = /*#__PURE__*/__webpack_require__.n(style_css_);
 
 // EXTERNAL MODULE: external "antd/lib/button"
-var button_ = __webpack_require__(79);
+var button_ = __webpack_require__(80);
 var button__default = /*#__PURE__*/__webpack_require__.n(button_);
 
-// EXTERNAL MODULE: external "antd/lib/icon/style/css"
-var icon_style_css_ = __webpack_require__(22);
-var icon_style_css__default = /*#__PURE__*/__webpack_require__.n(icon_style_css_);
-
-// EXTERNAL MODULE: external "antd/lib/icon"
-var icon_ = __webpack_require__(23);
-var icon__default = /*#__PURE__*/__webpack_require__.n(icon_);
-
-// EXTERNAL MODULE: external "antd/lib/form/style/css"
-var form_style_css_ = __webpack_require__(76);
-var form_style_css__default = /*#__PURE__*/__webpack_require__.n(form_style_css_);
-
-// EXTERNAL MODULE: external "antd/lib/form"
-var form_ = __webpack_require__(77);
-var form__default = /*#__PURE__*/__webpack_require__.n(form_);
-
 // EXTERNAL MODULE: external "antd/lib/input/style/css"
-var input_style_css_ = __webpack_require__(66);
+var input_style_css_ = __webpack_require__(67);
 var input_style_css__default = /*#__PURE__*/__webpack_require__.n(input_style_css_);
 
 // EXTERNAL MODULE: external "antd/lib/input"
-var input_ = __webpack_require__(67);
+var input_ = __webpack_require__(68);
 var input__default = /*#__PURE__*/__webpack_require__.n(input_);
 
+// EXTERNAL MODULE: external "antd/lib/icon/style/css"
+var icon_style_css_ = __webpack_require__(23);
+var icon_style_css__default = /*#__PURE__*/__webpack_require__.n(icon_style_css_);
+
+// EXTERNAL MODULE: external "antd/lib/icon"
+var icon_ = __webpack_require__(24);
+var icon__default = /*#__PURE__*/__webpack_require__.n(icon_);
+
+// EXTERNAL MODULE: external "antd/lib/form/style/css"
+var form_style_css_ = __webpack_require__(77);
+var form_style_css__default = /*#__PURE__*/__webpack_require__.n(form_style_css_);
+
+// EXTERNAL MODULE: external "antd/lib/form"
+var form_ = __webpack_require__(78);
+var form__default = /*#__PURE__*/__webpack_require__.n(form_);
+
 // EXTERNAL MODULE: external "material-ui/Grid"
-var Grid_ = __webpack_require__(19);
+var Grid_ = __webpack_require__(20);
 var Grid__default = /*#__PURE__*/__webpack_require__.n(Grid_);
 
 // EXTERNAL MODULE: external "classnames"
@@ -1844,15 +1849,11 @@ var external__classnames_ = __webpack_require__(5);
 var external__classnames__default = /*#__PURE__*/__webpack_require__.n(external__classnames_);
 
 // EXTERNAL MODULE: external "react-google-recaptcha"
-var external__react_google_recaptcha_ = __webpack_require__(98);
+var external__react_google_recaptcha_ = __webpack_require__(99);
 var external__react_google_recaptcha__default = /*#__PURE__*/__webpack_require__.n(external__react_google_recaptcha_);
 
-// EXTERNAL MODULE: external "react-portal"
-var external__react_portal_ = __webpack_require__(99);
-var external__react_portal__default = /*#__PURE__*/__webpack_require__.n(external__react_portal_);
-
 // EXTERNAL MODULE: ./sharedStyledComponents/ServerErrorMessage.js
-var ServerErrorMessage = __webpack_require__(73);
+var ServerErrorMessage = __webpack_require__(74);
 
 // EXTERNAL MODULE: ./constants/recaptchaSiteKey.js
 var recaptchaSiteKey = __webpack_require__(100);
@@ -1861,6 +1862,8 @@ var recaptchaSiteKey = __webpack_require__(100);
 var login_sign_up_modals = __webpack_require__(101);
 var login_sign_up_modals_default = /*#__PURE__*/__webpack_require__.n(login_sign_up_modals);
 
+// CONCATENATED MODULE: ./constants/config.js
+var isProd = "production" === 'production';
 // CONCATENATED MODULE: ./frontEndComponents/LoginFormModal/index.js
 
 
@@ -1903,7 +1906,6 @@ function LoginFormModal__assertThisInitialized(self) { if (self === void 0) { th
 
 
 
-var TextArea = input__default.a.TextArea;
 var FormItem = form__default.a.Item;
 
 var LoginFormModal_styles = function styles(theme) {
@@ -2039,7 +2041,7 @@ function (_React$Component) {
         isForgotPasswordType: false,
         passwordSuccessfullyReset: false,
         formValues: null,
-        captchaCompleted: false
+        captchaCompleted: !isProd
       }
     });
     Object.defineProperty(LoginFormModal__assertThisInitialized(_this), "componentDidMount", {
@@ -2139,7 +2141,9 @@ function (_React$Component) {
           });
 
           return;
-        } else if (_this.state.errorsFromServer === "Please complete the captcha to ensure that you're not a robot.") {
+        }
+
+        if (_this.state.errorsFromServer === "Please complete the captcha to ensure that you're not a robot.") {
           _this.setState({
             errorsFromServer: ''
           });
@@ -2388,7 +2392,7 @@ function (_React$Component) {
           }
         }),
         placeholder: "Email"
-      })))))), !this.state.isForgotPasswordType && external__react__default.a.createElement("div", {
+      })))))), !this.state.isForgotPasswordType && isProd && external__react__default.a.createElement("div", {
         className: classes.recaptchaWrapper
       }, external__react__default.a.createElement(external__react_google_recaptcha__default.a, {
         ref: function ref(_ref) {
@@ -2400,20 +2404,18 @@ function (_React$Component) {
             _this2.setState({
               captchaCompleted: false
             });
+          } else if (_this2.state.errorsFromServer === "Please complete the captcha to ensure that you're not a robot.") {
+            _this2.setState({
+              errorsFromServer: '',
+              captchaCompleted: true
+            });
           } else {
-            if (_this2.state.errorsFromServer === "Please complete the captcha to ensure that you're not a robot.") {
-              _this2.setState({
-                errorsFromServer: '',
-                captchaCompleted: true
-              });
-            } else {
-              _this2.setState({
-                captchaCompleted: true
-              });
-            }
+            _this2.setState({
+              captchaCompleted: true
+            });
           }
         }
-      })), this.state.isForgotPasswordType && external__react__default.a.createElement("div", {
+      })), this.state.isForgotPasswordType && isProd && external__react__default.a.createElement("div", {
         className: classes.recaptchaWrapper
       }, external__react__default.a.createElement(external__react_google_recaptcha__default.a, {
         ref: function ref(_ref2) {
@@ -2425,17 +2427,15 @@ function (_React$Component) {
             _this2.setState({
               captchaCompleted: false
             });
+          } else if (_this2.state.errorsFromServer === "Please complete the captcha to ensure that you're not a robot.") {
+            _this2.setState({
+              errorsFromServer: '',
+              captchaCompleted: true
+            });
           } else {
-            if (_this2.state.errorsFromServer === "Please complete the captcha to ensure that you're not a robot.") {
-              _this2.setState({
-                errorsFromServer: '',
-                captchaCompleted: true
-              });
-            } else {
-              _this2.setState({
-                captchaCompleted: true
-              });
-            }
+            _this2.setState({
+              captchaCompleted: true
+            });
           }
         }
       })), external__react__default.a.createElement(button__default.a, {
@@ -2806,24 +2806,24 @@ var external__is_browser_ = __webpack_require__(7);
 var external__is_browser__default = /*#__PURE__*/__webpack_require__.n(external__is_browser_);
 
 // EXTERNAL MODULE: external "chance"
-var external__chance_ = __webpack_require__(71);
+var external__chance_ = __webpack_require__(72);
 var external__chance__default = /*#__PURE__*/__webpack_require__.n(external__chance_);
 
-// EXTERNAL MODULE: ./frontEndComponents/FrontEndLayout/index.js + 9 modules
+// EXTERNAL MODULE: ./frontEndComponents/FrontEndLayout/index.js + 10 modules
 var FrontEndLayout = __webpack_require__(102);
 
 // EXTERNAL MODULE: ./models/index.js + 8 modules
-var models = __webpack_require__(24);
+var models = __webpack_require__(25);
 
-// EXTERNAL MODULE: ./lib/withData.js + 3 modules
-var withData = __webpack_require__(50);
+// EXTERNAL MODULE: ./lib/withData.js + 1 modules
+var withData = __webpack_require__(51);
 
 // EXTERNAL MODULE: external "material-ui/styles"
 var styles_ = __webpack_require__(2);
 var styles__default = /*#__PURE__*/__webpack_require__.n(styles_);
 
 // EXTERNAL MODULE: external "material-ui/Grid"
-var Grid_ = __webpack_require__(19);
+var Grid_ = __webpack_require__(20);
 var Grid__default = /*#__PURE__*/__webpack_require__.n(Grid_);
 
 // EXTERNAL MODULE: external "@material-ui/icons/Search"

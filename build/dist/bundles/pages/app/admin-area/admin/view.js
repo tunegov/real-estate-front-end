@@ -98,7 +98,7 @@ module.exports = require("@babel/runtime/regenerator");
 /* 4 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var routes = __webpack_require__(46)();
+var routes = __webpack_require__(47)();
 
 routes.add('home', '/', '/').add('dashboard', '/app/dashbaord', 'app/dashboard').add('profile', '/app/profile', 'app/profile').add('deals', '/app/deals', 'app/deals').add('invoices', '/app/invoices', 'app/invoices').add('agents', '/app/agents', 'app/agents').add('create-listing', '/app/listing/new', '/app/listing/new').add('admin-dashboard', '/app/admin-area/dashboard', 'app/admin-area/dashboard').add('create-agent', '/app/admin-area/agents/create', 'app/admin-area/agents/create').add('view-agents', '/app/admin-area/agents/view', 'app/admin-area/agents/view').add('create-user', '/app/admin-area/customers/create', 'app/admin-area/customers/create').add('view-customers', '/app/admin-area/customers/view', 'app/admin-area/customers/view').add('create-admin', '/app/admin-area/admin/create', 'app/admin-area/admin/create').add('view-admin', '/app/admin-area/admin/view', 'app/admin-area/admin/view').add('view-deals', '/app/admin-area/deals/view', 'app/admin-area/deals/view')
 /*
@@ -123,14 +123,18 @@ module.exports = require("classnames");
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return graphQlClient; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_graphql_request__ = __webpack_require__(48);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_graphql_request__ = __webpack_require__(49);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_graphql_request___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_graphql_request__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_next_config__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_next_config___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_next_config__);
 
-var isDev = "production" !== 'production';
-var endpoint = isDev ? 'http://localhost:4000/graphql' : '/api/graphql';
-var credentials = isDev ? 'include' : 'same-origin';
-var graphQlClient = new __WEBPACK_IMPORTED_MODULE_0_graphql_request__["GraphQLClient"](endpoint, {
-  credentials: credentials
+
+
+var _getConfig = __WEBPACK_IMPORTED_MODULE_1_next_config___default()(),
+    publicRuntimeConfig = _getConfig.publicRuntimeConfig;
+
+var graphQlClient = new __WEBPACK_IMPORTED_MODULE_0_graphql_request__["GraphQLClient"](publicRuntimeConfig.ENDPOINT, {
+  credentials: publicRuntimeConfig.CREDENTIALS
 });
 
 /***/ }),
@@ -208,10 +212,16 @@ module.exports = require("prop-types");
 /* 17 */
 /***/ (function(module, exports) {
 
-module.exports = require("react-apollo");
+module.exports = require("next/config");
 
 /***/ }),
 /* 18 */
+/***/ (function(module, exports) {
+
+module.exports = require("react-apollo");
+
+/***/ }),
+/* 19 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -587,37 +597,37 @@ function abbreviate(str) {
 }
 
 /***/ }),
-/* 19 */
+/* 20 */
 /***/ (function(module, exports) {
 
 module.exports = require("material-ui/Grid");
 
 /***/ }),
-/* 20 */
+/* 21 */
 /***/ (function(module, exports) {
 
 module.exports = require("material-ui/Divider");
 
 /***/ }),
-/* 21 */
+/* 22 */
 /***/ (function(module, exports) {
 
 module.exports = require("material-ui/colors/blue");
 
 /***/ }),
-/* 22 */
+/* 23 */
 /***/ (function(module, exports) {
 
 module.exports = require("antd/lib/icon/style/css");
 
 /***/ }),
-/* 23 */
+/* 24 */
 /***/ (function(module, exports) {
 
 module.exports = require("antd/lib/icon");
 
 /***/ }),
-/* 24 */
+/* 25 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -869,7 +879,7 @@ var UserEffects = external__mobx_state_tree_["types"].model({}).actions(function
 });
 /* harmony default export */ var userEffects = (UserEffects);
 // EXTERNAL MODULE: external "urlsafe-base64"
-var external__urlsafe_base64_ = __webpack_require__(49);
+var external__urlsafe_base64_ = __webpack_require__(50);
 var external__urlsafe_base64__default = /*#__PURE__*/__webpack_require__.n(external__urlsafe_base64_);
 
 // CONCATENATED MODULE: ./utils/jwtUtils.js
@@ -1057,7 +1067,7 @@ function initStore(isServer) {
 }
 
 /***/ }),
-/* 25 */
+/* 26 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1085,78 +1095,78 @@ var theme = {
 /* harmony default export */ __webpack_exports__["a"] = (theme);
 
 /***/ }),
-/* 26 */
+/* 27 */
 /***/ (function(module, exports) {
 
 module.exports = require("react-spinners");
 
 /***/ }),
-/* 27 */
+/* 28 */
 /***/ (function(module, exports) {
 
 module.exports = require("material-ui/Typography");
 
 /***/ }),
-/* 28 */
+/* 29 */
 /***/ (function(module, exports) {
 
 module.exports = require("material-ui/List");
 
 /***/ }),
-/* 29 */
+/* 30 */
 /***/ (function(module, exports) {
 
 module.exports = require("react-form");
 
 /***/ }),
-/* 30 */
+/* 31 */
 /***/ (function(module, exports) {
 
 module.exports = require("material-ui/Snackbar");
 
 /***/ }),
-/* 31 */
+/* 32 */
 /***/ (function(module, exports) {
 
 module.exports = require("@material-ui/icons/Close");
 
 /***/ }),
-/* 32 */
+/* 33 */
 /***/ (function(module, exports) {
 
 module.exports = require("material-ui/Drawer");
 
 /***/ }),
-/* 33 */
+/* 34 */
 /***/ (function(module, exports) {
 
 module.exports = require("@material-ui/icons/RemoveRedEye");
 
 /***/ }),
-/* 34 */
+/* 35 */
 /***/ (function(module, exports) {
 
 module.exports = require("debounce");
 
 /***/ }),
-/* 35 */
+/* 36 */
 /***/ (function(module, exports) {
 
 module.exports = require("@devexpress/dx-react-grid-material-ui");
 
 /***/ }),
-/* 36 */
+/* 37 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = getPageContext;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react_jss__ = __webpack_require__(37);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react_jss__ = __webpack_require__(38);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react_jss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react_jss__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__material_ui_core_styles__ = __webpack_require__(38);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__material_ui_core_styles__ = __webpack_require__(39);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__material_ui_core_styles___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__material_ui_core_styles__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_material_ui_colors_red__ = __webpack_require__(39);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_material_ui_colors_red__ = __webpack_require__(40);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_material_ui_colors_red___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_material_ui_colors_red__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_material_ui_colors_blue__ = __webpack_require__(21);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_material_ui_colors_blue__ = __webpack_require__(22);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_material_ui_colors_blue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_material_ui_colors_blue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_polished__ = __webpack_require__(9);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_polished___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_polished__);
@@ -1240,49 +1250,49 @@ function getPageContext() {
 }
 
 /***/ }),
-/* 37 */
+/* 38 */
 /***/ (function(module, exports) {
 
 module.exports = require("react-jss");
 
 /***/ }),
-/* 38 */
+/* 39 */
 /***/ (function(module, exports) {
 
 module.exports = require("@material-ui/core/styles");
 
 /***/ }),
-/* 39 */
+/* 40 */
 /***/ (function(module, exports) {
 
 module.exports = require("material-ui/colors/red");
 
 /***/ }),
-/* 40 */
+/* 41 */
 /***/ (function(module, exports) {
 
 module.exports = require("material-ui/Button");
 
 /***/ }),
-/* 41 */
+/* 42 */
 /***/ (function(module, exports) {
 
 module.exports = require("moment");
 
 /***/ }),
-/* 42 */
+/* 43 */
 /***/ (function(module, exports) {
 
 module.exports = require("nprogress");
 
 /***/ }),
-/* 43 */
+/* 44 */
 /***/ (function(module, exports) {
 
 
 
 /***/ }),
-/* 44 */
+/* 45 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1292,9 +1302,9 @@ module.exports = require("nprogress");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_prop_types___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_prop_types__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_material_ui_styles__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_material_ui_styles___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_material_ui_styles__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_material_ui_CssBaseline__ = __webpack_require__(45);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_material_ui_CssBaseline__ = __webpack_require__(46);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_material_ui_CssBaseline___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_material_ui_CssBaseline__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__getPageContext__ = __webpack_require__(36);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__getPageContext__ = __webpack_require__(37);
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -1375,19 +1385,19 @@ function withRoot(Component) {
 /* harmony default export */ __webpack_exports__["a"] = (withRoot);
 
 /***/ }),
-/* 45 */
+/* 46 */
 /***/ (function(module, exports) {
 
 module.exports = require("material-ui/CssBaseline");
 
 /***/ }),
-/* 46 */
+/* 47 */
 /***/ (function(module, exports) {
 
 module.exports = require("next-routes");
 
 /***/ }),
-/* 47 */
+/* 48 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1395,19 +1405,19 @@ var globalStyles = "\n  html {\n    height: 100%;\n  }\n  body {\n    position: 
 /* harmony default export */ __webpack_exports__["a"] = (globalStyles);
 
 /***/ }),
-/* 48 */
+/* 49 */
 /***/ (function(module, exports) {
 
 module.exports = require("graphql-request");
 
 /***/ }),
-/* 49 */
+/* 50 */
 /***/ (function(module, exports) {
 
 module.exports = require("urlsafe-base64");
 
 /***/ }),
-/* 50 */
+/* 51 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1425,7 +1435,7 @@ var external__prop_types_ = __webpack_require__(16);
 var external__prop_types__default = /*#__PURE__*/__webpack_require__.n(external__prop_types_);
 
 // EXTERNAL MODULE: external "react-apollo"
-var external__react_apollo_ = __webpack_require__(17);
+var external__react_apollo_ = __webpack_require__(18);
 var external__react_apollo__default = /*#__PURE__*/__webpack_require__.n(external__react_apollo_);
 
 // EXTERNAL MODULE: external "next/head"
@@ -1433,33 +1443,34 @@ var head_ = __webpack_require__(15);
 var head__default = /*#__PURE__*/__webpack_require__.n(head_);
 
 // EXTERNAL MODULE: external "apollo-client"
-var external__apollo_client_ = __webpack_require__(51);
+var external__apollo_client_ = __webpack_require__(52);
 var external__apollo_client__default = /*#__PURE__*/__webpack_require__.n(external__apollo_client_);
 
 // EXTERNAL MODULE: external "apollo-link-http"
-var external__apollo_link_http_ = __webpack_require__(52);
+var external__apollo_link_http_ = __webpack_require__(53);
 var external__apollo_link_http__default = /*#__PURE__*/__webpack_require__.n(external__apollo_link_http_);
 
 // EXTERNAL MODULE: external "apollo-cache-inmemory"
-var external__apollo_cache_inmemory_ = __webpack_require__(53);
+var external__apollo_cache_inmemory_ = __webpack_require__(54);
 var external__apollo_cache_inmemory__default = /*#__PURE__*/__webpack_require__.n(external__apollo_cache_inmemory_);
 
 // EXTERNAL MODULE: external "isomorphic-unfetch"
-var external__isomorphic_unfetch_ = __webpack_require__(54);
+var external__isomorphic_unfetch_ = __webpack_require__(55);
 var external__isomorphic_unfetch__default = /*#__PURE__*/__webpack_require__.n(external__isomorphic_unfetch_);
 
-// CONCATENATED MODULE: ./constants/config.js
-var isDev = "production" !== 'production';
-// CONCATENATED MODULE: ./constants/websiteURL.js
+// EXTERNAL MODULE: external "next/config"
+var config_ = __webpack_require__(17);
+var config__default = /*#__PURE__*/__webpack_require__.n(config_);
 
-var websiteURL = isDev ? 'http://localhost:4000/graphql' : 'https://reyeselsamad.com/api/graphql';
-/* harmony default export */ var constants_websiteURL = (websiteURL);
 // CONCATENATED MODULE: ./lib/initApollo.js
 
 
 
 
 
+
+var _getConfig = config__default()(),
+    publicRuntimeConfig = _getConfig.publicRuntimeConfig;
 
 var apolloClient = null; // Polyfill fetch() on the server (used by apollo-client)
 
@@ -1473,9 +1484,9 @@ function create(initialState) {
     ssrMode: !process.browser,
     // Disables forceFetch on the server (so queries are only run once)
     link: new external__apollo_link_http_["HttpLink"]({
-      uri: "".concat(constants_websiteURL),
+      uri: publicRuntimeConfig.WEBSITE_URL,
       // 'http://localhost/api/graphql', // Server URL (must be absolute)
-      credentials: isDev ? 'include' : 'same-origin',
+      credentials: publicRuntimeConfig.CREDENTIALS,
       // Additional fetch() options like `credentials` or `headers`
       headers: {
         Accept: 'application/json'
@@ -1653,118 +1664,118 @@ function getComponentDisplayName(Component) {
 });
 
 /***/ }),
-/* 51 */
+/* 52 */
 /***/ (function(module, exports) {
 
 module.exports = require("apollo-client");
 
 /***/ }),
-/* 52 */
+/* 53 */
 /***/ (function(module, exports) {
 
 module.exports = require("apollo-link-http");
 
 /***/ }),
-/* 53 */
+/* 54 */
 /***/ (function(module, exports) {
 
 module.exports = require("apollo-cache-inmemory");
 
 /***/ }),
-/* 54 */
+/* 55 */
 /***/ (function(module, exports) {
 
 module.exports = require("isomorphic-unfetch");
 
 /***/ }),
-/* 55 */
+/* 56 */
 /***/ (function(module, exports) {
 
 module.exports = require("@material-ui/icons/Add");
 
 /***/ }),
-/* 56 */
+/* 57 */
 /***/ (function(module, exports) {
 
 module.exports = require("react-icons/lib/md");
 
 /***/ }),
-/* 57 */
+/* 58 */
 /***/ (function(module, exports) {
 
 module.exports = require("material-ui/Dialog");
 
 /***/ }),
-/* 58 */
+/* 59 */
 /***/ (function(module, exports) {
 
 module.exports = require("material-ui/Form");
 
 /***/ }),
-/* 59 */
+/* 60 */
 /***/ (function(module, exports) {
 
 module.exports = require("react-icons/lib/fa");
 
 /***/ }),
-/* 60 */
+/* 61 */
 /***/ (function(module, exports) {
 
 module.exports = require("@material-ui/icons/Settings");
 
 /***/ }),
-/* 61 */
+/* 62 */
 /***/ (function(module, exports) {
 
 module.exports = require("@material-ui/icons/Notifications");
 
 /***/ }),
-/* 62 */
+/* 63 */
 /***/ (function(module, exports) {
 
 module.exports = require("@material-ui/icons/ExitToApp");
 
 /***/ }),
-/* 63 */
+/* 64 */
 /***/ (function(module, exports) {
 
 module.exports = require("@material-ui/icons/SupervisorAccount");
 
 /***/ }),
-/* 64 */
+/* 65 */
 /***/ (function(module, exports) {
 
 module.exports = require("material-ui/Menu");
 
 /***/ }),
-/* 65 */
+/* 66 */
 /***/ (function(module, exports) {
 
 module.exports = require("graphql-tag");
 
 /***/ }),
-/* 66 */,
 /* 67 */,
-/* 68 */
+/* 68 */,
+/* 69 */
 /***/ (function(module, exports) {
 
 module.exports = require("material-ui/Input");
 
 /***/ }),
-/* 69 */
+/* 70 */
 /***/ (function(module, exports) {
 
 module.exports = require("react-sizes");
 
 /***/ }),
-/* 70 */,
-/* 71 */
+/* 71 */,
+/* 72 */
 /***/ (function(module, exports) {
 
 module.exports = require("chance");
 
 /***/ }),
-/* 72 */
+/* 73 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1826,24 +1837,24 @@ function (_React$Component) {
 
 
 /***/ }),
-/* 73 */,
-/* 74 */
+/* 74 */,
+/* 75 */
 /***/ (function(module, exports) {
 
 module.exports = require("uuid/v4");
 
 /***/ }),
-/* 75 */
+/* 76 */
 /***/ (function(module, exports) {
 
 
 
 /***/ }),
-/* 76 */,
 /* 77 */,
 /* 78 */,
 /* 79 */,
-/* 80 */
+/* 80 */,
+/* 81 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1865,7 +1876,7 @@ var head_ = __webpack_require__(15);
 var head__default = /*#__PURE__*/__webpack_require__.n(head_);
 
 // EXTERNAL MODULE: external "nprogress"
-var external__nprogress_ = __webpack_require__(42);
+var external__nprogress_ = __webpack_require__(43);
 var external__nprogress__default = /*#__PURE__*/__webpack_require__.n(external__nprogress_);
 
 // EXTERNAL MODULE: external "next/router"
@@ -1881,24 +1892,24 @@ var external__styled_components_ = __webpack_require__(8);
 var external__styled_components__default = /*#__PURE__*/__webpack_require__.n(external__styled_components_);
 
 // EXTERNAL MODULE: ../node_modules/antd/dist/antd.css
-var antd = __webpack_require__(43);
+var antd = __webpack_require__(44);
 var antd_default = /*#__PURE__*/__webpack_require__.n(antd);
 
 // EXTERNAL MODULE: ./lib/withRoot.js
-var withRoot = __webpack_require__(44);
+var withRoot = __webpack_require__(45);
 
 // EXTERNAL MODULE: ./themeStyles/index.js
-var themeStyles = __webpack_require__(25);
+var themeStyles = __webpack_require__(26);
 
 // EXTERNAL MODULE: ./globalStyles/index.js
-var globalStyles = __webpack_require__(47);
+var globalStyles = __webpack_require__(48);
 
 // EXTERNAL MODULE: external "antd/lib/icon/style/css"
-var css_ = __webpack_require__(22);
+var css_ = __webpack_require__(23);
 var css__default = /*#__PURE__*/__webpack_require__.n(css_);
 
 // EXTERNAL MODULE: external "antd/lib/icon"
-var icon_ = __webpack_require__(23);
+var icon_ = __webpack_require__(24);
 var icon__default = /*#__PURE__*/__webpack_require__.n(icon_);
 
 // EXTERNAL MODULE: external "material-ui/styles"
@@ -1906,35 +1917,35 @@ var styles_ = __webpack_require__(2);
 var styles__default = /*#__PURE__*/__webpack_require__.n(styles_);
 
 // EXTERNAL MODULE: external "@material-ui/icons/Settings"
-var Settings_ = __webpack_require__(60);
+var Settings_ = __webpack_require__(61);
 var Settings__default = /*#__PURE__*/__webpack_require__.n(Settings_);
 
 // EXTERNAL MODULE: external "material-ui-pickers/utils/moment-utils"
-var moment_utils_ = __webpack_require__(81);
+var moment_utils_ = __webpack_require__(82);
 var moment_utils__default = /*#__PURE__*/__webpack_require__.n(moment_utils_);
 
 // EXTERNAL MODULE: external "material-ui/Snackbar"
-var Snackbar_ = __webpack_require__(30);
+var Snackbar_ = __webpack_require__(31);
 var Snackbar__default = /*#__PURE__*/__webpack_require__.n(Snackbar_);
 
 // EXTERNAL MODULE: external "material-ui-pickers/utils/MuiPickersUtilsProvider"
-var MuiPickersUtilsProvider_ = __webpack_require__(82);
+var MuiPickersUtilsProvider_ = __webpack_require__(83);
 var MuiPickersUtilsProvider__default = /*#__PURE__*/__webpack_require__.n(MuiPickersUtilsProvider_);
 
 // EXTERNAL MODULE: external "material-ui/Hidden"
-var Hidden_ = __webpack_require__(83);
+var Hidden_ = __webpack_require__(84);
 var Hidden__default = /*#__PURE__*/__webpack_require__.n(Hidden_);
 
 // EXTERNAL MODULE: external "material-ui/Drawer"
-var Drawer_ = __webpack_require__(32);
+var Drawer_ = __webpack_require__(33);
 var Drawer__default = /*#__PURE__*/__webpack_require__.n(Drawer_);
 
 // EXTERNAL MODULE: external "material-ui/List"
-var List_ = __webpack_require__(28);
+var List_ = __webpack_require__(29);
 var List__default = /*#__PURE__*/__webpack_require__.n(List_);
 
 // EXTERNAL MODULE: external "material-ui/Divider"
-var Divider_ = __webpack_require__(20);
+var Divider_ = __webpack_require__(21);
 var Divider__default = /*#__PURE__*/__webpack_require__.n(Divider_);
 
 // EXTERNAL MODULE: external "material-ui/IconButton"
@@ -1946,19 +1957,19 @@ var Tooltip_ = __webpack_require__(12);
 var Tooltip__default = /*#__PURE__*/__webpack_require__.n(Tooltip_);
 
 // EXTERNAL MODULE: external "@material-ui/icons/ArrowBack"
-var ArrowBack_ = __webpack_require__(84);
+var ArrowBack_ = __webpack_require__(85);
 var ArrowBack__default = /*#__PURE__*/__webpack_require__.n(ArrowBack_);
 
 // EXTERNAL MODULE: external "@material-ui/icons/Notifications"
-var Notifications_ = __webpack_require__(61);
+var Notifications_ = __webpack_require__(62);
 var Notifications__default = /*#__PURE__*/__webpack_require__.n(Notifications_);
 
 // EXTERNAL MODULE: external "@material-ui/icons/Add"
-var Add_ = __webpack_require__(55);
+var Add_ = __webpack_require__(56);
 var Add__default = /*#__PURE__*/__webpack_require__.n(Add_);
 
 // EXTERNAL MODULE: external "@material-ui/icons/RemoveRedEye"
-var RemoveRedEye_ = __webpack_require__(33);
+var RemoveRedEye_ = __webpack_require__(34);
 var RemoveRedEye__default = /*#__PURE__*/__webpack_require__.n(RemoveRedEye_);
 
 // EXTERNAL MODULE: external "classnames"
@@ -2119,23 +2130,23 @@ function (_Component) {
 
 /* harmony default export */ var components_SideNavLinkItem = (Object(styles_["withStyles"])(styles)(SideNavLinkItem_SideNavLinkItem));
 // EXTERNAL MODULE: external "react-icons/lib/md"
-var md_ = __webpack_require__(56);
+var md_ = __webpack_require__(57);
 var md__default = /*#__PURE__*/__webpack_require__.n(md_);
 
 // EXTERNAL MODULE: external "react-icons/lib/fa"
-var fa_ = __webpack_require__(59);
+var fa_ = __webpack_require__(60);
 var fa__default = /*#__PURE__*/__webpack_require__.n(fa_);
 
 // EXTERNAL MODULE: external "@material-ui/icons/ExitToApp"
-var ExitToApp_ = __webpack_require__(62);
+var ExitToApp_ = __webpack_require__(63);
 var ExitToApp__default = /*#__PURE__*/__webpack_require__.n(ExitToApp_);
 
 // EXTERNAL MODULE: external "@material-ui/icons/SupervisorAccount"
-var SupervisorAccount_ = __webpack_require__(63);
+var SupervisorAccount_ = __webpack_require__(64);
 var SupervisorAccount__default = /*#__PURE__*/__webpack_require__.n(SupervisorAccount_);
 
 // EXTERNAL MODULE: external "@material-ui/icons/Assignment"
-var Assignment_ = __webpack_require__(85);
+var Assignment_ = __webpack_require__(86);
 var Assignment__default = /*#__PURE__*/__webpack_require__.n(Assignment_);
 
 // CONCATENATED MODULE: ./components/SideNav/navItems.js
@@ -2385,11 +2396,11 @@ function (_Component) {
 
 /* harmony default export */ var components_SideNav = (Object(styles_["withStyles"])(SideNav_styles)(SideNav_SideNav));
 // EXTERNAL MODULE: external "@material-ui/icons/Contacts"
-var Contacts_ = __webpack_require__(86);
+var Contacts_ = __webpack_require__(87);
 var Contacts__default = /*#__PURE__*/__webpack_require__.n(Contacts_);
 
 // EXTERNAL MODULE: external "@material-ui/icons/RecentActors"
-var RecentActors_ = __webpack_require__(87);
+var RecentActors_ = __webpack_require__(88);
 var RecentActors__default = /*#__PURE__*/__webpack_require__.n(RecentActors_);
 
 // CONCATENATED MODULE: ./components/AdminSideNav/navItems.js
@@ -2635,27 +2646,27 @@ function (_Component) {
 
 /* harmony default export */ var components_AdminSideNav = (Object(styles_["withStyles"])(AdminSideNav_styles)(AdminSideNav_AdminSideNav));
 // EXTERNAL MODULE: external "@material-ui/icons/Menu"
-var Menu_ = __webpack_require__(88);
+var Menu_ = __webpack_require__(89);
 var Menu__default = /*#__PURE__*/__webpack_require__.n(Menu_);
 
 // EXTERNAL MODULE: external "@material-ui/icons/Home"
-var Home_ = __webpack_require__(89);
+var Home_ = __webpack_require__(90);
 var Home__default = /*#__PURE__*/__webpack_require__.n(Home_);
 
 // EXTERNAL MODULE: external "material-ui/AppBar"
-var AppBar_ = __webpack_require__(90);
+var AppBar_ = __webpack_require__(91);
 var AppBar__default = /*#__PURE__*/__webpack_require__.n(AppBar_);
 
 // EXTERNAL MODULE: external "material-ui/Toolbar"
-var Toolbar_ = __webpack_require__(91);
+var Toolbar_ = __webpack_require__(92);
 var Toolbar__default = /*#__PURE__*/__webpack_require__.n(Toolbar_);
 
 // EXTERNAL MODULE: external "material-ui/Typography"
-var Typography_ = __webpack_require__(27);
+var Typography_ = __webpack_require__(28);
 var Typography__default = /*#__PURE__*/__webpack_require__.n(Typography_);
 
 // EXTERNAL MODULE: ./utils/stringUtils.js
-var stringUtils = __webpack_require__(18);
+var stringUtils = __webpack_require__(19);
 
 // CONCATENATED MODULE: ./components/AppTopNav/index.js
 var AppTopNav__class;
@@ -2792,11 +2803,11 @@ function (_Component) {
 
 /* harmony default export */ var components_AppTopNav = (Object(styles_["withStyles"])(AppTopNav_styles)(AppTopNav_AppTopNav));
 // EXTERNAL MODULE: external "@material-ui/icons/Close"
-var Close_ = __webpack_require__(31);
+var Close_ = __webpack_require__(32);
 var Close__default = /*#__PURE__*/__webpack_require__.n(Close_);
 
 // EXTERNAL MODULE: external "material-ui/Switch"
-var Switch_ = __webpack_require__(92);
+var Switch_ = __webpack_require__(93);
 var Switch__default = /*#__PURE__*/__webpack_require__.n(Switch_);
 
 // CONCATENATED MODULE: ./components/SettingsDrawer/index.js
@@ -2997,15 +3008,15 @@ function (_Component) {
 
 /* harmony default export */ var components_SettingsDrawer = (Object(styles_["withStyles"])(SettingsDrawer_styles)(SettingsDrawer_SettingsDrawer));
 // EXTERNAL MODULE: external "material-ui/Dialog"
-var Dialog_ = __webpack_require__(57);
+var Dialog_ = __webpack_require__(58);
 var Dialog__default = /*#__PURE__*/__webpack_require__.n(Dialog_);
 
 // EXTERNAL MODULE: external "material-ui/colors/blue"
-var blue_ = __webpack_require__(21);
+var blue_ = __webpack_require__(22);
 var blue__default = /*#__PURE__*/__webpack_require__.n(blue_);
 
 // EXTERNAL MODULE: external "material-ui/Avatar"
-var Avatar_ = __webpack_require__(93);
+var Avatar_ = __webpack_require__(94);
 var Avatar__default = /*#__PURE__*/__webpack_require__.n(Avatar_);
 
 // CONCATENATED MODULE: ./components/MenuDialogBox/index.js
@@ -3207,7 +3218,7 @@ var Offline = function Offline() {
 };
 
 if (external__is_browser__default.a) {
-  var _require = __webpack_require__(94),
+  var _require = __webpack_require__(95),
       OfflineComp = _require.Offline;
 
   Offline = OfflineComp;
@@ -3436,11 +3447,11 @@ function (_React$Component) {
 }, InnerAppLayout__temp);
 /* harmony default export */ var components_InnerAppLayout = (Object(router_["withRouter"])(Object(styles_["withStyles"])(InnerAppLayout_styles)(InnerAppLayout_InnerAppLayout)));
 // EXTERNAL MODULE: external "material-ui/Portal"
-var Portal_ = __webpack_require__(95);
+var Portal_ = __webpack_require__(96);
 var Portal__default = /*#__PURE__*/__webpack_require__.n(Portal_);
 
 // EXTERNAL MODULE: external "react-spinners"
-var external__react_spinners_ = __webpack_require__(26);
+var external__react_spinners_ = __webpack_require__(27);
 var external__react_spinners__default = /*#__PURE__*/__webpack_require__.n(external__react_spinners_);
 
 // CONCATENATED MODULE: ./components/FullScreenLoader/index.js
@@ -3534,13 +3545,13 @@ function (_Component) {
 
 /* harmony default export */ var components_FullScreenLoader = (Object(styles_["withStyles"])(FullScreenLoader_styles)(FullScreenLoader_FullScreenLoader));
 // EXTERNAL MODULE: ./models/index.js + 8 modules
-var models = __webpack_require__(24);
+var models = __webpack_require__(25);
 
 // EXTERNAL MODULE: ./AppGlobalStateProvider/index.js
-var AppGlobalStateProvider = __webpack_require__(72);
+var AppGlobalStateProvider = __webpack_require__(73);
 
 // EXTERNAL MODULE: ./static/css/main.css
-var main = __webpack_require__(75);
+var main = __webpack_require__(76);
 var main_default = /*#__PURE__*/__webpack_require__.n(main);
 
 // CONCATENATED MODULE: ./components/Layout/index.js
@@ -3737,97 +3748,96 @@ function (_Component) {
 /* harmony default export */ var components_Layout = __webpack_exports__["a"] = (Object(router_["withRouter"])(Object(withRoot["a" /* default */])(Layout_Layout)));
 
 /***/ }),
-/* 81 */
+/* 82 */
 /***/ (function(module, exports) {
 
 module.exports = require("material-ui-pickers/utils/moment-utils");
 
 /***/ }),
-/* 82 */
+/* 83 */
 /***/ (function(module, exports) {
 
 module.exports = require("material-ui-pickers/utils/MuiPickersUtilsProvider");
 
 /***/ }),
-/* 83 */
+/* 84 */
 /***/ (function(module, exports) {
 
 module.exports = require("material-ui/Hidden");
 
 /***/ }),
-/* 84 */
+/* 85 */
 /***/ (function(module, exports) {
 
 module.exports = require("@material-ui/icons/ArrowBack");
 
 /***/ }),
-/* 85 */
+/* 86 */
 /***/ (function(module, exports) {
 
 module.exports = require("@material-ui/icons/Assignment");
 
 /***/ }),
-/* 86 */
+/* 87 */
 /***/ (function(module, exports) {
 
 module.exports = require("@material-ui/icons/Contacts");
 
 /***/ }),
-/* 87 */
+/* 88 */
 /***/ (function(module, exports) {
 
 module.exports = require("@material-ui/icons/RecentActors");
 
 /***/ }),
-/* 88 */
+/* 89 */
 /***/ (function(module, exports) {
 
 module.exports = require("@material-ui/icons/Menu");
 
 /***/ }),
-/* 89 */
+/* 90 */
 /***/ (function(module, exports) {
 
 module.exports = require("@material-ui/icons/Home");
 
 /***/ }),
-/* 90 */
+/* 91 */
 /***/ (function(module, exports) {
 
 module.exports = require("material-ui/AppBar");
 
 /***/ }),
-/* 91 */
+/* 92 */
 /***/ (function(module, exports) {
 
 module.exports = require("material-ui/Toolbar");
 
 /***/ }),
-/* 92 */
+/* 93 */
 /***/ (function(module, exports) {
 
 module.exports = require("material-ui/Switch");
 
 /***/ }),
-/* 93 */
+/* 94 */
 /***/ (function(module, exports) {
 
 module.exports = require("material-ui/Avatar");
 
 /***/ }),
-/* 94 */
+/* 95 */
 /***/ (function(module, exports) {
 
 module.exports = require("react-detect-offline");
 
 /***/ }),
-/* 95 */
+/* 96 */
 /***/ (function(module, exports) {
 
 module.exports = require("material-ui/Portal");
 
 /***/ }),
-/* 96 */,
 /* 97 */,
 /* 98 */,
 /* 99 */,
@@ -3862,17 +3872,17 @@ module.exports = require("material-ui/Chip");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_mobx_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_mobx_react__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_material_ui_styles__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_material_ui_styles___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_material_ui_styles__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_material_ui_Input__ = __webpack_require__(68);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_material_ui_Input__ = __webpack_require__(69);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_material_ui_Input___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_material_ui_Input__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_material_ui_Form__ = __webpack_require__(58);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_material_ui_Form__ = __webpack_require__(59);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_material_ui_Form___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_material_ui_Form__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_react_form__ = __webpack_require__(29);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_react_form__ = __webpack_require__(30);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_react_form___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_react_form__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_uuid_v4__ = __webpack_require__(74);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_uuid_v4__ = __webpack_require__(75);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_uuid_v4___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_uuid_v4__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_classnames__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_classnames___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7_classnames__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_debounce__ = __webpack_require__(34);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_debounce__ = __webpack_require__(35);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_debounce___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8_debounce__);
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
@@ -4163,7 +4173,7 @@ module.exports = require("@devexpress/dx-react-grid");
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__devexpress_dx_react_grid_material_ui__ = __webpack_require__(35);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__devexpress_dx_react_grid_material_ui__ = __webpack_require__(36);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__devexpress_dx_react_grid_material_ui___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__devexpress_dx_react_grid_material_ui__);
 
 
@@ -4181,7 +4191,7 @@ var VirtualCell = function VirtualCell(props) {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__devexpress_dx_react_grid_material_ui__ = __webpack_require__(35);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__devexpress_dx_react_grid_material_ui__ = __webpack_require__(36);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__devexpress_dx_react_grid_material_ui___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__devexpress_dx_react_grid_material_ui__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_material_ui_styles__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_material_ui_styles___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_material_ui_styles__);
@@ -4243,7 +4253,7 @@ var TableComponentBase = function TableComponentBase(_ref) {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__devexpress_dx_react_grid_material_ui__ = __webpack_require__(35);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__devexpress_dx_react_grid_material_ui__ = __webpack_require__(36);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__devexpress_dx_react_grid_material_ui___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__devexpress_dx_react_grid_material_ui__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_material_ui_styles__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_material_ui_styles___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_material_ui_styles__);
@@ -4310,7 +4320,7 @@ var TableContainerBase = function TableContainerBase(_ref) {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__devexpress_dx_react_grid_material_ui__ = __webpack_require__(35);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__devexpress_dx_react_grid_material_ui__ = __webpack_require__(36);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__devexpress_dx_react_grid_material_ui___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__devexpress_dx_react_grid_material_ui__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_material_ui_styles__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_material_ui_styles___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_material_ui_styles__);
@@ -4376,7 +4386,7 @@ var NoDataCellComponentBase = function NoDataCellComponentBase(_ref) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_material_ui_styles___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_material_ui_styles__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_mobx_react__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_mobx_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_mobx_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__material_ui_icons_RemoveRedEye__ = __webpack_require__(33);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__material_ui_icons_RemoveRedEye__ = __webpack_require__(34);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__material_ui_icons_RemoveRedEye___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__material_ui_icons_RemoveRedEye__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_material_ui_Tooltip__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_material_ui_Tooltip___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_material_ui_Tooltip__);
@@ -4529,17 +4539,17 @@ module.exports = require("@material-ui/icons/ExpandMore");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_mobx_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_mobx_react__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_material_ui_styles__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_material_ui_styles___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_material_ui_styles__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_material_ui_Form__ = __webpack_require__(58);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_material_ui_Form__ = __webpack_require__(59);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_material_ui_Form___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_material_ui_Form__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_material_ui_Select__ = __webpack_require__(104);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_material_ui_Select___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_material_ui_Select__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_material_ui_Input__ = __webpack_require__(68);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_material_ui_Input__ = __webpack_require__(69);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_material_ui_Input___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_material_ui_Input__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_material_ui_Menu__ = __webpack_require__(64);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_material_ui_Menu__ = __webpack_require__(65);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_material_ui_Menu___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_material_ui_Menu__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_material_ui_Chip__ = __webpack_require__(105);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_material_ui_Chip___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7_material_ui_Chip__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_react_form__ = __webpack_require__(29);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_react_form__ = __webpack_require__(30);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_react_form___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8_react_form__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_classnames__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_classnames___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_9_classnames__);
@@ -4772,13 +4782,13 @@ function (_React$Component) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_mobx_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_mobx_react__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_material_ui_styles__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_material_ui_styles___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_material_ui_styles__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_material_ui_Form__ = __webpack_require__(58);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_material_ui_Form__ = __webpack_require__(59);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_material_ui_Form___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_material_ui_Form__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_material_ui_Select__ = __webpack_require__(104);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_material_ui_Select___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_material_ui_Select__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_material_ui_Input__ = __webpack_require__(68);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_material_ui_Input__ = __webpack_require__(69);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_material_ui_Input___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_material_ui_Input__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_material_ui_Menu__ = __webpack_require__(64);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_material_ui_Menu__ = __webpack_require__(65);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_material_ui_Menu___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_material_ui_Menu__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_material_ui_Chip__ = __webpack_require__(105);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_material_ui_Chip___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7_material_ui_Chip__);
@@ -6077,11 +6087,11 @@ module.exports = require("react-lazyload");
 "use strict";
 
 // EXTERNAL MODULE: external "antd/lib/icon/style/css"
-var css_ = __webpack_require__(22);
+var css_ = __webpack_require__(23);
 var css__default = /*#__PURE__*/__webpack_require__.n(css_);
 
 // EXTERNAL MODULE: external "antd/lib/icon"
-var icon_ = __webpack_require__(23);
+var icon_ = __webpack_require__(24);
 var icon__default = /*#__PURE__*/__webpack_require__.n(icon_);
 
 // EXTERNAL MODULE: external "react"
@@ -6089,11 +6099,11 @@ var external__react_ = __webpack_require__(0);
 var external__react__default = /*#__PURE__*/__webpack_require__.n(external__react_);
 
 // EXTERNAL MODULE: external "react-form"
-var external__react_form_ = __webpack_require__(29);
+var external__react_form_ = __webpack_require__(30);
 var external__react_form__default = /*#__PURE__*/__webpack_require__.n(external__react_form_);
 
 // EXTERNAL MODULE: external "uuid/v4"
-var v4_ = __webpack_require__(74);
+var v4_ = __webpack_require__(75);
 var v4__default = /*#__PURE__*/__webpack_require__.n(v4_);
 
 // EXTERNAL MODULE: external "material-ui/styles"
@@ -6101,11 +6111,11 @@ var styles_ = __webpack_require__(2);
 var styles__default = /*#__PURE__*/__webpack_require__.n(styles_);
 
 // EXTERNAL MODULE: external "material-ui/Grid"
-var Grid_ = __webpack_require__(19);
+var Grid_ = __webpack_require__(20);
 var Grid__default = /*#__PURE__*/__webpack_require__.n(Grid_);
 
 // EXTERNAL MODULE: external "react-sizes"
-var external__react_sizes_ = __webpack_require__(69);
+var external__react_sizes_ = __webpack_require__(70);
 var external__react_sizes__default = /*#__PURE__*/__webpack_require__.n(external__react_sizes_);
 
 // EXTERNAL MODULE: ../node_modules/react-circular-progressbar/dist/styles.css
@@ -6375,13 +6385,13 @@ var external__is_browser_ = __webpack_require__(7);
 var external__is_browser__default = /*#__PURE__*/__webpack_require__.n(external__is_browser_);
 
 // EXTERNAL MODULE: ./components/Layout/index.js + 11 modules
-var Layout = __webpack_require__(80);
+var Layout = __webpack_require__(81);
 
 // EXTERNAL MODULE: ./models/index.js + 8 modules
-var models = __webpack_require__(24);
+var models = __webpack_require__(25);
 
-// EXTERNAL MODULE: ./lib/withData.js + 3 modules
-var withData = __webpack_require__(50);
+// EXTERNAL MODULE: ./lib/withData.js + 1 modules
+var withData = __webpack_require__(51);
 
 // EXTERNAL MODULE: ./routes.js
 var routes = __webpack_require__(4);
@@ -6392,15 +6402,15 @@ var styles_ = __webpack_require__(2);
 var styles__default = /*#__PURE__*/__webpack_require__.n(styles_);
 
 // EXTERNAL MODULE: external "material-ui/Button"
-var Button_ = __webpack_require__(40);
+var Button_ = __webpack_require__(41);
 var Button__default = /*#__PURE__*/__webpack_require__.n(Button_);
 
 // EXTERNAL MODULE: external "material-ui/Typography"
-var Typography_ = __webpack_require__(27);
+var Typography_ = __webpack_require__(28);
 var Typography__default = /*#__PURE__*/__webpack_require__.n(Typography_);
 
 // EXTERNAL MODULE: external "@material-ui/icons/Add"
-var Add_ = __webpack_require__(55);
+var Add_ = __webpack_require__(56);
 var Add__default = /*#__PURE__*/__webpack_require__.n(Add_);
 
 // EXTERNAL MODULE: external "@material-ui/icons/Search"
@@ -6408,11 +6418,11 @@ var Search_ = __webpack_require__(128);
 var Search__default = /*#__PURE__*/__webpack_require__.n(Search_);
 
 // EXTERNAL MODULE: external "moment"
-var external__moment_ = __webpack_require__(41);
+var external__moment_ = __webpack_require__(42);
 var external__moment__default = /*#__PURE__*/__webpack_require__.n(external__moment_);
 
 // EXTERNAL MODULE: external "material-ui/Grid"
-var Grid_ = __webpack_require__(19);
+var Grid_ = __webpack_require__(20);
 var Grid__default = /*#__PURE__*/__webpack_require__.n(Grid_);
 
 // EXTERNAL MODULE: external "material-ui-pickers"
@@ -6428,7 +6438,7 @@ var ExpansionPanel_ = __webpack_require__(114);
 var ExpansionPanel__default = /*#__PURE__*/__webpack_require__.n(ExpansionPanel_);
 
 // EXTERNAL MODULE: external "material-ui/Menu"
-var Menu_ = __webpack_require__(64);
+var Menu_ = __webpack_require__(65);
 var Menu__default = /*#__PURE__*/__webpack_require__.n(Menu_);
 
 // EXTERNAL MODULE: external "material-ui/Menu/MenuItem"
@@ -6444,19 +6454,19 @@ var CheckCircle_ = __webpack_require__(139);
 var CheckCircle__default = /*#__PURE__*/__webpack_require__.n(CheckCircle_);
 
 // EXTERNAL MODULE: external "graphql-tag"
-var external__graphql_tag_ = __webpack_require__(65);
+var external__graphql_tag_ = __webpack_require__(66);
 var external__graphql_tag__default = /*#__PURE__*/__webpack_require__.n(external__graphql_tag_);
 
 // EXTERNAL MODULE: external "react-apollo"
-var external__react_apollo_ = __webpack_require__(17);
+var external__react_apollo_ = __webpack_require__(18);
 var external__react_apollo__default = /*#__PURE__*/__webpack_require__.n(external__react_apollo_);
 
 // EXTERNAL MODULE: external "react-spinners"
-var external__react_spinners_ = __webpack_require__(26);
+var external__react_spinners_ = __webpack_require__(27);
 var external__react_spinners__default = /*#__PURE__*/__webpack_require__.n(external__react_spinners_);
 
 // EXTERNAL MODULE: external "material-ui/Snackbar"
-var Snackbar_ = __webpack_require__(30);
+var Snackbar_ = __webpack_require__(31);
 var Snackbar__default = /*#__PURE__*/__webpack_require__.n(Snackbar_);
 
 // EXTERNAL MODULE: external "material-ui/IconButton"
@@ -6464,15 +6474,15 @@ var IconButton_ = __webpack_require__(14);
 var IconButton__default = /*#__PURE__*/__webpack_require__.n(IconButton_);
 
 // EXTERNAL MODULE: external "@material-ui/icons/Close"
-var Close_ = __webpack_require__(31);
+var Close_ = __webpack_require__(32);
 var Close__default = /*#__PURE__*/__webpack_require__.n(Close_);
 
 // EXTERNAL MODULE: external "material-ui/Dialog"
-var Dialog_ = __webpack_require__(57);
+var Dialog_ = __webpack_require__(58);
 var Dialog__default = /*#__PURE__*/__webpack_require__.n(Dialog_);
 
 // EXTERNAL MODULE: external "material-ui/Divider"
-var Divider_ = __webpack_require__(20);
+var Divider_ = __webpack_require__(21);
 var Divider__default = /*#__PURE__*/__webpack_require__.n(Divider_);
 
 // EXTERNAL MODULE: external "classnames"
@@ -6523,23 +6533,23 @@ var createAdmin_createAdmin = function createAdmin(values) {
 
 /* harmony default export */ var users_createAdmin = (createAdmin_createAdmin);
 // EXTERNAL MODULE: external "antd/lib/icon/style/css"
-var css_ = __webpack_require__(22);
+var css_ = __webpack_require__(23);
 var css__default = /*#__PURE__*/__webpack_require__.n(css_);
 
 // EXTERNAL MODULE: external "antd/lib/icon"
-var icon_ = __webpack_require__(23);
+var icon_ = __webpack_require__(24);
 var icon__default = /*#__PURE__*/__webpack_require__.n(icon_);
 
 // EXTERNAL MODULE: external "react-form"
-var external__react_form_ = __webpack_require__(29);
+var external__react_form_ = __webpack_require__(30);
 var external__react_form__default = /*#__PURE__*/__webpack_require__.n(external__react_form_);
 
 // EXTERNAL MODULE: external "uuid/v4"
-var v4_ = __webpack_require__(74);
+var v4_ = __webpack_require__(75);
 var v4__default = /*#__PURE__*/__webpack_require__.n(v4_);
 
 // EXTERNAL MODULE: external "react-sizes"
-var external__react_sizes_ = __webpack_require__(69);
+var external__react_sizes_ = __webpack_require__(70);
 var external__react_sizes__default = /*#__PURE__*/__webpack_require__.n(external__react_sizes_);
 
 // EXTERNAL MODULE: ../node_modules/react-circular-progressbar/dist/styles.css
@@ -7070,7 +7080,7 @@ function (_Component) {
 }(external__react_["Component"])) || _class);
 /* harmony default export */ var CreateAdminForm = (Object(styles_["withStyles"])(CreateAdminForm_styles)(CreateAdminForm_CreateAgentForm));
 // EXTERNAL MODULE: ./utils/stringUtils.js
-var stringUtils = __webpack_require__(18);
+var stringUtils = __webpack_require__(19);
 
 // CONCATENATED MODULE: ./containers/CreateAdminForm.js
 var CreateAdminForm__class;
@@ -7222,7 +7232,7 @@ function (_Component) {
 
 /* harmony default export */ var containers_CreateAdminForm = (CreateAdminForm_CreateAdminContainer);
 // EXTERNAL MODULE: ./AppGlobalStateProvider/index.js
-var AppGlobalStateProvider = __webpack_require__(72);
+var AppGlobalStateProvider = __webpack_require__(73);
 
 // CONCATENATED MODULE: ./components/CreateAdminDialogBox/index.js
 var CreateAdminDialogBox__class;
@@ -7480,7 +7490,7 @@ function (_Component) {
 var components_MaterialCustomSelectInput = __webpack_require__(118);
 
 // EXTERNAL MODULE: external "chance"
-var external__chance_ = __webpack_require__(71);
+var external__chance_ = __webpack_require__(72);
 var external__chance__default = /*#__PURE__*/__webpack_require__.n(external__chance_);
 
 // EXTERNAL MODULE: external "faker"
@@ -7492,7 +7502,7 @@ var dx_react_grid_ = __webpack_require__(107);
 var dx_react_grid__default = /*#__PURE__*/__webpack_require__.n(dx_react_grid_);
 
 // EXTERNAL MODULE: external "@devexpress/dx-react-grid-material-ui"
-var dx_react_grid_material_ui_ = __webpack_require__(35);
+var dx_react_grid_material_ui_ = __webpack_require__(36);
 var dx_react_grid_material_ui__default = /*#__PURE__*/__webpack_require__.n(dx_react_grid_material_ui_);
 
 // EXTERNAL MODULE: ./utils/backEndTableUtils/DefaultVirtualTableCell.js
