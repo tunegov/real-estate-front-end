@@ -248,7 +248,10 @@ class ViewDealFormContainer extends Component {
   };
 
   onSubmit = values => {
-    this.props.setFormSubmitted();
+    const {
+      setFormSubmitted, dealID, userRole, openRequestErrorSnackbar, setDealSuccessfullySubmitted,
+    } = this.props;
+    setFormSubmitted();
 
     const {
       contractOrLeaseForms,
@@ -268,7 +271,7 @@ class ViewDealFormContainer extends Component {
       total,
       agencyDisclosureForm: null,
       contractOrLeaseForms: [],
-      dealID: this.props.dealID,
+      dealID,
     };
 
     delete returnObject.contractOrLeaseItems;
@@ -280,7 +283,7 @@ class ViewDealFormContainer extends Component {
     delete returnObject.agentType;
     delete returnObject.state;
 
-    if (this.props.userRole !== admin && this.props.userRole !== superAdmin) {
+    if (userRole !== admin && userRole !== superAdmin) {
       delete returnObject.bonusPercentageAddedByAdmin;
     }
 
@@ -324,7 +327,7 @@ class ViewDealFormContainer extends Component {
           let failed = false;
 
           if (res.otherError) {
-            this.props.openRequestErrorSnackbar(res.otherError);
+            openRequestErrorSnackbar(res.otherError);
             failed = true;
           }
 
@@ -333,25 +336,25 @@ class ViewDealFormContainer extends Component {
           }
 
           if (!failed) {
-            this.props.setDealSuccessfullySubmitted(res.deal);
+            setDealSuccessfullySubmitted(res.deal);
           }
 
           this.setState({
             submittingFormToServer: false,
           });
 
-          this.props.setFormSubmitted(false);
+          setFormSubmitted(false);
         })
         .catch(err => {
-          this.props.setFormSubmitted(false);
-          this.props.openRequestErrorSnackbar();
+          setFormSubmitted(false);
+          openRequestErrorSnackbar();
         });
       return;
     }
 
-    getDealUploadsSignedURLS(uploadItems).then(response => {
+    getDealUploadsSignedURLS(uploadItems, dealID).then(response => {
       if (response.error) {
-        this.props.openRequestErrorSnackbar(response.error);
+        openRequestErrorSnackbar(response.error);
         return;
       }
 
@@ -359,14 +362,14 @@ class ViewDealFormContainer extends Component {
 
       const { items } = response;
 
-      returnObject.dealID = this.props.dealID;
+      returnObject.dealID = dealID;
 
       items.forEach(item => {
         if (item.error) errors.push(item.error);
       });
 
       if (errors.length) {
-        this.props.openRequestErrorSnackbar(errors[0]);
+        openRequestErrorSnackbar(errors[0]);
         return;
       }
 
@@ -404,7 +407,7 @@ class ViewDealFormContainer extends Component {
               let failed = false;
 
               if (res.otherError) {
-                this.props.openRequestErrorSnackbar(res.otherError);
+                openRequestErrorSnackbar(res.otherError);
                 failed = true;
               }
 
@@ -413,13 +416,13 @@ class ViewDealFormContainer extends Component {
               }
 
               if (!failed) {
-                this.props.setDealSuccessfullySubmitted(res.deal);
+                setDealSuccessfullySubmitted(res.deal);
               }
-              this.props.setFormSubmitted(false);
+              setFormSubmitted(false);
             })
             .catch(err => {
-              this.props.setFormSubmitted(false);
-              this.props.openRequestErrorSnackbar();
+              setFormSubmitted(false);
+              openRequestErrorSnackbar();
             });
 
           return;
@@ -463,7 +466,7 @@ class ViewDealFormContainer extends Component {
             thisRef
           )
           )
-          .catch(err => this.props.openRequestErrorSnackbar());
+          .catch(err => openRequestErrorSnackbar());
       };
 
       recursiveUploads(items, returnObject, this);

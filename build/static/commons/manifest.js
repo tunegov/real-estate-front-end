@@ -90,7 +90,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "d57826a3e986ef826d41"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "2b0fd818244a8399661d"; // eslint-disable-line no-unused-vars
 /******/ 	var hotRequestTimeout = 10000;
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule; // eslint-disable-line no-unused-vars
@@ -755,7 +755,7 @@
 /******/ 		if (__webpack_require__.nc) {
 /******/ 			script.setAttribute("nonce", __webpack_require__.nc);
 /******/ 		}
-/******/ 		script.src = __webpack_require__.p + "" + ({"0":"main.js","1":"bundles/pages/_document.js","2":"bundles/pages/_error.js","3":"bundles/pages/_app.js","7":"bundles/pages/app/profile.js","8":"bundles/pages/app/admin-area/agents/view.js"}[chunkId]||chunkId) + "-" + {"0":"f0ef663a05e7bb109de0","1":"a2746b29953e418a003e","2":"0d7c9edf82982a2a3f08","3":"8f006bb8dc4081700a92","7":"31d98c7bcab85bbe8f94","8":"fefc2f5ea3d4be4c9ad0"}[chunkId] + ".js";
+/******/ 		script.src = __webpack_require__.p + "" + ({"0":"main.js","1":"bundles/pages/_document.js","2":"bundles/pages/_error.js","3":"bundles/pages/_app.js","5":"bundles/pages/app/dashboard.js","6":"bundles/pages/app/deals.js"}[chunkId]||chunkId) + "-" + {"0":"be89286004087460072e","1":"a2746b29953e418a003e","2":"0d7c9edf82982a2a3f08","3":"8f006bb8dc4081700a92","5":"cf09a6210fc38fb60405","6":"b95f9f3dc479d4a50b03"}[chunkId] + ".js";
 /******/ 		var timeout = setTimeout(onScriptComplete, 120000);
 /******/ 		script.onerror = script.onload = onScriptComplete;
 /******/ 		function onScriptComplete() {

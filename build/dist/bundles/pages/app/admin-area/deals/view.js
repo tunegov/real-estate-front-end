@@ -7039,9 +7039,7 @@ function (_Component) {
               classes: {
                 root: classes.menuItem
               },
-              onClick: function onClick() {
-                _this2.handleAgencyDisclosureMenuClose();
-              }
+              onClick: _this2.handleAgencyDisclosureMenuClose
             }, external__react__default.a.createElement("a", {
               href: src,
               target: "_blank"
@@ -7987,13 +7985,16 @@ module.exports = require("react-images");
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__client__ = __webpack_require__(6);
 
-var query = "\n  mutation getDealFileUploadsSignedURLS($input: [GetSignedURLSInput!]!) {\n    getDealFileUploadsSignedURLS(input: $input) {\n      dealID\n      items {\n        itemName\n        fileName\n        signedURL\n        uuid\n        error\n      }\n      error\n    }\n  }\n";
+var query = "\n  mutation getDealFileUploadsSignedURLS($input: GetSignedURLSInput!) {\n    getDealFileUploadsSignedURLS(input: $input) {\n      dealID\n      items {\n        itemName\n        fileName\n        signedURL\n        uuid\n        error\n      }\n      error\n    }\n  }\n";
 
-var getDealUploadsSignedURLS = function getDealUploadsSignedURLS(values) {
+var getDealUploadsSignedURLS = function getDealUploadsSignedURLS(values, dealID) {
   var res;
   var error;
   var variables = {
-    input: values
+    input: {
+      items: values,
+      dealID: dealID
+    }
   };
   var finalResponseObj = {
     dealID: null,
@@ -8807,8 +8808,13 @@ function (_Component) {
       enumerable: true,
       writable: true,
       value: function value(values) {
-        _this.props.setFormSubmitted();
-
+        var _this$props = _this.props,
+            setFormSubmitted = _this$props.setFormSubmitted,
+            dealID = _this$props.dealID,
+            userRole = _this$props.userRole,
+            openRequestErrorSnackbar = _this$props.openRequestErrorSnackbar,
+            setDealSuccessfullySubmitted = _this$props.setDealSuccessfullySubmitted;
+        setFormSubmitted();
         var _this$state4 = _this.state,
             contractOrLeaseForms = _this$state4.contractOrLeaseForms,
             agencyDisclosureForm = _this$state4.agencyDisclosureForm,
@@ -8825,7 +8831,7 @@ function (_Component) {
           total: total,
           agencyDisclosureForm: null,
           contractOrLeaseForms: [],
-          dealID: _this.props.dealID
+          dealID: dealID
         });
 
         delete returnObject.contractOrLeaseItems;
@@ -8837,7 +8843,7 @@ function (_Component) {
         delete returnObject.agentType;
         delete returnObject.state;
 
-        if (_this.props.userRole !== userTypes["admin"] && _this.props.userRole !== userTypes["superAdmin"]) {
+        if (userRole !== userTypes["admin"] && userRole !== userTypes["superAdmin"]) {
           delete returnObject.bonusPercentageAddedByAdmin;
         }
 
@@ -8881,8 +8887,7 @@ function (_Component) {
             var failed = false;
 
             if (res.otherError) {
-              _this.props.openRequestErrorSnackbar(res.otherError);
-
+              openRequestErrorSnackbar(res.otherError);
               failed = true;
             }
 
@@ -8891,39 +8896,36 @@ function (_Component) {
             }
 
             if (!failed) {
-              _this.props.setDealSuccessfullySubmitted(res.deal);
+              setDealSuccessfullySubmitted(res.deal);
             }
 
             _this.setState({
               submittingFormToServer: false
             });
 
-            _this.props.setFormSubmitted(false);
+            setFormSubmitted(false);
           }).catch(function (err) {
-            _this.props.setFormSubmitted(false);
-
-            _this.props.openRequestErrorSnackbar();
+            setFormSubmitted(false);
+            openRequestErrorSnackbar();
           });
           return;
         }
 
-        Object(getDealUploadsSignedURLS["a" /* default */])(uploadItems).then(function (response) {
+        Object(getDealUploadsSignedURLS["a" /* default */])(uploadItems, dealID).then(function (response) {
           if (response.error) {
-            _this.props.openRequestErrorSnackbar(response.error);
-
+            openRequestErrorSnackbar(response.error);
             return;
           }
 
           var errors = [];
           var items = response.items;
-          returnObject.dealID = _this.props.dealID;
+          returnObject.dealID = dealID;
           items.forEach(function (item) {
             if (item.error) errors.push(item.error);
           });
 
           if (errors.length) {
-            _this.props.openRequestErrorSnackbar(errors[0]);
-
+            openRequestErrorSnackbar(errors[0]);
             return;
           }
 
@@ -8947,8 +8949,7 @@ function (_Component) {
                 var failed = false;
 
                 if (res.otherError) {
-                  _this.props.openRequestErrorSnackbar(res.otherError);
-
+                  openRequestErrorSnackbar(res.otherError);
                   failed = true;
                 }
 
@@ -8957,14 +8958,13 @@ function (_Component) {
                 }
 
                 if (!failed) {
-                  _this.props.setDealSuccessfullySubmitted(res.deal);
+                  setDealSuccessfullySubmitted(res.deal);
                 }
 
-                _this.props.setFormSubmitted(false);
+                setFormSubmitted(false);
               }).catch(function (err) {
-                _this.props.setFormSubmitted(false);
-
-                _this.props.openRequestErrorSnackbar();
+                setFormSubmitted(false);
+                openRequestErrorSnackbar();
               });
               return;
             }
@@ -8998,7 +8998,7 @@ function (_Component) {
             }).then(function () {
               return recursiveHelper(items, uploadItemIndex + 1, uploadItemsNum, returnObject, thisRef);
             }).catch(function (err) {
-              return _this.props.openRequestErrorSnackbar();
+              return openRequestErrorSnackbar();
             });
           };
 

@@ -1,7 +1,7 @@
 import { graphQlClient } from '../client';
 
 const query = `
-  mutation getDealFileUploadsSignedURLS($input: [GetSignedURLSInput!]!) {
+  mutation getDealFileUploadsSignedURLS($input: GetSignedURLSInput!) {
     getDealFileUploadsSignedURLS(input: $input) {
       dealID
       items {
@@ -16,12 +16,15 @@ const query = `
   }
 `;
 
-const getDealUploadsSignedURLS = values => {
+const getDealUploadsSignedURLS = (values, dealID) => {
   let res;
   let error;
 
   const variables = {
-    input: values,
+    input: {
+      items: values,
+      dealID,
+    },
   };
 
   const finalResponseObj = {

@@ -870,9 +870,7 @@ class SubmitDealForm extends Component {
         return (
           <MenuItem
             classes={{ root: classes.menuItem }}
-            onClick={() => {
-              this.handleAgencyDisclosureMenuClose();
-            }}
+            onClick={this.handleAgencyDisclosureMenuClose}
           >
             <a href={src} target="_blank">
               {fileName}
