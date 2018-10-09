@@ -8191,152 +8191,152 @@ var commercialSale = 'Commercial Sale';
 var returnMonthlyDollarDataContainer = function returnMonthlyDollarDataContainer() {
   return {
     Jan: {
-      'Com Sales': 0.001,
-      'Com Rentals': 0.001,
-      'Res Sales': 0.001,
-      'Res Rentals': 0.001
+      'Com Sales': 0,
+      'Com Rentals': 0,
+      'Res Sales': 0,
+      'Res Rentals': 0
     },
     Feb: {
-      'Com Sales': 0.001,
-      'Com Rentals': 0.001,
-      'Res Sales': 0.001,
-      'Res Rentals': 0.001
+      'Com Sales': 0,
+      'Com Rentals': 0,
+      'Res Sales': 0,
+      'Res Rentals': 0
     },
     Mar: {
-      'Com Sales': 0.001,
-      'Com Rentals': 0.001,
-      'Res Sales': 0.001,
-      'Res Rentals': 0.001
+      'Com Sales': 0,
+      'Com Rentals': 0,
+      'Res Sales': 0,
+      'Res Rentals': 0
     },
     Apr: {
-      'Com Sales': 0.001,
-      'Com Rentals': 0.001,
-      'Res Sales': 0.001,
-      'Res Rentals': 0.001
+      'Com Sales': 0,
+      'Com Rentals': 0,
+      'Res Sales': 0,
+      'Res Rentals': 0
     },
     May: {
-      'Com Sales': 0.001,
-      'Com Rentals': 0.001,
-      'Res Sales': 0.001,
-      'Res Rentals': 0.001
+      'Com Sales': 0,
+      'Com Rentals': 0,
+      'Res Sales': 0,
+      'Res Rentals': 0
     },
     June: {
-      'Com Sales': 0.001,
-      'Com Rentals': 0.001,
-      'Res Sales': 0.001,
-      'Res Rentals': 0.001
+      'Com Sales': 0,
+      'Com Rentals': 0,
+      'Res Sales': 0,
+      'Res Rentals': 0
     },
     Jul: {
-      'Com Sales': 0.001,
-      'Com Rentals': 0.001,
-      'Res Sales': 0.001,
-      'Res Rentals': 0.001
+      'Com Sales': 0,
+      'Com Rentals': 0,
+      'Res Sales': 0,
+      'Res Rentals': 0
     },
     Aug: {
-      'Com Sales': 0.001,
-      'Com Rentals': 0.001,
-      'Res Sales': 0.001,
-      'Res Rentals': 0.001
+      'Com Sales': 0,
+      'Com Rentals': 0,
+      'Res Sales': 0,
+      'Res Rentals': 0
     },
     Sep: {
-      'Com Sales': 0.001,
-      'Com Rentals': 0.001,
-      'Res Sales': 0.001,
-      'Res Rentals': 0.001
+      'Com Sales': 0,
+      'Com Rentals': 0,
+      'Res Sales': 0,
+      'Res Rentals': 0
     },
     Oct: {
-      'Com Sales': 0.001,
-      'Com Rentals': 0.001,
-      'Res Sales': 0.001,
-      'Res Rentals': 0.001
+      'Com Sales': 0,
+      'Com Rentals': 0,
+      'Res Sales': 0,
+      'Res Rentals': 0
     },
     Nov: {
-      'Com Sales': 0.001,
-      'Com Rentals': 0.001,
-      'Res Sales': 0.001,
-      'Res Rentals': 0.001
+      'Com Sales': 0,
+      'Com Rentals': 0,
+      'Res Sales': 0,
+      'Res Rentals': 0
     },
     Dec: {
-      'Com Sales': 0.001,
-      'Com Rentals': 0.001,
-      'Res Sales': 0.001,
-      'Res Rentals': 0.001
+      'Com Sales': 0,
+      'Com Rentals': 0,
+      'Res Sales': 0,
+      'Res Rentals': 0
     }
   };
 };
 var returnMonthlyDealNumberDataContainer = function returnMonthlyDealNumberDataContainer() {
   return {
     Jan: {
-      'Com Sales': 0.001,
-      'Com Rentals': 0.001,
-      'Res Sales': 0.001,
-      'Res Rentals': 0.001
+      'Com Sales': 0,
+      'Com Rentals': 0,
+      'Res Sales': 0,
+      'Res Rentals': 0
     },
     Feb: {
-      'Com Sales': 0.001,
-      'Com Rentals': 0.001,
-      'Res Sales': 0.001,
-      'Res Rentals': 0.001
+      'Com Sales': 0,
+      'Com Rentals': 0,
+      'Res Sales': 0,
+      'Res Rentals': 0
     },
     Mar: {
-      'Com Sales': 0.001,
-      'Com Rentals': 0.001,
-      'Res Sales': 0.001,
-      'Res Rentals': 0.001
+      'Com Sales': 0,
+      'Com Rentals': 0,
+      'Res Sales': 0,
+      'Res Rentals': 0
     },
     Apr: {
-      'Com Sales': 0.001,
-      'Com Rentals': 0.001,
-      'Res Sales': 0.001,
-      'Res Rentals': 0.001
+      'Com Sales': 0,
+      'Com Rentals': 0,
+      'Res Sales': 0,
+      'Res Rentals': 0
     },
     May: {
-      'Com Sales': 0.001,
-      'Com Rentals': 0.001,
-      'Res Sales': 0.001,
-      'Res Rentals': 0.001
+      'Com Sales': 0,
+      'Com Rentals': 0,
+      'Res Sales': 0,
+      'Res Rentals': 0
     },
     June: {
-      'Com Sales': 0.001,
-      'Com Rentals': 0.001,
-      'Res Sales': 0.001,
-      'Res Rentals': 0.001
+      'Com Sales': 0,
+      'Com Rentals': 0,
+      'Res Sales': 0,
+      'Res Rentals': 0
     },
     Jul: {
-      'Com Sales': 0.001,
-      'Com Rentals': 0.001,
-      'Res Sales': 0.001,
-      'Res Rentals': 0.001
+      'Com Sales': 0,
+      'Com Rentals': 0,
+      'Res Sales': 0,
+      'Res Rentals': 0
     },
     Aug: {
-      'Com Sales': 0.001,
-      'Com Rentals': 0.001,
-      'Res Sales': 0.001,
-      'Res Rentals': 0.001
+      'Com Sales': 0,
+      'Com Rentals': 0,
+      'Res Sales': 0,
+      'Res Rentals': 0
     },
     Sep: {
-      'Com Sales': 0.001,
-      'Com Rentals': 0.001,
-      'Res Sales': 0.001,
-      'Res Rentals': 0.001
+      'Com Sales': 0,
+      'Com Rentals': 0,
+      'Res Sales': 0,
+      'Res Rentals': 0
     },
     Oct: {
-      'Com Sales': 0.001,
-      'Com Rentals': 0.001,
-      'Res Sales': 0.001,
-      'Res Rentals': 0.001
+      'Com Sales': 0,
+      'Com Rentals': 0,
+      'Res Sales': 0,
+      'Res Rentals': 0
     },
     Nov: {
-      'Com Sales': 0.001,
-      'Com Rentals': 0.001,
-      'Res Sales': 0.001,
-      'Res Rentals': 0.001
+      'Com Sales': 0,
+      'Com Rentals': 0,
+      'Res Sales': 0,
+      'Res Rentals': 0
     },
     Dec: {
-      'Com Sales': 0.001,
-      'Com Rentals': 0.001,
-      'Res Sales': 0.001,
-      'Res Rentals': 0.001
+      'Com Sales': 0,
+      'Com Rentals': 0,
+      'Res Sales': 0,
+      'Res Rentals': 0
     }
   };
 };
@@ -8346,10 +8346,10 @@ var returnNumberDealsDataContainer = function returnNumberDealsDataContainer() {
   var data = {};
   years.forEach(function (year) {
     data[year] = {
-      'Com Sales': 0.001,
-      'Com Rentals': 0.001,
-      'Res Sales': 0.001,
-      'Res Rentals': 0.001
+      'Com Sales': 0,
+      'Com Rentals': 0,
+      'Res Sales': 0,
+      'Res Rentals': 0
     };
   });
   return data;
@@ -8360,10 +8360,10 @@ var returnYearlyDollarDealsDataContainer = function returnYearlyDollarDealsDataC
   var data = {};
   years.forEach(function (year) {
     data[year] = {
-      'Com Sales': 0.001,
-      'Com Rentals': 0.001,
-      'Res Sales': 0.001,
-      'Res Rentals': 0.001
+      'Com Sales': 0,
+      'Com Rentals': 0,
+      'Res Sales': 0,
+      'Res Rentals': 0
     };
   });
   return data;

@@ -31,10 +31,10 @@ const returnGraphDealType = deal => {
       graphDealType = 'Com Sales';
       break;
     case residentialRental:
-      graphDealType = 'Res Sales';
+      graphDealType = 'Res Rentals';
       break;
     case residentialSale:
-      graphDealType = 'Res Rentals';
+      graphDealType = 'Res Sales';
       break;
     default:
       return null;
@@ -370,10 +370,10 @@ class AdminDealsSummaryContainer extends Component {
 
   generateDealsBarData = data => Object.keys(data).map(month => ({
     month,
-    'Com Sales': data[month]['Com Sales'],
-    'Com Rentals': data[month]['Com Rentals'],
-    'Res Sales': data[month]['Res Sales'],
-    'Res Rentals': data[month]['Res Rentals'],
+    'Com Sales': round(data[month]['Com Sales']),
+    'Com Rentals': round(data[month]['Com Rentals']),
+    'Res Sales': round(data[month]['Res Sales']),
+    'Res Rentals': round(data[month]['Res Rentals']),
   }));
 
   generateDealsLineData = data => {
@@ -383,7 +383,7 @@ class AdminDealsSummaryContainer extends Component {
       id,
       data: Object.keys(data).map(month => ({
         x: month,
-        y: data[month][id],
+        y: round(data[month][id]),
       })),
     }));
   };
@@ -429,7 +429,7 @@ class AdminDealsSummaryContainer extends Component {
   };
 
   render() {
-    const { deals } = this.props;
+    const { deals, userUUID } = this.props;
 
     const {
       monthlyDealsDollarBarData,
@@ -454,7 +454,7 @@ class AdminDealsSummaryContainer extends Component {
     return (
       <div>
         <AdminDealsSummary
-          userUUID={this.props.userUUID}
+          userUUID={userUUID}
           numberOfTotalDealsData={this.returnNumberOfTotalDealsData(deals)}
           grossDollarAmtOfTotalDealsData={grossDealsDollarData}
           netDollarAmtOfTotalDealsData={netDealsDollarData}

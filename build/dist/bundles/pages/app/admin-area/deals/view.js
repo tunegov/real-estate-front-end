@@ -8216,152 +8216,152 @@ var commercialSale = 'Commercial Sale';
 var returnMonthlyDollarDataContainer = function returnMonthlyDollarDataContainer() {
   return {
     Jan: {
-      'Com Sales': 0.001,
-      'Com Rentals': 0.001,
-      'Res Sales': 0.001,
-      'Res Rentals': 0.001
+      'Com Sales': 0,
+      'Com Rentals': 0,
+      'Res Sales': 0,
+      'Res Rentals': 0
     },
     Feb: {
-      'Com Sales': 0.001,
-      'Com Rentals': 0.001,
-      'Res Sales': 0.001,
-      'Res Rentals': 0.001
+      'Com Sales': 0,
+      'Com Rentals': 0,
+      'Res Sales': 0,
+      'Res Rentals': 0
     },
     Mar: {
-      'Com Sales': 0.001,
-      'Com Rentals': 0.001,
-      'Res Sales': 0.001,
-      'Res Rentals': 0.001
+      'Com Sales': 0,
+      'Com Rentals': 0,
+      'Res Sales': 0,
+      'Res Rentals': 0
     },
     Apr: {
-      'Com Sales': 0.001,
-      'Com Rentals': 0.001,
-      'Res Sales': 0.001,
-      'Res Rentals': 0.001
+      'Com Sales': 0,
+      'Com Rentals': 0,
+      'Res Sales': 0,
+      'Res Rentals': 0
     },
     May: {
-      'Com Sales': 0.001,
-      'Com Rentals': 0.001,
-      'Res Sales': 0.001,
-      'Res Rentals': 0.001
+      'Com Sales': 0,
+      'Com Rentals': 0,
+      'Res Sales': 0,
+      'Res Rentals': 0
     },
     June: {
-      'Com Sales': 0.001,
-      'Com Rentals': 0.001,
-      'Res Sales': 0.001,
-      'Res Rentals': 0.001
+      'Com Sales': 0,
+      'Com Rentals': 0,
+      'Res Sales': 0,
+      'Res Rentals': 0
     },
     Jul: {
-      'Com Sales': 0.001,
-      'Com Rentals': 0.001,
-      'Res Sales': 0.001,
-      'Res Rentals': 0.001
+      'Com Sales': 0,
+      'Com Rentals': 0,
+      'Res Sales': 0,
+      'Res Rentals': 0
     },
     Aug: {
-      'Com Sales': 0.001,
-      'Com Rentals': 0.001,
-      'Res Sales': 0.001,
-      'Res Rentals': 0.001
+      'Com Sales': 0,
+      'Com Rentals': 0,
+      'Res Sales': 0,
+      'Res Rentals': 0
     },
     Sep: {
-      'Com Sales': 0.001,
-      'Com Rentals': 0.001,
-      'Res Sales': 0.001,
-      'Res Rentals': 0.001
+      'Com Sales': 0,
+      'Com Rentals': 0,
+      'Res Sales': 0,
+      'Res Rentals': 0
     },
     Oct: {
-      'Com Sales': 0.001,
-      'Com Rentals': 0.001,
-      'Res Sales': 0.001,
-      'Res Rentals': 0.001
+      'Com Sales': 0,
+      'Com Rentals': 0,
+      'Res Sales': 0,
+      'Res Rentals': 0
     },
     Nov: {
-      'Com Sales': 0.001,
-      'Com Rentals': 0.001,
-      'Res Sales': 0.001,
-      'Res Rentals': 0.001
+      'Com Sales': 0,
+      'Com Rentals': 0,
+      'Res Sales': 0,
+      'Res Rentals': 0
     },
     Dec: {
-      'Com Sales': 0.001,
-      'Com Rentals': 0.001,
-      'Res Sales': 0.001,
-      'Res Rentals': 0.001
+      'Com Sales': 0,
+      'Com Rentals': 0,
+      'Res Sales': 0,
+      'Res Rentals': 0
     }
   };
 };
 var returnMonthlyDealNumberDataContainer = function returnMonthlyDealNumberDataContainer() {
   return {
     Jan: {
-      'Com Sales': 0.001,
-      'Com Rentals': 0.001,
-      'Res Sales': 0.001,
-      'Res Rentals': 0.001
+      'Com Sales': 0,
+      'Com Rentals': 0,
+      'Res Sales': 0,
+      'Res Rentals': 0
     },
     Feb: {
-      'Com Sales': 0.001,
-      'Com Rentals': 0.001,
-      'Res Sales': 0.001,
-      'Res Rentals': 0.001
+      'Com Sales': 0,
+      'Com Rentals': 0,
+      'Res Sales': 0,
+      'Res Rentals': 0
     },
     Mar: {
-      'Com Sales': 0.001,
-      'Com Rentals': 0.001,
-      'Res Sales': 0.001,
-      'Res Rentals': 0.001
+      'Com Sales': 0,
+      'Com Rentals': 0,
+      'Res Sales': 0,
+      'Res Rentals': 0
     },
     Apr: {
-      'Com Sales': 0.001,
-      'Com Rentals': 0.001,
-      'Res Sales': 0.001,
-      'Res Rentals': 0.001
+      'Com Sales': 0,
+      'Com Rentals': 0,
+      'Res Sales': 0,
+      'Res Rentals': 0
     },
     May: {
-      'Com Sales': 0.001,
-      'Com Rentals': 0.001,
-      'Res Sales': 0.001,
-      'Res Rentals': 0.001
+      'Com Sales': 0,
+      'Com Rentals': 0,
+      'Res Sales': 0,
+      'Res Rentals': 0
     },
     June: {
-      'Com Sales': 0.001,
-      'Com Rentals': 0.001,
-      'Res Sales': 0.001,
-      'Res Rentals': 0.001
+      'Com Sales': 0,
+      'Com Rentals': 0,
+      'Res Sales': 0,
+      'Res Rentals': 0
     },
     Jul: {
-      'Com Sales': 0.001,
-      'Com Rentals': 0.001,
-      'Res Sales': 0.001,
-      'Res Rentals': 0.001
+      'Com Sales': 0,
+      'Com Rentals': 0,
+      'Res Sales': 0,
+      'Res Rentals': 0
     },
     Aug: {
-      'Com Sales': 0.001,
-      'Com Rentals': 0.001,
-      'Res Sales': 0.001,
-      'Res Rentals': 0.001
+      'Com Sales': 0,
+      'Com Rentals': 0,
+      'Res Sales': 0,
+      'Res Rentals': 0
     },
     Sep: {
-      'Com Sales': 0.001,
-      'Com Rentals': 0.001,
-      'Res Sales': 0.001,
-      'Res Rentals': 0.001
+      'Com Sales': 0,
+      'Com Rentals': 0,
+      'Res Sales': 0,
+      'Res Rentals': 0
     },
     Oct: {
-      'Com Sales': 0.001,
-      'Com Rentals': 0.001,
-      'Res Sales': 0.001,
-      'Res Rentals': 0.001
+      'Com Sales': 0,
+      'Com Rentals': 0,
+      'Res Sales': 0,
+      'Res Rentals': 0
     },
     Nov: {
-      'Com Sales': 0.001,
-      'Com Rentals': 0.001,
-      'Res Sales': 0.001,
-      'Res Rentals': 0.001
+      'Com Sales': 0,
+      'Com Rentals': 0,
+      'Res Sales': 0,
+      'Res Rentals': 0
     },
     Dec: {
-      'Com Sales': 0.001,
-      'Com Rentals': 0.001,
-      'Res Sales': 0.001,
-      'Res Rentals': 0.001
+      'Com Sales': 0,
+      'Com Rentals': 0,
+      'Res Sales': 0,
+      'Res Rentals': 0
     }
   };
 };
@@ -8371,10 +8371,10 @@ var returnNumberDealsDataContainer = function returnNumberDealsDataContainer() {
   var data = {};
   years.forEach(function (year) {
     data[year] = {
-      'Com Sales': 0.001,
-      'Com Rentals': 0.001,
-      'Res Sales': 0.001,
-      'Res Rentals': 0.001
+      'Com Sales': 0,
+      'Com Rentals': 0,
+      'Res Sales': 0,
+      'Res Rentals': 0
     };
   });
   return data;
@@ -8385,10 +8385,10 @@ var returnYearlyDollarDealsDataContainer = function returnYearlyDollarDealsDataC
   var data = {};
   years.forEach(function (year) {
     data[year] = {
-      'Com Sales': 0.001,
-      'Com Rentals': 0.001,
-      'Res Sales': 0.001,
-      'Res Rentals': 0.001
+      'Com Sales': 0,
+      'Com Rentals': 0,
+      'Res Sales': 0,
+      'Res Rentals': 0
     };
   });
   return data;
@@ -11828,11 +11828,11 @@ var AdminDealsSummary_returnGraphDealType = function returnGraphDealType(deal) {
       break;
 
     case dealTypes["c" /* residentialRental */]:
-      graphDealType = 'Res Sales';
+      graphDealType = 'Res Rentals';
       break;
 
     case dealTypes["d" /* residentialSale */]:
-      graphDealType = 'Res Rentals';
+      graphDealType = 'Res Sales';
       break;
 
     default:
@@ -12139,10 +12139,10 @@ function (_Component) {
         return Object.keys(data).map(function (month) {
           return {
             month: month,
-            'Com Sales': data[month]['Com Sales'],
-            'Com Rentals': data[month]['Com Rentals'],
-            'Res Sales': data[month]['Res Sales'],
-            'Res Rentals': data[month]['Res Rentals']
+            'Com Sales': Object(utils_Math["b" /* round */])(data[month]['Com Sales']),
+            'Com Rentals': Object(utils_Math["b" /* round */])(data[month]['Com Rentals']),
+            'Res Sales': Object(utils_Math["b" /* round */])(data[month]['Res Sales']),
+            'Res Rentals': Object(utils_Math["b" /* round */])(data[month]['Res Rentals'])
           };
         });
       }
@@ -12159,7 +12159,7 @@ function (_Component) {
             data: Object.keys(data).map(function (month) {
               return {
                 x: month,
-                y: data[month][id]
+                y: Object(utils_Math["b" /* round */])(data[month][id])
               };
             })
           };
@@ -12202,7 +12202,9 @@ function (_Component) {
   AdminDealsSummary__createClass(AdminDealsSummaryContainer, [{
     key: "render",
     value: function render() {
-      var deals = this.props.deals;
+      var _props = this.props,
+          deals = _props.deals,
+          userUUID = _props.userUUID;
 
       var _returnAllGraphData = this.returnAllGraphData(deals),
           monthlyDealsDollarBarData = _returnAllGraphData.monthlyDealsDollarBarData,
@@ -12223,7 +12225,7 @@ function (_Component) {
           netDealsDollarData = _returnDollarAmtOfTot.netDealsDollarData;
 
       return external__react__default.a.createElement("div", null, external__react__default.a.createElement(components_AdminDealsSummary, {
-        userUUID: this.props.userUUID,
+        userUUID: userUUID,
         numberOfTotalDealsData: this.returnNumberOfTotalDealsData(deals),
         grossDollarAmtOfTotalDealsData: grossDealsDollarData,
         netDollarAmtOfTotalDealsData: netDealsDollarData,
