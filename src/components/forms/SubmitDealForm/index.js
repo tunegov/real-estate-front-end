@@ -414,24 +414,38 @@ class SubmitDealForm extends Component {
   }
 
   returnAgencyDisclosureURL = () => {
-    if (!this.props.submittedDeal) return [];
+    const { submittedDeal } = this.props;
+    if (!submittedDeal) return [];
+    const src = submittedDeal.agencyDisclosureForm;
+    const fileName = src.split('/').pop();
+    const encodedFileName = encodeURIComponent(fileName);
+    const srcArray = src.split('/');
+    const encodedSrc = `${srcArray.slice(0, srcArray.length - 1).join('/')}/${encodedFileName}`;
 
-    if (this.props.submittedDeal.agencyDisclosureForm) {
+    if (submittedDeal.agencyDisclosureForm) {
       return [
         {
-          src: this.props.submittedDeal.agencyDisclosureForm,
+          src: encodedSrc,
         },
       ];
     }
   };
 
   returnContractLeaseURLS = () => {
-    if (!this.props.submittedDeal) return [];
+    const { submittedDeal } = this.props;
+    if (!submittedDeal) return [];
 
-    if (this.props.submittedDeal.contractOrLeaseForms) {
-      return this.props.submittedDeal.contractOrLeaseForms.map(url => ({
-        src: url,
-      }));
+    if (submittedDeal.contractOrLeaseForms) {
+      return submittedDeal.contractOrLeaseForms.map(url => {
+        const fileName = url.split('/').pop();
+        const urlArray = url.split('/');
+
+        const encodedFileName = encodeURIComponent(fileName);
+        const encodedUrl = `${urlArray.slice(0, urlArray.length - 1).join('/')}/${encodedFileName}`;
+        return {
+          src: encodedUrl,
+        };
+      });
     }
   };
 
@@ -831,7 +845,7 @@ class SubmitDealForm extends Component {
     }
 
     const renderContractLeaseMenuItems = () => this.returnContractLeaseURLS().map(({ src }) => {
-      const fileName = src.split('/').pop();
+      const fileName = decodeURIComponent(src.split('/').pop());
       const fileType = src.split('.').pop();
 
       if (fileType.toLowerCase() === 'pdf') {
@@ -863,7 +877,7 @@ class SubmitDealForm extends Component {
     });
 
     const renderAgencyDisclosureMenuItems = () => this.returnAgencyDisclosureURL().map(({ src }) => {
-      const fileName = src.split('/').pop();
+      const fileName = decodeURIComponent(src.split('/').pop());
       const fileType = src.split('.').pop();
 
       if (fileType.toLowerCase() === 'pdf') {

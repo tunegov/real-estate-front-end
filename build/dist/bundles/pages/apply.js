@@ -67,7 +67,7 @@ module.exports =
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 244);
+/******/ 	return __webpack_require__(__webpack_require__.s = 242);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -141,13 +141,13 @@ var graphQlClient = new __WEBPACK_IMPORTED_MODULE_0_graphql_request__["GraphQLCl
 /* 7 */
 /***/ (function(module, exports) {
 
-module.exports = require("is-browser");
+module.exports = require("styled-components");
 
 /***/ }),
 /* 8 */
 /***/ (function(module, exports) {
 
-module.exports = require("styled-components");
+module.exports = require("is-browser");
 
 /***/ }),
 /* 9 */
@@ -273,7 +273,7 @@ var regenerator_ = __webpack_require__(3);
 var regenerator__default = /*#__PURE__*/__webpack_require__.n(regenerator_);
 
 // EXTERNAL MODULE: external "is-browser"
-var external__is_browser_ = __webpack_require__(7);
+var external__is_browser_ = __webpack_require__(8);
 var external__is_browser__default = /*#__PURE__*/__webpack_require__.n(external__is_browser_);
 
 // EXTERNAL MODULE: ./effects/client.js
@@ -1257,35 +1257,29 @@ module.exports = require("isomorphic-unfetch");
 /* 62 */,
 /* 63 */,
 /* 64 */,
-/* 65 */,
-/* 66 */,
-/* 67 */
+/* 65 */
 /***/ (function(module, exports) {
 
 module.exports = require("antd/lib/input/style/css");
 
 /***/ }),
-/* 68 */
+/* 66 */
 /***/ (function(module, exports) {
 
 module.exports = require("antd/lib/input");
 
 /***/ }),
+/* 67 */,
+/* 68 */,
 /* 69 */,
 /* 70 */,
 /* 71 */,
-/* 72 */
-/***/ (function(module, exports) {
-
-module.exports = require("chance");
-
-/***/ }),
-/* 73 */,
-/* 74 */
+/* 72 */,
+/* 73 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_styled_components__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_styled_components__ = __webpack_require__(7);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_styled_components___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_styled_components__);
 
 /* harmony default export */ __webpack_exports__["a"] = (__WEBPACK_IMPORTED_MODULE_0_styled_components___default.a.h3.withConfig({
@@ -1294,18 +1288,24 @@ module.exports = require("chance");
 })(["margin-top:0px;text-align:center;margin-bottom:10px;color:red;"]));
 
 /***/ }),
+/* 74 */,
 /* 75 */,
-/* 76 */,
-/* 77 */
+/* 76 */
 /***/ (function(module, exports) {
 
 module.exports = require("antd/lib/form/style/css");
 
 /***/ }),
-/* 78 */
+/* 77 */
 /***/ (function(module, exports) {
 
 module.exports = require("antd/lib/form");
+
+/***/ }),
+/* 78 */
+/***/ (function(module, exports) {
+
+module.exports = require("chance");
 
 /***/ }),
 /* 79 */
@@ -1394,11 +1394,11 @@ var router_ = __webpack_require__(13);
 var router__default = /*#__PURE__*/__webpack_require__.n(router_);
 
 // EXTERNAL MODULE: external "is-browser"
-var external__is_browser_ = __webpack_require__(7);
+var external__is_browser_ = __webpack_require__(8);
 var external__is_browser__default = /*#__PURE__*/__webpack_require__.n(external__is_browser_);
 
 // EXTERNAL MODULE: external "styled-components"
-var external__styled_components_ = __webpack_require__(8);
+var external__styled_components_ = __webpack_require__(7);
 var external__styled_components__default = /*#__PURE__*/__webpack_require__.n(external__styled_components_);
 
 // EXTERNAL MODULE: ../node_modules/antd/dist/antd.css
@@ -1822,11 +1822,11 @@ var button_ = __webpack_require__(80);
 var button__default = /*#__PURE__*/__webpack_require__.n(button_);
 
 // EXTERNAL MODULE: external "antd/lib/input/style/css"
-var input_style_css_ = __webpack_require__(67);
+var input_style_css_ = __webpack_require__(65);
 var input_style_css__default = /*#__PURE__*/__webpack_require__.n(input_style_css_);
 
 // EXTERNAL MODULE: external "antd/lib/input"
-var input_ = __webpack_require__(68);
+var input_ = __webpack_require__(66);
 var input__default = /*#__PURE__*/__webpack_require__.n(input_);
 
 // EXTERNAL MODULE: external "antd/lib/icon/style/css"
@@ -1838,11 +1838,11 @@ var icon_ = __webpack_require__(24);
 var icon__default = /*#__PURE__*/__webpack_require__.n(icon_);
 
 // EXTERNAL MODULE: external "antd/lib/form/style/css"
-var form_style_css_ = __webpack_require__(77);
+var form_style_css_ = __webpack_require__(76);
 var form_style_css__default = /*#__PURE__*/__webpack_require__.n(form_style_css_);
 
 // EXTERNAL MODULE: external "antd/lib/form"
-var form_ = __webpack_require__(78);
+var form_ = __webpack_require__(77);
 var form__default = /*#__PURE__*/__webpack_require__.n(form_);
 
 // EXTERNAL MODULE: external "material-ui/Grid"
@@ -1858,7 +1858,7 @@ var external__react_google_recaptcha_ = __webpack_require__(99);
 var external__react_google_recaptcha__default = /*#__PURE__*/__webpack_require__.n(external__react_google_recaptcha_);
 
 // EXTERNAL MODULE: ./sharedStyledComponents/ServerErrorMessage.js
-var ServerErrorMessage = __webpack_require__(74);
+var ServerErrorMessage = __webpack_require__(73);
 
 // EXTERNAL MODULE: ./constants/recaptchaSiteKey.js
 var recaptchaSiteKey = __webpack_require__(100);
@@ -2681,16 +2681,16 @@ function (_Component) {
 /* 112 */,
 /* 113 */,
 /* 114 */,
-/* 115 */,
-/* 116 */,
-/* 117 */,
-/* 118 */,
-/* 119 */
+/* 115 */
 /***/ (function(module, exports) {
 
 module.exports = require("react-input-mask");
 
 /***/ }),
+/* 116 */,
+/* 117 */,
+/* 118 */,
+/* 119 */,
 /* 120 */,
 /* 121 */,
 /* 122 */,
@@ -3498,72 +3498,72 @@ var countriesArrayWithCodes = [{
 /* 181 */,
 /* 182 */,
 /* 183 */,
-/* 184 */,
-/* 185 */,
-/* 186 */
+/* 184 */
 /***/ (function(module, exports) {
 
 module.exports = require("antd/lib/divider/style/css");
 
 /***/ }),
-/* 187 */
+/* 185 */
 /***/ (function(module, exports) {
 
 module.exports = require("antd/lib/divider");
 
 /***/ }),
-/* 188 */
+/* 186 */
 /***/ (function(module, exports) {
 
 module.exports = require("antd/lib/select/style/css");
 
 /***/ }),
-/* 189 */
+/* 187 */
 /***/ (function(module, exports) {
 
 module.exports = require("antd/lib/select");
 
 /***/ }),
+/* 188 */,
+/* 189 */,
 /* 190 */,
 /* 191 */,
-/* 192 */,
-/* 193 */,
-/* 194 */
+/* 192 */
 /***/ (function(module, exports) {
 
 module.exports = require("antd/lib/date-picker/style/css");
 
 /***/ }),
-/* 195 */
+/* 193 */
 /***/ (function(module, exports) {
 
 module.exports = require("antd/lib/date-picker");
 
 /***/ }),
-/* 196 */
+/* 194 */
 /***/ (function(module, exports) {
 
 module.exports = require("antd/lib/tabs/style/css");
 
 /***/ }),
-/* 197 */
+/* 195 */
 /***/ (function(module, exports) {
 
 module.exports = require("antd/lib/tabs");
 
 /***/ }),
-/* 198 */
+/* 196 */
 /***/ (function(module, exports) {
 
 module.exports = require("react-signature-canvas");
 
 /***/ }),
-/* 199 */
+/* 197 */
 /***/ (function(module, exports) {
 
 
 
 /***/ }),
+/* 198 */,
+/* 199 */,
 /* 200 */,
 /* 201 */,
 /* 202 */,
@@ -3606,16 +3606,14 @@ module.exports = require("react-signature-canvas");
 /* 239 */,
 /* 240 */,
 /* 241 */,
-/* 242 */,
-/* 243 */,
-/* 244 */
+/* 242 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(245);
+module.exports = __webpack_require__(243);
 
 
 /***/ }),
-/* 245 */
+/* 243 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3630,7 +3628,7 @@ var external__mobx_react_ = __webpack_require__(1);
 var external__mobx_react__default = /*#__PURE__*/__webpack_require__.n(external__mobx_react_);
 
 // EXTERNAL MODULE: external "is-browser"
-var external__is_browser_ = __webpack_require__(7);
+var external__is_browser_ = __webpack_require__(8);
 var external__is_browser__default = /*#__PURE__*/__webpack_require__.n(external__is_browser_);
 
 // EXTERNAL MODULE: ./frontEndComponents/FrontEndLayout/index.js + 10 modules
@@ -3647,7 +3645,7 @@ var regenerator_ = __webpack_require__(3);
 var regenerator__default = /*#__PURE__*/__webpack_require__.n(regenerator_);
 
 // EXTERNAL MODULE: external "chance"
-var external__chance_ = __webpack_require__(72);
+var external__chance_ = __webpack_require__(78);
 var external__chance__default = /*#__PURE__*/__webpack_require__.n(external__chance_);
 
 // EXTERNAL MODULE: external "antd/lib/modal/style/css"
@@ -3667,35 +3665,35 @@ var icon_ = __webpack_require__(24);
 var icon__default = /*#__PURE__*/__webpack_require__.n(icon_);
 
 // EXTERNAL MODULE: external "antd/lib/input/style/css"
-var input_style_css_ = __webpack_require__(67);
+var input_style_css_ = __webpack_require__(65);
 var input_style_css__default = /*#__PURE__*/__webpack_require__.n(input_style_css_);
 
 // EXTERNAL MODULE: external "antd/lib/input"
-var input_ = __webpack_require__(68);
+var input_ = __webpack_require__(66);
 var input__default = /*#__PURE__*/__webpack_require__.n(input_);
 
 // EXTERNAL MODULE: external "antd/lib/divider/style/css"
-var divider_style_css_ = __webpack_require__(186);
+var divider_style_css_ = __webpack_require__(184);
 var divider_style_css__default = /*#__PURE__*/__webpack_require__.n(divider_style_css_);
 
 // EXTERNAL MODULE: external "antd/lib/divider"
-var divider_ = __webpack_require__(187);
+var divider_ = __webpack_require__(185);
 var divider__default = /*#__PURE__*/__webpack_require__.n(divider_);
 
 // EXTERNAL MODULE: external "antd/lib/select/style/css"
-var select_style_css_ = __webpack_require__(188);
+var select_style_css_ = __webpack_require__(186);
 var select_style_css__default = /*#__PURE__*/__webpack_require__.n(select_style_css_);
 
 // EXTERNAL MODULE: external "antd/lib/select"
-var select_ = __webpack_require__(189);
+var select_ = __webpack_require__(187);
 var select__default = /*#__PURE__*/__webpack_require__.n(select_);
 
 // EXTERNAL MODULE: external "antd/lib/form/style/css"
-var form_style_css_ = __webpack_require__(77);
+var form_style_css_ = __webpack_require__(76);
 var form_style_css__default = /*#__PURE__*/__webpack_require__.n(form_style_css_);
 
 // EXTERNAL MODULE: external "antd/lib/form"
-var form_ = __webpack_require__(78);
+var form_ = __webpack_require__(77);
 var form__default = /*#__PURE__*/__webpack_require__.n(form_);
 
 // EXTERNAL MODULE: external "antd/lib/button/style/css"
@@ -3722,27 +3720,27 @@ var Grid__default = /*#__PURE__*/__webpack_require__.n(Grid_);
 var constants = __webpack_require__(127);
 
 // EXTERNAL MODULE: external "antd/lib/upload/style/css"
-var upload_style_css_ = __webpack_require__(246);
+var upload_style_css_ = __webpack_require__(244);
 var upload_style_css__default = /*#__PURE__*/__webpack_require__.n(upload_style_css_);
 
 // EXTERNAL MODULE: external "antd/lib/upload"
-var upload_ = __webpack_require__(247);
+var upload_ = __webpack_require__(245);
 var upload__default = /*#__PURE__*/__webpack_require__.n(upload_);
 
 // EXTERNAL MODULE: external "antd/lib/date-picker/style/css"
-var date_picker_style_css_ = __webpack_require__(194);
+var date_picker_style_css_ = __webpack_require__(192);
 var date_picker_style_css__default = /*#__PURE__*/__webpack_require__.n(date_picker_style_css_);
 
 // EXTERNAL MODULE: external "antd/lib/date-picker"
-var date_picker_ = __webpack_require__(195);
+var date_picker_ = __webpack_require__(193);
 var date_picker__default = /*#__PURE__*/__webpack_require__.n(date_picker_);
 
 // EXTERNAL MODULE: external "antd/lib/tabs/style/css"
-var tabs_style_css_ = __webpack_require__(196);
+var tabs_style_css_ = __webpack_require__(194);
 var tabs_style_css__default = /*#__PURE__*/__webpack_require__.n(tabs_style_css_);
 
 // EXTERNAL MODULE: external "antd/lib/tabs"
-var tabs_ = __webpack_require__(197);
+var tabs_ = __webpack_require__(195);
 var tabs__default = /*#__PURE__*/__webpack_require__.n(tabs_);
 
 // EXTERNAL MODULE: external "moment"
@@ -3750,17 +3748,17 @@ var external__moment_ = __webpack_require__(42);
 var external__moment__default = /*#__PURE__*/__webpack_require__.n(external__moment_);
 
 // EXTERNAL MODULE: external "react-input-mask"
-var external__react_input_mask_ = __webpack_require__(119);
+var external__react_input_mask_ = __webpack_require__(115);
 var external__react_input_mask__default = /*#__PURE__*/__webpack_require__.n(external__react_input_mask_);
 
 // EXTERNAL MODULE: external "react-signature-canvas"
-var external__react_signature_canvas_ = __webpack_require__(198);
+var external__react_signature_canvas_ = __webpack_require__(196);
 var external__react_signature_canvas__default = /*#__PURE__*/__webpack_require__.n(external__react_signature_canvas_);
 
 // CONCATENATED MODULE: ./frontEndComponents/ApplicationForm/legal.js
 /* harmony default export */ var legal = ('I hereby authorize Reyes & Elsamad Real Estate Group and any third-party credit agency to obtain any information regarding my employment, tenant history, and credit or background history.  I warrant that the above information is true.  I understand that any misrepresentation by me or the person filling out this application may be the cause of rejection by the landlord or management company.  The landlord or management company governing the above mentioned property makes no guarantees to the status of the application and the availability said apartment. We respect your privacy and hold your trust in us with high regards.  Your information is governed with strict policies that protect your privacy.  Reyes & Eslamad Real Estate Group is committed to comply with all federal, state and local fair housing laws.  I acknowledge and understand that this application has a fee and that this fee is non-refundable.  I agree to all the terms set forth in this agreement.');
 // EXTERNAL MODULE: ./static/css/property-application.css
-var property_application = __webpack_require__(199);
+var property_application = __webpack_require__(197);
 var property_application_default = /*#__PURE__*/__webpack_require__.n(property_application);
 
 // CONCATENATED MODULE: ./frontEndComponents/ApplicationForm/index.js
@@ -6789,13 +6787,13 @@ function (_React$Component) {
 /* harmony default export */ var apply = __webpack_exports__["default"] = (Object(withData["a" /* default */])(apply_Apply));
 
 /***/ }),
-/* 246 */
+/* 244 */
 /***/ (function(module, exports) {
 
 module.exports = require("antd/lib/upload/style/css");
 
 /***/ }),
-/* 247 */
+/* 245 */
 /***/ (function(module, exports) {
 
 module.exports = require("antd/lib/upload");

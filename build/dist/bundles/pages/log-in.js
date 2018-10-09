@@ -67,7 +67,7 @@ module.exports =
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 260);
+/******/ 	return __webpack_require__(__webpack_require__.s = 258);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -146,11 +146,11 @@ var router_ = __webpack_require__(13);
 var router__default = /*#__PURE__*/__webpack_require__.n(router_);
 
 // EXTERNAL MODULE: external "is-browser"
-var external__is_browser_ = __webpack_require__(7);
+var external__is_browser_ = __webpack_require__(8);
 var external__is_browser__default = /*#__PURE__*/__webpack_require__.n(external__is_browser_);
 
 // EXTERNAL MODULE: external "styled-components"
-var external__styled_components_ = __webpack_require__(8);
+var external__styled_components_ = __webpack_require__(7);
 var external__styled_components__default = /*#__PURE__*/__webpack_require__.n(external__styled_components_);
 
 // EXTERNAL MODULE: ../node_modules/antd/dist/antd.css
@@ -574,11 +574,11 @@ var button_ = __webpack_require__(80);
 var button__default = /*#__PURE__*/__webpack_require__.n(button_);
 
 // EXTERNAL MODULE: external "antd/lib/input/style/css"
-var input_style_css_ = __webpack_require__(67);
+var input_style_css_ = __webpack_require__(65);
 var input_style_css__default = /*#__PURE__*/__webpack_require__.n(input_style_css_);
 
 // EXTERNAL MODULE: external "antd/lib/input"
-var input_ = __webpack_require__(68);
+var input_ = __webpack_require__(66);
 var input__default = /*#__PURE__*/__webpack_require__.n(input_);
 
 // EXTERNAL MODULE: external "antd/lib/icon/style/css"
@@ -590,11 +590,11 @@ var icon_ = __webpack_require__(24);
 var icon__default = /*#__PURE__*/__webpack_require__.n(icon_);
 
 // EXTERNAL MODULE: external "antd/lib/form/style/css"
-var form_style_css_ = __webpack_require__(77);
+var form_style_css_ = __webpack_require__(76);
 var form_style_css__default = /*#__PURE__*/__webpack_require__.n(form_style_css_);
 
 // EXTERNAL MODULE: external "antd/lib/form"
-var form_ = __webpack_require__(78);
+var form_ = __webpack_require__(77);
 var form__default = /*#__PURE__*/__webpack_require__.n(form_);
 
 // EXTERNAL MODULE: external "material-ui/Grid"
@@ -610,7 +610,7 @@ var external__react_google_recaptcha_ = __webpack_require__(99);
 var external__react_google_recaptcha__default = /*#__PURE__*/__webpack_require__.n(external__react_google_recaptcha_);
 
 // EXTERNAL MODULE: ./sharedStyledComponents/ServerErrorMessage.js
-var ServerErrorMessage = __webpack_require__(74);
+var ServerErrorMessage = __webpack_require__(73);
 
 // EXTERNAL MODULE: ./constants/recaptchaSiteKey.js
 var recaptchaSiteKey = __webpack_require__(100);
@@ -1457,7 +1457,7 @@ module.exports = require("prop-types");
 
 /***/ }),
 
-/***/ 169:
+/***/ 168:
 /***/ (function(module, exports) {
 
 module.exports = require("gsap");
@@ -1478,14 +1478,14 @@ module.exports = require("react-apollo");
 
 /***/ }),
 
-/***/ 191:
+/***/ 189:
 /***/ (function(module, exports) {
 
 module.exports = require("react-transition-group/TransitionGroup");
 
 /***/ }),
 
-/***/ 192:
+/***/ 190:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1495,7 +1495,7 @@ var external__react_ = __webpack_require__(0);
 var external__react__default = /*#__PURE__*/__webpack_require__.n(external__react_);
 
 // EXTERNAL MODULE: external "gsap"
-var external__gsap_ = __webpack_require__(169);
+var external__gsap_ = __webpack_require__(168);
 var external__gsap__default = /*#__PURE__*/__webpack_require__.n(external__gsap_);
 
 // CONCATENATED MODULE: ./components/TransitionHOC/fadesUp.js
@@ -1681,7 +1681,7 @@ function fadesDown(Component) {
 
 /***/ }),
 
-/***/ 193:
+/***/ 191:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1703,7 +1703,7 @@ var routes = __webpack_require__(4);
 var routes_default = /*#__PURE__*/__webpack_require__.n(routes);
 
 // EXTERNAL MODULE: ./sharedStyledComponents/ServerErrorMessage.js
-var ServerErrorMessage = __webpack_require__(74);
+var ServerErrorMessage = __webpack_require__(73);
 
 // EXTERNAL MODULE: ./constants/userTypes.js
 var userTypes = __webpack_require__(10);
@@ -1722,7 +1722,7 @@ var external__email_validator_ = __webpack_require__(103);
 var external__email_validator__default = /*#__PURE__*/__webpack_require__.n(external__email_validator_);
 
 // EXTERNAL MODULE: external "styled-components"
-var external__styled_components_ = __webpack_require__(8);
+var external__styled_components_ = __webpack_require__(7);
 var external__styled_components__default = /*#__PURE__*/__webpack_require__.n(external__styled_components_);
 
 // CONCATENATED MODULE: ./components/CustomTextFieldWrapper/styledComponents/index.js
@@ -2447,7 +2447,7 @@ var regenerator_ = __webpack_require__(3);
 var regenerator__default = /*#__PURE__*/__webpack_require__.n(regenerator_);
 
 // EXTERNAL MODULE: external "is-browser"
-var external__is_browser_ = __webpack_require__(7);
+var external__is_browser_ = __webpack_require__(8);
 var external__is_browser__default = /*#__PURE__*/__webpack_require__.n(external__is_browser_);
 
 // EXTERNAL MODULE: ./effects/client.js
@@ -2852,44 +2852,15 @@ function initStore(isServer) {
 
 /***/ }),
 
-/***/ 26:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_polished__ = __webpack_require__(9);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_polished___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_polished__);
-
-var primaryColor = '#272A2E';
-var secondaryColor = Object(__WEBPACK_IMPORTED_MODULE_0_polished__["darken"])(0.1, primaryColor);
-var accentColor = '#D0021B';
-var tertiaryColor = Object(__WEBPACK_IMPORTED_MODULE_0_polished__["darken"])(0.1, '#fff');
-var lightFontColor = '#fff';
-var darkFontColor = 'rgb(50,50,50)';
-var sansSerifFont = '"Alegreya Sans", sans-serif';
-var serifFont = 'Alegreya, serif';
-var theme = {
-  primaryColor: primaryColor,
-  secondaryColor: secondaryColor,
-  accentColor: accentColor,
-  tertiaryColor: tertiaryColor,
-  lightFontColor: lightFontColor,
-  sansSerifFont: sansSerifFont,
-  serifFont: serifFont,
-  darkFontColor: darkFontColor
-};
-/* harmony default export */ __webpack_exports__["a"] = (theme);
-
-/***/ }),
-
-/***/ 260:
+/***/ 258:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(261);
+module.exports = __webpack_require__(259);
 
 
 /***/ }),
 
-/***/ 261:
+/***/ 259:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2898,16 +2869,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_mobx_react__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_mobx_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_mobx_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_is_browser__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_is_browser__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_is_browser___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_is_browser__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_react_transition_group_TransitionGroup__ = __webpack_require__(191);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_react_transition_group_TransitionGroup__ = __webpack_require__(189);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_react_transition_group_TransitionGroup___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_react_transition_group_TransitionGroup__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_TransitionHOC__ = __webpack_require__(192);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_TransitionHOC__ = __webpack_require__(190);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__models__ = __webpack_require__(25);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__frontEndComponents_FrontEndLayout__ = __webpack_require__(102);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__routes__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__routes___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7__routes__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__containers_SignUpLoginForm__ = __webpack_require__(193);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__containers_SignUpLoginForm__ = __webpack_require__(191);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__lib_withData__ = __webpack_require__(51);
 var _class;
 
@@ -2987,6 +2958,35 @@ function (_React$Component) {
 }(__WEBPACK_IMPORTED_MODULE_0_react___default.a.Component)) || _class;
 
 /* harmony default export */ __webpack_exports__["default"] = (Object(__WEBPACK_IMPORTED_MODULE_9__lib_withData__["a" /* default */])(LogIn));
+
+/***/ }),
+
+/***/ 26:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_polished__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_polished___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_polished__);
+
+var primaryColor = '#272A2E';
+var secondaryColor = Object(__WEBPACK_IMPORTED_MODULE_0_polished__["darken"])(0.1, primaryColor);
+var accentColor = '#D0021B';
+var tertiaryColor = Object(__WEBPACK_IMPORTED_MODULE_0_polished__["darken"])(0.1, '#fff');
+var lightFontColor = '#fff';
+var darkFontColor = 'rgb(50,50,50)';
+var sansSerifFont = '"Alegreya Sans", sans-serif';
+var serifFont = 'Alegreya, serif';
+var theme = {
+  primaryColor: primaryColor,
+  secondaryColor: secondaryColor,
+  accentColor: accentColor,
+  tertiaryColor: tertiaryColor,
+  lightFontColor: lightFontColor,
+  sansSerifFont: sansSerifFont,
+  serifFont: serifFont,
+  darkFontColor: darkFontColor
+};
+/* harmony default export */ __webpack_exports__["a"] = (theme);
 
 /***/ }),
 
@@ -3595,14 +3595,14 @@ var graphQlClient = new __WEBPACK_IMPORTED_MODULE_0_graphql_request__["GraphQLCl
 
 /***/ }),
 
-/***/ 67:
+/***/ 65:
 /***/ (function(module, exports) {
 
 module.exports = require("antd/lib/input/style/css");
 
 /***/ }),
 
-/***/ 68:
+/***/ 66:
 /***/ (function(module, exports) {
 
 module.exports = require("antd/lib/input");
@@ -3612,15 +3612,15 @@ module.exports = require("antd/lib/input");
 /***/ 7:
 /***/ (function(module, exports) {
 
-module.exports = require("is-browser");
+module.exports = require("styled-components");
 
 /***/ }),
 
-/***/ 74:
+/***/ 73:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_styled_components__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_styled_components__ = __webpack_require__(7);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_styled_components___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_styled_components__);
 
 /* harmony default export */ __webpack_exports__["a"] = (__WEBPACK_IMPORTED_MODULE_0_styled_components___default.a.h3.withConfig({
@@ -3630,14 +3630,14 @@ module.exports = require("is-browser");
 
 /***/ }),
 
-/***/ 77:
+/***/ 76:
 /***/ (function(module, exports) {
 
 module.exports = require("antd/lib/form/style/css");
 
 /***/ }),
 
-/***/ 78:
+/***/ 77:
 /***/ (function(module, exports) {
 
 module.exports = require("antd/lib/form");
@@ -3654,7 +3654,7 @@ module.exports = require("antd/lib/button/style/css");
 /***/ 8:
 /***/ (function(module, exports) {
 
-module.exports = require("styled-components");
+module.exports = require("is-browser");
 
 /***/ }),
 

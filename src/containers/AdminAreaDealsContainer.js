@@ -17,17 +17,13 @@ import ExpansionPanel, {
 import Snackbar from 'material-ui/Snackbar';
 import IconButton from 'material-ui/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 import gql from 'graphql-tag';
 import { Query } from 'react-apollo';
 import { DotLoader } from 'react-spinners';
-import MaterialCustomSelectInput from '../components/MaterialCustomSelectInput';
 import AdminAreaDealsTableContainer from './AdminAreaDealsTableContainer';
 import AdminDealsSummaryDialogBox from '../components/AdminDealsSummaryDialogBox';
 import ViewDealDialogBox from '../components/ViewDealDialogBox';
 import deleteDeal from '../effects/deals/deleteDeal';
-import acceptDeal from '../effects/deals/acceptDeal';
 
 const Loader = DotLoader;
 
@@ -266,6 +262,11 @@ const dealsQuery = gql`
       clientEmail
       paymentsTotal
       deductionsTotal
+      deductionItems {
+        agentID
+        deductionType
+        agentID
+      }
       total
       agentNotes
       status

@@ -1,21 +1,9 @@
 import React, { Component } from 'react';
 import { withStyles } from 'material-ui/styles';
 import Button from 'material-ui/Button';
-import Typography from 'material-ui/Typography';
 import AddIcon from '@material-ui/icons/Add';
-import SearchIcon from '@material-ui/icons/Search';
 import { observer } from 'mobx-react';
 import moment from 'moment';
-import isBrowser from 'is-browser';
-import Grid from 'material-ui/Grid';
-import { DatePicker } from 'material-ui-pickers';
-import TextField from 'material-ui/TextField';
-import ExpansionPanel, {
-  ExpansionPanelSummary,
-  ExpansionPanelDetails,
-} from 'material-ui/ExpansionPanel';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 import gql from 'graphql-tag';
 import { Query } from 'react-apollo';
 import { DotLoader } from 'react-spinners';
@@ -23,7 +11,6 @@ import Snackbar from 'material-ui/Snackbar';
 import IconButton from 'material-ui/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 import CreateAgentDialogBox from '../components/CreateAgentDialogBox';
-import MaterialCustomSelectInput from '../components/MaterialCustomSelectInput';
 import AdminAreaAgentsTableContainer from './AdminAreaAgentsTableContainer';
 
 const styles = theme => ({

@@ -186,20 +186,19 @@ const defaultColumnWidths = [
   { columnName: 'bonusPercentageAddedByAdmin', width: 120 },
   { columnName: 'netAgentCommission', width: 170 },
   { columnName: 'netCompanyCommission', width: 170 },
+  { columnName: 'coBrokeringAgent', width: 140 },
   { columnName: 'status', width: 120 },
   { columnName: 'view', width: 100 },
 ];
 
 const defaultHiddenColumnNames = [
-  'deductionsTotal',
   'paymentsTotal',
-  'netPaymentsTotal',
   'propertyState',
   'clientEmail',
   'managementOrCobrokeCompany',
   'bonusPercentageAddedByAdmin',
-  'netAgentCommission',
-  'netCompanyCommission',
+  'propertyCity',
+  'coBrokeringAgent',
 ];
 
 const ViewCellFormatter = ({ value }) => <ViewFormatter value={value} />;

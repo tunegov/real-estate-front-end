@@ -67,7 +67,7 @@ module.exports =
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 232);
+/******/ 	return __webpack_require__(__webpack_require__.s = 230);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -141,13 +141,13 @@ var graphQlClient = new __WEBPACK_IMPORTED_MODULE_0_graphql_request__["GraphQLCl
 /* 7 */
 /***/ (function(module, exports) {
 
-module.exports = require("is-browser");
+module.exports = require("styled-components");
 
 /***/ }),
 /* 8 */
 /***/ (function(module, exports) {
 
-module.exports = require("styled-components");
+module.exports = require("is-browser");
 
 /***/ }),
 /* 9 */
@@ -658,7 +658,7 @@ var regenerator_ = __webpack_require__(3);
 var regenerator__default = /*#__PURE__*/__webpack_require__.n(regenerator_);
 
 // EXTERNAL MODULE: external "is-browser"
-var external__is_browser_ = __webpack_require__(7);
+var external__is_browser_ = __webpack_require__(8);
 var external__is_browser__default = /*#__PURE__*/__webpack_require__.n(external__is_browser_);
 
 // EXTERNAL MODULE: ./effects/client.js
@@ -1713,14 +1713,14 @@ module.exports = require("@material-ui/icons/SupervisorAccount");
 
 /***/ }),
 /* 65 */,
-/* 66 */
+/* 66 */,
+/* 67 */,
+/* 68 */
 /***/ (function(module, exports) {
 
 module.exports = require("graphql-tag");
 
 /***/ }),
-/* 67 */,
-/* 68 */,
 /* 69 */,
 /* 70 */
 /***/ (function(module, exports) {
@@ -1730,12 +1730,6 @@ module.exports = require("react-sizes");
 /***/ }),
 /* 71 */,
 /* 72 */
-/***/ (function(module, exports) {
-
-module.exports = require("chance");
-
-/***/ }),
-/* 73 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1797,16 +1791,22 @@ function (_React$Component) {
 
 
 /***/ }),
+/* 73 */,
 /* 74 */,
-/* 75 */,
-/* 76 */
+/* 75 */
 /***/ (function(module, exports) {
 
 
 
 /***/ }),
+/* 76 */,
 /* 77 */,
-/* 78 */,
+/* 78 */
+/***/ (function(module, exports) {
+
+module.exports = require("chance");
+
+/***/ }),
 /* 79 */,
 /* 80 */,
 /* 81 */
@@ -1839,11 +1839,11 @@ var router_ = __webpack_require__(13);
 var router__default = /*#__PURE__*/__webpack_require__.n(router_);
 
 // EXTERNAL MODULE: external "is-browser"
-var external__is_browser_ = __webpack_require__(7);
+var external__is_browser_ = __webpack_require__(8);
 var external__is_browser__default = /*#__PURE__*/__webpack_require__.n(external__is_browser_);
 
 // EXTERNAL MODULE: external "styled-components"
-var external__styled_components_ = __webpack_require__(8);
+var external__styled_components_ = __webpack_require__(7);
 var external__styled_components__default = /*#__PURE__*/__webpack_require__.n(external__styled_components_);
 
 // EXTERNAL MODULE: ../node_modules/antd/dist/antd.css
@@ -3503,10 +3503,10 @@ function (_Component) {
 var models = __webpack_require__(25);
 
 // EXTERNAL MODULE: ./AppGlobalStateProvider/index.js
-var AppGlobalStateProvider = __webpack_require__(73);
+var AppGlobalStateProvider = __webpack_require__(72);
 
 // EXTERNAL MODULE: ./static/css/main.css
-var main = __webpack_require__(76);
+var main = __webpack_require__(75);
 var main_default = /*#__PURE__*/__webpack_require__.n(main);
 
 // CONCATENATED MODULE: ./components/Layout/index.js
@@ -4157,13 +4157,13 @@ function (_React$Component) {
 /* 120 */,
 /* 121 */,
 /* 122 */,
-/* 123 */,
-/* 124 */
+/* 123 */
 /***/ (function(module, exports) {
 
 module.exports = require("faker");
 
 /***/ }),
+/* 124 */,
 /* 125 */,
 /* 126 */,
 /* 127 */,
@@ -4181,8 +4181,7 @@ module.exports = require("faker");
 /* 139 */,
 /* 140 */,
 /* 141 */,
-/* 142 */,
-/* 143 */
+/* 142 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -4194,7 +4193,7 @@ module.exports = require("faker");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_mobx_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_mobx_react__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_material_ui_Tooltip__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_material_ui_Tooltip___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_material_ui_Tooltip__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_react_lazyload__ = __webpack_require__(144);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_react_lazyload__ = __webpack_require__(143);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_react_lazyload___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_react_lazyload__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__routes__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__routes___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5__routes__);
@@ -4362,12 +4361,13 @@ function (_React$Component) {
 /* harmony default export */ __webpack_exports__["a"] = (Object(__WEBPACK_IMPORTED_MODULE_1_material_ui_styles__["withStyles"])(styles)(ProfilePictureFormatter));
 
 /***/ }),
-/* 144 */
+/* 143 */
 /***/ (function(module, exports) {
 
 module.exports = require("react-lazyload");
 
 /***/ }),
+/* 144 */,
 /* 145 */,
 /* 146 */,
 /* 147 */,
@@ -4397,8 +4397,7 @@ module.exports = require("react-lazyload");
 /* 171 */,
 /* 172 */,
 /* 173 */,
-/* 174 */,
-/* 175 */
+/* 174 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -4490,6 +4489,7 @@ function (_React$Component) {
 /* harmony default export */ __webpack_exports__["a"] = (Object(__WEBPACK_IMPORTED_MODULE_1_material_ui_styles__["withStyles"])(styles)(VeiwFormatter));
 
 /***/ }),
+/* 175 */,
 /* 176 */,
 /* 177 */,
 /* 178 */,
@@ -4544,16 +4544,14 @@ function (_React$Component) {
 /* 227 */,
 /* 228 */,
 /* 229 */,
-/* 230 */,
-/* 231 */,
-/* 232 */
+/* 230 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(233);
+module.exports = __webpack_require__(231);
 
 
 /***/ }),
-/* 233 */
+/* 231 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -4568,7 +4566,7 @@ var external__mobx_react_ = __webpack_require__(1);
 var external__mobx_react__default = /*#__PURE__*/__webpack_require__.n(external__mobx_react_);
 
 // EXTERNAL MODULE: external "is-browser"
-var external__is_browser_ = __webpack_require__(7);
+var external__is_browser_ = __webpack_require__(8);
 var external__is_browser__default = /*#__PURE__*/__webpack_require__.n(external__is_browser_);
 
 // EXTERNAL MODULE: ./components/Layout/index.js + 11 modules
@@ -4589,15 +4587,15 @@ var styles_ = __webpack_require__(2);
 var styles__default = /*#__PURE__*/__webpack_require__.n(styles_);
 
 // EXTERNAL MODULE: external "chance"
-var external__chance_ = __webpack_require__(72);
+var external__chance_ = __webpack_require__(78);
 var external__chance__default = /*#__PURE__*/__webpack_require__.n(external__chance_);
 
 // EXTERNAL MODULE: external "faker"
-var external__faker_ = __webpack_require__(124);
+var external__faker_ = __webpack_require__(123);
 var external__faker__default = /*#__PURE__*/__webpack_require__.n(external__faker_);
 
 // EXTERNAL MODULE: external "graphql-tag"
-var external__graphql_tag_ = __webpack_require__(66);
+var external__graphql_tag_ = __webpack_require__(68);
 var external__graphql_tag__default = /*#__PURE__*/__webpack_require__.n(external__graphql_tag_);
 
 // EXTERNAL MODULE: external "react-apollo"
@@ -4633,13 +4631,13 @@ var TableContainerComponent = __webpack_require__(110);
 var NoDataCellComponent = __webpack_require__(111);
 
 // EXTERNAL MODULE: ./components/dataTableFormatters/ProfilePictureFormatter.js
-var ProfilePictureFormatter = __webpack_require__(143);
+var ProfilePictureFormatter = __webpack_require__(142);
 
 // EXTERNAL MODULE: ./components/dataTableFormatters/ViewFormatter.js
 var ViewFormatter = __webpack_require__(112);
 
 // EXTERNAL MODULE: ./components/dataTableFormatters/AreaOfFocusFormatter.js
-var AreaOfFocusFormatter = __webpack_require__(175);
+var AreaOfFocusFormatter = __webpack_require__(174);
 
 // CONCATENATED MODULE: ./components/AgentsTable/index.js
 var _dec, _dec2, _class;

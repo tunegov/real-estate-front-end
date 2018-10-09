@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import { observer } from 'mobx-react';
 import { withStyles } from 'material-ui/styles';
 import { DotLoader } from 'react-spinners';
-import Chance from 'chance';
-import isBrowser from 'is-browser';
 import moment from 'moment';
 import Papa from 'papaparse';
 import AdminAreaDealsTable from '../components/AdminAreaDealsTable';
@@ -11,19 +9,8 @@ import debounce from '../utils/debounce';
 import { capitalize } from '../utils/stringUtils';
 import { padStringToDecimalString } from '../utils/Math';
 
-const chance = new Chance();
 
 const Loader = DotLoader;
-
-const returnAgentType = number => {
-  if (number < 33) {
-    return 60;
-  } else if (number < 66) {
-    return 70;
-  } else {
-    return 80;
-  }
-};
 
 const styles = theme => ({
   root: {
@@ -71,6 +58,7 @@ const columns = [
   { name: 'bonusPercentageAddedByAdmin', title: "Agent's Bonus %" },
   { name: 'netAgentCommission', title: 'Net Agent Commission' },
   { name: 'netCompanyCommission', title: 'Net Company Commission' },
+  { name: 'coBrokeringAgent', title: 'Co-Brokering Agent' },
   { name: 'status', title: 'Status' },
   { name: 'view', title: 'View' },
 ];
@@ -85,85 +73,89 @@ class DealsTableContainer extends Component {
     };
   }
 
-  createRows = () => {
-    return this.props.deals.map(deal => {
-      const {
-        dealID,
-        date,
-        agentName,
-        agentType,
-        leadSource,
-        dealType,
-        propertyAddress,
-        state,
-        city,
-        apartmentNumber,
-        managementOrCobrokeCompany,
-        price,
-        clientName,
-        clientEmail,
-        paymentsTotal,
-        deductionsTotal,
-        total,
-        status,
-        bonusPercentageAddedByAdmin,
-        netAgentCommission,
-        netCompanyCommission,
-      } = deal;
+  createRows = () => this.props.deals.map(deal => {
+    const {
+      dealID,
+      date,
+      agentName,
+      agentType,
+      leadSource,
+      dealType,
+      propertyAddress,
+      state,
+      city,
+      apartmentNumber,
+      managementOrCobrokeCompany,
+      price,
+      clientName,
+      clientEmail,
+      paymentsTotal,
+      deductionsTotal,
+      total,
+      status,
+      bonusPercentageAddedByAdmin,
+      netAgentCommission,
+      netCompanyCommission,
+      deductionItems,
+    } = deal;
 
-      return {
-        dealID,
-        date: moment(date).format('MM/DD/YYYY'),
-        agentName,
-        agentType: `${agentType}%`,
-        dealType,
-        clientName,
-        clientEmail,
-        propertyAddress,
-        propertyCity: city,
-        propertyState: state,
-        managementOrCobrokeCompany,
-        rentOrSalePrice: `$${padStringToDecimalString(
-          Number(price || 0).toLocaleString()
-        )}`,
-        deductionsTotal: `$${padStringToDecimalString(
-          Number(deductionsTotal || 0).toLocaleString()
-        )}`,
-        paymentsTotal: `$${padStringToDecimalString(
-          Number(paymentsTotal || 0).toLocaleString()
-        )}`,
-        netPaymentsTotal: `$${padStringToDecimalString(
-          Number(total || 0).toLocaleString()
-        )}`,
-        bonusPercentageAddedByAdmin:
+    const coBrokeAgents = deductionItems && deductionItems
+      .filter(v => v.deductionType === 'Co-Brokering Split' && v.agentID)
+      .map(v => v.agentID)
+      .join(', ');
+
+    return {
+      dealID,
+      date: moment(date).format('MM/DD/YYYY'),
+      agentName,
+      agentType: `${agentType}%`,
+      dealType,
+      clientName,
+      clientEmail,
+      propertyAddress,
+      propertyCity: city,
+      propertyState: state,
+      managementOrCobrokeCompany,
+      rentOrSalePrice: `$${padStringToDecimalString(
+        Number(price || 0).toLocaleString()
+      )}`,
+      deductionsTotal: `$${padStringToDecimalString(
+        Number(deductionsTotal || 0).toLocaleString()
+      )}`,
+      paymentsTotal: `$${padStringToDecimalString(
+        Number(paymentsTotal || 0).toLocaleString()
+      )}`,
+      netPaymentsTotal: `$${padStringToDecimalString(
+        Number(total || 0).toLocaleString()
+      )}`,
+      bonusPercentageAddedByAdmin:
           status === 'pending'
             ? undefined
             : `%${bonusPercentageAddedByAdmin || 0}`,
-        netAgentCommission:
+      netAgentCommission:
           status === 'pending'
             ? undefined
             : `$${padStringToDecimalString(
-                Number(netAgentCommission || 0).toLocaleString()
-              )}`,
-        netCompanyCommission:
+              Number(netAgentCommission || 0).toLocaleString()
+            )}`,
+      netCompanyCommission:
           status === 'pending'
             ? undefined
             : `$${padStringToDecimalString(
-                Number(netCompanyCommission || 0).toLocaleString()
-              )}`,
-        status: capitalize(status),
-        view: {
-          type: 'action',
-          onClick: () =>
-            debounce(
-              this.props.openDealsViewDialogBox.bind(null, dealID, status),
-              1000,
-              true
-            )(),
-        },
-      };
-    });
-  };
+              Number(netCompanyCommission || 0).toLocaleString()
+            )}`,
+      coBrokeringAgent: coBrokeAgents,
+      status: capitalize(status),
+      view: {
+        type: 'action',
+        onClick: () => debounce(
+          this.props.openDealsViewDialogBox.bind(null, dealID, status),
+          1000,
+          true
+        )(),
+      },
+    };
+  });
 
   convertDealsToCSV = () => {
     const { deals } = this.props;
@@ -222,8 +214,7 @@ class DealsTableContainer extends Component {
           selection={selection}
           convertDealsToCSV={this.convertDealsToCSV}
           small={small}
-          onMount={() =>
-            tableIsLoading ? this.setState({ tableIsLoading: false }) : null
+          onMount={() => tableIsLoading ? this.setState({ tableIsLoading: false }) : null
           }
           columns={columns}
           rows={this.createRows()}

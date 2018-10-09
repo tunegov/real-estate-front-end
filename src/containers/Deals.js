@@ -204,7 +204,9 @@ class Deals extends Component {
           const allDeals = [...data.dealsByAgentID, ...this.state.addedDeals];
 
           allDeals.forEach(deal => {
-            intDeals[deal.dealID] = deal;
+            if (deal) {
+              intDeals[deal.dealID] = deal;
+            }
           });
 
           let uniqueDeals = [];

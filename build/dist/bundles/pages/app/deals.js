@@ -67,7 +67,7 @@ module.exports =
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 236);
+/******/ 	return __webpack_require__(__webpack_require__.s = 234);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -141,13 +141,13 @@ var graphQlClient = new __WEBPACK_IMPORTED_MODULE_0_graphql_request__["GraphQLCl
 /* 7 */
 /***/ (function(module, exports) {
 
-module.exports = require("is-browser");
+module.exports = require("styled-components");
 
 /***/ }),
 /* 8 */
 /***/ (function(module, exports) {
 
-module.exports = require("styled-components");
+module.exports = require("is-browser");
 
 /***/ }),
 /* 9 */
@@ -663,7 +663,7 @@ var regenerator_ = __webpack_require__(3);
 var regenerator__default = /*#__PURE__*/__webpack_require__.n(regenerator_);
 
 // EXTERNAL MODULE: external "is-browser"
-var external__is_browser_ = __webpack_require__(7);
+var external__is_browser_ = __webpack_require__(8);
 var external__is_browser__default = /*#__PURE__*/__webpack_require__.n(external__is_browser_);
 
 // EXTERNAL MODULE: ./effects/client.js
@@ -1742,20 +1742,20 @@ module.exports = require("@material-ui/icons/ExitToApp");
 module.exports = require("@material-ui/icons/SupervisorAccount");
 
 /***/ }),
-/* 65 */
+/* 65 */,
+/* 66 */,
+/* 67 */
 /***/ (function(module, exports) {
 
 module.exports = require("material-ui/Menu");
 
 /***/ }),
-/* 66 */
+/* 68 */
 /***/ (function(module, exports) {
 
 module.exports = require("graphql-tag");
 
 /***/ }),
-/* 67 */,
-/* 68 */,
 /* 69 */
 /***/ (function(module, exports) {
 
@@ -1804,12 +1804,6 @@ var padStringToDecimalString = function padStringToDecimalString(s) {
 
 /***/ }),
 /* 72 */
-/***/ (function(module, exports) {
-
-module.exports = require("chance");
-
-/***/ }),
-/* 73 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1871,21 +1865,27 @@ function (_React$Component) {
 
 
 /***/ }),
-/* 74 */,
-/* 75 */
+/* 73 */,
+/* 74 */
 /***/ (function(module, exports) {
 
 module.exports = require("uuid/v4");
 
 /***/ }),
-/* 76 */
+/* 75 */
 /***/ (function(module, exports) {
 
 
 
 /***/ }),
+/* 76 */,
 /* 77 */,
-/* 78 */,
+/* 78 */
+/***/ (function(module, exports) {
+
+module.exports = require("chance");
+
+/***/ }),
 /* 79 */,
 /* 80 */,
 /* 81 */
@@ -1918,11 +1918,11 @@ var router_ = __webpack_require__(13);
 var router__default = /*#__PURE__*/__webpack_require__.n(router_);
 
 // EXTERNAL MODULE: external "is-browser"
-var external__is_browser_ = __webpack_require__(7);
+var external__is_browser_ = __webpack_require__(8);
 var external__is_browser__default = /*#__PURE__*/__webpack_require__.n(external__is_browser_);
 
 // EXTERNAL MODULE: external "styled-components"
-var external__styled_components_ = __webpack_require__(8);
+var external__styled_components_ = __webpack_require__(7);
 var external__styled_components__default = /*#__PURE__*/__webpack_require__.n(external__styled_components_);
 
 // EXTERNAL MODULE: ../node_modules/antd/dist/antd.css
@@ -3582,10 +3582,10 @@ function (_Component) {
 var models = __webpack_require__(25);
 
 // EXTERNAL MODULE: ./AppGlobalStateProvider/index.js
-var AppGlobalStateProvider = __webpack_require__(73);
+var AppGlobalStateProvider = __webpack_require__(72);
 
 // EXTERNAL MODULE: ./static/css/main.css
-var main = __webpack_require__(76);
+var main = __webpack_require__(75);
 var main_default = /*#__PURE__*/__webpack_require__.n(main);
 
 // CONCATENATED MODULE: ./components/Layout/index.js
@@ -3912,7 +3912,7 @@ module.exports = require("material-ui/Chip");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_material_ui_Form___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_material_ui_Form__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_react_form__ = __webpack_require__(30);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_react_form___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_react_form__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_uuid_v4__ = __webpack_require__(75);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_uuid_v4__ = __webpack_require__(74);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_uuid_v4___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_uuid_v4__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_classnames__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_classnames___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7_classnames__);
@@ -4542,18 +4542,10 @@ function (_React$Component) {
 /* 113 */
 /***/ (function(module, exports) {
 
-module.exports = require("material-ui/TextField");
-
-/***/ }),
-/* 114 */,
-/* 115 */
-/***/ (function(module, exports) {
-
 module.exports = require("material-ui/Menu/MenuItem");
 
 /***/ }),
-/* 116 */,
-/* 117 */
+/* 114 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -4569,7 +4561,7 @@ module.exports = require("material-ui/Menu/MenuItem");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_material_ui_Select___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_material_ui_Select__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_material_ui_Input__ = __webpack_require__(69);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_material_ui_Input___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_material_ui_Input__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_material_ui_Menu__ = __webpack_require__(65);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_material_ui_Menu__ = __webpack_require__(67);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_material_ui_Menu___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_material_ui_Menu__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_material_ui_Chip__ = __webpack_require__(105);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_material_ui_Chip___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7_material_ui_Chip__);
@@ -4796,163 +4788,21 @@ function (_React$Component) {
 */
 
 /***/ }),
-/* 118 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/* 115 */,
+/* 116 */
+/***/ (function(module, exports) {
 
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_mobx_react__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_mobx_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_mobx_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_material_ui_styles__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_material_ui_styles___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_material_ui_styles__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_material_ui_Form__ = __webpack_require__(59);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_material_ui_Form___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_material_ui_Form__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_material_ui_Select__ = __webpack_require__(104);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_material_ui_Select___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_material_ui_Select__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_material_ui_Input__ = __webpack_require__(69);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_material_ui_Input___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_material_ui_Input__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_material_ui_Menu__ = __webpack_require__(65);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_material_ui_Menu___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_material_ui_Menu__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_material_ui_Chip__ = __webpack_require__(105);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_material_ui_Chip___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7_material_ui_Chip__);
-function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
-
-function _objectWithoutProperties(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i < sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) >= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }
-
-
-
-
-
-
-
-
-
-
-var styles = function styles(theme) {
-  return {
-    container: {
-      display: 'flex',
-      flexWrap: 'wrap'
-    },
-    disabled: {
-      cursor: 'not-allowed'
-    },
-    root: {
-      display: 'flex'
-    },
-    formControl: {
-      margin: theme.spacing.unit,
-      marginLeft: 0
-    },
-    fullWidth: {
-      width: '100%'
-    },
-    selectEmpty: {
-      marginTop: theme.spacing.unit * 2
-    },
-    input: {
-      textAlign: 'left'
-    },
-    chips: {
-      display: 'flex',
-      flexWrap: 'wrap'
-    },
-    chip: {
-      margin: theme.spacing.unit / 4
-    }
-  };
-};
-
-var MaterialCustomSelectInput = function MaterialCustomSelectInput(props) {
-  var error = props.error,
-      touched = props.touched,
-      required = props.required,
-      disabled = props.disabled,
-      classes = props.classes,
-      className = props.className,
-      label = props.label,
-      id = props.id,
-      value = props.value,
-      multiple = props.multiple,
-      onInput = props.onInput,
-      name = props.name,
-      _onBlur = props.onBlur,
-      placeholder = props.placeholder,
-      selectInputItems = props.selectInputItems,
-      SelectDisplayProps = props.SelectDisplayProps,
-      fullWidth = props.fullWidth,
-      native = props.native,
-      rest = _objectWithoutProperties(props, ["error", "touched", "required", "disabled", "classes", "className", "label", "id", "value", "multiple", "onInput", "name", "onBlur", "placeholder", "selectInputItems", "SelectDisplayProps", "fullWidth", "native"]);
-
-  var renderSelectInputItems = function renderSelectInputItems(selectInputItems) {
-    return selectInputItems.map(function (item) {
-      return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_6_material_ui_Menu__["MenuItem"], {
-        key: item.label,
-        value: item.value || item.label
-      }, item.label);
-    });
-  };
-
-  return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3_material_ui_Form__["FormControl"], {
-    error: error,
-    required: required,
-    className: disabled ? "".concat(classes.formControl, " ").concat(classes.disabled, " ").concat(className) : "".concat(classes.formControl, " ").concat(className)
-  }, label && __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5_material_ui_Input__["InputLabel"], {
-    htmlFor: "".concat(id, "-error")
-  }, label), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4_material_ui_Select___default.a, _extends({
-    SelectDisplayProps: SelectDisplayProps || {
-      style: {
-        backgroundColor: 'inherit'
-      }
-    },
-    onClose: function onClose(event) {
-      return event.target.blur();
-    },
-    placeholder: placeholder,
-    native: native,
-    value: multiple ? value || [] : value || '',
-    onChange: function onChange(event) {
-      if (onInput) {
-        onInput(event);
-      }
-    },
-    input: __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5_material_ui_Input___default.a, {
-      name: name,
-      id: "".concat(id, "-helper"),
-      className: classes.input
-    }),
-    onBlur: function onBlur(event) {
-      if (_onBlur) {
-        _onBlur(event);
-      }
-    },
-    multiple: multiple,
-    renderValue: !multiple ? null : function (selected) {
-      return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", {
-        className: classes.chips
-      }, selected.map(function (value) {
-        return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_7_material_ui_Chip___default.a, {
-          key: value,
-          label: value,
-          className: classes.chip
-        });
-      }));
-    }
-  }, rest), renderSelectInputItems(selectInputItems)), error ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3_material_ui_Form__["FormHelperText"], null, error) : null);
-};
-
-/* harmony default export */ __webpack_exports__["a"] = (Object(__WEBPACK_IMPORTED_MODULE_2_material_ui_styles__["withStyles"])(styles)(Object(__WEBPACK_IMPORTED_MODULE_1_mobx_react__["observer"])(MaterialCustomSelectInput)));
+module.exports = require("material-ui/TextField");
 
 /***/ }),
-/* 119 */,
-/* 120 */
+/* 117 */,
+/* 118 */
 /***/ (function(module, exports) {
 
 
 
 /***/ }),
-/* 121 */
+/* 119 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -5285,7 +5135,7 @@ function (_React$Component) {
 */
 
 /***/ }),
-/* 122 */
+/* 120 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -5445,7 +5295,156 @@ var MaterialCustomRadioInputWrapper = function MaterialCustomRadioInputWrapper(p
 */
 
 /***/ }),
-/* 123 */
+/* 121 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_mobx_react__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_mobx_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_mobx_react__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_material_ui_styles__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_material_ui_styles___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_material_ui_styles__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_material_ui_Form__ = __webpack_require__(59);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_material_ui_Form___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_material_ui_Form__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_material_ui_Select__ = __webpack_require__(104);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_material_ui_Select___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_material_ui_Select__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_material_ui_Input__ = __webpack_require__(69);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_material_ui_Input___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_material_ui_Input__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_material_ui_Menu__ = __webpack_require__(67);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_material_ui_Menu___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_material_ui_Menu__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_material_ui_Chip__ = __webpack_require__(105);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_material_ui_Chip___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7_material_ui_Chip__);
+function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+
+function _objectWithoutProperties(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i < sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) >= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }
+
+
+
+
+
+
+
+
+
+
+var styles = function styles(theme) {
+  return {
+    container: {
+      display: 'flex',
+      flexWrap: 'wrap'
+    },
+    disabled: {
+      cursor: 'not-allowed'
+    },
+    root: {
+      display: 'flex'
+    },
+    formControl: {
+      margin: theme.spacing.unit,
+      marginLeft: 0
+    },
+    fullWidth: {
+      width: '100%'
+    },
+    selectEmpty: {
+      marginTop: theme.spacing.unit * 2
+    },
+    input: {
+      textAlign: 'left'
+    },
+    chips: {
+      display: 'flex',
+      flexWrap: 'wrap'
+    },
+    chip: {
+      margin: theme.spacing.unit / 4
+    }
+  };
+};
+
+var MaterialCustomSelectInput = function MaterialCustomSelectInput(props) {
+  var error = props.error,
+      touched = props.touched,
+      required = props.required,
+      disabled = props.disabled,
+      classes = props.classes,
+      className = props.className,
+      label = props.label,
+      id = props.id,
+      value = props.value,
+      multiple = props.multiple,
+      onInput = props.onInput,
+      name = props.name,
+      _onBlur = props.onBlur,
+      placeholder = props.placeholder,
+      selectInputItems = props.selectInputItems,
+      SelectDisplayProps = props.SelectDisplayProps,
+      fullWidth = props.fullWidth,
+      native = props.native,
+      rest = _objectWithoutProperties(props, ["error", "touched", "required", "disabled", "classes", "className", "label", "id", "value", "multiple", "onInput", "name", "onBlur", "placeholder", "selectInputItems", "SelectDisplayProps", "fullWidth", "native"]);
+
+  var renderSelectInputItems = function renderSelectInputItems(selectInputItems) {
+    return selectInputItems.map(function (item) {
+      return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_6_material_ui_Menu__["MenuItem"], {
+        key: item.label,
+        value: item.value || item.label
+      }, item.label);
+    });
+  };
+
+  return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3_material_ui_Form__["FormControl"], {
+    error: error,
+    required: required,
+    className: disabled ? "".concat(classes.formControl, " ").concat(classes.disabled, " ").concat(className) : "".concat(classes.formControl, " ").concat(className)
+  }, label && __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5_material_ui_Input__["InputLabel"], {
+    htmlFor: "".concat(id, "-error")
+  }, label), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4_material_ui_Select___default.a, _extends({
+    SelectDisplayProps: SelectDisplayProps || {
+      style: {
+        backgroundColor: 'inherit'
+      }
+    },
+    onClose: function onClose(event) {
+      return event.target.blur();
+    },
+    placeholder: placeholder,
+    native: native,
+    value: multiple ? value || [] : value || '',
+    onChange: function onChange(event) {
+      if (onInput) {
+        onInput(event);
+      }
+    },
+    input: __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5_material_ui_Input___default.a, {
+      name: name,
+      id: "".concat(id, "-helper"),
+      className: classes.input
+    }),
+    onBlur: function onBlur(event) {
+      if (_onBlur) {
+        _onBlur(event);
+      }
+    },
+    multiple: multiple,
+    renderValue: !multiple ? null : function (selected) {
+      return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", {
+        className: classes.chips
+      }, selected.map(function (value) {
+        return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_7_material_ui_Chip___default.a, {
+          key: value,
+          label: value,
+          className: classes.chip
+        });
+      }));
+    }
+  }, rest), renderSelectInputItems(selectInputItems)), error ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3_material_ui_Form__["FormHelperText"], null, error) : null);
+};
+
+/* harmony default export */ __webpack_exports__["a"] = (Object(__WEBPACK_IMPORTED_MODULE_2_material_ui_styles__["withStyles"])(styles)(Object(__WEBPACK_IMPORTED_MODULE_1_mobx_react__["observer"])(MaterialCustomSelectInput)));
+
+/***/ }),
+/* 122 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -5469,6 +5468,7 @@ function debounce(func, wait, immediate) {
 /* harmony default export */ __webpack_exports__["a"] = (debounce);
 
 /***/ }),
+/* 123 */,
 /* 124 */,
 /* 125 */
 /***/ (function(module, exports) {
@@ -5478,38 +5478,37 @@ module.exports = require("material-ui/Radio");
 /***/ }),
 /* 126 */,
 /* 127 */,
-/* 128 */,
-/* 129 */
+/* 128 */
 /***/ (function(module, exports) {
 
 module.exports = require("axios");
 
 /***/ }),
-/* 130 */
+/* 129 */
 /***/ (function(module, exports) {
 
 module.exports = require("react-circular-progressbar");
 
 /***/ }),
-/* 131 */
+/* 130 */
 /***/ (function(module, exports) {
 
 module.exports = require("@material-ui/icons/Equalizer");
 
 /***/ }),
-/* 132 */
+/* 131 */
 /***/ (function(module, exports) {
 
 module.exports = require("@material-ui/icons/AttachMoney");
 
 /***/ }),
-/* 133 */
+/* 132 */
 /***/ (function(module, exports) {
 
 module.exports = require("@material-ui/icons/Help");
 
 /***/ }),
-/* 134 */
+/* 133 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -5664,13 +5663,13 @@ function (_Component) {
 /* harmony default export */ __webpack_exports__["a"] = (Object(__WEBPACK_IMPORTED_MODULE_2_material_ui_styles__["withStyles"])(styles)(StatNumberBox));
 
 /***/ }),
-/* 135 */
+/* 134 */
 /***/ (function(module, exports) {
 
 module.exports = require("papaparse");
 
 /***/ }),
-/* 136 */
+/* 135 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -5678,9 +5677,9 @@ module.exports = require("papaparse");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_material_ui_styles__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_material_ui_styles___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_material_ui_styles__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_material_ui_Table__ = __webpack_require__(141);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_material_ui_Table__ = __webpack_require__(139);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_material_ui_Table___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_material_ui_Table__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_MaterialCustomSelectInput__ = __webpack_require__(118);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_MaterialCustomSelectInput__ = __webpack_require__(121);
 
 
 
@@ -5728,7 +5727,7 @@ var SelectFilterCell = Object(__WEBPACK_IMPORTED_MODULE_1_material_ui_styles__["
 /* harmony default export */ __webpack_exports__["a"] = (SelectFilterCell);
 
 /***/ }),
-/* 137 */
+/* 136 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -5779,9 +5778,8 @@ var compareNumber = function compareNumber(a, b) {
 };
 
 /***/ }),
-/* 138 */,
-/* 139 */,
-/* 140 */
+/* 137 */,
+/* 138 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -5797,21 +5795,32 @@ var toLocaleCurrency = function toLocaleCurrency(amount) {
 };
 
 /***/ }),
-/* 141 */
+/* 139 */
 /***/ (function(module, exports) {
 
 module.exports = require("material-ui/Table");
 
 /***/ }),
-/* 142 */
+/* 140 */
 /***/ (function(module, exports) {
 
 module.exports = require("@material-ui/icons/Delete");
 
 /***/ }),
+/* 141 */,
+/* 142 */,
 /* 143 */,
-/* 144 */,
-/* 145 */
+/* 144 */
+/***/ (function(module, exports) {
+
+module.exports = require("react-images");
+
+/***/ }),
+/* 145 */,
+/* 146 */,
+/* 147 */,
+/* 148 */,
+/* 149 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -5861,7 +5870,7 @@ var external__moment_ = __webpack_require__(42);
 var external__moment__default = /*#__PURE__*/__webpack_require__.n(external__moment_);
 
 // EXTERNAL MODULE: external "uuid/v4"
-var v4_ = __webpack_require__(75);
+var v4_ = __webpack_require__(74);
 var v4__default = /*#__PURE__*/__webpack_require__.n(v4_);
 
 // EXTERNAL MODULE: external "material-ui/Grid"
@@ -5869,19 +5878,19 @@ var Grid_ = __webpack_require__(20);
 var Grid__default = /*#__PURE__*/__webpack_require__.n(Grid_);
 
 // EXTERNAL MODULE: external "material-ui/TextField"
-var TextField_ = __webpack_require__(113);
+var TextField_ = __webpack_require__(116);
 var TextField__default = /*#__PURE__*/__webpack_require__.n(TextField_);
 
 // EXTERNAL MODULE: external "@material-ui/icons/Delete"
-var Delete_ = __webpack_require__(142);
+var Delete_ = __webpack_require__(140);
 var Delete__default = /*#__PURE__*/__webpack_require__.n(Delete_);
 
 // EXTERNAL MODULE: external "react-circular-progressbar"
-var external__react_circular_progressbar_ = __webpack_require__(130);
+var external__react_circular_progressbar_ = __webpack_require__(129);
 var external__react_circular_progressbar__default = /*#__PURE__*/__webpack_require__.n(external__react_circular_progressbar_);
 
 // EXTERNAL MODULE: ../node_modules/react-circular-progressbar/dist/styles.css
-var styles = __webpack_require__(120);
+var styles = __webpack_require__(118);
 var styles_default = /*#__PURE__*/__webpack_require__.n(styles);
 
 // EXTERNAL MODULE: external "react-icons/lib/md"
@@ -5893,7 +5902,7 @@ var Tooltip_ = __webpack_require__(12);
 var Tooltip__default = /*#__PURE__*/__webpack_require__.n(Tooltip_);
 
 // EXTERNAL MODULE: external "react-images"
-var external__react_images_ = __webpack_require__(146);
+var external__react_images_ = __webpack_require__(144);
 var external__react_images__default = /*#__PURE__*/__webpack_require__.n(external__react_images_);
 
 // EXTERNAL MODULE: external "classnames"
@@ -5905,11 +5914,11 @@ var RemoveRedEye_ = __webpack_require__(34);
 var RemoveRedEye__default = /*#__PURE__*/__webpack_require__.n(RemoveRedEye_);
 
 // EXTERNAL MODULE: external "material-ui/Menu"
-var Menu_ = __webpack_require__(65);
+var Menu_ = __webpack_require__(67);
 var Menu__default = /*#__PURE__*/__webpack_require__.n(Menu_);
 
 // EXTERNAL MODULE: external "material-ui/Menu/MenuItem"
-var MenuItem_ = __webpack_require__(115);
+var MenuItem_ = __webpack_require__(113);
 var MenuItem__default = /*#__PURE__*/__webpack_require__.n(MenuItem_);
 
 // EXTERNAL MODULE: external "material-ui/Input"
@@ -5924,13 +5933,13 @@ var Form__default = /*#__PURE__*/__webpack_require__.n(Form_);
 var MaterialCustomTextFieldWrapper = __webpack_require__(106);
 
 // EXTERNAL MODULE: ./components/MaterialCustomRadioInputWrapper/index.js
-var MaterialCustomRadioInputWrapper = __webpack_require__(122);
+var MaterialCustomRadioInputWrapper = __webpack_require__(120);
 
 // EXTERNAL MODULE: ./components/MaterialCustomSelectInputWrapper/index.js
-var MaterialCustomSelectInputWrapper = __webpack_require__(117);
+var MaterialCustomSelectInputWrapper = __webpack_require__(114);
 
 // EXTERNAL MODULE: ./components/CustomFileUploadInputWrapper/index.js
-var CustomFileUploadInputWrapper = __webpack_require__(121);
+var CustomFileUploadInputWrapper = __webpack_require__(119);
 
 // EXTERNAL MODULE: ./utils/stringUtils.js
 var stringUtils = __webpack_require__(19);
@@ -6438,11 +6447,17 @@ function (_Component) {
       enumerable: true,
       writable: true,
       value: function value() {
-        if (!_this.props.submittedDeal) return [];
+        var submittedDeal = _this.props.submittedDeal;
+        if (!submittedDeal) return [];
+        var src = submittedDeal.agencyDisclosureForm;
+        var fileName = src.split('/').pop();
+        var encodedFileName = encodeURIComponent(fileName);
+        var srcArray = src.split('/');
+        var encodedSrc = "".concat(srcArray.slice(0, srcArray.length - 1).join('/'), "/").concat(encodedFileName);
 
-        if (_this.props.submittedDeal.agencyDisclosureForm) {
+        if (submittedDeal.agencyDisclosureForm) {
           return [{
-            src: _this.props.submittedDeal.agencyDisclosureForm
+            src: encodedSrc
           }];
         }
       }
@@ -6452,12 +6467,17 @@ function (_Component) {
       enumerable: true,
       writable: true,
       value: function value() {
-        if (!_this.props.submittedDeal) return [];
+        var submittedDeal = _this.props.submittedDeal;
+        if (!submittedDeal) return [];
 
-        if (_this.props.submittedDeal.contractOrLeaseForms) {
-          return _this.props.submittedDeal.contractOrLeaseForms.map(function (url) {
+        if (submittedDeal.contractOrLeaseForms) {
+          return submittedDeal.contractOrLeaseForms.map(function (url) {
+            var fileName = url.split('/').pop();
+            var urlArray = url.split('/');
+            var encodedFileName = encodeURIComponent(fileName);
+            var encodedUrl = "".concat(urlArray.slice(0, urlArray.length - 1).join('/'), "/").concat(encodedFileName);
             return {
-              src: url
+              src: encodedUrl
             };
           });
         }
@@ -6973,7 +6993,7 @@ function (_Component) {
       var renderContractLeaseMenuItems = function renderContractLeaseMenuItems() {
         return _this2.returnContractLeaseURLS().map(function (_ref4) {
           var src = _ref4.src;
-          var fileName = src.split('/').pop();
+          var fileName = decodeURIComponent(src.split('/').pop());
           var fileType = src.split('.').pop();
 
           if (fileType.toLowerCase() === 'pdf') {
@@ -7006,7 +7026,7 @@ function (_Component) {
       var renderAgencyDisclosureMenuItems = function renderAgencyDisclosureMenuItems() {
         return _this2.returnAgencyDisclosureURL().map(function (_ref5) {
           var src = _ref5.src;
-          var fileName = src.split('/').pop();
+          var fileName = decodeURIComponent(src.split('/').pop());
           var fileType = src.split('.').pop();
 
           if (fileType.toLowerCase() === 'pdf') {
@@ -7948,13 +7968,7 @@ function (_Component) {
 /* harmony default export */ var forms_SubmitDealForm = __webpack_exports__["a"] = (Object(styles_["withStyles"])(SubmitDealForm_styles)(SubmitDealForm_SubmitDealForm));
 
 /***/ }),
-/* 146 */
-/***/ (function(module, exports) {
-
-module.exports = require("react-images");
-
-/***/ }),
-/* 147 */
+/* 150 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -8004,11 +8018,11 @@ var getDealUploadsSignedURLS = function getDealUploadsSignedURLS(values, dealID)
 /* harmony default export */ __webpack_exports__["a"] = (getDealUploadsSignedURLS);
 
 /***/ }),
-/* 148 */
+/* 151 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios__ = __webpack_require__(129);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios__ = __webpack_require__(128);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_axios__);
 
 
@@ -8028,7 +8042,7 @@ var uploadFile = function uploadFile(_ref) {
 /* harmony default export */ __webpack_exports__["a"] = (uploadFile);
 
 /***/ }),
-/* 149 */
+/* 152 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -8072,98 +8086,42 @@ var deleteDeal = function deleteDeal(uuid) {
 /* harmony default export */ __webpack_exports__["a"] = (deleteDeal);
 
 /***/ }),
-/* 150 */,
-/* 151 */,
-/* 152 */,
 /* 153 */,
-/* 154 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__client__ = __webpack_require__(6);
-
-var query = "\n  mutation acceptDeal($input: AcceptDealInput!) {\n    acceptDeal(input: $input) {\n      deal {\n        dealID\n        date\n        agentName\n        agentType\n        leadSource\n        dealType\n        propertyAddress\n        state\n        city\n        apartmentNumber\n        managementOrCobrokeCompany\n        price\n        clientName\n        clientEmail\n        paymentsTotal\n        deductionsTotal\n        total\n        agentNotes\n        status\n        bonusPercentageAddedByAdmin\n        netAgentCommission\n        netCompanyCommission\n      }\n      userErrors {\n        field\n        message\n      }\n      otherError\n    }\n  }\n";
-
-var acceptDeal = function acceptDeal(dealID, bonusPercentageAddedByAdmin) {
-  var res;
-  var variables = {
-    input: {
-      uuid: dealID,
-      bonusPercentageAddedByAdmin: bonusPercentageAddedByAdmin
-    }
-  };
-  var finalResponseObj = {
-    deal: null,
-    otherError: null,
-    userErrors: []
-  };
-  return __WEBPACK_IMPORTED_MODULE_0__client__["a" /* graphQlClient */].request(query, variables).then(function (result) {
-    res = result;
-    console.log(res);
-    var _res = res,
-        data = _res.acceptDeal;
-    var deal = data.deal,
-        otherError = data.otherError,
-        userErrors = data.userErrors;
-
-    if (userErrors && userErrors.length) {
-      finalResponseObj.userErrors = userErrors;
-    }
-
-    if (otherError) {
-      finalResponseObj.otherError = otherError;
-    }
-
-    if (!finalResponseObj.error && !finalResponseObj.userErrors.length) {
-      finalResponseObj.deal = deal;
-    }
-
-    return finalResponseObj;
-  }).catch(function (err) {
-    console.log(err);
-    finalResponseObj.error = 'Error reaching the server';
-    return finalResponseObj;
-  });
-};
-
-/* harmony default export */ __webpack_exports__["a"] = (acceptDeal);
-
-/***/ }),
+/* 154 */,
 /* 155 */,
 /* 156 */,
 /* 157 */,
-/* 158 */,
-/* 159 */
+/* 158 */
 /***/ (function(module, exports) {
 
 module.exports = require("set-value");
 
 /***/ }),
-/* 160 */
+/* 159 */
 /***/ (function(module, exports) {
 
 module.exports = require("@nivo/pie");
 
 /***/ }),
-/* 161 */
+/* 160 */
 /***/ (function(module, exports) {
 
 module.exports = require("@nivo/bar");
 
 /***/ }),
-/* 162 */
+/* 161 */
 /***/ (function(module, exports) {
 
 module.exports = require("@nivo/line");
 
 /***/ }),
-/* 163 */
+/* 162 */
 /***/ (function(module, exports) {
 
 module.exports = require("react-toggle-button");
 
 /***/ }),
-/* 164 */
+/* 163 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -8177,7 +8135,7 @@ var commercialRental = 'Commercial Rental';
 var commercialSale = 'Commercial Sale';
 
 /***/ }),
-/* 165 */
+/* 164 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -8370,7 +8328,7 @@ var returnYearlyDollarDealsDataContainer = function returnYearlyDollarDealsDataC
 };
 
 /***/ }),
-/* 166 */
+/* 165 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -8412,7 +8370,7 @@ var Button_ = __webpack_require__(41);
 var Button__default = /*#__PURE__*/__webpack_require__.n(Button_);
 
 // EXTERNAL MODULE: external "material-ui/Menu"
-var Menu_ = __webpack_require__(65);
+var Menu_ = __webpack_require__(67);
 var Menu__default = /*#__PURE__*/__webpack_require__.n(Menu_);
 
 // EXTERNAL MODULE: external "classnames"
@@ -8420,7 +8378,7 @@ var external__classnames_ = __webpack_require__(5);
 var external__classnames__default = /*#__PURE__*/__webpack_require__.n(external__classnames_);
 
 // EXTERNAL MODULE: external "material-ui/Menu/MenuItem"
-var MenuItem_ = __webpack_require__(115);
+var MenuItem_ = __webpack_require__(113);
 var MenuItem__default = /*#__PURE__*/__webpack_require__.n(MenuItem_);
 
 // EXTERNAL MODULE: external "react-apollo"
@@ -8428,7 +8386,7 @@ var external__react_apollo_ = __webpack_require__(18);
 var external__react_apollo__default = /*#__PURE__*/__webpack_require__.n(external__react_apollo_);
 
 // EXTERNAL MODULE: external "graphql-tag"
-var external__graphql_tag_ = __webpack_require__(66);
+var external__graphql_tag_ = __webpack_require__(68);
 var external__graphql_tag__default = /*#__PURE__*/__webpack_require__.n(external__graphql_tag_);
 
 // EXTERNAL MODULE: external "react-spinners"
@@ -8436,13 +8394,13 @@ var external__react_spinners_ = __webpack_require__(27);
 var external__react_spinners__default = /*#__PURE__*/__webpack_require__.n(external__react_spinners_);
 
 // EXTERNAL MODULE: ./components/forms/SubmitDealForm/index.js + 1 modules
-var SubmitDealForm = __webpack_require__(145);
+var SubmitDealForm = __webpack_require__(149);
 
 // EXTERNAL MODULE: ./effects/deals/getDealUploadsSignedURLS.js
-var getDealUploadsSignedURLS = __webpack_require__(147);
+var getDealUploadsSignedURLS = __webpack_require__(150);
 
 // EXTERNAL MODULE: ./effects/uploadFile.js
-var uploadFile = __webpack_require__(148);
+var uploadFile = __webpack_require__(151);
 
 // EXTERNAL MODULE: ./effects/client.js
 var client = __webpack_require__(6);
@@ -9113,11 +9071,55 @@ function (_Component) {
 }(external__react_["Component"])) || _class;
 
 /* harmony default export */ var ViewDealForm = (ViewDealForm_ViewDealFormContainer);
-// EXTERNAL MODULE: ./effects/deals/acceptDeal.js
-var acceptDeal = __webpack_require__(154);
+// CONCATENATED MODULE: ./effects/deals/acceptDeal.js
 
+var acceptDeal_query = "\n  mutation acceptDeal($input: AcceptDealInput!) {\n    acceptDeal(input: $input) {\n      deal {\n        dealID\n        date\n        agentName\n        agentType\n        leadSource\n        dealType\n        propertyAddress\n        state\n        city\n        apartmentNumber\n        managementOrCobrokeCompany\n        price\n        clientName\n        clientEmail\n        paymentsTotal\n        deductionsTotal\n        total\n        agentNotes\n        status\n        bonusPercentageAddedByAdmin\n        netAgentCommission\n        netCompanyCommission\n      }\n      userErrors {\n        field\n        message\n      }\n      otherError\n    }\n  }\n";
+
+var acceptDeal_acceptDeal = function acceptDeal(dealID, bonusPercentageAddedByAdmin) {
+  var res;
+  var variables = {
+    input: {
+      uuid: dealID,
+      bonusPercentageAddedByAdmin: bonusPercentageAddedByAdmin
+    }
+  };
+  var finalResponseObj = {
+    deal: null,
+    otherError: null,
+    userErrors: []
+  };
+  return client["a" /* graphQlClient */].request(acceptDeal_query, variables).then(function (result) {
+    res = result;
+    console.log(res);
+    var _res = res,
+        data = _res.acceptDeal;
+    var deal = data.deal,
+        otherError = data.otherError,
+        userErrors = data.userErrors;
+
+    if (userErrors && userErrors.length) {
+      finalResponseObj.userErrors = userErrors;
+    }
+
+    if (otherError) {
+      finalResponseObj.otherError = otherError;
+    }
+
+    if (!finalResponseObj.error && !finalResponseObj.userErrors.length) {
+      finalResponseObj.deal = deal;
+    }
+
+    return finalResponseObj;
+  }).catch(function (err) {
+    console.log(err);
+    finalResponseObj.error = 'Error reaching the server';
+    return finalResponseObj;
+  });
+};
+
+/* harmony default export */ var deals_acceptDeal = (acceptDeal_acceptDeal);
 // EXTERNAL MODULE: ./effects/deals/deleteDeal.js
-var deleteDeal = __webpack_require__(149);
+var deleteDeal = __webpack_require__(152);
 
 // CONCATENATED MODULE: ./components/ViewDealDialogBox/index.js
 var ViewDealDialogBox__class;
@@ -9382,7 +9384,7 @@ function (_Component) {
 
         _this.toggleSubmittingRequestToServer(true);
 
-        Object(acceptDeal["a" /* default */])(dealID, Number(dealBonus) ? Number(dealBonus) : undefined).then(function (res) {
+        deals_acceptDeal(dealID, Number(dealBonus) ? Number(dealBonus) : undefined).then(function (res) {
           _this.toggleSubmittingRequestToServer(false);
 
           if (res.error) {
@@ -9641,6 +9643,7 @@ function (_Component) {
 /* harmony default export */ var ViewDealDialogBox = __webpack_exports__["a"] = (Object(Dialog_["withMobileDialog"])()(Object(styles_["withStyles"])(styles)(ViewDealDialogBox_SubmitDealDialogBox)));
 
 /***/ }),
+/* 166 */,
 /* 167 */,
 /* 168 */,
 /* 169 */,
@@ -9656,958 +9659,7 @@ function (_Component) {
 /* 179 */,
 /* 180 */,
 /* 181 */,
-/* 182 */,
-/* 183 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-
-// EXTERNAL MODULE: external "react"
-var external__react_ = __webpack_require__(0);
-var external__react__default = /*#__PURE__*/__webpack_require__.n(external__react_);
-
-// EXTERNAL MODULE: external "mobx-react"
-var external__mobx_react_ = __webpack_require__(1);
-var external__mobx_react__default = /*#__PURE__*/__webpack_require__.n(external__mobx_react_);
-
-// EXTERNAL MODULE: external "material-ui/Dialog"
-var Dialog_ = __webpack_require__(58);
-var Dialog__default = /*#__PURE__*/__webpack_require__.n(Dialog_);
-
-// EXTERNAL MODULE: external "material-ui/Snackbar"
-var Snackbar_ = __webpack_require__(31);
-var Snackbar__default = /*#__PURE__*/__webpack_require__.n(Snackbar_);
-
-// EXTERNAL MODULE: external "material-ui/IconButton"
-var IconButton_ = __webpack_require__(14);
-var IconButton__default = /*#__PURE__*/__webpack_require__.n(IconButton_);
-
-// EXTERNAL MODULE: external "@material-ui/icons/Close"
-var Close_ = __webpack_require__(32);
-var Close__default = /*#__PURE__*/__webpack_require__.n(Close_);
-
-// EXTERNAL MODULE: external "material-ui/Divider"
-var Divider_ = __webpack_require__(21);
-var Divider__default = /*#__PURE__*/__webpack_require__.n(Divider_);
-
-// EXTERNAL MODULE: external "material-ui/styles"
-var styles_ = __webpack_require__(2);
-var styles__default = /*#__PURE__*/__webpack_require__.n(styles_);
-
-// EXTERNAL MODULE: external "material-ui/Button"
-var Button_ = __webpack_require__(41);
-var Button__default = /*#__PURE__*/__webpack_require__.n(Button_);
-
-// EXTERNAL MODULE: external "classnames"
-var external__classnames_ = __webpack_require__(5);
-var external__classnames__default = /*#__PURE__*/__webpack_require__.n(external__classnames_);
-
-// EXTERNAL MODULE: external "react-apollo"
-var external__react_apollo_ = __webpack_require__(18);
-var external__react_apollo__default = /*#__PURE__*/__webpack_require__.n(external__react_apollo_);
-
-// EXTERNAL MODULE: external "graphql-tag"
-var external__graphql_tag_ = __webpack_require__(66);
-var external__graphql_tag__default = /*#__PURE__*/__webpack_require__.n(external__graphql_tag_);
-
-// EXTERNAL MODULE: external "react-spinners"
-var external__react_spinners_ = __webpack_require__(27);
-var external__react_spinners__default = /*#__PURE__*/__webpack_require__.n(external__react_spinners_);
-
-// EXTERNAL MODULE: ./components/forms/SubmitDealForm/index.js + 1 modules
-var SubmitDealForm = __webpack_require__(145);
-
-// EXTERNAL MODULE: ./effects/deals/getDealUploadsSignedURLS.js
-var getDealUploadsSignedURLS = __webpack_require__(147);
-
-// EXTERNAL MODULE: ./effects/uploadFile.js
-var uploadFile = __webpack_require__(148);
-
-// EXTERNAL MODULE: ./effects/client.js
-var client = __webpack_require__(6);
-
-// CONCATENATED MODULE: ./effects/deals/submitDeal.js
-
-var query = "\n  mutation submitDeal($input: SubmitDealInput!) {\n    submitDeal(input: $input) {\n      deal {\n        dealID\n        date\n        dealType\n        clientName\n        clientEmail\n        propertyAddress\n        city\n        managementOrCobrokeCompany\n        price\n        status\n        total\n      }\n      userErrors {\n        field\n        message\n      }\n      otherError\n    }\n  }\n";
-
-var submitDeal_submitDeal = function submitDeal(values) {
-  var res;
-  var variables = {
-    input: values
-  };
-  var finalResponseObj = {
-    deal: null,
-    otherError: null,
-    userErrors: []
-  };
-  return client["a" /* graphQlClient */].request(query, variables).then(function (result) {
-    res = result;
-    var _res = res,
-        data = _res.submitDeal;
-    var deal = data.deal,
-        otherError = data.otherError,
-        userErrors = data.userErrors;
-
-    if (userErrors && userErrors.length) {
-      finalResponseObj.userErrors = userErrors;
-    }
-
-    if (otherError) {
-      finalResponseObj.otherError = otherError;
-    }
-
-    if (!finalResponseObj.error && !finalResponseObj.userErrors.length) {
-      finalResponseObj.deal = deal;
-    }
-
-    return finalResponseObj;
-  }).catch(function (err) {
-    console.log(err);
-    finalResponseObj.error = 'Error reaching the server';
-    return finalResponseObj;
-  });
-};
-
-/* harmony default export */ var deals_submitDeal = (submitDeal_submitDeal);
-// EXTERNAL MODULE: ./utils/stringUtils.js
-var stringUtils = __webpack_require__(19);
-
-// CONCATENATED MODULE: ./containers/SubmitDealForm.js
-var _class;
-
-var _templateObject = /*#__PURE__*/ _taggedTemplateLiteral(["\n  query dealForm($uuid: String) {\n    dealForm(uuid: $uuid) {\n      agent {\n        firstName\n        lastName\n        role\n        agent {\n          agentType\n          state\n          ACHAccountNumber\n          ACHAccountBankRoutingNumber\n        }\n      }\n      agents {\n        firstName\n        lastName\n        uuid\n      }\n      formSelectItems\n    }\n  }\n"]);
-
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
-
-function _objectWithoutProperties(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i < sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) >= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }
-
-function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
-
-function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance"); }
-
-function _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter); }
-
-function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
-
-
-
-
-
-
-
-
-
-
-
-var Loader = external__react_spinners_["BounceLoader"];
-var dealFormQuery = external__graphql_tag__default()(_templateObject);
-
-var SubmitDealForm_SubmitDealFormContainer = Object(external__mobx_react_["observer"])(_class =
-/*#__PURE__*/
-function (_Component) {
-  _inherits(SubmitDealFormContainer, _Component);
-
-  function SubmitDealFormContainer(props) {
-    var _this;
-
-    _classCallCheck(this, SubmitDealFormContainer);
-
-    _this = _possibleConstructorReturn(this, (SubmitDealFormContainer.__proto__ || Object.getPrototypeOf(SubmitDealFormContainer)).call(this, props));
-    Object.defineProperty(_assertThisInitialized(_this), "uploadItemsNum", {
-      configurable: true,
-      enumerable: true,
-      writable: true,
-      value: 0
-    });
-    Object.defineProperty(_assertThisInitialized(_this), "itemsUploaded", {
-      configurable: true,
-      enumerable: true,
-      writable: true,
-      value: 0
-    });
-    Object.defineProperty(_assertThisInitialized(_this), "paymentAmountChangeHandler", {
-      configurable: true,
-      enumerable: true,
-      writable: true,
-      value: function value(id, _value) {
-        _value = Number(_value);
-
-        var paymentsTotal = _this.getTotalPaymentsAmount({
-          id: id,
-          value: _value || 0
-        });
-
-        _this.setState({
-          paymentAmountItems: _objectSpread({}, _this.state.paymentAmountItems, _defineProperty({}, id, _value || 0)),
-          paymentsTotal: paymentsTotal,
-          total: paymentsTotal - _this.state.deductionsTotal
-        });
-      }
-    });
-    Object.defineProperty(_assertThisInitialized(_this), "deductionAmountChangeHandler", {
-      configurable: true,
-      enumerable: true,
-      writable: true,
-      value: function value(id, _value2) {
-        _value2 = Number(_value2);
-
-        var deductionsTotal = _this.getTotalDeductionsAmount({
-          id: id,
-          value: _value2 || 0
-        });
-
-        _this.setState({
-          deductionAmountItems: _objectSpread({}, _this.state.deductionAmountItems, _defineProperty({}, id, _value2 || 0)),
-          deductionsTotal: deductionsTotal,
-          total: _this.state.paymentsTotal - deductionsTotal
-        });
-      }
-    });
-    Object.defineProperty(_assertThisInitialized(_this), "getTotalPaymentsAmount", {
-      configurable: true,
-      enumerable: true,
-      writable: true,
-      value: function value(newItem) {
-        var total = 0;
-        var _this$state = _this.state,
-            paymentAmountItems = _this$state.paymentAmountItems,
-            permanentPaymentSubtractions = _this$state.permanentPaymentSubtractions;
-        Object.keys(paymentAmountItems).filter(function (itemID) {
-          return newItem ? itemID !== newItem.id : true;
-        }).forEach(function (key) {
-          total += paymentAmountItems[key];
-        });
-        if (newItem && newItem.value) total += newItem.value;
-        return total - permanentPaymentSubtractions;
-      }
-    });
-    Object.defineProperty(_assertThisInitialized(_this), "getTotalDeductionsAmount", {
-      configurable: true,
-      enumerable: true,
-      writable: true,
-      value: function value(newItem) {
-        var total = 0;
-        var _this$state2 = _this.state,
-            deductionAmountItems = _this$state2.deductionAmountItems,
-            permanentDeductionSubtractions = _this$state2.permanentDeductionSubtractions;
-        Object.keys(deductionAmountItems).filter(function (itemID) {
-          return newItem ? itemID !== newItem.id : true;
-        }).forEach(function (key) {
-          total += deductionAmountItems[key];
-        });
-        if (newItem && newItem.value) total += newItem.value;
-        return total - permanentDeductionSubtractions;
-      }
-    });
-    Object.defineProperty(_assertThisInitialized(_this), "subtractPaymentValueFromState", {
-      configurable: true,
-      enumerable: true,
-      writable: true,
-      value: function value(payment) {
-        var paymentsTotal = _this.getTotalPaymentsAmount() - payment;
-
-        _this.setState({
-          permanentPaymentSubtractions: _this.state.permanentPaymentSubtractions + payment,
-          paymentsTotal: paymentsTotal,
-          total: paymentsTotal - _this.state.deductionsTotal
-        });
-      }
-    });
-    Object.defineProperty(_assertThisInitialized(_this), "subtractDeductionValueFromState", {
-      configurable: true,
-      enumerable: true,
-      writable: true,
-      value: function value(deduction) {
-        var deductionsTotal = _this.getTotalDeductionsAmount() - deduction;
-
-        _this.setState({
-          permanentDeductionSubtractions: _this.state.permanentDeductionSubtractions + deduction,
-          deductionsTotal: deductionsTotal,
-          total: _this.state.paymentsTotal - deductionsTotal
-        });
-      }
-    });
-    Object.defineProperty(_assertThisInitialized(_this), "setAgencyDisclosureForm", {
-      configurable: true,
-      enumerable: true,
-      writable: true,
-      value: function value(file) {
-        _this.setState({
-          agencyDisclosureForm: file
-        });
-      }
-    });
-    Object.defineProperty(_assertThisInitialized(_this), "setContractOrLeaseForms", {
-      configurable: true,
-      enumerable: true,
-      writable: true,
-      value: function value(filesObject) {
-        if (Array.isArray(filesObject)) {
-          _this.setState({
-            contractOrLeaseForms: filesObject
-          });
-
-          if (filesObject.length === 0) {
-            var uploadBtn = document.getElementById('contractOrLeaseItemsUploadForm');
-
-            if (uploadBtn) {
-              uploadBtn.value = null;
-            }
-          }
-
-          return;
-        }
-
-        var fileArray = Object.keys(filesObject).map(function (key) {
-          return filesObject[key];
-        });
-
-        _this.setState({
-          contractOrLeaseForms: fileArray
-        });
-      }
-    });
-    Object.defineProperty(_assertThisInitialized(_this), "handleMgmtOrCobrokeCompanyChange", {
-      configurable: true,
-      enumerable: true,
-      writable: true,
-      value: function value(event) {
-        _this.setState({
-          newMgmtOrCobrokeCompany: event.target.value
-        });
-      }
-    });
-    Object.defineProperty(_assertThisInitialized(_this), "toggleChoosingMgmtCoBrokeCompany", {
-      configurable: true,
-      enumerable: true,
-      writable: true,
-      value: function value(bool) {
-        var choosingMgmtCoBrokeCompany = _this.state.choosingMgmtCoBrokeCompany;
-
-        _this.setState({
-          choosingMgmtCoBrokeCompany: typeof bool === 'boolean' ? bool : !choosingMgmtCoBrokeCompany,
-          newMgmtOrCobrokeCompany: ''
-        });
-      }
-    });
-    Object.defineProperty(_assertThisInitialized(_this), "setHasSetNewMgmtOrCobrokeCompany", {
-      configurable: true,
-      enumerable: true,
-      writable: true,
-      value: function value(bool) {
-        var _this$state3 = _this.state,
-            addedManagementCompanies = _this$state3.addedManagementCompanies,
-            newMgmtOrCobrokeCompany = _this$state3.newMgmtOrCobrokeCompany;
-
-        _this.setState({
-          choosingMgmtCoBrokeCompany: false,
-          hasSetNewMgmtOrCobrokeCompany: true,
-          newMgmtOrCobrokeCompany: '',
-          addedManagementCompanies: _toConsumableArray(addedManagementCompanies).concat([Object(stringUtils["a" /* capitalize */])(newMgmtOrCobrokeCompany.trim())])
-        });
-      }
-    });
-    Object.defineProperty(_assertThisInitialized(_this), "onAgentPaymentTypeChange", {
-      configurable: true,
-      enumerable: true,
-      writable: true,
-      value: function value(_ref) {
-        var target = _ref.target;
-        var value = target.value;
-        var isACH = value === 'Please ACH me';
-
-        if (isACH) {
-          _this.setState({
-            agentPaymentTypeIsACH: true
-          });
-        } else {
-          _this.setState({
-            agentPaymentTypeIsACH: false
-          });
-        }
-      }
-    });
-    Object.defineProperty(_assertThisInitialized(_this), "onSubmit", {
-      configurable: true,
-      enumerable: true,
-      writable: true,
-      value: function value(values) {
-        _this.props.setFormSubmitted();
-
-        var _this$state4 = _this.state,
-            contractOrLeaseForms = _this$state4.contractOrLeaseForms,
-            agencyDisclosureForm = _this$state4.agencyDisclosureForm,
-            addedManagementCompanies = _this$state4.addedManagementCompanies,
-            paymentsTotal = _this$state4.paymentsTotal,
-            deductionsTotal = _this$state4.deductionsTotal,
-            total = _this$state4.total;
-
-        var returnObject = _objectSpread({}, values, {
-          addedManagementCompanies: addedManagementCompanies,
-          paymentsTotal: paymentsTotal,
-          deductionsTotal: deductionsTotal,
-          total: total,
-          agencyDisclosureForm: null,
-          contractOrLeaseForms: [],
-          dealID: null
-        });
-
-        delete returnObject.contractOrLeaseItems;
-        delete returnObject.deductionsSubtotal;
-        delete returnObject.paymentsSubtotal;
-        delete returnObject.financialsTotal;
-        delete returnObject.date;
-        delete returnObject.agent;
-        delete returnObject.agentType;
-        delete returnObject.state;
-        returnObject.price = Number(returnObject.price);
-        returnObject.paymentItems = returnObject.paymentItems.map(function (item) {
-          return _objectSpread({}, item, {
-            amount: Number(item.amount)
-          });
-        });
-        returnObject.deductionItems = returnObject.deductionItems.map(function (item) {
-          return _objectSpread({}, item, {
-            amount: Number(item.amount)
-          });
-        });
-        var uploadItems = [{
-          itemName: 'agencyDisclosureForm',
-          fileName: agencyDisclosureForm.name,
-          fileType: agencyDisclosureForm.type
-        }];
-
-        if (contractOrLeaseForms && contractOrLeaseForms.length) {
-          contractOrLeaseForms.forEach(function (file, i) {
-            uploadItems.push({
-              itemName: "contractOrLeaseForm".concat(i),
-              fileName: file.name,
-              fileType: file.type
-            });
-          });
-        }
-
-        Object(getDealUploadsSignedURLS["a" /* default */])(uploadItems).then(function (response) {
-          if (response.error) {
-            _this.props.openRequestErrorSnackbar(response.error);
-
-            _this.props.setFormSubmitted(false);
-
-            return;
-          }
-
-          var errors = [];
-          var items = response.items,
-              dealID = response.dealID;
-          returnObject.dealID = dealID;
-          items.forEach(function (item) {
-            if (item.error) errors.push(item.error);
-          });
-
-          if (errors.length) {
-            _this.props.openRequestErrorSnackbar(errors[0]);
-
-            _this.props.setFormSubmitted(false);
-
-            return;
-          }
-
-          _this.uploadItemsNum = items.length;
-
-          var recursiveUploads = function recursiveUploads(items, returnObject, thisRef) {
-            var uploadItemsNum = items.length;
-            var uploadItemIndex = 0;
-            recursiveHelper(items, uploadItemIndex, uploadItemsNum, returnObject, thisRef);
-          };
-
-          var recursiveHelper = function recursiveHelper(items, uploadItemIndex, uploadItemsNum, returnObject, thisRef) {
-            if (uploadItemIndex >= items.length) {
-              thisRef.setState({
-                isUploadingFile: false,
-                uplodingFileProgress: 0,
-                filesUploadedSuccessfully: true,
-                submittingFormToServer: true
-              });
-              deals_submitDeal(returnObject).then(function (res) {
-                var failed = false;
-
-                if (res.otherError) {
-                  _this.props.openRequestErrorSnackbar(res.otherError);
-
-                  failed = true;
-                }
-
-                if (res.userErrors.length) {
-                  failed = true;
-                }
-
-                if (!failed) {
-                  _this.props.setDealSuccessfullySubmitted(res.deal);
-                }
-
-                _this.setState({
-                  submittingFormToServer: false
-                });
-
-                _this.props.setFormSubmitted(false);
-              }).catch(function (err) {
-                _this.setState({
-                  submittingFormToServer: false
-                });
-
-                _this.props.setFormSubmitted(false);
-
-                _this.props.openRequestErrorSnackbar();
-              });
-              return;
-            }
-
-            var item = items[uploadItemIndex];
-            var file;
-            var fileIndex;
-
-            if (item.itemName === 'agencyDisclosureForm') {
-              file = thisRef.state.agencyDisclosureForm;
-              returnObject.agencyDisclosureForm = item.fileName;
-            } else {
-              fileIndex = item.itemName.slice(-1);
-              file = thisRef.state.contractOrLeaseForms[fileIndex];
-              returnObject.contractOrLeaseForms.push(item.fileName);
-            }
-
-            Object(uploadFile["a" /* default */])({
-              file: file,
-              url: item.signedURL,
-              onUploadProgress: function onUploadProgress(progressEvent) {
-                // Do whatever you want with the native progress event
-                var loadedPercent = progressEvent.loaded / progressEvent.total * 100;
-                thisRef.setState({
-                  formSubmissionBegun: true,
-                  uplodingFileProgress: Math.floor(loadedPercent),
-                  uplodingFileText: "Now uploading file ".concat(uploadItemIndex + 1, " of ").concat(uploadItemsNum, "..."),
-                  isUploadingFile: true
-                });
-              }
-            }).then(function (res) {
-              var status = "".concat(res.status);
-              var okRegex = /^[2][0-9][0-9]$/;
-
-              if (!okRegex.test(status)) {
-                _this.setState({
-                  submittingFormToServer: false,
-                  isUploadingFile: false
-                });
-
-                _this.props.setFormSubmitted(false);
-
-                _this.props.openRequestErrorSnackbar('There was an error uploading your files. Please try again shortly.');
-
-                return;
-              }
-
-              return recursiveHelper(items, uploadItemIndex + 1, uploadItemsNum, returnObject, thisRef);
-            }).catch(function (err) {
-              _this.setState({
-                submittingFormToServer: false,
-                isUploadingFile: false
-              });
-
-              _this.props.setFormSubmitted(false);
-
-              _this.props.openRequestErrorSnackbar();
-            });
-          };
-
-          recursiveUploads(items, returnObject, _assertThisInitialized(_this));
-        });
-      }
-    });
-    Object.defineProperty(_assertThisInitialized(_this), "onSubmitFailure", {
-      configurable: true,
-      enumerable: true,
-      writable: true,
-      value: function value(errs, onSubmitError, formApi) {
-        console.log(errs);
-        console.log(onSubmitError);
-        console.log(formApi.errors);
-      }
-    });
-    _this.state = {
-      paymentAmountItems: {},
-      deductionAmountItems: {},
-      paymentsTotal: 0,
-      deductionsTotal: 0,
-      total: 0,
-      contractOrLeaseForms: [],
-      agencyDisclosureForm: null,
-      permanentPaymentSubtractions: 0,
-      // not submitted
-      permanentDeductionSubtractions: 0,
-      // not submitted
-      choosingMgmtCoBrokeCompany: false,
-      newMgmtOrCobrokeCompany: '',
-      hasSetNewMgmtOrCobrokeCompany: false,
-      addedManagementCompanies: [],
-      uplodingFileProgress: 0,
-      isUploadingFile: false,
-      uplodingFileText: '',
-      filesUploadedSuccessfully: null,
-      formSubmissionBegun: false,
-      submittingFormToServer: false
-    };
-    return _this;
-  }
-
-  _createClass(SubmitDealFormContainer, [{
-    key: "render",
-    value: function render() {
-      var _this2 = this;
-
-      var _props = this.props,
-          uuid = _props.userUUID,
-          rest = _objectWithoutProperties(_props, ["userUUID"]);
-
-      var _state = this.state,
-          agencyDisclosureForm = _state.agencyDisclosureForm,
-          contractOrLeaseForms = _state.contractOrLeaseForms;
-      return external__react__default.a.createElement(external__react_apollo_["Query"], {
-        query: dealFormQuery,
-        fetchPolicy: "cache-and-network"
-      }, function (_ref2) {
-        var loading = _ref2.loading,
-            error = _ref2.error,
-            data = _ref2.data;
-
-        if (loading) {
-          return external__react__default.a.createElement("div", {
-            style: {
-              display: 'flex',
-              justifyContent: 'center'
-            }
-          }, external__react__default.a.createElement(Loader, {
-            color: "#f44336",
-            loading: true
-          }));
-        }
-
-        if (error) {
-          console.log(error);
-          return external__react__default.a.createElement("div", {
-            style: {
-              textAlign: 'center'
-            }
-          }, "We're sorry. There was an error processing your request.");
-        }
-
-        var _data$dealForm = data.dealForm,
-            agent = _data$dealForm.agent,
-            agents = _data$dealForm.agents,
-            formSelectItems = _data$dealForm.formSelectItems;
-        return external__react__default.a.createElement(SubmitDealForm["a" /* default */], _extends({
-          paymentsTotal: "".concat(_this2.state.paymentsTotal),
-          deductionsTotal: "".concat(_this2.state.deductionsTotal),
-          total: _this2.state.total,
-          agent: agent,
-          agents: agents.filter(function (agent) {
-            return agent.uuid !== uuid;
-          }),
-          managementCobrokeCompanyItems: formSelectItems || [],
-          onSubmit: _this2.onSubmit,
-          setAgencyDisclosureForm: _this2.setAgencyDisclosureForm,
-          setContractOrLeaseForms: _this2.setContractOrLeaseForms,
-          agencyDisclosureForm: agencyDisclosureForm,
-          contractOrLeaseForms: contractOrLeaseForms,
-          paymentAmountChangeHandler: _this2.paymentAmountChangeHandler,
-          addedManagementCompanies: _this2.state.addedManagementCompanies,
-          newMgmtOrCobrokeCompany: _this2.state.newMgmtOrCobrokeCompany,
-          uplodingFileProgress: _this2.state.uplodingFileProgress,
-          isUploadingFile: _this2.state.isUploadingFile,
-          uplodingFileText: _this2.state.uplodingFileText,
-          formSubmissionBegun: _this2.state.formSubmissionBegun,
-          submittingFormToServer: _this2.state.submittingFormToServer,
-          setHasSetNewMgmtOrCobrokeCompany: _this2.setHasSetNewMgmtOrCobrokeCompany,
-          toggleChoosingMgmtCoBrokeCompany: _this2.toggleChoosingMgmtCoBrokeCompany,
-          handleMgmtOrCobrokeCompanyChange: _this2.handleMgmtOrCobrokeCompanyChange,
-          choosingMgmtCoBrokeCompany: _this2.state.choosingMgmtCoBrokeCompany,
-          deductionAmountChangeHandler: _this2.deductionAmountChangeHandler,
-          subtractPaymentValueFromState: _this2.subtractPaymentValueFromState,
-          subtractDeductionValueFromState: _this2.subtractDeductionValueFromState,
-          agentPaymentTypeIsACH: _this2.state.agentPaymentTypeIsACH,
-          onAgentPaymentTypeChange: _this2.onAgentPaymentTypeChange
-        }, rest));
-      });
-    }
-  }]);
-
-  return SubmitDealFormContainer;
-}(external__react_["Component"])) || _class;
-
-/* harmony default export */ var containers_SubmitDealForm = (SubmitDealForm_SubmitDealFormContainer);
-// CONCATENATED MODULE: ./components/SubmitDealDialogBox/index.js
-var SubmitDealDialogBox__class;
-
-function SubmitDealDialogBox__typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { SubmitDealDialogBox__typeof = function _typeof(obj) { return typeof obj; }; } else { SubmitDealDialogBox__typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return SubmitDealDialogBox__typeof(obj); }
-
-function SubmitDealDialogBox__classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function SubmitDealDialogBox__defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function SubmitDealDialogBox__createClass(Constructor, protoProps, staticProps) { if (protoProps) SubmitDealDialogBox__defineProperties(Constructor.prototype, protoProps); if (staticProps) SubmitDealDialogBox__defineProperties(Constructor, staticProps); return Constructor; }
-
-function SubmitDealDialogBox__possibleConstructorReturn(self, call) { if (call && (SubmitDealDialogBox__typeof(call) === "object" || typeof call === "function")) { return call; } return SubmitDealDialogBox__assertThisInitialized(self); }
-
-function SubmitDealDialogBox__inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-function SubmitDealDialogBox__assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-
-
-
-
-
-
-
-
-
-
-
-var networkErrorMessage = "We're sorry. There was an error processing your request.";
-
-var styles = function styles(theme) {
-  return {
-    paper: {
-      width: '800px',
-      maxWidth: '800px'
-    },
-    dialogActions: {
-      margin: '8px 0'
-    },
-    formTitle: {
-      padding: 'theme.spacing.unit theme.spacing.unit * 3',
-      textAlign: 'center'
-    },
-    formSubheader: {
-      paddingLeft: theme.spacing.unit * 4,
-      paddingRight: theme.spacing.unit * 4,
-      marginBottom: theme.spacing.unit * 6,
-      marginTop: theme.spacing.unit * 2,
-      textAlign: 'center'
-    },
-    dialogContent: {
-      paddingTop: '32px'
-    },
-    snackBar: {
-      position: 'absolute',
-      bottom: 20
-    },
-    errorSnackbar: {
-      '& > div': {
-        backgroundColor: theme.palette.secondary.main
-      }
-    }
-  };
-};
-
-var SubmitDealDialogBox_SubmitDealDialogBox = Object(external__mobx_react_["observer"])(SubmitDealDialogBox__class =
-/*#__PURE__*/
-function (_Component) {
-  SubmitDealDialogBox__inherits(SubmitDealDialogBox, _Component);
-
-  function SubmitDealDialogBox(props) {
-    var _this;
-
-    SubmitDealDialogBox__classCallCheck(this, SubmitDealDialogBox);
-
-    _this = SubmitDealDialogBox__possibleConstructorReturn(this, (SubmitDealDialogBox.__proto__ || Object.getPrototypeOf(SubmitDealDialogBox)).call(this, props));
-    Object.defineProperty(SubmitDealDialogBox__assertThisInitialized(_this), "setFormSubmitted", {
-      configurable: true,
-      enumerable: true,
-      writable: true,
-      value: function value() {
-        var bool = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : true;
-
-        _this.setState({
-          formSubmitted: bool
-        });
-      }
-    });
-    Object.defineProperty(SubmitDealDialogBox__assertThisInitialized(_this), "toggleSnackbarOpen", {
-      configurable: true,
-      enumerable: true,
-      writable: true,
-      value: function value(text) {
-        _this.setState({
-          snackbarOpen: true,
-          snackbarText: text
-        });
-      }
-    });
-    Object.defineProperty(SubmitDealDialogBox__assertThisInitialized(_this), "handleCloseSnackbar", {
-      configurable: true,
-      enumerable: true,
-      writable: true,
-      value: function value() {
-        _this.setState({
-          snackbarOpen: false,
-          snackbarUndoFunction: null,
-          isErrorSnackbar: false,
-          snackbarText: ''
-        });
-      }
-    });
-    Object.defineProperty(SubmitDealDialogBox__assertThisInitialized(_this), "openRequestErrorSnackbar", {
-      configurable: true,
-      enumerable: true,
-      writable: true,
-      value: function value() {
-        var text = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : networkErrorMessage;
-
-        _this.setState({
-          snackbarOpen: true,
-          snackbarText: text,
-          isErrorSnackbar: true
-        });
-      }
-    });
-    _this.state = {
-      formApi: null,
-      formSubmitted: false,
-      snackbarOpen: false,
-      snackbarText: '',
-      snackbarUndoFunction: null,
-      isErrorSnackbar: false
-    };
-    return _this;
-  }
-
-  SubmitDealDialogBox__createClass(SubmitDealDialogBox, [{
-    key: "render",
-    value: function render() {
-      var _this2 = this;
-
-      var _props = this.props,
-          fullScreen = _props.fullScreen,
-          classes = _props.classes,
-          toggleDialogBoxOpen = _props.toggleDialogBoxOpen,
-          submitDealDialogOpen = _props.submitDealDialogOpen,
-          setDealSuccessfullySubmitted = _props.setDealSuccessfullySubmitted;
-      return external__react__default.a.createElement(Dialog__default.a, {
-        disableBackdropClick: true,
-        disableEscapeKeyDown: true,
-        open: submitDealDialogOpen,
-        classes: {
-          paper: classes.paper
-        },
-        fullScreen: fullScreen
-      }, external__react__default.a.createElement(Dialog_["DialogTitle"], {
-        id: "form-dialog-title",
-        classes: {
-          root: classes.formTitle
-        }
-      }, "New Deal"), external__react__default.a.createElement(Divider__default.a, null), external__react__default.a.createElement(Dialog_["DialogContent"], {
-        classes: {
-          root: classes.dialogContent
-        }
-      }, external__react__default.a.createElement(containers_SubmitDealForm, {
-        userUUID: this.props.userUUID,
-        getFormApi: function getFormApi(formApi) {
-          return _this2.setState({
-            formApi: formApi
-          });
-        },
-        setFormSubmitted: this.setFormSubmitted,
-        setDealSuccessfullySubmitted: setDealSuccessfullySubmitted,
-        openRequestErrorSnackbar: this.openRequestErrorSnackbar
-      }), external__react__default.a.createElement(Snackbar__default.a, {
-        classes: {
-          root: external__classnames__default()(classes.snackBar, this.state.isErrorSnackbar && classes.errorSnackbar)
-        },
-        anchorOrigin: {
-          vertical: 'bottom',
-          horizontal: 'center'
-        },
-        open: this.state.snackbarOpen,
-        autoHideDuration: this.state.isErrorSnackbar ? 8000 : 4000,
-        onClose: this.handleCloseSnackbar,
-        message: external__react__default.a.createElement("span", {
-          id: "snackbar-id"
-        }, this.state.snackbarText),
-        action: [this.snackbarUndoFunction ? external__react__default.a.createElement(Button__default.a, {
-          key: "undo",
-          color: "secondary",
-          size: "small",
-          onClick: function onClick() {
-            _this2.handleCloseSnackbar();
-
-            if (_this2.state.snackbarUndoFunction && typeof snackbarUndoFunction === 'function') {
-              _this2.snackbarUndoFunction();
-            }
-          }
-        }, "UNDO") : undefined, external__react__default.a.createElement(IconButton__default.a, {
-          key: "close",
-          "aria-label": "Close",
-          color: "inherit",
-          className: classes.close,
-          onClick: this.handleCloseSnackbar
-        }, external__react__default.a.createElement(Close__default.a, null))]
-      })), !this.state.formSubmitted ? external__react__default.a.createElement(Dialog_["DialogActions"], {
-        classes: {
-          root: classes.dialogActions
-        }
-      }, external__react__default.a.createElement(Button__default.a, {
-        disabled: this.state.formSubmitted,
-        onClick: toggleDialogBoxOpen,
-        color: "primary"
-      }, "Cancel"), external__react__default.a.createElement(Button__default.a, {
-        disabled: this.state.formSubmitted,
-        onClick: function onClick() {
-          var errors = _this2.state.formApi.getError();
-
-          var errorCount;
-          console.log(_this2.state.formApi.getError());
-
-          if (errors) {
-            errorCount = Object.keys(_this2.state.formApi.getError()).length;
-          }
-
-          if (errorCount) {
-            _this2.toggleSnackbarOpen("Please correct ".concat(errorCount, " form error").concat(errorCount > 1 ? 's' : ''));
-          }
-
-          _this2.state.formApi.submitForm();
-        },
-        color: "primary"
-      }, "Submit")) : null);
-    }
-  }]);
-
-  return SubmitDealDialogBox;
-}(external__react_["Component"])) || SubmitDealDialogBox__class;
-
-/* harmony default export */ var components_SubmitDealDialogBox = __webpack_exports__["a"] = (Object(Dialog_["withMobileDialog"])()(Object(styles_["withStyles"])(styles)(SubmitDealDialogBox_SubmitDealDialogBox)));
-
-/***/ }),
-/* 184 */
+/* 182 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -10633,7 +9685,7 @@ var external__moment_ = __webpack_require__(42);
 var external__moment__default = /*#__PURE__*/__webpack_require__.n(external__moment_);
 
 // EXTERNAL MODULE: external "papaparse"
-var external__papaparse_ = __webpack_require__(135);
+var external__papaparse_ = __webpack_require__(134);
 var external__papaparse__default = /*#__PURE__*/__webpack_require__.n(external__papaparse_);
 
 // EXTERNAL MODULE: external "react-sizes"
@@ -10641,7 +9693,7 @@ var external__react_sizes_ = __webpack_require__(70);
 var external__react_sizes__default = /*#__PURE__*/__webpack_require__.n(external__react_sizes_);
 
 // EXTERNAL MODULE: external "is-browser"
-var external__is_browser_ = __webpack_require__(7);
+var external__is_browser_ = __webpack_require__(8);
 var external__is_browser__default = /*#__PURE__*/__webpack_require__.n(external__is_browser_);
 
 // EXTERNAL MODULE: external "material-ui/Tooltip"
@@ -10661,14 +9713,14 @@ var md_ = __webpack_require__(57);
 var md__default = /*#__PURE__*/__webpack_require__.n(md_);
 
 // EXTERNAL MODULE: external "@material-ui/icons/Equalizer"
-var Equalizer_ = __webpack_require__(131);
+var Equalizer_ = __webpack_require__(130);
 var Equalizer__default = /*#__PURE__*/__webpack_require__.n(Equalizer_);
 
 // EXTERNAL MODULE: ./utils/backEndTableUtils/SelectFilterCell.js
-var SelectFilterCell = __webpack_require__(136);
+var SelectFilterCell = __webpack_require__(135);
 
 // EXTERNAL MODULE: ./utils/backEndTableUtils/tableSortingUtils.js
-var tableSortingUtils = __webpack_require__(137);
+var tableSortingUtils = __webpack_require__(136);
 
 // EXTERNAL MODULE: ./utils/backEndTableUtils/DefaultVirtualTableCell.js
 var DefaultVirtualTableCell = __webpack_require__(108);
@@ -11048,7 +10100,7 @@ function (_Component) {
 var stringUtils = __webpack_require__(19);
 
 // EXTERNAL MODULE: ./utils/debounce.js
-var debounce = __webpack_require__(123);
+var debounce = __webpack_require__(122);
 
 // EXTERNAL MODULE: ./utils/Math.js
 var utils_Math = __webpack_require__(71);
@@ -11323,7 +10375,7 @@ function (_Component) {
 /* harmony default export */ var containers_DealsTable = __webpack_exports__["a"] = (Object(styles_["withStyles"])(DealsTable_styles)(DealsTable_DealsTableContainer));
 
 /***/ }),
-/* 185 */
+/* 183 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -11357,7 +10409,7 @@ var external__moment_ = __webpack_require__(42);
 var external__moment__default = /*#__PURE__*/__webpack_require__.n(external__moment_);
 
 // EXTERNAL MODULE: external "set-value"
-var external__set_value_ = __webpack_require__(159);
+var external__set_value_ = __webpack_require__(158);
 var external__set_value__default = /*#__PURE__*/__webpack_require__.n(external__set_value_);
 
 // EXTERNAL MODULE: external "material-ui/Grid"
@@ -11365,15 +10417,15 @@ var Grid_ = __webpack_require__(20);
 var Grid__default = /*#__PURE__*/__webpack_require__.n(Grid_);
 
 // EXTERNAL MODULE: external "@nivo/pie"
-var pie_ = __webpack_require__(160);
+var pie_ = __webpack_require__(159);
 var pie__default = /*#__PURE__*/__webpack_require__.n(pie_);
 
 // EXTERNAL MODULE: external "@nivo/bar"
-var bar_ = __webpack_require__(161);
+var bar_ = __webpack_require__(160);
 var bar__default = /*#__PURE__*/__webpack_require__.n(bar_);
 
 // EXTERNAL MODULE: external "@nivo/line"
-var line_ = __webpack_require__(162);
+var line_ = __webpack_require__(161);
 var line__default = /*#__PURE__*/__webpack_require__.n(line_);
 
 // EXTERNAL MODULE: external "react-sizes"
@@ -11381,26 +10433,26 @@ var external__react_sizes_ = __webpack_require__(70);
 var external__react_sizes__default = /*#__PURE__*/__webpack_require__.n(external__react_sizes_);
 
 // EXTERNAL MODULE: external "chance"
-var external__chance_ = __webpack_require__(72);
+var external__chance_ = __webpack_require__(78);
 var external__chance__default = /*#__PURE__*/__webpack_require__.n(external__chance_);
 
 // EXTERNAL MODULE: external "react-toggle-button"
-var external__react_toggle_button_ = __webpack_require__(163);
+var external__react_toggle_button_ = __webpack_require__(162);
 var external__react_toggle_button__default = /*#__PURE__*/__webpack_require__.n(external__react_toggle_button_);
 
 // EXTERNAL MODULE: external "@material-ui/icons/AttachMoney"
-var AttachMoney_ = __webpack_require__(132);
+var AttachMoney_ = __webpack_require__(131);
 var AttachMoney__default = /*#__PURE__*/__webpack_require__.n(AttachMoney_);
 
 // EXTERNAL MODULE: external "@material-ui/icons/Help"
-var Help_ = __webpack_require__(133);
+var Help_ = __webpack_require__(132);
 var Help__default = /*#__PURE__*/__webpack_require__.n(Help_);
 
 // EXTERNAL MODULE: ./utils/Math.js
 var utils_Math = __webpack_require__(71);
 
 // EXTERNAL MODULE: ./components/StatNumberBox/index.js
-var StatNumberBox = __webpack_require__(134);
+var StatNumberBox = __webpack_require__(133);
 
 // CONCATENATED MODULE: ./components/DealsSummary/index.js
 var _dec, _class;
@@ -12347,13 +11399,13 @@ function (_Component) {
 }(external__react_["Component"])) || _class) || _class);
 /* harmony default export */ var DealsSummary = (Object(styles_["withStyles"])(styles)(DealsSummary_AgentDashboard));
 // EXTERNAL MODULE: ./constants/dealTypes.js
-var dealTypes = __webpack_require__(164);
+var dealTypes = __webpack_require__(163);
 
 // EXTERNAL MODULE: ./constants/graphDataModels.js
-var graphDataModels = __webpack_require__(165);
+var graphDataModels = __webpack_require__(164);
 
 // EXTERNAL MODULE: ./utils/currency.js
-var currency = __webpack_require__(140);
+var currency = __webpack_require__(138);
 
 // CONCATENATED MODULE: ./containers/DealsSummary.js
 var DealsSummary__class;
@@ -12863,6 +11915,8 @@ function (_Component) {
 /* harmony default export */ var DealsSummarDialogBox = __webpack_exports__["a"] = (Object(Dialog_["withMobileDialog"])()(Object(styles_["withStyles"])(DealsSummarDialogBox_styles)(DealsSummarDialogBox_DealsSummaryDialogBox)));
 
 /***/ }),
+/* 184 */,
+/* 185 */,
 /* 186 */,
 /* 187 */,
 /* 188 */,
@@ -12911,16 +11965,14 @@ function (_Component) {
 /* 231 */,
 /* 232 */,
 /* 233 */,
-/* 234 */,
-/* 235 */,
-/* 236 */
+/* 234 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(237);
+module.exports = __webpack_require__(235);
 
 
 /***/ }),
-/* 237 */
+/* 235 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -12935,7 +11987,7 @@ var external__mobx_react_ = __webpack_require__(1);
 var external__mobx_react__default = /*#__PURE__*/__webpack_require__.n(external__mobx_react_);
 
 // EXTERNAL MODULE: external "is-browser"
-var external__is_browser_ = __webpack_require__(7);
+var external__is_browser_ = __webpack_require__(8);
 var external__is_browser__default = /*#__PURE__*/__webpack_require__.n(external__is_browser_);
 
 // EXTERNAL MODULE: ./components/Layout/index.js + 11 modules
@@ -12964,7 +12016,7 @@ var Add_ = __webpack_require__(56);
 var Add__default = /*#__PURE__*/__webpack_require__.n(Add_);
 
 // EXTERNAL MODULE: external "@material-ui/icons/Equalizer"
-var Equalizer_ = __webpack_require__(131);
+var Equalizer_ = __webpack_require__(130);
 var Equalizer__default = /*#__PURE__*/__webpack_require__.n(Equalizer_);
 
 // EXTERNAL MODULE: external "material-ui/Snackbar"
@@ -12980,7 +12032,7 @@ var Close_ = __webpack_require__(32);
 var Close__default = /*#__PURE__*/__webpack_require__.n(Close_);
 
 // EXTERNAL MODULE: external "graphql-tag"
-var external__graphql_tag_ = __webpack_require__(66);
+var external__graphql_tag_ = __webpack_require__(68);
 var external__graphql_tag__default = /*#__PURE__*/__webpack_require__.n(external__graphql_tag_);
 
 // EXTERNAL MODULE: external "react-apollo"
@@ -12991,24 +12043,86 @@ var external__react_apollo__default = /*#__PURE__*/__webpack_require__.n(externa
 var external__react_spinners_ = __webpack_require__(27);
 var external__react_spinners__default = /*#__PURE__*/__webpack_require__.n(external__react_spinners_);
 
-// EXTERNAL MODULE: ./components/SubmitDealDialogBox/index.js + 2 modules
-var SubmitDealDialogBox = __webpack_require__(183);
+// EXTERNAL MODULE: external "material-ui/Dialog"
+var Dialog_ = __webpack_require__(58);
+var Dialog__default = /*#__PURE__*/__webpack_require__.n(Dialog_);
 
-// EXTERNAL MODULE: ./containers/DealsTable.js + 1 modules
-var DealsTable = __webpack_require__(184);
+// EXTERNAL MODULE: external "material-ui/Divider"
+var Divider_ = __webpack_require__(21);
+var Divider__default = /*#__PURE__*/__webpack_require__.n(Divider_);
 
-// EXTERNAL MODULE: ./components/DealsSummarDialogBox/index.js + 2 modules
-var DealsSummarDialogBox = __webpack_require__(185);
+// EXTERNAL MODULE: external "classnames"
+var external__classnames_ = __webpack_require__(5);
+var external__classnames__default = /*#__PURE__*/__webpack_require__.n(external__classnames_);
 
-// EXTERNAL MODULE: ./components/ViewDealDialogBox/index.js + 2 modules
-var ViewDealDialogBox = __webpack_require__(166);
+// EXTERNAL MODULE: ./components/forms/SubmitDealForm/index.js + 1 modules
+var SubmitDealForm = __webpack_require__(149);
 
-// CONCATENATED MODULE: ./containers/Deals.js
+// EXTERNAL MODULE: ./effects/deals/getDealUploadsSignedURLS.js
+var getDealUploadsSignedURLS = __webpack_require__(150);
+
+// EXTERNAL MODULE: ./effects/uploadFile.js
+var uploadFile = __webpack_require__(151);
+
+// EXTERNAL MODULE: ./effects/client.js
+var client = __webpack_require__(6);
+
+// CONCATENATED MODULE: ./effects/deals/submitDeal.js
+
+var query = "\n  mutation submitDeal($input: SubmitDealInput!) {\n    submitDeal(input: $input) {\n      deal {\n        dealID\n        date\n        dealType\n        clientName\n        clientEmail\n        propertyAddress\n        city\n        managementOrCobrokeCompany\n        price\n        status\n        total\n      }\n      userErrors {\n        field\n        message\n      }\n      otherError\n    }\n  }\n";
+
+var submitDeal_submitDeal = function submitDeal(values) {
+  var res;
+  var variables = {
+    input: values
+  };
+  var finalResponseObj = {
+    deal: null,
+    otherError: null,
+    userErrors: []
+  };
+  return client["a" /* graphQlClient */].request(query, variables).then(function (result) {
+    res = result;
+    var _res = res,
+        data = _res.submitDeal;
+    var deal = data.deal,
+        otherError = data.otherError,
+        userErrors = data.userErrors;
+
+    if (userErrors && userErrors.length) {
+      finalResponseObj.userErrors = userErrors;
+    }
+
+    if (otherError) {
+      finalResponseObj.otherError = otherError;
+    }
+
+    if (!finalResponseObj.error && !finalResponseObj.userErrors.length) {
+      finalResponseObj.deal = deal;
+    }
+
+    return finalResponseObj;
+  }).catch(function (err) {
+    console.log(err);
+    finalResponseObj.error = 'Error reaching the server';
+    return finalResponseObj;
+  });
+};
+
+/* harmony default export */ var deals_submitDeal = (submitDeal_submitDeal);
+// EXTERNAL MODULE: ./utils/stringUtils.js
+var stringUtils = __webpack_require__(19);
+
+// CONCATENATED MODULE: ./containers/SubmitDealForm.js
 var _class;
 
-var _templateObject = /*#__PURE__*/ _taggedTemplateLiteral(["\n  query dealsByAgentID($uuid: String!) {\n    dealsByAgentID(uuid: $uuid) {\n      dealID\n      date\n      agentID\n      dealType\n      clientName\n      clientEmail\n      propertyAddress\n      city\n      state\n      managementOrCobrokeCompany\n      price\n      status\n      bonusPercentageAddedByAdmin\n      netAgentCommission\n      total\n      isCoAgent\n    }\n  }\n"]);
+var _templateObject = /*#__PURE__*/ _taggedTemplateLiteral(["\n  query dealForm($uuid: String) {\n    dealForm(uuid: $uuid) {\n      agent {\n        firstName\n        lastName\n        role\n        agent {\n          agentType\n          state\n          ACHAccountNumber\n          ACHAccountBankRoutingNumber\n        }\n      }\n      agents {\n        firstName\n        lastName\n        uuid\n      }\n      formSelectItems\n    }\n  }\n"]);
 
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+
+function _objectWithoutProperties(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i < sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) >= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }
 
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
 
@@ -13017,6 +12131,10 @@ function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread n
 function _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter); }
 
 function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -13042,16 +12160,850 @@ function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(
 
 
 
+var Loader = external__react_spinners_["BounceLoader"];
+var dealFormQuery = external__graphql_tag__default()(_templateObject);
+
+var SubmitDealForm_SubmitDealFormContainer = Object(external__mobx_react_["observer"])(_class =
+/*#__PURE__*/
+function (_Component) {
+  _inherits(SubmitDealFormContainer, _Component);
+
+  function SubmitDealFormContainer(props) {
+    var _this;
+
+    _classCallCheck(this, SubmitDealFormContainer);
+
+    _this = _possibleConstructorReturn(this, (SubmitDealFormContainer.__proto__ || Object.getPrototypeOf(SubmitDealFormContainer)).call(this, props));
+    Object.defineProperty(_assertThisInitialized(_this), "uploadItemsNum", {
+      configurable: true,
+      enumerable: true,
+      writable: true,
+      value: 0
+    });
+    Object.defineProperty(_assertThisInitialized(_this), "itemsUploaded", {
+      configurable: true,
+      enumerable: true,
+      writable: true,
+      value: 0
+    });
+    Object.defineProperty(_assertThisInitialized(_this), "paymentAmountChangeHandler", {
+      configurable: true,
+      enumerable: true,
+      writable: true,
+      value: function value(id, _value) {
+        _value = Number(_value);
+
+        var paymentsTotal = _this.getTotalPaymentsAmount({
+          id: id,
+          value: _value || 0
+        });
+
+        _this.setState({
+          paymentAmountItems: _objectSpread({}, _this.state.paymentAmountItems, _defineProperty({}, id, _value || 0)),
+          paymentsTotal: paymentsTotal,
+          total: paymentsTotal - _this.state.deductionsTotal
+        });
+      }
+    });
+    Object.defineProperty(_assertThisInitialized(_this), "deductionAmountChangeHandler", {
+      configurable: true,
+      enumerable: true,
+      writable: true,
+      value: function value(id, _value2) {
+        _value2 = Number(_value2);
+
+        var deductionsTotal = _this.getTotalDeductionsAmount({
+          id: id,
+          value: _value2 || 0
+        });
+
+        _this.setState({
+          deductionAmountItems: _objectSpread({}, _this.state.deductionAmountItems, _defineProperty({}, id, _value2 || 0)),
+          deductionsTotal: deductionsTotal,
+          total: _this.state.paymentsTotal - deductionsTotal
+        });
+      }
+    });
+    Object.defineProperty(_assertThisInitialized(_this), "getTotalPaymentsAmount", {
+      configurable: true,
+      enumerable: true,
+      writable: true,
+      value: function value(newItem) {
+        var total = 0;
+        var _this$state = _this.state,
+            paymentAmountItems = _this$state.paymentAmountItems,
+            permanentPaymentSubtractions = _this$state.permanentPaymentSubtractions;
+        Object.keys(paymentAmountItems).filter(function (itemID) {
+          return newItem ? itemID !== newItem.id : true;
+        }).forEach(function (key) {
+          total += paymentAmountItems[key];
+        });
+        if (newItem && newItem.value) total += newItem.value;
+        return total - permanentPaymentSubtractions;
+      }
+    });
+    Object.defineProperty(_assertThisInitialized(_this), "getTotalDeductionsAmount", {
+      configurable: true,
+      enumerable: true,
+      writable: true,
+      value: function value(newItem) {
+        var total = 0;
+        var _this$state2 = _this.state,
+            deductionAmountItems = _this$state2.deductionAmountItems,
+            permanentDeductionSubtractions = _this$state2.permanentDeductionSubtractions;
+        Object.keys(deductionAmountItems).filter(function (itemID) {
+          return newItem ? itemID !== newItem.id : true;
+        }).forEach(function (key) {
+          total += deductionAmountItems[key];
+        });
+        if (newItem && newItem.value) total += newItem.value;
+        return total - permanentDeductionSubtractions;
+      }
+    });
+    Object.defineProperty(_assertThisInitialized(_this), "subtractPaymentValueFromState", {
+      configurable: true,
+      enumerable: true,
+      writable: true,
+      value: function value(payment) {
+        var paymentsTotal = _this.getTotalPaymentsAmount() - payment;
+
+        _this.setState({
+          permanentPaymentSubtractions: _this.state.permanentPaymentSubtractions + payment,
+          paymentsTotal: paymentsTotal,
+          total: paymentsTotal - _this.state.deductionsTotal
+        });
+      }
+    });
+    Object.defineProperty(_assertThisInitialized(_this), "subtractDeductionValueFromState", {
+      configurable: true,
+      enumerable: true,
+      writable: true,
+      value: function value(deduction) {
+        var deductionsTotal = _this.getTotalDeductionsAmount() - deduction;
+
+        _this.setState({
+          permanentDeductionSubtractions: _this.state.permanentDeductionSubtractions + deduction,
+          deductionsTotal: deductionsTotal,
+          total: _this.state.paymentsTotal - deductionsTotal
+        });
+      }
+    });
+    Object.defineProperty(_assertThisInitialized(_this), "setAgencyDisclosureForm", {
+      configurable: true,
+      enumerable: true,
+      writable: true,
+      value: function value(file) {
+        _this.setState({
+          agencyDisclosureForm: file
+        });
+      }
+    });
+    Object.defineProperty(_assertThisInitialized(_this), "setContractOrLeaseForms", {
+      configurable: true,
+      enumerable: true,
+      writable: true,
+      value: function value(filesObject) {
+        if (Array.isArray(filesObject)) {
+          _this.setState({
+            contractOrLeaseForms: filesObject
+          });
+
+          if (filesObject.length === 0) {
+            var uploadBtn = document.getElementById('contractOrLeaseItemsUploadForm');
+
+            if (uploadBtn) {
+              uploadBtn.value = null;
+            }
+          }
+
+          return;
+        }
+
+        var fileArray = Object.keys(filesObject).map(function (key) {
+          return filesObject[key];
+        });
+
+        _this.setState({
+          contractOrLeaseForms: fileArray
+        });
+      }
+    });
+    Object.defineProperty(_assertThisInitialized(_this), "handleMgmtOrCobrokeCompanyChange", {
+      configurable: true,
+      enumerable: true,
+      writable: true,
+      value: function value(event) {
+        _this.setState({
+          newMgmtOrCobrokeCompany: event.target.value
+        });
+      }
+    });
+    Object.defineProperty(_assertThisInitialized(_this), "toggleChoosingMgmtCoBrokeCompany", {
+      configurable: true,
+      enumerable: true,
+      writable: true,
+      value: function value(bool) {
+        var choosingMgmtCoBrokeCompany = _this.state.choosingMgmtCoBrokeCompany;
+
+        _this.setState({
+          choosingMgmtCoBrokeCompany: typeof bool === 'boolean' ? bool : !choosingMgmtCoBrokeCompany,
+          newMgmtOrCobrokeCompany: ''
+        });
+      }
+    });
+    Object.defineProperty(_assertThisInitialized(_this), "setHasSetNewMgmtOrCobrokeCompany", {
+      configurable: true,
+      enumerable: true,
+      writable: true,
+      value: function value(bool) {
+        var _this$state3 = _this.state,
+            addedManagementCompanies = _this$state3.addedManagementCompanies,
+            newMgmtOrCobrokeCompany = _this$state3.newMgmtOrCobrokeCompany;
+
+        _this.setState({
+          choosingMgmtCoBrokeCompany: false,
+          hasSetNewMgmtOrCobrokeCompany: true,
+          newMgmtOrCobrokeCompany: '',
+          addedManagementCompanies: _toConsumableArray(addedManagementCompanies).concat([Object(stringUtils["a" /* capitalize */])(newMgmtOrCobrokeCompany.trim())])
+        });
+      }
+    });
+    Object.defineProperty(_assertThisInitialized(_this), "onAgentPaymentTypeChange", {
+      configurable: true,
+      enumerable: true,
+      writable: true,
+      value: function value(_ref) {
+        var target = _ref.target;
+        var value = target.value;
+        var isACH = value === 'Please ACH me';
+
+        if (isACH) {
+          _this.setState({
+            agentPaymentTypeIsACH: true
+          });
+        } else {
+          _this.setState({
+            agentPaymentTypeIsACH: false
+          });
+        }
+      }
+    });
+    Object.defineProperty(_assertThisInitialized(_this), "onSubmit", {
+      configurable: true,
+      enumerable: true,
+      writable: true,
+      value: function value(values) {
+        _this.props.setFormSubmitted();
+
+        var _this$state4 = _this.state,
+            contractOrLeaseForms = _this$state4.contractOrLeaseForms,
+            agencyDisclosureForm = _this$state4.agencyDisclosureForm,
+            addedManagementCompanies = _this$state4.addedManagementCompanies,
+            paymentsTotal = _this$state4.paymentsTotal,
+            deductionsTotal = _this$state4.deductionsTotal,
+            total = _this$state4.total;
+
+        var returnObject = _objectSpread({}, values, {
+          addedManagementCompanies: addedManagementCompanies,
+          paymentsTotal: paymentsTotal,
+          deductionsTotal: deductionsTotal,
+          total: total,
+          agencyDisclosureForm: null,
+          contractOrLeaseForms: [],
+          dealID: null
+        });
+
+        delete returnObject.contractOrLeaseItems;
+        delete returnObject.deductionsSubtotal;
+        delete returnObject.paymentsSubtotal;
+        delete returnObject.financialsTotal;
+        delete returnObject.date;
+        delete returnObject.agent;
+        delete returnObject.agentType;
+        delete returnObject.state;
+        returnObject.price = Number(returnObject.price);
+        returnObject.paymentItems = returnObject.paymentItems.map(function (item) {
+          return _objectSpread({}, item, {
+            amount: Number(item.amount)
+          });
+        });
+        returnObject.deductionItems = returnObject.deductionItems.map(function (item) {
+          return _objectSpread({}, item, {
+            amount: Number(item.amount)
+          });
+        });
+        var uploadItems = [{
+          itemName: 'agencyDisclosureForm',
+          fileName: agencyDisclosureForm.name,
+          fileType: agencyDisclosureForm.type
+        }];
+
+        if (contractOrLeaseForms && contractOrLeaseForms.length) {
+          contractOrLeaseForms.forEach(function (file, i) {
+            uploadItems.push({
+              itemName: "contractOrLeaseForm".concat(i),
+              fileName: file.name,
+              fileType: file.type
+            });
+          });
+        }
+
+        Object(getDealUploadsSignedURLS["a" /* default */])(uploadItems).then(function (response) {
+          if (response.error) {
+            _this.props.openRequestErrorSnackbar(response.error);
+
+            _this.props.setFormSubmitted(false);
+
+            return;
+          }
+
+          var errors = [];
+          var items = response.items,
+              dealID = response.dealID;
+          returnObject.dealID = dealID;
+          items.forEach(function (item) {
+            if (item.error) errors.push(item.error);
+          });
+
+          if (errors.length) {
+            _this.props.openRequestErrorSnackbar(errors[0]);
+
+            _this.props.setFormSubmitted(false);
+
+            return;
+          }
+
+          _this.uploadItemsNum = items.length;
+
+          var recursiveUploads = function recursiveUploads(items, returnObject, thisRef) {
+            var uploadItemsNum = items.length;
+            var uploadItemIndex = 0;
+            recursiveHelper(items, uploadItemIndex, uploadItemsNum, returnObject, thisRef);
+          };
+
+          var recursiveHelper = function recursiveHelper(items, uploadItemIndex, uploadItemsNum, returnObject, thisRef) {
+            if (uploadItemIndex >= items.length) {
+              thisRef.setState({
+                isUploadingFile: false,
+                uplodingFileProgress: 0,
+                filesUploadedSuccessfully: true,
+                submittingFormToServer: true
+              });
+              deals_submitDeal(returnObject).then(function (res) {
+                var failed = false;
+
+                if (res.otherError) {
+                  _this.props.openRequestErrorSnackbar(res.otherError);
+
+                  failed = true;
+                }
+
+                if (res.userErrors.length) {
+                  failed = true;
+                }
+
+                if (!failed) {
+                  _this.props.setDealSuccessfullySubmitted(res.deal);
+                }
+
+                _this.setState({
+                  submittingFormToServer: false
+                });
+
+                _this.props.setFormSubmitted(false);
+              }).catch(function (err) {
+                _this.setState({
+                  submittingFormToServer: false
+                });
+
+                _this.props.setFormSubmitted(false);
+
+                _this.props.openRequestErrorSnackbar();
+              });
+              return;
+            }
+
+            var item = items[uploadItemIndex];
+            var file;
+            var fileIndex;
+
+            if (item.itemName === 'agencyDisclosureForm') {
+              file = thisRef.state.agencyDisclosureForm;
+              returnObject.agencyDisclosureForm = item.fileName;
+            } else {
+              fileIndex = item.itemName.slice(-1);
+              file = thisRef.state.contractOrLeaseForms[fileIndex];
+              returnObject.contractOrLeaseForms.push(item.fileName);
+            }
+
+            Object(uploadFile["a" /* default */])({
+              file: file,
+              url: item.signedURL,
+              onUploadProgress: function onUploadProgress(progressEvent) {
+                // Do whatever you want with the native progress event
+                var loadedPercent = progressEvent.loaded / progressEvent.total * 100;
+                thisRef.setState({
+                  formSubmissionBegun: true,
+                  uplodingFileProgress: Math.floor(loadedPercent),
+                  uplodingFileText: "Now uploading file ".concat(uploadItemIndex + 1, " of ").concat(uploadItemsNum, "..."),
+                  isUploadingFile: true
+                });
+              }
+            }).then(function (res) {
+              var status = "".concat(res.status);
+              var okRegex = /^[2][0-9][0-9]$/;
+
+              if (!okRegex.test(status)) {
+                _this.setState({
+                  submittingFormToServer: false,
+                  isUploadingFile: false
+                });
+
+                _this.props.setFormSubmitted(false);
+
+                _this.props.openRequestErrorSnackbar('There was an error uploading your files. Please try again shortly.');
+
+                return;
+              }
+
+              return recursiveHelper(items, uploadItemIndex + 1, uploadItemsNum, returnObject, thisRef);
+            }).catch(function (err) {
+              _this.setState({
+                submittingFormToServer: false,
+                isUploadingFile: false
+              });
+
+              _this.props.setFormSubmitted(false);
+
+              _this.props.openRequestErrorSnackbar();
+            });
+          };
+
+          recursiveUploads(items, returnObject, _assertThisInitialized(_this));
+        });
+      }
+    });
+    Object.defineProperty(_assertThisInitialized(_this), "onSubmitFailure", {
+      configurable: true,
+      enumerable: true,
+      writable: true,
+      value: function value(errs, onSubmitError, formApi) {
+        console.log(errs);
+        console.log(onSubmitError);
+        console.log(formApi.errors);
+      }
+    });
+    _this.state = {
+      paymentAmountItems: {},
+      deductionAmountItems: {},
+      paymentsTotal: 0,
+      deductionsTotal: 0,
+      total: 0,
+      contractOrLeaseForms: [],
+      agencyDisclosureForm: null,
+      permanentPaymentSubtractions: 0,
+      // not submitted
+      permanentDeductionSubtractions: 0,
+      // not submitted
+      choosingMgmtCoBrokeCompany: false,
+      newMgmtOrCobrokeCompany: '',
+      hasSetNewMgmtOrCobrokeCompany: false,
+      addedManagementCompanies: [],
+      uplodingFileProgress: 0,
+      isUploadingFile: false,
+      uplodingFileText: '',
+      filesUploadedSuccessfully: null,
+      formSubmissionBegun: false,
+      submittingFormToServer: false
+    };
+    return _this;
+  }
+
+  _createClass(SubmitDealFormContainer, [{
+    key: "render",
+    value: function render() {
+      var _this2 = this;
+
+      var _props = this.props,
+          uuid = _props.userUUID,
+          rest = _objectWithoutProperties(_props, ["userUUID"]);
+
+      var _state = this.state,
+          agencyDisclosureForm = _state.agencyDisclosureForm,
+          contractOrLeaseForms = _state.contractOrLeaseForms;
+      return external__react__default.a.createElement(external__react_apollo_["Query"], {
+        query: dealFormQuery,
+        fetchPolicy: "cache-and-network"
+      }, function (_ref2) {
+        var loading = _ref2.loading,
+            error = _ref2.error,
+            data = _ref2.data;
+
+        if (loading) {
+          return external__react__default.a.createElement("div", {
+            style: {
+              display: 'flex',
+              justifyContent: 'center'
+            }
+          }, external__react__default.a.createElement(Loader, {
+            color: "#f44336",
+            loading: true
+          }));
+        }
+
+        if (error) {
+          console.log(error);
+          return external__react__default.a.createElement("div", {
+            style: {
+              textAlign: 'center'
+            }
+          }, "We're sorry. There was an error processing your request.");
+        }
+
+        var _data$dealForm = data.dealForm,
+            agent = _data$dealForm.agent,
+            agents = _data$dealForm.agents,
+            formSelectItems = _data$dealForm.formSelectItems;
+        return external__react__default.a.createElement(SubmitDealForm["a" /* default */], _extends({
+          paymentsTotal: "".concat(_this2.state.paymentsTotal),
+          deductionsTotal: "".concat(_this2.state.deductionsTotal),
+          total: _this2.state.total,
+          agent: agent,
+          agents: agents.filter(function (agent) {
+            return agent.uuid !== uuid;
+          }),
+          managementCobrokeCompanyItems: formSelectItems || [],
+          onSubmit: _this2.onSubmit,
+          setAgencyDisclosureForm: _this2.setAgencyDisclosureForm,
+          setContractOrLeaseForms: _this2.setContractOrLeaseForms,
+          agencyDisclosureForm: agencyDisclosureForm,
+          contractOrLeaseForms: contractOrLeaseForms,
+          paymentAmountChangeHandler: _this2.paymentAmountChangeHandler,
+          addedManagementCompanies: _this2.state.addedManagementCompanies,
+          newMgmtOrCobrokeCompany: _this2.state.newMgmtOrCobrokeCompany,
+          uplodingFileProgress: _this2.state.uplodingFileProgress,
+          isUploadingFile: _this2.state.isUploadingFile,
+          uplodingFileText: _this2.state.uplodingFileText,
+          formSubmissionBegun: _this2.state.formSubmissionBegun,
+          submittingFormToServer: _this2.state.submittingFormToServer,
+          setHasSetNewMgmtOrCobrokeCompany: _this2.setHasSetNewMgmtOrCobrokeCompany,
+          toggleChoosingMgmtCoBrokeCompany: _this2.toggleChoosingMgmtCoBrokeCompany,
+          handleMgmtOrCobrokeCompanyChange: _this2.handleMgmtOrCobrokeCompanyChange,
+          choosingMgmtCoBrokeCompany: _this2.state.choosingMgmtCoBrokeCompany,
+          deductionAmountChangeHandler: _this2.deductionAmountChangeHandler,
+          subtractPaymentValueFromState: _this2.subtractPaymentValueFromState,
+          subtractDeductionValueFromState: _this2.subtractDeductionValueFromState,
+          agentPaymentTypeIsACH: _this2.state.agentPaymentTypeIsACH,
+          onAgentPaymentTypeChange: _this2.onAgentPaymentTypeChange
+        }, rest));
+      });
+    }
+  }]);
+
+  return SubmitDealFormContainer;
+}(external__react_["Component"])) || _class;
+
+/* harmony default export */ var containers_SubmitDealForm = (SubmitDealForm_SubmitDealFormContainer);
+// CONCATENATED MODULE: ./components/SubmitDealDialogBox/index.js
+var SubmitDealDialogBox__class;
+
+function SubmitDealDialogBox__typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { SubmitDealDialogBox__typeof = function _typeof(obj) { return typeof obj; }; } else { SubmitDealDialogBox__typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return SubmitDealDialogBox__typeof(obj); }
+
+function SubmitDealDialogBox__classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function SubmitDealDialogBox__defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function SubmitDealDialogBox__createClass(Constructor, protoProps, staticProps) { if (protoProps) SubmitDealDialogBox__defineProperties(Constructor.prototype, protoProps); if (staticProps) SubmitDealDialogBox__defineProperties(Constructor, staticProps); return Constructor; }
+
+function SubmitDealDialogBox__possibleConstructorReturn(self, call) { if (call && (SubmitDealDialogBox__typeof(call) === "object" || typeof call === "function")) { return call; } return SubmitDealDialogBox__assertThisInitialized(self); }
+
+function SubmitDealDialogBox__inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+function SubmitDealDialogBox__assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 
 
 
 
 
 
-var Loader = external__react_spinners_["DotLoader"];
-var dealsQuery = external__graphql_tag__default()(_templateObject);
+
+
+
+
+
+
+var networkErrorMessage = "We're sorry. There was an error processing your request.";
 
 var styles = function styles(theme) {
+  return {
+    paper: {
+      width: '800px',
+      maxWidth: '800px'
+    },
+    dialogActions: {
+      margin: '8px 0'
+    },
+    formTitle: {
+      padding: 'theme.spacing.unit theme.spacing.unit * 3',
+      textAlign: 'center'
+    },
+    formSubheader: {
+      paddingLeft: theme.spacing.unit * 4,
+      paddingRight: theme.spacing.unit * 4,
+      marginBottom: theme.spacing.unit * 6,
+      marginTop: theme.spacing.unit * 2,
+      textAlign: 'center'
+    },
+    dialogContent: {
+      paddingTop: '32px'
+    },
+    snackBar: {
+      position: 'absolute',
+      bottom: 20
+    },
+    errorSnackbar: {
+      '& > div': {
+        backgroundColor: theme.palette.secondary.main
+      }
+    }
+  };
+};
+
+var SubmitDealDialogBox_SubmitDealDialogBox = Object(external__mobx_react_["observer"])(SubmitDealDialogBox__class =
+/*#__PURE__*/
+function (_Component) {
+  SubmitDealDialogBox__inherits(SubmitDealDialogBox, _Component);
+
+  function SubmitDealDialogBox(props) {
+    var _this;
+
+    SubmitDealDialogBox__classCallCheck(this, SubmitDealDialogBox);
+
+    _this = SubmitDealDialogBox__possibleConstructorReturn(this, (SubmitDealDialogBox.__proto__ || Object.getPrototypeOf(SubmitDealDialogBox)).call(this, props));
+    Object.defineProperty(SubmitDealDialogBox__assertThisInitialized(_this), "setFormSubmitted", {
+      configurable: true,
+      enumerable: true,
+      writable: true,
+      value: function value() {
+        var bool = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : true;
+
+        _this.setState({
+          formSubmitted: bool
+        });
+      }
+    });
+    Object.defineProperty(SubmitDealDialogBox__assertThisInitialized(_this), "toggleSnackbarOpen", {
+      configurable: true,
+      enumerable: true,
+      writable: true,
+      value: function value(text) {
+        _this.setState({
+          snackbarOpen: true,
+          snackbarText: text
+        });
+      }
+    });
+    Object.defineProperty(SubmitDealDialogBox__assertThisInitialized(_this), "handleCloseSnackbar", {
+      configurable: true,
+      enumerable: true,
+      writable: true,
+      value: function value() {
+        _this.setState({
+          snackbarOpen: false,
+          snackbarUndoFunction: null,
+          isErrorSnackbar: false,
+          snackbarText: ''
+        });
+      }
+    });
+    Object.defineProperty(SubmitDealDialogBox__assertThisInitialized(_this), "openRequestErrorSnackbar", {
+      configurable: true,
+      enumerable: true,
+      writable: true,
+      value: function value() {
+        var text = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : networkErrorMessage;
+
+        _this.setState({
+          snackbarOpen: true,
+          snackbarText: text,
+          isErrorSnackbar: true
+        });
+      }
+    });
+    _this.state = {
+      formApi: null,
+      formSubmitted: false,
+      snackbarOpen: false,
+      snackbarText: '',
+      snackbarUndoFunction: null,
+      isErrorSnackbar: false
+    };
+    return _this;
+  }
+
+  SubmitDealDialogBox__createClass(SubmitDealDialogBox, [{
+    key: "render",
+    value: function render() {
+      var _this2 = this;
+
+      var _props = this.props,
+          fullScreen = _props.fullScreen,
+          classes = _props.classes,
+          toggleDialogBoxOpen = _props.toggleDialogBoxOpen,
+          submitDealDialogOpen = _props.submitDealDialogOpen,
+          setDealSuccessfullySubmitted = _props.setDealSuccessfullySubmitted;
+      return external__react__default.a.createElement(Dialog__default.a, {
+        disableBackdropClick: true,
+        disableEscapeKeyDown: true,
+        open: submitDealDialogOpen,
+        classes: {
+          paper: classes.paper
+        },
+        fullScreen: fullScreen
+      }, external__react__default.a.createElement(Dialog_["DialogTitle"], {
+        id: "form-dialog-title",
+        classes: {
+          root: classes.formTitle
+        }
+      }, "New Deal"), external__react__default.a.createElement(Divider__default.a, null), external__react__default.a.createElement(Dialog_["DialogContent"], {
+        classes: {
+          root: classes.dialogContent
+        }
+      }, external__react__default.a.createElement(containers_SubmitDealForm, {
+        userUUID: this.props.userUUID,
+        getFormApi: function getFormApi(formApi) {
+          return _this2.setState({
+            formApi: formApi
+          });
+        },
+        setFormSubmitted: this.setFormSubmitted,
+        setDealSuccessfullySubmitted: setDealSuccessfullySubmitted,
+        openRequestErrorSnackbar: this.openRequestErrorSnackbar
+      }), external__react__default.a.createElement(Snackbar__default.a, {
+        classes: {
+          root: external__classnames__default()(classes.snackBar, this.state.isErrorSnackbar && classes.errorSnackbar)
+        },
+        anchorOrigin: {
+          vertical: 'bottom',
+          horizontal: 'center'
+        },
+        open: this.state.snackbarOpen,
+        autoHideDuration: this.state.isErrorSnackbar ? 8000 : 4000,
+        onClose: this.handleCloseSnackbar,
+        message: external__react__default.a.createElement("span", {
+          id: "snackbar-id"
+        }, this.state.snackbarText),
+        action: [this.snackbarUndoFunction ? external__react__default.a.createElement(Button__default.a, {
+          key: "undo",
+          color: "secondary",
+          size: "small",
+          onClick: function onClick() {
+            _this2.handleCloseSnackbar();
+
+            if (_this2.state.snackbarUndoFunction && typeof snackbarUndoFunction === 'function') {
+              _this2.snackbarUndoFunction();
+            }
+          }
+        }, "UNDO") : undefined, external__react__default.a.createElement(IconButton__default.a, {
+          key: "close",
+          "aria-label": "Close",
+          color: "inherit",
+          className: classes.close,
+          onClick: this.handleCloseSnackbar
+        }, external__react__default.a.createElement(Close__default.a, null))]
+      })), !this.state.formSubmitted ? external__react__default.a.createElement(Dialog_["DialogActions"], {
+        classes: {
+          root: classes.dialogActions
+        }
+      }, external__react__default.a.createElement(Button__default.a, {
+        disabled: this.state.formSubmitted,
+        onClick: toggleDialogBoxOpen,
+        color: "primary"
+      }, "Cancel"), external__react__default.a.createElement(Button__default.a, {
+        disabled: this.state.formSubmitted,
+        onClick: function onClick() {
+          var errors = _this2.state.formApi.getError();
+
+          var errorCount;
+          console.log(_this2.state.formApi.getError());
+
+          if (errors) {
+            errorCount = Object.keys(_this2.state.formApi.getError()).length;
+          }
+
+          if (errorCount) {
+            _this2.toggleSnackbarOpen("Please correct ".concat(errorCount, " form error").concat(errorCount > 1 ? 's' : ''));
+          }
+
+          _this2.state.formApi.submitForm();
+        },
+        color: "primary"
+      }, "Submit")) : null);
+    }
+  }]);
+
+  return SubmitDealDialogBox;
+}(external__react_["Component"])) || SubmitDealDialogBox__class;
+
+/* harmony default export */ var components_SubmitDealDialogBox = (Object(Dialog_["withMobileDialog"])()(Object(styles_["withStyles"])(styles)(SubmitDealDialogBox_SubmitDealDialogBox)));
+// EXTERNAL MODULE: ./containers/DealsTable.js + 1 modules
+var DealsTable = __webpack_require__(182);
+
+// EXTERNAL MODULE: ./components/DealsSummarDialogBox/index.js + 2 modules
+var DealsSummarDialogBox = __webpack_require__(183);
+
+// EXTERNAL MODULE: ./components/ViewDealDialogBox/index.js + 3 modules
+var ViewDealDialogBox = __webpack_require__(165);
+
+// CONCATENATED MODULE: ./containers/Deals.js
+var Deals__class;
+
+var Deals__templateObject = /*#__PURE__*/ Deals__taggedTemplateLiteral(["\n  query dealsByAgentID($uuid: String!) {\n    dealsByAgentID(uuid: $uuid) {\n      dealID\n      date\n      agentID\n      dealType\n      clientName\n      clientEmail\n      propertyAddress\n      city\n      state\n      managementOrCobrokeCompany\n      price\n      status\n      bonusPercentageAddedByAdmin\n      netAgentCommission\n      total\n      isCoAgent\n    }\n  }\n"]);
+
+function Deals__typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { Deals__typeof = function _typeof(obj) { return typeof obj; }; } else { Deals__typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return Deals__typeof(obj); }
+
+function Deals__toConsumableArray(arr) { return Deals__arrayWithoutHoles(arr) || Deals__iterableToArray(arr) || Deals__nonIterableSpread(); }
+
+function Deals__nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance"); }
+
+function Deals__iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter); }
+
+function Deals__arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }
+
+function Deals__classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function Deals__defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function Deals__createClass(Constructor, protoProps, staticProps) { if (protoProps) Deals__defineProperties(Constructor.prototype, protoProps); if (staticProps) Deals__defineProperties(Constructor, staticProps); return Constructor; }
+
+function Deals__possibleConstructorReturn(self, call) { if (call && (Deals__typeof(call) === "object" || typeof call === "function")) { return call; } return Deals__assertThisInitialized(self); }
+
+function Deals__inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+function Deals__assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function Deals__taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+var Deals_Loader = external__react_spinners_["DotLoader"];
+var dealsQuery = external__graphql_tag__default()(Deals__templateObject);
+
+var Deals_styles = function styles(theme) {
   return {
     addDealBtn: {},
     dealsSummaryBtn: {
@@ -13076,18 +13028,18 @@ var styles = function styles(theme) {
   };
 };
 
-var Deals_Deals = Object(external__mobx_react_["observer"])(_class =
+var Deals_Deals = Object(external__mobx_react_["observer"])(Deals__class =
 /*#__PURE__*/
 function (_Component) {
-  _inherits(Deals, _Component);
+  Deals__inherits(Deals, _Component);
 
   function Deals(props) {
     var _this;
 
-    _classCallCheck(this, Deals);
+    Deals__classCallCheck(this, Deals);
 
-    _this = _possibleConstructorReturn(this, (Deals.__proto__ || Object.getPrototypeOf(Deals)).call(this, props));
-    Object.defineProperty(_assertThisInitialized(_this), "toggleAddDealDialogBox", {
+    _this = Deals__possibleConstructorReturn(this, (Deals.__proto__ || Object.getPrototypeOf(Deals)).call(this, props));
+    Object.defineProperty(Deals__assertThisInitialized(_this), "toggleAddDealDialogBox", {
       configurable: true,
       enumerable: true,
       writable: true,
@@ -13097,7 +13049,7 @@ function (_Component) {
         });
       }
     });
-    Object.defineProperty(_assertThisInitialized(_this), "toggleDealsSummaryDialogBox", {
+    Object.defineProperty(Deals__assertThisInitialized(_this), "toggleDealsSummaryDialogBox", {
       configurable: true,
       enumerable: true,
       writable: true,
@@ -13107,7 +13059,7 @@ function (_Component) {
         });
       }
     });
-    Object.defineProperty(_assertThisInitialized(_this), "setDealSuccessfullySubmitted", {
+    Object.defineProperty(Deals__assertThisInitialized(_this), "setDealSuccessfullySubmitted", {
       configurable: true,
       enumerable: true,
       writable: true,
@@ -13116,11 +13068,11 @@ function (_Component) {
           submitDealDialogOpen: false,
           snackbarOpen: true,
           snackbarText: 'Deal submitted successfully',
-          addedDeals: _toConsumableArray(_this.state.addedDeals).concat([newDeal])
+          addedDeals: Deals__toConsumableArray(_this.state.addedDeals).concat([newDeal])
         });
       }
     });
-    Object.defineProperty(_assertThisInitialized(_this), "setDealSuccessfullyEditted", {
+    Object.defineProperty(Deals__assertThisInitialized(_this), "setDealSuccessfullyEditted", {
       configurable: true,
       enumerable: true,
       writable: true,
@@ -13133,11 +13085,11 @@ function (_Component) {
           dealsViewDialogBoxOpen: false,
           snackbarOpen: true,
           snackbarText: 'Deal updated successfully',
-          addedDeals: _toConsumableArray(addedDeals).concat([newDeal])
+          addedDeals: Deals__toConsumableArray(addedDeals).concat([newDeal])
         });
       }
     });
-    Object.defineProperty(_assertThisInitialized(_this), "handleCloseSnackbar", {
+    Object.defineProperty(Deals__assertThisInitialized(_this), "handleCloseSnackbar", {
       configurable: true,
       enumerable: true,
       writable: true,
@@ -13148,7 +13100,7 @@ function (_Component) {
         });
       }
     });
-    Object.defineProperty(_assertThisInitialized(_this), "openDealsViewDialogBox", {
+    Object.defineProperty(Deals__assertThisInitialized(_this), "openDealsViewDialogBox", {
       configurable: true,
       enumerable: true,
       writable: true,
@@ -13161,7 +13113,7 @@ function (_Component) {
         });
       }
     });
-    Object.defineProperty(_assertThisInitialized(_this), "closeDealsViewDialogBox", {
+    Object.defineProperty(Deals__assertThisInitialized(_this), "closeDealsViewDialogBox", {
       configurable: true,
       enumerable: true,
       writable: true,
@@ -13173,7 +13125,7 @@ function (_Component) {
         });
       }
     });
-    Object.defineProperty(_assertThisInitialized(_this), "dealDeleted", {
+    Object.defineProperty(Deals__assertThisInitialized(_this), "dealDeleted", {
       configurable: true,
       enumerable: true,
       writable: true,
@@ -13182,7 +13134,7 @@ function (_Component) {
           snackbarOpen: true,
           snackbarText: 'Deal deleted successfully!',
           dealsViewDialogBoxOpen: false,
-          deletedDealIDS: _toConsumableArray(_this.state.deletedDealIDS).concat([dealID])
+          deletedDealIDS: Deals__toConsumableArray(_this.state.deletedDealIDS).concat([dealID])
         });
       }
     });
@@ -13203,7 +13155,7 @@ function (_Component) {
     return _this;
   }
 
-  _createClass(Deals, [{
+  Deals__createClass(Deals, [{
     key: "render",
     value: function render() {
       var _this2 = this;
@@ -13243,7 +13195,7 @@ function (_Component) {
               height: 'calc(100vh - 110px)',
               boxShadow: '0px 1px 3px 0px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 2px 1px -1px rgba(0, 0, 0, 0.12)'
             }
-          }, external__react__default.a.createElement(Loader, {
+          }, external__react__default.a.createElement(Deals_Loader, {
             color: "#f44336",
             loading: true
           }));
@@ -13260,10 +13212,12 @@ function (_Component) {
           }, "We're sorry. There was an error processing your request.");
         }
 
-        var allDeals = _toConsumableArray(data.dealsByAgentID).concat(_toConsumableArray(_this2.state.addedDeals));
+        var allDeals = Deals__toConsumableArray(data.dealsByAgentID).concat(Deals__toConsumableArray(_this2.state.addedDeals));
 
         allDeals.forEach(function (deal) {
-          intDeals[deal.dealID] = deal;
+          if (deal) {
+            intDeals[deal.dealID] = deal;
+          }
         });
         var uniqueDeals = [];
         Object.keys(intDeals).forEach(function (key) {
@@ -13291,7 +13245,7 @@ function (_Component) {
           classes: {
             root: classes.dealsSummaryBtn
           }
-        }, external__react__default.a.createElement(Equalizer__default.a, null), "Deals Summary")), external__react__default.a.createElement(SubmitDealDialogBox["a" /* default */], {
+        }, external__react__default.a.createElement(Equalizer__default.a, null), "Deals Summary")), external__react__default.a.createElement(components_SubmitDealDialogBox, {
           submitDealDialogOpen: submitDealDialogOpen,
           toggleDialogBoxOpen: toggleAddDealDialogBox,
           userUUID: userUUID,
@@ -13354,9 +13308,9 @@ function (_Component) {
   }]);
 
   return Deals;
-}(external__react_["Component"])) || _class;
+}(external__react_["Component"])) || Deals__class;
 
-/* harmony default export */ var containers_Deals = (Object(styles_["withStyles"])(styles)(Deals_Deals));
+/* harmony default export */ var containers_Deals = (Object(styles_["withStyles"])(Deals_styles)(Deals_Deals));
 // CONCATENATED MODULE: ./pages/app/deals.js
 var deals__class;
 

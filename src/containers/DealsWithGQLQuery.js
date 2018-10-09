@@ -11,12 +11,10 @@ import CloseIcon from '@material-ui/icons/Close';
 import gql from 'graphql-tag';
 import { Query } from 'react-apollo';
 import { DotLoader } from 'react-spinners';
-import SubmitDealDialogBox from '../components/SubmitDealDialogBox';
 import DealsTableContainer from './DealsTable';
 import AdminDealsTableContainer from './AdminAreaDealsTableContainer';
 import DealsSummarDialogBox from '../components/DealsSummarDialogBox';
 import ViewDealDialogBox from '../components/ViewDealDialogBox';
-import deleteDeal from '../effects/deals/deleteDeal';
 
 const Loader = DotLoader;
 
@@ -66,6 +64,11 @@ const adminDealsByAgentID = gql`
       bonusPercentageAddedByAdmin
       netAgentCommission
       netCompanyCommission
+      deductionItems {
+        agentID
+        deductionType
+        agentID
+      }
       status
     }
   }

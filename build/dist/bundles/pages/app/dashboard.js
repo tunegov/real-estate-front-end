@@ -67,7 +67,7 @@ module.exports =
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 234);
+/******/ 	return __webpack_require__(__webpack_require__.s = 232);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -141,13 +141,13 @@ var graphQlClient = new __WEBPACK_IMPORTED_MODULE_0_graphql_request__["GraphQLCl
 /* 7 */
 /***/ (function(module, exports) {
 
-module.exports = require("is-browser");
+module.exports = require("styled-components");
 
 /***/ }),
 /* 8 */
 /***/ (function(module, exports) {
 
-module.exports = require("styled-components");
+module.exports = require("is-browser");
 
 /***/ }),
 /* 9 */
@@ -663,7 +663,7 @@ var regenerator_ = __webpack_require__(3);
 var regenerator__default = /*#__PURE__*/__webpack_require__.n(regenerator_);
 
 // EXTERNAL MODULE: external "is-browser"
-var external__is_browser_ = __webpack_require__(7);
+var external__is_browser_ = __webpack_require__(8);
 var external__is_browser__default = /*#__PURE__*/__webpack_require__.n(external__is_browser_);
 
 // EXTERNAL MODULE: ./effects/client.js
@@ -1723,14 +1723,14 @@ module.exports = require("@material-ui/icons/SupervisorAccount");
 
 /***/ }),
 /* 65 */,
-/* 66 */
+/* 66 */,
+/* 67 */,
+/* 68 */
 /***/ (function(module, exports) {
 
 module.exports = require("graphql-tag");
 
 /***/ }),
-/* 67 */,
-/* 68 */,
 /* 69 */,
 /* 70 */
 /***/ (function(module, exports) {
@@ -1774,12 +1774,6 @@ var padStringToDecimalString = function padStringToDecimalString(s) {
 
 /***/ }),
 /* 72 */
-/***/ (function(module, exports) {
-
-module.exports = require("chance");
-
-/***/ }),
-/* 73 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1841,16 +1835,22 @@ function (_React$Component) {
 
 
 /***/ }),
+/* 73 */,
 /* 74 */,
-/* 75 */,
-/* 76 */
+/* 75 */
 /***/ (function(module, exports) {
 
 
 
 /***/ }),
+/* 76 */,
 /* 77 */,
-/* 78 */,
+/* 78 */
+/***/ (function(module, exports) {
+
+module.exports = require("chance");
+
+/***/ }),
 /* 79 */,
 /* 80 */,
 /* 81 */
@@ -1883,11 +1883,11 @@ var router_ = __webpack_require__(13);
 var router__default = /*#__PURE__*/__webpack_require__.n(router_);
 
 // EXTERNAL MODULE: external "is-browser"
-var external__is_browser_ = __webpack_require__(7);
+var external__is_browser_ = __webpack_require__(8);
 var external__is_browser__default = /*#__PURE__*/__webpack_require__.n(external__is_browser_);
 
 // EXTERNAL MODULE: external "styled-components"
-var external__styled_components_ = __webpack_require__(8);
+var external__styled_components_ = __webpack_require__(7);
 var external__styled_components__default = /*#__PURE__*/__webpack_require__.n(external__styled_components_);
 
 // EXTERNAL MODULE: ../node_modules/antd/dist/antd.css
@@ -3547,10 +3547,10 @@ function (_Component) {
 var models = __webpack_require__(25);
 
 // EXTERNAL MODULE: ./AppGlobalStateProvider/index.js
-var AppGlobalStateProvider = __webpack_require__(73);
+var AppGlobalStateProvider = __webpack_require__(72);
 
 // EXTERNAL MODULE: ./static/css/main.css
-var main = __webpack_require__(76);
+var main = __webpack_require__(75);
 var main_default = /*#__PURE__*/__webpack_require__.n(main);
 
 // CONCATENATED MODULE: ./components/Layout/index.js
@@ -3854,30 +3854,30 @@ module.exports = require("material-ui/Portal");
 /* 111 */,
 /* 112 */,
 /* 113 */,
-/* 114 */
+/* 114 */,
+/* 115 */,
+/* 116 */,
+/* 117 */
 /***/ (function(module, exports) {
 
 module.exports = require("material-ui/ExpansionPanel");
 
 /***/ }),
-/* 115 */,
-/* 116 */
-/***/ (function(module, exports) {
-
-module.exports = require("@material-ui/icons/ExpandMore");
-
-/***/ }),
-/* 117 */,
 /* 118 */,
 /* 119 */,
 /* 120 */,
 /* 121 */,
 /* 122 */,
-/* 123 */,
-/* 124 */
+/* 123 */
 /***/ (function(module, exports) {
 
 module.exports = require("faker");
+
+/***/ }),
+/* 124 */
+/***/ (function(module, exports) {
+
+module.exports = require("@material-ui/icons/ExpandMore");
 
 /***/ }),
 /* 125 */,
@@ -3886,20 +3886,19 @@ module.exports = require("faker");
 /* 128 */,
 /* 129 */,
 /* 130 */,
-/* 131 */,
-/* 132 */
+/* 131 */
 /***/ (function(module, exports) {
 
 module.exports = require("@material-ui/icons/AttachMoney");
 
 /***/ }),
-/* 133 */
+/* 132 */
 /***/ (function(module, exports) {
 
 module.exports = require("@material-ui/icons/Help");
 
 /***/ }),
-/* 134 */
+/* 133 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -4054,12 +4053,11 @@ function (_Component) {
 /* harmony default export */ __webpack_exports__["a"] = (Object(__WEBPACK_IMPORTED_MODULE_2_material_ui_styles__["withStyles"])(styles)(StatNumberBox));
 
 /***/ }),
+/* 134 */,
 /* 135 */,
 /* 136 */,
 /* 137 */,
-/* 138 */,
-/* 139 */,
-/* 140 */
+/* 138 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -4075,6 +4073,8 @@ var toLocaleCurrency = function toLocaleCurrency(amount) {
 };
 
 /***/ }),
+/* 139 */,
+/* 140 */,
 /* 141 */,
 /* 142 */,
 /* 143 */,
@@ -4091,13 +4091,13 @@ var toLocaleCurrency = function toLocaleCurrency(amount) {
 /* 154 */,
 /* 155 */,
 /* 156 */,
-/* 157 */,
-/* 158 */
+/* 157 */
 /***/ (function(module, exports) {
 
 module.exports = require("@material-ui/icons/Star");
 
 /***/ }),
+/* 158 */,
 /* 159 */,
 /* 160 */,
 /* 161 */,
@@ -4114,8 +4114,7 @@ module.exports = require("@material-ui/icons/Star");
 /* 172 */,
 /* 173 */,
 /* 174 */,
-/* 175 */,
-/* 176 */
+/* 175 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -4137,7 +4136,7 @@ var styles_ = __webpack_require__(2);
 var styles__default = /*#__PURE__*/__webpack_require__.n(styles_);
 
 // EXTERNAL MODULE: external "graphql-tag"
-var external__graphql_tag_ = __webpack_require__(66);
+var external__graphql_tag_ = __webpack_require__(68);
 var external__graphql_tag__default = /*#__PURE__*/__webpack_require__.n(external__graphql_tag_);
 
 // EXTERNAL MODULE: external "react-apollo"
@@ -4157,7 +4156,7 @@ var Grid_ = __webpack_require__(20);
 var Grid__default = /*#__PURE__*/__webpack_require__.n(Grid_);
 
 // EXTERNAL MODULE: external "@material-ui/icons/ExpandMore"
-var ExpandMore_ = __webpack_require__(116);
+var ExpandMore_ = __webpack_require__(124);
 var ExpandMore__default = /*#__PURE__*/__webpack_require__.n(ExpandMore_);
 
 // EXTERNAL MODULE: external "material-ui/Typography"
@@ -4177,11 +4176,11 @@ var Add_ = __webpack_require__(56);
 var Add__default = /*#__PURE__*/__webpack_require__.n(Add_);
 
 // EXTERNAL MODULE: external "react-truncate"
-var external__react_truncate_ = __webpack_require__(177);
+var external__react_truncate_ = __webpack_require__(176);
 var external__react_truncate__default = /*#__PURE__*/__webpack_require__.n(external__react_truncate_);
 
 // EXTERNAL MODULE: external "material-ui/ExpansionPanel"
-var ExpansionPanel_ = __webpack_require__(114);
+var ExpansionPanel_ = __webpack_require__(117);
 var ExpansionPanel__default = /*#__PURE__*/__webpack_require__.n(ExpansionPanel_);
 
 // EXTERNAL MODULE: ./constants/userTypes.js
@@ -4627,15 +4626,15 @@ var head_ = __webpack_require__(15);
 var head__default = /*#__PURE__*/__webpack_require__.n(head_);
 
 // EXTERNAL MODULE: ../node_modules/react-quill/dist/quill.snow.css
-var quill_snow = __webpack_require__(178);
+var quill_snow = __webpack_require__(177);
 var quill_snow_default = /*#__PURE__*/__webpack_require__.n(quill_snow);
 
 // EXTERNAL MODULE: external "is-browser"
-var external__is_browser_ = __webpack_require__(7);
+var external__is_browser_ = __webpack_require__(8);
 var external__is_browser__default = /*#__PURE__*/__webpack_require__.n(external__is_browser_);
 
 // EXTERNAL MODULE: ./static/css/main.css
-var main = __webpack_require__(76);
+var main = __webpack_require__(75);
 var main_default = /*#__PURE__*/__webpack_require__.n(main);
 
 // CONCATENATED MODULE: ./components/RichTextEditor/index.js
@@ -4666,7 +4665,7 @@ var colorArray = ['#000', '#fff', '#FF6633', '#FFB399', '#FF33FF', '#FFFF99', '#
 var ReactQuill;
 
 if (external__is_browser__default.a) {
-  ReactQuill = __webpack_require__(179);
+  ReactQuill = __webpack_require__(178);
 }
 
 var RichTextEditor_MyRichTextEditor =
@@ -5531,24 +5530,25 @@ function (_React$Component) {
 /* harmony default export */ var containers_CompanyNewsAlerts = __webpack_exports__["a"] = (CompanyNewsAlerts_CompanyNewsAlertsContainer);
 
 /***/ }),
-/* 177 */
+/* 176 */
 /***/ (function(module, exports) {
 
 module.exports = require("react-truncate");
 
 /***/ }),
-/* 178 */
+/* 177 */
 /***/ (function(module, exports) {
 
 
 
 /***/ }),
-/* 179 */
+/* 178 */
 /***/ (function(module, exports) {
 
 module.exports = require("react-quill");
 
 /***/ }),
+/* 179 */,
 /* 180 */,
 /* 181 */,
 /* 182 */,
@@ -5601,16 +5601,14 @@ module.exports = require("react-quill");
 /* 229 */,
 /* 230 */,
 /* 231 */,
-/* 232 */,
-/* 233 */,
-/* 234 */
+/* 232 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(235);
+module.exports = __webpack_require__(233);
 
 
 /***/ }),
-/* 235 */
+/* 233 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -5625,7 +5623,7 @@ var external__mobx_react_ = __webpack_require__(1);
 var external__mobx_react__default = /*#__PURE__*/__webpack_require__.n(external__mobx_react_);
 
 // EXTERNAL MODULE: external "is-browser"
-var external__is_browser_ = __webpack_require__(7);
+var external__is_browser_ = __webpack_require__(8);
 var external__is_browser__default = /*#__PURE__*/__webpack_require__.n(external__is_browser_);
 
 // EXTERNAL MODULE: ./components/Layout/index.js + 11 modules
@@ -5642,7 +5640,7 @@ var routes = __webpack_require__(4);
 var routes_default = /*#__PURE__*/__webpack_require__.n(routes);
 
 // EXTERNAL MODULE: external "graphql-tag"
-var external__graphql_tag_ = __webpack_require__(66);
+var external__graphql_tag_ = __webpack_require__(68);
 var external__graphql_tag__default = /*#__PURE__*/__webpack_require__.n(external__graphql_tag_);
 
 // EXTERNAL MODULE: external "react-apollo"
@@ -5670,19 +5668,19 @@ var external__react_sizes_ = __webpack_require__(70);
 var external__react_sizes__default = /*#__PURE__*/__webpack_require__.n(external__react_sizes_);
 
 // EXTERNAL MODULE: external "@material-ui/icons/AttachMoney"
-var AttachMoney_ = __webpack_require__(132);
+var AttachMoney_ = __webpack_require__(131);
 var AttachMoney__default = /*#__PURE__*/__webpack_require__.n(AttachMoney_);
 
 // EXTERNAL MODULE: external "@material-ui/icons/Help"
-var Help_ = __webpack_require__(133);
+var Help_ = __webpack_require__(132);
 var Help__default = /*#__PURE__*/__webpack_require__.n(Help_);
 
 // EXTERNAL MODULE: external "@material-ui/icons/Star"
-var Star_ = __webpack_require__(158);
+var Star_ = __webpack_require__(157);
 var Star__default = /*#__PURE__*/__webpack_require__.n(Star_);
 
 // EXTERNAL MODULE: external "@material-ui/icons/ExpandMore"
-var ExpandMore_ = __webpack_require__(116);
+var ExpandMore_ = __webpack_require__(124);
 var ExpandMore__default = /*#__PURE__*/__webpack_require__.n(ExpandMore_);
 
 // EXTERNAL MODULE: external "material-ui/Divider"
@@ -5694,18 +5692,18 @@ var Typography_ = __webpack_require__(28);
 var Typography__default = /*#__PURE__*/__webpack_require__.n(Typography_);
 
 // EXTERNAL MODULE: external "material-ui/ExpansionPanel"
-var ExpansionPanel_ = __webpack_require__(114);
+var ExpansionPanel_ = __webpack_require__(117);
 var ExpansionPanel__default = /*#__PURE__*/__webpack_require__.n(ExpansionPanel_);
 
 // EXTERNAL MODULE: ./components/StatNumberBox/index.js
-var StatNumberBox = __webpack_require__(134);
+var StatNumberBox = __webpack_require__(133);
 
 // EXTERNAL MODULE: external "chance"
-var external__chance_ = __webpack_require__(72);
+var external__chance_ = __webpack_require__(78);
 var external__chance__default = /*#__PURE__*/__webpack_require__.n(external__chance_);
 
 // EXTERNAL MODULE: external "faker"
-var external__faker_ = __webpack_require__(124);
+var external__faker_ = __webpack_require__(123);
 var external__faker__default = /*#__PURE__*/__webpack_require__.n(external__faker_);
 
 // EXTERNAL MODULE: external "material-ui/Tooltip"
@@ -6174,7 +6172,7 @@ function (_Component) {
 
 /* harmony default export */ var containers_AgentOfTheMonth = (AgentOfTheMonth_AgentOfTheMonthContainer);
 // EXTERNAL MODULE: ./containers/CompanyNewsAlerts.js + 6 modules
-var CompanyNewsAlerts = __webpack_require__(176);
+var CompanyNewsAlerts = __webpack_require__(175);
 
 // CONCATENATED MODULE: ./components/AgentDashboard/index.js
 var _dec, AgentDashboard__class;
@@ -6426,7 +6424,7 @@ function (_Component) {
 }(external__react_["Component"])) || AgentDashboard__class) || AgentDashboard__class);
 /* harmony default export */ var components_AgentDashboard = (Object(styles_["withStyles"])(AgentDashboard_styles)(AgentDashboard_AgentDashboard));
 // EXTERNAL MODULE: ./utils/currency.js
-var currency = __webpack_require__(140);
+var currency = __webpack_require__(138);
 
 // CONCATENATED MODULE: ./containers/Dashboard.js
 var Dashboard__class;
