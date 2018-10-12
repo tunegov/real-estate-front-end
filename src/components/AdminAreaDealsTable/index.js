@@ -172,6 +172,7 @@ const defaultColumnWidths = [
   { columnName: 'date', width: 120 },
   { columnName: 'agentName', width: 140 },
   { columnName: 'agentType', width: 120 },
+  { columnName: 'coBrokeringAgent', width: 140 },
   { columnName: 'dealType', width: 120 },
   { columnName: 'clientName', width: 140 },
   { columnName: 'clientEmail', width: 140 },
@@ -186,7 +187,6 @@ const defaultColumnWidths = [
   { columnName: 'bonusPercentageAddedByAdmin', width: 120 },
   { columnName: 'netAgentCommission', width: 170 },
   { columnName: 'netCompanyCommission', width: 170 },
-  { columnName: 'coBrokeringAgent', width: 140 },
   { columnName: 'status', width: 120 },
   { columnName: 'view', width: 100 },
 ];

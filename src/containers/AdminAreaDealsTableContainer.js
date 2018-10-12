@@ -44,6 +44,7 @@ const columns = [
   { name: 'date', title: 'Date' },
   { name: 'agentName', title: 'Agent Name' },
   { name: 'agentType', title: 'Agent Type' },
+  { name: 'coBrokeringAgent', title: 'Co-Brokering Agent' },
   { name: 'dealType', title: 'Deal Type' },
   { name: 'clientName', title: 'Client Name' },
   { name: 'clientEmail', title: 'Client Email' },
@@ -58,7 +59,6 @@ const columns = [
   { name: 'bonusPercentageAddedByAdmin', title: "Agent's Bonus %" },
   { name: 'netAgentCommission', title: 'Net Agent Commission' },
   { name: 'netCompanyCommission', title: 'Net Company Commission' },
-  { name: 'coBrokeringAgent', title: 'Co-Brokering Agent' },
   { name: 'status', title: 'Status' },
   { name: 'view', title: 'View' },
 ];

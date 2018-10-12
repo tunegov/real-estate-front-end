@@ -9941,6 +9941,9 @@ var defaultColumnWidths = [{
   columnName: 'agentType',
   width: 120
 }, {
+  columnName: 'coBrokeringAgent',
+  width: 140
+}, {
   columnName: 'dealType',
   width: 120
 }, {
@@ -9982,9 +9985,6 @@ var defaultColumnWidths = [{
 }, {
   columnName: 'netCompanyCommission',
   width: 170
-}, {
-  columnName: 'coBrokeringAgent',
-  width: 140
 }, {
   columnName: 'status',
   width: 120
@@ -10319,6 +10319,9 @@ var AdminAreaDealsTableContainer_columns = [{
   name: 'agentType',
   title: 'Agent Type'
 }, {
+  name: 'coBrokeringAgent',
+  title: 'Co-Brokering Agent'
+}, {
   name: 'dealType',
   title: 'Deal Type'
 }, {
@@ -10360,9 +10363,6 @@ var AdminAreaDealsTableContainer_columns = [{
 }, {
   name: 'netCompanyCommission',
   title: 'Net Company Commission'
-}, {
-  name: 'coBrokeringAgent',
-  title: 'Co-Brokering Agent'
 }, {
   name: 'status',
   title: 'Status'
