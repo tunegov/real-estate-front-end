@@ -11937,7 +11937,7 @@ var NoDataCellComponent = __webpack_require__(111);
 var ViewFormatter = __webpack_require__(112);
 
 // CONCATENATED MODULE: ./components/AdminAreaDealsTable/index.js
-var _dec, _dec2, _class;
+var _dec, _dec2, _class, _class2, _temp, AdminAreaDealsTable__initialiseProps;
 
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
@@ -12201,7 +12201,7 @@ var mapSizesToProps = function mapSizesToProps(_ref2) {
   };
 };
 
-var AdminAreaDealsTable_DealsTable = (_dec = Object(styles_["withStyles"])(styles), _dec2 = external__react_sizes__default()(mapSizesToProps), _dec(_class = _dec2(_class =
+var AdminAreaDealsTable_DealsTable = (_dec = Object(styles_["withStyles"])(styles), _dec2 = external__react_sizes__default()(mapSizesToProps), _dec(_class = _dec2(_class = (_temp = _class2 =
 /*#__PURE__*/
 function (_Component) {
   _inherits(DealsTable, _Component);
@@ -12212,32 +12212,9 @@ function (_Component) {
     _classCallCheck(this, DealsTable);
 
     _this = _possibleConstructorReturn(this, (DealsTable.__proto__ || Object.getPrototypeOf(DealsTable)).call(this, props));
-    Object.defineProperty(_assertThisInitialized(_this), "changePageSize", {
-      configurable: true,
-      enumerable: true,
-      writable: true,
-      value: function value(pageSize) {
-        _this.setState({
-          pageSize: pageSize
-        });
 
-        if (_this.state.pageSize < pageSize) {
-          document.getElementById('myTableContainer').scrollTop = 0;
-        }
-      }
-    });
-    Object.defineProperty(_assertThisInitialized(_this), "currentPageChange", {
-      configurable: true,
-      enumerable: true,
-      writable: true,
-      value: function value(currentPage) {
-        _this.setState({
-          currentPage: currentPage
-        });
+    AdminAreaDealsTable__initialiseProps.call(_assertThisInitialized(_this));
 
-        document.getElementById('myTableContainer').scrollTop = 0;
-      }
-    });
     _this.state = {
       pageSize: 10,
       currentPage: 0,
@@ -12318,7 +12295,6 @@ function (_Component) {
           classes = _props.classes,
           columns = _props.columns,
           rows = _props.rows,
-          lgViewport = _props.lgViewport,
           changeSelection = _props.changeSelection,
           convertDealsToCSV = _props.convertDealsToCSV;
       var _state = this.state,
@@ -12361,11 +12337,7 @@ function (_Component) {
       }), external__react__default.a.createElement(dx_react_grid_["IntegratedSelection"], null), external__react__default.a.createElement(dx_react_grid_["IntegratedPaging"], null), external__react__default.a.createElement(dx_react_grid_material_ui_["VirtualTable"], {
         height: external__is_browser__default.a ? window.innerHeight - 310 : undefined,
         tableComponent: TableComponent["a" /* default */],
-        containerComponent: function containerComponent(props) {
-          return external__react__default.a.createElement(TableContainerComponent["a" /* default */], _extends({
-            className: lgViewport ? classes.myTableContainerSmallViewPort : classes.myTableContainer
-          }, props));
-        },
+        containerComponent: this.getTableContainerComponent,
         cellComponent: DefaultVirtualTableCell["a" /* default */],
         noDataCellComponent: NoDataCellComponent["a" /* default */]
       }), external__react__default.a.createElement(dx_react_grid_material_ui_["TableColumnReordering"], {
@@ -12411,7 +12383,50 @@ function (_Component) {
   }]);
 
   return DealsTable;
-}(external__react_["Component"])) || _class) || _class);
+}(external__react_["Component"]), AdminAreaDealsTable__initialiseProps = function _initialiseProps() {
+  var _this2 = this;
+
+  Object.defineProperty(this, "changePageSize", {
+    configurable: true,
+    enumerable: true,
+    writable: true,
+    value: function value(pageSize) {
+      _this2.setState({
+        pageSize: pageSize
+      });
+
+      if (_this2.state.pageSize < pageSize) {
+        document.getElementById('myTableContainer').scrollTop = 0;
+      }
+    }
+  });
+  Object.defineProperty(this, "currentPageChange", {
+    configurable: true,
+    enumerable: true,
+    writable: true,
+    value: function value(currentPage) {
+      _this2.setState({
+        currentPage: currentPage
+      });
+
+      document.getElementById('myTableContainer').scrollTop = 0;
+    }
+  });
+  Object.defineProperty(this, "getTableContainerComponent", {
+    configurable: true,
+    enumerable: true,
+    writable: true,
+    value: function value(props) {
+      var _this2$props = _this2.props,
+          lgViewport = _this2$props.lgViewport,
+          classes = _this2$props.classes;
+      var className = lgViewport ? classes.myTableContainerSmallViewPort : classes.myTableContainer;
+      return external__react__default.a.createElement(TableContainerComponent["a" /* default */], _extends({
+        className: className
+      }, props));
+    }
+  });
+}, _temp)) || _class) || _class);
 /* harmony default export */ var AdminAreaDealsTable = (AdminAreaDealsTable_DealsTable);
 // EXTERNAL MODULE: ./utils/debounce.js
 var debounce = __webpack_require__(122);

@@ -267,12 +267,19 @@ class DealsTable extends Component {
     document.getElementById('myTableContainer').scrollTop = 0;
   };
 
+  getTableContainerComponent = props => {
+    const { lgViewport, classes } = this.props;
+    const className = lgViewport
+      ? classes.myTableContainerSmallViewPort
+      : classes.myTableContainer;
+    return <TableContainerComponent className={className} {...props} />;
+  };
+
   render() {
     const {
       classes,
       columns,
       rows,
-      lgViewport,
       changeSelection,
       convertDealsToCSV,
     } = this.props;
@@ -327,16 +334,7 @@ class DealsTable extends Component {
           <VirtualTable
             height={isBrowser ? window.innerHeight - 310 : undefined}
             tableComponent={TableComponent}
-            containerComponent={props => (
-              <TableContainerComponent
-                className={
-                  lgViewport
-                    ? classes.myTableContainerSmallViewPort
-                    : classes.myTableContainer
-                }
-                {...props}
-              />
-            )}
+            containerComponent={this.getTableContainerComponent}
             cellComponent={Cell}
             noDataCellComponent={NoDataCellComponent}
           />
