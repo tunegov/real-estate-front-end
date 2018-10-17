@@ -6855,7 +6855,9 @@ function (_Component) {
           agentUUID = _props2.agentUUID,
           managementCobrokeCompanyItems = _props2.managementCobrokeCompanyItems,
           agentPaymentTypeIsACH = _props2.agentPaymentTypeIsACH,
-          _onSubmit = _props2.onSubmit;
+          _onSubmit = _props2.onSubmit,
+          userRole = _props2.userRole,
+          isCoAgent = _props2.isCoAgent;
       var _state = this.state,
           contractLeaseAnchorEl = _state.contractLeaseAnchorEl,
           agencyDisclosureAnchorEl = _state.agencyDisclosureAnchorEl;
@@ -7375,7 +7377,7 @@ function (_Component) {
           fullWidth: true,
           type: "email",
           disabled: submittedDeal && !isEditingDeal
-        }))), external__react__default.a.createElement("div", {
+        }))), (isEditingDeal || userRole !== userTypes["agent"] || !isCoAgent) && external__react__default.a.createElement(external__react_["Fragment"], null, external__react__default.a.createElement("div", {
           className: "".concat(classes.formSubheading, " ").concat(classes.paddingBottom10)
         }, external__react__default.a.createElement(Typography__default.a, {
           variant: "subheading",
@@ -7541,7 +7543,7 @@ function (_Component) {
           formApi: formApi,
           convertToLocaleString: true,
           isDollarAmount: true
-        }))), external__react__default.a.createElement("div", {
+        })))), external__react__default.a.createElement("div", {
           className: classes.formMiniHeading2
         }, external__react__default.a.createElement(Typography__default.a, {
           variant: "subheading",
@@ -9513,6 +9515,7 @@ function (_Component) {
         setFormSubmitted: this.setFormSubmitted,
         setDealSuccessfullySubmitted: setDealSuccessfullySubmitted,
         dealID: viewingDealID,
+        isCoAgent: isCoAgent,
         isEditingDeal: isEditingDeal,
         isViewType: true,
         userRole: this.props.userRole,

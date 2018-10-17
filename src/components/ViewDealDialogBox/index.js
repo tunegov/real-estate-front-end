@@ -274,6 +274,7 @@ class SubmitDealDialogBox extends Component {
             setFormSubmitted={this.setFormSubmitted}
             setDealSuccessfullySubmitted={setDealSuccessfullySubmitted}
             dealID={viewingDealID}
+            isCoAgent={isCoAgent}
             isEditingDeal={isEditingDeal}
             isViewType
             userRole={this.props.userRole}

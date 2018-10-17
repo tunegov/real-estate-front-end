@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { observer } from 'mobx-react';
 import { withStyles } from 'material-ui/styles';
 import Typography from 'material-ui/Typography';
@@ -698,6 +698,8 @@ class SubmitDealForm extends Component {
       managementCobrokeCompanyItems,
       agentPaymentTypeIsACH,
       onSubmit,
+      userRole,
+      isCoAgent,
     } = this.props;
 
     const { contractLeaseAnchorEl, agencyDisclosureAnchorEl } = this.state;
@@ -1260,188 +1262,192 @@ class SubmitDealForm extends Component {
                     </div>
                   </Grid>
 
-                  <div
-                    className={`${classes.formSubheading} ${
-                      classes.paddingBottom10
-                    }`}
-                  >
-                    <Typography
-                      variant="subheading"
-                      classes={{ subheading: classes.h3 }}
-                    >
-                      Transaction Financials
-                    </Typography>
-                  </div>
+                  {(isEditingDeal || userRole !== agentRole || !isCoAgent) && (
+                    <Fragment>
+                      <div
+                        className={`${classes.formSubheading} ${
+                          classes.paddingBottom10
+                        }`}
+                      >
+                        <Typography
+                          variant="subheading"
+                          classes={{ subheading: classes.h3 }}
+                        >
+                          Transaction Financials
+                        </Typography>
+                      </div>
 
-                  <div className={classes.formMiniHeading}>
-                    <Typography
-                      variant="subheading"
-                      classes={{
-                        subheading: classes.h4,
-                        root: classes.greenText,
-                      }}
-                    >
-                      Paid:
-                    </Typography>
-                  </div>
+                      <div className={classes.formMiniHeading}>
+                        <Typography
+                          variant="subheading"
+                          classes={{
+                            subheading: classes.h4,
+                            root: classes.greenText,
+                          }}
+                        >
+                          Paid:
+                        </Typography>
+                      </div>
 
-                  <NestedField field={['paymentItems', 0]}>
-                    <Grid item sm={4} xs={12}>
-                      <div className={classes.formControlWrapper}>
-                        <MaterialCustomSelectInput
-                          field="paymentType"
-                          id={uuid()}
-                          required
-                          fullWidth
-                          label="Payment Type"
-                          name="paymentType"
-                          selectInputItems={paymentTypeSelectItems}
-                          validate={paymentTypeValidator}
+                      <NestedField field={['paymentItems', 0]}>
+                        <Grid item sm={4} xs={12}>
+                          <div className={classes.formControlWrapper}>
+                            <MaterialCustomSelectInput
+                              field="paymentType"
+                              id={uuid()}
+                              required
+                              fullWidth
+                              label="Payment Type"
+                              name="paymentType"
+                              selectInputItems={paymentTypeSelectItems}
+                              validate={paymentTypeValidator}
+                              disabled={submittedDeal && !isEditingDeal}
+                            />
+                          </div>
+                        </Grid>
+
+                        <Grid item sm={4} xs={12}>
+                          <div className={classes.formControlWrapper}>
+                            <CustomTextField
+                              field="checkOrTransactionNumber"
+                              id={uuid()}
+                              label="Check/Transaction#"
+                              required
+                              fullWidth
+                              validate={checkOrTransactionNumberValidator}
+                              disabled={submittedDeal && !isEditingDeal}
+                            />
+                          </div>
+                        </Grid>
+
+                        <Grid item sm={4} xs={12}>
+                          <div className={classes.formControlWrapper}>
+                            <CustomTextField
+                              field="amount"
+                              id={uuid()}
+                              label="Amount"
+                              required
+                              fullWidth
+                              validate={paymentAmountValidator}
+                              noLetters
+                              noNegativeSign
+                              onChangeWithID={this.props.paymentAmountChangeHandler}
+                              isDollarAmount
+                              disabled={submittedDeal && !isEditingDeal}
+                            />
+                          </div>
+                        </Grid>
+                      </NestedField>
+
+                      {formApi.values.paymentItems
+                      && formApi.values.paymentItems
+                        .map((paymentItems, i) => (
+                          <div className={classes.paymentItemsWrapper} key={i}>
+                            <NestedField field={['paymentItems', i]}>
+                              <Grid item sm={4} xs={12}>
+                                <div className={classes.formControlWrapper}>
+                                  <MaterialCustomSelectInput
+                                    field="paymentType"
+                                    id={uuid()}
+                                    required
+                                    fullWidth
+                                    label="Payment Type"
+                                    name="paymentType"
+                                    selectInputItems={paymentTypeSelectItems}
+                                    validate={paymentTypeValidator}
+                                    disabled={submittedDeal && !isEditingDeal}
+                                  />
+                                </div>
+                              </Grid>
+
+                              <Grid item sm={4} xs={12}>
+                                <div className={classes.formControlWrapper}>
+                                  <CustomTextField
+                                    field="checkOrTransactionNumber"
+                                    id={uuid()}
+                                    label="Check/Transaction#"
+                                    required
+                                    fullWidth
+                                    validate={checkOrTransactionNumberValidator}
+                                    disabled={submittedDeal && !isEditingDeal}
+                                  />
+                                </div>
+                              </Grid>
+
+                              <Grid item sm={4} xs={12}>
+                                <div className={classes.formControlWrapper}>
+                                  <CustomTextField
+                                    field="amount"
+                                    id={uuid()}
+                                    label="Amount"
+                                    required
+                                    fullWidth
+                                    validate={paymentAmountValidator}
+                                    noLetters
+                                    noNegativeSign
+                                    onChangeWithID={
+                                      this.props.paymentAmountChangeHandler
+                                    }
+                                    isDollarAmount
+                                    disabled={submittedDeal && !isEditingDeal}
+                                  />
+                                </div>
+                              </Grid>
+                            </NestedField>
+                            {submittedDeal && !isEditingDeal ? null : (
+                              <Button
+                                classes={{ root: classes.removePaymentBtn }}
+                                variant="raised"
+                                color="secondary"
+                                onClick={() => {
+                                  const amount = Number(
+                                    formApi.values.paymentItems[i].amount
+                                  );
+
+                                  if (amount) {
+                                    subtractPaymentValueFromState(amount);
+                                  }
+
+                                  formApi.removeValue('paymentItems', i);
+                                }}
+                                type="button"
+                              >
+                                Remove
+                              </Button>
+                            )}
+                          </div>
+                        ))
+                        .slice(1)}
+                      <Grid item xs={12}>
+                        <Button
+                          classes={{ root: classes.addPaymentBtn }}
+                          variant="raised"
+                          color="primary"
+                          onClick={() => formApi.addValue('paymentItems')}
+                          type="button"
                           disabled={submittedDeal && !isEditingDeal}
-                        />
-                      </div>
-                    </Grid>
+                        >
+                          Add payment item
+                        </Button>
+                      </Grid>
 
-                    <Grid item sm={4} xs={12}>
-                      <div className={classes.formControlWrapper}>
-                        <CustomTextField
-                          field="checkOrTransactionNumber"
-                          id={uuid()}
-                          label="Check/Transaction#"
-                          required
-                          fullWidth
-                          validate={checkOrTransactionNumberValidator}
-                          disabled={submittedDeal && !isEditingDeal}
-                        />
-                      </div>
-                    </Grid>
-
-                    <Grid item sm={4} xs={12}>
-                      <div className={classes.formControlWrapper}>
-                        <CustomTextField
-                          field="amount"
-                          id={uuid()}
-                          label="Amount"
-                          required
-                          fullWidth
-                          validate={paymentAmountValidator}
-                          noLetters
-                          noNegativeSign
-                          onChangeWithID={this.props.paymentAmountChangeHandler}
-                          isDollarAmount
-                          disabled={submittedDeal && !isEditingDeal}
-                        />
-                      </div>
-                    </Grid>
-                  </NestedField>
-
-                  {formApi.values.paymentItems
-                  && formApi.values.paymentItems
-                    .map((paymentItems, i) => (
-                      <div className={classes.paymentItemsWrapper} key={i}>
-                        <NestedField field={['paymentItems', i]}>
-                          <Grid item sm={4} xs={12}>
-                            <div className={classes.formControlWrapper}>
-                              <MaterialCustomSelectInput
-                                field="paymentType"
-                                id={uuid()}
-                                required
-                                fullWidth
-                                label="Payment Type"
-                                name="paymentType"
-                                selectInputItems={paymentTypeSelectItems}
-                                validate={paymentTypeValidator}
-                                disabled={submittedDeal && !isEditingDeal}
-                              />
-                            </div>
-                          </Grid>
-
-                          <Grid item sm={4} xs={12}>
-                            <div className={classes.formControlWrapper}>
-                              <CustomTextField
-                                field="checkOrTransactionNumber"
-                                id={uuid()}
-                                label="Check/Transaction#"
-                                required
-                                fullWidth
-                                validate={checkOrTransactionNumberValidator}
-                                disabled={submittedDeal && !isEditingDeal}
-                              />
-                            </div>
-                          </Grid>
-
-                          <Grid item sm={4} xs={12}>
-                            <div className={classes.formControlWrapper}>
-                              <CustomTextField
-                                field="amount"
-                                id={uuid()}
-                                label="Amount"
-                                required
-                                fullWidth
-                                validate={paymentAmountValidator}
-                                noLetters
-                                noNegativeSign
-                                onChangeWithID={
-                                  this.props.paymentAmountChangeHandler
-                                }
-                                isDollarAmount
-                                disabled={submittedDeal && !isEditingDeal}
-                              />
-                            </div>
-                          </Grid>
-                        </NestedField>
-                        {submittedDeal && !isEditingDeal ? null : (
-                          <Button
-                            classes={{ root: classes.removePaymentBtn }}
-                            variant="raised"
-                            color="secondary"
-                            onClick={() => {
-                              const amount = Number(
-                                formApi.values.paymentItems[i].amount
-                              );
-
-                              if (amount) {
-                                subtractPaymentValueFromState(amount);
-                              }
-
-                              formApi.removeValue('paymentItems', i);
-                            }}
-                            type="button"
-                          >
-                            Remove
-                          </Button>
-                        )}
-                      </div>
-                    ))
-                    .slice(1)}
-                  <Grid item xs={12}>
-                    <Button
-                      classes={{ root: classes.addPaymentBtn }}
-                      variant="raised"
-                      color="primary"
-                      onClick={() => formApi.addValue('paymentItems')}
-                      type="button"
-                      disabled={submittedDeal && !isEditingDeal}
-                    >
-                      Add payment item
-                    </Button>
-                  </Grid>
-
-                  <Grid item xs={12} sm={6}>
-                    <div className={classes.formControlWrapper}>
-                      <CustomTextField
-                        field="paymentsSubtotal"
-                        id={uuid()}
-                        label="Payments Subtotal"
-                        disabled
-                        fullWidth
-                        submittedValue={this.props.paymentsTotal}
-                        formApi={formApi}
-                        convertToLocaleString
-                        isDollarAmount
-                      />
-                    </div>
-                  </Grid>
+                      <Grid item xs={12} sm={6}>
+                        <div className={classes.formControlWrapper}>
+                          <CustomTextField
+                            field="paymentsSubtotal"
+                            id={uuid()}
+                            label="Payments Subtotal"
+                            disabled
+                            fullWidth
+                            submittedValue={this.props.paymentsTotal}
+                            formApi={formApi}
+                            convertToLocaleString
+                            isDollarAmount
+                          />
+                        </div>
+                      </Grid>
+                    </Fragment>
+                  )}
 
                   <div className={classes.formMiniHeading2}>
                     <Typography
