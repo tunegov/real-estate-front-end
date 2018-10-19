@@ -98,7 +98,7 @@ module.exports = require("@babel/runtime/regenerator");
 /* 4 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var routes = __webpack_require__(47)();
+var routes = __webpack_require__(46)();
 
 routes.add('home', '/', '/').add('dashboard', '/app/dashbaord', 'app/dashboard').add('profile', '/app/profile', 'app/profile').add('deals', '/app/deals', 'app/deals').add('invoices', '/app/invoices', 'app/invoices').add('agents', '/app/agents', 'app/agents').add('create-listing', '/app/listing/new', '/app/listing/new').add('admin-dashboard', '/app/admin-area/dashboard', 'app/admin-area/dashboard').add('create-agent', '/app/admin-area/agents/create', 'app/admin-area/agents/create').add('view-agents', '/app/admin-area/agents/view', 'app/admin-area/agents/view').add('create-user', '/app/admin-area/customers/create', 'app/admin-area/customers/create').add('view-customers', '/app/admin-area/customers/view', 'app/admin-area/customers/view').add('create-admin', '/app/admin-area/admin/create', 'app/admin-area/admin/create').add('view-admin', '/app/admin-area/admin/view', 'app/admin-area/admin/view').add('view-deals', '/app/admin-area/deals/view', 'app/admin-area/deals/view')
 /*
@@ -123,7 +123,7 @@ module.exports = require("classnames");
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return graphQlClient; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_graphql_request__ = __webpack_require__(49);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_graphql_request__ = __webpack_require__(48);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_graphql_request___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_graphql_request__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_next_config__ = __webpack_require__(17);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_next_config___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_next_config__);
@@ -147,13 +147,13 @@ module.exports = require("styled-components");
 /* 8 */
 /***/ (function(module, exports) {
 
-module.exports = require("is-browser");
+module.exports = require("polished");
 
 /***/ }),
 /* 9 */
 /***/ (function(module, exports) {
 
-module.exports = require("polished");
+module.exports = require("is-browser");
 
 /***/ }),
 /* 10 */
@@ -600,13 +600,13 @@ function abbreviate(str) {
 /* 20 */
 /***/ (function(module, exports) {
 
-module.exports = require("material-ui/Grid");
+module.exports = require("material-ui/Divider");
 
 /***/ }),
 /* 21 */
 /***/ (function(module, exports) {
 
-module.exports = require("material-ui/Divider");
+module.exports = require("material-ui/Grid");
 
 /***/ }),
 /* 22 */
@@ -663,7 +663,7 @@ var regenerator_ = __webpack_require__(3);
 var regenerator__default = /*#__PURE__*/__webpack_require__.n(regenerator_);
 
 // EXTERNAL MODULE: external "is-browser"
-var external__is_browser_ = __webpack_require__(8);
+var external__is_browser_ = __webpack_require__(9);
 var external__is_browser__default = /*#__PURE__*/__webpack_require__.n(external__is_browser_);
 
 // EXTERNAL MODULE: ./effects/client.js
@@ -879,7 +879,7 @@ var UserEffects = external__mobx_state_tree_["types"].model({}).actions(function
 });
 /* harmony default export */ var userEffects = (UserEffects);
 // EXTERNAL MODULE: external "urlsafe-base64"
-var external__urlsafe_base64_ = __webpack_require__(50);
+var external__urlsafe_base64_ = __webpack_require__(49);
 var external__urlsafe_base64__default = /*#__PURE__*/__webpack_require__.n(external__urlsafe_base64_);
 
 // CONCATENATED MODULE: ./utils/jwtUtils.js
@@ -1071,7 +1071,7 @@ function initStore(isServer) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_polished__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_polished__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_polished___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_polished__);
 
 var primaryColor = '#272A2E';
@@ -1168,7 +1168,7 @@ module.exports = require("@devexpress/dx-react-grid-material-ui");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_material_ui_colors_red___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_material_ui_colors_red__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_material_ui_colors_blue__ = __webpack_require__(22);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_material_ui_colors_blue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_material_ui_colors_blue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_polished__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_polished__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_polished___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_polished__);
 /* eslint-disable no-underscore-dangle */
 
@@ -1277,22 +1277,16 @@ module.exports = require("material-ui/Button");
 /* 42 */
 /***/ (function(module, exports) {
 
-module.exports = require("moment");
+module.exports = require("nprogress");
 
 /***/ }),
 /* 43 */
 /***/ (function(module, exports) {
 
-module.exports = require("nprogress");
+
 
 /***/ }),
 /* 44 */
-/***/ (function(module, exports) {
-
-
-
-/***/ }),
-/* 45 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1302,7 +1296,7 @@ module.exports = require("nprogress");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_prop_types___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_prop_types__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_material_ui_styles__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_material_ui_styles___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_material_ui_styles__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_material_ui_CssBaseline__ = __webpack_require__(46);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_material_ui_CssBaseline__ = __webpack_require__(45);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_material_ui_CssBaseline___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_material_ui_CssBaseline__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__getPageContext__ = __webpack_require__(37);
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -1385,19 +1379,19 @@ function withRoot(Component) {
 /* harmony default export */ __webpack_exports__["a"] = (withRoot);
 
 /***/ }),
-/* 46 */
+/* 45 */
 /***/ (function(module, exports) {
 
 module.exports = require("material-ui/CssBaseline");
 
 /***/ }),
-/* 47 */
+/* 46 */
 /***/ (function(module, exports) {
 
 module.exports = require("next-routes");
 
 /***/ }),
-/* 48 */
+/* 47 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1405,19 +1399,19 @@ var globalStyles = "\n  html {\n    height: 100%;\n  }\n  body {\n    position: 
 /* harmony default export */ __webpack_exports__["a"] = (globalStyles);
 
 /***/ }),
-/* 49 */
+/* 48 */
 /***/ (function(module, exports) {
 
 module.exports = require("graphql-request");
 
 /***/ }),
-/* 50 */
+/* 49 */
 /***/ (function(module, exports) {
 
 module.exports = require("urlsafe-base64");
 
 /***/ }),
-/* 51 */
+/* 50 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1443,19 +1437,19 @@ var head_ = __webpack_require__(15);
 var head__default = /*#__PURE__*/__webpack_require__.n(head_);
 
 // EXTERNAL MODULE: external "apollo-client"
-var external__apollo_client_ = __webpack_require__(52);
+var external__apollo_client_ = __webpack_require__(51);
 var external__apollo_client__default = /*#__PURE__*/__webpack_require__.n(external__apollo_client_);
 
 // EXTERNAL MODULE: external "apollo-link-http"
-var external__apollo_link_http_ = __webpack_require__(53);
+var external__apollo_link_http_ = __webpack_require__(52);
 var external__apollo_link_http__default = /*#__PURE__*/__webpack_require__.n(external__apollo_link_http_);
 
 // EXTERNAL MODULE: external "apollo-cache-inmemory"
-var external__apollo_cache_inmemory_ = __webpack_require__(54);
+var external__apollo_cache_inmemory_ = __webpack_require__(53);
 var external__apollo_cache_inmemory__default = /*#__PURE__*/__webpack_require__.n(external__apollo_cache_inmemory_);
 
 // EXTERNAL MODULE: external "isomorphic-unfetch"
-var external__isomorphic_unfetch_ = __webpack_require__(55);
+var external__isomorphic_unfetch_ = __webpack_require__(54);
 var external__isomorphic_unfetch__default = /*#__PURE__*/__webpack_require__.n(external__isomorphic_unfetch_);
 
 // EXTERNAL MODULE: external "next/config"
@@ -1664,34 +1658,40 @@ function getComponentDisplayName(Component) {
 });
 
 /***/ }),
-/* 52 */
+/* 51 */
 /***/ (function(module, exports) {
 
 module.exports = require("apollo-client");
 
 /***/ }),
-/* 53 */
+/* 52 */
 /***/ (function(module, exports) {
 
 module.exports = require("apollo-link-http");
 
 /***/ }),
-/* 54 */
+/* 53 */
 /***/ (function(module, exports) {
 
 module.exports = require("apollo-cache-inmemory");
 
 /***/ }),
-/* 55 */
+/* 54 */
 /***/ (function(module, exports) {
 
 module.exports = require("isomorphic-unfetch");
 
 /***/ }),
-/* 56 */
+/* 55 */
 /***/ (function(module, exports) {
 
 module.exports = require("@material-ui/icons/Add");
+
+/***/ }),
+/* 56 */
+/***/ (function(module, exports) {
+
+module.exports = require("moment");
 
 /***/ }),
 /* 57 */
@@ -1782,41 +1782,6 @@ module.exports = require("react-sizes");
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return round; });
-/* unused harmony export padNumToDecimalString */
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return padStringToDecimalString; });
-var round = function round(number) {
-  var precision = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 2;
-  if (!number) return 0;
-  return Number(number.toFixed(precision));
-};
-var padNumToDecimalString = function padNumToDecimalString(number) {
-  var precision = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 2;
-  var s = number.toString();
-  if (s.indexOf('.') == -1) s += '.';
-
-  while (s.length < s.indexOf('.') + (precision + 1)) {
-    s += '0';
-  }
-
-  return s;
-};
-var padStringToDecimalString = function padStringToDecimalString(s) {
-  var precision = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 3 - 1;
-  if (s.indexOf('.') == -1) s += '.';
-
-  while (s.length < s.indexOf('.') + (precision + 1)) {
-    s += '0';
-  }
-
-  return s;
-};
-
-/***/ }),
-/* 72 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return AppProvider; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppContext; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(0);
@@ -1875,6 +1840,41 @@ function (_React$Component) {
 
 
 /***/ }),
+/* 72 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return round; });
+/* unused harmony export padNumToDecimalString */
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return padStringToDecimalString; });
+var round = function round(number) {
+  var precision = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 2;
+  if (!number) return 0;
+  return Number(number.toFixed(precision));
+};
+var padNumToDecimalString = function padNumToDecimalString(number) {
+  var precision = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 2;
+  var s = number.toString();
+  if (s.indexOf('.') == -1) s += '.';
+
+  while (s.length < s.indexOf('.') + (precision + 1)) {
+    s += '0';
+  }
+
+  return s;
+};
+var padStringToDecimalString = function padStringToDecimalString(s) {
+  var precision = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 3 - 1;
+  if (s.indexOf('.') == -1) s += '.';
+
+  while (s.length < s.indexOf('.') + (precision + 1)) {
+    s += '0';
+  }
+
+  return s;
+};
+
+/***/ }),
 /* 73 */,
 /* 74 */
 /***/ (function(module, exports) {
@@ -1920,7 +1920,7 @@ var head_ = __webpack_require__(15);
 var head__default = /*#__PURE__*/__webpack_require__.n(head_);
 
 // EXTERNAL MODULE: external "nprogress"
-var external__nprogress_ = __webpack_require__(43);
+var external__nprogress_ = __webpack_require__(42);
 var external__nprogress__default = /*#__PURE__*/__webpack_require__.n(external__nprogress_);
 
 // EXTERNAL MODULE: external "next/router"
@@ -1928,7 +1928,7 @@ var router_ = __webpack_require__(13);
 var router__default = /*#__PURE__*/__webpack_require__.n(router_);
 
 // EXTERNAL MODULE: external "is-browser"
-var external__is_browser_ = __webpack_require__(8);
+var external__is_browser_ = __webpack_require__(9);
 var external__is_browser__default = /*#__PURE__*/__webpack_require__.n(external__is_browser_);
 
 // EXTERNAL MODULE: external "styled-components"
@@ -1936,17 +1936,17 @@ var external__styled_components_ = __webpack_require__(7);
 var external__styled_components__default = /*#__PURE__*/__webpack_require__.n(external__styled_components_);
 
 // EXTERNAL MODULE: ../node_modules/antd/dist/antd.css
-var antd = __webpack_require__(44);
+var antd = __webpack_require__(43);
 var antd_default = /*#__PURE__*/__webpack_require__.n(antd);
 
 // EXTERNAL MODULE: ./lib/withRoot.js
-var withRoot = __webpack_require__(45);
+var withRoot = __webpack_require__(44);
 
 // EXTERNAL MODULE: ./themeStyles/index.js
 var themeStyles = __webpack_require__(26);
 
 // EXTERNAL MODULE: ./globalStyles/index.js
-var globalStyles = __webpack_require__(48);
+var globalStyles = __webpack_require__(47);
 
 // EXTERNAL MODULE: external "antd/lib/icon/style/css"
 var css_ = __webpack_require__(23);
@@ -1989,7 +1989,7 @@ var List_ = __webpack_require__(29);
 var List__default = /*#__PURE__*/__webpack_require__.n(List_);
 
 // EXTERNAL MODULE: external "material-ui/Divider"
-var Divider_ = __webpack_require__(21);
+var Divider_ = __webpack_require__(20);
 var Divider__default = /*#__PURE__*/__webpack_require__.n(Divider_);
 
 // EXTERNAL MODULE: external "material-ui/IconButton"
@@ -2009,7 +2009,7 @@ var Notifications_ = __webpack_require__(62);
 var Notifications__default = /*#__PURE__*/__webpack_require__.n(Notifications_);
 
 // EXTERNAL MODULE: external "@material-ui/icons/Add"
-var Add_ = __webpack_require__(56);
+var Add_ = __webpack_require__(55);
 var Add__default = /*#__PURE__*/__webpack_require__.n(Add_);
 
 // EXTERNAL MODULE: external "@material-ui/icons/RemoveRedEye"
@@ -2025,7 +2025,7 @@ var routes = __webpack_require__(4);
 var routes_default = /*#__PURE__*/__webpack_require__.n(routes);
 
 // EXTERNAL MODULE: external "polished"
-var external__polished_ = __webpack_require__(9);
+var external__polished_ = __webpack_require__(8);
 var external__polished__default = /*#__PURE__*/__webpack_require__.n(external__polished_);
 
 // CONCATENATED MODULE: ./components/SideNavLinkItem/styledComponents/index.js
@@ -3592,7 +3592,7 @@ function (_Component) {
 var models = __webpack_require__(25);
 
 // EXTERNAL MODULE: ./AppGlobalStateProvider/index.js
-var AppGlobalStateProvider = __webpack_require__(72);
+var AppGlobalStateProvider = __webpack_require__(71);
 
 // EXTERNAL MODULE: ./static/css/main.css
 var main = __webpack_require__(75);
@@ -4807,22 +4807,10 @@ module.exports = require("react-input-mask");
 /* 116 */
 /***/ (function(module, exports) {
 
-module.exports = require("material-ui/TextField");
+
 
 /***/ }),
 /* 117 */
-/***/ (function(module, exports) {
-
-module.exports = require("material-ui/ExpansionPanel");
-
-/***/ }),
-/* 118 */
-/***/ (function(module, exports) {
-
-
-
-/***/ }),
-/* 119 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -5155,7 +5143,7 @@ function (_React$Component) {
 */
 
 /***/ }),
-/* 120 */
+/* 118 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -5315,7 +5303,13 @@ var MaterialCustomRadioInputWrapper = function MaterialCustomRadioInputWrapper(p
 */
 
 /***/ }),
-/* 121 */
+/* 119 */
+/***/ (function(module, exports) {
+
+module.exports = require("material-ui/TextField");
+
+/***/ }),
+/* 120 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -5464,7 +5458,7 @@ var MaterialCustomSelectInput = function MaterialCustomSelectInput(props) {
 /* harmony default export */ __webpack_exports__["a"] = (Object(__WEBPACK_IMPORTED_MODULE_2_material_ui_styles__["withStyles"])(styles)(Object(__WEBPACK_IMPORTED_MODULE_1_mobx_react__["observer"])(MaterialCustomSelectInput)));
 
 /***/ }),
-/* 122 */
+/* 121 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -5488,10 +5482,16 @@ function debounce(func, wait, immediate) {
 /* harmony default export */ __webpack_exports__["a"] = (debounce);
 
 /***/ }),
-/* 123 */
+/* 122 */
 /***/ (function(module, exports) {
 
 module.exports = require("faker");
+
+/***/ }),
+/* 123 */
+/***/ (function(module, exports) {
+
+module.exports = require("material-ui/ExpansionPanel");
 
 /***/ }),
 /* 124 */
@@ -5507,133 +5507,6 @@ module.exports = require("material-ui/Radio");
 
 /***/ }),
 /* 126 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_input_mask__ = __webpack_require__(115);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_input_mask___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_react_input_mask__);
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
-
-function _objectWithoutProperties(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i < sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) >= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-
-
-
-var Input =
-/*#__PURE__*/
-function (_React$Component) {
-  _inherits(Input, _React$Component);
-
-  function Input() {
-    var _ref;
-
-    var _temp, _this;
-
-    _classCallCheck(this, Input);
-
-    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
-      args[_key] = arguments[_key];
-    }
-
-    return _possibleConstructorReturn(_this, (_temp = _this = _possibleConstructorReturn(this, (_ref = Input.__proto__ || Object.getPrototypeOf(Input)).call.apply(_ref, [this].concat(args))), Object.defineProperty(_assertThisInitialized(_this), "state", {
-      configurable: true,
-      enumerable: true,
-      writable: true,
-      value: {
-        value: _this.props.defaultValue || ''
-      }
-    }), Object.defineProperty(_assertThisInitialized(_this), "onChange", {
-      configurable: true,
-      enumerable: true,
-      writable: true,
-      value: function value(event) {
-        _this.setState({
-          value: event.target.value
-        });
-
-        if (_this.props.onChange) {
-          _this.props.onChange(event);
-        }
-      }
-    }), Object.defineProperty(_assertThisInitialized(_this), "beforeOfficeNumberMaskedValueChange", {
-      configurable: true,
-      enumerable: true,
-      writable: true,
-      value: function value(newState, oldState, userInput) {
-        var value = newState.value;
-        var selection = newState.selection;
-        var cursorPosition = selection ? selection.start : null;
-
-        if (value.endsWith('x') && userInput !== 'x' && !_this.state.value.endsWith('x')) {
-          if (cursorPosition === value.length) {
-            cursorPosition--;
-            selection = {
-              start: cursorPosition,
-              end: cursorPosition
-            };
-          }
-
-          value = value.slice(0, -2);
-        }
-
-        return {
-          value: value,
-          selection: selection
-        };
-      }
-    }), Object.defineProperty(_assertThisInitialized(_this), "beforeMaskedValueChange", {
-      configurable: true,
-      enumerable: true,
-      writable: true,
-      value: function value() {
-        if (_this.props.beforeMaskedValueChange) return _this.props.beforeMaskedValueChange;
-        if (_this.props.officePhoneNumber) return _this.beforeOfficeNumberMaskedValueChange;
-        return undefined;
-      }
-    }), _temp));
-  }
-
-  _createClass(Input, [{
-    key: "render",
-    value: function render() {
-      var props = this.props;
-
-      var beforeMaskedValueChange = props.beforeMaskedValueChange,
-          officePhoneNumber = props.officePhoneNumber,
-          restProps = _objectWithoutProperties(props, ["beforeMaskedValueChange", "officePhoneNumber"]);
-
-      return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_react_input_mask___default.a, _extends({
-        value: this.state.value,
-        beforeMaskedValueChange: this.beforeMaskedValueChange()
-      }, restProps, {
-        onChange: this.onChange
-      }));
-    }
-  }]);
-
-  return Input;
-}(__WEBPACK_IMPORTED_MODULE_0_react___default.a.Component);
-
-/* harmony default export */ __webpack_exports__["a"] = (Input);
-
-/***/ }),
-/* 127 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -6377,6 +6250,133 @@ var countriesArrayWithCodes = [{
 }];
 
 /***/ }),
+/* 127 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_input_mask__ = __webpack_require__(115);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_input_mask___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_react_input_mask__);
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+
+function _objectWithoutProperties(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i < sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) >= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+
+
+
+var Input =
+/*#__PURE__*/
+function (_React$Component) {
+  _inherits(Input, _React$Component);
+
+  function Input() {
+    var _ref;
+
+    var _temp, _this;
+
+    _classCallCheck(this, Input);
+
+    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    return _possibleConstructorReturn(_this, (_temp = _this = _possibleConstructorReturn(this, (_ref = Input.__proto__ || Object.getPrototypeOf(Input)).call.apply(_ref, [this].concat(args))), Object.defineProperty(_assertThisInitialized(_this), "state", {
+      configurable: true,
+      enumerable: true,
+      writable: true,
+      value: {
+        value: _this.props.defaultValue || ''
+      }
+    }), Object.defineProperty(_assertThisInitialized(_this), "onChange", {
+      configurable: true,
+      enumerable: true,
+      writable: true,
+      value: function value(event) {
+        _this.setState({
+          value: event.target.value
+        });
+
+        if (_this.props.onChange) {
+          _this.props.onChange(event);
+        }
+      }
+    }), Object.defineProperty(_assertThisInitialized(_this), "beforeOfficeNumberMaskedValueChange", {
+      configurable: true,
+      enumerable: true,
+      writable: true,
+      value: function value(newState, oldState, userInput) {
+        var value = newState.value;
+        var selection = newState.selection;
+        var cursorPosition = selection ? selection.start : null;
+
+        if (value.endsWith('x') && userInput !== 'x' && !_this.state.value.endsWith('x')) {
+          if (cursorPosition === value.length) {
+            cursorPosition--;
+            selection = {
+              start: cursorPosition,
+              end: cursorPosition
+            };
+          }
+
+          value = value.slice(0, -2);
+        }
+
+        return {
+          value: value,
+          selection: selection
+        };
+      }
+    }), Object.defineProperty(_assertThisInitialized(_this), "beforeMaskedValueChange", {
+      configurable: true,
+      enumerable: true,
+      writable: true,
+      value: function value() {
+        if (_this.props.beforeMaskedValueChange) return _this.props.beforeMaskedValueChange;
+        if (_this.props.officePhoneNumber) return _this.beforeOfficeNumberMaskedValueChange;
+        return undefined;
+      }
+    }), _temp));
+  }
+
+  _createClass(Input, [{
+    key: "render",
+    value: function render() {
+      var props = this.props;
+
+      var beforeMaskedValueChange = props.beforeMaskedValueChange,
+          officePhoneNumber = props.officePhoneNumber,
+          restProps = _objectWithoutProperties(props, ["beforeMaskedValueChange", "officePhoneNumber"]);
+
+      return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_react_input_mask___default.a, _extends({
+        value: this.state.value,
+        beforeMaskedValueChange: this.beforeMaskedValueChange()
+      }, restProps, {
+        onChange: this.onChange
+      }));
+    }
+  }]);
+
+  return Input;
+}(__WEBPACK_IMPORTED_MODULE_0_react___default.a.Component);
+
+/* harmony default export */ __webpack_exports__["a"] = (Input);
+
+/***/ }),
 /* 128 */
 /***/ (function(module, exports) {
 
@@ -6398,16 +6398,131 @@ module.exports = require("@material-ui/icons/Equalizer");
 /* 131 */
 /***/ (function(module, exports) {
 
-module.exports = require("@material-ui/icons/AttachMoney");
+module.exports = require("papaparse");
 
 /***/ }),
 /* 132 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_material_ui_styles__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_material_ui_styles___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_material_ui_styles__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_material_ui_Table__ = __webpack_require__(138);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_material_ui_Table___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_material_ui_Table__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_MaterialCustomSelectInput__ = __webpack_require__(120);
+
+
+
+
+
+var styles = function styles(theme) {
+  return {
+    cell: {
+      width: '100%',
+      paddingLeft: theme.spacing.unit,
+      paddingRight: theme.spacing.unit
+    },
+    input: {
+      width: '100%'
+    }
+  };
+};
+
+var FilterCellBase = function FilterCellBase(_ref) {
+  var filter = _ref.filter,
+      onFilter = _ref.onFilter,
+      classes = _ref.classes,
+      selectInputItems = _ref.selectInputItems,
+      fullWidth = _ref.fullWidth;
+  return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_material_ui_Table__["TableCell"], {
+    className: classes.cell
+  }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__components_MaterialCustomSelectInput__["a" /* default */], {
+    className: classes.input,
+    value: filter ? filter.value : '',
+    onChange: function onChange(e) {
+      return onFilter(e.target.value ? {
+        value: e.target.value
+      } : null);
+    },
+    placeholder: "Filter...",
+    inputProps: {},
+    fullWidth: fullWidth,
+    selectInputItems: selectInputItems
+  }));
+};
+
+var SelectFilterCell = Object(__WEBPACK_IMPORTED_MODULE_1_material_ui_styles__["withStyles"])(styles, {
+  name: 'SexFilterCell'
+})(FilterCellBase);
+/* harmony default export */ __webpack_exports__["a"] = (SelectFilterCell);
+
+/***/ }),
+/* 133 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return compareDate; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return compareNumber; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_moment__ = __webpack_require__(56);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_moment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_moment__);
+
+var compareDate = function compareDate(a, b) {
+  var Date1;
+  var Date2;
+
+  if (typeof a === 'string') {
+    Date1 = a;
+  } else {
+    Date1 = a;
+  }
+
+  if (typeof b === 'string') {
+    Date2 = b;
+  } else {
+    Date2 = b;
+  }
+
+  if (Date1 === Date2) return 0;
+  if (__WEBPACK_IMPORTED_MODULE_0_moment___default()(Date1).isBefore(Date2)) return -1;
+  return 1;
+};
+var compareNumber = function compareNumber(a, b) {
+  var Num1;
+  var Num2;
+
+  if (typeof a === 'string') {
+    Num1 = a.startsWith('$') ? Number(a.substring(1).replace(/,/g, '')) : Number(a.replace(/,/g, ''));
+  } else {
+    Num1 = a;
+  }
+
+  if (typeof b === 'string') {
+    Num2 = b.startsWith('$') ? Number(b.substring(1).replace(/,/g, '')) : Number(b.replace(/,/g, ''));
+  } else {
+    Num2 = b;
+  }
+
+  if (Num1 === Num2) return 0;
+  if (Num1 > Num2) return 1;
+  return -1;
+};
+
+/***/ }),
+/* 134 */
+/***/ (function(module, exports) {
+
+module.exports = require("@material-ui/icons/AttachMoney");
+
+/***/ }),
+/* 135 */
 /***/ (function(module, exports) {
 
 module.exports = require("@material-ui/icons/Help");
 
 /***/ }),
-/* 133 */
+/* 136 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -6562,128 +6677,12 @@ function (_Component) {
 /* harmony default export */ __webpack_exports__["a"] = (Object(__WEBPACK_IMPORTED_MODULE_2_material_ui_styles__["withStyles"])(styles)(StatNumberBox));
 
 /***/ }),
-/* 134 */
-/***/ (function(module, exports) {
-
-module.exports = require("papaparse");
-
-/***/ }),
-/* 135 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_material_ui_styles__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_material_ui_styles___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_material_ui_styles__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_material_ui_Table__ = __webpack_require__(139);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_material_ui_Table___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_material_ui_Table__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_MaterialCustomSelectInput__ = __webpack_require__(121);
-
-
-
-
-
-var styles = function styles(theme) {
-  return {
-    cell: {
-      width: '100%',
-      paddingLeft: theme.spacing.unit,
-      paddingRight: theme.spacing.unit
-    },
-    input: {
-      width: '100%'
-    }
-  };
-};
-
-var FilterCellBase = function FilterCellBase(_ref) {
-  var filter = _ref.filter,
-      onFilter = _ref.onFilter,
-      classes = _ref.classes,
-      selectInputItems = _ref.selectInputItems,
-      fullWidth = _ref.fullWidth;
-  return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_material_ui_Table__["TableCell"], {
-    className: classes.cell
-  }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__components_MaterialCustomSelectInput__["a" /* default */], {
-    className: classes.input,
-    value: filter ? filter.value : '',
-    onChange: function onChange(e) {
-      return onFilter(e.target.value ? {
-        value: e.target.value
-      } : null);
-    },
-    placeholder: "Filter...",
-    inputProps: {},
-    fullWidth: fullWidth,
-    selectInputItems: selectInputItems
-  }));
-};
-
-var SelectFilterCell = Object(__WEBPACK_IMPORTED_MODULE_1_material_ui_styles__["withStyles"])(styles, {
-  name: 'SexFilterCell'
-})(FilterCellBase);
-/* harmony default export */ __webpack_exports__["a"] = (SelectFilterCell);
-
-/***/ }),
-/* 136 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return compareDate; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return compareNumber; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_moment__ = __webpack_require__(42);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_moment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_moment__);
-
-var compareDate = function compareDate(a, b) {
-  var Date1;
-  var Date2;
-
-  if (typeof a === 'string') {
-    Date1 = a;
-  } else {
-    Date1 = a;
-  }
-
-  if (typeof b === 'string') {
-    Date2 = b;
-  } else {
-    Date2 = b;
-  }
-
-  if (Date1 === Date2) return 0;
-  if (__WEBPACK_IMPORTED_MODULE_0_moment___default()(Date1).isBefore(Date2)) return -1;
-  return 1;
-};
-var compareNumber = function compareNumber(a, b) {
-  var Num1;
-  var Num2;
-
-  if (typeof a === 'string') {
-    Num1 = a.startsWith('$') ? Number(a.substring(1).replace(/,/g, '')) : Number(a.replace(/,/g, ''));
-  } else {
-    Num1 = a;
-  }
-
-  if (typeof b === 'string') {
-    Num2 = b.startsWith('$') ? Number(b.substring(1).replace(/,/g, '')) : Number(b.replace(/,/g, ''));
-  } else {
-    Num2 = b;
-  }
-
-  if (Num1 === Num2) return 0;
-  if (Num1 > Num2) return 1;
-  return -1;
-};
-
-/***/ }),
-/* 137 */,
-/* 138 */
+/* 137 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return toLocaleCurrency; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Math__ = __webpack_require__(71);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Math__ = __webpack_require__(72);
 
 var toLocaleCurrency = function toLocaleCurrency(amount) {
   var percision = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 2;
@@ -6694,36 +6693,36 @@ var toLocaleCurrency = function toLocaleCurrency(amount) {
 };
 
 /***/ }),
-/* 139 */
+/* 138 */
 /***/ (function(module, exports) {
 
 module.exports = require("material-ui/Table");
 
 /***/ }),
-/* 140 */
+/* 139 */
 /***/ (function(module, exports) {
 
 module.exports = require("@material-ui/icons/Delete");
 
 /***/ }),
+/* 140 */,
 /* 141 */,
 /* 142 */,
-/* 143 */,
-/* 144 */
+/* 143 */
 /***/ (function(module, exports) {
 
 module.exports = require("react-images");
 
 /***/ }),
+/* 144 */,
 /* 145 */,
-/* 146 */,
-/* 147 */
+/* 146 */
 /***/ (function(module, exports) {
 
 module.exports = require("react-avatar-editor");
 
 /***/ }),
-/* 148 */
+/* 147 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -6856,7 +6855,7 @@ function (_Component) {
 /* harmony default export */ __webpack_exports__["a"] = (Object(__WEBPACK_IMPORTED_MODULE_3_material_ui_styles__["withStyles"])(styles)(CustomSlider));
 
 /***/ }),
-/* 149 */
+/* 148 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -6890,7 +6889,7 @@ var Typography_ = __webpack_require__(28);
 var Typography__default = /*#__PURE__*/__webpack_require__.n(Typography_);
 
 // EXTERNAL MODULE: external "material-ui/Divider"
-var Divider_ = __webpack_require__(21);
+var Divider_ = __webpack_require__(20);
 var Divider__default = /*#__PURE__*/__webpack_require__.n(Divider_);
 
 // EXTERNAL MODULE: external "material-ui/Button"
@@ -6902,7 +6901,7 @@ var external__react_form_ = __webpack_require__(30);
 var external__react_form__default = /*#__PURE__*/__webpack_require__.n(external__react_form_);
 
 // EXTERNAL MODULE: external "moment"
-var external__moment_ = __webpack_require__(42);
+var external__moment_ = __webpack_require__(56);
 var external__moment__default = /*#__PURE__*/__webpack_require__.n(external__moment_);
 
 // EXTERNAL MODULE: external "uuid/v4"
@@ -6910,15 +6909,15 @@ var v4_ = __webpack_require__(74);
 var v4__default = /*#__PURE__*/__webpack_require__.n(v4_);
 
 // EXTERNAL MODULE: external "material-ui/Grid"
-var Grid_ = __webpack_require__(20);
+var Grid_ = __webpack_require__(21);
 var Grid__default = /*#__PURE__*/__webpack_require__.n(Grid_);
 
 // EXTERNAL MODULE: external "material-ui/TextField"
-var TextField_ = __webpack_require__(116);
+var TextField_ = __webpack_require__(119);
 var TextField__default = /*#__PURE__*/__webpack_require__.n(TextField_);
 
 // EXTERNAL MODULE: external "@material-ui/icons/Delete"
-var Delete_ = __webpack_require__(140);
+var Delete_ = __webpack_require__(139);
 var Delete__default = /*#__PURE__*/__webpack_require__.n(Delete_);
 
 // EXTERNAL MODULE: external "react-circular-progressbar"
@@ -6926,7 +6925,7 @@ var external__react_circular_progressbar_ = __webpack_require__(129);
 var external__react_circular_progressbar__default = /*#__PURE__*/__webpack_require__.n(external__react_circular_progressbar_);
 
 // EXTERNAL MODULE: ../node_modules/react-circular-progressbar/dist/styles.css
-var styles = __webpack_require__(118);
+var styles = __webpack_require__(116);
 var styles_default = /*#__PURE__*/__webpack_require__.n(styles);
 
 // EXTERNAL MODULE: external "react-icons/lib/md"
@@ -6938,7 +6937,7 @@ var Tooltip_ = __webpack_require__(12);
 var Tooltip__default = /*#__PURE__*/__webpack_require__.n(Tooltip_);
 
 // EXTERNAL MODULE: external "react-images"
-var external__react_images_ = __webpack_require__(144);
+var external__react_images_ = __webpack_require__(143);
 var external__react_images__default = /*#__PURE__*/__webpack_require__.n(external__react_images_);
 
 // EXTERNAL MODULE: external "classnames"
@@ -6969,13 +6968,13 @@ var Form__default = /*#__PURE__*/__webpack_require__.n(Form_);
 var MaterialCustomTextFieldWrapper = __webpack_require__(106);
 
 // EXTERNAL MODULE: ./components/MaterialCustomRadioInputWrapper/index.js
-var MaterialCustomRadioInputWrapper = __webpack_require__(120);
+var MaterialCustomRadioInputWrapper = __webpack_require__(118);
 
 // EXTERNAL MODULE: ./components/MaterialCustomSelectInputWrapper/index.js
 var MaterialCustomSelectInputWrapper = __webpack_require__(114);
 
 // EXTERNAL MODULE: ./components/CustomFileUploadInputWrapper/index.js
-var CustomFileUploadInputWrapper = __webpack_require__(119);
+var CustomFileUploadInputWrapper = __webpack_require__(117);
 
 // EXTERNAL MODULE: ./utils/stringUtils.js
 var stringUtils = __webpack_require__(19);
@@ -7056,7 +7055,7 @@ var userTypes = __webpack_require__(10);
 var userTypes_default = /*#__PURE__*/__webpack_require__.n(userTypes);
 
 // EXTERNAL MODULE: ./utils/Math.js
-var utils_Math = __webpack_require__(71);
+var utils_Math = __webpack_require__(72);
 
 // CONCATENATED MODULE: ./components/forms/SubmitDealForm/index.js
 
@@ -9006,7 +9005,7 @@ function (_Component) {
 /* harmony default export */ var forms_SubmitDealForm = __webpack_exports__["a"] = (Object(styles_["withStyles"])(SubmitDealForm_styles)(SubmitDealForm_SubmitDealForm));
 
 /***/ }),
-/* 150 */
+/* 149 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -9056,7 +9055,7 @@ var getDealUploadsSignedURLS = function getDealUploadsSignedURLS(values, dealID)
 /* harmony default export */ __webpack_exports__["a"] = (getDealUploadsSignedURLS);
 
 /***/ }),
-/* 151 */
+/* 150 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -9080,7 +9079,7 @@ var uploadFile = function uploadFile(_ref) {
 /* harmony default export */ __webpack_exports__["a"] = (uploadFile);
 
 /***/ }),
-/* 152 */
+/* 151 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -9124,6 +9123,7 @@ var deleteDeal = function deleteDeal(uuid) {
 /* harmony default export */ __webpack_exports__["a"] = (deleteDeal);
 
 /***/ }),
+/* 152 */,
 /* 153 */,
 /* 154 */,
 /* 155 */
@@ -9160,7 +9160,7 @@ var v4_ = __webpack_require__(74);
 var v4__default = /*#__PURE__*/__webpack_require__.n(v4_);
 
 // EXTERNAL MODULE: external "react-avatar-editor"
-var external__react_avatar_editor_ = __webpack_require__(147);
+var external__react_avatar_editor_ = __webpack_require__(146);
 var external__react_avatar_editor__default = /*#__PURE__*/__webpack_require__.n(external__react_avatar_editor_);
 
 // EXTERNAL MODULE: external "material-ui/styles"
@@ -9168,7 +9168,7 @@ var styles_ = __webpack_require__(2);
 var styles__default = /*#__PURE__*/__webpack_require__.n(styles_);
 
 // EXTERNAL MODULE: external "material-ui/Grid"
-var Grid_ = __webpack_require__(20);
+var Grid_ = __webpack_require__(21);
 var Grid__default = /*#__PURE__*/__webpack_require__.n(Grid_);
 
 // EXTERNAL MODULE: external "react-sizes"
@@ -9188,11 +9188,11 @@ var external__react_circular_progressbar_ = __webpack_require__(129);
 var external__react_circular_progressbar__default = /*#__PURE__*/__webpack_require__.n(external__react_circular_progressbar_);
 
 // EXTERNAL MODULE: ../node_modules/react-circular-progressbar/dist/styles.css
-var styles = __webpack_require__(118);
+var styles = __webpack_require__(116);
 var styles_default = /*#__PURE__*/__webpack_require__.n(styles);
 
 // EXTERNAL MODULE: ./components/CustomSlider/index.js
-var CustomSlider = __webpack_require__(148);
+var CustomSlider = __webpack_require__(147);
 
 // EXTERNAL MODULE: external "email-validator"
 var external__email_validator_ = __webpack_require__(103);
@@ -9222,22 +9222,22 @@ var temporaryPasswordValidator = function temporaryPasswordValidator(value) {
 };
 /* harmony default export */ var formValidation = (formValidation_validator);
 // EXTERNAL MODULE: ./components/CustomFileUploadInputWrapper/index.js
-var CustomFileUploadInputWrapper = __webpack_require__(119);
+var CustomFileUploadInputWrapper = __webpack_require__(117);
 
 // EXTERNAL MODULE: ./components/MaterialCustomTextFieldWrapper/index.js
 var MaterialCustomTextFieldWrapper = __webpack_require__(106);
 
 // EXTERNAL MODULE: ./components/MaterialCustomRadioInputWrapper/index.js
-var MaterialCustomRadioInputWrapper = __webpack_require__(120);
+var MaterialCustomRadioInputWrapper = __webpack_require__(118);
 
 // EXTERNAL MODULE: ./components/MaterialCustomSelectInputWrapper/index.js
 var MaterialCustomSelectInputWrapper = __webpack_require__(114);
 
 // EXTERNAL MODULE: ./components/CustomInputMask/index.js
-var CustomInputMask = __webpack_require__(126);
+var CustomInputMask = __webpack_require__(127);
 
 // EXTERNAL MODULE: ./utils/constants.js
-var constants = __webpack_require__(127);
+var constants = __webpack_require__(126);
 
 // EXTERNAL MODULE: ./constants/userTypes.js
 var userTypes = __webpack_require__(10);
@@ -10049,40 +10049,34 @@ var setAgentProfilePic = function setAgentProfilePic(agentID, fileName) {
 /* 157 */
 /***/ (function(module, exports) {
 
-module.exports = require("@material-ui/icons/Star");
+module.exports = require("set-value");
 
 /***/ }),
 /* 158 */
 /***/ (function(module, exports) {
 
-module.exports = require("set-value");
+module.exports = require("@nivo/pie");
 
 /***/ }),
 /* 159 */
 /***/ (function(module, exports) {
 
-module.exports = require("@nivo/pie");
+module.exports = require("@nivo/bar");
 
 /***/ }),
 /* 160 */
 /***/ (function(module, exports) {
 
-module.exports = require("@nivo/bar");
+module.exports = require("@nivo/line");
 
 /***/ }),
 /* 161 */
 /***/ (function(module, exports) {
 
-module.exports = require("@nivo/line");
-
-/***/ }),
-/* 162 */
-/***/ (function(module, exports) {
-
 module.exports = require("react-toggle-button");
 
 /***/ }),
-/* 163 */
+/* 162 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -10096,7 +10090,7 @@ var commercialRental = 'Commercial Rental';
 var commercialSale = 'Commercial Sale';
 
 /***/ }),
-/* 164 */
+/* 163 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -10104,7 +10098,7 @@ var commercialSale = 'Commercial Sale';
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return returnMonthlyDealNumberDataContainer; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return returnNumberDealsDataContainer; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return returnYearlyDollarDealsDataContainer; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_moment__ = __webpack_require__(42);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_moment__ = __webpack_require__(56);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_moment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_moment__);
 
 var returnMonthlyDollarDataContainer = function returnMonthlyDollarDataContainer() {
@@ -10289,7 +10283,7 @@ var returnYearlyDollarDealsDataContainer = function returnYearlyDollarDealsDataC
 };
 
 /***/ }),
-/* 165 */
+/* 164 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -10319,7 +10313,7 @@ var Close_ = __webpack_require__(32);
 var Close__default = /*#__PURE__*/__webpack_require__.n(Close_);
 
 // EXTERNAL MODULE: external "material-ui/Divider"
-var Divider_ = __webpack_require__(21);
+var Divider_ = __webpack_require__(20);
 var Divider__default = /*#__PURE__*/__webpack_require__.n(Divider_);
 
 // EXTERNAL MODULE: external "material-ui/styles"
@@ -10355,13 +10349,13 @@ var external__react_spinners_ = __webpack_require__(27);
 var external__react_spinners__default = /*#__PURE__*/__webpack_require__.n(external__react_spinners_);
 
 // EXTERNAL MODULE: ./components/forms/SubmitDealForm/index.js + 1 modules
-var SubmitDealForm = __webpack_require__(149);
+var SubmitDealForm = __webpack_require__(148);
 
 // EXTERNAL MODULE: ./effects/deals/getDealUploadsSignedURLS.js
-var getDealUploadsSignedURLS = __webpack_require__(150);
+var getDealUploadsSignedURLS = __webpack_require__(149);
 
 // EXTERNAL MODULE: ./effects/uploadFile.js
-var uploadFile = __webpack_require__(151);
+var uploadFile = __webpack_require__(150);
 
 // EXTERNAL MODULE: ./effects/client.js
 var client = __webpack_require__(6);
@@ -10420,7 +10414,7 @@ var userTypes_default = /*#__PURE__*/__webpack_require__.n(userTypes);
 // CONCATENATED MODULE: ./containers/ViewDealForm.js
 var _class;
 
-var _templateObject = /*#__PURE__*/ _taggedTemplateLiteral(["\n  query viewDealForm($uuid: String!) {\n    viewDealForm(uuid: $uuid) {\n      formSelectItems\n      agents {\n        firstName\n        lastName\n        uuid\n      }\n      deal {\n        dealID\n        date\n        agentName\n        agentType\n        leadSource\n        dealType\n        propertyAddress\n        state\n        city\n        apartmentNumber\n        managementOrCobrokeCompany\n        price\n        clientName\n        clientEmail\n        paymentItems {\n          paymentType\n          checkOrTransactionNumber\n          amount\n        }\n        paymentsTotal\n        deductionItems {\n          deductionType\n          description\n          agentID\n          amount\n        }\n        deductionsTotal\n        total\n        agentNotes\n        agencyDisclosureForm\n        contractOrLeaseForms\n        agentPaymentType\n        ACHAccountNumber\n        ACHAccountBankRoutingNumber\n        fundsPaidBy\n        alreadyTurnedFundsIn\n        shouldSendApprovalTextMessageNotification\n        status\n        bonusPercentageAddedByAdmin\n        netAgentCommission\n        netCompanyCommission\n      }\n    }\n  }\n"]);
+var _templateObject = /*#__PURE__*/ _taggedTemplateLiteral(["\n  query viewDealForm($uuid: String!, $userId: String!) {\n    viewDealForm(uuid: $uuid, userId: $userId) {\n      formSelectItems\n      agents {\n        firstName\n        lastName\n        uuid\n      }\n      deal {\n        dealID\n        date\n        agentName\n        agentType\n        leadSource\n        dealType\n        propertyAddress\n        state\n        city\n        apartmentNumber\n        managementOrCobrokeCompany\n        price\n        clientName\n        clientEmail\n        paymentItems {\n          paymentType\n          checkOrTransactionNumber\n          amount\n        }\n        paymentsTotal\n        deductionItems {\n          deductionType\n          description\n          agentID\n          amount\n        }\n        deductionsTotal\n        total\n        agentNotes\n        agencyDisclosureForm\n        contractOrLeaseForms\n        agentPaymentType\n        ACHAccountNumber\n        ACHAccountBankRoutingNumber\n        fundsPaidBy\n        alreadyTurnedFundsIn\n        shouldSendApprovalTextMessageNotification\n        status\n        bonusPercentageAddedByAdmin\n        netAgentCommission\n        netCompanyCommission\n      }\n    }\n  }\n"]);
 
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
@@ -10943,7 +10937,7 @@ function (_Component) {
       var _this2 = this;
 
       var _props = this.props,
-          uuid = _props.userUUID,
+          userUUID = _props.userUUID,
           dealID = _props.dealID,
           isEditingDeal = _props.isEditingDeal,
           isViewType = _props.isViewType,
@@ -10955,7 +10949,8 @@ function (_Component) {
       return external__react__default.a.createElement(external__react_apollo_["Query"], {
         query: viewDealFormQuery,
         variables: {
-          uuid: dealID
+          uuid: dealID,
+          userId: userUUID
         },
         fetchPolicy: "cache-and-network"
       }, function (_ref2) {
@@ -11080,7 +11075,7 @@ var acceptDeal_acceptDeal = function acceptDeal(dealID, bonusPercentageAddedByAd
 
 /* harmony default export */ var deals_acceptDeal = (acceptDeal_acceptDeal);
 // EXTERNAL MODULE: ./effects/deals/deleteDeal.js
-var deleteDeal = __webpack_require__(152);
+var deleteDeal = __webpack_require__(151);
 
 // CONCATENATED MODULE: ./components/ViewDealDialogBox/index.js
 var ViewDealDialogBox__class;
@@ -11432,7 +11427,8 @@ function (_Component) {
           setDealSuccessfullySubmitted = _props.setDealSuccessfullySubmitted,
           viewingDealID = _props.viewingDealID,
           viewingDealStatus = _props.viewingDealStatus,
-          isCoAgent = _props.isCoAgent;
+          isCoAgent = _props.isCoAgent,
+          userUUID = _props.userUUID;
       var _state = this.state,
           isEditingDeal = _state.isEditingDeal,
           cancelAnchorEl = _state.cancelAnchorEl,
@@ -11455,7 +11451,7 @@ function (_Component) {
           root: classes.dialogContent
         }
       }, external__react__default.a.createElement(ViewDealForm, {
-        userUUID: this.props.userUUID,
+        userUUID: userUUID,
         getFormApi: function getFormApi(formApi) {
           return _this2.setState({
             formApi: formApi
@@ -11605,18 +11601,18 @@ function (_Component) {
 /* harmony default export */ var ViewDealDialogBox = __webpack_exports__["a"] = (Object(Dialog_["withMobileDialog"])()(Object(styles_["withStyles"])(styles)(ViewDealDialogBox_SubmitDealDialogBox)));
 
 /***/ }),
+/* 165 */,
 /* 166 */,
 /* 167 */,
 /* 168 */,
 /* 169 */,
-/* 170 */,
-/* 171 */
+/* 170 */
 /***/ (function(module, exports) {
 
 module.exports = require("buildo-react-components/lib/FormattedText");
 
 /***/ }),
-/* 172 */
+/* 171 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -11646,7 +11642,7 @@ var styles_ = __webpack_require__(2);
 var styles__default = /*#__PURE__*/__webpack_require__.n(styles_);
 
 // EXTERNAL MODULE: external "material-ui/Grid"
-var Grid_ = __webpack_require__(20);
+var Grid_ = __webpack_require__(21);
 var Grid__default = /*#__PURE__*/__webpack_require__.n(Grid_);
 
 // EXTERNAL MODULE: external "react-sizes"
@@ -11654,7 +11650,7 @@ var external__react_sizes_ = __webpack_require__(70);
 var external__react_sizes__default = /*#__PURE__*/__webpack_require__.n(external__react_sizes_);
 
 // EXTERNAL MODULE: ../node_modules/react-circular-progressbar/dist/styles.css
-var styles = __webpack_require__(118);
+var styles = __webpack_require__(116);
 var styles_default = /*#__PURE__*/__webpack_require__.n(styles);
 
 // CONCATENATED MODULE: ./components/forms/EditAgentPasswordForm/formValidation.js
@@ -11850,6 +11846,7 @@ function (_Component) {
 /* harmony default export */ var EditAgentPasswordForm = __webpack_exports__["a"] = (Object(styles_["withStyles"])(EditAgentPasswordForm_styles)(EditAgentPasswordForm_CreateAgentForm));
 
 /***/ }),
+/* 172 */,
 /* 173 */,
 /* 174 */,
 /* 175 */,
@@ -11879,11 +11876,11 @@ var external__react_spinners_ = __webpack_require__(27);
 var external__react_spinners__default = /*#__PURE__*/__webpack_require__.n(external__react_spinners_);
 
 // EXTERNAL MODULE: external "moment"
-var external__moment_ = __webpack_require__(42);
+var external__moment_ = __webpack_require__(56);
 var external__moment__default = /*#__PURE__*/__webpack_require__.n(external__moment_);
 
 // EXTERNAL MODULE: external "papaparse"
-var external__papaparse_ = __webpack_require__(134);
+var external__papaparse_ = __webpack_require__(131);
 var external__papaparse__default = /*#__PURE__*/__webpack_require__.n(external__papaparse_);
 
 // EXTERNAL MODULE: external "react-sizes"
@@ -11891,7 +11888,7 @@ var external__react_sizes_ = __webpack_require__(70);
 var external__react_sizes__default = /*#__PURE__*/__webpack_require__.n(external__react_sizes_);
 
 // EXTERNAL MODULE: external "is-browser"
-var external__is_browser_ = __webpack_require__(8);
+var external__is_browser_ = __webpack_require__(9);
 var external__is_browser__default = /*#__PURE__*/__webpack_require__.n(external__is_browser_);
 
 // EXTERNAL MODULE: external "material-ui/Tooltip"
@@ -11919,10 +11916,10 @@ var Equalizer_ = __webpack_require__(130);
 var Equalizer__default = /*#__PURE__*/__webpack_require__.n(Equalizer_);
 
 // EXTERNAL MODULE: ./utils/backEndTableUtils/SelectFilterCell.js
-var SelectFilterCell = __webpack_require__(135);
+var SelectFilterCell = __webpack_require__(132);
 
 // EXTERNAL MODULE: ./utils/backEndTableUtils/tableSortingUtils.js
-var tableSortingUtils = __webpack_require__(136);
+var tableSortingUtils = __webpack_require__(133);
 
 // EXTERNAL MODULE: ./utils/backEndTableUtils/DefaultVirtualTableCell.js
 var DefaultVirtualTableCell = __webpack_require__(108);
@@ -12432,13 +12429,13 @@ function (_Component) {
 }, _temp)) || _class) || _class);
 /* harmony default export */ var AdminAreaDealsTable = (AdminAreaDealsTable_DealsTable);
 // EXTERNAL MODULE: ./utils/debounce.js
-var debounce = __webpack_require__(122);
+var debounce = __webpack_require__(121);
 
 // EXTERNAL MODULE: ./utils/stringUtils.js
 var stringUtils = __webpack_require__(19);
 
 // EXTERNAL MODULE: ./utils/Math.js
-var utils_Math = __webpack_require__(71);
+var utils_Math = __webpack_require__(72);
 
 // CONCATENATED MODULE: ./containers/AdminAreaDealsTableContainer.js
 var AdminAreaDealsTableContainer__class;
@@ -12775,11 +12772,11 @@ var external__react_spinners_ = __webpack_require__(27);
 var external__react_spinners__default = /*#__PURE__*/__webpack_require__.n(external__react_spinners_);
 
 // EXTERNAL MODULE: external "moment"
-var external__moment_ = __webpack_require__(42);
+var external__moment_ = __webpack_require__(56);
 var external__moment__default = /*#__PURE__*/__webpack_require__.n(external__moment_);
 
 // EXTERNAL MODULE: external "papaparse"
-var external__papaparse_ = __webpack_require__(134);
+var external__papaparse_ = __webpack_require__(131);
 var external__papaparse__default = /*#__PURE__*/__webpack_require__.n(external__papaparse_);
 
 // EXTERNAL MODULE: external "react-sizes"
@@ -12787,7 +12784,7 @@ var external__react_sizes_ = __webpack_require__(70);
 var external__react_sizes__default = /*#__PURE__*/__webpack_require__.n(external__react_sizes_);
 
 // EXTERNAL MODULE: external "is-browser"
-var external__is_browser_ = __webpack_require__(8);
+var external__is_browser_ = __webpack_require__(9);
 var external__is_browser__default = /*#__PURE__*/__webpack_require__.n(external__is_browser_);
 
 // EXTERNAL MODULE: external "material-ui/Tooltip"
@@ -12811,10 +12808,10 @@ var Equalizer_ = __webpack_require__(130);
 var Equalizer__default = /*#__PURE__*/__webpack_require__.n(Equalizer_);
 
 // EXTERNAL MODULE: ./utils/backEndTableUtils/SelectFilterCell.js
-var SelectFilterCell = __webpack_require__(135);
+var SelectFilterCell = __webpack_require__(132);
 
 // EXTERNAL MODULE: ./utils/backEndTableUtils/tableSortingUtils.js
-var tableSortingUtils = __webpack_require__(136);
+var tableSortingUtils = __webpack_require__(133);
 
 // EXTERNAL MODULE: ./utils/backEndTableUtils/DefaultVirtualTableCell.js
 var DefaultVirtualTableCell = __webpack_require__(108);
@@ -13194,10 +13191,10 @@ function (_Component) {
 var stringUtils = __webpack_require__(19);
 
 // EXTERNAL MODULE: ./utils/debounce.js
-var debounce = __webpack_require__(122);
+var debounce = __webpack_require__(121);
 
 // EXTERNAL MODULE: ./utils/Math.js
-var utils_Math = __webpack_require__(71);
+var utils_Math = __webpack_require__(72);
 
 // CONCATENATED MODULE: ./containers/DealsTable.js
 var DealsTable__class;
@@ -13487,7 +13484,7 @@ var Dialog_ = __webpack_require__(58);
 var Dialog__default = /*#__PURE__*/__webpack_require__.n(Dialog_);
 
 // EXTERNAL MODULE: external "material-ui/Divider"
-var Divider_ = __webpack_require__(21);
+var Divider_ = __webpack_require__(20);
 var Divider__default = /*#__PURE__*/__webpack_require__.n(Divider_);
 
 // EXTERNAL MODULE: external "material-ui/styles"
@@ -13499,27 +13496,27 @@ var Button_ = __webpack_require__(41);
 var Button__default = /*#__PURE__*/__webpack_require__.n(Button_);
 
 // EXTERNAL MODULE: external "moment"
-var external__moment_ = __webpack_require__(42);
+var external__moment_ = __webpack_require__(56);
 var external__moment__default = /*#__PURE__*/__webpack_require__.n(external__moment_);
 
 // EXTERNAL MODULE: external "set-value"
-var external__set_value_ = __webpack_require__(158);
+var external__set_value_ = __webpack_require__(157);
 var external__set_value__default = /*#__PURE__*/__webpack_require__.n(external__set_value_);
 
 // EXTERNAL MODULE: external "material-ui/Grid"
-var Grid_ = __webpack_require__(20);
+var Grid_ = __webpack_require__(21);
 var Grid__default = /*#__PURE__*/__webpack_require__.n(Grid_);
 
 // EXTERNAL MODULE: external "@nivo/pie"
-var pie_ = __webpack_require__(159);
+var pie_ = __webpack_require__(158);
 var pie__default = /*#__PURE__*/__webpack_require__.n(pie_);
 
 // EXTERNAL MODULE: external "@nivo/bar"
-var bar_ = __webpack_require__(160);
+var bar_ = __webpack_require__(159);
 var bar__default = /*#__PURE__*/__webpack_require__.n(bar_);
 
 // EXTERNAL MODULE: external "@nivo/line"
-var line_ = __webpack_require__(161);
+var line_ = __webpack_require__(160);
 var line__default = /*#__PURE__*/__webpack_require__.n(line_);
 
 // EXTERNAL MODULE: external "react-sizes"
@@ -13531,22 +13528,22 @@ var external__chance_ = __webpack_require__(78);
 var external__chance__default = /*#__PURE__*/__webpack_require__.n(external__chance_);
 
 // EXTERNAL MODULE: external "react-toggle-button"
-var external__react_toggle_button_ = __webpack_require__(162);
+var external__react_toggle_button_ = __webpack_require__(161);
 var external__react_toggle_button__default = /*#__PURE__*/__webpack_require__.n(external__react_toggle_button_);
 
 // EXTERNAL MODULE: external "@material-ui/icons/AttachMoney"
-var AttachMoney_ = __webpack_require__(131);
+var AttachMoney_ = __webpack_require__(134);
 var AttachMoney__default = /*#__PURE__*/__webpack_require__.n(AttachMoney_);
 
 // EXTERNAL MODULE: external "@material-ui/icons/Help"
-var Help_ = __webpack_require__(132);
+var Help_ = __webpack_require__(135);
 var Help__default = /*#__PURE__*/__webpack_require__.n(Help_);
 
 // EXTERNAL MODULE: ./utils/Math.js
-var utils_Math = __webpack_require__(71);
+var utils_Math = __webpack_require__(72);
 
 // EXTERNAL MODULE: ./components/StatNumberBox/index.js
-var StatNumberBox = __webpack_require__(133);
+var StatNumberBox = __webpack_require__(136);
 
 // CONCATENATED MODULE: ./components/DealsSummary/index.js
 var _dec, _class;
@@ -14493,13 +14490,13 @@ function (_Component) {
 }(external__react_["Component"])) || _class) || _class);
 /* harmony default export */ var DealsSummary = (Object(styles_["withStyles"])(styles)(DealsSummary_AgentDashboard));
 // EXTERNAL MODULE: ./constants/dealTypes.js
-var dealTypes = __webpack_require__(163);
+var dealTypes = __webpack_require__(162);
 
 // EXTERNAL MODULE: ./constants/graphDataModels.js
-var graphDataModels = __webpack_require__(164);
+var graphDataModels = __webpack_require__(163);
 
 // EXTERNAL MODULE: ./utils/currency.js
-var currency = __webpack_require__(138);
+var currency = __webpack_require__(137);
 
 // CONCATENATED MODULE: ./containers/DealsSummary.js
 var DealsSummary__class;
@@ -15087,7 +15084,7 @@ var external__mobx_react_ = __webpack_require__(1);
 var external__mobx_react__default = /*#__PURE__*/__webpack_require__.n(external__mobx_react_);
 
 // EXTERNAL MODULE: external "is-browser"
-var external__is_browser_ = __webpack_require__(8);
+var external__is_browser_ = __webpack_require__(9);
 var external__is_browser__default = /*#__PURE__*/__webpack_require__.n(external__is_browser_);
 
 // EXTERNAL MODULE: external "graphql-tag"
@@ -15109,14 +15106,14 @@ var Layout = __webpack_require__(81);
 var models = __webpack_require__(25);
 
 // EXTERNAL MODULE: ./lib/withData.js + 1 modules
-var withData = __webpack_require__(51);
+var withData = __webpack_require__(50);
 
 // EXTERNAL MODULE: ./routes.js
 var routes = __webpack_require__(4);
 var routes_default = /*#__PURE__*/__webpack_require__.n(routes);
 
 // EXTERNAL MODULE: external "faker"
-var external__faker_ = __webpack_require__(123);
+var external__faker_ = __webpack_require__(122);
 var external__faker__default = /*#__PURE__*/__webpack_require__.n(external__faker_);
 
 // EXTERNAL MODULE: external "material-ui/styles"
@@ -15144,31 +15141,19 @@ var external__classnames_ = __webpack_require__(5);
 var external__classnames__default = /*#__PURE__*/__webpack_require__.n(external__classnames_);
 
 // EXTERNAL MODULE: external "material-ui/Grid"
-var Grid_ = __webpack_require__(20);
+var Grid_ = __webpack_require__(21);
 var Grid__default = /*#__PURE__*/__webpack_require__.n(Grid_);
-
-// EXTERNAL MODULE: external "@material-ui/icons/AttachMoney"
-var AttachMoney_ = __webpack_require__(131);
-var AttachMoney__default = /*#__PURE__*/__webpack_require__.n(AttachMoney_);
-
-// EXTERNAL MODULE: external "@material-ui/icons/Help"
-var Help_ = __webpack_require__(132);
-var Help__default = /*#__PURE__*/__webpack_require__.n(Help_);
-
-// EXTERNAL MODULE: external "@material-ui/icons/Star"
-var Star_ = __webpack_require__(157);
-var Star__default = /*#__PURE__*/__webpack_require__.n(Star_);
 
 // EXTERNAL MODULE: external "@material-ui/icons/ExpandMore"
 var ExpandMore_ = __webpack_require__(124);
 var ExpandMore__default = /*#__PURE__*/__webpack_require__.n(ExpandMore_);
 
 // EXTERNAL MODULE: external "buildo-react-components/lib/FormattedText"
-var FormattedText_ = __webpack_require__(171);
+var FormattedText_ = __webpack_require__(170);
 var FormattedText__default = /*#__PURE__*/__webpack_require__.n(FormattedText_);
 
 // EXTERNAL MODULE: external "moment"
-var external__moment_ = __webpack_require__(42);
+var external__moment_ = __webpack_require__(56);
 var external__moment__default = /*#__PURE__*/__webpack_require__.n(external__moment_);
 
 // EXTERNAL MODULE: external "material-ui/Menu"
@@ -15180,39 +15165,30 @@ var MenuItem_ = __webpack_require__(113);
 var MenuItem__default = /*#__PURE__*/__webpack_require__.n(MenuItem_);
 
 // EXTERNAL MODULE: external "material-ui/ExpansionPanel"
-var ExpansionPanel_ = __webpack_require__(117);
+var ExpansionPanel_ = __webpack_require__(123);
 var ExpansionPanel__default = /*#__PURE__*/__webpack_require__.n(ExpansionPanel_);
 
 // EXTERNAL MODULE: external "material-ui/Typography"
 var Typography_ = __webpack_require__(28);
 var Typography__default = /*#__PURE__*/__webpack_require__.n(Typography_);
 
-// EXTERNAL MODULE: ./utils/Math.js
-var utils_Math = __webpack_require__(71);
-
-// EXTERNAL MODULE: ./components/StatNumberBox/index.js
-var StatNumberBox = __webpack_require__(133);
+// EXTERNAL MODULE: external "react-icons/lib/fa"
+var fa_ = __webpack_require__(60);
+var fa__default = /*#__PURE__*/__webpack_require__.n(fa_);
 
 // EXTERNAL MODULE: ./constants/userTypes.js
 var userTypes = __webpack_require__(10);
 var userTypes_default = /*#__PURE__*/__webpack_require__.n(userTypes);
 
-// EXTERNAL MODULE: external "react-icons/lib/fa"
-var fa_ = __webpack_require__(60);
-var fa__default = /*#__PURE__*/__webpack_require__.n(fa_);
-
 // EXTERNAL MODULE: ./utils/stringUtils.js
 var stringUtils = __webpack_require__(19);
-
-// EXTERNAL MODULE: ./components/CustomInputMask/index.js
-var CustomInputMask = __webpack_require__(126);
 
 // EXTERNAL MODULE: external "material-ui/Tooltip"
 var Tooltip_ = __webpack_require__(12);
 var Tooltip__default = /*#__PURE__*/__webpack_require__.n(Tooltip_);
 
 // EXTERNAL MODULE: external "@material-ui/icons/Add"
-var Add_ = __webpack_require__(56);
+var Add_ = __webpack_require__(55);
 var Add__default = /*#__PURE__*/__webpack_require__.n(Add_);
 
 // EXTERNAL MODULE: external "@material-ui/icons/Equalizer"
@@ -15229,7 +15205,7 @@ var AdminAreaDealsTableContainer = __webpack_require__(180);
 var DealsSummarDialogBox = __webpack_require__(183);
 
 // EXTERNAL MODULE: ./components/ViewDealDialogBox/index.js + 3 modules
-var ViewDealDialogBox = __webpack_require__(165);
+var ViewDealDialogBox = __webpack_require__(164);
 
 // CONCATENATED MODULE: ./containers/DealsWithGQLQuery.js
 var _class;
@@ -15547,7 +15523,8 @@ function (_Component) {
           userRole: _this2.props.userRole,
           deleteDeal: _this2.deleteDeal,
           dealAccepted: _this2.dealAccepted,
-          dealDeleted: _this2.dealDeleted
+          dealDeleted: _this2.dealDeleted,
+          userUUID: userUUID
         }) : external__react__default.a.createElement(ViewDealDialogBox["a" /* default */], {
           dealsViewDialogBoxOpen: dealsViewDialogBoxOpen,
           closeDealsViewDialogBox: closeDealsViewDialogBox,
@@ -15654,15 +15631,7 @@ function Profile__defineProperty(obj, key, value) { if (key in obj) { Object.def
 
 
 
-
-
-
-
-
-
 var Profile_Loader = external__react_spinners_["BounceLoader"];
-var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-8;
 
 var Profile_styles = function styles(theme) {
   var _profilePicSubstitute, _detailsInfoInput;
@@ -16177,21 +16146,13 @@ function (_Component) {
       var _props = this.props,
           agent = _props.agent,
           classes = _props.classes,
-          enterEditingMode = _props.enterEditingMode,
-          cancelEditingMode = _props.cancelEditingMode,
           isEditing = _props.isEditing,
-          setDescription = _props.setDescription,
-          setMobileNumber = _props.setMobileNumber,
-          saveUser = _props.saveUser,
           undoSave = _props.undoSave,
-          openProfilePicEditor = _props.openProfilePicEditor,
           uuid = _props.uuid,
           currentUserRole = _props.currentUserRole,
           currentUserUUID = _props.currentUserUUID,
           openEditAgentDialogBox = _props.openEditAgentDialogBox,
-          openEditAgentPasswordDialogBox = _props.openEditAgentPasswordDialogBox,
-          isLoadingProfilePicture = _props.isLoadingProfilePicture,
-          toggleIsLoadingProfilePicture = _props.toggleIsLoadingProfilePicture;
+          openEditAgentPasswordDialogBox = _props.openEditAgentPasswordDialogBox;
       var firstName = agent.firstName,
           lastName = agent.lastName,
           email = agent.email,
@@ -16201,7 +16162,6 @@ function (_Component) {
           mobileNumber = _agent$agent.mobileNumber,
           officeNumber = _agent$agent.officeNumber,
           branch = _agent$agent.branch,
-          profilePicURL = _agent$agent.profilePicURL,
           title = _agent$agent.title,
           facebook = _agent$agent.facebook,
           twitter = _agent$agent.twitter,
@@ -16210,8 +16170,6 @@ function (_Component) {
       var name = Object(stringUtils["a" /* capitalize */])("".concat(firstName, " ").concat(lastName));
       var canEdit = currentUserUUID === uuid || currentUserRole === userTypes["admin"] || currentUserRole === userTypes["superAdmin"];
       var isAdmin = currentUserRole === userTypes["admin"] || currentUserRole === userTypes["superAdmin"];
-      var editingOwnProfile = currentUserUUID === uuid;
-      var currentDate = external__moment__default()();
       return external__react__default.a.createElement("div", null, external__react__default.a.createElement("div", {
         className: classes.profileInfoWrapper
       }, canEdit && external__react__default.a.createElement("span", {
@@ -16307,7 +16265,7 @@ function (_Component) {
         className: classes.descriptionWrapper
       }, external__react__default.a.createElement("div", {
         className: classes.descriptionTitle
-      }, "About ", name.split(' ')[0]), external__react__default.a.createElement(FormattedText__default.a, {
+      }, "About", ' ', name.split(' ')[0]), external__react__default.a.createElement(FormattedText__default.a, {
         className: classes.descriptionDetails
       }, profileDescription || 'No description available yet...')))), external__react__default.a.createElement(Snackbar__default.a, {
         classes: {
@@ -16379,7 +16337,7 @@ var Dialog_ = __webpack_require__(58);
 var Dialog__default = /*#__PURE__*/__webpack_require__.n(Dialog_);
 
 // EXTERNAL MODULE: external "material-ui/Divider"
-var Divider_ = __webpack_require__(21);
+var Divider_ = __webpack_require__(20);
 var Divider__default = /*#__PURE__*/__webpack_require__.n(Divider_);
 
 // EXTERNAL MODULE: external "axios"
@@ -16403,7 +16361,7 @@ var v4_ = __webpack_require__(74);
 var v4__default = /*#__PURE__*/__webpack_require__.n(v4_);
 
 // EXTERNAL MODULE: external "react-avatar-editor"
-var external__react_avatar_editor_ = __webpack_require__(147);
+var external__react_avatar_editor_ = __webpack_require__(146);
 var external__react_avatar_editor__default = /*#__PURE__*/__webpack_require__.n(external__react_avatar_editor_);
 
 // EXTERNAL MODULE: external "react-sizes"
@@ -16415,11 +16373,11 @@ var external__react_circular_progressbar_ = __webpack_require__(129);
 var external__react_circular_progressbar__default = /*#__PURE__*/__webpack_require__.n(external__react_circular_progressbar_);
 
 // EXTERNAL MODULE: ../node_modules/react-circular-progressbar/dist/styles.css
-var dist_styles = __webpack_require__(118);
+var dist_styles = __webpack_require__(116);
 var styles_default = /*#__PURE__*/__webpack_require__.n(dist_styles);
 
 // EXTERNAL MODULE: ./components/CustomSlider/index.js
-var CustomSlider = __webpack_require__(148);
+var CustomSlider = __webpack_require__(147);
 
 // EXTERNAL MODULE: external "email-validator"
 var external__email_validator_ = __webpack_require__(103);
@@ -16434,19 +16392,19 @@ var validator = function validator(values) {
 
 /* harmony default export */ var formValidation = (validator);
 // EXTERNAL MODULE: ./components/CustomFileUploadInputWrapper/index.js
-var CustomFileUploadInputWrapper = __webpack_require__(119);
+var CustomFileUploadInputWrapper = __webpack_require__(117);
 
 // EXTERNAL MODULE: ./components/MaterialCustomTextFieldWrapper/index.js
 var MaterialCustomTextFieldWrapper = __webpack_require__(106);
 
 // EXTERNAL MODULE: ./components/MaterialCustomRadioInputWrapper/index.js
-var MaterialCustomRadioInputWrapper = __webpack_require__(120);
+var MaterialCustomRadioInputWrapper = __webpack_require__(118);
 
 // EXTERNAL MODULE: ./components/MaterialCustomSelectInputWrapper/index.js
 var MaterialCustomSelectInputWrapper = __webpack_require__(114);
 
 // EXTERNAL MODULE: ./utils/constants.js
-var constants = __webpack_require__(127);
+var constants = __webpack_require__(126);
 
 // CONCATENATED MODULE: ./components/forms/EditProfilePicForm/index.js
 
@@ -16844,6 +16802,9 @@ function (_Component) {
   return EditProfilePicForm;
 }(external__react_["Component"])) || EditProfilePicForm__class);
 /* harmony default export */ var forms_EditProfilePicForm = (Object(styles_["withStyles"])(EditProfilePicForm_styles)(EditProfilePicForm_EditProfilePicForm));
+// EXTERNAL MODULE: ./utils/Math.js
+var utils_Math = __webpack_require__(72);
+
 // EXTERNAL MODULE: ./effects/client.js
 var client = __webpack_require__(6);
 
@@ -17218,7 +17179,7 @@ function (_Component) {
 
 /* harmony default export */ var containers_EditProfilePicForm = (EditProfilePicForm_EditProfilePicFormContainer);
 // EXTERNAL MODULE: ./AppGlobalStateProvider/index.js
-var AppGlobalStateProvider = __webpack_require__(72);
+var AppGlobalStateProvider = __webpack_require__(71);
 
 // CONCATENATED MODULE: ./components/EditProfilePicDialogBox/index.js
 var EditProfilePicDialogBox__class;
@@ -18223,7 +18184,7 @@ function (_Component) {
 
 /* harmony default export */ var components_EditAgentDialogBox = (Object(Dialog_["withMobileDialog"])()(Object(styles_["withStyles"])(EditAgentDialogBox_styles)(EditAgentDialogBox_EditAgentDialogBox)));
 // EXTERNAL MODULE: ./components/forms/EditAgentPasswordForm/index.js + 1 modules
-var EditAgentPasswordForm = __webpack_require__(172);
+var EditAgentPasswordForm = __webpack_require__(171);
 
 // CONCATENATED MODULE: ./effects/users/editAgentPassword.js
 

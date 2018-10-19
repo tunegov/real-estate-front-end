@@ -98,7 +98,7 @@ module.exports = require("@babel/runtime/regenerator");
 /* 4 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var routes = __webpack_require__(47)();
+var routes = __webpack_require__(46)();
 
 routes.add('home', '/', '/').add('dashboard', '/app/dashbaord', 'app/dashboard').add('profile', '/app/profile', 'app/profile').add('deals', '/app/deals', 'app/deals').add('invoices', '/app/invoices', 'app/invoices').add('agents', '/app/agents', 'app/agents').add('create-listing', '/app/listing/new', '/app/listing/new').add('admin-dashboard', '/app/admin-area/dashboard', 'app/admin-area/dashboard').add('create-agent', '/app/admin-area/agents/create', 'app/admin-area/agents/create').add('view-agents', '/app/admin-area/agents/view', 'app/admin-area/agents/view').add('create-user', '/app/admin-area/customers/create', 'app/admin-area/customers/create').add('view-customers', '/app/admin-area/customers/view', 'app/admin-area/customers/view').add('create-admin', '/app/admin-area/admin/create', 'app/admin-area/admin/create').add('view-admin', '/app/admin-area/admin/view', 'app/admin-area/admin/view').add('view-deals', '/app/admin-area/deals/view', 'app/admin-area/deals/view')
 /*
@@ -123,7 +123,7 @@ module.exports = require("classnames");
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return graphQlClient; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_graphql_request__ = __webpack_require__(49);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_graphql_request__ = __webpack_require__(48);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_graphql_request___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_graphql_request__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_next_config__ = __webpack_require__(17);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_next_config___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_next_config__);
@@ -147,13 +147,13 @@ module.exports = require("styled-components");
 /* 8 */
 /***/ (function(module, exports) {
 
-module.exports = require("is-browser");
+module.exports = require("polished");
 
 /***/ }),
 /* 9 */
 /***/ (function(module, exports) {
 
-module.exports = require("polished");
+module.exports = require("is-browser");
 
 /***/ }),
 /* 10 */
@@ -587,13 +587,13 @@ function abbreviate(str) {
 }
 
 /***/ }),
-/* 20 */
+/* 20 */,
+/* 21 */
 /***/ (function(module, exports) {
 
 module.exports = require("material-ui/Grid");
 
 /***/ }),
-/* 21 */,
 /* 22 */
 /***/ (function(module, exports) {
 
@@ -648,7 +648,7 @@ var regenerator_ = __webpack_require__(3);
 var regenerator__default = /*#__PURE__*/__webpack_require__.n(regenerator_);
 
 // EXTERNAL MODULE: external "is-browser"
-var external__is_browser_ = __webpack_require__(8);
+var external__is_browser_ = __webpack_require__(9);
 var external__is_browser__default = /*#__PURE__*/__webpack_require__.n(external__is_browser_);
 
 // EXTERNAL MODULE: ./effects/client.js
@@ -864,7 +864,7 @@ var UserEffects = external__mobx_state_tree_["types"].model({}).actions(function
 });
 /* harmony default export */ var userEffects = (UserEffects);
 // EXTERNAL MODULE: external "urlsafe-base64"
-var external__urlsafe_base64_ = __webpack_require__(50);
+var external__urlsafe_base64_ = __webpack_require__(49);
 var external__urlsafe_base64__default = /*#__PURE__*/__webpack_require__.n(external__urlsafe_base64_);
 
 // CONCATENATED MODULE: ./utils/jwtUtils.js
@@ -1056,7 +1056,7 @@ function initStore(isServer) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_polished__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_polished__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_polished___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_polished__);
 
 var primaryColor = '#272A2E';
@@ -1113,7 +1113,7 @@ module.exports = require("debounce");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_material_ui_colors_red___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_material_ui_colors_red__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_material_ui_colors_blue__ = __webpack_require__(22);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_material_ui_colors_blue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_material_ui_colors_blue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_polished__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_polished__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_polished___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_polished__);
 /* eslint-disable no-underscore-dangle */
 
@@ -1214,20 +1214,19 @@ module.exports = require("material-ui/colors/red");
 
 /***/ }),
 /* 41 */,
-/* 42 */,
-/* 43 */
+/* 42 */
 /***/ (function(module, exports) {
 
 module.exports = require("nprogress");
 
 /***/ }),
-/* 44 */
+/* 43 */
 /***/ (function(module, exports) {
 
 
 
 /***/ }),
-/* 45 */
+/* 44 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1237,7 +1236,7 @@ module.exports = require("nprogress");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_prop_types___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_prop_types__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_material_ui_styles__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_material_ui_styles___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_material_ui_styles__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_material_ui_CssBaseline__ = __webpack_require__(46);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_material_ui_CssBaseline__ = __webpack_require__(45);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_material_ui_CssBaseline___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_material_ui_CssBaseline__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__getPageContext__ = __webpack_require__(37);
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -1320,19 +1319,19 @@ function withRoot(Component) {
 /* harmony default export */ __webpack_exports__["a"] = (withRoot);
 
 /***/ }),
-/* 46 */
+/* 45 */
 /***/ (function(module, exports) {
 
 module.exports = require("material-ui/CssBaseline");
 
 /***/ }),
-/* 47 */
+/* 46 */
 /***/ (function(module, exports) {
 
 module.exports = require("next-routes");
 
 /***/ }),
-/* 48 */
+/* 47 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1340,19 +1339,19 @@ var globalStyles = "\n  html {\n    height: 100%;\n  }\n  body {\n    position: 
 /* harmony default export */ __webpack_exports__["a"] = (globalStyles);
 
 /***/ }),
-/* 49 */
+/* 48 */
 /***/ (function(module, exports) {
 
 module.exports = require("graphql-request");
 
 /***/ }),
-/* 50 */
+/* 49 */
 /***/ (function(module, exports) {
 
 module.exports = require("urlsafe-base64");
 
 /***/ }),
-/* 51 */
+/* 50 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1378,19 +1377,19 @@ var head_ = __webpack_require__(15);
 var head__default = /*#__PURE__*/__webpack_require__.n(head_);
 
 // EXTERNAL MODULE: external "apollo-client"
-var external__apollo_client_ = __webpack_require__(52);
+var external__apollo_client_ = __webpack_require__(51);
 var external__apollo_client__default = /*#__PURE__*/__webpack_require__.n(external__apollo_client_);
 
 // EXTERNAL MODULE: external "apollo-link-http"
-var external__apollo_link_http_ = __webpack_require__(53);
+var external__apollo_link_http_ = __webpack_require__(52);
 var external__apollo_link_http__default = /*#__PURE__*/__webpack_require__.n(external__apollo_link_http_);
 
 // EXTERNAL MODULE: external "apollo-cache-inmemory"
-var external__apollo_cache_inmemory_ = __webpack_require__(54);
+var external__apollo_cache_inmemory_ = __webpack_require__(53);
 var external__apollo_cache_inmemory__default = /*#__PURE__*/__webpack_require__.n(external__apollo_cache_inmemory_);
 
 // EXTERNAL MODULE: external "isomorphic-unfetch"
-var external__isomorphic_unfetch_ = __webpack_require__(55);
+var external__isomorphic_unfetch_ = __webpack_require__(54);
 var external__isomorphic_unfetch__default = /*#__PURE__*/__webpack_require__.n(external__isomorphic_unfetch_);
 
 // EXTERNAL MODULE: external "next/config"
@@ -1599,30 +1598,31 @@ function getComponentDisplayName(Component) {
 });
 
 /***/ }),
-/* 52 */
+/* 51 */
 /***/ (function(module, exports) {
 
 module.exports = require("apollo-client");
 
 /***/ }),
-/* 53 */
+/* 52 */
 /***/ (function(module, exports) {
 
 module.exports = require("apollo-link-http");
 
 /***/ }),
-/* 54 */
+/* 53 */
 /***/ (function(module, exports) {
 
 module.exports = require("apollo-cache-inmemory");
 
 /***/ }),
-/* 55 */
+/* 54 */
 /***/ (function(module, exports) {
 
 module.exports = require("isomorphic-unfetch");
 
 /***/ }),
+/* 55 */,
 /* 56 */,
 /* 57 */,
 /* 58 */,
@@ -1761,7 +1761,7 @@ var head_ = __webpack_require__(15);
 var head__default = /*#__PURE__*/__webpack_require__.n(head_);
 
 // EXTERNAL MODULE: external "nprogress"
-var external__nprogress_ = __webpack_require__(43);
+var external__nprogress_ = __webpack_require__(42);
 var external__nprogress__default = /*#__PURE__*/__webpack_require__.n(external__nprogress_);
 
 // EXTERNAL MODULE: external "next/router"
@@ -1769,7 +1769,7 @@ var router_ = __webpack_require__(13);
 var router__default = /*#__PURE__*/__webpack_require__.n(router_);
 
 // EXTERNAL MODULE: external "is-browser"
-var external__is_browser_ = __webpack_require__(8);
+var external__is_browser_ = __webpack_require__(9);
 var external__is_browser__default = /*#__PURE__*/__webpack_require__.n(external__is_browser_);
 
 // EXTERNAL MODULE: external "styled-components"
@@ -1777,11 +1777,11 @@ var external__styled_components_ = __webpack_require__(7);
 var external__styled_components__default = /*#__PURE__*/__webpack_require__.n(external__styled_components_);
 
 // EXTERNAL MODULE: ../node_modules/antd/dist/antd.css
-var antd = __webpack_require__(44);
+var antd = __webpack_require__(43);
 var antd_default = /*#__PURE__*/__webpack_require__.n(antd);
 
 // EXTERNAL MODULE: ./lib/withRoot.js
-var withRoot = __webpack_require__(45);
+var withRoot = __webpack_require__(44);
 
 // EXTERNAL MODULE: external "@babel/runtime/regenerator"
 var regenerator_ = __webpack_require__(3);
@@ -1800,7 +1800,7 @@ var styles_ = __webpack_require__(2);
 var styles__default = /*#__PURE__*/__webpack_require__.n(styles_);
 
 // EXTERNAL MODULE: external "polished"
-var external__polished_ = __webpack_require__(9);
+var external__polished_ = __webpack_require__(8);
 var external__polished__default = /*#__PURE__*/__webpack_require__.n(external__polished_);
 
 // EXTERNAL MODULE: ./themeStyles/index.js
@@ -2162,7 +2162,7 @@ function (_React$Component) {
   componentId: "s1jy6wuu-0"
 })(["padding-top:60px;min-width:100%;height:100%;background-color:#fafafa;"]));
 // EXTERNAL MODULE: ./globalStyles/index.js
-var globalStyles = __webpack_require__(48);
+var globalStyles = __webpack_require__(47);
 
 // CONCATENATED MODULE: ./frontEndComponents/FrontEndLayout/styledComponents/index.js
 
@@ -2221,7 +2221,7 @@ var form_ = __webpack_require__(77);
 var form__default = /*#__PURE__*/__webpack_require__.n(form_);
 
 // EXTERNAL MODULE: external "material-ui/Grid"
-var Grid_ = __webpack_require__(20);
+var Grid_ = __webpack_require__(21);
 var Grid__default = /*#__PURE__*/__webpack_require__.n(Grid_);
 
 // EXTERNAL MODULE: external "classnames"
@@ -3085,26 +3085,25 @@ function (_Component) {
 /* 141 */,
 /* 142 */,
 /* 143 */,
-/* 144 */,
-/* 145 */
+/* 144 */
 /***/ (function(module, exports) {
 
 module.exports = require("@material-ui/icons/FavoriteBorder");
 
 /***/ }),
-/* 146 */
+/* 145 */
 /***/ (function(module, exports) {
 
 module.exports = require("@material-ui/icons/Favorite");
 
 /***/ }),
+/* 146 */,
 /* 147 */,
 /* 148 */,
 /* 149 */,
 /* 150 */,
 /* 151 */,
-/* 152 */,
-/* 153 */
+/* 152 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3114,9 +3113,9 @@ module.exports = require("@material-ui/icons/Favorite");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_mobx_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_mobx_react__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_material_ui_styles__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_material_ui_styles___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_material_ui_styles__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__material_ui_icons_FavoriteBorder__ = __webpack_require__(145);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__material_ui_icons_FavoriteBorder__ = __webpack_require__(144);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__material_ui_icons_FavoriteBorder___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__material_ui_icons_FavoriteBorder__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__material_ui_icons_Favorite__ = __webpack_require__(146);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__material_ui_icons_Favorite__ = __webpack_require__(145);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__material_ui_icons_Favorite___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__material_ui_icons_Favorite__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_classnames__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_classnames___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_classnames__);
@@ -3340,6 +3339,7 @@ function (_Component) {
 /* harmony default export */ __webpack_exports__["a"] = (ListingCard);
 
 /***/ }),
+/* 153 */,
 /* 154 */,
 /* 155 */,
 /* 156 */,
@@ -3352,13 +3352,13 @@ function (_Component) {
 /* 163 */,
 /* 164 */,
 /* 165 */,
-/* 166 */,
-/* 167 */
+/* 166 */
 /***/ (function(module, exports) {
 
 module.exports = require("react-google-maps");
 
 /***/ }),
+/* 167 */,
 /* 168 */,
 /* 169 */,
 /* 170 */,
@@ -3389,7 +3389,7 @@ module.exports = require("react-google-maps");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_mobx_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_mobx_react__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_material_ui_styles__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_material_ui_styles___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_material_ui_styles__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_react_google_maps__ = __webpack_require__(167);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_react_google_maps__ = __webpack_require__(166);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_react_google_maps___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_react_google_maps__);
 var _dec, _class;
 
@@ -3557,7 +3557,7 @@ var external__mobx_react_ = __webpack_require__(1);
 var external__mobx_react__default = /*#__PURE__*/__webpack_require__.n(external__mobx_react_);
 
 // EXTERNAL MODULE: external "is-browser"
-var external__is_browser_ = __webpack_require__(8);
+var external__is_browser_ = __webpack_require__(9);
 var external__is_browser__default = /*#__PURE__*/__webpack_require__.n(external__is_browser_);
 
 // EXTERNAL MODULE: external "chance"
@@ -3575,7 +3575,7 @@ var styles_ = __webpack_require__(2);
 var styles__default = /*#__PURE__*/__webpack_require__.n(styles_);
 
 // EXTERNAL MODULE: external "material-ui/Grid"
-var Grid_ = __webpack_require__(20);
+var Grid_ = __webpack_require__(21);
 var Grid__default = /*#__PURE__*/__webpack_require__.n(Grid_);
 
 // EXTERNAL MODULE: external "@material-ui/icons/KeyboardArrowDown"
@@ -3587,7 +3587,7 @@ var external__react_select_ = __webpack_require__(199);
 var external__react_select__default = /*#__PURE__*/__webpack_require__.n(external__react_select_);
 
 // EXTERNAL MODULE: external "polished"
-var external__polished_ = __webpack_require__(9);
+var external__polished_ = __webpack_require__(8);
 var external__polished__default = /*#__PURE__*/__webpack_require__.n(external__polished_);
 
 // CONCATENATED MODULE: ./frontEndComponents/MainListingFilters/index.js
@@ -4112,7 +4112,7 @@ function (_Component) {
 
 /* harmony default export */ var frontEndContainers_ListingsFilterAndSearchSection = (ListingsFilterAndSearchSection_ListingsFilterAndSearchSectionContainer);
 // EXTERNAL MODULE: ./frontEndComponents/ListingCard/index.js
-var ListingCard = __webpack_require__(153);
+var ListingCard = __webpack_require__(152);
 
 // CONCATENATED MODULE: ./frontEndComponents/ListingsSection/index.js
 var ListingsSection__dec, ListingsSection__class;
@@ -4332,7 +4332,7 @@ var external__react_spinners_ = __webpack_require__(27);
 var external__react_spinners__default = /*#__PURE__*/__webpack_require__.n(external__react_spinners_);
 
 // EXTERNAL MODULE: external "react-google-maps"
-var external__react_google_maps_ = __webpack_require__(167);
+var external__react_google_maps_ = __webpack_require__(166);
 var external__react_google_maps__default = /*#__PURE__*/__webpack_require__.n(external__react_google_maps_);
 
 // EXTERNAL MODULE: ./frontEndComponents/CustomMapMarker/index.js
@@ -4590,7 +4590,7 @@ function (_Component) {
 }(external__react_["Component"])) || MapAndListingsSection__class) || MapAndListingsSection__class);
 /* harmony default export */ var frontEndComponents_MapAndListingsSection = (MapAndListingsSection_MapAndListingsSection);
 // EXTERNAL MODULE: ./lib/withData.js + 1 modules
-var withData = __webpack_require__(51);
+var withData = __webpack_require__(50);
 
 // CONCATENATED MODULE: ./pages/listings.js
 var listings__class;

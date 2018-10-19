@@ -300,6 +300,7 @@ class DealsWithGQLQuery extends Component {
                     deleteDeal={this.deleteDeal}
                     dealAccepted={this.dealAccepted}
                     dealDeleted={this.dealDeleted}
+                    userUUID={userUUID}
                   />
                 ) : (
                   <ViewDealDialogBox

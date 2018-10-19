@@ -3,9 +3,6 @@ import { observer } from 'mobx-react';
 import { withStyles } from 'material-ui/styles';
 import classNames from 'classnames';
 import Grid from 'material-ui/Grid';
-import DollarIcon from '@material-ui/icons/AttachMoney';
-import PendingIcon from '@material-ui/icons/Help';
-import StarIcon from '@material-ui/icons/Star';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import FormattedText from 'buildo-react-components/lib/FormattedText';
 import Snackbar from 'material-ui/Snackbar';
@@ -21,42 +18,21 @@ import ExpansionPanel, {
   ExpansionPanelDetails,
 } from 'material-ui/ExpansionPanel';
 import Typography from 'material-ui/Typography';
-import { round } from '../../utils/Math';
-import StatNumberBox from '../StatNumberBox';
-import {
-  agent as agentRole,
-  admin,
-  superAdmin,
-} from '../../constants/userTypes';
 import {
   FaFacebook,
   FaTwitter,
   FaInstagram,
   FaPencil,
-  FaClose,
-  FaCheck,
 } from 'react-icons/lib/fa';
+import {
+  agent as agentRole,
+  admin,
+  superAdmin,
+} from '../../constants/userTypes';
 import { capitalize } from '../../utils/stringUtils';
-import CustomInputMask from '../CustomInputMask';
 import AgentDealsSection from '../../containers/DealsWithGQLQuery';
 
 const Loader = BounceLoader;
-
-const months = [
-  'January',
-  'February',
-  'March',
-  'April',
-  'May',
-  'June',
-  'July',
-  'August',
-  'September',
-  'October',
-  'November',
-  'December',
-];
-8;
 
 const styles = theme => ({
   profileInfoWrapper: {
@@ -417,8 +393,8 @@ class Profile extends Component {
 
   componentDidUpdate = prevProps => {
     if (
-      prevProps.agent.agent.profilePicURL !==
-      this.props.agent.agent.profilePicURL
+      prevProps.agent.agent.profilePicURL
+      !== this.props.agent.agent.profilePicURL
     ) {
       this.setState({
         imageError: false,
@@ -479,25 +455,25 @@ class Profile extends Component {
 
     return (
       <div className={classes.profilePicWrapper}>
-        {isLoadingProfilePicture &&
-          agent.agent.profilePicURL &&
-          !this.state.imageError && (
-            <div className={classes.profilePicLoader}>
-              <div className={classes.profilePicSubstituteText}>
-                <div
-                  style={{
-                    display: 'flex',
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    height: '100%',
-                    width: '100%',
-                  }}
-                >
-                  <Loader color="#f44336" loading />
-                </div>
+        {isLoadingProfilePicture
+          && agent.agent.profilePicURL
+          && !this.state.imageError && (
+          <div className={classes.profilePicLoader}>
+            <div className={classes.profilePicSubstituteText}>
+              <div
+                style={{
+                  display: 'flex',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  height: '100%',
+                  width: '100%',
+                }}
+              >
+                <Loader color="#f44336" loading />
               </div>
             </div>
-          )}
+          </div>
+        )}
         {agent.agent.profilePicURL ? (
           !this.state.imageError ? (
             <img
@@ -545,21 +521,13 @@ class Profile extends Component {
     const {
       agent,
       classes,
-      enterEditingMode,
-      cancelEditingMode,
       isEditing,
-      setDescription,
-      setMobileNumber,
-      saveUser,
       undoSave,
-      openProfilePicEditor,
       uuid,
       currentUserRole,
       currentUserUUID,
       openEditAgentDialogBox,
       openEditAgentPasswordDialogBox,
-      isLoadingProfilePicture,
-      toggleIsLoadingProfilePicture,
     } = this.props;
     const {
       firstName,
@@ -571,7 +539,6 @@ class Profile extends Component {
         mobileNumber,
         officeNumber,
         branch,
-        profilePicURL,
         title,
         facebook,
         twitter,
@@ -583,14 +550,10 @@ class Profile extends Component {
 
     const name = capitalize(`${firstName} ${lastName}`);
 
-    const canEdit =
-      currentUserUUID === uuid ||
-      currentUserRole === admin ||
-      currentUserRole === superAdmin;
+    const canEdit = currentUserUUID === uuid
+      || currentUserRole === admin
+      || currentUserRole === superAdmin;
     const isAdmin = currentUserRole === admin || currentUserRole === superAdmin;
-
-    const editingOwnProfile = currentUserUUID === uuid;
-    const currentDate = moment();
 
     return (
       <div>
@@ -706,7 +669,9 @@ class Profile extends Component {
               </div>
               <div className={classes.descriptionWrapper}>
                 <div className={classes.descriptionTitle}>
-                  About {name.split(' ')[0]}
+                  About
+                  {' '}
+                  {name.split(' ')[0]}
                 </div>
                 <FormattedText className={classes.descriptionDetails}>
                   {profileDescription || 'No description available yet...'}

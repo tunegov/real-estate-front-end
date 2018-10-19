@@ -249,6 +249,7 @@ class SubmitDealDialogBox extends Component {
       viewingDealID,
       viewingDealStatus,
       isCoAgent,
+      userUUID,
     } = this.props;
 
     const { isEditingDeal, cancelAnchorEl, acceptAnchorEl } = this.state;
@@ -269,7 +270,7 @@ class SubmitDealDialogBox extends Component {
         <Divider />
         <DialogContent classes={{ root: classes.dialogContent }}>
           <ViewDealForm
-            userUUID={this.props.userUUID}
+            userUUID={userUUID}
             getFormApi={formApi => this.setState({ formApi })}
             setFormSubmitted={this.setFormSubmitted}
             setDealSuccessfullySubmitted={setDealSuccessfullySubmitted}

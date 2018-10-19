@@ -13,8 +13,8 @@ import { admin, superAdmin } from '../constants/userTypes';
 const Loader = BounceLoader;
 
 const viewDealFormQuery = gql`
-  query viewDealForm($uuid: String!) {
-    viewDealForm(uuid: $uuid) {
+  query viewDealForm($uuid: String!, $userId: String!) {
+    viewDealForm(uuid: $uuid, userId: $userId) {
       formSelectItems
       agents {
         firstName
@@ -481,7 +481,7 @@ class ViewDealFormContainer extends Component {
 
   render() {
     const {
-      userUUID: uuid,
+      userUUID,
       dealID,
       isEditingDeal,
       isViewType,
@@ -492,7 +492,7 @@ class ViewDealFormContainer extends Component {
     return (
       <Query
         query={viewDealFormQuery}
-        variables={{ uuid: dealID }}
+        variables={{ uuid: dealID, userId: userUUID }}
         fetchPolicy="cache-and-network"
       >
         {({ loading, error, data }) => {
