@@ -1486,7 +1486,9 @@ function create(initialState) {
         Accept: 'application/json'
       }
     }),
-    cache: new external__apollo_cache_inmemory_["InMemoryCache"]().restore(initialState || {})
+    cache: new external__apollo_cache_inmemory_["InMemoryCache"]({
+      addTypename: false
+    }).restore(initialState || {})
   });
 }
 
@@ -1691,13 +1693,13 @@ module.exports = require("@material-ui/icons/Add");
 /* 56 */
 /***/ (function(module, exports) {
 
-module.exports = require("moment");
+module.exports = require("react-icons/lib/md");
 
 /***/ }),
 /* 57 */
 /***/ (function(module, exports) {
 
-module.exports = require("react-icons/lib/md");
+module.exports = require("moment");
 
 /***/ }),
 /* 58 */
@@ -2174,7 +2176,7 @@ function (_Component) {
 
 /* harmony default export */ var components_SideNavLinkItem = (Object(styles_["withStyles"])(styles)(SideNavLinkItem_SideNavLinkItem));
 // EXTERNAL MODULE: external "react-icons/lib/md"
-var md_ = __webpack_require__(57);
+var md_ = __webpack_require__(56);
 var md__default = /*#__PURE__*/__webpack_require__.n(md_);
 
 // EXTERNAL MODULE: external "react-icons/lib/fa"
@@ -6465,7 +6467,7 @@ var SelectFilterCell = Object(__WEBPACK_IMPORTED_MODULE_1_material_ui_styles__["
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return compareDate; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return compareNumber; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_moment__ = __webpack_require__(56);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_moment__ = __webpack_require__(57);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_moment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_moment__);
 
 var compareDate = function compareDate(a, b) {
@@ -6901,7 +6903,7 @@ var external__react_form_ = __webpack_require__(30);
 var external__react_form__default = /*#__PURE__*/__webpack_require__.n(external__react_form_);
 
 // EXTERNAL MODULE: external "moment"
-var external__moment_ = __webpack_require__(56);
+var external__moment_ = __webpack_require__(57);
 var external__moment__default = /*#__PURE__*/__webpack_require__.n(external__moment_);
 
 // EXTERNAL MODULE: external "uuid/v4"
@@ -6929,7 +6931,7 @@ var styles = __webpack_require__(116);
 var styles_default = /*#__PURE__*/__webpack_require__.n(styles);
 
 // EXTERNAL MODULE: external "react-icons/lib/md"
-var md_ = __webpack_require__(57);
+var md_ = __webpack_require__(56);
 var md__default = /*#__PURE__*/__webpack_require__.n(md_);
 
 // EXTERNAL MODULE: external "material-ui/Tooltip"
@@ -7882,7 +7884,8 @@ function (_Component) {
           agentPaymentTypeIsACH = _props2.agentPaymentTypeIsACH,
           _onSubmit = _props2.onSubmit,
           userRole = _props2.userRole,
-          isCoAgent = _props2.isCoAgent;
+          isCoAgent = _props2.isCoAgent,
+          isCoAgentEditDeal = _props2.isCoAgentEditDeal;
       var _state = this.state,
           contractLeaseAnchorEl = _state.contractLeaseAnchorEl,
           agencyDisclosureAnchorEl = _state.agencyDisclosureAnchorEl;
@@ -7949,6 +7952,9 @@ function (_Component) {
         */
 
       var finalDefaultValues;
+      var isCoBrokeringAgentPaymentType = submittedDeal && submittedDeal.coBrokeringAgentPaymentTypes && submittedDeal.coBrokeringAgentPaymentTypes[0] || {};
+      var isACHAccountNumberCoBroke = isCoBrokeringAgentPaymentType.ACHAccountNumber;
+      var isACHAccountBankRoutingNumber = isCoBrokeringAgentPaymentType.ACHAccountBankRoutingNumber;
 
       if (submittedDeal) {
         var agentNotes = submittedDeal.agentNotes,
@@ -7976,7 +7982,8 @@ function (_Component) {
             total = submittedDeal.total,
             bonusPercentageAddedByAdmin = submittedDeal.bonusPercentageAddedByAdmin,
             ACHAccountNumber = submittedDeal.ACHAccountNumber,
-            ACHAccountBankRoutingNumber = submittedDeal.ACHAccountBankRoutingNumber;
+            ACHAccountBankRoutingNumber = submittedDeal.ACHAccountBankRoutingNumber,
+            coBrokeringAgentPaymentTypes = submittedDeal.coBrokeringAgentPaymentTypes;
         finalDefaultValues = {
           agent: agentName,
           agentNotes: agentNotes,
@@ -7996,6 +8003,10 @@ function (_Component) {
           state: state,
           fundsPaidBy: fundsPaidBy,
           price: price,
+          coBrokeringAgentPaymentTypes: coBrokeringAgentPaymentTypes,
+          agentPaymentTypeCoBroke: isCoBrokeringAgentPaymentType.agentPaymentType,
+          ACHAccountNumberCoBroke: isCoBrokeringAgentPaymentType.ACHAccountNumber,
+          ACHAccountBankRoutingNumberCoBroke: isCoBrokeringAgentPaymentType.ACHAccountBankRoutingNumber,
           paymentItems: paymentItems.map(function (_ref2) {
             var paymentType = _ref2.paymentType,
                 checkOrTransactionNumber = _ref2.checkOrTransactionNumber,
@@ -8826,42 +8837,42 @@ function (_Component) {
         }, external__react__default.a.createElement(Divider__default.a, null)), external__react__default.a.createElement("div", {
           className: "".concat(classes.formControlWrapper, " ").concat(classes.radioInputWrapper)
         }, external__react__default.a.createElement(MaterialCustomRadioInput, {
-          field: "agentPaymentType",
+          field: "".concat(isCoAgent ? 'agentPaymentTypeCoBroke' : 'agentPaymentType'),
           id: v4__default()(),
           required: true,
           label: "How would you like to get paid?",
           radioInputItems: radioInputAgentPaymentItems,
           onInput: _this2.props.onAgentPaymentTypeChange,
           horizontal: true,
-          disabled: submittedDeal && !isEditingDeal
-        })), (agentPaymentTypeIsACH || submittedDeal && submittedDeal.ACHAccountNumber) && external__react__default.a.createElement(Grid__default.a, {
+          disabled: submittedDeal && !isEditingDeal && !isCoAgentEditDeal
+        })), (agentPaymentTypeIsACH || submittedDeal && (submittedDeal.ACHAccountNumber || isACHAccountNumberCoBroke)) && external__react__default.a.createElement(Grid__default.a, {
           item: true,
           xs: 12,
           md: 6
         }, external__react__default.a.createElement("div", {
           className: classes.formControlWrapper
         }, external__react__default.a.createElement(CustomTextField, {
-          field: "ACHAccountNumber",
+          field: "".concat(isCoAgent ? 'ACHAccountNumberCoBroke' : 'ACHAccountNumber'),
           id: v4__default()(),
           label: "ACH Account Number",
           required: true,
           fullWidth: true,
           validate: ACHAccountNumberValidator,
-          disabled: submittedDeal && !isEditingDeal
-        }))), (agentPaymentTypeIsACH || submittedDeal && submittedDeal.ACHAccountBankRoutingNumber) && external__react__default.a.createElement(Grid__default.a, {
+          disabled: submittedDeal && !isEditingDeal && !isCoAgentEditDeal
+        }))), (agentPaymentTypeIsACH || submittedDeal && (submittedDeal.ACHAccountBankRoutingNumber || isACHAccountBankRoutingNumber)) && external__react__default.a.createElement(Grid__default.a, {
           item: true,
           xs: 12,
           md: 6
         }, external__react__default.a.createElement("div", {
           className: classes.formControlWrapper
         }, external__react__default.a.createElement(CustomTextField, {
-          field: "ACHAccountBankRoutingNumber",
+          field: "".concat(isCoAgent ? 'ACHAccountBankRoutingNumberCoBroke' : 'ACHAccountBankRoutingNumber'),
           id: v4__default()(),
           label: "ACH Account's Bank Routing Number",
           required: true,
           fullWidth: true,
           validate: ACHAccountNumberValidator,
-          disabled: submittedDeal && !isEditingDeal
+          disabled: submittedDeal && !isEditingDeal && !isCoAgentEditDeal
         }))), external__react__default.a.createElement(Grid__default.a, {
           item: true,
           xs: 12
@@ -10098,7 +10109,7 @@ var commercialSale = 'Commercial Sale';
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return returnMonthlyDealNumberDataContainer; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return returnNumberDealsDataContainer; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return returnYearlyDollarDealsDataContainer; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_moment__ = __webpack_require__(56);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_moment__ = __webpack_require__(57);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_moment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_moment__);
 
 var returnMonthlyDollarDataContainer = function returnMonthlyDollarDataContainer() {
@@ -10414,7 +10425,7 @@ var userTypes_default = /*#__PURE__*/__webpack_require__.n(userTypes);
 // CONCATENATED MODULE: ./containers/ViewDealForm.js
 var _class;
 
-var _templateObject = /*#__PURE__*/ _taggedTemplateLiteral(["\n  query viewDealForm($uuid: String!, $userId: String!) {\n    viewDealForm(uuid: $uuid, userId: $userId) {\n      formSelectItems\n      agents {\n        firstName\n        lastName\n        uuid\n      }\n      deal {\n        dealID\n        date\n        agentName\n        agentType\n        leadSource\n        dealType\n        propertyAddress\n        state\n        city\n        apartmentNumber\n        managementOrCobrokeCompany\n        price\n        clientName\n        clientEmail\n        paymentItems {\n          paymentType\n          checkOrTransactionNumber\n          amount\n        }\n        paymentsTotal\n        deductionItems {\n          deductionType\n          description\n          agentID\n          amount\n        }\n        deductionsTotal\n        total\n        agentNotes\n        agencyDisclosureForm\n        contractOrLeaseForms\n        agentPaymentType\n        ACHAccountNumber\n        ACHAccountBankRoutingNumber\n        fundsPaidBy\n        alreadyTurnedFundsIn\n        shouldSendApprovalTextMessageNotification\n        status\n        bonusPercentageAddedByAdmin\n        netAgentCommission\n        netCompanyCommission\n      }\n    }\n  }\n"]);
+var _templateObject = /*#__PURE__*/ _taggedTemplateLiteral(["\n  query viewDealForm($uuid: String!, $userId: String!) {\n    viewDealForm(uuid: $uuid, userId: $userId) {\n      formSelectItems\n      agents {\n        firstName\n        lastName\n        uuid\n      }\n      deal {\n        dealID\n        date\n        agentName\n        agentType\n        leadSource\n        dealType\n        propertyAddress\n        state\n        city\n        apartmentNumber\n        managementOrCobrokeCompany\n        price\n        clientName\n        clientEmail\n        paymentItems {\n          paymentType\n          checkOrTransactionNumber\n          amount\n        }\n        paymentsTotal\n        deductionItems {\n          deductionType\n          description\n          agentID\n          amount\n        }\n        deductionsTotal\n        total\n        agentNotes\n        agencyDisclosureForm\n        contractOrLeaseForms\n        agentPaymentType\n        ACHAccountNumber\n        ACHAccountBankRoutingNumber\n        fundsPaidBy\n        alreadyTurnedFundsIn\n        shouldSendApprovalTextMessageNotification\n        status\n        bonusPercentageAddedByAdmin\n        netAgentCommission\n        netCompanyCommission\n        coBrokeringAgentPaymentTypes {\n          agentID\n          ACHAccountBankRoutingNumber\n          ACHAccountNumber\n          agentPaymentType\n          status\n        }\n      }\n    }\n  }\n"]);
 
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
@@ -10467,25 +10478,57 @@ var ViewDealForm_ViewDealFormContainer = Object(external__mobx_react_["observer"
 function (_Component) {
   _inherits(ViewDealFormContainer, _Component);
 
-  function ViewDealFormContainer(props) {
-    var _this;
+  function ViewDealFormContainer() {
+    var _ref;
+
+    var _temp, _this;
 
     _classCallCheck(this, ViewDealFormContainer);
 
-    _this = _possibleConstructorReturn(this, (ViewDealFormContainer.__proto__ || Object.getPrototypeOf(ViewDealFormContainer)).call(this, props));
-    Object.defineProperty(_assertThisInitialized(_this), "uploadItemsNum", {
+    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    return _possibleConstructorReturn(_this, (_temp = _this = _possibleConstructorReturn(this, (_ref = ViewDealFormContainer.__proto__ || Object.getPrototypeOf(ViewDealFormContainer)).call.apply(_ref, [this].concat(args))), Object.defineProperty(_assertThisInitialized(_this), "state", {
+      configurable: true,
+      enumerable: true,
+      writable: true,
+      value: {
+        paymentAmountItems: {},
+        deductionAmountItems: {},
+        paymentsTotal: 0,
+        deductionsTotal: 0,
+        total: 0,
+        contractOrLeaseForms: [],
+        agencyDisclosureForm: null,
+        permanentPaymentSubtractions: 0,
+        // not submitted
+        permanentDeductionSubtractions: 0,
+        // not submitted
+        choosingMgmtCoBrokeCompany: false,
+        newMgmtOrCobrokeCompany: '',
+        hasSetNewMgmtOrCobrokeCompany: false,
+        addedManagementCompanies: [],
+        uplodingFileProgress: 0,
+        isUploadingFile: false,
+        uplodingFileText: '',
+        filesUploadedSuccessfully: null,
+        formSubmissionBegun: false,
+        submittingFormToServer: false,
+        dealBonus: '0',
+        agentPaymentTypeIsACH: false
+      }
+    }), Object.defineProperty(_assertThisInitialized(_this), "uploadItemsNum", {
       configurable: true,
       enumerable: true,
       writable: true,
       value: 0
-    });
-    Object.defineProperty(_assertThisInitialized(_this), "itemsUploaded", {
+    }), Object.defineProperty(_assertThisInitialized(_this), "itemsUploaded", {
       configurable: true,
       enumerable: true,
       writable: true,
       value: 0
-    });
-    Object.defineProperty(_assertThisInitialized(_this), "paymentAmountChangeHandler", {
+    }), Object.defineProperty(_assertThisInitialized(_this), "paymentAmountChangeHandler", {
       configurable: true,
       enumerable: true,
       writable: true,
@@ -10503,8 +10546,7 @@ function (_Component) {
           total: paymentsTotal - _this.state.deductionsTotal
         });
       }
-    });
-    Object.defineProperty(_assertThisInitialized(_this), "deductionAmountChangeHandler", {
+    }), Object.defineProperty(_assertThisInitialized(_this), "deductionAmountChangeHandler", {
       configurable: true,
       enumerable: true,
       writable: true,
@@ -10522,8 +10564,7 @@ function (_Component) {
           total: _this.state.paymentsTotal - deductionsTotal
         });
       }
-    });
-    Object.defineProperty(_assertThisInitialized(_this), "getTotalPaymentsAmount", {
+    }), Object.defineProperty(_assertThisInitialized(_this), "getTotalPaymentsAmount", {
       configurable: true,
       enumerable: true,
       writable: true,
@@ -10540,8 +10581,7 @@ function (_Component) {
         if (newItem && newItem.value) total += newItem.value;
         return total - permanentPaymentSubtractions;
       }
-    });
-    Object.defineProperty(_assertThisInitialized(_this), "getTotalDeductionsAmount", {
+    }), Object.defineProperty(_assertThisInitialized(_this), "getTotalDeductionsAmount", {
       configurable: true,
       enumerable: true,
       writable: true,
@@ -10558,8 +10598,7 @@ function (_Component) {
         if (newItem && newItem.value) total += newItem.value;
         return total - permanentDeductionSubtractions;
       }
-    });
-    Object.defineProperty(_assertThisInitialized(_this), "subtractPaymentValueFromState", {
+    }), Object.defineProperty(_assertThisInitialized(_this), "subtractPaymentValueFromState", {
       configurable: true,
       enumerable: true,
       writable: true,
@@ -10572,8 +10611,7 @@ function (_Component) {
           total: paymentsTotal - _this.state.deductionsTotal
         });
       }
-    });
-    Object.defineProperty(_assertThisInitialized(_this), "subtractDeductionValueFromState", {
+    }), Object.defineProperty(_assertThisInitialized(_this), "subtractDeductionValueFromState", {
       configurable: true,
       enumerable: true,
       writable: true,
@@ -10586,8 +10624,7 @@ function (_Component) {
           total: _this.state.paymentsTotal - deductionsTotal
         });
       }
-    });
-    Object.defineProperty(_assertThisInitialized(_this), "setAgencyDisclosureForm", {
+    }), Object.defineProperty(_assertThisInitialized(_this), "setAgencyDisclosureForm", {
       configurable: true,
       enumerable: true,
       writable: true,
@@ -10604,8 +10641,7 @@ function (_Component) {
           }
         }
       }
-    });
-    Object.defineProperty(_assertThisInitialized(_this), "setContractOrLeaseForms", {
+    }), Object.defineProperty(_assertThisInitialized(_this), "setContractOrLeaseForms", {
       configurable: true,
       enumerable: true,
       writable: true,
@@ -10634,8 +10670,7 @@ function (_Component) {
           contractOrLeaseForms: fileArray
         });
       }
-    });
-    Object.defineProperty(_assertThisInitialized(_this), "handleMgmtOrCobrokeCompanyChange", {
+    }), Object.defineProperty(_assertThisInitialized(_this), "handleMgmtOrCobrokeCompanyChange", {
       configurable: true,
       enumerable: true,
       writable: true,
@@ -10644,8 +10679,7 @@ function (_Component) {
           newMgmtOrCobrokeCompany: event.target.value
         });
       }
-    });
-    Object.defineProperty(_assertThisInitialized(_this), "toggleChoosingMgmtCoBrokeCompany", {
+    }), Object.defineProperty(_assertThisInitialized(_this), "toggleChoosingMgmtCoBrokeCompany", {
       configurable: true,
       enumerable: true,
       writable: true,
@@ -10657,8 +10691,7 @@ function (_Component) {
           newMgmtOrCobrokeCompany: ''
         });
       }
-    });
-    Object.defineProperty(_assertThisInitialized(_this), "setHasSetNewMgmtOrCobrokeCompany", {
+    }), Object.defineProperty(_assertThisInitialized(_this), "setHasSetNewMgmtOrCobrokeCompany", {
       configurable: true,
       enumerable: true,
       writable: true,
@@ -10674,15 +10707,33 @@ function (_Component) {
           addedManagementCompanies: _toConsumableArray(addedManagementCompanies).concat([Object(stringUtils["a" /* capitalize */])(newMgmtOrCobrokeCompany.trim())])
         });
       }
-    });
-    Object.defineProperty(_assertThisInitialized(_this), "setInitialContainerState", {
+    }), Object.defineProperty(_assertThisInitialized(_this), "onAgentPaymentTypeChange", {
       configurable: true,
       enumerable: true,
       writable: true,
-      value: function value(_ref) {
-        var paymentsTotal = _ref.paymentsTotal,
-            deductionsTotal = _ref.deductionsTotal,
-            total = _ref.total;
+      value: function value(_ref2) {
+        var target = _ref2.target;
+        var value = target.value;
+        var isACH = value === 'Please ACH me';
+
+        if (isACH) {
+          _this.setState({
+            agentPaymentTypeIsACH: true
+          });
+        } else {
+          _this.setState({
+            agentPaymentTypeIsACH: false
+          });
+        }
+      }
+    }), Object.defineProperty(_assertThisInitialized(_this), "setInitialContainerState", {
+      configurable: true,
+      enumerable: true,
+      writable: true,
+      value: function value(_ref3) {
+        var paymentsTotal = _ref3.paymentsTotal,
+            deductionsTotal = _ref3.deductionsTotal,
+            total = _ref3.total;
 
         _this.setState({
           paymentsTotal: paymentsTotal,
@@ -10690,8 +10741,7 @@ function (_Component) {
           total: total
         });
       }
-    });
-    Object.defineProperty(_assertThisInitialized(_this), "onSubmit", {
+    }), Object.defineProperty(_assertThisInitialized(_this), "onSubmit", {
       configurable: true,
       enumerable: true,
       writable: true,
@@ -10730,6 +10780,14 @@ function (_Component) {
         delete returnObject.agent;
         delete returnObject.agentType;
         delete returnObject.state;
+        delete returnObject.agentPaymentTypeCoBroke;
+        delete returnObject.ACHAccountNumberCoBroke;
+        delete returnObject.ACHAccountBankRoutingNumberCoBroke;
+        returnObject.coBrokeringAgentPaymentTypes[0] = _objectSpread({}, returnObject.coBrokeringAgentPaymentTypes[0], {
+          agentPaymentType: values.agentPaymentTypeCoBroke,
+          ACHAccountNumber: values.ACHAccountNumberCoBroke,
+          ACHAccountBankRoutingNumber: values.ACHAccountBankRoutingNumberCoBroke
+        });
 
         if (userRole !== userTypes["admin"] && userRole !== userTypes["superAdmin"]) {
           delete returnObject.bonusPercentageAddedByAdmin;
@@ -10893,8 +10951,7 @@ function (_Component) {
           recursiveUploads(items, returnObject, _assertThisInitialized(_this));
         });
       }
-    });
-    Object.defineProperty(_assertThisInitialized(_this), "onSubmitFailure", {
+    }), Object.defineProperty(_assertThisInitialized(_this), "onSubmitFailure", {
       configurable: true,
       enumerable: true,
       writable: true,
@@ -10903,32 +10960,7 @@ function (_Component) {
         console.log(onSubmitError);
         console.log(formApi.errors);
       }
-    });
-    _this.state = {
-      paymentAmountItems: {},
-      deductionAmountItems: {},
-      paymentsTotal: 0,
-      deductionsTotal: 0,
-      total: 0,
-      contractOrLeaseForms: [],
-      agencyDisclosureForm: null,
-      permanentPaymentSubtractions: 0,
-      // not submitted
-      permanentDeductionSubtractions: 0,
-      // not submitted
-      choosingMgmtCoBrokeCompany: false,
-      newMgmtOrCobrokeCompany: '',
-      hasSetNewMgmtOrCobrokeCompany: false,
-      addedManagementCompanies: [],
-      uplodingFileProgress: 0,
-      isUploadingFile: false,
-      uplodingFileText: '',
-      filesUploadedSuccessfully: null,
-      formSubmissionBegun: false,
-      submittingFormToServer: false,
-      dealBonus: '0'
-    };
-    return _this;
+    }), _temp));
   }
 
   _createClass(ViewDealFormContainer, [{
@@ -10953,10 +10985,10 @@ function (_Component) {
           userId: userUUID
         },
         fetchPolicy: "cache-and-network"
-      }, function (_ref2) {
-        var loading = _ref2.loading,
-            error = _ref2.error,
-            data = _ref2.data;
+      }, function (_ref4) {
+        var loading = _ref4.loading,
+            error = _ref4.error,
+            data = _ref4.data;
 
         if (loading) {
           return external__react__default.a.createElement("div", {
@@ -11017,7 +11049,9 @@ function (_Component) {
           choosingMgmtCoBrokeCompany: _this2.state.choosingMgmtCoBrokeCompany,
           deductionAmountChangeHandler: _this2.deductionAmountChangeHandler,
           subtractPaymentValueFromState: _this2.subtractPaymentValueFromState,
-          subtractDeductionValueFromState: _this2.subtractDeductionValueFromState
+          subtractDeductionValueFromState: _this2.subtractDeductionValueFromState,
+          agentPaymentTypeIsACH: _this2.state.agentPaymentTypeIsACH,
+          onAgentPaymentTypeChange: _this2.onAgentPaymentTypeChange
         }, rest));
       });
     }
@@ -11031,12 +11065,13 @@ function (_Component) {
 
 var acceptDeal_query = "\n  mutation acceptDeal($input: AcceptDealInput!) {\n    acceptDeal(input: $input) {\n      deal {\n        dealID\n        date\n        agentName\n        agentType\n        leadSource\n        dealType\n        propertyAddress\n        state\n        city\n        apartmentNumber\n        managementOrCobrokeCompany\n        price\n        clientName\n        clientEmail\n        paymentsTotal\n        deductionsTotal\n        total\n        agentNotes\n        status\n        bonusPercentageAddedByAdmin\n        netAgentCommission\n        netCompanyCommission\n      }\n      userErrors {\n        field\n        message\n      }\n      otherError\n    }\n  }\n";
 
-var acceptDeal_acceptDeal = function acceptDeal(dealID, bonusPercentageAddedByAdmin) {
+var acceptDeal_acceptDeal = function acceptDeal(dealID, bonusPercentageAddedByAdmin, userUUID) {
   var res;
   var variables = {
     input: {
       uuid: dealID,
-      bonusPercentageAddedByAdmin: bonusPercentageAddedByAdmin
+      bonusPercentageAddedByAdmin: bonusPercentageAddedByAdmin,
+      userUUID: userUUID
     }
   };
   var finalResponseObj = {
@@ -11199,13 +11234,36 @@ var ViewDealDialogBox_SubmitDealDialogBox = Object(external__mobx_react_["observ
 function (_Component) {
   ViewDealDialogBox__inherits(SubmitDealDialogBox, _Component);
 
-  function SubmitDealDialogBox(props) {
-    var _this;
+  function SubmitDealDialogBox() {
+    var _ref;
+
+    var _temp, _this;
 
     ViewDealDialogBox__classCallCheck(this, SubmitDealDialogBox);
 
-    _this = ViewDealDialogBox__possibleConstructorReturn(this, (SubmitDealDialogBox.__proto__ || Object.getPrototypeOf(SubmitDealDialogBox)).call(this, props));
-    Object.defineProperty(ViewDealDialogBox__assertThisInitialized(_this), "setFormSubmitted", {
+    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    return ViewDealDialogBox__possibleConstructorReturn(_this, (_temp = _this = ViewDealDialogBox__possibleConstructorReturn(this, (_ref = SubmitDealDialogBox.__proto__ || Object.getPrototypeOf(SubmitDealDialogBox)).call.apply(_ref, [this].concat(args))), Object.defineProperty(ViewDealDialogBox__assertThisInitialized(_this), "state", {
+      configurable: true,
+      enumerable: true,
+      writable: true,
+      value: {
+        formApi: null,
+        formSubmitted: false,
+        snackbarOpen: false,
+        snackbarText: '',
+        snackbarUndoFunction: null,
+        isEditingDeal: false,
+        cancelAnchorEl: null,
+        acceptAnchorEl: null,
+        dealBonus: '',
+        submittingRequestToServer: false,
+        isErrorSnackbar: false,
+        isCoAgentEditDeal: false
+      }
+    }), Object.defineProperty(ViewDealDialogBox__assertThisInitialized(_this), "setFormSubmitted", {
       configurable: true,
       enumerable: true,
       writable: true,
@@ -11214,11 +11272,11 @@ function (_Component) {
 
         _this.setState({
           formSubmitted: bool,
-          isEditingDeal: false
+          isEditingDeal: false,
+          isCoAgentEditDeal: false
         });
       }
-    });
-    Object.defineProperty(ViewDealDialogBox__assertThisInitialized(_this), "toggleSnackbarOpen", {
+    }), Object.defineProperty(ViewDealDialogBox__assertThisInitialized(_this), "toggleSnackbarOpen", {
       configurable: true,
       enumerable: true,
       writable: true,
@@ -11228,8 +11286,7 @@ function (_Component) {
           snackbarText: text
         });
       }
-    });
-    Object.defineProperty(ViewDealDialogBox__assertThisInitialized(_this), "handleCloseSnackbar", {
+    }), Object.defineProperty(ViewDealDialogBox__assertThisInitialized(_this), "handleCloseSnackbar", {
       configurable: true,
       enumerable: true,
       writable: true,
@@ -11241,8 +11298,7 @@ function (_Component) {
           snackbarText: ''
         });
       }
-    });
-    Object.defineProperty(ViewDealDialogBox__assertThisInitialized(_this), "openRequestErrorSnackbar", {
+    }), Object.defineProperty(ViewDealDialogBox__assertThisInitialized(_this), "openRequestErrorSnackbar", {
       configurable: true,
       enumerable: true,
       writable: true,
@@ -11255,18 +11311,21 @@ function (_Component) {
           isErrorSnackbar: true
         });
       }
-    });
-    Object.defineProperty(ViewDealDialogBox__assertThisInitialized(_this), "toggleEditingDeal", {
+    }), Object.defineProperty(ViewDealDialogBox__assertThisInitialized(_this), "toggleEditingDeal", {
       configurable: true,
       enumerable: true,
       writable: true,
-      value: function value(bool) {
+      value: function value(bool, isCoAgent) {
+        var _this$state = _this.state,
+            isEditingDeal = _this$state.isEditingDeal,
+            isCoAgentEditDeal = _this$state.isCoAgentEditDeal;
+
         _this.setState({
-          isEditingDeal: typeof bool === 'boolean' ? bool : !_this.state.isEditingDeal
+          isEditingDeal: typeof bool === 'boolean' ? bool && !isCoAgent : !isEditingDeal,
+          isCoAgentEditDeal: typeof bool === 'boolean' ? bool && isCoAgent : !isCoAgentEditDeal
         });
       }
-    });
-    Object.defineProperty(ViewDealDialogBox__assertThisInitialized(_this), "handleCancelMenuClick", {
+    }), Object.defineProperty(ViewDealDialogBox__assertThisInitialized(_this), "handleCancelMenuClick", {
       configurable: true,
       enumerable: true,
       writable: true,
@@ -11275,8 +11334,7 @@ function (_Component) {
           cancelAnchorEl: event.currentTarget
         });
       }
-    });
-    Object.defineProperty(ViewDealDialogBox__assertThisInitialized(_this), "handleCancelMenuClose", {
+    }), Object.defineProperty(ViewDealDialogBox__assertThisInitialized(_this), "handleCancelMenuClose", {
       configurable: true,
       enumerable: true,
       writable: true,
@@ -11285,8 +11343,7 @@ function (_Component) {
           cancelAnchorEl: null
         });
       }
-    });
-    Object.defineProperty(ViewDealDialogBox__assertThisInitialized(_this), "handleAcceptMenuClick", {
+    }), Object.defineProperty(ViewDealDialogBox__assertThisInitialized(_this), "handleAcceptMenuClick", {
       configurable: true,
       enumerable: true,
       writable: true,
@@ -11295,8 +11352,7 @@ function (_Component) {
           acceptAnchorEl: event.currentTarget
         });
       }
-    });
-    Object.defineProperty(ViewDealDialogBox__assertThisInitialized(_this), "handleAcceptMenuClose", {
+    }), Object.defineProperty(ViewDealDialogBox__assertThisInitialized(_this), "handleAcceptMenuClose", {
       configurable: true,
       enumerable: true,
       writable: true,
@@ -11305,13 +11361,12 @@ function (_Component) {
           acceptAnchorEl: null
         });
       }
-    });
-    Object.defineProperty(ViewDealDialogBox__assertThisInitialized(_this), "onBonusChange", {
+    }), Object.defineProperty(ViewDealDialogBox__assertThisInitialized(_this), "onBonusChange", {
       configurable: true,
       enumerable: true,
       writable: true,
-      value: function value(_ref) {
-        var target = _ref.target;
+      value: function value(_ref2) {
+        var target = _ref2.target;
         var dollarRegex = /^\d*(\.\d*)?$/;
         var val = target.value;
         if (!dollarRegex.test(val)) return;
@@ -11320,8 +11375,7 @@ function (_Component) {
           dealBonus: val
         });
       }
-    });
-    Object.defineProperty(ViewDealDialogBox__assertThisInitialized(_this), "resetDealBonus", {
+    }), Object.defineProperty(ViewDealDialogBox__assertThisInitialized(_this), "resetDealBonus", {
       configurable: true,
       enumerable: true,
       writable: true,
@@ -11330,17 +11384,17 @@ function (_Component) {
           dealBonus: ''
         });
       }
-    });
-    Object.defineProperty(ViewDealDialogBox__assertThisInitialized(_this), "acceptDeal", {
+    }), Object.defineProperty(ViewDealDialogBox__assertThisInitialized(_this), "acceptDeal", {
       configurable: true,
       enumerable: true,
       writable: true,
       value: function value(dealID) {
+        var userUUID = _this.props.userUUID;
         var dealBonus = _this.state.dealBonus;
 
         _this.toggleSubmittingRequestToServer(true);
 
-        deals_acceptDeal(dealID, Number(dealBonus) ? Number(dealBonus) : undefined).then(function (res) {
+        deals_acceptDeal(dealID, Number(dealBonus) ? Number(dealBonus) : undefined, userUUID).then(function (res) {
           _this.toggleSubmittingRequestToServer(false);
 
           if (res.error) {
@@ -11360,15 +11414,16 @@ function (_Component) {
           _this.openRequestErrorSnackbar();
         });
       }
-    });
-    Object.defineProperty(ViewDealDialogBox__assertThisInitialized(_this), "deleteDeal", {
+    }), Object.defineProperty(ViewDealDialogBox__assertThisInitialized(_this), "deleteDeal", {
       configurable: true,
       enumerable: true,
       writable: true,
       value: function value(dealID) {
+        var userUUID = _this.props.userUUID;
+
         _this.toggleSubmittingRequestToServer(true);
 
-        Object(deleteDeal["a" /* default */])(dealID).then(function (res) {
+        Object(deleteDeal["a" /* default */])(dealID, userUUID).then(function (res) {
           _this.toggleSubmittingRequestToServer(false);
 
           if (res.error) {
@@ -11384,8 +11439,7 @@ function (_Component) {
           _this.openRequestErrorSnackbar();
         });
       }
-    });
-    Object.defineProperty(ViewDealDialogBox__assertThisInitialized(_this), "toggleSubmittingRequestToServer", {
+    }), Object.defineProperty(ViewDealDialogBox__assertThisInitialized(_this), "toggleSubmittingRequestToServer", {
       configurable: true,
       enumerable: true,
       writable: true,
@@ -11397,21 +11451,7 @@ function (_Component) {
           formSubmitted: bool
         });
       }
-    });
-    _this.state = {
-      formApi: null,
-      formSubmitted: false,
-      snackbarOpen: false,
-      snackbarText: '',
-      snackbarUndoFunction: null,
-      isEditingDeal: false,
-      cancelAnchorEl: null,
-      acceptAnchorEl: null,
-      dealBonus: '',
-      submittingRequestToServer: false,
-      isErrorSnackbar: false
-    };
-    return _this;
+    }), _temp));
   }
 
   ViewDealDialogBox__createClass(SubmitDealDialogBox, [{
@@ -11428,11 +11468,13 @@ function (_Component) {
           viewingDealID = _props.viewingDealID,
           viewingDealStatus = _props.viewingDealStatus,
           isCoAgent = _props.isCoAgent,
-          userUUID = _props.userUUID;
+          userUUID = _props.userUUID,
+          userRole = _props.userRole;
       var _state = this.state,
           isEditingDeal = _state.isEditingDeal,
           cancelAnchorEl = _state.cancelAnchorEl,
-          acceptAnchorEl = _state.acceptAnchorEl;
+          acceptAnchorEl = _state.acceptAnchorEl,
+          isCoAgentEditDeal = _state.isCoAgentEditDeal;
       return external__react__default.a.createElement(Dialog__default.a, {
         disableBackdropClick: true,
         disableEscapeKeyDown: true,
@@ -11462,6 +11504,7 @@ function (_Component) {
         dealID: viewingDealID,
         isCoAgent: isCoAgent,
         isEditingDeal: isEditingDeal,
+        isCoAgentEditDeal: isCoAgentEditDeal,
         isViewType: true,
         userRole: this.props.userRole,
         dealAccepted: this.props.dealAccepted,
@@ -11514,7 +11557,7 @@ function (_Component) {
           closeDealsViewDialogBox();
         },
         color: "primary"
-      }, "Cancel"), this.props.userRole === userTypes["agent"] && viewingDealStatus === 'pending' || this.props.userRole === userTypes["superAdmin"] || this.props.userRole === userTypes["admin"] ? external__react__default.a.createElement(Button__default.a, {
+      }, "Cancel"), (userRole === userTypes["agent"] && viewingDealStatus === 'pending' || userRole === userTypes["superAdmin"] || userRole === userTypes["admin"]) && !isCoAgent ? external__react__default.a.createElement(Button__default.a, {
         disabled: this.state.formSubmitted,
         onClick: this.handleCancelMenuClick,
         color: "secondary"
@@ -11539,11 +11582,11 @@ function (_Component) {
           root: classes.menuItem
         },
         onClick: this.handleCancelMenuClose
-      }, "No")), !isEditingDeal && this.props.userRole === userTypes["agent"] && viewingDealStatus === 'pending' && !isCoAgent ? external__react__default.a.createElement(Button__default.a, {
+      }, "No")), !isEditingDeal && !isCoAgentEditDeal && this.props.userRole === userTypes["agent"] && viewingDealStatus === 'pending' ? external__react__default.a.createElement(Button__default.a, {
         className: classes.editDealBtn,
         disabled: this.state.formSubmitted,
         onClick: function onClick() {
-          return _this2.toggleEditingDeal(true);
+          return _this2.toggleEditingDeal(true, isCoAgent);
         },
         color: "primary"
       }, "Edit") : null, (this.props.userRole === userTypes["admin"] || this.props.userRole === userTypes["superAdmin"]) && viewingDealStatus === 'pending' ? external__react__default.a.createElement(Button__default.a, {
@@ -11572,7 +11615,7 @@ function (_Component) {
           root: classes.menuItem
         },
         onClick: this.handleAcceptMenuClose
-      }, "No")), isEditingDeal ? external__react__default.a.createElement(Button__default.a, {
+      }, "No")), isEditingDeal || isCoAgentEditDeal ? external__react__default.a.createElement(Button__default.a, {
         disabled: this.state.formSubmitted,
         onClick: function onClick() {
           var errors = _this2.state.formApi.getError();
@@ -11876,7 +11919,7 @@ var external__react_spinners_ = __webpack_require__(27);
 var external__react_spinners__default = /*#__PURE__*/__webpack_require__.n(external__react_spinners_);
 
 // EXTERNAL MODULE: external "moment"
-var external__moment_ = __webpack_require__(56);
+var external__moment_ = __webpack_require__(57);
 var external__moment__default = /*#__PURE__*/__webpack_require__.n(external__moment_);
 
 // EXTERNAL MODULE: external "papaparse"
@@ -11908,7 +11951,7 @@ var dx_react_grid_material_ui_ = __webpack_require__(36);
 var dx_react_grid_material_ui__default = /*#__PURE__*/__webpack_require__.n(dx_react_grid_material_ui_);
 
 // EXTERNAL MODULE: external "react-icons/lib/md"
-var md_ = __webpack_require__(57);
+var md_ = __webpack_require__(56);
 var md__default = /*#__PURE__*/__webpack_require__.n(md_);
 
 // EXTERNAL MODULE: external "@material-ui/icons/Equalizer"
@@ -12584,17 +12627,18 @@ function (_Component) {
       enumerable: true,
       writable: true,
       value: function value() {
-        return _this.props.deals.map(function (deal) {
+        var _this$props = _this.props,
+            deals = _this$props.deals,
+            openDealsViewDialogBox = _this$props.openDealsViewDialogBox;
+        return deals.map(function (deal) {
           var dealID = deal.dealID,
               date = deal.date,
               agentName = deal.agentName,
               agentType = deal.agentType,
-              leadSource = deal.leadSource,
               dealType = deal.dealType,
               propertyAddress = deal.propertyAddress,
               state = deal.state,
               city = deal.city,
-              apartmentNumber = deal.apartmentNumber,
               managementOrCobrokeCompany = deal.managementOrCobrokeCompany,
               price = deal.price,
               clientName = deal.clientName,
@@ -12606,11 +12650,13 @@ function (_Component) {
               bonusPercentageAddedByAdmin = deal.bonusPercentageAddedByAdmin,
               netAgentCommission = deal.netAgentCommission,
               netCompanyCommission = deal.netCompanyCommission,
-              deductionItems = deal.deductionItems;
+              deductionItems = deal.deductionItems,
+              isCoAgent = deal.isCoAgent,
+              agentID = deal.agentID;
           var coBrokeAgents = deductionItems && deductionItems.filter(function (v) {
-            return v.deductionType === 'Co-Brokering Split' && v.agentID;
+            return v.deductionType === 'Co-Brokering Split' && v.agentName;
           }).map(function (v) {
-            return v.agentID;
+            return v.agentName;
           }).join(', ');
           return {
             dealID: dealID,
@@ -12636,7 +12682,14 @@ function (_Component) {
             view: {
               type: 'action',
               onClick: function onClick() {
-                return Object(debounce["a" /* default */])(_this.props.openDealsViewDialogBox.bind(null, dealID, status), 1000, true)();
+                return Object(debounce["a" /* default */])(function () {
+                  return openDealsViewDialogBox({
+                    dealID: dealID,
+                    status: status,
+                    isCoAgent: isCoAgent,
+                    agentID: agentID
+                  });
+                }, 1000, true)();
               }
             }
           };
@@ -12772,7 +12825,7 @@ var external__react_spinners_ = __webpack_require__(27);
 var external__react_spinners__default = /*#__PURE__*/__webpack_require__.n(external__react_spinners_);
 
 // EXTERNAL MODULE: external "moment"
-var external__moment_ = __webpack_require__(56);
+var external__moment_ = __webpack_require__(57);
 var external__moment__default = /*#__PURE__*/__webpack_require__.n(external__moment_);
 
 // EXTERNAL MODULE: external "papaparse"
@@ -12800,7 +12853,7 @@ var dx_react_grid_material_ui_ = __webpack_require__(36);
 var dx_react_grid_material_ui__default = /*#__PURE__*/__webpack_require__.n(dx_react_grid_material_ui_);
 
 // EXTERNAL MODULE: external "react-icons/lib/md"
-var md_ = __webpack_require__(57);
+var md_ = __webpack_require__(56);
 var md__default = /*#__PURE__*/__webpack_require__.n(md_);
 
 // EXTERNAL MODULE: external "@material-ui/icons/Equalizer"
@@ -13322,7 +13375,10 @@ function (_Component) {
       enumerable: true,
       writable: true,
       value: function value() {
-        return _this.props.deals.map(function (deal) {
+        var _this$props = _this.props,
+            deals = _this$props.deals,
+            openDealsViewDialogBox = _this$props.openDealsViewDialogBox;
+        return deals.map(function (deal) {
           var dealID = deal.dealID,
               date = deal.date,
               dealType = deal.dealType,
@@ -13353,9 +13409,13 @@ function (_Component) {
             status: Object(stringUtils["a" /* capitalize */])(status),
             view: {
               type: 'action',
-              onClick: function onClick() {
-                return Object(debounce["a" /* default */])(_this.props.openDealsViewDialogBox.bind(null, dealID, status, isCoAgent), 1000, true)();
-              }
+              onClick: Object(debounce["a" /* default */])(function () {
+                return openDealsViewDialogBox({
+                  dealID: dealID,
+                  status: status,
+                  isCoAgent: isCoAgent
+                });
+              }, 1000, true)
             }
           };
         });
@@ -13496,7 +13556,7 @@ var Button_ = __webpack_require__(41);
 var Button__default = /*#__PURE__*/__webpack_require__.n(Button_);
 
 // EXTERNAL MODULE: external "moment"
-var external__moment_ = __webpack_require__(56);
+var external__moment_ = __webpack_require__(57);
 var external__moment__default = /*#__PURE__*/__webpack_require__.n(external__moment_);
 
 // EXTERNAL MODULE: external "set-value"
@@ -15152,10 +15212,6 @@ var ExpandMore__default = /*#__PURE__*/__webpack_require__.n(ExpandMore_);
 var FormattedText_ = __webpack_require__(170);
 var FormattedText__default = /*#__PURE__*/__webpack_require__.n(FormattedText_);
 
-// EXTERNAL MODULE: external "moment"
-var external__moment_ = __webpack_require__(56);
-var external__moment__default = /*#__PURE__*/__webpack_require__.n(external__moment_);
-
 // EXTERNAL MODULE: external "material-ui/Menu"
 var Menu_ = __webpack_require__(67);
 var Menu__default = /*#__PURE__*/__webpack_require__.n(Menu_);
@@ -15183,14 +15239,6 @@ var userTypes_default = /*#__PURE__*/__webpack_require__.n(userTypes);
 // EXTERNAL MODULE: ./utils/stringUtils.js
 var stringUtils = __webpack_require__(19);
 
-// EXTERNAL MODULE: external "material-ui/Tooltip"
-var Tooltip_ = __webpack_require__(12);
-var Tooltip__default = /*#__PURE__*/__webpack_require__.n(Tooltip_);
-
-// EXTERNAL MODULE: external "@material-ui/icons/Add"
-var Add_ = __webpack_require__(55);
-var Add__default = /*#__PURE__*/__webpack_require__.n(Add_);
-
 // EXTERNAL MODULE: external "@material-ui/icons/Equalizer"
 var Equalizer_ = __webpack_require__(130);
 var Equalizer__default = /*#__PURE__*/__webpack_require__.n(Equalizer_);
@@ -15210,8 +15258,8 @@ var ViewDealDialogBox = __webpack_require__(164);
 // CONCATENATED MODULE: ./containers/DealsWithGQLQuery.js
 var _class;
 
-var _templateObject = /*#__PURE__*/ _taggedTemplateLiteral(["\n  query dealsByAgentID($uuid: String!) {\n    dealsByAgentID(uuid: $uuid) {\n      dealID\n      date\n      agentID\n      dealType\n      clientName\n      clientEmail\n      propertyAddress\n      city\n      state\n      managementOrCobrokeCompany\n      price\n      status\n      bonusPercentageAddedByAdmin\n      netAgentCommission\n      total\n    }\n  }\n"]),
-    _templateObject2 = /*#__PURE__*/ _taggedTemplateLiteral(["\n  query dealsByAgentID($uuid: String!) {\n    dealsByAgentID(uuid: $uuid) {\n      dealID\n      date\n      agentName\n      agentType\n      leadSource\n      dealType\n      propertyAddress\n      state\n      city\n      apartmentNumber\n      managementOrCobrokeCompany\n      price\n      clientName\n      clientEmail\n      paymentsTotal\n      deductionsTotal\n      total\n      agentNotes\n      bonusPercentageAddedByAdmin\n      netAgentCommission\n      netCompanyCommission\n      deductionItems {\n        agentID\n        deductionType\n        agentID\n      }\n      status\n    }\n  }\n"]);
+var _templateObject = /*#__PURE__*/ _taggedTemplateLiteral(["\n  query dealsByAgentID($uuid: String!) {\n    dealsByAgentID(uuid: $uuid) {\n      dealID\n      date\n      agentID\n      dealType\n      clientName\n      clientEmail\n      propertyAddress\n      city\n      state\n      managementOrCobrokeCompany\n      price\n      status\n      bonusPercentageAddedByAdmin\n      netAgentCommission\n      total\n      isCoAgent\n    }\n  }\n"]),
+    _templateObject2 = /*#__PURE__*/ _taggedTemplateLiteral(["\n  query dealsByAgentID($uuid: String!) {\n    dealsByAgentID(uuid: $uuid) {\n      dealID\n      date\n      agentName\n      agentType\n      leadSource\n      dealType\n      propertyAddress\n      state\n      city\n      apartmentNumber\n      managementOrCobrokeCompany\n      price\n      clientName\n      clientEmail\n      paymentsTotal\n      deductionsTotal\n      total\n      agentNotes\n      bonusPercentageAddedByAdmin\n      netAgentCommission\n      netCompanyCommission\n      deductionItems {\n        agentID\n        deductionType\n        agentName\n      }\n      status\n      isCoAgent\n    }\n  }\n"]);
 
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
@@ -15256,13 +15304,11 @@ function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(
 
 
 
-
-
 var Loader = external__react_spinners_["DotLoader"];
 var dealsQuery = external__graphql_tag__default()(_templateObject);
 var adminDealsByAgentID = external__graphql_tag__default()(_templateObject2);
 
-var styles = function styles(theme) {
+var styles = function styles() {
   return {
     addDealBtn: {},
     dealsSummaryBtn: {
@@ -15292,13 +15338,37 @@ var DealsWithGQLQuery_DealsWithGQLQuery = Object(external__mobx_react_["observer
 function (_Component) {
   _inherits(DealsWithGQLQuery, _Component);
 
-  function DealsWithGQLQuery(props) {
-    var _this;
+  function DealsWithGQLQuery() {
+    var _ref;
+
+    var _temp, _this;
 
     _classCallCheck(this, DealsWithGQLQuery);
 
-    _this = _possibleConstructorReturn(this, (DealsWithGQLQuery.__proto__ || Object.getPrototypeOf(DealsWithGQLQuery)).call(this, props));
-    Object.defineProperty(_assertThisInitialized(_this), "toggleAddDealDialogBox", {
+    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    return _possibleConstructorReturn(_this, (_temp = _this = _possibleConstructorReturn(this, (_ref = DealsWithGQLQuery.__proto__ || Object.getPrototypeOf(DealsWithGQLQuery)).call.apply(_ref, [this].concat(args))), Object.defineProperty(_assertThisInitialized(_this), "state", {
+      configurable: true,
+      enumerable: true,
+      writable: true,
+      value: {
+        submitDealDialogOpen: false,
+        dealsSummaryDialogBoxOpen: false,
+        snackbarOpen: false,
+        snackbarText: '',
+        snackbarUndoFunction: null,
+        addedDeals: [],
+        dealsViewDialogBoxOpen: false,
+        viewingDealID: '',
+        viewingDealStatus: '',
+        deletedDealIDS: [],
+        userUUID: _this.props.userUUID,
+        acceptedDealIDS: [],
+        isCoAgent: false
+      }
+    }), Object.defineProperty(_assertThisInitialized(_this), "toggleAddDealDialogBox", {
       configurable: true,
       enumerable: true,
       writable: true,
@@ -15307,8 +15377,7 @@ function (_Component) {
           submitDealDialogOpen: !_this.state.submitDealDialogOpen
         });
       }
-    });
-    Object.defineProperty(_assertThisInitialized(_this), "toggleDealsSummaryDialogBox", {
+    }), Object.defineProperty(_assertThisInitialized(_this), "toggleDealsSummaryDialogBox", {
       configurable: true,
       enumerable: true,
       writable: true,
@@ -15317,8 +15386,7 @@ function (_Component) {
           dealsSummaryDialogBoxOpen: !_this.state.dealsSummaryDialogBoxOpen
         });
       }
-    });
-    Object.defineProperty(_assertThisInitialized(_this), "setDealSuccessfullySubmitted", {
+    }), Object.defineProperty(_assertThisInitialized(_this), "setDealSuccessfullySubmitted", {
       configurable: true,
       enumerable: true,
       writable: true,
@@ -15330,8 +15398,7 @@ function (_Component) {
           addedDeals: _toConsumableArray(_this.state.addedDeals).concat([newDeal])
         });
       }
-    });
-    Object.defineProperty(_assertThisInitialized(_this), "setDealSuccessfullyEditted", {
+    }), Object.defineProperty(_assertThisInitialized(_this), "setDealSuccessfullyEditted", {
       configurable: true,
       enumerable: true,
       writable: true,
@@ -15347,8 +15414,7 @@ function (_Component) {
           addedDeals: _toConsumableArray(addedDeals).concat([newDeal])
         });
       }
-    });
-    Object.defineProperty(_assertThisInitialized(_this), "handleCloseSnackbar", {
+    }), Object.defineProperty(_assertThisInitialized(_this), "handleCloseSnackbar", {
       configurable: true,
       enumerable: true,
       writable: true,
@@ -15358,20 +15424,23 @@ function (_Component) {
           snackbarUndoFunction: null
         });
       }
-    });
-    Object.defineProperty(_assertThisInitialized(_this), "openDealsViewDialogBox", {
+    }), Object.defineProperty(_assertThisInitialized(_this), "openDealsViewDialogBox", {
       configurable: true,
       enumerable: true,
       writable: true,
-      value: function value(dealID, status) {
+      value: function value(_ref2) {
+        var dealID = _ref2.dealID,
+            status = _ref2.status,
+            isCoAgent = _ref2.isCoAgent;
+
         _this.setState({
           dealsViewDialogBoxOpen: true,
           viewingDealID: dealID,
-          viewingDealStatus: status
+          viewingDealStatus: status,
+          isCoAgent: isCoAgent
         });
       }
-    });
-    Object.defineProperty(_assertThisInitialized(_this), "closeDealsViewDialogBox", {
+    }), Object.defineProperty(_assertThisInitialized(_this), "closeDealsViewDialogBox", {
       configurable: true,
       enumerable: true,
       writable: true,
@@ -15382,8 +15451,7 @@ function (_Component) {
           viewingDealStatus: ''
         });
       }
-    });
-    Object.defineProperty(_assertThisInitialized(_this), "dealDeleted", {
+    }), Object.defineProperty(_assertThisInitialized(_this), "dealDeleted", {
       configurable: true,
       enumerable: true,
       writable: true,
@@ -15395,8 +15463,7 @@ function (_Component) {
           deletedDealIDS: _toConsumableArray(_this.state.deletedDealIDS).concat([dealID])
         });
       }
-    });
-    Object.defineProperty(_assertThisInitialized(_this), "dealAccepted", {
+    }), Object.defineProperty(_assertThisInitialized(_this), "dealAccepted", {
       configurable: true,
       enumerable: true,
       writable: true,
@@ -15408,22 +15475,7 @@ function (_Component) {
           acceptedDealIDS: _toConsumableArray(_this.state.acceptedDealIDS).concat([dealID])
         });
       }
-    });
-    _this.state = {
-      submitDealDialogOpen: false,
-      dealsSummaryDialogBoxOpen: false,
-      snackbarOpen: false,
-      snackbarText: '',
-      snackbarUndoFunction: null,
-      addedDeals: [],
-      dealsViewDialogBoxOpen: false,
-      viewingDealID: '',
-      viewingDealStatus: '',
-      deletedDealIDS: [],
-      userUUID: _this.props.userUUID,
-      acceptedDealIDS: []
-    };
-    return _this;
+    }), _temp));
   }
 
   _createClass(DealsWithGQLQuery, [{
@@ -15436,13 +15488,12 @@ function (_Component) {
           userUUID = _props.userUUID,
           isAdmin = _props.isAdmin;
       var _state = this.state,
-          submitDealDialogOpen = _state.submitDealDialogOpen,
           dealsSummaryDialogBoxOpen = _state.dealsSummaryDialogBoxOpen,
           dealsViewDialogBoxOpen = _state.dealsViewDialogBoxOpen,
           viewingDealID = _state.viewingDealID,
-          viewingDealStatus = _state.viewingDealStatus;
-      var toggleAddDealDialogBox = this.toggleAddDealDialogBox,
-          toggleDealsSummaryDialogBox = this.toggleDealsSummaryDialogBox,
+          viewingDealStatus = _state.viewingDealStatus,
+          isCoAgent = _state.isCoAgent;
+      var toggleDealsSummaryDialogBox = this.toggleDealsSummaryDialogBox,
           openDealsViewDialogBox = this.openDealsViewDialogBox,
           closeDealsViewDialogBox = this.closeDealsViewDialogBox;
       return external__react__default.a.createElement(external__react_apollo_["Query"], {
@@ -15452,22 +15503,26 @@ function (_Component) {
         },
         ssr: false,
         fetchPolicy: "cache-and-network"
-      }, function (_ref) {
-        var loading = _ref.loading,
-            error = _ref.error,
-            data = _ref.data;
-        if (loading) return external__react__default.a.createElement("div", {
-          style: {
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-            height: 'calc(100vh - 110px)',
-            boxShadow: '0px 1px 3px 0px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 2px 1px -1px rgba(0, 0, 0, 0.12)'
-          }
-        }, external__react__default.a.createElement(Loader, {
-          color: "#f44336",
-          loading: true
-        }));
+      }, function (_ref3) {
+        var loading = _ref3.loading,
+            error = _ref3.error,
+            data = _ref3.data;
+
+        if (loading) {
+          return external__react__default.a.createElement("div", {
+            style: {
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              height: 'calc(100vh - 110px)',
+              boxShadow: '0px 1px 3px 0px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 2px 1px -1px rgba(0, 0, 0, 0.12)'
+            }
+          }, external__react__default.a.createElement(Loader, {
+            color: "#f44336",
+            loading: true
+          }));
+        }
+
         var intDeals = {};
 
         if (error) {
@@ -15495,9 +15550,9 @@ function (_Component) {
             return _objectSpread({}, deal, {
               status: 'accepted'
             });
-          } else {
-            return deal;
           }
+
+          return deal;
         });
         console.log(uniqueDeals);
         return external__react__default.a.createElement("div", {
@@ -15524,7 +15579,8 @@ function (_Component) {
           deleteDeal: _this2.deleteDeal,
           dealAccepted: _this2.dealAccepted,
           dealDeleted: _this2.dealDeleted,
-          userUUID: userUUID
+          userUUID: userUUID,
+          isCoAgent: isCoAgent
         }) : external__react__default.a.createElement(ViewDealDialogBox["a" /* default */], {
           dealsViewDialogBoxOpen: dealsViewDialogBoxOpen,
           closeDealsViewDialogBox: closeDealsViewDialogBox,
@@ -15534,7 +15590,8 @@ function (_Component) {
           toggleSnackbarOpen: _this2.toggleSnackbarOpen,
           setDealSuccessfullySubmitted: _this2.setDealSuccessfullyEditted,
           userRole: _this2.props.userRole,
-          dealDeleted: _this2.dealDeleted
+          dealDeleted: _this2.dealDeleted,
+          isCoAgent: isCoAgent
         })), _this2.props.isAdmin ? external__react__default.a.createElement(AdminAreaDealsTableContainer["a" /* default */], {
           deals: uniqueDeals,
           openDealsViewDialogBox: openDealsViewDialogBox,
@@ -15609,7 +15666,6 @@ function Profile__inherits(subClass, superClass) { if (typeof superClass !== "fu
 function Profile__assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 
 function Profile__defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
 
 
 

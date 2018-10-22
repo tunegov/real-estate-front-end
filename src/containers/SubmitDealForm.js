@@ -37,30 +37,28 @@ export const dealFormQuery = gql`
 
 @observer
 class SubmitDealFormContainer extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      paymentAmountItems: {},
-      deductionAmountItems: {},
-      paymentsTotal: 0,
-      deductionsTotal: 0,
-      total: 0,
-      contractOrLeaseForms: [],
-      agencyDisclosureForm: null,
-      permanentPaymentSubtractions: 0, // not submitted
-      permanentDeductionSubtractions: 0, // not submitted
-      choosingMgmtCoBrokeCompany: false,
-      newMgmtOrCobrokeCompany: '',
-      hasSetNewMgmtOrCobrokeCompany: false,
-      addedManagementCompanies: [],
-      uplodingFileProgress: 0,
-      isUploadingFile: false,
-      uplodingFileText: '',
-      filesUploadedSuccessfully: null,
-      formSubmissionBegun: false,
-      submittingFormToServer: false,
-    };
-  }
+  state = {
+    paymentAmountItems: {},
+    deductionAmountItems: {},
+    paymentsTotal: 0,
+    deductionsTotal: 0,
+    total: 0,
+    contractOrLeaseForms: [],
+    agencyDisclosureForm: null,
+    permanentPaymentSubtractions: 0, // not submitted
+    permanentDeductionSubtractions: 0, // not submitted
+    choosingMgmtCoBrokeCompany: false,
+    newMgmtOrCobrokeCompany: '',
+    hasSetNewMgmtOrCobrokeCompany: false,
+    addedManagementCompanies: [],
+    uplodingFileProgress: 0,
+    isUploadingFile: false,
+    uplodingFileText: '',
+    filesUploadedSuccessfully: null,
+    formSubmissionBegun: false,
+    submittingFormToServer: false,
+    agentPaymentTypeIsACH: false,
+  };
 
   uploadItemsNum = 0;
 

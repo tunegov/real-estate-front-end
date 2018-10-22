@@ -65,60 +65,63 @@ class DealsTableContainer extends Component {
     };
   }
 
-  createRows = () => this.props.deals.map(deal => {
-    const {
-      dealID,
-      date,
-      dealType,
-      clientName,
-      clientEmail,
-      propertyAddress,
-      city,
-      managementOrCobrokeCompany,
-      price,
-      bonusPercentageAddedByAdmin,
-      netAgentCommission,
-      status,
-      total,
-      isCoAgent,
-    } = deal;
+  createRows = () => {
+    const { deals, openDealsViewDialogBox } = this.props;
+    return deals.map(deal => {
+      const {
+        dealID,
+        date,
+        dealType,
+        clientName,
+        clientEmail,
+        propertyAddress,
+        city,
+        managementOrCobrokeCompany,
+        price,
+        bonusPercentageAddedByAdmin,
+        netAgentCommission,
+        status,
+        total,
+        isCoAgent,
+      } = deal;
 
-    return {
-      dealID,
-      date: moment(date).format('MM/DD/YYYY'),
-      dealType,
-      clientName,
-      clientEmail,
-      propertyAddress,
-      propertyCity: city,
-      managementOrCobrokeCompany,
-      rentOrSalePrice: `$${padStringToDecimalString(
-        Number(price || 0).toLocaleString()
-      )}`,
-      bonusPercentageAddedByAdmin:
+      return {
+        dealID,
+        date: moment(date).format('MM/DD/YYYY'),
+        dealType,
+        clientName,
+        clientEmail,
+        propertyAddress,
+        propertyCity: city,
+        managementOrCobrokeCompany,
+        rentOrSalePrice: `$${padStringToDecimalString(
+          Number(price || 0).toLocaleString()
+        )}`,
+        bonusPercentageAddedByAdmin:
           status === 'pending'
             ? undefined
             : `%${bonusPercentageAddedByAdmin || 0}`,
-      netAgentCommission:
+        netAgentCommission:
           status === 'pending'
             ? undefined
             : `$${padStringToDecimalString(
               Number(netAgentCommission || 0).toLocaleString()
             )}`,
-      dealTotal: `$${padStringToDecimalString(
-        Number(total || 0).toLocaleString()
-      )}`,
-      status: capitalize(status),
-      view: {
-        type: 'action',
-        onClick: () => debounce(
-          this.props.openDealsViewDialogBox.bind(null, dealID, status, isCoAgent),
-          1000,
-          true
-        )(),
-      },
-    };
-  });
+        dealTotal: `$${padStringToDecimalString(
+          Number(total || 0).toLocaleString()
+        )}`,
+        status: capitalize(status),
+        view: {
+          type: 'action',
+          onClick: debounce(
+            () => openDealsViewDialogBox({ dealID, status, isCoAgent }),
+            1000,
+            true
+          ),
+        },
+      };
+    });
+  };
 
   convertDealsToCSV = () => {
     const { deals } = this.props;

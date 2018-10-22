@@ -1486,7 +1486,9 @@ function create(initialState) {
         Accept: 'application/json'
       }
     }),
-    cache: new external__apollo_cache_inmemory_["InMemoryCache"]().restore(initialState || {})
+    cache: new external__apollo_cache_inmemory_["InMemoryCache"]({
+      addTypename: false
+    }).restore(initialState || {})
   });
 }
 
@@ -1691,13 +1693,13 @@ module.exports = require("@material-ui/icons/Add");
 /* 56 */
 /***/ (function(module, exports) {
 
-module.exports = require("moment");
+module.exports = require("react-icons/lib/md");
 
 /***/ }),
 /* 57 */
 /***/ (function(module, exports) {
 
-module.exports = require("react-icons/lib/md");
+module.exports = require("moment");
 
 /***/ }),
 /* 58 */
@@ -2164,7 +2166,7 @@ function (_Component) {
 
 /* harmony default export */ var components_SideNavLinkItem = (Object(styles_["withStyles"])(styles)(SideNavLinkItem_SideNavLinkItem));
 // EXTERNAL MODULE: external "react-icons/lib/md"
-var md_ = __webpack_require__(57);
+var md_ = __webpack_require__(56);
 var md__default = /*#__PURE__*/__webpack_require__.n(md_);
 
 // EXTERNAL MODULE: external "react-icons/lib/fa"
@@ -5692,7 +5694,7 @@ var SelectFilterCell = Object(__WEBPACK_IMPORTED_MODULE_1_material_ui_styles__["
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return compareDate; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return compareNumber; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_moment__ = __webpack_require__(56);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_moment__ = __webpack_require__(57);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_moment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_moment__);
 
 var compareDate = function compareDate(a, b) {
@@ -5881,7 +5883,7 @@ var external__react_form_ = __webpack_require__(30);
 var external__react_form__default = /*#__PURE__*/__webpack_require__.n(external__react_form_);
 
 // EXTERNAL MODULE: external "moment"
-var external__moment_ = __webpack_require__(56);
+var external__moment_ = __webpack_require__(57);
 var external__moment__default = /*#__PURE__*/__webpack_require__.n(external__moment_);
 
 // EXTERNAL MODULE: external "uuid/v4"
@@ -8026,7 +8028,7 @@ var Search_ = __webpack_require__(140);
 var Search__default = /*#__PURE__*/__webpack_require__.n(Search_);
 
 // EXTERNAL MODULE: external "moment"
-var external__moment_ = __webpack_require__(56);
+var external__moment_ = __webpack_require__(57);
 var external__moment__default = /*#__PURE__*/__webpack_require__.n(external__moment_);
 
 // EXTERNAL MODULE: external "material-ui/Grid"
@@ -8105,7 +8107,7 @@ var dx_react_grid_material_ui_ = __webpack_require__(36);
 var dx_react_grid_material_ui__default = /*#__PURE__*/__webpack_require__.n(dx_react_grid_material_ui_);
 
 // EXTERNAL MODULE: external "react-icons/lib/md"
-var md_ = __webpack_require__(57);
+var md_ = __webpack_require__(56);
 var md__default = /*#__PURE__*/__webpack_require__.n(md_);
 
 // EXTERNAL MODULE: ./utils/backEndTableUtils/SelectFilterCell.js

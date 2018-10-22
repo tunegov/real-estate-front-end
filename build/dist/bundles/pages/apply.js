@@ -1046,7 +1046,9 @@ function create(initialState) {
         Accept: 'application/json'
       }
     }),
-    cache: new external__apollo_cache_inmemory_["InMemoryCache"]().restore(initialState || {})
+    cache: new external__apollo_cache_inmemory_["InMemoryCache"]({
+      addTypename: false
+    }).restore(initialState || {})
   });
 }
 
@@ -1243,13 +1245,13 @@ module.exports = require("isomorphic-unfetch");
 
 /***/ }),
 /* 55 */,
-/* 56 */
+/* 56 */,
+/* 57 */
 /***/ (function(module, exports) {
 
 module.exports = require("moment");
 
 /***/ }),
-/* 57 */,
 /* 58 */,
 /* 59 */,
 /* 60 */,
@@ -3744,7 +3746,7 @@ var tabs_ = __webpack_require__(195);
 var tabs__default = /*#__PURE__*/__webpack_require__.n(tabs_);
 
 // EXTERNAL MODULE: external "moment"
-var external__moment_ = __webpack_require__(56);
+var external__moment_ = __webpack_require__(57);
 var external__moment__default = /*#__PURE__*/__webpack_require__.n(external__moment_);
 
 // EXTERNAL MODULE: external "react-input-mask"

@@ -700,6 +700,7 @@ class SubmitDealForm extends Component {
       onSubmit,
       userRole,
       isCoAgent,
+      isCoAgentEditDeal,
     } = this.props;
 
     const { contractLeaseAnchorEl, agencyDisclosureAnchorEl } = this.state;
@@ -769,6 +770,9 @@ class SubmitDealForm extends Component {
       */
 
     let finalDefaultValues;
+    const isCoBrokeringAgentPaymentType = (submittedDeal && submittedDeal.coBrokeringAgentPaymentTypes && submittedDeal.coBrokeringAgentPaymentTypes[0]) || {};
+    const isACHAccountNumberCoBroke = isCoBrokeringAgentPaymentType.ACHAccountNumber;
+    const isACHAccountBankRoutingNumber = isCoBrokeringAgentPaymentType.ACHAccountBankRoutingNumber;
 
     if (submittedDeal) {
       const {
@@ -798,6 +802,7 @@ class SubmitDealForm extends Component {
         bonusPercentageAddedByAdmin,
         ACHAccountNumber,
         ACHAccountBankRoutingNumber,
+        coBrokeringAgentPaymentTypes,
       } = submittedDeal;
       finalDefaultValues = {
         agent: agentName,
@@ -818,6 +823,10 @@ class SubmitDealForm extends Component {
         state,
         fundsPaidBy,
         price,
+        coBrokeringAgentPaymentTypes,
+        agentPaymentTypeCoBroke: isCoBrokeringAgentPaymentType.agentPaymentType,
+        ACHAccountNumberCoBroke: isCoBrokeringAgentPaymentType.ACHAccountNumber,
+        ACHAccountBankRoutingNumberCoBroke: isCoBrokeringAgentPaymentType.ACHAccountBankRoutingNumber,
         paymentItems: paymentItems.map(
           ({ paymentType, checkOrTransactionNumber, amount }) => ({
             paymentType,
@@ -1733,48 +1742,6 @@ class SubmitDealForm extends Component {
                     </div>
                   </Grid>
 
-                  {/*
-                      {formApi.values.contractOrLeaseItems && formApi.values.contractOrLeaseItems.map((contractOrLeaseItem, i) => (
-                        <Grid item xs={12} key={i} classes={{ typeItem: classes.uploadContractDivWrapper }}>
-                          <div className={classes.fileUploadBtnWrapper2}>
-                            <CustomFileUploadInputBtn
-                              field={['contractOrLeaseItems', i]}
-                              id={uuid()}
-                              label="Upload Contract or Lease"
-                              btnClassName={classes.uploadBtnClassName}
-                            />
-                          </div>
-                          <Button
-                            variant="fab"
-                            color="secondary"
-                            aria-label="add"
-                            size="small"
-                            classes={{ root: classes.smallFileRemoveBtn }}
-                            onClick={() => formApi.removeValue('contractOrLeaseItems', i)}
-                          >
-                            <DeleteIcon />
-                          </Button>
-                        </Grid>
-                      )).slice(1)}
-
-
-                    <Grid item xs={12}>
-                      <div className={classes.fileUploadBtnWrapper}>
-                        <Button
-                          variant="fab"
-                          color="primary"
-                          id="contractOrLease"
-                          aria-label="add"
-                          size="small"
-                          classes={{ root: classes.smallFileAddBtn }}
-                          onClick={() => formApi.addValue('contractOrLeaseItems')}
-                        >
-                          <AddIcon />
-                        </Button>
-                      </div>
-                    </Grid>
-                    */}
-
                   <div className={classes.formMiniHeading2}>
                     <Typography
                       variant="subheading"
@@ -1794,29 +1761,29 @@ class SubmitDealForm extends Component {
                     }`}
                   >
                     <MaterialCustomRadioInput
-                      field="agentPaymentType"
+                      field={`${isCoAgent ? 'agentPaymentTypeCoBroke' : 'agentPaymentType'}`}
                       id={uuid()}
                       required
                       label="How would you like to get paid?"
                       radioInputItems={radioInputAgentPaymentItems}
                       onInput={this.props.onAgentPaymentTypeChange}
                       horizontal
-                      disabled={submittedDeal && !isEditingDeal}
+                      disabled={submittedDeal && (!isEditingDeal && !isCoAgentEditDeal)}
                     />
                   </div>
 
                   {(agentPaymentTypeIsACH
-                    || (submittedDeal && submittedDeal.ACHAccountNumber)) && (
+                    || (submittedDeal && (submittedDeal.ACHAccountNumber || isACHAccountNumberCoBroke))) && (
                     <Grid item xs={12} md={6}>
                       <div className={classes.formControlWrapper}>
                         <CustomTextField
-                          field="ACHAccountNumber"
+                          field={`${isCoAgent ? 'ACHAccountNumberCoBroke' : 'ACHAccountNumber'}`}
                           id={uuid()}
                           label="ACH Account Number"
                           required
                           fullWidth
                           validate={ACHAccountNumberValidator}
-                          disabled={submittedDeal && !isEditingDeal}
+                          disabled={submittedDeal && (!isEditingDeal && !isCoAgentEditDeal)}
                         />
                       </div>
                     </Grid>
@@ -1824,21 +1791,22 @@ class SubmitDealForm extends Component {
 
                   {(agentPaymentTypeIsACH
                     || (submittedDeal
-                      && submittedDeal.ACHAccountBankRoutingNumber)) && (
-                    <Grid item xs={12} md={6}>
-                      <div className={classes.formControlWrapper}>
-                        <CustomTextField
-                          field="ACHAccountBankRoutingNumber"
-                          id={uuid()}
-                          label="ACH Account's Bank Routing Number"
-                          required
-                          fullWidth
-                          validate={ACHAccountNumberValidator}
-                          disabled={submittedDeal && !isEditingDeal}
-                        />
-                      </div>
-                    </Grid>
-                  )}
+                      && (submittedDeal.ACHAccountBankRoutingNumber || isACHAccountBankRoutingNumber)))
+                       && (
+                         <Grid item xs={12} md={6}>
+                           <div className={classes.formControlWrapper}>
+                             <CustomTextField
+                               field={`${isCoAgent ? 'ACHAccountBankRoutingNumberCoBroke' : 'ACHAccountBankRoutingNumber'}`}
+                               id={uuid()}
+                               label="ACH Account's Bank Routing Number"
+                               required
+                               fullWidth
+                               validate={ACHAccountNumberValidator}
+                               disabled={submittedDeal && (!isEditingDeal && !isCoAgentEditDeal)}
+                             />
+                           </div>
+                         </Grid>
+                       )}
 
                   <Grid item xs={12}>
                     <div className={classes.formControlWrapper}>

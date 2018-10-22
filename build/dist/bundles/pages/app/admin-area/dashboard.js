@@ -1471,7 +1471,9 @@ function create(initialState) {
         Accept: 'application/json'
       }
     }),
-    cache: new external__apollo_cache_inmemory_["InMemoryCache"]().restore(initialState || {})
+    cache: new external__apollo_cache_inmemory_["InMemoryCache"]({
+      addTypename: false
+    }).restore(initialState || {})
   });
 }
 
@@ -1676,13 +1678,13 @@ module.exports = require("@material-ui/icons/Add");
 /* 56 */
 /***/ (function(module, exports) {
 
-module.exports = require("moment");
+module.exports = require("react-icons/lib/md");
 
 /***/ }),
 /* 57 */
 /***/ (function(module, exports) {
 
-module.exports = require("react-icons/lib/md");
+module.exports = require("moment");
 
 /***/ }),
 /* 58 */
@@ -2124,7 +2126,7 @@ function (_Component) {
 
 /* harmony default export */ var components_SideNavLinkItem = (Object(styles_["withStyles"])(styles)(SideNavLinkItem_SideNavLinkItem));
 // EXTERNAL MODULE: external "react-icons/lib/md"
-var md_ = __webpack_require__(57);
+var md_ = __webpack_require__(56);
 var md__default = /*#__PURE__*/__webpack_require__.n(md_);
 
 // EXTERNAL MODULE: external "react-icons/lib/fa"
@@ -4138,7 +4140,7 @@ var external__react_spinners_ = __webpack_require__(27);
 var external__react_spinners__default = /*#__PURE__*/__webpack_require__.n(external__react_spinners_);
 
 // EXTERNAL MODULE: external "moment"
-var external__moment_ = __webpack_require__(56);
+var external__moment_ = __webpack_require__(57);
 var external__moment__default = /*#__PURE__*/__webpack_require__.n(external__moment_);
 
 // EXTERNAL MODULE: external "material-ui/Grid"
@@ -5638,7 +5640,7 @@ var styles_ = __webpack_require__(2);
 var styles__default = /*#__PURE__*/__webpack_require__.n(styles_);
 
 // EXTERNAL MODULE: external "moment"
-var external__moment_ = __webpack_require__(56);
+var external__moment_ = __webpack_require__(57);
 var external__moment__default = /*#__PURE__*/__webpack_require__.n(external__moment_);
 
 // EXTERNAL MODULE: external "material-ui/Snackbar"

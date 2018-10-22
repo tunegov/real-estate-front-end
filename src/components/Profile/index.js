@@ -7,7 +7,6 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import FormattedText from 'buildo-react-components/lib/FormattedText';
 import Snackbar from 'material-ui/Snackbar';
 import Button from 'material-ui/Button';
-import moment from 'moment';
 import IconButton from 'material-ui/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 import Menu from 'material-ui/Menu';

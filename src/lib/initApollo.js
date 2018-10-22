@@ -21,7 +21,9 @@ function create(initialState) {
       credentials: publicRuntimeConfig.CREDENTIALS, // Additional fetch() options like `credentials` or `headers`
       headers: { Accept: 'application/json' },
     }),
-    cache: new InMemoryCache().restore(initialState || {}),
+    cache: new InMemoryCache({
+      addTypename: false,
+    }).restore(initialState || {}),
   });
 }
 

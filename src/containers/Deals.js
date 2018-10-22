@@ -122,7 +122,7 @@ class Deals extends Component {
     });
   };
 
-  openDealsViewDialogBox = (dealID, status, isCoAgent) => {
+  openDealsViewDialogBox = ({ dealID, status, isCoAgent }) => {
     this.setState({
       dealsViewDialogBoxOpen: true,
       viewingDealID: dealID,

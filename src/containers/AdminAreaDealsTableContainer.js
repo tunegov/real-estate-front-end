@@ -73,89 +73,94 @@ class DealsTableContainer extends Component {
     };
   }
 
-  createRows = () => this.props.deals.map(deal => {
-    const {
-      dealID,
-      date,
-      agentName,
-      agentType,
-      leadSource,
-      dealType,
-      propertyAddress,
-      state,
-      city,
-      apartmentNumber,
-      managementOrCobrokeCompany,
-      price,
-      clientName,
-      clientEmail,
-      paymentsTotal,
-      deductionsTotal,
-      total,
-      status,
-      bonusPercentageAddedByAdmin,
-      netAgentCommission,
-      netCompanyCommission,
-      deductionItems,
-    } = deal;
+  createRows = () => {
+    const { deals, openDealsViewDialogBox } = this.props;
+    return deals.map(deal => {
+      const {
+        dealID,
+        date,
+        agentName,
+        agentType,
+        dealType,
+        propertyAddress,
+        state,
+        city,
+        managementOrCobrokeCompany,
+        price,
+        clientName,
+        clientEmail,
+        paymentsTotal,
+        deductionsTotal,
+        total,
+        status,
+        bonusPercentageAddedByAdmin,
+        netAgentCommission,
+        netCompanyCommission,
+        deductionItems,
+        isCoAgent,
+        agentID,
+      } = deal;
 
-    const coBrokeAgents = deductionItems && deductionItems
-      .filter(v => v.deductionType === 'Co-Brokering Split' && v.agentID)
-      .map(v => v.agentID)
-      .join(', ');
+      const coBrokeAgents = deductionItems && deductionItems
+        .filter(v => v.deductionType === 'Co-Brokering Split' && v.agentName)
+        .map(v => v.agentName)
+        .join(', ');
 
-    return {
-      dealID,
-      date: moment(date).format('MM/DD/YYYY'),
-      agentName,
-      agentType: `${agentType}%`,
-      dealType,
-      clientName,
-      clientEmail,
-      propertyAddress,
-      propertyCity: city,
-      propertyState: state,
-      managementOrCobrokeCompany,
-      rentOrSalePrice: `$${padStringToDecimalString(
-        Number(price || 0).toLocaleString()
-      )}`,
-      deductionsTotal: `$${padStringToDecimalString(
-        Number(deductionsTotal || 0).toLocaleString()
-      )}`,
-      paymentsTotal: `$${padStringToDecimalString(
-        Number(paymentsTotal || 0).toLocaleString()
-      )}`,
-      netPaymentsTotal: `$${padStringToDecimalString(
-        Number(total || 0).toLocaleString()
-      )}`,
-      bonusPercentageAddedByAdmin:
+      return {
+        dealID,
+        date: moment(date).format('MM/DD/YYYY'),
+        agentName,
+        agentType: `${agentType}%`,
+        dealType,
+        clientName,
+        clientEmail,
+        propertyAddress,
+        propertyCity: city,
+        propertyState: state,
+        managementOrCobrokeCompany,
+        rentOrSalePrice: `$${padStringToDecimalString(
+          Number(price || 0).toLocaleString()
+        )}`,
+        deductionsTotal: `$${padStringToDecimalString(
+          Number(deductionsTotal || 0).toLocaleString()
+        )}`,
+        paymentsTotal: `$${padStringToDecimalString(
+          Number(paymentsTotal || 0).toLocaleString()
+        )}`,
+        netPaymentsTotal: `$${padStringToDecimalString(
+          Number(total || 0).toLocaleString()
+        )}`,
+        bonusPercentageAddedByAdmin:
           status === 'pending'
             ? undefined
             : `%${bonusPercentageAddedByAdmin || 0}`,
-      netAgentCommission:
+        netAgentCommission:
           status === 'pending'
             ? undefined
             : `$${padStringToDecimalString(
               Number(netAgentCommission || 0).toLocaleString()
             )}`,
-      netCompanyCommission:
+        netCompanyCommission:
           status === 'pending'
             ? undefined
             : `$${padStringToDecimalString(
               Number(netCompanyCommission || 0).toLocaleString()
             )}`,
-      coBrokeringAgent: coBrokeAgents,
-      status: capitalize(status),
-      view: {
-        type: 'action',
-        onClick: () => debounce(
-          this.props.openDealsViewDialogBox.bind(null, dealID, status),
-          1000,
-          true
-        )(),
-      },
-    };
-  });
+        coBrokeringAgent: coBrokeAgents,
+        status: capitalize(status),
+        view: {
+          type: 'action',
+          onClick: () => debounce(
+            () => openDealsViewDialogBox({
+              dealID, status, isCoAgent, agentID,
+            }),
+            1000,
+            true
+          )(),
+        },
+      };
+    });
+  };
 
   convertDealsToCSV = () => {
     const { deals } = this.props;

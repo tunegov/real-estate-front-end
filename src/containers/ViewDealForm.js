@@ -63,6 +63,13 @@ const viewDealFormQuery = gql`
         bonusPercentageAddedByAdmin
         netAgentCommission
         netCompanyCommission
+        coBrokeringAgentPaymentTypes {
+          agentID
+          ACHAccountBankRoutingNumber
+          ACHAccountNumber
+          agentPaymentType
+          status
+        }
       }
     }
   }
@@ -70,31 +77,29 @@ const viewDealFormQuery = gql`
 
 @observer
 class ViewDealFormContainer extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      paymentAmountItems: {},
-      deductionAmountItems: {},
-      paymentsTotal: 0,
-      deductionsTotal: 0,
-      total: 0,
-      contractOrLeaseForms: [],
-      agencyDisclosureForm: null,
-      permanentPaymentSubtractions: 0, // not submitted
-      permanentDeductionSubtractions: 0, // not submitted
-      choosingMgmtCoBrokeCompany: false,
-      newMgmtOrCobrokeCompany: '',
-      hasSetNewMgmtOrCobrokeCompany: false,
-      addedManagementCompanies: [],
-      uplodingFileProgress: 0,
-      isUploadingFile: false,
-      uplodingFileText: '',
-      filesUploadedSuccessfully: null,
-      formSubmissionBegun: false,
-      submittingFormToServer: false,
-      dealBonus: '0',
-    };
-  }
+  state = {
+    paymentAmountItems: {},
+    deductionAmountItems: {},
+    paymentsTotal: 0,
+    deductionsTotal: 0,
+    total: 0,
+    contractOrLeaseForms: [],
+    agencyDisclosureForm: null,
+    permanentPaymentSubtractions: 0, // not submitted
+    permanentDeductionSubtractions: 0, // not submitted
+    choosingMgmtCoBrokeCompany: false,
+    newMgmtOrCobrokeCompany: '',
+    hasSetNewMgmtOrCobrokeCompany: false,
+    addedManagementCompanies: [],
+    uplodingFileProgress: 0,
+    isUploadingFile: false,
+    uplodingFileText: '',
+    filesUploadedSuccessfully: null,
+    formSubmissionBegun: false,
+    submittingFormToServer: false,
+    dealBonus: '0',
+    agentPaymentTypeIsACH: false,
+  };
 
   uploadItemsNum = 0;
 
@@ -239,6 +244,16 @@ class ViewDealFormContainer extends Component {
     });
   };
 
+  onAgentPaymentTypeChange = ({ target }) => {
+    const { value } = target;
+    const isACH = value === 'Please ACH me';
+    if (isACH) {
+      this.setState({ agentPaymentTypeIsACH: true });
+    } else {
+      this.setState({ agentPaymentTypeIsACH: false });
+    }
+  };
+
   setInitialContainerState = ({ paymentsTotal, deductionsTotal, total }) => {
     this.setState({
       paymentsTotal,
@@ -282,6 +297,15 @@ class ViewDealFormContainer extends Component {
     delete returnObject.agent;
     delete returnObject.agentType;
     delete returnObject.state;
+    delete returnObject.agentPaymentTypeCoBroke;
+    delete returnObject.ACHAccountNumberCoBroke;
+    delete returnObject.ACHAccountBankRoutingNumberCoBroke;
+    returnObject.coBrokeringAgentPaymentTypes[0] = {
+      ...returnObject.coBrokeringAgentPaymentTypes[0],
+      agentPaymentType: values.agentPaymentTypeCoBroke,
+      ACHAccountNumber: values.ACHAccountNumberCoBroke,
+      ACHAccountBankRoutingNumber: values.ACHAccountBankRoutingNumberCoBroke,
+    };
 
     if (userRole !== admin && userRole !== superAdmin) {
       delete returnObject.bonusPercentageAddedByAdmin;
@@ -567,6 +591,8 @@ class ViewDealFormContainer extends Component {
               subtractDeductionValueFromState={
                 this.subtractDeductionValueFromState
               }
+              agentPaymentTypeIsACH={this.state.agentPaymentTypeIsACH}
+              onAgentPaymentTypeChange={this.onAgentPaymentTypeChange}
               {...rest}
             />
           );

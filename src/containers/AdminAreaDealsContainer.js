@@ -108,7 +108,7 @@ const dealsQuery = gql`
       deductionItems {
         agentID
         deductionType
-        agentID
+        agentName
       }
       total
       agentNotes
@@ -116,6 +116,8 @@ const dealsQuery = gql`
       bonusPercentageAddedByAdmin
       netAgentCommission
       netCompanyCommission
+      isCoAgent
+      agentID
     }
   }
 `;
@@ -129,7 +131,9 @@ class AdminAreaDealsContainer extends Component {
     viewingDealStatus: '',
     deletedDealIDS: [],
     acceptedDealIDS: [],
-  }
+    isCoAgent: false,
+    agentID: '',
+  };
 
   toggleDealsSummaryDialogBox = () => {
     this.setState({
@@ -137,11 +141,15 @@ class AdminAreaDealsContainer extends Component {
     });
   };
 
-  openDealsViewDialogBox = (dealID, status) => {
+  openDealsViewDialogBox = ({
+    dealID, status, isCoAgent, agentID,
+  }) => {
     this.setState({
       dealsViewDialogBoxOpen: true,
       viewingDealID: dealID,
       viewingDealStatus: status,
+      isCoAgent,
+      agentID,
     });
   };
 
@@ -198,12 +206,14 @@ class AdminAreaDealsContainer extends Component {
   };
 
   render() {
-    const { classes, userUUID } = this.props;
+    const { classes } = this.props;
     const {
       dealsSummaryDialogBoxOpen,
       dealsViewDialogBoxOpen,
       viewingDealID,
       viewingDealStatus,
+      isCoAgent,
+      agentID,
     } = this.state;
     const {
       toggleDealsSummaryDialogBox,
@@ -289,7 +299,8 @@ class AdminAreaDealsContainer extends Component {
                 deleteDeal={this.deleteDeal}
                 dealAccepted={this.dealAccepted}
                 dealDeleted={this.dealDeleted}
-                userUUID={userUUID}
+                userUUID={agentID}
+                isCoAgent={isCoAgent}
               />
 
               <AdminAreaDealsTableContainer

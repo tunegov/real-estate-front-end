@@ -3053,7 +3053,9 @@ function create(initialState) {
         Accept: 'application/json'
       }
     }),
-    cache: new external__apollo_cache_inmemory_["InMemoryCache"]().restore(initialState || {})
+    cache: new external__apollo_cache_inmemory_["InMemoryCache"]({
+      addTypename: false
+    }).restore(initialState || {})
   });
 }
 

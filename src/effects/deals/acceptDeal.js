@@ -36,13 +36,14 @@ const query = `
   }
 `;
 
-const acceptDeal = (dealID, bonusPercentageAddedByAdmin) => {
+const acceptDeal = (dealID, bonusPercentageAddedByAdmin, userUUID) => {
   let res;
 
   const variables = {
     input: {
       uuid: dealID,
       bonusPercentageAddedByAdmin,
+      userUUID,
     },
   };
 

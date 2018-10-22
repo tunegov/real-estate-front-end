@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import { withStyles } from 'material-ui/styles';
 import Button from 'material-ui/Button';
-import Tooltip from 'material-ui/Tooltip';
-import AddIcon from '@material-ui/icons/Add';
 import GraphIcon from '@material-ui/icons/Equalizer';
 import { observer } from 'mobx-react';
 import Snackbar from 'material-ui/Snackbar';
@@ -36,6 +34,7 @@ const dealsQuery = gql`
       bonusPercentageAddedByAdmin
       netAgentCommission
       total
+      isCoAgent
     }
   }
 `;
@@ -67,14 +66,15 @@ const adminDealsByAgentID = gql`
       deductionItems {
         agentID
         deductionType
-        agentID
+        agentName
       }
       status
+      isCoAgent
     }
   }
 `;
 
-const styles = theme => ({
+const styles = () => ({
   addDealBtn: {},
   dealsSummaryBtn: {
     marginLeft: '25px',
@@ -99,24 +99,21 @@ const styles = theme => ({
 
 @observer
 class DealsWithGQLQuery extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      submitDealDialogOpen: false,
-      dealsSummaryDialogBoxOpen: false,
-      snackbarOpen: false,
-      snackbarText: '',
-      snackbarUndoFunction: null,
-      addedDeals: [],
-      dealsViewDialogBoxOpen: false,
-      viewingDealID: '',
-      viewingDealStatus: '',
-      deletedDealIDS: [],
-      userUUID: this.props.userUUID,
-      acceptedDealIDS: [],
-    };
-  }
+  state = {
+    submitDealDialogOpen: false,
+    dealsSummaryDialogBoxOpen: false,
+    snackbarOpen: false,
+    snackbarText: '',
+    snackbarUndoFunction: null,
+    addedDeals: [],
+    dealsViewDialogBoxOpen: false,
+    viewingDealID: '',
+    viewingDealStatus: '',
+    deletedDealIDS: [],
+    userUUID: this.props.userUUID,
+    acceptedDealIDS: [],
+    isCoAgent: false,
+  };
 
   toggleAddDealDialogBox = () => {
     this.setState({ submitDealDialogOpen: !this.state.submitDealDialogOpen });
@@ -156,11 +153,12 @@ class DealsWithGQLQuery extends Component {
     });
   };
 
-  openDealsViewDialogBox = (dealID, status) => {
+  openDealsViewDialogBox = ({ dealID, status, isCoAgent }) => {
     this.setState({
       dealsViewDialogBoxOpen: true,
       viewingDealID: dealID,
       viewingDealStatus: status,
+      isCoAgent,
     });
   };
 
@@ -193,14 +191,13 @@ class DealsWithGQLQuery extends Component {
   render() {
     const { classes, userUUID, isAdmin } = this.props;
     const {
-      submitDealDialogOpen,
       dealsSummaryDialogBoxOpen,
       dealsViewDialogBoxOpen,
       viewingDealID,
       viewingDealStatus,
+      isCoAgent,
     } = this.state;
     const {
-      toggleAddDealDialogBox,
       toggleDealsSummaryDialogBox,
       openDealsViewDialogBox,
       closeDealsViewDialogBox,
@@ -214,7 +211,7 @@ class DealsWithGQLQuery extends Component {
         fetchPolicy="cache-and-network"
       >
         {({ loading, error, data }) => {
-          if (loading)
+          if (loading) {
             return (
               <div
                 style={{
@@ -229,6 +226,7 @@ class DealsWithGQLQuery extends Component {
                 <Loader color="#f44336" loading />
               </div>
             );
+          }
           const intDeals = {};
 
           if (error) {
@@ -257,9 +255,8 @@ class DealsWithGQLQuery extends Component {
             .map(deal => {
               if (this.state.acceptedDealIDS.includes(deal.dealID)) {
                 return { ...deal, status: 'accepted' };
-              } else {
-                return deal;
               }
+              return deal;
             });
 
           console.log(uniqueDeals);
@@ -301,6 +298,7 @@ class DealsWithGQLQuery extends Component {
                     dealAccepted={this.dealAccepted}
                     dealDeleted={this.dealDeleted}
                     userUUID={userUUID}
+                    isCoAgent={isCoAgent}
                   />
                 ) : (
                   <ViewDealDialogBox
@@ -315,6 +313,7 @@ class DealsWithGQLQuery extends Component {
                     }
                     userRole={this.props.userRole}
                     dealDeleted={this.dealDeleted}
+                    isCoAgent={isCoAgent}
                   />
                 )}
               </div>
@@ -361,8 +360,8 @@ class DealsWithGQLQuery extends Component {
                       onClick={() => {
                         this.handleCloseSnackbar();
                         if (
-                          this.state.snackbarUndoFunction &&
-                          typeof snackbarUndoFunction === 'function'
+                          this.state.snackbarUndoFunction
+                          && typeof snackbarUndoFunction === 'function'
                         ) {
                           this.snackbarUndoFunction();
                         }
