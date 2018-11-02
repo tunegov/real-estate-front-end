@@ -11,6 +11,7 @@ import Snackbar from 'material-ui/Snackbar';
 import IconButton from 'material-ui/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 import CreateAgentDialogBox from '../components/CreateAgentDialogBox';
+import CreateManagementDialogBox from '../components/CreateManagementDialogBox';
 import AdminAreaAgentsTableContainer from './AdminAreaAgentsTableContainer';
 
 const styles = theme => ({
@@ -190,7 +191,7 @@ class AdminAreaAgentsContainer extends Component {
 
   render() {
     const { classes } = this.props;
-    const { createAgentModalOpen } = this.state;
+    const { createAgentModalOpen, createManagementModalOpen } = this.state;
 
     return (
       <Query query={agentsQuery} ssr={false} fetchPolicy="cache-and-network">
@@ -275,7 +276,12 @@ class AdminAreaAgentsContainer extends Component {
                 confirmAgentCreated={this.confirmAgentCreated}
                 currentUserRole={this.props.currentUserRole}
               />
-
+              <CreateManagementDialogBox
+                open={createManagementModalOpen}
+                toggleCreateAgentModal={this.toggleCreateManagementModal}
+                confirmAgentCreated={this.confirmManagementCreated}
+                currentUserRole={this.props.currentUserRole}
+              />
               <Snackbar
                 classes={{ root: classes.snackBar }}
                 anchorOrigin={{
