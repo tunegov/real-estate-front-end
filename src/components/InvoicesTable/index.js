@@ -130,7 +130,7 @@ const defaultColumnWidths = [
   { columnName: 'date', width: 120 },
   { columnName: 'type', width: 120 },
   { columnName: 'clientName', width: 140 },
-  { columnName: 'clientPhoneNumber', width: 140 },
+  // { columnName: 'clientPhoneNumber', width: 140 },
   { columnName: 'propertyAddress', width: 140 },
   { columnName: 'propertyCity', width: 120 },
   { columnName: 'managementOrCobrokeCompany', width: 160 },

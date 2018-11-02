@@ -10,7 +10,6 @@ const query = `
         agentName
         invoiceType
         clientName
-        clientPhoneNumber
         propertyAddress
         city
         state
