@@ -18,6 +18,8 @@ const styles = theme => ({
   agentsSummaryBtn: {
     backgroundColor: '#2995F3',
     color: '#fff',
+    marginLeft: '10px',
+    marginRight: '10px',
     '&:hover': {
       backgroundColor: '#2380D1',
     },
@@ -139,9 +141,27 @@ class AdminAreaAgentsContainer extends Component {
       snackbarUndoFunction: null,
       addedAgents: [],
       deletedAgentIDS: [],
+      createManagementModalOpen: false,
     };
   }
 
+  confirmManagementCreated = newAgent => {
+    this.setState({
+      createManagementModalOpen: false,
+      snackbarOpen: true,
+      snackbarText: 'Agent created successfully',
+      addedAgents: this.state.addedAgents.length
+        ? [...this.state.addedAgents, newAgent]
+        : [newAgent],
+    });
+  };
+  toggleCreateManagementModal = state => {
+    const { createManagementModalOpen } = this.state;
+    this.setState({
+      createManagementModalOpen:
+        typeof state === 'boolean' ? state : !createManagementModalOpen,
+    });
+  };
   toggleCreateAgentModal = state => {
     const { createAgentModalOpen } = this.state;
     this.setState({
@@ -235,6 +255,14 @@ class AdminAreaAgentsContainer extends Component {
                   >
                     <AddIcon />
                     Create Agent
+                  </Button>
+                  <Button
+                    variant="raised"
+                    onClick={this.toggleCreateManagementModal}
+                    classes={{ root: classes.agentsSummaryBtn }}
+                  >
+                    <AddIcon />
+                    Create Management
                   </Button>
                 </div>
               </div>

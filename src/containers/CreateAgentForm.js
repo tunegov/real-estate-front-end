@@ -241,6 +241,7 @@ class CreateAgentContainer extends Component {
           formSubmitedSuccessfully={this.state.formSubmitedSuccessfully}
           isUploadingImage={this.state.isUploadingImage}
           currentUserRole={this.props.currentUserRole}
+          isManagement={this.props.isManagement}
           submittingFormToServer={this.state.submittingFormToServer}
           getFormApi={formApi => {
             this._formApi = formApi;
