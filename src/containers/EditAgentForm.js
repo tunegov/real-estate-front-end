@@ -148,6 +148,7 @@ class CreateAgentContainer extends Component {
                 currentUserRole={this.props.currentUserRole}
                 getFormApi={this.props.getFormApi}
                 submittingFormToServer={this.props.submittingRequestToServer}
+                isManagement={data.agent.agent.agentType > 80 ? true : false}
                 {...rest}
               />
             </div>

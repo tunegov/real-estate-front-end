@@ -197,6 +197,14 @@ const radioInputAgentItems = [
   { label: '80%', value: '80' },
 ];
 
+const radioInputManagementItems = [
+  { label: '60%', value: '60' },
+  { label: '70%', value: '70' },
+  { label: '80%', value: '80' },
+  { label: '90%', value: '90' },
+  { label: '100%', value: '100' },
+];
+
 const areaOfFocusSelectItems = [
   { label: 'Residential Rentals' },
   { label: 'Residential Sales' },
@@ -557,7 +565,11 @@ class CreateAgentForm extends Component {
                         id={uuid()}
                         required
                         label="Agent Type"
-                        radioInputItems={radioInputAgentItems}
+                        radioInputItems={
+                          this.props.isManagement
+                            ? radioInputManagementItems
+                            : radioInputAgentItems
+                        }
                         horizontal
                         disabled={isViewType && !isEditingAgent}
                       />
