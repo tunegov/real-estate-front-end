@@ -352,7 +352,7 @@ class SubmitInvoiceForm extends Component {
         agentType,
         agentName,
         city,
-        clientPhoneNumber,
+        // clientPhoneNumber,
         clientName,
         date,
         invoiceType,
@@ -373,7 +373,7 @@ class SubmitInvoiceForm extends Component {
         agentType,
         city,
         apartmentNumber,
-        clientPhoneNumber,
+        // clientPhoneNumber,
         clientName,
         date: moment(date).format('MMMM Do YYYY'),
         invoiceType,
@@ -671,7 +671,7 @@ class SubmitInvoiceForm extends Component {
                       </Typography>
                     </div>
 
-                    <Grid item xs={12} sm={6}>
+                    <Grid item xs={12} sm={12}>
                       <div className={classes.formControlWrapper}>
                         <CustomTextField
                           field="clientName"
@@ -684,7 +684,7 @@ class SubmitInvoiceForm extends Component {
                       </div>
                     </Grid>
 
-                    <Grid item xs={12} md={6}>
+                    {/* <Grid item xs={12} md={6}>
                       <div className={classes.formControlWrapper}>
                         <CustomInputMask
                           mask="(999) 999-9999"
@@ -716,7 +716,7 @@ class SubmitInvoiceForm extends Component {
                           )}
                         </CustomInputMask>
                       </div>
-                    </Grid>
+                    </Grid> */}
 
                     <div
                       className={`${classes.formSubheading} ${

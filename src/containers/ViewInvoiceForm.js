@@ -26,7 +26,6 @@ const viewInvoiceFormQuery = gql`
         managementOrCobrokeCompany
         price
         clientName
-        clientPhoneNumber
         paymentItems {
           paymentType
           checkOrTransactionNumber

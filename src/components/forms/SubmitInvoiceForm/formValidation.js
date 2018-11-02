@@ -31,11 +31,11 @@ const validator = values => {
         ? 'The total amount for this invoice must be greater than 0'
         : null,
     attention: !values.attention ? 'This value is required' : null,
-    clientPhoneNumber:
-      !values.clientPhoneNumber ||
-      (values.clientPhoneNumber && values.clientPhoneNumber.length < 14)
-        ? 'This value is required and must be a full tel number with area code'
-        : null,
+    // clientPhoneNumber:
+    //   !values.clientPhoneNumber ||
+    //   (values.clientPhoneNumber && values.clientPhoneNumber.length < 14)
+    //     ? 'This value is required and must be a full tel number with area code'
+    //     : null,
     attentionEmail:
       !values.attentionEmail ||
       !emailValidator.validate(values.attentionEmail) ||

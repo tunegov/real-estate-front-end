@@ -23,7 +23,6 @@ const invoicesQuery = gql`
       date
       invoiceType
       clientName
-      clientPhoneNumber
       propertyAddress
       city
       state

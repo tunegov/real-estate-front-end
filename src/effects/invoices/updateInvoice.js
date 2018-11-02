@@ -8,7 +8,6 @@ const query = `
         date
         invoiceType
         clientName
-        clientPhoneNumber
         propertyAddress
         city
         managementOrCobrokeCompany
