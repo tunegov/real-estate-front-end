@@ -1069,7 +1069,10 @@ class SubmitDealForm extends Component {
                       required
                       label="Agent Type"
                       radioInputItems={
-                        this.props.agent.agent.agentType > 80
+                        (this.props.agent &&
+                          this.props.agent.agent.agentType > 80) ||
+                        (this.props.submittedDeal &&
+                          this.props.submittedDeal.agentType > 80)
                           ? radioInputManagementItems
                           : radioInputAgentItems
                       }
