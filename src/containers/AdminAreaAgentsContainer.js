@@ -263,7 +263,7 @@ class AdminAreaAgentsContainer extends Component {
                     classes={{ root: classes.agentsSummaryBtn }}
                   >
                     <AddIcon />
-                    Create Management
+                    CREATE MGMT
                   </Button>
                 </div>
               </div>

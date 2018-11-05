@@ -334,7 +334,7 @@ const radioInputManagementItems = [
   { label: '60%', value: '60' },
   { label: '70%', value: '70' },
   { label: '80%', value: '80' },
-  { label: '90%', value: '90' },
+  { label: '85%', value: '85' },
   { label: '100%', value: '100' },
 ];
 const radioInputAgentPaymentItems = [

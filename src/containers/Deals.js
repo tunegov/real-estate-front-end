@@ -165,7 +165,6 @@ class Deals extends Component {
       closeDealsViewDialogBox,
     } = this;
 
-
     return (
       <Query
         query={dealsQuery}
@@ -299,8 +298,8 @@ class Deals extends Component {
                       onClick={() => {
                         this.handleCloseSnackbar();
                         if (
-                          this.state.snackbarUndoFunction
-                          && typeof snackbarUndoFunction === 'function'
+                          this.state.snackbarUndoFunction &&
+                          typeof snackbarUndoFunction === 'function'
                         ) {
                           this.snackbarUndoFunction();
                         }

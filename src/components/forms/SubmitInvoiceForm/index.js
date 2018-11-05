@@ -231,6 +231,13 @@ const radioInputAgentItems = [
   { label: '80%', value: '80' },
 ];
 
+const radioInputManagementItems = [
+  { label: '60%', value: '60' },
+  { label: '70%', value: '70' },
+  { label: '80%', value: '80' },
+  { label: '85%', value: '85' },
+  { label: '100%', value: '100' },
+];
 const radioInputAgentPaymentItems = [
   { label: 'Ill pick up the check' },
   { label: 'Please ACH me' },
@@ -478,7 +485,14 @@ class SubmitInvoiceForm extends Component {
                         id={uuid()}
                         required
                         label="Agent Type"
-                        radioInputItems={radioInputAgentItems}
+                        radioInputItems={
+                          (this.props.agent &&
+                            this.props.agent.agent.agentType > 80) ||
+                          (this.props.submittedInvoice &&
+                            this.props.submittedInvoice.agentType > 80)
+                            ? radioInputManagementItems
+                            : radioInputAgentItems
+                        }
                         disabled
                         horizontal
                       />
