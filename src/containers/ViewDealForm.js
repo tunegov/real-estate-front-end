@@ -264,7 +264,11 @@ class ViewDealFormContainer extends Component {
 
   onSubmit = values => {
     const {
-      setFormSubmitted, dealID, userRole, openRequestErrorSnackbar, setDealSuccessfullySubmitted,
+      setFormSubmitted,
+      dealID,
+      userRole,
+      openRequestErrorSnackbar,
+      setDealSuccessfullySubmitted,
     } = this.props;
     setFormSubmitted();
 
@@ -471,24 +475,26 @@ class ViewDealFormContainer extends Component {
           url: item.signedURL,
           onUploadProgress: progressEvent => {
             // Do whatever you want with the native progress event
-            const loadedPercent = (progressEvent.loaded / progressEvent.total) * 100;
+            const loadedPercent =
+              (progressEvent.loaded / progressEvent.total) * 100;
 
             thisRef.setState({
               formSubmissionBegun: true,
               uplodingFileProgress: Math.floor(loadedPercent),
-              uplodingFileText: `Now uploading file ${uploadItemIndex
-                + 1} of ${uploadItemsNum}...`,
+              uplodingFileText: `Now uploading file ${uploadItemIndex +
+                1} of ${uploadItemsNum}...`,
               isUploadingFile: true,
             });
           },
         })
-          .then(() => recursiveHelper(
-            items,
-            uploadItemIndex + 1,
-            uploadItemsNum,
-            returnObject,
-            thisRef
-          )
+          .then(() =>
+            recursiveHelper(
+              items,
+              uploadItemIndex + 1,
+              uploadItemsNum,
+              returnObject,
+              thisRef
+            )
           )
           .catch(err => openRequestErrorSnackbar());
       };
@@ -504,13 +510,7 @@ class ViewDealFormContainer extends Component {
   };
 
   render() {
-    const {
-      userUUID,
-      dealID,
-      isEditingDeal,
-      isViewType,
-      ...rest
-    } = this.props;
+    const { userUUID, dealID, isEditingDeal, isViewType, ...rest } = this.props;
     const { agencyDisclosureForm, contractOrLeaseForms } = this.state;
 
     return (
@@ -544,7 +544,6 @@ class ViewDealFormContainer extends Component {
           } = data.viewDealForm;
 
           const agents = agentItems || [];
-
           return (
             <SubmitDealForm
               setInitialContainerState={this.setInitialContainerState}
@@ -567,8 +566,8 @@ class ViewDealFormContainer extends Component {
               uplodingFileText={this.state.uplodingFileText}
               formSubmissionBegun={this.state.formSubmissionBegun}
               submittingFormToServer={
-                this.state.submittingFormToServer
-                || this.props.submittingRequestToServer
+                this.state.submittingFormToServer ||
+                this.props.submittingRequestToServer
               }
               isEditingDeal={isEditingDeal}
               isViewType={isViewType}
