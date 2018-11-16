@@ -27204,9 +27204,9 @@ function getPageContext() {
     return;
   }
 
-  reactHotLoader.register(theme, "theme", "D:\\Marin\\real\\front-end\\src\\lib\\getPageContext.js");
-  reactHotLoader.register(createPageContext, "createPageContext", "D:\\Marin\\real\\front-end\\src\\lib\\getPageContext.js");
-  reactHotLoader.register(getPageContext, "getPageContext", "D:\\Marin\\real\\front-end\\src\\lib\\getPageContext.js");
+  reactHotLoader.register(theme, "theme", "C:\\Users\\Dikshant\\Desktop\\repo\\front-end\\src\\lib\\getPageContext.js");
+  reactHotLoader.register(createPageContext, "createPageContext", "C:\\Users\\Dikshant\\Desktop\\repo\\front-end\\src\\lib\\getPageContext.js");
+  reactHotLoader.register(getPageContext, "getPageContext", "C:\\Users\\Dikshant\\Desktop\\repo\\front-end\\src\\lib\\getPageContext.js");
   leaveModule(module);
 })();
 
@@ -27233,7 +27233,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_emotion_server__ = __webpack_require__("../node_modules/emotion-server/lib/index.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_emotion_server___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_emotion_server__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__lib_getPageContext__ = __webpack_require__("./lib/getPageContext.js");
-var _jsxFileName = "D:\\Marin\\real\\front-end\\src\\pages\\_document.js";
+var _jsxFileName = "C:\\Users\\Dikshant\\Desktop\\repo\\front-end\\src\\pages\\_document.js";
 
 (function () {
   var enterModule = __webpack_require__("../node_modules/react-hot-loader/index.js").enterModule;
@@ -27442,7 +27442,7 @@ function (_Document) {
     return;
   }
 
-  reactHotLoader.register(MyDocument, "MyDocument", "D:\\Marin\\real\\front-end\\src\\pages\\_document.js");
+  reactHotLoader.register(MyDocument, "MyDocument", "C:\\Users\\Dikshant\\Desktop\\repo\\front-end\\src\\pages\\_document.js");
   leaveModule(module);
 })();
 

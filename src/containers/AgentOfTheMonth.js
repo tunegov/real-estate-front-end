@@ -115,25 +115,26 @@ class AgentOfTheMonthContainer extends Component {
             );
           }
 
-          const {
+          var {
             residentialDollarsAgent,
             commercialDollarsAgent,
             rentalsDollarsAgent,
             numbersAgent,
           } = data.agentsOfTheQuarter;
-
+          // for dummy data
+          this.residentialDollarsAgent= this._residentialDollarsAgent;
           return (
             <AgentOfTheMonth
               residentialDollarsAgent={
-                residentialDollarsAgent.uuid ? residentialDollarsAgent : null
+                residentialDollarsAgent.uuid ? residentialDollarsAgent : null 
               }
               commercialDollarsAgent={
-                commercialDollarsAgent.uuid ? commercialDollarsAgent : null
+                commercialDollarsAgent.uuid ?   commercialDollarsAgent : null 
               }
               rentalsDollarsAgent={
-                rentalsDollarsAgent.uuid ? rentalsDollarsAgent : null
+                rentalsDollarsAgent.uuid ?  rentalsDollarsAgent : null 
               }
-              numbersAgent={numbersAgent.uuid ? numbersAgent : null}
+              numbersAgent={numbersAgent.uuid ?   numbersAgent : null }
             />
           );
         }}

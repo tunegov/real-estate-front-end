@@ -60,7 +60,7 @@ export const paymentTypeValidator = value => ({
 });
 
 export const checkOrTransactionNumberValidator = value => ({
-  error: !value ? 'This value is required' : null,
+  error: !value ? null : null, // changes for making it not req
 });
 
 export const ACHAccountNumberValidator = value => ({

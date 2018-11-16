@@ -187,6 +187,7 @@ const defaultColumnWidths = [
   { columnName: 'bonusPercentageAddedByAdmin', width: 120 },
   { columnName: 'netAgentCommission', width: 170 },
   { columnName: 'netCompanyCommission', width: 170 },
+  { columnName: 'outsideCompanyCheck', width: 120 },
   { columnName: 'status', width: 120 },
   { columnName: 'view', width: 100 },
 ];
@@ -199,6 +200,7 @@ const defaultHiddenColumnNames = [
   'bonusPercentageAddedByAdmin',
   'propertyCity',
   'coBrokeringAgent',
+  'outsideCompanyCheck'
 ];
 
 const ViewCellFormatter = ({ value }) => <ViewFormatter value={value} />;
@@ -242,6 +244,7 @@ class DealsTable extends Component {
         { columnName: 'bonusPercentageAddedByAdmin', groupingEnabled: false },
         { columnName: 'netAgentCommission', groupingEnabled: false },
         { columnName: 'netCompanyCommission', groupingEnabled: false },
+        { columnName: 'outsideCompanyCheck', groupingEnabled: false },
         { columnName: 'view', groupingEnabled: false },
       ],
       integratedGroupingColumnExtensions: [
