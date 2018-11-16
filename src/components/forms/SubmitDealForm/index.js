@@ -1353,7 +1353,7 @@ class SubmitDealForm extends Component {
                               field="checkOrTransactionNumber"
                               id={uuid()}
                               label="Check/Transaction#"
-                              required
+                              
                               fullWidth
                               validate={checkOrTransactionNumberValidator}
                               disabled={submittedDeal && !isEditingDeal}
@@ -1412,7 +1412,6 @@ class SubmitDealForm extends Component {
                                       field="checkOrTransactionNumber"
                                       id={uuid()}
                                       label="Check/Transaction#"
-                                      required
                                       fullWidth
                                       validate={
                                         checkOrTransactionNumberValidator

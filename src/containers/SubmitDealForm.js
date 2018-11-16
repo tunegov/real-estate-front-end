@@ -243,6 +243,14 @@ class SubmitDealFormContainer extends Component {
       ...item,
       amount: Number(item.amount),
     }));
+    // logic for handling null vlues of checktransaction number
+    for(var i = 0 ; i < returnObject.paymentItems.length; i++ ){
+    if(returnObject.paymentItems[i].checkOrTransactionNumber == null){
+      returnObject.paymentItems[i].checkOrTransactionNumber = "";
+      };
+    }
+   
+
     returnObject.deductionItems = returnObject.deductionItems.map(item => ({
       ...item,
       amount: Number(item.amount),

@@ -59,6 +59,7 @@ const columns = [
   { name: 'bonusPercentageAddedByAdmin', title: "Agent's Bonus %" },
   { name: 'netAgentCommission', title: 'Net Agent Commission' },
   { name: 'netCompanyCommission', title: 'Net Company Commission' },
+  { name: 'outsideCompanyCheck', title: 'Outside Company Check' },
   { name: 'status', title: 'Status' },
   { name: 'view', title: 'View' },
 ];
@@ -105,6 +106,10 @@ class DealsTableContainer extends Component {
         .filter(v => v.deductionType === 'Co-Brokering Split' && v.agentName)
         .map(v => v.agentName)
         .join(', ');
+      const outsideCompany = deductionItems && deductionItems
+        .filter(v => v.deductionType === 'Outside Company Check' )
+        .map(v => "Yes")
+        .join(', ');
 
       return {
         dealID,
@@ -147,6 +152,7 @@ class DealsTableContainer extends Component {
               Number(netCompanyCommission || 0).toLocaleString()
             )}`,
         coBrokeringAgent: coBrokeAgents,
+        outsideCompanyCheck: outsideCompany,
         status: capitalize(status),
         view: {
           type: 'action',
