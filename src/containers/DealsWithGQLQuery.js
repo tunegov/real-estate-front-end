@@ -113,6 +113,7 @@ class DealsWithGQLQuery extends Component {
     userUUID: this.props.userUUID,
     acceptedDealIDS: [],
     isCoAgent: false,
+    coBrokeAgentId: null
   };
 
   toggleAddDealDialogBox = () => {
@@ -153,12 +154,15 @@ class DealsWithGQLQuery extends Component {
     });
   };
 
-  openDealsViewDialogBox = ({ dealID, status, isCoAgent }) => {
+  openDealsViewDialogBox = ({ dealID, status, isCoAgent, coBrokeAgentId }) => {
+    console.log("sasdf", coBrokeAgentId)
+
     this.setState({
       dealsViewDialogBoxOpen: true,
       viewingDealID: dealID,
       viewingDealStatus: status,
       isCoAgent,
+      coBrokeAgentId: coBrokeAgentId
     });
   };
 
@@ -196,6 +200,7 @@ class DealsWithGQLQuery extends Component {
       viewingDealID,
       viewingDealStatus,
       isCoAgent,
+      coBrokeAgentId
     } = this.state;
     const {
       toggleDealsSummaryDialogBox,
@@ -299,23 +304,24 @@ class DealsWithGQLQuery extends Component {
                     dealDeleted={this.dealDeleted}
                     userUUID={userUUID}
                     isCoAgent={isCoAgent}
+                    coBrokeAgentId={coBrokeAgentId}
                   />
                 ) : (
-                  <ViewDealDialogBox
-                    dealsViewDialogBoxOpen={dealsViewDialogBoxOpen}
-                    closeDealsViewDialogBox={closeDealsViewDialogBox}
-                    userUUID={userUUID}
-                    viewingDealID={viewingDealID}
-                    viewingDealStatus={viewingDealStatus}
-                    toggleSnackbarOpen={this.toggleSnackbarOpen}
-                    setDealSuccessfullySubmitted={
-                      this.setDealSuccessfullyEditted
-                    }
-                    userRole={this.props.userRole}
-                    dealDeleted={this.dealDeleted}
-                    isCoAgent={isCoAgent}
-                  />
-                )}
+                    <ViewDealDialogBox
+                      dealsViewDialogBoxOpen={dealsViewDialogBoxOpen}
+                      closeDealsViewDialogBox={closeDealsViewDialogBox}
+                      userUUID={userUUID}
+                      viewingDealID={viewingDealID}
+                      viewingDealStatus={viewingDealStatus}
+                      toggleSnackbarOpen={this.toggleSnackbarOpen}
+                      setDealSuccessfullySubmitted={
+                        this.setDealSuccessfullyEditted
+                      }
+                      userRole={this.props.userRole}
+                      dealDeleted={this.dealDeleted}
+                      isCoAgent={isCoAgent}
+                    />
+                  )}
               </div>
               {this.props.isAdmin ? (
                 <AdminDealsTableContainer
@@ -325,13 +331,13 @@ class DealsWithGQLQuery extends Component {
                   isDealsWithGQLQuery
                 />
               ) : (
-                <DealsTableContainer
-                  deals={uniqueDeals}
-                  openDealsViewDialogBox={openDealsViewDialogBox}
-                  toggleDealsSummaryDialogBox={toggleDealsSummaryDialogBox}
-                  isDealsWithGQLQuery
-                />
-              )}
+                  <DealsTableContainer
+                    deals={uniqueDeals}
+                    openDealsViewDialogBox={openDealsViewDialogBox}
+                    toggleDealsSummaryDialogBox={toggleDealsSummaryDialogBox}
+                    isDealsWithGQLQuery
+                  />
+                )}
               <DealsSummarDialogBox
                 toggleDealsSummaryDialogBox={toggleDealsSummaryDialogBox}
                 dealsSummaryDialogBoxOpen={dealsSummaryDialogBoxOpen}
@@ -370,8 +376,8 @@ class DealsWithGQLQuery extends Component {
                       UNDO
                     </Button>
                   ) : (
-                    undefined
-                  ),
+                      undefined
+                    ),
                   <IconButton
                     key="close"
                     aria-label="Close"

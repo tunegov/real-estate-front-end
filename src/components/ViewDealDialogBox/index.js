@@ -254,7 +254,10 @@ class SubmitDealDialogBox extends Component {
       isCoAgent,
       userUUID,
       userRole,
+      coBrokeAgentId
     } = this.props;
+
+    const hideButton = this.props.coBrokeAgentId ? this.props.coBrokeAgentId.indexOf(this.props.userUUID) > -1 : false;
 
     const {
       isEditingDeal, cancelAnchorEl, acceptAnchorEl, isCoAgentEditDeal,
@@ -327,8 +330,8 @@ class SubmitDealDialogBox extends Component {
                   UNDO
                 </Button>
               ) : (
-                undefined
-              ),
+                  undefined
+                ),
               <IconButton
                 key="close"
                 aria-label="Close"
@@ -362,7 +365,7 @@ class SubmitDealDialogBox extends Component {
                   onClick={this.handleCancelMenuClick}
                   color="secondary"
                 >
-                Delete
+                  Delete
                 </Button>
               ) : null}
             <Menu
@@ -389,8 +392,8 @@ class SubmitDealDialogBox extends Component {
               </MenuItem>
             </Menu>
             {!isEditingDeal && !isCoAgentEditDeal
-            && this.props.userRole === agent
-            && viewingDealStatus === 'pending'
+              && this.props.userRole === agent
+              && viewingDealStatus === 'pending'
               ? (
                 <Button
                   className={classes.editDealBtn}
@@ -398,19 +401,19 @@ class SubmitDealDialogBox extends Component {
                   onClick={() => this.toggleEditingDeal(true, isCoAgent)}
                   color="primary"
                 >
-                Edit
+                  Edit
                 </Button>
               ) : null}
             {(this.props.userRole === admin
               || this.props.userRole === superAdmin)
-            && viewingDealStatus === 'pending' ? (
+              && viewingDealStatus === 'pending' && !hideButton ? (
                 <Button
                   className={classes.editDealBtn}
                   disabled={this.state.formSubmitted}
                   onClick={this.handleAcceptMenuClick}
                   color="primary"
                 >
-                Accept Deal
+                  Accept Deal
                 </Button>
               ) : null}
             <Menu
@@ -451,7 +454,7 @@ class SubmitDealDialogBox extends Component {
                   if (errorCount) {
                     this.toggleSnackbarOpen(
                       `Please correct ${errorCount} form error${
-                        errorCount > 1 ? 's' : ''
+                      errorCount > 1 ? 's' : ''
                       }`
                     );
                   }
