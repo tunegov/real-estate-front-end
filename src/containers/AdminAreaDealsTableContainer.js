@@ -106,8 +106,12 @@ class DealsTableContainer extends Component {
         .filter(v => v.deductionType === 'Co-Brokering Split' && v.agentName)
         .map(v => v.agentName)
         .join(', ');
+      const coBrokeAgentId = deductionItems && deductionItems
+        .filter(v => v.deductionType === 'Co-Brokering Split' && v.agentID)
+        .map(v => v.agentID)
+        .join(', ');
       const outsideCompany = deductionItems && deductionItems
-        .filter(v => v.deductionType === 'Outside Company Check' )
+        .filter(v => v.deductionType === 'Outside Company Check')
         .map(v => "Yes")
         .join(', ');
 
@@ -158,7 +162,7 @@ class DealsTableContainer extends Component {
           type: 'action',
           onClick: () => debounce(
             () => openDealsViewDialogBox({
-              dealID, status, isCoAgent, agentID,
+              dealID, status, isCoAgent, agentID, coBrokeAgentId
             }),
             1000,
             true
