@@ -82,7 +82,6 @@ class AgentOfTheMonthContainer extends Component {
       _rentalsDollarsAgent,
       _numbersAgent,
     } = this;
-
     return (
       <Query
         query={agentOfTheQuarterQuery}
