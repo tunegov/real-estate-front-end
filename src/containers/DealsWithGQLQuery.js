@@ -155,8 +155,6 @@ class DealsWithGQLQuery extends Component {
   };
 
   openDealsViewDialogBox = ({ dealID, status, isCoAgent, coBrokeAgentId }) => {
-    console.log("sasdf", coBrokeAgentId)
-
     this.setState({
       dealsViewDialogBoxOpen: true,
       viewingDealID: dealID,

@@ -53,6 +53,17 @@ const styles = theme => ({
     borderRadius: '50%',
     background: 'linear-gradient(45deg, #45484d 0%,#000000 100%)',
   },
+  imageNo: {
+    width: '72px',
+    color: '#fff',
+    height: '100%',
+    cursor: 'pointer',
+    display: 'flex',
+    background: 'linear-gradient(45deg, #45484d 0%,#000000 100%)',
+    alignItems: 'center',
+    borderRadius: '50%',
+    justifyContent: 'center'
+  },
   infoWrapper: {
     marginLeft: '70px',
     display: 'flex',
@@ -163,11 +174,16 @@ class AgentOfTheMonth extends Component {
 
                     <div className={classes.contentWrapper}>
                       <div className={classes.profilePhotoWrapper}>
-                        <img
-                          className={classes.image}
-                          src={residentialDollarsAgent.photoURL}
-                          alt={residentialDollarsAgent.name}
-                        />
+                        {
+                          residentialDollarsAgent.photoURL ? (<img
+                            className={classes.image}
+                            src={residentialDollarsAgent.photoURL}
+                            alt={residentialDollarsAgent.name}
+                          />) : (
+                              <div className={classes.imageNo}>?</div>
+                            )
+                        }
+
                       </div>
 
                       <div className={classes.infoWrapper}>
@@ -186,8 +202,8 @@ class AgentOfTheMonth extends Component {
                 </a>
               </Link>
             ) : (
-              this.renderPlaceholder()
-            )}
+                this.renderPlaceholder()
+              )}
           </Grid>
 
           <Grid item xs={12} md={6}>
@@ -204,11 +220,16 @@ class AgentOfTheMonth extends Component {
 
                     <div className={classes.contentWrapper}>
                       <div className={classes.profilePhotoWrapper}>
-                        <img
-                          className={classes.image}
-                          src={commercialDollarsAgent.photoURL}
-                          alt={commercialDollarsAgent.name}
-                        />
+                        {
+                          commercialDollarsAgent.photoURL ? (<img
+                            className={classes.image}
+                            src={commercialDollarsAgent.photoURL}
+                            alt={commercialDollarsAgent.name}
+                          />) : (
+                              <div className={classes.imageNo}>?</div>
+                            )
+                        }
+
                       </div>
 
                       <div className={classes.infoWrapper}>
@@ -227,8 +248,8 @@ class AgentOfTheMonth extends Component {
                 </a>
               </Link>
             ) : (
-              this.renderPlaceholder()
-            )}
+                this.renderPlaceholder()
+              )}
           </Grid>
 
           <Grid item xs={12} md={6}>
@@ -245,11 +266,18 @@ class AgentOfTheMonth extends Component {
 
                     <div className={classes.contentWrapper}>
                       <div className={classes.profilePhotoWrapper}>
-                        <img
-                          className={classes.image}
-                          src={rentalsDollarsAgent.photoURL}
-                          alt={rentalsDollarsAgent.name}
-                        />
+                        {
+                          rentalsDollarsAgent.photoURL ? (<img
+                            className={classes.image}
+                            src={rentalsDollarsAgent.photoURL}
+                            alt={rentalsDollarsAgent.name}
+                          />) :
+                            (
+                              <div className={classes.imageNo}>?</div>
+                            )
+
+                        }
+
                       </div>
 
                       <div className={classes.infoWrapper}>
@@ -268,8 +296,8 @@ class AgentOfTheMonth extends Component {
                 </a>
               </Link>
             ) : (
-              this.renderPlaceholder()
-            )}
+                this.renderPlaceholder()
+              )}
           </Grid>
 
           <Grid item xs={12} md={6}>
@@ -286,11 +314,18 @@ class AgentOfTheMonth extends Component {
 
                     <div className={classes.contentWrapper}>
                       <div className={classes.profilePhotoWrapper}>
-                        <img
-                          className={classes.image}
-                          src={numbersAgent.photoURL}
-                          alt={numbersAgent.name}
-                        />
+                        {
+                          numbersAgent.photoURL ? (
+                            <img
+                              className={classes.image}
+                              src={numbersAgent.photoURL}
+                              alt={numbersAgent.name}
+                            />
+                          ) : (
+                              <div className={classes.imageNo}>?</div>
+                            )
+                        }
+
                       </div>
 
                       <div className={classes.infoWrapper}>
@@ -309,8 +344,8 @@ class AgentOfTheMonth extends Component {
                 </a>
               </Link>
             ) : (
-              this.renderPlaceholder()
-            )}
+                this.renderPlaceholder()
+              )}
           </Grid>
         </Grid>
       </div>
