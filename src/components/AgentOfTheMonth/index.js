@@ -134,7 +134,7 @@ const styles = theme => ({
 
 @observer
 class AgentOfTheMonth extends Component {
-  renderPlaceholder = () => {
+  renderPlaceholder = (message) => {
     const { classes } = this.props;
     return (
       <div
@@ -144,7 +144,7 @@ class AgentOfTheMonth extends Component {
         )}
       >
         <span className={classes.label}>Agent of the Quarter</span>
-        <div className={classes.placeholder}>Tallying up the numbers...</div>
+        <div className={classes.placeholder}>{message}</div>
       </div>
     );
   };
@@ -202,7 +202,7 @@ class AgentOfTheMonth extends Component {
                 </a>
               </Link>
             ) : (
-                this.renderPlaceholder()
+                this.renderPlaceholder("No deals for Residential Sales")
               )}
           </Grid>
 
@@ -248,7 +248,7 @@ class AgentOfTheMonth extends Component {
                 </a>
               </Link>
             ) : (
-                this.renderPlaceholder()
+                this.renderPlaceholder("No deals for Commercial Sales")
               )}
           </Grid>
 
@@ -296,7 +296,7 @@ class AgentOfTheMonth extends Component {
                 </a>
               </Link>
             ) : (
-                this.renderPlaceholder()
+                this.renderPlaceholder("No deals for Rental Sales")
               )}
           </Grid>
 
@@ -344,7 +344,7 @@ class AgentOfTheMonth extends Component {
                 </a>
               </Link>
             ) : (
-                this.renderPlaceholder()
+                this.renderPlaceholder("No deals for Agent Sales")
               )}
           </Grid>
         </Grid>
