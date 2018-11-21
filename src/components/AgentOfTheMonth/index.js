@@ -193,9 +193,9 @@ class AgentOfTheMonth extends Component {
                         <div className={classes.agentAwardTitle}>
                           - Gross Residential Sales
                         </div>
-                        <div className={classes.stat}>
+                        {/* <div className={classes.stat}>
                           Seles: ${residentialDollarsAgent.statItem.toLocaleString()}
-                        </div>
+                        </div> */}
                       </div>
                     </div>
                   </div>
@@ -239,9 +239,9 @@ class AgentOfTheMonth extends Component {
                         <div className={classes.agentAwardTitle}>
                           - Gross Commercial Sales
                         </div>
-                        <div className={classes.stat}>
+                        {/* <div className={classes.stat}>
                           Sales: ${commercialDollarsAgent.statItem.toLocaleString()}
-                        </div>
+                        </div> */}
                       </div>
                     </div>
                   </div>
@@ -287,9 +287,9 @@ class AgentOfTheMonth extends Component {
                         <div className={classes.agentAwardTitle}>
                           - Gross Rentals Amount
                         </div>
-                        <div className={classes.stat}>
+                        {/* <div className={classes.stat}>
                           Amount: ${rentalsDollarsAgent.statItem.toLocaleString()}
-                        </div>
+                        </div> */}
                       </div>
                     </div>
                   </div>
