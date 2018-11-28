@@ -86,7 +86,7 @@ const styles = theme => ({
     marginBottom: '10px',
     fontSize: '14px',
     fontWeight: 300,
-    fontStyle: 'italic',
+    // fontStyle: 'italic',
     color: theme.palette.secondary.dark,
   },
   stat: {
@@ -285,7 +285,7 @@ class AgentOfTheMonth extends Component {
                           {rentalsDollarsAgent.name}
                         </div>
                         <div className={classes.agentAwardTitle}>
-                          - Gross Rentals Amount
+                          - Top Residential Commissions Earned
                         </div>
                         {/* <div className={classes.stat}>
                           Amount: ${rentalsDollarsAgent.statItem.toLocaleString()}
