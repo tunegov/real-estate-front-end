@@ -41,6 +41,7 @@ routes
   )
   .add('view-admin', '/app/admin-area/admin/view', 'app/admin-area/admin/view')
   .add('view-deals', '/app/admin-area/deals/view', 'app/admin-area/deals/view')
+  .add('admin-view-listings', '/app/admin-area/listings/view', 'app/admin-area/listings/view')
   /*
   .add(
     'view-invoices',

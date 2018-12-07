@@ -102,7 +102,7 @@ class Listings extends Component {
       listingsViewDialogBoxOpen: false,
       snackbarOpen: true,
       snackbarText: 'Listing updated successfully',
-      addedListings: [...addedListings, newDeal],
+      addedListings: [...addedListings, newListing],
     });
   };
 
@@ -255,7 +255,7 @@ class Listings extends Component {
                     this.setListingSuccessfullyEditted
                   }
                   userRole={this.props.userRole}
-                  dealDeleted={this.listingDeleted}
+                  listingDeleted={this.listingDeleted}
                   isCoAgent={isCoAgent}
                 />
               </div>

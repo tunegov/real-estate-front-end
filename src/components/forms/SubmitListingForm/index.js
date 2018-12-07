@@ -402,48 +402,48 @@ class SubmitListingForm extends Component {
   }
 
   componentDidMount() {
-    // if (this.props.setInitialContainerState && this.props.submittedDeal) {
+    // if (this.props.setInitialContainerState && this.props.submittedListing) {
     //   this.props.setInitialContainerState({
-    //     paymentsTotal: this.props.submittedDeal.paymentsTotal,
-    //     deductionsTotal: this.props.submittedDeal.deductionsTotal,
-    //     total: this.props.submittedDeal.total,
+    //     paymentsTotal: this.props.submittedListing.paymentsTotal,
+    //     deductionsTotal: this.props.submittedListing.deductionsTotal,
+    //     total: this.props.submittedListing.total,
     //   });
-    //   imagePreloader([
-    //     ...this.returnContractLeaseURLS(),
-    //     ...this.returnAgencyDisclosureURL(),
-    //   ]);
+    imagePreloader([
+      ...this.returnContractLeaseURLS(),
+      // ...this.returnAgencyDisclosureURL(),
+    ]);
     // }
     // if (this.props.resetDealBonus) {
     //   this.props.resetDealBonus();
     // }
   }
 
-  returnAgencyDisclosureURL = () => {
-    const { submittedDeal } = this.props;
-    if (!submittedDeal) return [];
-    const src = submittedDeal.agencyDisclosureForm;
-    const fileName = src.split('/').pop();
-    const encodedFileName = encodeURIComponent(fileName);
-    const srcArray = src.split('/');
-    const encodedSrc = `${srcArray
-      .slice(0, srcArray.length - 1)
-      .join('/')}/${encodedFileName}`;
+  // returnAgencyDisclosureURL = () => {
+  //   const { submittedListing } = this.props;
+  //   if (!submittedListing) return [];
+  //   const src = submittedListing.agencyDisclosureForm;
+  //   const fileName = src.split('/').pop();
+  //   const encodedFileName = encodeURIComponent(fileName);
+  //   const srcArray = src.split('/');
+  //   const encodedSrc = `${srcArray
+  //     .slice(0, srcArray.length - 1)
+  //     .join('/')}/${encodedFileName}`;
 
-    if (submittedDeal.agencyDisclosureForm) {
-      return [
-        {
-          src: encodedSrc,
-        },
-      ];
-    }
-  };
+  //   if (submittedListing.agencyDisclosureForm) {
+  //     return [
+  //       {
+  //         src: encodedSrc,
+  //       },
+  //     ];
+  //   }
+  // };
 
   returnContractLeaseURLS = () => {
-    const { submittedDeal } = this.props;
-    if (!submittedDeal) return [];
+    const { submittedListing } = this.props;
+    if (!submittedListing) return [];
 
-    if (submittedDeal.contractOrLeaseForms) {
-      return submittedDeal.contractOrLeaseForms.map(url => {
+    if (submittedListing.images) {
+      return submittedListing.images.map(url => {
         const fileName = url.split('/').pop();
         const urlArray = url.split('/');
 
@@ -570,26 +570,15 @@ class SubmitListingForm extends Component {
   render() {
     const {
       classes,
-      setAgencyDisclosureForm,
-      setContractOrLeaseForms,
-      agencyDisclosureForm,
-      contractOrLeaseForms,
-      subtractPaymentValueFromState,
-      subtractDeductionValueFromState,
-      choosingMgmtCoBrokeCompany,
-      toggleChoosingMgmtCoBrokeCompany,
-      handleMgmtOrCobrokeCompanyChange,
-      setHasSetNewMgmtOrCobrokeCompany,
-      newMgmtOrCobrokeCompany,
-      addedManagementCompanies,
-      agents,
+      setImagesForms,
+      imagesForms,
       uplodingFileProgress,
       isUploadingFile,
       uplodingFileText,
       formSubmissionBegun,
       submittingFormToServer,
-      submittedDeal,
-      isEditingDeal,
+      submittedListing,
+      isEditingListing,
       isViewType,
       agentUUID,
       managementCobrokeCompanyItems,
@@ -607,14 +596,14 @@ class SubmitListingForm extends Component {
     //     ? [...managementCobrokeCompanyItems]
     //     : [];
 
-    // if (submittedDeal && submittedDeal.managementOrCobrokeCompany) {
+    // if (submittedListing && submittedListing.managementOrCobrokeCompany) {
     //   if (
     //     !managementCobrokeCompanies.includes(
-    //       submittedDeal.managementOrCobrokeCompany
+    //       submittedListing.managementOrCobrokeCompany
     //     )
     //   ) {
     //     managementCobrokeCompanies.push(
-    //       submittedDeal.managementOrCobrokeCompany
+    //       submittedListing.managementOrCobrokeCompany
     //     );
     //   }
     // }
@@ -629,8 +618,8 @@ class SubmitListingForm extends Component {
     //     value: uuid,
     //   }));
 
-    // if (isViewType && submittedDeal && submittedDeal.deductionItems.length) {
-    //   submittedDeal.deductionItems.forEach(item => {
+    // if (isViewType && submittedListing && submittedListing.deductionItems.length) {
+    //   submittedListing.deductionItems.forEach(item => {
     //     if (item.deductionType === 'Co-Brokering Split') {
     //       const { firstName, lastName } = agents.find(
     //         agent => agent.uuid === item.agentID
@@ -671,16 +660,16 @@ class SubmitListingForm extends Component {
 
     let finalDefaultValues;
     const isCoBrokeringAgentPaymentType =
-      (submittedDeal &&
-        submittedDeal.coBrokeringAgentPaymentTypes &&
-        submittedDeal.coBrokeringAgentPaymentTypes[0]) ||
+      (submittedListing &&
+        submittedListing.coBrokeringAgentPaymentTypes &&
+        submittedListing.coBrokeringAgentPaymentTypes[0]) ||
       {};
     const isACHAccountNumberCoBroke =
       isCoBrokeringAgentPaymentType.ACHAccountNumber;
     const isACHAccountBankRoutingNumber =
       isCoBrokeringAgentPaymentType.ACHAccountBankRoutingNumber;
 
-    if (submittedDeal) {
+    if (submittedListing) {
       const {
         agentNotes,
         agentType,
@@ -702,7 +691,7 @@ class SubmitListingForm extends Component {
         apartmentNumber,
         address,
         description,
-      } = submittedDeal;
+      } = submittedListing;
       finalDefaultValues = {
         agent: agentName,
         agentNotes,
@@ -803,6 +792,15 @@ class SubmitListingForm extends Component {
             poniterEvents: 'none',
           }}
         />
+        <Menu
+          id="simple-menu"
+          anchorEl={contractLeaseAnchorEl}
+          open={Boolean(contractLeaseAnchorEl)}
+          onClose={this.handleContractLeaseMenuClose}
+        >
+          <div className={classes.popupMenuTitle}>Image Items</div>
+          {renderContractLeaseMenuItems()}
+        </Menu>
         <Form
           defaultValues={
             !finalDefaultValues && this.props.agent
@@ -881,8 +879,8 @@ class SubmitListingForm extends Component {
                       radioInputItems={
                         (this.props.agent &&
                           this.props.agent.agent.agentType > 80) ||
-                        (this.props.submittedDeal &&
-                          this.props.submittedDeal.agentType > 80)
+                        (this.props.submittedListing &&
+                          this.props.submittedListing.agentType > 80)
                           ? radioInputManagementItems
                           : radioInputAgentItems
                       }
@@ -910,7 +908,7 @@ class SubmitListingForm extends Component {
                         required
                         noNegativeSign
                         isDollarAmount
-                        disabled={submittedDeal && !isEditingDeal}
+                        disabled={submittedListing && !isEditingListing}
                       />
                     </div>
                   </Grid>
@@ -921,7 +919,7 @@ class SubmitListingForm extends Component {
                         field="address"
                         id={uuid()}
                         label="Address"
-                        disabled={submittedDeal && !isEditingDeal}
+                        disabled={submittedListing && !isEditingListing}
                         fullWidth
                       />
                     </div>
@@ -935,7 +933,7 @@ class SubmitListingForm extends Component {
                         label="Description"
                         fullWidth
                         multiline
-                        disabled={submittedDeal && !isEditingDeal}
+                        disabled={submittedListing && !isEditingListing}
                       />
                     </div>
                   </Grid>
@@ -956,22 +954,22 @@ class SubmitListingForm extends Component {
                   <Grid item xs={12}>
                     <div className={classes.fileUploadBtnWrapper}>
                       <CustomFileUploadInputBtn
-                        field="contractOrLeaseItems"
+                        field="images"
                         id="contractOrLeaseItemsUploadForm"
                         label="Upload Pictures"
                         btnClassName={classes.uploadBtnClassName}
                         multiple
-                        customOnChange={setContractOrLeaseForms}
-                        customState={contractOrLeaseForms}
+                        customOnChange={setImagesForms}
+                        customState={imagesForms}
                         helperInfo="Pictures (JPEG/JPG files)"
                         acceptedFileExtensions={acceptedFileExtensions}
                         accept=".jpeg, .jpg"
-                        disabled={submittedDeal && !isEditingDeal}
+                        disabled={submittedListing && !isEditingListing}
                       />
-                      {submittedDeal &&
-                      submittedDeal.contractOrLeaseForms &&
-                      submittedDeal.contractOrLeaseForms.length &&
-                      !(contractOrLeaseForms && contractOrLeaseForms.length) ? (
+                      {submittedListing &&
+                      submittedListing.images &&
+                      submittedListing.images.length &&
+                      !(imagesForms && imagesForms.length) ? (
                         <Button
                           variant="fab"
                           color="primary"
@@ -983,7 +981,7 @@ class SubmitListingForm extends Component {
                           <EyeIcon className={classes.viewIcon} />
                         </Button>
                       ) : null}
-                      {contractOrLeaseForms.length ? (
+                      {imagesForms.length ? (
                         <Button
                           variant="fab"
                           color="secondary"
@@ -991,7 +989,7 @@ class SubmitListingForm extends Component {
                           size="small"
                           classes={{ root: classes.smallFileRemoveBtn }}
                           onClick={() => {
-                            setContractOrLeaseForms([]);
+                            setImagesForms([]);
                           }}
                         >
                           <DeleteIcon />

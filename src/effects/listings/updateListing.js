@@ -8,6 +8,7 @@ const query = `
         address
         description
         price        
+        images
       }
       userErrors {
         field
@@ -30,12 +31,10 @@ const updateListing = values => {
     otherError: null,
     userErrors: [],
   };
-
   return graphQlClient
     .request(query, variables)
     .then(result => {
       res = result;
-      console.log(res);
 
       const { updateListing: data } = res;
       const { listing, otherError, userErrors } = data;

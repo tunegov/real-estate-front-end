@@ -4,7 +4,7 @@ import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
 import { BounceLoader } from 'react-spinners';
 import SubmitListingForm from '../components/forms/SubmitListingForm';
-import getDealUploadsSignedURLS from '../effects/deals/getDealUploadsSignedURLS';
+import getListingUploadsSignedURLS from '../effects/listings/getListingUploadsSignedURLS';
 import uploadFile from '../effects/uploadFile';
 import updateListing from '../effects/listings/updateListing';
 import { capitalize } from '../utils/stringUtils';
@@ -23,6 +23,7 @@ const viewListingFormQuery = gql`
         address
         description
         price
+        images
       }
     }
   }
@@ -36,7 +37,7 @@ class ViewListingFormContainer extends Component {
     paymentsTotal: 0,
     deductionsTotal: 0,
     total: 0,
-    contractOrLeaseForms: [],
+    imagesForms: [],
     agencyDisclosureForm: null,
     permanentPaymentSubtractions: 0, // not submitted
     permanentDeductionSubtractions: 0, // not submitted
@@ -152,9 +153,9 @@ class ViewListingFormContainer extends Component {
     }
   };
 
-  setContractOrLeaseForms = filesObject => {
+  setImagesForms = filesObject => {
     if (Array.isArray(filesObject)) {
-      this.setState({ contractOrLeaseForms: filesObject });
+      this.setState({ imagesForms: filesObject });
       if (filesObject.length === 0) {
         const uploadBtn = document.getElementById(
           'contractOrLeaseItemsUploadForm'
@@ -166,59 +167,13 @@ class ViewListingFormContainer extends Component {
       return;
     }
     const fileArray = Object.keys(filesObject).map(key => filesObject[key]);
-    this.setState({ contractOrLeaseForms: fileArray });
-  };
-
-  handleMgmtOrCobrokeCompanyChange = event => {
-    this.setState({
-      newMgmtOrCobrokeCompany: event.target.value,
-    });
-  };
-
-  toggleChoosingMgmtCoBrokeCompany = bool => {
-    const { choosingMgmtCoBrokeCompany } = this.state;
-    this.setState({
-      choosingMgmtCoBrokeCompany:
-        typeof bool === 'boolean' ? bool : !choosingMgmtCoBrokeCompany,
-      newMgmtOrCobrokeCompany: '',
-    });
-  };
-
-  setHasSetNewMgmtOrCobrokeCompany = bool => {
-    const { addedManagementCompanies, newMgmtOrCobrokeCompany } = this.state;
-    this.setState({
-      choosingMgmtCoBrokeCompany: false,
-      hasSetNewMgmtOrCobrokeCompany: true,
-      newMgmtOrCobrokeCompany: '',
-      addedManagementCompanies: [
-        ...addedManagementCompanies,
-        capitalize(newMgmtOrCobrokeCompany.trim()),
-      ],
-    });
-  };
-
-  onAgentPaymentTypeChange = ({ target }) => {
-    const { value } = target;
-    const isACH = value === 'Please ACH me';
-    if (isACH) {
-      this.setState({ agentPaymentTypeIsACH: true });
-    } else {
-      this.setState({ agentPaymentTypeIsACH: false });
-    }
-  };
-
-  setInitialContainerState = ({ paymentsTotal, deductionsTotal, total }) => {
-    this.setState({
-      paymentsTotal,
-      deductionsTotal,
-      total,
-    });
+    this.setState({ imagesForms: fileArray });
   };
 
   onSubmit = values => {
     const {
       setFormSubmitted,
-      ListingID,
+      listingID,
       userRole,
       openRequestErrorSnackbar,
       setListingSuccessfullySubmitted,
@@ -226,7 +181,7 @@ class ViewListingFormContainer extends Component {
     setFormSubmitted();
 
     const {
-      contractOrLeaseForms,
+      imagesForms,
       agencyDisclosureForm,
       addedManagementCompanies,
       hasSetNewMgmtOrCobrokeCompany,
@@ -237,6 +192,7 @@ class ViewListingFormContainer extends Component {
 
     const returnObject = {
       ...values,
+      images: [],
       listingID,
     };
 
@@ -253,210 +209,174 @@ class ViewListingFormContainer extends Component {
     delete returnObject.ACHAccountBankRoutingNumberCoBroke;
 
     returnObject.price = Number(returnObject.price);
-    updateListing(returnObject)
-      .then(res => {
-        let failed = false;
-
-        if (res.otherError) {
-          openRequestErrorSnackbar(res.otherError);
-          failed = true;
-        }
-
-        if (res.userErrors.length) {
-          failed = true;
-        }
-
-        if (!failed) {
-          setDealSuccessfullySubmitted(res.deal);
-        }
-
-        this.setState({
-          submittingFormToServer: false,
-        });
-
-        setFormSubmitted(false);
-      })
-      .catch(err => {
-        setFormSubmitted(false);
-        openRequestErrorSnackbar();
-      });
 
     const uploadItems = [];
 
-    // if (agencyDisclosureForm) {
-    //   uploadItems.push({
-    //     itemName: 'agencyDisclosureForm',
-    //     fileName: agencyDisclosureForm.name,
-    //     fileType: agencyDisclosureForm.type,
-    //   });
-    // }
+    if (imagesForms && imagesForms.length) {
+      imagesForms.forEach((file, i) => {
+        uploadItems.push({
+          itemName: `imageForm${i}`,
+          fileName: file.name,
+          fileType: file.type,
+        });
+      });
+    }
 
-    // if (contractOrLeaseForms && contractOrLeaseForms.length) {
-    //   contractOrLeaseForms.forEach((file, i) => {
-    //     uploadItems.push({
-    //       itemName: `contractOrLeaseForm${i}`,
-    //       fileName: file.name,
-    //       fileType: file.type,
-    //     });
-    //   });
-    // }
+    if (!uploadItems.length) {
+      this.setState({
+        submittingFormToServer: true,
+      });
 
-    // if (!uploadItems.length) {
-    //   this.setState({
-    //     submittingFormToServer: true,
-    //   });
+      updateListing(returnObject)
+        .then(res => {
+          let failed = false;
 
-    //   updateDeal(returnObject)
-    //     .then(res => {
-    //       let failed = false;
+          if (res.otherError) {
+            openRequestErrorSnackbar(res.otherError);
+            failed = true;
+          }
 
-    //       if (res.otherError) {
-    //         openRequestErrorSnackbar(res.otherError);
-    //         failed = true;
-    //       }
+          if (res.userErrors.length) {
+            failed = true;
+          }
 
-    //       if (res.userErrors.length) {
-    //         failed = true;
-    //       }
+          if (!failed) {
+            setListingSuccessfullySubmitted(res.listing);
+          }
 
-    //       if (!failed) {
-    //         setDealSuccessfullySubmitted(res.deal);
-    //       }
+          this.setState({
+            submittingFormToServer: false,
+          });
 
-    //       this.setState({
-    //         submittingFormToServer: false,
-    //       });
+          setFormSubmitted(false);
+        })
+        .catch(err => {
+          setFormSubmitted(false);
+          openRequestErrorSnackbar();
+        });
+      return;
+    }
 
-    //       setFormSubmitted(false);
-    //     })
-    //     .catch(err => {
-    //       setFormSubmitted(false);
-    //       openRequestErrorSnackbar();
-    //     });
-    //   return;
-    // }
+    getListingUploadsSignedURLS(uploadItems, listingID).then(response => {
+      if (response.error) {
+        openRequestErrorSnackbar(response.error);
+        return;
+      }
 
-    // getDealUploadsSignedURLS(uploadItems, dealID).then(response => {
-    //   if (response.error) {
-    //     openRequestErrorSnackbar(response.error);
-    //     return;
-    //   }
+      const errors = [];
 
-    //   const errors = [];
+      const { items } = response;
 
-    //   const { items } = response;
+      returnObject.listingID = listingID;
 
-    //   returnObject.dealID = dealID;
+      items.forEach(item => {
+        if (item.error) errors.push(item.error);
+      });
 
-    //   items.forEach(item => {
-    //     if (item.error) errors.push(item.error);
-    //   });
+      if (errors.length) {
+        openRequestErrorSnackbar(errors[0]);
+        return;
+      }
 
-    //   if (errors.length) {
-    //     openRequestErrorSnackbar(errors[0]);
-    //     return;
-    //   }
+      this.uploadItemsNum = items.length;
 
-    //   this.uploadItemsNum = items.length;
+      const recursiveUploads = (items, returnObject, thisRef) => {
+        const uploadItemsNum = items.length;
+        const uploadItemIndex = 0;
+        recursiveHelper(
+          items,
+          uploadItemIndex,
+          uploadItemsNum,
+          returnObject,
+          thisRef
+        );
+      };
 
-    //   const recursiveUploads = (items, returnObject, thisRef) => {
-    //     const uploadItemsNum = items.length;
-    //     const uploadItemIndex = 0;
-    //     recursiveHelper(
-    //       items,
-    //       uploadItemIndex,
-    //       uploadItemsNum,
-    //       returnObject,
-    //       thisRef
-    //     );
-    //   };
+      const recursiveHelper = (
+        items,
+        uploadItemIndex,
+        uploadItemsNum,
+        returnObject,
+        thisRef
+      ) => {
+        if (uploadItemIndex >= items.length) {
+          thisRef.setState({
+            isUploadingFile: false,
+            uplodingFileProgress: 0,
+            filesUploadedSuccessfully: true,
+            submittingFormToServer: true,
+          });
 
-    //   const recursiveHelper = (
-    //     items,
-    //     uploadItemIndex,
-    //     uploadItemsNum,
-    //     returnObject,
-    //     thisRef
-    //   ) => {
-    //     if (uploadItemIndex >= items.length) {
-    //       thisRef.setState({
-    //         isUploadingFile: false,
-    //         uplodingFileProgress: 0,
-    //         filesUploadedSuccessfully: true,
-    //         submittingFormToServer: true,
-    //       });
+          updateListing(returnObject)
+            .then(res => {
+              let failed = false;
+              console.log(res);
+              if (res.otherError) {
+                openRequestErrorSnackbar(res.otherError);
+                failed = true;
+              }
 
-    //       updateDeal(returnObject)
-    //         .then(res => {
-    //           let failed = false;
+              if (res.userErrors.length) {
+                failed = true;
+              }
 
-    //           if (res.otherError) {
-    //             openRequestErrorSnackbar(res.otherError);
-    //             failed = true;
-    //           }
+              if (!failed) {
+                setListingSuccessfullySubmitted(res.listing);
+              }
+              setFormSubmitted(false);
+            })
+            .catch(err => {
+              console.log(err);
+              setFormSubmitted(false);
+              openRequestErrorSnackbar();
+            });
 
-    //           if (res.userErrors.length) {
-    //             failed = true;
-    //           }
+          return;
+        }
 
-    //           if (!failed) {
-    //             setDealSuccessfullySubmitted(res.deal);
-    //           }
-    //           setFormSubmitted(false);
-    //         })
-    //         .catch(err => {
-    //           setFormSubmitted(false);
-    //           openRequestErrorSnackbar();
-    //         });
+        const item = items[uploadItemIndex];
 
-    //       return;
-    //     }
+        let file;
+        let fileIndex;
 
-    //     const item = items[uploadItemIndex];
+        fileIndex = item.itemName.slice(-1);
+        file = thisRef.state.imagesForms[fileIndex];
+        returnObject.images.push(item.fileName);
 
-    //     let file;
-    //     let fileIndex;
+        uploadFile({
+          file,
+          url: item.signedURL,
+          onUploadProgress: progressEvent => {
+            // Do whatever you want with the native progress event
+            const loadedPercent =
+              (progressEvent.loaded / progressEvent.total) * 100;
 
-    //     if (item.itemName === 'agencyDisclosureForm') {
-    //       file = thisRef.state.agencyDisclosureForm;
-    //       returnObject.agencyDisclosureForm = item.fileName;
-    //     } else {
-    //       fileIndex = item.itemName.slice(-1);
-    //       file = thisRef.state.contractOrLeaseForms[fileIndex];
-    //       returnObject.contractOrLeaseForms.push(item.fileName);
-    //     }
+            thisRef.setState({
+              formSubmissionBegun: true,
+              uplodingFileProgress: Math.floor(loadedPercent),
+              uplodingFileText: `Now uploading file ${uploadItemIndex +
+                1} of ${uploadItemsNum}...`,
+              isUploadingFile: true,
+            });
+          },
+        })
+          .then(() =>
+            recursiveHelper(
+              items,
+              uploadItemIndex + 1,
+              uploadItemsNum,
+              returnObject,
+              thisRef
+            )
+          )
+          .catch(err => {
+            console.log(err);
+            openRequestErrorSnackbar();
+          });
+      };
 
-    //     uploadFile({
-    //       file,
-    //       url: item.signedURL,
-    //       onUploadProgress: progressEvent => {
-    //         // Do whatever you want with the native progress event
-    //         const loadedPercent =
-    //           (progressEvent.loaded / progressEvent.total) * 100;
-
-    //         thisRef.setState({
-    //           formSubmissionBegun: true,
-    //           uplodingFileProgress: Math.floor(loadedPercent),
-    //           uplodingFileText: `Now uploading file ${uploadItemIndex +
-    //             1} of ${uploadItemsNum}...`,
-    //           isUploadingFile: true,
-    //         });
-    //       },
-    //     })
-    //       .then(() =>
-    //         recursiveHelper(
-    //           items,
-    //           uploadItemIndex + 1,
-    //           uploadItemsNum,
-    //           returnObject,
-    //           thisRef
-    //         )
-    //       )
-    //       .catch(err => openRequestErrorSnackbar());
-    //   };
-
-    //   recursiveUploads(items, returnObject, this);
-    // });
+      recursiveUploads(items, returnObject, this);
+    });
   };
 
   onSubmitFailure = (errs, onSubmitError, formApi) => {
@@ -473,7 +393,7 @@ class ViewListingFormContainer extends Component {
       isViewType,
       ...rest
     } = this.props;
-    const { agencyDisclosureForm, contractOrLeaseForms } = this.state;
+    const { imagesForms } = this.state;
 
     return (
       <Query
@@ -506,21 +426,12 @@ class ViewListingFormContainer extends Component {
           const agents = agentItems || [];
           return (
             <SubmitListingForm
-              setInitialContainerState={this.setInitialContainerState}
-              paymentsTotal={`${this.state.paymentsTotal}`}
-              deductionsTotal={`${this.state.deductionsTotal}`}
               total={this.state.total}
-              submittedDeal={listing}
-              agents={agents}
+              submittedListing={listing}
               managementCobrokeCompanyItems={formSelectItems || []}
               onSubmit={this.onSubmit}
-              setAgencyDisclosureForm={this.setAgencyDisclosureForm}
-              setContractOrLeaseForms={this.setContractOrLeaseForms}
-              agencyDisclosureForm={agencyDisclosureForm}
-              contractOrLeaseForms={contractOrLeaseForms}
-              paymentAmountChangeHandler={this.paymentAmountChangeHandler}
-              addedManagementCompanies={this.state.addedManagementCompanies}
-              newMgmtOrCobrokeCompany={this.state.newMgmtOrCobrokeCompany}
+              setImagesForms={this.setImagesForms}
+              imagesForms={imagesForms}
               uplodingFileProgress={this.state.uplodingFileProgress}
               isUploadingFile={this.state.isUploadingFile}
               uplodingFileText={this.state.uplodingFileText}
@@ -529,29 +440,9 @@ class ViewListingFormContainer extends Component {
                 this.state.submittingFormToServer ||
                 this.props.submittingRequestToServer
               }
-              isEditingDeal={isEditingListing}
+              isEditingListing={isEditingListing}
               isViewType={isViewType}
               userRole={this.props.userRole}
-              onBonusChange={this.props.onBonusChange}
-              dealBonus={this.props.dealBonus}
-              resetDealBonus={this.props.resetDealBonus}
-              setHasSetNewMgmtOrCobrokeCompany={
-                this.setHasSetNewMgmtOrCobrokeCompany
-              }
-              toggleChoosingMgmtCoBrokeCompany={
-                this.toggleChoosingMgmtCoBrokeCompany
-              }
-              handleMgmtOrCobrokeCompanyChange={
-                this.handleMgmtOrCobrokeCompanyChange
-              }
-              choosingMgmtCoBrokeCompany={this.state.choosingMgmtCoBrokeCompany}
-              deductionAmountChangeHandler={this.deductionAmountChangeHandler}
-              subtractPaymentValueFromState={this.subtractPaymentValueFromState}
-              subtractDeductionValueFromState={
-                this.subtractDeductionValueFromState
-              }
-              agentPaymentTypeIsACH={this.state.agentPaymentTypeIsACH}
-              onAgentPaymentTypeChange={this.onAgentPaymentTypeChange}
               {...rest}
             />
           );

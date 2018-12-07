@@ -1,15 +1,15 @@
 import { graphQlClient } from '../client';
 
 const query = `
-  mutation deleteDeal($uuid: String!) {
-    deleteDeal(uuid: $uuid) {
-      dealID
+  mutation deleteListing($uuid: String!) {
+    deleteListing(uuid: $uuid) {
+      listingID
       error
     }
   }
 `;
 
-const deleteDeal = uuid => {
+const deleteListing = uuid => {
   let res;
 
   const variables = {
@@ -27,15 +27,15 @@ const deleteDeal = uuid => {
       res = result;
       console.log(res);
 
-      const { deleteDeal: data } = res;
-      const { dealID, error } = data;
+      const { deleteListing: data } = res;
+      const { listingID, error } = data;
 
       if (error) {
         finalResponseObj.error = error;
       }
 
       if (!finalResponseObj.error) {
-        finalResponseObj.dealID = dealID;
+        finalResponseObj.listingID = listingID;
       }
 
       return finalResponseObj;
@@ -47,4 +47,4 @@ const deleteDeal = uuid => {
     });
 };
 
-export default deleteDeal;
+export default deleteListing;
