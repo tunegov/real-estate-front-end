@@ -7,6 +7,7 @@ routes
   .add('deals', '/app/deals', 'app/deals')
   .add('invoices', '/app/invoices', 'app/invoices')
   .add('agents', '/app/agents', 'app/agents')
+  .add('view-listings', '/app/listings', '/app/listings')
   .add('create-listing', '/app/listing/new', '/app/listing/new')
   .add(
     'admin-dashboard',
