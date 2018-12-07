@@ -1,9 +1,9 @@
 import { graphQlClient } from '../client';
 
 const query = `
-  mutation getDealFileUploadsSignedURLS($input: GetSignedURLSInput!) {
-    getDealFileUploadsSignedURLS(input: $input) {
-      dealID
+  mutation getListingFileUploadsSignedURLS($input: GetListingSignedURLSInput!) {
+    getListingFileUploadsSignedURLS(input: $input) {
+      listingID
       items {
         itemName
         fileName
@@ -16,19 +16,19 @@ const query = `
   }
 `;
 
-const getDealUploadsSignedURLS = (values, dealID) => {
+const getListingUploadsSignedURLS = (values, listingID) => {
   let res;
   let error;
 
   const variables = {
     input: {
       items: values,
-      dealID,
+      listingID,
     },
   };
 
   const finalResponseObj = {
-    dealID: null,
+    listingID: null,
     items: null,
     error,
   };
@@ -39,8 +39,8 @@ const getDealUploadsSignedURLS = (values, dealID) => {
       res = result;
       console.log(res);
 
-      const { getDealFileUploadsSignedURLS: data } = res;
-      const { items, dealID } = data;
+      const { getListingFileUploadsSignedURLS: data } = res;
+      const { items, listingID } = data;
 
       if (!data.wasSuccessful) {
         finalResponseObj.error = data.error;
@@ -48,7 +48,7 @@ const getDealUploadsSignedURLS = (values, dealID) => {
 
       if (!finalResponseObj.error) {
         finalResponseObj.items = items;
-        finalResponseObj.dealID = dealID;
+        finalResponseObj.listingID = listingID;
       }
 
       return finalResponseObj;
@@ -60,4 +60,4 @@ const getDealUploadsSignedURLS = (values, dealID) => {
     });
 };
 
-export default getDealUploadsSignedURLS;
+export default getListingUploadsSignedURLS;

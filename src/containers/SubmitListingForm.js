@@ -4,7 +4,7 @@ import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
 import { BounceLoader } from 'react-spinners';
 import SubmitListingForm from '../components/forms/SubmitListingForm';
-import getDealUploadsSignedURLS from '../effects/deals/getDealUploadsSignedURLS';
+import getListingUploadsSignedURLS from '../effects/listings/getListingUploadsSignedURLS';
 import uploadFile from '../effects/uploadFile';
 import submitListing from '../effects/listings/submitListing';
 import { capitalize } from '../utils/stringUtils';
@@ -43,7 +43,7 @@ class SubmitListingFormContainer extends Component {
     paymentsTotal: 0,
     deductionsTotal: 0,
     total: 0,
-    contractOrLeaseForms: [],
+    imagesForms: [],
     agencyDisclosureForm: null,
     permanentPaymentSubtractions: 0, // not submitted
     permanentDeductionSubtractions: 0, // not submitted
@@ -152,9 +152,9 @@ class SubmitListingFormContainer extends Component {
     this.setState({ agencyDisclosureForm: file });
   };
 
-  setContractOrLeaseForms = filesObject => {
+  setImagesForms = filesObject => {
     if (Array.isArray(filesObject)) {
-      this.setState({ contractOrLeaseForms: filesObject });
+      this.setState({ imagesForms: filesObject });
       if (filesObject.length === 0) {
         const uploadBtn = document.getElementById(
           'contractOrLeaseItemsUploadForm'
@@ -166,7 +166,7 @@ class SubmitListingFormContainer extends Component {
       return;
     }
     const fileArray = Object.keys(filesObject).map(key => filesObject[key]);
-    this.setState({ contractOrLeaseForms: fileArray });
+    this.setState({ imagesForms: fileArray });
   };
 
   handleMgmtOrCobrokeCompanyChange = event => {
@@ -209,17 +209,11 @@ class SubmitListingFormContainer extends Component {
 
   onSubmit = values => {
     this.props.setFormSubmitted();
-    const {
-      contractOrLeaseForms,
-      agencyDisclosureForm,
-      addedManagementCompanies,
-      paymentsTotal,
-      deductionsTotal,
-      total,
-    } = this.state;
+    const { imagesForms } = this.state;
 
     const returnObject = {
       ...values,
+      images: [],
     };
 
     delete returnObject.contractOrLeaseItems;
@@ -231,210 +225,198 @@ class SubmitListingFormContainer extends Component {
     delete returnObject.agentType;
     delete returnObject.state;
     returnObject.price = Number(returnObject.price);
+    const uploadItems = [];
 
-    submitListing(returnObject)
-      .then(res => {
-        let failed = false;
-
-        if (res.otherError) {
-          this.props.openRequestErrorSnackbar(res.otherError);
-          failed = true;
-        }
-
-        if (res.userErrors.length) {
-          failed = true;
-        }
-
-        if (!failed) {
-          this.props.setListingSuccessfullySubmitted(res.listing);
-        }
-
-        this.setState({
-          submittingFormToServer: false,
+    if (imagesForms && imagesForms.length) {
+      imagesForms.forEach((file, i) => {
+        uploadItems.push({
+          itemName: `imageForm${i}`,
+          fileName: file.name,
+          fileType: file.type,
         });
-
-        this.props.setFormSubmitted(false);
-      })
-      .catch(err => {
-        this.setState({
-          submittingFormToServer: false,
-        });
-        this.props.setFormSubmitted(false);
-        this.props.openRequestErrorSnackbar();
+      });
+    }
+    if (!uploadItems.length) {
+      this.setState({
+        submittingFormToServer: true,
       });
 
-    // logic for handling null vlues of checktransaction number
+      submitListing(returnObject)
+        .then(res => {
+          let failed = false;
 
-    // const uploadItems = [
-    //   {
-    //     itemName: 'agencyDisclosureForm',
-    //     fileName: agencyDisclosureForm.name,
-    //     fileType: agencyDisclosureForm.type,
-    //   },
-    // ];
+          if (res.otherError) {
+            this.props.openRequestErrorSnackbar(res.otherError);
+            failed = true;
+          }
 
-    // if (contractOrLeaseForms && contractOrLeaseForms.length) {
-    //   contractOrLeaseForms.forEach((file, i) => {
-    //     uploadItems.push({
-    //       itemName: `contractOrLeaseForm${i}`,
-    //       fileName: file.name,
-    //       fileType: file.type,
-    //     });
-    //   });
-    // }
+          if (res.userErrors.length) {
+            failed = true;
+          }
 
-    // getDealUploadsSignedURLS(uploadItems).then(response => {
-    //   if (response.error) {
-    //     this.props.openRequestErrorSnackbar(response.error);
-    //     this.props.setFormSubmitted(false);
-    //     return;
-    //   }
+          if (!failed) {
+            this.props.setListingSuccessfullySubmitted(res.listing);
+          }
 
-    //   const errors = [];
+          this.setState({
+            submittingFormToServer: false,
+          });
 
-    //   const { items, listingID } = response;
+          this.props.setFormSubmitted(false);
+        })
+        .catch(err => {
+          this.props.setFormSubmitted(false);
+          this.props.openRequestErrorSnackbar();
+        });
+      return;
+    }
+    getListingUploadsSignedURLS(uploadItems).then(response => {
+      if (response.error) {
+        this.props.openRequestErrorSnackbar(response.error);
+        this.props.setFormSubmitted(false);
+        return;
+      }
 
-    //   returnObject.listingID = listingID;
+      const errors = [];
 
-    //   items.forEach(item => {
-    //     if (item.error) errors.push(item.error);
-    //   });
+      const { items, listingID } = response;
 
-    //   if (errors.length) {
-    //     this.props.openRequestErrorSnackbar(errors[0]);
-    //     this.props.setFormSubmitted(false);
-    //     return;
-    //   }
+      returnObject.listingID = listingID;
 
-    //   this.uploadItemsNum = items.length;
+      items.forEach(item => {
+        if (item.error) errors.push(item.error);
+      });
 
-    //   const recursiveUploads = (items, returnObject, thisRef) => {
-    //     const uploadItemsNum = items.length;
-    //     const uploadItemIndex = 0;
-    //     recursiveHelper(
-    //       items,
-    //       uploadItemIndex,
-    //       uploadItemsNum,
-    //       returnObject,
-    //       thisRef
-    //     );
-    //   };
+      if (errors.length) {
+        this.props.openRequestErrorSnackbar(errors[0]);
+        this.props.setFormSubmitted(false);
+        return;
+      }
 
-    //   const recursiveHelper = (
-    //     items,
-    //     uploadItemIndex,
-    //     uploadItemsNum,
-    //     returnObject,
-    //     thisRef
-    //   ) => {
-    //     if (uploadItemIndex >= items.length) {
-    //       thisRef.setState({
-    //         isUploadingFile: false,
-    //         uplodingFileProgress: 0,
-    //         filesUploadedSuccessfully: true,
-    //         submittingFormToServer: true,
-    //       });
+      this.uploadItemsNum = items.length;
 
-    //       submitListing(returnObject)
-    //         .then(res => {
-    //           let failed = false;
+      const recursiveUploads = (items, returnObject, thisRef) => {
+        const uploadItemsNum = items.length;
+        const uploadItemIndex = 0;
+        recursiveHelper(
+          items,
+          uploadItemIndex,
+          uploadItemsNum,
+          returnObject,
+          thisRef
+        );
+      };
 
-    //           if (res.otherError) {
-    //             this.props.openRequestErrorSnackbar(res.otherError);
-    //             failed = true;
-    //           }
+      const recursiveHelper = (
+        items,
+        uploadItemIndex,
+        uploadItemsNum,
+        returnObject,
+        thisRef
+      ) => {
+        if (uploadItemIndex >= items.length) {
+          thisRef.setState({
+            isUploadingFile: false,
+            uplodingFileProgress: 0,
+            filesUploadedSuccessfully: true,
+            submittingFormToServer: true,
+          });
 
-    //           if (res.userErrors.length) {
-    //             failed = true;
-    //           }
+          submitListing(returnObject)
+            .then(res => {
+              let failed = false;
 
-    //           if (!failed) {
-    //             this.props.setDealSuccessfullySubmitted(res.deal);
-    //           }
+              if (res.otherError) {
+                this.props.openRequestErrorSnackbar(res.otherError);
+                failed = true;
+              }
 
-    //           this.setState({
-    //             submittingFormToServer: false,
-    //           });
+              if (res.userErrors.length) {
+                failed = true;
+              }
 
-    //           this.props.setFormSubmitted(false);
-    //         })
-    //         .catch(err => {
-    //           this.setState({
-    //             submittingFormToServer: false,
-    //           });
-    //           this.props.setFormSubmitted(false);
-    //           this.props.openRequestErrorSnackbar();
-    //         });
-    //       return;
-    //     }
+              if (!failed) {
+                this.props.setListingSuccessfullySubmitted(res.listing);
+              }
 
-    //     const item = items[uploadItemIndex];
+              this.setState({
+                submittingFormToServer: false,
+              });
 
-    //     let file;
-    //     let fileIndex;
+              this.props.setFormSubmitted(false);
+            })
+            .catch(err => {
+              this.setState({
+                submittingFormToServer: false,
+              });
+              this.props.setFormSubmitted(false);
+              this.props.openRequestErrorSnackbar();
+            });
+          return;
+        }
 
-    //     if (item.itemName === 'agencyDisclosureForm') {
-    //       file = thisRef.state.agencyDisclosureForm;
-    //       returnObject.agencyDisclosureForm = item.fileName;
-    //     } else {
-    //       fileIndex = item.itemName.slice(-1);
-    //       file = thisRef.state.contractOrLeaseForms[fileIndex];
-    //       returnObject.contractOrLeaseForms.push(item.fileName);
-    //     }
+        const item = items[uploadItemIndex];
 
-    //     uploadFile({
-    //       file,
-    //       url: item.signedURL,
-    //       onUploadProgress: progressEvent => {
-    //         // Do whatever you want with the native progress event
-    //         const loadedPercent =
-    //           (progressEvent.loaded / progressEvent.total) * 100;
+        let file;
+        let fileIndex;
 
-    //         thisRef.setState({
-    //           formSubmissionBegun: true,
-    //           uplodingFileProgress: Math.floor(loadedPercent),
-    //           uplodingFileText: `Now uploading file ${uploadItemIndex +
-    //             1} of ${uploadItemsNum}...`,
-    //           isUploadingFile: true,
-    //         });
-    //       },
-    //     })
-    //       .then(res => {
-    //         const status = `${res.status}`;
-    //         const okRegex = /^[2][0-9][0-9]$/;
+        fileIndex = item.itemName.slice(-1);
+        file = thisRef.state.imagesForms[fileIndex];
+        returnObject.images.push(item.fileName);
 
-    //         if (!okRegex.test(status)) {
-    //           this.setState({
-    //             submittingFormToServer: false,
-    //             isUploadingFile: false,
-    //           });
-    //           this.props.setFormSubmitted(false);
-    //           this.props.openRequestErrorSnackbar(
-    //             'There was an error uploading your files. Please try again shortly.'
-    //           );
-    //           return;
-    //         }
+        uploadFile({
+          file,
+          url: item.signedURL,
+          onUploadProgress: progressEvent => {
+            // Do whatever you want with the native progress event
+            const loadedPercent =
+              (progressEvent.loaded / progressEvent.total) * 100;
 
-    //         return recursiveHelper(
-    //           items,
-    //           uploadItemIndex + 1,
-    //           uploadItemsNum,
-    //           returnObject,
-    //           thisRef
-    //         );
-    //       })
-    //       .catch(err => {
-    //         this.setState({
-    //           submittingFormToServer: false,
-    //           isUploadingFile: false,
-    //         });
-    //         this.props.setFormSubmitted(false);
-    //         this.props.openRequestErrorSnackbar();
-    //       });
-    //   };
+            thisRef.setState({
+              formSubmissionBegun: true,
+              uplodingFileProgress: Math.floor(loadedPercent),
+              uplodingFileText: `Now uploading file ${uploadItemIndex +
+                1} of ${uploadItemsNum}...`,
+              isUploadingFile: true,
+            });
+          },
+        })
+          .then(res => {
+            const status = `${res.status}`;
+            const okRegex = /^[2][0-9][0-9]$/;
 
-    //   recursiveUploads(items, returnObject, this);
-    // });
+            if (!okRegex.test(status)) {
+              this.setState({
+                submittingFormToServer: false,
+                isUploadingFile: false,
+              });
+              this.props.setFormSubmitted(false);
+              this.props.openRequestErrorSnackbar(
+                'There was an error uploading your files. Please try again shortly.'
+              );
+              return;
+            }
+
+            return recursiveHelper(
+              items,
+              uploadItemIndex + 1,
+              uploadItemsNum,
+              returnObject,
+              thisRef
+            );
+          })
+          .catch(err => {
+            this.setState({
+              submittingFormToServer: false,
+              isUploadingFile: false,
+            });
+            this.props.setFormSubmitted(false);
+            this.props.openRequestErrorSnackbar();
+          });
+      };
+
+      recursiveUploads(items, returnObject, this);
+    });
   };
 
   onSubmitFailure = (errs, onSubmitError, formApi) => {
@@ -445,7 +427,7 @@ class SubmitListingFormContainer extends Component {
 
   render() {
     const { userUUID: uuid, ...rest } = this.props;
-    const { agencyDisclosureForm, contractOrLeaseForms } = this.state;
+    const { imagesForms } = this.state;
 
     return (
       <Query query={dealFormQuery} fetchPolicy="cache-and-network">
@@ -479,9 +461,8 @@ class SubmitListingFormContainer extends Component {
               managementCobrokeCompanyItems={formSelectItems || []}
               onSubmit={this.onSubmit}
               setAgencyDisclosureForm={this.setAgencyDisclosureForm}
-              setContractOrLeaseForms={this.setContractOrLeaseForms}
-              agencyDisclosureForm={agencyDisclosureForm}
-              contractOrLeaseForms={contractOrLeaseForms}
+              setImagesForms={this.setImagesForms}
+              imagesForms={imagesForms}
               paymentAmountChangeHandler={this.paymentAmountChangeHandler}
               addedManagementCompanies={this.state.addedManagementCompanies}
               newMgmtOrCobrokeCompany={this.state.newMgmtOrCobrokeCompany}

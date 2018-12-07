@@ -198,7 +198,7 @@ class SubmitListingDialogBox extends Component {
 
   deleteListing = listingID => {
     const { userUUID } = this.props;
-
+    console.log(listingID);
     this.toggleSubmittingRequestToServer(true);
     deleteListing(listingID, userUUID)
       .then(res => {
@@ -211,6 +211,7 @@ class SubmitListingDialogBox extends Component {
         this.props.listingDeleted(listingID);
       })
       .catch(err => {
+        console.log(err);
         this.toggleSubmittingRequestToServer(true);
         this.openRequestErrorSnackbar();
       });
@@ -343,6 +344,93 @@ class SubmitListingDialogBox extends Component {
             >
               Cancel
             </Button>
+            {(userRole === agent) &&
+            !isCoAgent ? (
+              <Button
+                disabled={this.state.formSubmitted}
+                onClick={this.handleCancelMenuClick}
+                color="secondary"
+              >
+                Delete
+              </Button>
+            ) : null}
+            <Menu
+              id="simple-menu"
+              anchorEl={cancelAnchorEl}
+              open={Boolean(cancelAnchorEl)}
+              onClose={this.handleCancelMenuClose}
+            >
+              <div className={classes.popupMenuTitle}>Are you sure?</div>
+              <MenuItem
+                classes={{ root: classes.menuItemDelete }}
+                onClick={() => {
+                  this.handleCancelMenuClose();
+                  this.deleteListing(viewingListingID);
+                }}
+              >
+                Yes
+              </MenuItem>
+              <MenuItem
+                classes={{ root: classes.menuItem }}
+                onClick={this.handleCancelMenuClose}
+              >
+                No
+              </MenuItem>
+            </Menu>
+            {!isEditingListing &&
+            !isCoAgentEditDeal &&
+            this.props.userRole === agent ? (
+              <Button
+                className={classes.editDealBtn}
+                disabled={this.state.formSubmitted}
+                onClick={() => this.toggleEditListing(true, isCoAgent)}
+                color="primary"
+              >
+                Edit
+              </Button>
+            ) : null}
+           
+            {isEditingListing || isCoAgentEditDeal ? (
+              <Button
+                disabled={this.state.formSubmitted}
+                onClick={() => {
+                  const errors = this.state.formApi.getError();
+                  let errorCount;
+                  console.log(this.state.formApi.getError());
+                  if (errors) {
+                    errorCount = Object.keys(this.state.formApi.getError())
+                      .length;
+                  }
+
+                  if (errorCount) {
+                    this.toggleSnackbarOpen(
+                      `Please correct ${errorCount} form error${
+                        errorCount > 1 ? 's' : ''
+                      }`
+                    );
+                  }
+
+                  this.state.formApi.submitForm();
+                }}
+                color="primary"
+              >
+                Submit
+              </Button>
+            ) : null}
+          </DialogActions>
+        ) : null}
+        {/* {!this.state.formSubmitted ? (
+          <DialogActions classes={{ root: classes.dialogActions }}>
+            <Button
+              disabled={this.state.formSubmitted}
+              onClick={() => {
+                this.toggleEditListing(false);
+                closeListingsViewDialogBox();
+              }}
+              color="primary"
+            >
+              Cancel
+            </Button>
 
             <Button
               disabled={this.state.formSubmitted}
@@ -363,7 +451,7 @@ class SubmitListingDialogBox extends Component {
                 classes={{ root: classes.menuItemDelete }}
                 onClick={() => {
                   this.handleCancelMenuClose();
-                  this.deleteDeal(viewingListingID);
+                  this.deleteListing(viewingListingID);
                 }}
               >
                 Yes
@@ -435,7 +523,7 @@ class SubmitListingDialogBox extends Component {
               </Button>
             ) : null}
           </DialogActions>
-        ) : null}
+        ) : null} */}
       </Dialog>
     );
   }

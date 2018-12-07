@@ -10,6 +10,7 @@ import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import UsersIcon from '@material-ui/icons/Contacts';
 import AgentsIcon from '@material-ui/icons/SupervisorAccount';
 import AdminsIcon from '@material-ui/icons/RecentActors';
+import ListingsIcon from '@material-ui/icons/Assignment';
 
 export const adminSideLinks = [
   { name: 'Admin Dashboard', route: 'admin-dashboard', icon: DashboardIcon },
@@ -42,6 +43,13 @@ export const adminSideLinks = [
     icon: AgentsIcon,
     iconFontSize: 24,
   },
+  {
+    name: 'Listings',
+    route: 'admin-view-listings',
+    icon: ListingsIcon,
+    id: 'listings',
+  },
+
   /*
   {
     name: 'Customers',
