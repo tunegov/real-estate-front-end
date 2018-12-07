@@ -3,27 +3,20 @@ import { observer } from 'mobx-react';
 import { withStyles } from 'material-ui/styles';
 import Grid from 'material-ui/Grid';
 import withSizes from 'react-sizes';
-import Chance from 'chance';
 import DollarIcon from '@material-ui/icons/AttachMoney';
 import PendingIcon from '@material-ui/icons/Help';
 import StarIcon from '@material-ui/icons/Star';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import moment from 'moment';
-import classNames from 'classnames';
 import Divider from 'material-ui/Divider';
 import Typography from 'material-ui/Typography';
-import List, { ListItem, ListItemText } from 'material-ui/List';
-import classnames from 'classnames';
 import ExpansionPanel, {
   ExpansionPanelSummary,
   ExpansionPanelDetails,
 } from 'material-ui/ExpansionPanel';
 import StatNumberBox from '../StatNumberBox';
 import AgentOfTheMonthContainer from '../../containers/AgentOfTheMonth';
-import { round } from '../../utils/Math';
 import CompanyNewsAlerts from '../../containers/CompanyNewsAlerts';
-
-const chance = new Chance();
 
 const months = [
   'January',
@@ -156,7 +149,6 @@ class AgentDashboard extends Component {
     const {
       classes,
       userUUID,
-      newsItems,
       submittedNewsAlertSuccessfully,
       deletedNewsAlertSuccessfully,
     } = this.props;
@@ -189,10 +181,7 @@ class AgentDashboard extends Component {
                         rootClassName={classes.statNumberBoxWrapper}
                         icon={DollarIcon}
                         iconClass={classes.statBoxMoneyIcon}
-                        stat={`$${round(
-                          this.props.netCommissionsToDate,
-                          0
-                        ).toLocaleString()}`}
+                        stat={this.props.netCommissionsToDate}
                         statTitle="Total Net Commissions to Date"
                       />
                     </Grid>
@@ -201,10 +190,7 @@ class AgentDashboard extends Component {
                         rootClassName={classes.statNumberBoxWrapper}
                         icon={DollarIcon}
                         iconClass={classes.statBoxMoneyIcon}
-                        stat={`$${round(
-                          this.props.currentMonthNetCommissions,
-                          0
-                        ).toLocaleString()}`}
+                        stat={this.props.currentMonthNetCommissions}
                         statTitle={`${
                           months[currentDate.month()]
                         } - Net Commissions`}
@@ -215,7 +201,7 @@ class AgentDashboard extends Component {
                         rootClassName={classes.statNumberBoxWrapper}
                         icon={StarIcon}
                         iconClass={classes.statBoxStarIcon}
-                        stat={this.props.currentMonthNumOfDealsCommissions}
+                        stat={this.props.currentMonthNumOfDealsCommissions || 0}
                         statTitle={`${
                           months[currentDate.month()]
                         } - Number of Deals`}
@@ -226,7 +212,7 @@ class AgentDashboard extends Component {
                         rootClassName={classes.statNumberBoxWrapper}
                         icon={PendingIcon}
                         iconClass={classes.statBoxQuestionIcon}
-                        stat={this.props.numOfPendingDeals}
+                        stat={this.props.numOfPendingDeals || 0}
                         statTitle="Number of Pending Deals"
                       />
                     </Grid>

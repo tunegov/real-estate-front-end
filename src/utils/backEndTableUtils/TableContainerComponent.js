@@ -1,6 +1,7 @@
 import React from 'react';
 import { VirtualTable } from '@devexpress/dx-react-grid-material-ui';
 import { withStyles } from 'material-ui/styles';
+import classnames from 'classnames';
 
 const styles = theme => ({
   root: {
@@ -19,9 +20,7 @@ const styles = theme => ({
   input: {
     width: '100%',
   },
-  myTable: {
-
-  },
+  myTable: {},
   myTableContainer: {
     minHeight: '300px',
     height: 'calc(100vh - 310px) !important',
@@ -35,9 +34,11 @@ const styles = theme => ({
 const TableContainerBase = ({ classes, className, ...restProps }) => (
   <VirtualTable.Container
     {...restProps}
-    className={className || classes.myTableContainer}
+    className={classnames(classes.myTableContainer, className)}
     id="myTableContainer"
   />
 );
 
-export default withStyles(styles, { name: 'TableContainerComponent' })(TableContainerBase);
+export default withStyles(styles, { name: 'TableContainerComponent' })(
+  TableContainerBase
+);

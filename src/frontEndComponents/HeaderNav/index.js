@@ -11,7 +11,10 @@ import {
 } from '../../sharedStyledComponents/headerStyles';
 import { Link } from '../../routes';
 import HeaderNavLink from '../HeaderNavLink';
-import { HeaderLink as NavAnchor } from '../HeaderNavLink/styledComponents';
+import {
+  HeaderLink as NavAnchor,
+  NavItem,
+} from '../HeaderNavLink/styledComponents';
 
 const styles = theme => ({
   signUpLink: {
@@ -32,6 +35,7 @@ const styles = theme => ({
   loginWrapper: {
     display: 'flex',
     marginRight: '5px',
+    fontSize: '14px',
   },
   logo: {
     height: 30,
@@ -42,16 +46,10 @@ const styles = theme => ({
 @withStyles(styles)
 class HeaderNav extends React.Component {
   renderLinks = () => {
-    const { classes, isAdmin } = this.props;
+    const { classes, isAdmin, openLoginModal } = this.props;
     if (this.props.isLoggedIn) {
       return (
         <LeftHeaderLinkWrapper>
-          <HeaderNavLink
-            route={isAdmin ? 'admin-dashboard' : 'dashboard'}
-            prefetch
-          >
-            <NavAnchor>Dashboard</NavAnchor>
-          </HeaderNavLink>
           <NavAnchor onClick={this.props.onLogout}>Log Out</NavAnchor>
         </LeftHeaderLinkWrapper>
       );
@@ -60,9 +58,7 @@ class HeaderNav extends React.Component {
     return (
       <LeftHeaderLinkWrapper>
         <span className={classes.loginWrapper}>
-          <HeaderNavLink route="log-in" href="/log-in" prefetch>
-            <NavAnchor>Log In</NavAnchor>
-          </HeaderNavLink>
+          <NavItem onClick={openLoginModal}>Log In</NavItem>
         </span>
         {/*<Link route="sign-up" href="/sign-up" prefetch>
           <a className={classes.anchor}>
@@ -78,7 +74,7 @@ class HeaderNav extends React.Component {
       <HeaderNavLink route="listings" href="/listings" prefetch>
         <NavAnchor>Listings</NavAnchor>
       </HeaderNavLink>
-      <HeaderNavLink route="listings" href="/listings" prefetch>
+      <HeaderNavLink route="listings" href="#" prefetch>
         <NavAnchor>New Developments</NavAnchor>
       </HeaderNavLink>
       <HeaderNavLink route="about" href="/about" prefetch>
@@ -95,12 +91,16 @@ class HeaderNav extends React.Component {
           <Logo>
             <Link route="home" prefetch>
               <LogoAnchor>
-                <img className={classes.logo} src="/static/images/logo.png" />
+                <img
+                  className={classes.logo}
+                  src="/static/images/logo.png"
+                  alt="logo"
+                />
               </LogoAnchor>
             </Link>
           </Logo>
         }
-        {/*this.renderMiddleLinks()*/}
+        {/* this.renderMiddleLinks() */}
         {this.renderLinks()}
       </HeaderWrapper>
     );

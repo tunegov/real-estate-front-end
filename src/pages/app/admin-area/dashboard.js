@@ -1,7 +1,6 @@
 import React from 'react';
 import { observer } from 'mobx-react';
 import isBrowser from 'is-browser';
-import Head from 'next/head';
 import Layout from '../../../components/Layout';
 import { initStore } from '../../../models';
 import withData from '../../../lib/withData';
@@ -28,13 +27,20 @@ class Dashboard extends React.Component {
 
     // for debugging only!!!
     if (isBrowser && !window._appStore) window._appStore = this.store;
+
+    this.state = {
+      userUUID: this.store.UserStore.uuid,
+    };
   }
 
   render() {
+    const { userUUID } = this.state;
+    const UUID = this.store.UserStore.uuid || userUUID;
+
     return (
       <Layout UserStore={this.store.UserStore} UIStore={this.store.UIStore}>
         <AdminDashboardContainer
-          userUUID={this.store.UserStore.uuid}
+          userUUID={UUID}
           userRole={this.store.UserStore.userRole}
         />
       </Layout>

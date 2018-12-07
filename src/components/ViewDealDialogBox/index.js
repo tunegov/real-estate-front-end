@@ -3,7 +3,6 @@ import { observer } from 'mobx-react';
 import Dialog, {
   DialogActions,
   DialogContent,
-  DialogContentText,
   DialogTitle,
   withMobileDialog,
 } from 'material-ui/Dialog';
@@ -21,8 +20,7 @@ import { agent, admin, superAdmin } from '../../constants/userTypes';
 import acceptDeal from '../../effects/deals/acceptDeal';
 import deleteDeal from '../../effects/deals/deleteDeal';
 
-const networkErrorMessage =
-  "We're sorry. There was an error processing your request.";
+const networkErrorMessage = "We're sorry. There was an error processing your request.";
 
 const styles = theme => ({
   paper: {
@@ -108,25 +106,23 @@ const styles = theme => ({
 
 @observer
 class SubmitDealDialogBox extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      formApi: null,
-      formSubmitted: false,
-      snackbarOpen: false,
-      snackbarText: '',
-      snackbarUndoFunction: null,
-      isEditingDeal: false,
-      cancelAnchorEl: null,
-      acceptAnchorEl: null,
-      dealBonus: '',
-      submittingRequestToServer: false,
-      isErrorSnackbar: false,
-    };
-  }
+  state = {
+    formApi: null,
+    formSubmitted: false,
+    snackbarOpen: false,
+    snackbarText: '',
+    snackbarUndoFunction: null,
+    isEditingDeal: false,
+    cancelAnchorEl: null,
+    acceptAnchorEl: null,
+    dealBonus: '',
+    submittingRequestToServer: false,
+    isErrorSnackbar: false,
+    isCoAgentEditDeal: false,
+  };
 
   setFormSubmitted = (bool = true) => {
-    this.setState({ formSubmitted: bool, isEditingDeal: false });
+    this.setState({ formSubmitted: bool, isEditingDeal: false, isCoAgentEditDeal: false });
   };
 
   toggleSnackbarOpen = text => {
@@ -153,10 +149,12 @@ class SubmitDealDialogBox extends Component {
     });
   };
 
-  toggleEditingDeal = bool => {
+  toggleEditingDeal = (bool, isCoAgent) => {
+    const { isEditingDeal, isCoAgentEditDeal } = this.state;
     this.setState({
       isEditingDeal:
-        typeof bool === 'boolean' ? bool : !this.state.isEditingDeal,
+        typeof bool === 'boolean' ? bool && !isCoAgent : !isEditingDeal,
+      isCoAgentEditDeal: typeof bool === 'boolean' ? bool && isCoAgent : !isCoAgentEditDeal,
     });
   };
 
@@ -194,15 +192,16 @@ class SubmitDealDialogBox extends Component {
   };
 
   acceptDeal = dealID => {
+    const { userUUID } = this.props;
     const { dealBonus } = this.state;
     this.toggleSubmittingRequestToServer(true);
-    acceptDeal(dealID, Number(dealBonus) ? Number(dealBonus) : undefined)
+    acceptDeal(dealID, Number(dealBonus) ? Number(dealBonus) : undefined, userUUID)
       .then(res => {
         this.toggleSubmittingRequestToServer(false);
         if (res.error) {
           this.openRequestErrorSnackbar(res.error);
           return;
-        } else if (res.userErrors.length) {
+        } if (res.userErrors.length) {
           this.openRequestErrorSnackbar(res.userErrors[0]);
           return;
         }
@@ -215,8 +214,10 @@ class SubmitDealDialogBox extends Component {
   };
 
   deleteDeal = dealID => {
+    const { userUUID } = this.props;
+
     this.toggleSubmittingRequestToServer(true);
-    deleteDeal(dealID)
+    deleteDeal(dealID, userUUID)
       .then(res => {
         this.toggleSubmittingRequestToServer(false);
         if (res.error) {
@@ -250,10 +251,17 @@ class SubmitDealDialogBox extends Component {
       setDealSuccessfullySubmitted,
       viewingDealID,
       viewingDealStatus,
+      isCoAgent,
+      userUUID,
+      userRole,
+      coBrokeAgentId
     } = this.props;
 
-    const { isEditingDeal, cancelAnchorEl, acceptAnchorEl } = this.state;
+    const hideButton = this.props.coBrokeAgentId ? this.props.coBrokeAgentId.indexOf(this.props.userUUID) > -1 : false;
 
+    const {
+      isEditingDeal, cancelAnchorEl, acceptAnchorEl, isCoAgentEditDeal,
+    } = this.state;
     return (
       <Dialog
         disableBackdropClick
@@ -271,12 +279,14 @@ class SubmitDealDialogBox extends Component {
         <Divider />
         <DialogContent classes={{ root: classes.dialogContent }}>
           <ViewDealForm
-            userUUID={this.props.userUUID}
+            userUUID={userUUID}
             getFormApi={formApi => this.setState({ formApi })}
             setFormSubmitted={this.setFormSubmitted}
             setDealSuccessfullySubmitted={setDealSuccessfullySubmitted}
             dealID={viewingDealID}
+            isCoAgent={isCoAgent}
             isEditingDeal={isEditingDeal}
+            isCoAgentEditDeal={isCoAgentEditDeal}
             isViewType
             userRole={this.props.userRole}
             dealAccepted={this.props.dealAccepted}
@@ -310,8 +320,8 @@ class SubmitDealDialogBox extends Component {
                   onClick={() => {
                     this.handleCloseSnackbar();
                     if (
-                      this.state.snackbarUndoFunction &&
-                      typeof snackbarUndoFunction === 'function'
+                      this.state.snackbarUndoFunction
+                      && typeof snackbarUndoFunction === 'function'
                     ) {
                       this.snackbarUndoFunction();
                     }
@@ -320,8 +330,8 @@ class SubmitDealDialogBox extends Component {
                   UNDO
                 </Button>
               ) : (
-                undefined
-              ),
+                  undefined
+                ),
               <IconButton
                 key="close"
                 aria-label="Close"
@@ -346,18 +356,18 @@ class SubmitDealDialogBox extends Component {
             >
               Cancel
             </Button>
-            {(this.props.userRole === agent &&
-              viewingDealStatus === 'pending') ||
-            this.props.userRole === superAdmin ||
-            this.props.userRole === admin ? (
-              <Button
-                disabled={this.state.formSubmitted}
-                onClick={this.handleCancelMenuClick}
-                color="secondary"
-              >
-                Delete
-              </Button>
-            ) : null}
+            {((userRole === agent
+              && viewingDealStatus === 'pending')
+              || userRole === superAdmin
+              || userRole === admin) && !isCoAgent ? (
+                <Button
+                  disabled={this.state.formSubmitted}
+                  onClick={this.handleCancelMenuClick}
+                  color="secondary"
+                >
+                  Delete
+                </Button>
+              ) : null}
             <Menu
               id="simple-menu"
               anchorEl={cancelAnchorEl}
@@ -381,30 +391,31 @@ class SubmitDealDialogBox extends Component {
                 No
               </MenuItem>
             </Menu>
-            {!isEditingDeal &&
-            this.props.userRole === agent &&
-            viewingDealStatus === 'pending' ? (
-              <Button
-                className={classes.editDealBtn}
-                disabled={this.state.formSubmitted}
-                onClick={() => this.toggleEditingDeal(true)}
-                color="primary"
-              >
-                Edit
-              </Button>
-            ) : null}
-            {(this.props.userRole === admin ||
-              this.props.userRole === superAdmin) &&
-            viewingDealStatus === 'pending' ? (
-              <Button
-                className={classes.editDealBtn}
-                disabled={this.state.formSubmitted}
-                onClick={this.handleAcceptMenuClick}
-                color="primary"
-              >
-                Accept Deal
-              </Button>
-            ) : null}
+            {!isEditingDeal && !isCoAgentEditDeal
+              && this.props.userRole === agent
+              && viewingDealStatus === 'pending'
+              ? (
+                <Button
+                  className={classes.editDealBtn}
+                  disabled={this.state.formSubmitted}
+                  onClick={() => this.toggleEditingDeal(true, isCoAgent)}
+                  color="primary"
+                >
+                  Edit
+                </Button>
+              ) : null}
+            {(this.props.userRole === admin
+              || this.props.userRole === superAdmin)
+              && viewingDealStatus === 'pending' && !hideButton ? (
+                <Button
+                  className={classes.editDealBtn}
+                  disabled={this.state.formSubmitted}
+                  onClick={this.handleAcceptMenuClick}
+                  color="primary"
+                >
+                  Accept Deal
+                </Button>
+              ) : null}
             <Menu
               id="simple-menu"
               anchorEl={acceptAnchorEl}
@@ -428,7 +439,7 @@ class SubmitDealDialogBox extends Component {
                 No
               </MenuItem>
             </Menu>
-            {isEditingDeal ? (
+            {isEditingDeal || isCoAgentEditDeal ? (
               <Button
                 disabled={this.state.formSubmitted}
                 onClick={() => {
@@ -443,7 +454,7 @@ class SubmitDealDialogBox extends Component {
                   if (errorCount) {
                     this.toggleSnackbarOpen(
                       `Please correct ${errorCount} form error${
-                        errorCount > 1 ? 's' : ''
+                      errorCount > 1 ? 's' : ''
                       }`
                     );
                   }

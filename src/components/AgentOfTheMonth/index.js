@@ -53,6 +53,17 @@ const styles = theme => ({
     borderRadius: '50%',
     background: 'linear-gradient(45deg, #45484d 0%,#000000 100%)',
   },
+  imageNo: {
+    width: '72px',
+    color: '#fff',
+    height: '100%',
+    cursor: 'pointer',
+    display: 'flex',
+    background: 'linear-gradient(45deg, #45484d 0%,#000000 100%)',
+    alignItems: 'center',
+    borderRadius: '50%',
+    justifyContent: 'center'
+  },
   infoWrapper: {
     marginLeft: '70px',
     display: 'flex',
@@ -75,7 +86,7 @@ const styles = theme => ({
     marginBottom: '10px',
     fontSize: '14px',
     fontWeight: 300,
-    fontStyle: 'italic',
+    // fontStyle: 'italic',
     color: theme.palette.secondary.dark,
   },
   stat: {
@@ -123,7 +134,7 @@ const styles = theme => ({
 
 @observer
 class AgentOfTheMonth extends Component {
-  renderPlaceholder = () => {
+  renderPlaceholder = (message) => {
     const { classes } = this.props;
     return (
       <div
@@ -133,7 +144,7 @@ class AgentOfTheMonth extends Component {
         )}
       >
         <span className={classes.label}>Agent of the Quarter</span>
-        <div className={classes.placeholder}>Tallying up the numbers...</div>
+        <div className={classes.placeholder}>{message}</div>
       </div>
     );
   };
@@ -163,11 +174,16 @@ class AgentOfTheMonth extends Component {
 
                     <div className={classes.contentWrapper}>
                       <div className={classes.profilePhotoWrapper}>
-                        <img
-                          className={classes.image}
-                          src={residentialDollarsAgent.photoURL}
-                          alt={residentialDollarsAgent.name}
-                        />
+                        {
+                          residentialDollarsAgent.photoURL ? (<img
+                            className={classes.image}
+                            src={residentialDollarsAgent.photoURL}
+                            alt={residentialDollarsAgent.name}
+                          />) : (
+                              <div className={classes.imageNo}>?</div>
+                            )
+                        }
+
                       </div>
 
                       <div className={classes.infoWrapper}>
@@ -177,17 +193,17 @@ class AgentOfTheMonth extends Component {
                         <div className={classes.agentAwardTitle}>
                           - Gross Residential Sales
                         </div>
-                        <div className={classes.stat}>
+                        {/* <div className={classes.stat}>
                           Seles: ${residentialDollarsAgent.statItem.toLocaleString()}
-                        </div>
+                        </div> */}
                       </div>
                     </div>
                   </div>
                 </a>
               </Link>
             ) : (
-              this.renderPlaceholder()
-            )}
+                this.renderPlaceholder("No deals for Residential Sales")
+              )}
           </Grid>
 
           <Grid item xs={12} md={6}>
@@ -204,11 +220,16 @@ class AgentOfTheMonth extends Component {
 
                     <div className={classes.contentWrapper}>
                       <div className={classes.profilePhotoWrapper}>
-                        <img
-                          className={classes.image}
-                          src={commercialDollarsAgent.photoURL}
-                          alt={commercialDollarsAgent.name}
-                        />
+                        {
+                          commercialDollarsAgent.photoURL ? (<img
+                            className={classes.image}
+                            src={commercialDollarsAgent.photoURL}
+                            alt={commercialDollarsAgent.name}
+                          />) : (
+                              <div className={classes.imageNo}>?</div>
+                            )
+                        }
+
                       </div>
 
                       <div className={classes.infoWrapper}>
@@ -218,17 +239,17 @@ class AgentOfTheMonth extends Component {
                         <div className={classes.agentAwardTitle}>
                           - Gross Commercial Sales
                         </div>
-                        <div className={classes.stat}>
+                        {/* <div className={classes.stat}>
                           Sales: ${commercialDollarsAgent.statItem.toLocaleString()}
-                        </div>
+                        </div> */}
                       </div>
                     </div>
                   </div>
                 </a>
               </Link>
             ) : (
-              this.renderPlaceholder()
-            )}
+                this.renderPlaceholder("No deals for Commercial Sales")
+              )}
           </Grid>
 
           <Grid item xs={12} md={6}>
@@ -245,11 +266,18 @@ class AgentOfTheMonth extends Component {
 
                     <div className={classes.contentWrapper}>
                       <div className={classes.profilePhotoWrapper}>
-                        <img
-                          className={classes.image}
-                          src={rentalsDollarsAgent.photoURL}
-                          alt={rentalsDollarsAgent.name}
-                        />
+                        {
+                          rentalsDollarsAgent.photoURL ? (<img
+                            className={classes.image}
+                            src={rentalsDollarsAgent.photoURL}
+                            alt={rentalsDollarsAgent.name}
+                          />) :
+                            (
+                              <div className={classes.imageNo}>?</div>
+                            )
+
+                        }
+
                       </div>
 
                       <div className={classes.infoWrapper}>
@@ -257,19 +285,19 @@ class AgentOfTheMonth extends Component {
                           {rentalsDollarsAgent.name}
                         </div>
                         <div className={classes.agentAwardTitle}>
-                          - Gross Rentals Amount
+                          - Top Residential Commissions Earned
                         </div>
-                        <div className={classes.stat}>
+                        {/* <div className={classes.stat}>
                           Amount: ${rentalsDollarsAgent.statItem.toLocaleString()}
-                        </div>
+                        </div> */}
                       </div>
                     </div>
                   </div>
                 </a>
               </Link>
             ) : (
-              this.renderPlaceholder()
-            )}
+                this.renderPlaceholder("No deals for Rental Sales")
+              )}
           </Grid>
 
           <Grid item xs={12} md={6}>
@@ -286,11 +314,18 @@ class AgentOfTheMonth extends Component {
 
                     <div className={classes.contentWrapper}>
                       <div className={classes.profilePhotoWrapper}>
-                        <img
-                          className={classes.image}
-                          src={numbersAgent.photoURL}
-                          alt={numbersAgent.name}
-                        />
+                        {
+                          numbersAgent.photoURL ? (
+                            <img
+                              className={classes.image}
+                              src={numbersAgent.photoURL}
+                              alt={numbersAgent.name}
+                            />
+                          ) : (
+                              <div className={classes.imageNo}>?</div>
+                            )
+                        }
+
                       </div>
 
                       <div className={classes.infoWrapper}>
@@ -309,8 +344,8 @@ class AgentOfTheMonth extends Component {
                 </a>
               </Link>
             ) : (
-              this.renderPlaceholder()
-            )}
+                this.renderPlaceholder("No deals for Agent Sales")
+              )}
           </Grid>
         </Grid>
       </div>

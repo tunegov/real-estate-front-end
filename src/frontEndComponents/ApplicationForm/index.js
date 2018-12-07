@@ -177,11 +177,19 @@ class ApplicationForm extends React.Component {
           photoIDFileList: newFileList,
         };
       });
-      this.setState(() => ({
-        photoIDUploadError: true,
-      }));
+
+      if (
+        !this.state.photoIDFileList ||
+        this.state.photoIDFileList.length - 1 === 0
+      ) {
+        this.setState(() => ({
+          photoIDUploadError: true,
+        }));
+      }
     },
     beforeUpload: file => {
+      if (this.state.photoIDFileList && this.state.photoIDFileList.length >= 3)
+        return;
       this.setState(({ photoIDFileList }) => ({
         photoIDFileList: [...photoIDFileList, file],
       }));

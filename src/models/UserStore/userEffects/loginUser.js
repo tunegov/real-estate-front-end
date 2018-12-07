@@ -1,5 +1,4 @@
-import { GraphQLClient } from 'graphql-request';
-import graphQLEndpoint from '../../../constants/graphQLEndpoint';
+import { graphQlClient } from '../../../effects/client';
 
 const query = `
     mutation loginUser($input: LoginUserInput!) {
@@ -20,10 +19,6 @@ const query = `
     }
   `;
 
-const client = new GraphQLClient(graphQLEndpoint, {
-  credentials: 'same-origin',
-});
-
 async function loginUser(self, values) {
   const variables = {
     input: values,
@@ -34,7 +29,7 @@ async function loginUser(self, values) {
     error: null,
   };
 
-  return client
+  return graphQlClient
     .request(query, variables)
     .then(res => {
       const { loginUser: data } = res;

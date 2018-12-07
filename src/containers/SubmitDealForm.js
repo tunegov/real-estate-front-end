@@ -37,32 +37,31 @@ export const dealFormQuery = gql`
 
 @observer
 class SubmitDealFormContainer extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      paymentAmountItems: {},
-      deductionAmountItems: {},
-      paymentsTotal: 0,
-      deductionsTotal: 0,
-      total: 0,
-      contractOrLeaseForms: [],
-      agencyDisclosureForm: null,
-      permanentPaymentSubtractions: 0, // not submitted
-      permanentDeductionSubtractions: 0, // not submitted
-      choosingMgmtCoBrokeCompany: false,
-      newMgmtOrCobrokeCompany: '',
-      hasSetNewMgmtOrCobrokeCompany: false,
-      addedManagementCompanies: [],
-      uplodingFileProgress: 0,
-      isUploadingFile: false,
-      uplodingFileText: '',
-      filesUploadedSuccessfully: null,
-      formSubmissionBegun: false,
-      submittingFormToServer: false,
-    };
-  }
+  state = {
+    paymentAmountItems: {},
+    deductionAmountItems: {},
+    paymentsTotal: 0,
+    deductionsTotal: 0,
+    total: 0,
+    contractOrLeaseForms: [],
+    agencyDisclosureForm: null,
+    permanentPaymentSubtractions: 0, // not submitted
+    permanentDeductionSubtractions: 0, // not submitted
+    choosingMgmtCoBrokeCompany: false,
+    newMgmtOrCobrokeCompany: '',
+    hasSetNewMgmtOrCobrokeCompany: false,
+    addedManagementCompanies: [],
+    uplodingFileProgress: 0,
+    isUploadingFile: false,
+    uplodingFileText: '',
+    filesUploadedSuccessfully: null,
+    formSubmissionBegun: false,
+    submittingFormToServer: false,
+    agentPaymentTypeIsACH: false,
+  };
 
   uploadItemsNum = 0;
+
   itemsUploaded = 0;
 
   paymentAmountChangeHandler = (id, value) => {
@@ -215,7 +214,6 @@ class SubmitDealFormContainer extends Component {
       contractOrLeaseForms,
       agencyDisclosureForm,
       addedManagementCompanies,
-      hasSetNewMgmtOrCobrokeCompany,
       paymentsTotal,
       deductionsTotal,
       total,
@@ -223,7 +221,6 @@ class SubmitDealFormContainer extends Component {
 
     const returnObject = {
       ...values,
-      otherAgents: values.otherAgents || [],
       addedManagementCompanies,
       paymentsTotal,
       deductionsTotal,
@@ -246,6 +243,14 @@ class SubmitDealFormContainer extends Component {
       ...item,
       amount: Number(item.amount),
     }));
+    // logic for handling null vlues of checktransaction number
+    for(var i = 0 ; i < returnObject.paymentItems.length; i++ ){
+    if(returnObject.paymentItems[i].checkOrTransactionNumber == null){
+      returnObject.paymentItems[i].checkOrTransactionNumber = "";
+      };
+    }
+   
+
     returnObject.deductionItems = returnObject.deductionItems.map(item => ({
       ...item,
       amount: Number(item.amount),
@@ -276,7 +281,7 @@ class SubmitDealFormContainer extends Component {
         return;
       }
 
-      let errors = [];
+      const errors = [];
 
       const { items, dealID } = response;
 
@@ -373,14 +378,13 @@ class SubmitDealFormContainer extends Component {
           url: item.signedURL,
           onUploadProgress: progressEvent => {
             // Do whatever you want with the native progress event
-            const loadedPercent =
-              (progressEvent.loaded / progressEvent.total) * 100;
+            const loadedPercent = (progressEvent.loaded / progressEvent.total) * 100;
 
             thisRef.setState({
               formSubmissionBegun: true,
               uplodingFileProgress: Math.floor(loadedPercent),
-              uplodingFileText: `Now uploading file ${uploadItemIndex +
-                1} of ${uploadItemsNum}...`,
+              uplodingFileText: `Now uploading file ${uploadItemIndex
+                + 1} of ${uploadItemsNum}...`,
               isUploadingFile: true,
             });
           },
@@ -436,12 +440,13 @@ class SubmitDealFormContainer extends Component {
     return (
       <Query query={dealFormQuery} fetchPolicy="cache-and-network">
         {({ loading, error, data }) => {
-          if (loading)
+          if (loading) {
             return (
               <div style={{ display: 'flex', justifyContent: 'center' }}>
                 <Loader color="#f44336" loading />
               </div>
             );
+          }
 
           if (error) {
             console.log(error);

@@ -49,6 +49,7 @@ class Header extends React.Component {
         isAdmin={this.props.isAdmin}
         isLoggedIn={this.props.isLoggedIn}
         onLogout={this.onLogout}
+        openLoginModal={this.props.openLoginModal}
       />
     );
   }

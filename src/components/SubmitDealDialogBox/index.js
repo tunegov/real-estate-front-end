@@ -13,11 +13,10 @@ import CloseIcon from '@material-ui/icons/Close';
 import Divider from 'material-ui/Divider';
 import { withStyles } from 'material-ui/styles';
 import Button from 'material-ui/Button';
-import SubmitDealForm from '../../containers/SubmitDealForm';
 import classnames from 'classnames';
+import SubmitDealForm from '../../containers/SubmitDealForm';
 
-const networkErrorMessage =
-  "We're sorry. There was an error processing your request.";
+const networkErrorMessage = "We're sorry. There was an error processing your request.";
 
 const styles = theme => ({
   paper: {
@@ -150,8 +149,8 @@ class SubmitDealDialogBox extends Component {
                   onClick={() => {
                     this.handleCloseSnackbar();
                     if (
-                      this.state.snackbarUndoFunction &&
-                      typeof snackbarUndoFunction === 'function'
+                      this.state.snackbarUndoFunction
+                      && typeof snackbarUndoFunction === 'function'
                     ) {
                       this.snackbarUndoFunction();
                     }

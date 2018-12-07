@@ -231,6 +231,13 @@ const radioInputAgentItems = [
   { label: '80%', value: '80' },
 ];
 
+const radioInputManagementItems = [
+  { label: '60%', value: '60' },
+  { label: '70%', value: '70' },
+  { label: '80%', value: '80' },
+  { label: '85%', value: '85' },
+  { label: '100%', value: '100' },
+];
 const radioInputAgentPaymentItems = [
   { label: 'Ill pick up the check' },
   { label: 'Please ACH me' },
@@ -352,7 +359,7 @@ class SubmitInvoiceForm extends Component {
         agentType,
         agentName,
         city,
-        clientPhoneNumber,
+        // clientPhoneNumber,
         clientName,
         date,
         invoiceType,
@@ -373,7 +380,7 @@ class SubmitInvoiceForm extends Component {
         agentType,
         city,
         apartmentNumber,
-        clientPhoneNumber,
+        // clientPhoneNumber,
         clientName,
         date: moment(date).format('MMMM Do YYYY'),
         invoiceType,
@@ -478,7 +485,14 @@ class SubmitInvoiceForm extends Component {
                         id={uuid()}
                         required
                         label="Agent Type"
-                        radioInputItems={radioInputAgentItems}
+                        radioInputItems={
+                          (this.props.agent &&
+                            this.props.agent.agent.agentType > 80) ||
+                          (this.props.submittedInvoice &&
+                            this.props.submittedInvoice.agentType > 80)
+                            ? radioInputManagementItems
+                            : radioInputAgentItems
+                        }
                         disabled
                         horizontal
                       />
@@ -671,7 +685,7 @@ class SubmitInvoiceForm extends Component {
                       </Typography>
                     </div>
 
-                    <Grid item xs={12} sm={6}>
+                    <Grid item xs={12} sm={12}>
                       <div className={classes.formControlWrapper}>
                         <CustomTextField
                           field="clientName"
@@ -684,7 +698,7 @@ class SubmitInvoiceForm extends Component {
                       </div>
                     </Grid>
 
-                    <Grid item xs={12} md={6}>
+                    {/* <Grid item xs={12} md={6}>
                       <div className={classes.formControlWrapper}>
                         <CustomInputMask
                           mask="(999) 999-9999"
@@ -716,7 +730,7 @@ class SubmitInvoiceForm extends Component {
                           )}
                         </CustomInputMask>
                       </div>
-                    </Grid>
+                    </Grid> */}
 
                     <div
                       className={`${classes.formSubheading} ${

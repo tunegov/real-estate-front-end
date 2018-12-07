@@ -20,8 +20,7 @@ const skipMiscLogging = req => {
   const isNextRelated =
     req.url.includes('/_next/on-demand-entries-ping') ||
     req.url.includes('/_next/webpack-hmr');
-  if (isNextRelated) return true;
-  return false;
+  return !!isNextRelated;
 };
 
 app

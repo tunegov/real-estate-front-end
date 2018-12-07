@@ -2,16 +2,12 @@ import React, { Component } from 'react';
 import { observer } from 'mobx-react';
 import { withStyles } from 'material-ui/styles';
 import { DotLoader } from 'react-spinners';
-import Chance from 'chance';
-import isBrowser from 'is-browser';
 import moment from 'moment';
 import Papa from 'papaparse';
 import DealsTable from '../components/DealsTable';
 import { capitalize } from '../utils/stringUtils';
 import debounce from '../utils/debounce';
 import { padStringToDecimalString } from '../utils/Math';
-
-const chance = new Chance();
 
 const Loader = DotLoader;
 
@@ -70,11 +66,11 @@ class DealsTableContainer extends Component {
   }
 
   createRows = () => {
-    return this.props.deals.map(deal => {
+    const { deals, openDealsViewDialogBox } = this.props;
+    return deals.map(deal => {
       const {
         dealID,
         date,
-        agentID,
         dealType,
         clientName,
         clientEmail,
@@ -86,6 +82,7 @@ class DealsTableContainer extends Component {
         netAgentCommission,
         status,
         total,
+        isCoAgent,
       } = deal;
 
       return {
@@ -97,25 +94,30 @@ class DealsTableContainer extends Component {
         propertyAddress,
         propertyCity: city,
         managementOrCobrokeCompany,
-        rentOrSalePrice: `$${Number(price).toLocaleString()}`,
+        rentOrSalePrice: `$${padStringToDecimalString(
+          Number(price || 0).toLocaleString()
+        )}`,
         bonusPercentageAddedByAdmin:
-          status === 'pending' ? undefined : `%${bonusPercentageAddedByAdmin}`,
+          status === 'pending'
+            ? undefined
+            : `%${bonusPercentageAddedByAdmin || 0}`,
         netAgentCommission:
           status === 'pending'
             ? undefined
             : `$${padStringToDecimalString(
-                Number(netAgentCommission).toLocaleString()
-              )}`,
-        dealTotal: `$${Number(total).toLocaleString()}`,
+              Number(netAgentCommission || 0).toLocaleString()
+            )}`,
+        dealTotal: `$${padStringToDecimalString(
+          Number(total || 0).toLocaleString()
+        )}`,
         status: capitalize(status),
         view: {
           type: 'action',
-          onClick: () =>
-            debounce(
-              this.props.openDealsViewDialogBox.bind(null, dealID, status),
-              1000,
-              true
-            )(),
+          onClick: debounce(
+            () => openDealsViewDialogBox({ dealID, status, isCoAgent }),
+            1000,
+            true
+          ),
         },
       };
     });
@@ -174,11 +176,12 @@ class DealsTableContainer extends Component {
           convertDealsToCSV={this.convertDealsToCSV}
           changeSelection={this.changeSelection}
           selection={selection}
-          onMount={() =>
-            tableIsLoading ? this.setState({ tableIsLoading: false }) : null
+          onMount={() => tableIsLoading ? this.setState({ tableIsLoading: false }) : null
           }
           columns={columns}
           rows={this.createRows()}
+          toggleDealsSummaryDialogBox={this.props.toggleDealsSummaryDialogBox}
+          isDealsWithGQLQuery={this.props.isDealsWithGQLQuery}
         />
         <a
           href="#"

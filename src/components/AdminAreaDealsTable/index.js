@@ -36,6 +36,7 @@ import {
   TableGroupRow,
 } from '@devexpress/dx-react-grid-material-ui';
 import { MdFileDownload } from 'react-icons/lib/md';
+import GraphIcon from '@material-ui/icons/Equalizer';
 import SelectFilterCell from '../../utils/backEndTableUtils/SelectFilterCell';
 import {
   compareDate,
@@ -103,6 +104,33 @@ const styles = theme => ({
       transform: 'scale(1.1,1.1)',
     },
   },
+  tableDealsSummaryBtnsWrapper: {
+    display: 'flex',
+    position: 'absolute',
+    top: '-13px',
+    right: '-13px',
+  },
+  tableDealsSummaryBtn: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: '34px',
+    width: '34px',
+    border: 'none',
+    borderRadius: '50%',
+    fontSize: '1rem',
+    color: '#fff',
+    backgroundColor: '#2995F3',
+    boxShadow: theme.shadows[2],
+    zIndex: '2',
+    cursor: 'pointer',
+    outline: 'none',
+    transition: 'transform .2s ease-in-out, color .2s ease-in-out',
+    '&:hover': {
+      transform: 'scale(1.1,1.1)',
+      backgroundColor: '#2380D1',
+    },
+  },
 });
 
 const sortingStateColumnExtensions = [
@@ -144,6 +172,7 @@ const defaultColumnWidths = [
   { columnName: 'date', width: 120 },
   { columnName: 'agentName', width: 140 },
   { columnName: 'agentType', width: 120 },
+  { columnName: 'coBrokeringAgent', width: 140 },
   { columnName: 'dealType', width: 120 },
   { columnName: 'clientName', width: 140 },
   { columnName: 'clientEmail', width: 140 },
@@ -158,20 +187,20 @@ const defaultColumnWidths = [
   { columnName: 'bonusPercentageAddedByAdmin', width: 120 },
   { columnName: 'netAgentCommission', width: 170 },
   { columnName: 'netCompanyCommission', width: 170 },
+  { columnName: 'outsideCompanyCheck', width: 120 },
   { columnName: 'status', width: 120 },
   { columnName: 'view', width: 100 },
 ];
 
 const defaultHiddenColumnNames = [
-  'deductionsTotal',
   'paymentsTotal',
-  'netPaymentsTotal',
   'propertyState',
   'clientEmail',
   'managementOrCobrokeCompany',
   'bonusPercentageAddedByAdmin',
-  'netAgentCommission',
-  'netCompanyCommission',
+  'propertyCity',
+  'coBrokeringAgent',
+  'outsideCompanyCheck'
 ];
 
 const ViewCellFormatter = ({ value }) => <ViewFormatter value={value} />;
@@ -215,6 +244,7 @@ class DealsTable extends Component {
         { columnName: 'bonusPercentageAddedByAdmin', groupingEnabled: false },
         { columnName: 'netAgentCommission', groupingEnabled: false },
         { columnName: 'netCompanyCommission', groupingEnabled: false },
+        { columnName: 'outsideCompanyCheck', groupingEnabled: false },
         { columnName: 'view', groupingEnabled: false },
       ],
       integratedGroupingColumnExtensions: [
@@ -240,12 +270,19 @@ class DealsTable extends Component {
     document.getElementById('myTableContainer').scrollTop = 0;
   };
 
+  getTableContainerComponent = props => {
+    const { lgViewport, classes } = this.props;
+    const className = lgViewport
+      ? classes.myTableContainerSmallViewPort
+      : classes.myTableContainer;
+    return <TableContainerComponent className={className} {...props} />;
+  };
+
   render() {
     const {
       classes,
       columns,
       rows,
-      lgViewport,
       changeSelection,
       convertDealsToCSV,
     } = this.props;
@@ -300,16 +337,7 @@ class DealsTable extends Component {
           <VirtualTable
             height={isBrowser ? window.innerHeight - 310 : undefined}
             tableComponent={TableComponent}
-            containerComponent={props => (
-              <TableContainerComponent
-                className={
-                  lgViewport
-                    ? classes.myTableContainerSmallViewPort
-                    : classes.myTableContainer
-                }
-                {...props}
-              />
-            )}
+            containerComponent={this.getTableContainerComponent}
             cellComponent={Cell}
             noDataCellComponent={NoDataCellComponent}
           />
@@ -346,6 +374,23 @@ class DealsTable extends Component {
                 onClick={convertDealsToCSV}
               >
                 <MdFileDownload />
+              </button>
+            </span>
+          </Tooltip>
+        ) : null}
+
+        {this.props.isDealsWithGQLQuery ? (
+          <Tooltip
+            title="Click to view deals summary"
+            enterDelay={300}
+            leaveDelay={100}
+          >
+            <span className={classes.tableDealsSummaryBtnsWrapper}>
+              <button
+                className={classes.tableDealsSummaryBtn}
+                onClick={this.props.toggleDealsSummaryDialogBox}
+              >
+                <GraphIcon />
               </button>
             </span>
           </Tooltip>

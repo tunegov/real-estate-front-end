@@ -1,6 +1,5 @@
 # environment variables
 .env
-keys_dev.js
 
 # OS X
 .DS_Store
@@ -11,3 +10,10 @@ server-logs
 .next
 
 docs
+
+.vscode
+.idea
+
+graphql.config.json
+
+build

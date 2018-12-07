@@ -1,21 +1,9 @@
 import React, { Component } from 'react';
 import { withStyles } from 'material-ui/styles';
 import Button from 'material-ui/Button';
-import Typography from 'material-ui/Typography';
 import AddIcon from '@material-ui/icons/Add';
-import SearchIcon from '@material-ui/icons/Search';
 import { observer } from 'mobx-react';
 import moment from 'moment';
-import isBrowser from 'is-browser';
-import Grid from 'material-ui/Grid';
-import { DatePicker } from 'material-ui-pickers';
-import TextField from 'material-ui/TextField';
-import ExpansionPanel, {
-  ExpansionPanelSummary,
-  ExpansionPanelDetails,
-} from 'material-ui/ExpansionPanel';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 import gql from 'graphql-tag';
 import { Query } from 'react-apollo';
 import { DotLoader } from 'react-spinners';
@@ -23,7 +11,7 @@ import Snackbar from 'material-ui/Snackbar';
 import IconButton from 'material-ui/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 import CreateAgentDialogBox from '../components/CreateAgentDialogBox';
-import MaterialCustomSelectInput from '../components/MaterialCustomSelectInput';
+import CreateManagementDialogBox from '../components/CreateManagementDialogBox';
 import AdminAreaAgentsTableContainer from './AdminAreaAgentsTableContainer';
 
 const styles = theme => ({
@@ -31,6 +19,8 @@ const styles = theme => ({
   agentsSummaryBtn: {
     backgroundColor: '#2995F3',
     color: '#fff',
+    marginLeft: '10px',
+    marginRight: '10px',
     '&:hover': {
       backgroundColor: '#2380D1',
     },
@@ -152,9 +142,27 @@ class AdminAreaAgentsContainer extends Component {
       snackbarUndoFunction: null,
       addedAgents: [],
       deletedAgentIDS: [],
+      createManagementModalOpen: false,
     };
   }
 
+  confirmManagementCreated = newAgent => {
+    this.setState({
+      createManagementModalOpen: false,
+      snackbarOpen: true,
+      snackbarText: 'Agent created successfully',
+      addedAgents: this.state.addedAgents.length
+        ? [...this.state.addedAgents, newAgent]
+        : [newAgent],
+    });
+  };
+  toggleCreateManagementModal = state => {
+    const { createManagementModalOpen } = this.state;
+    this.setState({
+      createManagementModalOpen:
+        typeof state === 'boolean' ? state : !createManagementModalOpen,
+    });
+  };
   toggleCreateAgentModal = state => {
     const { createAgentModalOpen } = this.state;
     this.setState({
@@ -183,7 +191,7 @@ class AdminAreaAgentsContainer extends Component {
 
   render() {
     const { classes } = this.props;
-    const { createAgentModalOpen } = this.state;
+    const { createAgentModalOpen, createManagementModalOpen } = this.state;
 
     return (
       <Query query={agentsQuery} ssr={false} fetchPolicy="cache-and-network">
@@ -249,6 +257,14 @@ class AdminAreaAgentsContainer extends Component {
                     <AddIcon />
                     Create Agent
                   </Button>
+                  <Button
+                    variant="raised"
+                    onClick={this.toggleCreateManagementModal}
+                    classes={{ root: classes.agentsSummaryBtn }}
+                  >
+                    <AddIcon />
+                    CREATE MGMT
+                  </Button>
                 </div>
               </div>
 
@@ -260,7 +276,12 @@ class AdminAreaAgentsContainer extends Component {
                 confirmAgentCreated={this.confirmAgentCreated}
                 currentUserRole={this.props.currentUserRole}
               />
-
+              <CreateManagementDialogBox
+                open={createManagementModalOpen}
+                toggleCreateAgentModal={this.toggleCreateManagementModal}
+                confirmAgentCreated={this.confirmManagementCreated}
+                currentUserRole={this.props.currentUserRole}
+              />
               <Snackbar
                 classes={{ root: classes.snackBar }}
                 anchorOrigin={{

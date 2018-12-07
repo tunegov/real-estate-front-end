@@ -82,6 +82,7 @@ class StatNumberBox extends Component {
       rootClassName,
       icon: Icon,
     } = this.props;
+
     return (
       <div
         className={classNames(classes.root, rootClassName)}
@@ -93,7 +94,7 @@ class StatNumberBox extends Component {
         </div>
         <div
           className={classes.boxBottom}
-          style={{ color: iconColor ? iconColor : null }}
+          style={{ color: iconColor || null }}
         >
           {Icon ? <Icon classes={{ root: iconClass }} color="inherit" /> : null}
         </div>

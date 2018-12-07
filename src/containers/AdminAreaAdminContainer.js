@@ -156,7 +156,7 @@ class AdminAreaAdminContainer extends Component {
     });
   };
 
-  adminSuccessfullyDeleted = () => {
+  adminSuccessfullyDeleted = adminID => {
     this.setState({
       snackbarOpen: true,
       snackbarText: 'Admin deleted successfully!',

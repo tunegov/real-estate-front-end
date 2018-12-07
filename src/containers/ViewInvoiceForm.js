@@ -26,7 +26,6 @@ const viewInvoiceFormQuery = gql`
         managementOrCobrokeCompany
         price
         clientName
-        clientPhoneNumber
         paymentItems {
           paymentType
           checkOrTransactionNumber
@@ -216,6 +215,7 @@ class ViewInvoiceFormContainer extends Component {
         fetchPolicy="cache-and-network"
       >
         {({ loading, error, data }) => {
+          console.log(data);
           if (loading)
             return (
               <div style={{ display: 'flex', justifyContent: 'center' }}>

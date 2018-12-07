@@ -6,6 +6,7 @@ import NProgress from 'nprogress';
 import Router, { withRouter } from 'next/router';
 import isBrowser from 'is-browser';
 import { ThemeProvider } from 'styled-components';
+import 'antd/dist/antd.css';
 import withRoot from '../../lib/withRoot';
 import HeaderNav from '../../frontEndContainers/Header';
 import AppContentWrapper from '../../sharedStyledComponents/AppContentWrapper';
@@ -13,6 +14,8 @@ import themeStyles from '../../themeStyles';
 import globalStyles from '../../globalStyles';
 import { Container, HeaderAndAppContentWrapper } from './styledComponents';
 import { admin, superAdmin } from '../../constants/userTypes';
+import LoginFormModal from '../LoginFormModal';
+import userForgotPassword from '../../effects/users/userForgotPassword';
 
 NProgress.configure({ showSpinner: false });
 NProgress.configure({ trickleSpeed: 100 });
@@ -30,12 +33,32 @@ if (isBrowser) {
 class Layout extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      loginModalOpen: false,
+    };
   }
+
+  openLoginModal = () => {
+    console.log('run');
+    this.setState({
+      loginModalOpen: true,
+    });
+  };
+
+  closeLoginModal = () => {
+    this.setState({
+      loginModalOpen: false,
+    });
+  };
 
   render() {
     const { pathname } = this.props.router;
-    const { isLoggedIn, logoutUser, userRole } = this.props.UserStore;
+    const {
+      isLoggedIn,
+      logoutUser,
+      userRole,
+      loginUser,
+    } = this.props.UserStore;
     const isAdmin = userRole === admin || userRole === superAdmin;
 
     return (
@@ -71,8 +94,16 @@ class Layout extends Component {
                 logoutUser={logoutUser}
                 headerBoxShadowOff={this.props.headerBoxShadowOff}
                 isAdmin={isAdmin}
+                openLoginModal={this.openLoginModal}
               />
               <AppContentWrapper>{this.props.children}</AppContentWrapper>
+              <LoginFormModal
+                loginUser={loginUser}
+                loginModalOpen={this.state.loginModalOpen}
+                closeLoginModal={this.closeLoginModal}
+                getFormApi={formApi => (this._formApi = formApi)}
+                userForgotPassword={userForgotPassword}
+              />
             </HeaderAndAppContentWrapper>
           </Container>
         </ThemeProvider>

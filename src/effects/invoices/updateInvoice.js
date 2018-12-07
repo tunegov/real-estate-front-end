@@ -1,6 +1,4 @@
-import { GraphQLClient } from 'graphql-request';
-
-import graphQLEndpoint from '../../constants/graphQLEndpoint';
+import { graphQlClient } from '../client';
 
 const query = `
   mutation updateInvoice($input: UpdateInvoiceInput!) {
@@ -10,7 +8,6 @@ const query = `
         date
         invoiceType
         clientName
-        clientPhoneNumber
         propertyAddress
         city
         managementOrCobrokeCompany
@@ -25,10 +22,6 @@ const query = `
   }
 `;
 
-const client = new GraphQLClient(graphQLEndpoint, {
-  credentials: 'same-origin',
-});
-
 const updateInvoice = values => {
   let res;
 
@@ -42,7 +35,7 @@ const updateInvoice = values => {
     userErrors: [],
   };
 
-  return client
+  return graphQlClient
     .request(query, variables)
     .then(result => {
       res = result;

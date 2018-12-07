@@ -3,7 +3,6 @@ const globalStyles = `
     height: 100%;
   }
   body {
-    overflow: hidden;
     position: relative;
     min-height: 100%;
     min-width: 100%;
@@ -11,6 +10,18 @@ const globalStyles = `
     -webkit-font-smoothing: antialiased;
     background-color: #fafafa;
   }
+  .app-body-class {
+    overflow: hidden;
+  }
+
+  body:not(.app-body-class) #__next {
+    height: 100% !important;
+  }
+
+  body:not(.app-body-class) #__next > div {
+    height: 100% !important;
+  }
+
   body > :first-child {
     display: flex;
     min-width: 100%;

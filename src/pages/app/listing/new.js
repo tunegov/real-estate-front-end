@@ -5,7 +5,6 @@ import Layout from '../../../components/Layout';
 import { initStore } from '../../../models';
 import withData from '../../../lib/withData';
 import { Router } from '../../../routes';
-import DealsContainer from '../../../containers/Deals';
 
 @observer
 class CreateListing extends React.Component {

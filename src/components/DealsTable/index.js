@@ -29,6 +29,7 @@ import {
   TableSelection,
 } from '@devexpress/dx-react-grid-material-ui';
 import { MdFileDownload } from 'react-icons/lib/md';
+import GraphIcon from '@material-ui/icons/Equalizer';
 import SelectFilterCell from '../../utils/backEndTableUtils/SelectFilterCell';
 import {
   compareDate,
@@ -73,6 +74,12 @@ const styles = theme => ({
     top: '-13px',
     left: '-13px',
   },
+  tableDealsSummaryBtnsWrapper: {
+    display: 'flex',
+    position: 'absolute',
+    top: '-13px',
+    right: '-13px',
+  },
   downloadCSVBtn: {
     display: 'flex',
     justifyContent: 'center',
@@ -91,6 +98,27 @@ const styles = theme => ({
     transition: 'transform .2s ease-in-out',
     '&:hover': {
       transform: 'scale(1.1,1.1)',
+    },
+  },
+  tableDealsSummaryBtn: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: '34px',
+    width: '34px',
+    border: 'none',
+    borderRadius: '50%',
+    fontSize: '1rem',
+    color: '#fff',
+    backgroundColor: '#2995F3',
+    boxShadow: theme.shadows[2],
+    zIndex: '2',
+    cursor: 'pointer',
+    outline: 'none',
+    transition: 'transform .2s ease-in-out, color .2s ease-in-out',
+    '&:hover': {
+      transform: 'scale(1.1,1.1)',
+      backgroundColor: '#2380D1',
     },
   },
 });
@@ -259,6 +287,23 @@ class DealsTable extends Component {
                 onClick={convertDealsToCSV}
               >
                 <MdFileDownload />
+              </button>
+            </span>
+          </Tooltip>
+        ) : null}
+
+        {this.props.isDealsWithGQLQuery ? (
+          <Tooltip
+            title="Click to view deals summary"
+            enterDelay={300}
+            leaveDelay={100}
+          >
+            <span className={classes.tableDealsSummaryBtnsWrapper}>
+              <button
+                className={classes.tableDealsSummaryBtn}
+                onClick={this.props.toggleDealsSummaryDialogBox}
+              >
+                <GraphIcon />
               </button>
             </span>
           </Tooltip>

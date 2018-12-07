@@ -1,6 +1,4 @@
-import { GraphQLClient } from 'graphql-request';
-
-import graphQLEndpoint from '../../constants/graphQLEndpoint';
+import { graphQlClient } from '../client';
 
 const query = `
     mutation setAgentProfilePic($input: SetAgentProfilePicInput!) {
@@ -16,14 +14,8 @@ const query = `
     }
   `;
 
-const client = new GraphQLClient(graphQLEndpoint, {
-  credentials: 'same-origin',
-});
-
 const setAgentProfilePic = (agentID, fileName) => {
   let res;
-  let response;
-  let error;
 
   const variables = {
     input: {
@@ -38,7 +30,7 @@ const setAgentProfilePic = (agentID, fileName) => {
     userErrors: null,
   };
 
-  return client
+  return graphQlClient
     .request(query, variables)
     .then(result => {
       res = result;

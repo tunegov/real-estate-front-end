@@ -16,6 +16,7 @@ import {
   returnNumberDealsDataContainer,
   returnYearlyDollarDealsDataContainer,
 } from '../constants/graphDataModels';
+import { toLocaleCurrency } from '../utils/currency';
 
 const get = (p, o) => p.reduce((xs, x) => (xs && xs[x] ? xs[x] : null), o);
 
@@ -64,13 +65,14 @@ const returnGraphMonth = month => {
 class DealsSummaryContainer extends Component {
   constructor(props) {
     super(props);
-    const { deals } = this.props;
 
     this.state = {};
   }
 
   returnNumberOfTotalDealsData = (deals = []) => {
     if (!deals.length) return false;
+
+    if (!deals.some(deal => deal.status !== 'pending')) return false;
 
     const dealDataCounts = {
       'Res. Sales': 0,
@@ -81,6 +83,8 @@ class DealsSummaryContainer extends Component {
 
     if (deals && Array.isArray(deals)) {
       deals.forEach(deal => {
+        if (deal.status === 'pending') return;
+
         switch (deal.dealType) {
           case commercialRental:
             dealDataCounts['Com. Rentals'] += 1;
@@ -95,7 +99,6 @@ class DealsSummaryContainer extends Component {
             dealDataCounts['Res. Sales'] += 1;
             break;
           default:
-            return;
         }
       });
     }
@@ -109,7 +112,7 @@ class DealsSummaryContainer extends Component {
       {
         id: 'Res. Rentals',
         label: 'Res. Rentals',
-        value: dealDataCounts['Res. Sales'] || 0,
+        value: dealDataCounts['Res. Rentals'] || 0,
       },
       {
         id: 'Com. Sales',
@@ -128,6 +131,8 @@ class DealsSummaryContainer extends Component {
 
   returnGrossDollarAmtOfTotalDealsData = (deals = []) => {
     if (!deals.length) return false;
+
+    if (!deals.some(deal => deal.status !== 'pending')) return false;
 
     const dealDataCounts = {
       'Res. Sales': 0,
@@ -154,7 +159,6 @@ class DealsSummaryContainer extends Component {
             dealDataCounts['Res. Sales'] += deal.total;
             break;
           default:
-            return;
         }
       });
     }
@@ -168,7 +172,7 @@ class DealsSummaryContainer extends Component {
       {
         id: 'Res. Rentals',
         label: 'Res. Rentals',
-        value: dealDataCounts['Res. Sales'] || 0,
+        value: dealDataCounts['Res. Rentals'] || 0,
       },
       {
         id: 'Com. Sales',
@@ -197,13 +201,18 @@ class DealsSummaryContainer extends Component {
     return numOfPendingDeals || 0;
   };
 
-  returnGrossDealCommissions = (deals = []) => {
-    return deals.reduce((grossAmount, deal) => {
-      if (deal.status === 'pending') return grossAmount;
+  returnGrossDealCommissions = (deals = []) => toLocaleCurrency(deals.reduce((grossAmount, deal) => {
+    if (deal.status === 'pending') return grossAmount;
 
-      return (grossAmount += deal.total);
-    }, 0);
-  };
+    return grossAmount += deal.total;
+  }, 0));
+
+  returnNetCurrentYearDealCommissions = (deals = []) => toLocaleCurrency(deals.reduce((grossAmount, deal) => {
+    if (deal.status === 'pending') return grossAmount;
+    if (moment(deal.date).year() !== moment().year()) return grossAmount;
+
+    return grossAmount += deal.netAgentCommission;
+  }, 0));
 
   returnMonthlyAndYearlyDealsData = (deals = []) => {
     const monthlyDollarData = returnMonthlyDollarDataContainer();
@@ -290,14 +299,13 @@ class DealsSummaryContainer extends Component {
     };
   };
 
-  generateDealsBarData = data =>
-    Object.keys(data).map(month => ({
-      month,
-      'Com Sales': data[month]['Com Sales'],
-      'Com Rentals': data[month]['Com Rentals'],
-      'Res Sales': data[month]['Res Sales'],
-      'Res Rentals': data[month]['Res Rentals'],
-    }));
+  generateDealsBarData = data => Object.keys(data).map(month => ({
+    month,
+    'Com Sales': data[month]['Com Sales'],
+    'Com Rentals': data[month]['Com Rentals'],
+    'Res Sales': data[month]['Res Sales'],
+    'Res Rentals': data[month]['Res Rentals'],
+  }));
 
   generateDealsLineData = data => {
     const types = ['Com Sales', 'Com Rentals', 'Res Sales', 'Res Rentals'];
@@ -361,6 +369,9 @@ class DealsSummaryContainer extends Component {
           )}
           numberOfPendingDeals={this.returnNumberOfPendingDeals(deals)}
           grossDealCommissions={this.returnGrossDealCommissions(deals)}
+          netCurrentYearDealCommissions={this.returnNetCurrentYearDealCommissions(
+            deals
+          )}
           monthlyDealsDollarBarData={monthlyDealsDollarBarData}
           monthlyDealsNumberBarData={monthlyDealsNumberBarData}
           monthlyDealsDollarLineData={monthlyDealsDollarLineData}

@@ -208,14 +208,13 @@ const generateMonthlyDollarDealsData = () => {
   return data;
 };
 
-const generateMonthlyDealsBarData = data =>
-  Object.keys(data).map(month => ({
-    month,
-    'Com Sales': data[month]['Com Sales'],
-    'Com Rentals': data[month]['Com Rentals'],
-    'Res Sales': data[month]['Res Sales'],
-    'Res Rentals': data[month]['Res Rentals'],
-  }));
+const generateMonthlyDealsBarData = data => Object.keys(data).map(month => ({
+  month,
+  'Com Sales': data[month]['Com Sales'],
+  'Com Rentals': data[month]['Com Rentals'],
+  'Res Sales': data[month]['Res Sales'],
+  'Res Rentals': data[month]['Res Rentals'],
+}));
 
 const generateMonthlyDealsLineData = data => {
   const types = ['Com Sales', 'Com Rentals', 'Res Sales', 'Res Rentals'];
@@ -329,7 +328,7 @@ class AgentDashboard extends Component {
     const { lgViewport, mdViewport, smViewport } = this.props;
     if (smViewport) {
       return 'horizontal';
-    } else if (mdViewport) {
+    } if (mdViewport) {
       return 'vertical';
     }
     if (lgViewport) {
@@ -343,7 +342,7 @@ class AgentDashboard extends Component {
     if (axis === 'left') {
       if (smViewport) {
         return isYear ? 'Year' : 'Month';
-      } else if (mdViewport) {
+      } if (mdViewport) {
         return 'Gross Dollar Amount ($ Thousands)';
       }
       if (lgViewport) {
@@ -354,7 +353,7 @@ class AgentDashboard extends Component {
 
     if (smViewport) {
       return 'Gross Dollar Amount ($ Thousands)';
-    } else if (mdViewport) {
+    } if (mdViewport) {
       return isYear ? 'Year' : 'Month';
     }
     if (lgViewport) {
@@ -368,7 +367,7 @@ class AgentDashboard extends Component {
     if (axis === 'left') {
       if (smViewport) {
         return isYear ? 'Year' : 'Month';
-      } else if (mdViewport) {
+      } if (mdViewport) {
         return 'Number of Deals';
       }
       if (lgViewport) {
@@ -379,7 +378,7 @@ class AgentDashboard extends Component {
 
     if (smViewport) {
       return 'Number of Deals';
-    } else if (mdViewport) {
+    } if (mdViewport) {
       return isYear ? 'Year' : 'Month';
     }
     if (lgViewport) {
@@ -397,6 +396,9 @@ class AgentDashboard extends Component {
     } = this.state;
     const borderRadiusStyle = { borderRadius: 2 };
 
+    const isDollar = totalDealsPieDollarOrNum === 'dollar';
+    const sliceLabel = v => `${isDollar ? '$' : ''}${v.value}`;
+
     return (
       <div className={classes.root}>
         <Grid container spacing={16}>
@@ -404,11 +406,19 @@ class AgentDashboard extends Component {
             <StatNumberBox
               icon={DollarIcon}
               iconClass={classes.statBoxMoneyIcon}
-              stat={`$${this.props.grossDealCommissions.toLocaleString()}`}
+              stat={this.props.grossDealCommissions}
               statTitle="Gross Commissions to Date"
             />
           </Grid>
           <Grid item xs={12} md={6}>
+            <StatNumberBox
+              icon={DollarIcon}
+              iconClass={classes.statBoxMoneyIcon}
+              stat={this.props.netCurrentYearDealCommissions}
+              statTitle={`${moment().year()} Net Commissions to Date`}
+            />
+          </Grid>
+          <Grid item xs={12}>
             <StatNumberBox
               icon={PendingIcon}
               iconClass={classes.statBoxQuestionIcon}
@@ -436,6 +446,7 @@ class AgentDashboard extends Component {
                     bottom: 120,
                     left: 80,
                   }}
+                  sliceLabel={sliceLabel}
                   innerRadius={0.7}
                   padAngle={0.7}
                   cornerRadius={0}

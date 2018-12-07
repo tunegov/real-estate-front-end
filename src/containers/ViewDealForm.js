@@ -13,8 +13,8 @@ import { admin, superAdmin } from '../constants/userTypes';
 const Loader = BounceLoader;
 
 const viewDealFormQuery = gql`
-  query viewDealForm($uuid: String!) {
-    viewDealForm(uuid: $uuid) {
+  query viewDealForm($uuid: String!, $userId: String!) {
+    viewDealForm(uuid: $uuid, userId: $userId) {
       formSelectItems
       agents {
         firstName
@@ -25,10 +25,6 @@ const viewDealFormQuery = gql`
         dealID
         date
         agentName
-        otherAgents {
-          agentID
-          agentName
-        }
         agentType
         leadSource
         dealType
@@ -49,6 +45,7 @@ const viewDealFormQuery = gql`
         deductionItems {
           deductionType
           description
+          agentID
           amount
         }
         deductionsTotal
@@ -66,6 +63,13 @@ const viewDealFormQuery = gql`
         bonusPercentageAddedByAdmin
         netAgentCommission
         netCompanyCommission
+        coBrokeringAgentPaymentTypes {
+          agentID
+          ACHAccountBankRoutingNumber
+          ACHAccountNumber
+          agentPaymentType
+          status
+        }
       }
     }
   }
@@ -73,33 +77,32 @@ const viewDealFormQuery = gql`
 
 @observer
 class ViewDealFormContainer extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      paymentAmountItems: {},
-      deductionAmountItems: {},
-      paymentsTotal: 0,
-      deductionsTotal: 0,
-      total: 0,
-      contractOrLeaseForms: [],
-      agencyDisclosureForm: null,
-      permanentPaymentSubtractions: 0, // not submitted
-      permanentDeductionSubtractions: 0, // not submitted
-      choosingMgmtCoBrokeCompany: false,
-      newMgmtOrCobrokeCompany: '',
-      hasSetNewMgmtOrCobrokeCompany: false,
-      addedManagementCompanies: [],
-      uplodingFileProgress: 0,
-      isUploadingFile: false,
-      uplodingFileText: '',
-      filesUploadedSuccessfully: null,
-      formSubmissionBegun: false,
-      submittingFormToServer: false,
-      dealBonus: '0',
-    };
-  }
+  state = {
+    paymentAmountItems: {},
+    deductionAmountItems: {},
+    paymentsTotal: 0,
+    deductionsTotal: 0,
+    total: 0,
+    contractOrLeaseForms: [],
+    agencyDisclosureForm: null,
+    permanentPaymentSubtractions: 0, // not submitted
+    permanentDeductionSubtractions: 0, // not submitted
+    choosingMgmtCoBrokeCompany: false,
+    newMgmtOrCobrokeCompany: '',
+    hasSetNewMgmtOrCobrokeCompany: false,
+    addedManagementCompanies: [],
+    uplodingFileProgress: 0,
+    isUploadingFile: false,
+    uplodingFileText: '',
+    filesUploadedSuccessfully: null,
+    formSubmissionBegun: false,
+    submittingFormToServer: false,
+    dealBonus: '0',
+    agentPaymentTypeIsACH: false,
+  };
 
   uploadItemsNum = 0;
+
   itemsUploaded = 0;
 
   paymentAmountChangeHandler = (id, value) => {
@@ -241,6 +244,16 @@ class ViewDealFormContainer extends Component {
     });
   };
 
+  onAgentPaymentTypeChange = ({ target }) => {
+    const { value } = target;
+    const isACH = value === 'Please ACH me';
+    if (isACH) {
+      this.setState({ agentPaymentTypeIsACH: true });
+    } else {
+      this.setState({ agentPaymentTypeIsACH: false });
+    }
+  };
+
   setInitialContainerState = ({ paymentsTotal, deductionsTotal, total }) => {
     this.setState({
       paymentsTotal,
@@ -250,7 +263,14 @@ class ViewDealFormContainer extends Component {
   };
 
   onSubmit = values => {
-    this.props.setFormSubmitted();
+    const {
+      setFormSubmitted,
+      dealID,
+      userRole,
+      openRequestErrorSnackbar,
+      setDealSuccessfullySubmitted,
+    } = this.props;
+    setFormSubmitted();
 
     const {
       contractOrLeaseForms,
@@ -270,7 +290,7 @@ class ViewDealFormContainer extends Component {
       total,
       agencyDisclosureForm: null,
       contractOrLeaseForms: [],
-      dealID: this.props.dealID,
+      dealID,
     };
 
     delete returnObject.contractOrLeaseItems;
@@ -281,9 +301,17 @@ class ViewDealFormContainer extends Component {
     delete returnObject.agent;
     delete returnObject.agentType;
     delete returnObject.state;
-    delete returnObject.otherAgents;
+    delete returnObject.agentPaymentTypeCoBroke;
+    delete returnObject.ACHAccountNumberCoBroke;
+    delete returnObject.ACHAccountBankRoutingNumberCoBroke;
+    returnObject.coBrokeringAgentPaymentTypes[0] = {
+      ...returnObject.coBrokeringAgentPaymentTypes[0],
+      agentPaymentType: values.agentPaymentTypeCoBroke,
+      ACHAccountNumber: values.ACHAccountNumberCoBroke,
+      ACHAccountBankRoutingNumber: values.ACHAccountBankRoutingNumberCoBroke,
+    };
 
-    if (this.props.userRole !== admin && this.props.userRole !== superAdmin) {
+    if (userRole !== admin && userRole !== superAdmin) {
       delete returnObject.bonusPercentageAddedByAdmin;
     }
 
@@ -327,7 +355,7 @@ class ViewDealFormContainer extends Component {
           let failed = false;
 
           if (res.otherError) {
-            this.props.openRequestErrorSnackbar(res.otherError);
+            openRequestErrorSnackbar(res.otherError);
             failed = true;
           }
 
@@ -336,40 +364,40 @@ class ViewDealFormContainer extends Component {
           }
 
           if (!failed) {
-            this.props.setDealSuccessfullySubmitted(res.deal);
+            setDealSuccessfullySubmitted(res.deal);
           }
 
           this.setState({
             submittingFormToServer: false,
           });
 
-          this.props.setFormSubmitted(false);
+          setFormSubmitted(false);
         })
         .catch(err => {
-          this.props.setFormSubmitted(false);
-          this.props.openRequestErrorSnackbar();
+          setFormSubmitted(false);
+          openRequestErrorSnackbar();
         });
       return;
     }
 
-    getDealUploadsSignedURLS(uploadItems).then(response => {
+    getDealUploadsSignedURLS(uploadItems, dealID).then(response => {
       if (response.error) {
-        this.props.openRequestErrorSnackbar(response.error);
+        openRequestErrorSnackbar(response.error);
         return;
       }
 
-      let errors = [];
+      const errors = [];
 
       const { items } = response;
 
-      returnObject.dealID = this.props.dealID;
+      returnObject.dealID = dealID;
 
       items.forEach(item => {
         if (item.error) errors.push(item.error);
       });
 
       if (errors.length) {
-        this.props.openRequestErrorSnackbar(errors[0]);
+        openRequestErrorSnackbar(errors[0]);
         return;
       }
 
@@ -407,7 +435,7 @@ class ViewDealFormContainer extends Component {
               let failed = false;
 
               if (res.otherError) {
-                this.props.openRequestErrorSnackbar(res.otherError);
+                openRequestErrorSnackbar(res.otherError);
                 failed = true;
               }
 
@@ -416,13 +444,13 @@ class ViewDealFormContainer extends Component {
               }
 
               if (!failed) {
-                this.props.setDealSuccessfullySubmitted(res.deal);
+                setDealSuccessfullySubmitted(res.deal);
               }
-              this.props.setFormSubmitted(false);
+              setFormSubmitted(false);
             })
             .catch(err => {
-              this.props.setFormSubmitted(false);
-              this.props.openRequestErrorSnackbar();
+              setFormSubmitted(false);
+              openRequestErrorSnackbar();
             });
 
           return;
@@ -468,7 +496,7 @@ class ViewDealFormContainer extends Component {
               thisRef
             )
           )
-          .catch(err => this.props.openRequestErrorSnackbar());
+          .catch(err => openRequestErrorSnackbar());
       };
 
       recursiveUploads(items, returnObject, this);
@@ -482,28 +510,23 @@ class ViewDealFormContainer extends Component {
   };
 
   render() {
-    const {
-      userUUID: uuid,
-      dealID,
-      isEditingDeal,
-      isViewType,
-      ...rest
-    } = this.props;
+    const { userUUID, dealID, isEditingDeal, isViewType, ...rest } = this.props;
     const { agencyDisclosureForm, contractOrLeaseForms } = this.state;
 
     return (
       <Query
         query={viewDealFormQuery}
-        variables={{ uuid: dealID }}
+        variables={{ uuid: dealID, userId: userUUID }}
         fetchPolicy="cache-and-network"
       >
         {({ loading, error, data }) => {
-          if (loading)
+          if (loading) {
             return (
               <div style={{ display: 'flex', justifyContent: 'center' }}>
                 <Loader color="#f44336" loading />
               </div>
             );
+          }
 
           if (error) {
             console.log(error);
@@ -521,19 +544,14 @@ class ViewDealFormContainer extends Component {
           } = data.viewDealForm;
 
           const agents = agentItems || [];
-
-          const submittedDeal = deal;
-
           return (
             <SubmitDealForm
               setInitialContainerState={this.setInitialContainerState}
               paymentsTotal={`${this.state.paymentsTotal}`}
               deductionsTotal={`${this.state.deductionsTotal}`}
               total={this.state.total}
-              submittedDeal={submittedDeal}
-              agents={agents.filter(
-                agent => (uuid ? agent.uuid !== uuid : agent)
-              )}
+              submittedDeal={deal}
+              agents={agents}
               managementCobrokeCompanyItems={formSelectItems || []}
               onSubmit={this.onSubmit}
               setAgencyDisclosureForm={this.setAgencyDisclosureForm}
@@ -572,6 +590,8 @@ class ViewDealFormContainer extends Component {
               subtractDeductionValueFromState={
                 this.subtractDeductionValueFromState
               }
+              agentPaymentTypeIsACH={this.state.agentPaymentTypeIsACH}
+              onAgentPaymentTypeChange={this.onAgentPaymentTypeChange}
               {...rest}
             />
           );

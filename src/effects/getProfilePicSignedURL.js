@@ -1,6 +1,4 @@
-import { GraphQLClient } from 'graphql-request';
-
-import graphQLEndpoint from '../constants/graphQLEndpoint';
+import { graphQlClient } from './client';
 
 const query = `
   mutation getProfilePicSignedURL($input: getProfilePicSignedURLInput!) {
@@ -15,13 +13,8 @@ const query = `
   }
 `;
 
-const client = new GraphQLClient(graphQLEndpoint, {
-  credentials: 'same-origin',
-});
-
 const getProfilePicSignedURL = value => {
   let res;
-  let error;
 
   const variables = {
     input: value,
@@ -32,7 +25,7 @@ const getProfilePicSignedURL = value => {
     error: null,
   };
 
-  return client
+  return graphQlClient
     .request(query, variables)
     .then(result => {
       res = result;

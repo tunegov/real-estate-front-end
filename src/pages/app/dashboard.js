@@ -11,7 +11,10 @@ import DashboardContainer from '../../containers/Dashboard';
 class Dashboard extends React.Component {
   static getInitialProps({ req }) {
     const isServer = !!req;
-    return { cookieJWTData: req && req.cookies ? req.cookies.jwtData : null, isServer };
+    return {
+      cookieJWTData: req && req.cookies ? req.cookies.jwtData : null,
+      isServer,
+    };
   }
 
   constructor(props) {
@@ -24,12 +27,18 @@ class Dashboard extends React.Component {
 
     // for debugging only!!!
     if (isBrowser && !window._appStore) window._appStore = this.store;
+
+    this.state = {
+      userUUID: this.store.UserStore.uuid,
+    };
   }
 
   render() {
+    const userUUID = this.store.UserStore.uuid || this.state.userUUID;
+
     return (
       <Layout UserStore={this.store.UserStore} UIStore={this.store.UIStore}>
-        <DashboardContainer userUUID={this.store.UserStore.uuid} />
+        <DashboardContainer userUUID={userUUID} />
       </Layout>
     );
   }

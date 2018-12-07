@@ -27,13 +27,19 @@ class AdminViewAgents extends React.Component {
 
     // for debugging only!!!
     if (isBrowser && !window._appStore) window._appStore = this.store;
+
+    this.state = {
+      userUUID: this.store.UserStore.uuid,
+    };
   }
 
   render() {
+    const userUUID = this.store.UserStore.uuid || this.state.userUUID;
+
     return (
       <Layout UserStore={this.store.UserStore} UIStore={this.store.UIStore}>
         <AdminAreaAgentsContainer
-          userUUID={this.store.UserStore.uuid}
+          userUUID={userUUID}
           currentUserRole={this.store.UserStore.userRole}
         />
       </Layout>

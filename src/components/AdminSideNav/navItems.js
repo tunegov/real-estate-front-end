@@ -24,7 +24,7 @@ export const adminSideLinks = [
   },
   */
   {
-    name: 'Deals',
+    name: 'The Vault',
     route: 'view-deals',
     icon: DealsIcon,
   },

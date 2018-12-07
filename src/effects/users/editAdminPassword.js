@@ -1,6 +1,4 @@
-import { GraphQLClient } from 'graphql-request';
-
-import graphQLEndpoint from '../../constants/graphQLEndpoint';
+import { graphQlClient } from '../client';
 
 const query = `
   mutation editAdminPassword($input: EditPasswordInput!) {
@@ -14,10 +12,6 @@ const query = `
   }
 `;
 
-const client = new GraphQLClient(graphQLEndpoint, {
-  credentials: 'same-origin',
-});
-
 const editAdminPassword = values => {
   let res;
   let error;
@@ -30,7 +24,7 @@ const editAdminPassword = values => {
     error: null,
   };
 
-  return client
+  return graphQlClient
     .request(query, variables)
     .then(result => {
       res = result;
@@ -41,9 +35,9 @@ const editAdminPassword = values => {
       if (!data.wasSuccessful) {
         finalResponseObj.error = data.userErrors.length
           ? {
-              message: data.userErrors[0].message,
-              field: data.userErrors[0].field,
-            }
+            message: data.userErrors[0].message,
+            field: data.userErrors[0].field,
+          }
           : data.otherError;
       }
 

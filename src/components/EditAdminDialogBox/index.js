@@ -205,7 +205,7 @@ class EditAdminDialogBox extends Component {
         if (res.error) {
           this.openRequestErrorSnackbar(res.error);
         } else {
-          this.props.adminSuccessfullyDeleted();
+          this.props.adminSuccessfullyDeleted(uuid);
         }
         this.toggleEditingAdmin(false);
       })

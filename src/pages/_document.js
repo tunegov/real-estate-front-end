@@ -71,12 +71,17 @@ export default class MyDocument extends Document {
             content={pageContext.theme.palette.primary.main}
           />
           <link
+            href="https://cdnjs.cloudflare.com/ajax/libs/antd/3.7.3/antd.min.css"
+            type="text/css"
+            rel="stylesheet"
+          />
+          <style dangerouslySetInnerHTML={{ __html: this.props.css }} />
+          {this.props.styleTags}
+          <link
             rel="stylesheet"
             type="text/css"
             href="/_next/static/style.css"
           />
-          <style dangerouslySetInnerHTML={{ __html: this.props.css }} />
-          {this.props.styleTags}
         </Head>
         <body>
           <Main />
