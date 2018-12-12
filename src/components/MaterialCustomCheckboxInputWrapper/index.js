@@ -94,9 +94,8 @@ const MaterialCustomCheckboxInputWrapper = props => (
       } = fieldApi;
       const renderRadioInputItems = radioInputItems =>
         radioInputItems.map(item => (
-          <Grid item sm={4} xs={12}>
+          <Grid item sm={4} xs={12} className={classes.textAlignLeft}>
             <FormControlLabel
-              className={classes.textAlignLeft}
               key={item.label}
               value={item.value || item.label}
               disabled={item.disabled}
