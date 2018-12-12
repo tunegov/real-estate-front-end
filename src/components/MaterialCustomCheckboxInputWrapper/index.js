@@ -3,6 +3,8 @@ import { observer } from 'mobx-react';
 import { withStyles } from 'material-ui/styles';
 import Radio, { RadioGroup } from 'material-ui/Radio';
 import Checkbox from 'material-ui/Checkbox';
+import Grid from 'material-ui/Grid';
+
 import {
   FormControl,
   FormHelperText,
@@ -42,6 +44,18 @@ const styles = theme => ({
   textAlignCenter: {
     textAlign: 'center',
   },
+  textAlignLeft: {
+    textAlign: 'left',
+  },
+  subContainer: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    height: '100%',
+    padding: '0 10px',
+    width: '100%',
+    flexWrap: 'wrap',
+  },
 });
 var returnValue = [];
 
@@ -80,43 +94,46 @@ const MaterialCustomCheckboxInputWrapper = props => (
       } = fieldApi;
       const renderRadioInputItems = radioInputItems =>
         radioInputItems.map(item => (
-          <FormControlLabel
-            key={item.label}
-            value={item.value || item.label}
-            disabled={item.disabled}
-            classes={{ root: classnames(disabled && classes.disabled) }}
-            control={
-              <Checkbox
-                checked={value && value.indexOf(item.label) > -1}
-                onChange={event => {
-                  if (value) {
-                    returnValue = [];
-                    value.map(item => {
-                      returnValue.push(item);
-                    });
-                  }
-                  if (event.target.checked) {
-                    returnValue.push(event.target.value);
-                  } else {
-                    let i = returnValue.indexOf(event.target.value);
-                    if (i > -1) {
-                      returnValue.splice(i, 1);
+          <Grid item sm={4} xs={12}>
+            <FormControlLabel
+              className={classes.textAlignLeft}
+              key={item.label}
+              value={item.value || item.label}
+              disabled={item.disabled}
+              classes={{ root: classnames(disabled && classes.disabled) }}
+              control={
+                <Checkbox
+                  checked={value && value.indexOf(item.label) > -1}
+                  onChange={event => {
+                    if (value) {
+                      returnValue = [];
+                      value.map(item => {
+                        returnValue.push(item);
+                      });
                     }
-                  }
-                  setValue(returnValue);
+                    if (event.target.checked) {
+                      returnValue.push(event.target.value);
+                    } else {
+                      let i = returnValue.indexOf(event.target.value);
+                      if (i > -1) {
+                        returnValue.splice(i, 1);
+                      }
+                    }
+                    setValue(returnValue);
 
-                  if (onInput) {
-                    onInput(event);
-                  }
-                }}
-                onBlur={event => {
-                  if (event.target.value || touched) setTouched();
-                }}
-                {...rest}
-              />
-            }
-            label={item.label}
-          />
+                    if (onInput) {
+                      onInput(event);
+                    }
+                  }}
+                  onBlur={event => {
+                    if (event.target.value || touched) setTouched();
+                  }}
+                  {...rest}
+                />
+              }
+              label={item.label}
+            />
+          </Grid>
         ));
 
       return (
@@ -160,7 +177,9 @@ const MaterialCustomCheckboxInputWrapper = props => (
               }}
               {...rest}
             > */}
-            {renderRadioInputItems(radioInputItems)}
+            <Grid className={classes.subContainer}>
+              {renderRadioInputItems(radioInputItems)}
+            </Grid>
             {/* </RadioGroup> */}
             {error && touched ? (
               <FormHelperText

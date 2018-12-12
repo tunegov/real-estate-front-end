@@ -43,7 +43,6 @@ const submitListing = values => {
     .request(query, variables)
     .then(result => {
       res = result;
-      console.log(res);
       const { createListing: data } = res;
       const { listing, otherError, userErrors } = data;
 
