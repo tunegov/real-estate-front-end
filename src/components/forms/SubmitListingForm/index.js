@@ -28,16 +28,7 @@ import MaterialCustomCheckboxInputWrapper from '../../MaterialCustomCheckboxInpu
 import MaterialCustomSelectInputWrapper from '../../MaterialCustomSelectInputWrapper';
 import CustomFileUploadInputWrapper from '../../CustomFileUploadInputWrapper';
 import { capitalize } from '../../../utils/stringUtils';
-import validators, {
-  paymentTypeValidator,
-  checkOrTransactionNumberValidator,
-  paymentAmountValidator,
-  deductionTypeValidator,
-  descriptionValidator,
-  deductionsAmountValidator,
-  agencyDisclosureFormValidator,
-  ACHAccountNumberValidator,
-} from './formValidation';
+import validators from './formValidation';
 import {
   agent as agentRole,
   admin,
@@ -738,36 +729,6 @@ class SubmitListingForm extends Component {
         );
       });
 
-    const renderAgencyDisclosureMenuItems = () =>
-      this.returnAgencyDisclosureURL().map(({ src }) => {
-        const fileName = decodeURIComponent(src.split('/').pop());
-        const fileType = src.split('.').pop();
-
-        if (fileType.toLowerCase() === 'pdf') {
-          return (
-            <MenuItem
-              classes={{ root: classes.menuItem }}
-              onClick={this.handleAgencyDisclosureMenuClose}
-            >
-              <a href={src} target="_blank">
-                {fileName}
-              </a>
-            </MenuItem>
-          );
-        }
-
-        return (
-          <MenuItem
-            classes={{ root: classes.menuItem }}
-            onClick={() => {
-              this.handleAgencyDisclosureMenuClose();
-              this.openFileViewer(src, fileName, fileType);
-            }}
-          >
-            {fileName}
-          </MenuItem>
-        );
-      });
     // return(<div>asd</div>)
     return (
       <div className={classes.formWrapper}>
@@ -803,15 +764,15 @@ class SubmitListingForm extends Component {
                 }
               : finalDefaultValues
           }
-          // preValidate={this.preValidate}
-          // validateOnMount
+          preValidate={this.preValidate}
+          validateOnMount
           onSubmit={values => {
             if (onSubmit) {
               onSubmit(values);
             }
           }}
           onSubmitFailure={this.props.onSubmitFailure}
-          // validate={validators}
+          validate={validators}
           getApi={formApi => {
             this.props.getFormApi(formApi);
           }}
