@@ -9,6 +9,15 @@ const query = `
         description
         price        
         images
+        category
+        ownership
+        type
+        petPolicy
+        floors
+        unitCount
+        builtIn
+        approx      
+        amenities
       }
       userErrors {
         field

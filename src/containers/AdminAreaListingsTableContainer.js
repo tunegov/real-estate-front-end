@@ -55,6 +55,9 @@ const styles = theme => ({
 const columns = [
   { name: 'listingID', title: 'Listing ID' },
   { name: 'agentName', title: 'Agent Name' },
+  { name: 'category', title: 'Category' },
+  { name: 'type', title: 'Type' },
+  { name: 'ownership', title: 'Ownership' },
   { name: 'address', title: 'Address' },
   { name: 'description', title: 'Description' },
   { name: 'price', title: 'Price' },
@@ -77,7 +80,16 @@ class AdminAreaListingsTableContainer extends Component {
 
   createRows = () => {
     return this.props.listings.map(listing => {
-      const { listingID, address, agentName, description, price } = listing;
+      const {
+        listingID,
+        address,
+        agentName,
+        description,
+        price,
+        category,
+        type,
+        ownership,
+      } = listing;
 
       return {
         listingID,
@@ -85,6 +97,9 @@ class AdminAreaListingsTableContainer extends Component {
         agentName,
         description,
         price,
+        category,
+        type,
+        ownership,
         view: {
           type: 'action',
           onClick: () =>

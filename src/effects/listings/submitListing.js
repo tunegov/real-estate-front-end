@@ -8,6 +8,15 @@ const query = `
         address
         description       
         price
+        category
+        ownership
+        type
+        petPolicy
+        floors
+        unitCount
+        builtIn
+        approx      
+        amenities
       }
       userErrors {
         field
@@ -20,7 +29,6 @@ const query = `
 
 const submitListing = values => {
   let res;
-
   const variables = {
     input: values,
   };
@@ -50,7 +58,7 @@ const submitListing = values => {
       if (!finalResponseObj.error && !finalResponseObj.userErrors.length) {
         finalResponseObj.listing = listing;
       }
-      console.log(finalResponseObj)
+      console.log(finalResponseObj);
       return finalResponseObj;
     })
     .catch(err => {

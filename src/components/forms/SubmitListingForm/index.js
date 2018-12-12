@@ -24,6 +24,7 @@ import Input, { InputLabel, InputAdornment } from 'material-ui/Input';
 import { FormControl } from 'material-ui/Form';
 import MaterialCustomTextFieldWrapper from '../../MaterialCustomTextFieldWrapper';
 import MaterialCustomRadioInputWrapper from '../../MaterialCustomRadioInputWrapper';
+import MaterialCustomCheckboxInputWrapper from '../../MaterialCustomCheckboxInputWrapper';
 import MaterialCustomSelectInputWrapper from '../../MaterialCustomSelectInputWrapper';
 import CustomFileUploadInputWrapper from '../../CustomFileUploadInputWrapper';
 import { capitalize } from '../../../utils/stringUtils';
@@ -63,6 +64,14 @@ const styles = theme => ({
     backgroundColor: '#fff',
     borderRadius: '5px',
     boxShadow: theme.shadows[3],
+  },
+  subContainer: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    height: '100%',
+    padding: '0 10px',
+    width: '100%',
   },
   formControlWrapper: {
     paddingLeft: theme.spacing.unit,
@@ -344,32 +353,88 @@ const radioInputAgentPaymentItems = [
 
 const radioInputYesNoItems = [{ label: 'Yes' }, { label: 'No' }];
 
-const dealTypeSelectItems = [
-  { label: 'Residential Rental' },
-  { label: 'Residential Sale' },
-  { label: 'Commercial Rental' },
-  { label: 'Commercial Sale' },
+const listingCategorySelectItems = [
+  { label: 'Residential' },
+  { label: 'Commercial' },
 ];
 
-const fundsPaidBySelectItems = [
-  { label: 'Bringing a certified check to the office' },
-  { label: 'Remote deposit to Chase account' },
-  { label: 'Check or "OP" mailed to office' },
-  { label: 'Credit card payment' },
-  { label: 'Client wired funds' },
+const ResidentialSelectItems = [
+  { label: 'Multi Family' },
+  { label: 'Mixed Use' },
+  { label: 'Condo' },
+  { label: 'Cooperative' },
+  { label: 'Town House' },
+  { label: 'Apartment' },
+  { label: 'Condo-op' },
+  { label: 'Retail Condo' },
+  { label: 'Room' },
+  { label: 'Loft Apartments' },
 ];
 
-const paymentTypeSelectItems = [
-  { label: 'Certified Check' },
-  { label: 'Money Order' },
-  { label: 'Wire' },
-  { label: 'Owner Pays (OP)' },
+const CommercialSelectItems = [
+  { label: 'Mixed Use' },
+  { label: 'Multi Family' },
+  { label: 'Warehouse' },
+  { label: 'Land/Development Site' },
 ];
 
-const deductionTypeSelectItems = [
-  { label: 'Co-Brokering Split' },
-  { label: 'Company Deal Fee' },
-  { label: 'Outside Company Check' },
+const listingTypeSelectItems = [
+  { label: 'Elevator' },
+  { label: 'Walk Up' },
+  { label: 'Mid Rise' },
+  { label: 'Low Rise' },
+  { label: 'High Rise' },
+  { label: '1 Family' },
+  { label: '2 Family' },
+  { label: '3 Family' },
+  { label: 'Garden Style' },
+];
+
+const petPolicySelectItems = [
+  { label: 'Cats Allowed' },
+  { label: 'Dogs Allowed' },
+  { label: 'Cats and Dogs Allowed' },
+  { label: 'Case by Case' },
+  { label: 'No Pets Allowed' },
+];
+
+const amenitiesCheckboxItems = [
+  { label: 'Garbage disposal' },
+  { label: 'Gated Entry' },
+  { label: 'Microwave' },
+  { label: 'Secured Entry' },
+  { label: 'Package room' },
+  { label: 'New Building' },
+  { label: 'Parking Available' },
+  { label: 'Refrigerator' },
+  { label: 'Dishwasher' },
+  { label: 'Terrace' },
+  { label: 'Breakfast Nook' },
+  { label: 'Open Kitchen' },
+  { label: 'Controlled Access' },
+  { label: 'High ceilings' },
+  { label: 'Laundry in the unit' },
+  { label: 'Vaulted Ceiling' },
+  { label: 'Private Deck' },
+  { label: 'Intercom' },
+  { label: 'Live in Super' },
+  { label: 'Freezer' },
+  { label: 'Stall Shower' },
+  { label: 'Sprinkler system' },
+  { label: 'Verizon Fios' },
+  { label: 'Patio' },
+  { label: 'Garage Parking' },
+  { label: 'Elevator' },
+  { label: 'Exposed Brick' },
+  { label: 'Hardwood floors' },
+  { label: 'Bike room' },
+  { label: 'Loft' },
+  { label: 'Central air' },
+  { label: 'Renovated' },
+  { label: 'Living room' },
+  { label: 'Railroad apartment' },
+  { label: 'Stainless Steel Appliances' },
+  { label: 'Private Outdoor Space' },
 ];
 
 const imagePreloader = images => {
@@ -402,41 +467,8 @@ class SubmitListingForm extends Component {
   }
 
   componentDidMount() {
-    // if (this.props.setInitialContainerState && this.props.submittedListing) {
-    //   this.props.setInitialContainerState({
-    //     paymentsTotal: this.props.submittedListing.paymentsTotal,
-    //     deductionsTotal: this.props.submittedListing.deductionsTotal,
-    //     total: this.props.submittedListing.total,
-    //   });
-    imagePreloader([
-      ...this.returnContractLeaseURLS(),
-      // ...this.returnAgencyDisclosureURL(),
-    ]);
-    // }
-    // if (this.props.resetDealBonus) {
-    //   this.props.resetDealBonus();
-    // }
+    imagePreloader([...this.returnContractLeaseURLS()]);
   }
-
-  // returnAgencyDisclosureURL = () => {
-  //   const { submittedListing } = this.props;
-  //   if (!submittedListing) return [];
-  //   const src = submittedListing.agencyDisclosureForm;
-  //   const fileName = src.split('/').pop();
-  //   const encodedFileName = encodeURIComponent(fileName);
-  //   const srcArray = src.split('/');
-  //   const encodedSrc = `${srcArray
-  //     .slice(0, srcArray.length - 1)
-  //     .join('/')}/${encodedFileName}`;
-
-  //   if (submittedListing.agencyDisclosureForm) {
-  //     return [
-  //       {
-  //         src: encodedSrc,
-  //       },
-  //     ];
-  //   }
-  // };
 
   returnContractLeaseURLS = () => {
     const { submittedListing } = this.props;
@@ -592,71 +624,6 @@ class SubmitListingForm extends Component {
     const { contractLeaseAnchorEl, agencyDisclosureAnchorEl } = this.state;
 
     const managementCobrokeCompanies = [];
-    //   managementCobrokeCompanyItems && managementCobrokeCompanyItems.length
-    //     ? [...managementCobrokeCompanyItems]
-    //     : [];
-
-    // if (submittedListing && submittedListing.managementOrCobrokeCompany) {
-    //   if (
-    //     !managementCobrokeCompanies.includes(
-    //       submittedListing.managementOrCobrokeCompany
-    //     )
-    //   ) {
-    //     managementCobrokeCompanies.push(
-    //       submittedListing.managementOrCobrokeCompany
-    //     );
-    //   }
-    // }
-
-    // const agentsSelectItems = agents
-    //   .filter(agent => (agentUUID ? agent.uuid !== agentUUID : agent))
-    //   .map(({ firstName, lastName, uuid }) => ({
-    //     label: `${capitalize(firstName)} ${capitalize(
-    //       lastName
-    //     )} (Agent ID - ${uuid})`,
-    //     key: uuid,
-    //     value: uuid,
-    //   }));
-
-    // if (isViewType && submittedListing && submittedListing.deductionItems.length) {
-    //   submittedListing.deductionItems.forEach(item => {
-    //     if (item.deductionType === 'Co-Brokering Split') {
-    //       const { firstName, lastName } = agents.find(
-    //         agent => agent.uuid === item.agentID
-    //       );
-    //       const agentName = `${capitalize(firstName)} ${capitalize(
-    //         lastName
-    //       )} (Agent ID - ${item.agentID})`;
-    //       agentsSelectItems.push({
-    //         label: agentName,
-    //         key: item.agentID,
-    //         value: item.agentID,
-    //       });
-    //     }
-    //   });
-    // }
-
-    // let managementCobrokeCompanySelectItems = managementCobrokeCompanies.map(
-    //   company => ({ label: company })
-    // );
-
-    // managementCobrokeCompanySelectItems = managementCobrokeCompanySelectItems
-    //   ? [
-    //       ...managementCobrokeCompanySelectItems,
-    //       ...addedManagementCompanies.map(company => ({ label: company })),
-    //       { label: 'Add a new item...' },
-    //     ]
-    //   : [];
-
-    /*
-      const {
-        firstName,
-        lastName,
-        uuid: agentUUID,
-        agent: agentPart,
-      } = this.props.agent;
-      const { agentType, state } = agentPart;
-      */
 
     let finalDefaultValues;
     const isCoBrokeringAgentPaymentType =
@@ -691,6 +658,17 @@ class SubmitListingForm extends Component {
         apartmentNumber,
         address,
         description,
+        category,
+        ownership,
+        type,
+        amenities,
+        cooperativeOwn,
+        condoOwn,
+        approx,
+        builtIn,
+        unitCount,
+        floors,
+        petPolicy,
       } = submittedListing;
       finalDefaultValues = {
         agent: agentName,
@@ -713,6 +691,17 @@ class SubmitListingForm extends Component {
         price,
         address,
         description,
+        category,
+        ownership,
+        type,
+        amenities,
+        cooperativeOwn,
+        condoOwn,
+        approx,
+        builtIn,
+        unitCount,
+        floors,
+        petPolicy,
       };
     }
 
@@ -828,6 +817,7 @@ class SubmitListingForm extends Component {
           }}
         >
           {formApi => {
+            const category = formApi.values.category;
             return (
               <form
                 onSubmit={formApi.submitForm}
@@ -897,6 +887,168 @@ class SubmitListingForm extends Component {
                       Property Information
                     </Typography>
                   </div>
+                  <Grid item sm={6} xs={12}>
+                    <div className={classes.formControlWrapper}>
+                      <MaterialCustomSelectInput
+                        field="category"
+                        id={uuid()}
+                        required
+                        fullWidth
+                        label="Listing Category"
+                        name="category"
+                        selectInputItems={listingCategorySelectItems}
+                        disabled={submittedListing && !isEditingListing}
+                      />
+                    </div>
+                  </Grid>
+                  <Grid item sm={6} xs={12}>
+                    <div className={classes.formControlWrapper}>
+                      <MaterialCustomSelectInput
+                        field="ownership"
+                        id={uuid()}
+                        required
+                        fullWidth
+                        label="Ownership "
+                        name="ownership"
+                        selectInputItems={
+                          category === 'Residential'
+                            ? ResidentialSelectItems
+                            : category === 'Commercial'
+                            ? CommercialSelectItems
+                            : []
+                        }
+                        disabled={submittedListing && !isEditingListing}
+                      />
+                    </div>
+                  </Grid>
+                  <Grid item sm={6} xs={12}>
+                    <div className={classes.formControlWrapper}>
+                      <MaterialCustomSelectInput
+                        field="type"
+                        id={uuid()}
+                        required
+                        fullWidth
+                        label="Listing Type"
+                        name="type"
+                        selectInputItems={listingTypeSelectItems}
+                        disabled={submittedListing && !isEditingListing}
+                      />
+                    </div>
+                  </Grid>
+                  <Grid item sm={6} xs={12}>
+                    <div className={classes.formControlWrapper}>
+                      <MaterialCustomSelectInput
+                        field="petPolicy"
+                        id={uuid()}
+                        required
+                        fullWidth
+                        label="Pet Policy"
+                        name="petPolicy"
+                        selectInputItems={petPolicySelectItems}
+                        disabled={submittedListing && !isEditingListing}
+                      />
+                    </div>
+                  </Grid>
+                  <Grid item sm={6} xs={12}>
+                    <div className={classes.formControlWrapper}>
+                      <CustomTextField
+                        field="floors"
+                        id={uuid()}
+                        label="Floors"
+                        fullWidth
+                        noLetters
+                        disabled={submittedListing && !isEditingListing}
+                      />
+                    </div>
+                  </Grid>
+                  <Grid item sm={6} xs={12}>
+                    <div className={classes.formControlWrapper}>
+                      <CustomTextField
+                        field="unitCount"
+                        id={uuid()}
+                        label="Unit Count"
+                        fullWidth
+                        noLetters
+                        disabled={submittedListing && !isEditingListing}
+                      />
+                    </div>
+                  </Grid>
+                  <Grid item sm={6} xs={12}>
+                    <div className={classes.formControlWrapper}>
+                      <CustomTextField
+                        field="builtIn"
+                        id={uuid()}
+                        label="Built In"
+                        disabled={submittedListing && !isEditingListing}
+                        fullWidth
+                      />
+                    </div>
+                  </Grid>
+                  <Grid item sm={6} xs={12}>
+                    <div className={classes.formControlWrapper}>
+                      <CustomTextField
+                        field="approx"
+                        id={uuid()}
+                        label="Approx Sq. Feet "
+                        disabled={submittedListing && !isEditingListing}
+                        fullWidth
+                      />
+                    </div>
+                  </Grid>
+                  {formApi.values.ownership === 'Condo' ? (
+                    <Grid className={classes.subContainer}>
+                      <NestedField field={'condoOwn'}>
+                        <Grid item sm={4} xs={12}>
+                          <div className={classes.formControlWrapper}>
+                            <CustomTextField
+                              field="minimumDownPayment"
+                              id={uuid()}
+                              label="Minimum Down payment"
+                              disabled={submittedListing && !isEditingListing}
+                              fullWidth
+                            />
+                          </div>
+                        </Grid>
+                        <Grid item sm={4} xs={12}>
+                          <div className={classes.formControlWrapper}>
+                            <CustomTextField
+                              field="tax"
+                              id={uuid()}
+                              label="Tax"
+                              disabled={submittedListing && !isEditingListing}
+                              fullWidth
+                            />
+                          </div>
+                        </Grid>
+                        <Grid item sm={4} xs={12}>
+                          <div className={classes.formControlWrapper}>
+                            <CustomTextField
+                              field="maintenanceFee"
+                              id={uuid()}
+                              label="Maintenance Fee"
+                              disabled={submittedListing && !isEditingListing}
+                              fullWidth
+                            />
+                          </div>
+                        </Grid>
+                      </NestedField>
+                    </Grid>
+                  ) : null}
+                  {formApi.values.ownership === 'Cooperative' ? (
+                    <NestedField field={'cooperativeOwn'}>
+                      <Grid item xs={12}>
+                        <div className={classes.formControlWrapper}>
+                          <CustomTextField
+                            field="maintenanceFee"
+                            id={uuid()}
+                            label="Maintenance Fee"
+                            disabled={submittedListing && !isEditingListing}
+                            fullWidth
+                          />
+                        </div>
+                      </Grid>
+                    </NestedField>
+                  ) : null}
                   <Grid item xs={12}>
                     <div className={classes.formControlWrapper}>
                       <CustomTextField
@@ -912,7 +1064,6 @@ class SubmitListingForm extends Component {
                       />
                     </div>
                   </Grid>
-
                   <Grid item xs={12}>
                     <div className={classes.formControlWrapper}>
                       <CustomTextField
@@ -924,7 +1075,6 @@ class SubmitListingForm extends Component {
                       />
                     </div>
                   </Grid>
-
                   <Grid item xs={12}>
                     <div className={classes.formControlWrapper}>
                       <CustomTextField
@@ -938,6 +1088,21 @@ class SubmitListingForm extends Component {
                     </div>
                   </Grid>
 
+                  <div
+                    className={`${classes.formControlWrapper} ${
+                      classes.radioInputWrapper
+                    }`}
+                  >
+                    <MaterialCustomCheckboxInputWrapper
+                      field="amenities"
+                      id={uuid()}
+                      required
+                      label="Amenities"
+                      radioInputItems={amenitiesCheckboxItems}
+                      disabled={submittedListing && !isEditingListing}
+                      horizontal
+                    />
+                  </div>
                   <div className={classes.formMiniHeading2}>
                     <Typography
                       variant="subheading"

@@ -41,6 +41,9 @@ const styles = theme => ({
 const columns = [
   { name: 'listingID', title: 'Listing ID' },
   // { name: 'agentName', title: 'Agent Name' },
+  { name: 'category', title: 'Category' },
+  { name: 'type', title: 'Type' },
+  { name: 'ownership', title: 'Ownership' },
   { name: 'address', title: 'Location' },
   { name: 'price', title: 'Price' },
   { name: 'description', title: 'Description' },
@@ -60,7 +63,16 @@ class ListingsTableContainer extends Component {
   createRows = () => {
     const { listings, openDealsViewDialogBox } = this.props;
     return listings.map(listing => {
-      const { listingID, address, agentName, price, description } = listing;
+      const {
+        listingID,
+        address,
+        agentName,
+        price,
+        description,
+        category,
+        ownership,
+        type,
+      } = listing;
 
       return {
         listingID,
@@ -68,6 +80,9 @@ class ListingsTableContainer extends Component {
         agentName,
         price,
         description,
+        category,
+        ownership,
+        type,
         view: {
           type: 'action',
           onClick: debounce(

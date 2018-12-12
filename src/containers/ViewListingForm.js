@@ -24,6 +24,23 @@ const viewListingFormQuery = gql`
         description
         price
         images
+        category
+        ownership
+        type
+        petPolicy
+        floors
+        unitCount
+        builtIn
+        approx
+        condoOwn {
+          minimumDownPayment
+          tax
+          maintenanceFee
+        }
+        cooperativeOwn {
+          maintenanceFee
+        }
+        amenities
       }
     }
   }
