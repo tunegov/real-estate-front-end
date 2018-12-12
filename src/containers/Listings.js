@@ -22,6 +22,9 @@ const listingsQuery = gql`
       listingID
       agentID
       agentName
+      category 
+      ownership
+      type
       address
       description
       price
@@ -209,7 +212,7 @@ class Listings extends Component {
             listing => !this.state.deletedListingIDS.includes(listing.listingID)
           );
 
-          console.log(uniqueListings);
+          // console.log('uniqueListings',uniqueListings);
 
           return (
             <div className={classes.wrapper}>

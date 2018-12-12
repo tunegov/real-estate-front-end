@@ -121,6 +121,9 @@ const listingsQuery = gql`
       agentID
       description
       price
+      category
+      ownership
+      type
     }
   }
 `;
@@ -286,19 +289,17 @@ class AdminAreaListingsContainer extends Component {
               uniqueListings.push(intListings[key]);
             });
 
-            uniqueListings = uniqueListings
-              .filter(
-                listing =>
-                  !this.state.deletedListingIDS.includes(listing.listingID)
-              )
-              // .map(listing => {
-              //   if (this.state.acceptedInvoiceIDS.includes(invoice.invoiceID)) {
-              //     return { ...invoice, status: 'accepted' };
-              //   } else {
-              //     return invoice;
-              //   }
-              // });
-          
+            uniqueListings = uniqueListings.filter(
+              listing =>
+                !this.state.deletedListingIDS.includes(listing.listingID)
+            );
+            // .map(listing => {
+            //   if (this.state.acceptedInvoiceIDS.includes(invoice.invoiceID)) {
+            //     return { ...invoice, status: 'accepted' };
+            //   } else {
+            //     return invoice;
+            //   }
+            // });
             return (
               <div className={classes.wrapper}>
                 <ViewListingDialogBox

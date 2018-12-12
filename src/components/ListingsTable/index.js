@@ -156,8 +156,11 @@ const integratedSortingColumnExtensions = [
 
 const defaultColumnWidths = [
   { columnName: 'listingID', width: 120 },
-  { columnName: 'address', width: 120 },
+  { columnName: 'category', width: 120 },
+  { columnName: 'type', width: 120 },
+  { columnName: 'ownership', width: 120 },
   { columnName: 'agentName', width: 120 },
+  { columnName: 'address', width: 120 }, 
   { columnName: 'price', width: 120 },
   { columnName: 'description', width: 120 },
   { columnName: 'view', width: 80 },

@@ -207,6 +207,9 @@ class SubmitListingFormContainer extends Component {
     }
   };
 
+  // onSubmit = values => {
+  //   console.log(values);
+  // };
   onSubmit = values => {
     this.props.setFormSubmitted();
     const { imagesForms } = this.state;
@@ -215,7 +218,8 @@ class SubmitListingFormContainer extends Component {
       ...values,
       images: [],
     };
-
+    // delete returnObject.condoOwn;
+    // delete returnObject.cooperativeOwn;
     delete returnObject.contractOrLeaseItems;
     delete returnObject.deductionsSubtotal;
     delete returnObject.paymentsSubtotal;
