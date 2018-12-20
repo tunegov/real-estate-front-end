@@ -7,16 +7,27 @@ import { initStore } from '../models';
 import ListingsFilterAndSearchSection from '../frontEndContainers/ListingsFilterAndSearchSection';
 import MapAndListingsSection from '../frontEndComponents/MapAndListingsSection';
 import withData from '../lib/withData';
-
 const chance = new Chance();
 
 const listings = [
   {
-    featuredPhotoURL: `http://picsum.photos/314/234/?random?${chance.integer({ min: 1, max: 1000 })}`,
+    featuredPhotoURL: `http://picsum.photos/314/234/?random?${chance.integer({
+      min: 1,
+      max: 1000,
+    })}`,
     otherPhotoURLs: [
-      `http://picsum.photos/314/234/?random?${chance.integer({ min: 1, max: 1000 })}`,
-      `http://picsum.photos/314/234/?random?${chance.integer({ min: 1, max: 1000 })}`,
-      `http://picsum.photos/314/234/?random?${chance.integer({ min: 1, max: 1000 })}`,
+      `http://picsum.photos/314/234/?random?${chance.integer({
+        min: 1,
+        max: 1000,
+      })}`,
+      `http://picsum.photos/314/234/?random?${chance.integer({
+        min: 1,
+        max: 1000,
+      })}`,
+      `http://picsum.photos/314/234/?random?${chance.integer({
+        min: 1,
+        max: 1000,
+      })}`,
     ],
     address: '225 West 60th Street, Manhattan NY, 10023',
     neighborhood: 'Jackson Heights',
@@ -31,11 +42,23 @@ const listings = [
     id: 'jxj595h9f5i5fj',
   },
   {
-    featuredPhotoURL: `http://picsum.photos/314/234/?random?${chance.integer({ min: 1, max: 1000 })}`,
+    featuredPhotoURL: `http://picsum.photos/314/234/?random?${chance.integer({
+      min: 1,
+      max: 1000,
+    })}`,
     otherPhotoURLs: [
-      `http://picsum.photos/314/234/?random?${chance.integer({ min: 1, max: 1000 })}`,
-      `http://picsum.photos/314/234/?random?${chance.integer({ min: 1, max: 1000 })}`,
-      `http://picsum.photos/314/234/?random?${chance.integer({ min: 1, max: 1000 })}`,
+      `http://picsum.photos/314/234/?random?${chance.integer({
+        min: 1,
+        max: 1000,
+      })}`,
+      `http://picsum.photos/314/234/?random?${chance.integer({
+        min: 1,
+        max: 1000,
+      })}`,
+      `http://picsum.photos/314/234/?random?${chance.integer({
+        min: 1,
+        max: 1000,
+      })}`,
     ],
     address: '452 West 60th Street, Manhattan NY, 10023',
     neighborhood: 'Jackson Heights',
@@ -50,11 +73,23 @@ const listings = [
     id: 'o3j9dn9un3nj3',
   },
   {
-    featuredPhotoURL: `http://picsum.photos/314/234/?random?${chance.integer({ min: 1, max: 1000 })}`,
+    featuredPhotoURL: `http://picsum.photos/314/234/?random?${chance.integer({
+      min: 1,
+      max: 1000,
+    })}`,
     otherPhotoURLs: [
-      `http://picsum.photos/314/234/?random?${chance.integer({ min: 1, max: 1000 })}`,
-      `http://picsum.photos/314/234/?random?${chance.integer({ min: 1, max: 1000 })}`,
-      `http://picsum.photos/314/234/?random?${chance.integer({ min: 1, max: 1000 })}`,
+      `http://picsum.photos/314/234/?random?${chance.integer({
+        min: 1,
+        max: 1000,
+      })}`,
+      `http://picsum.photos/314/234/?random?${chance.integer({
+        min: 1,
+        max: 1000,
+      })}`,
+      `http://picsum.photos/314/234/?random?${chance.integer({
+        min: 1,
+        max: 1000,
+      })}`,
     ],
     address: '893 West 60th Street, Manhattan NY, 10023',
     neighborhood: 'SoHo',
@@ -73,7 +108,10 @@ const listings = [
 class Listings extends React.Component {
   static getInitialProps({ req }) {
     const isServer = !!req;
-    return { cookieJWTData: req && req.cookies ? req.cookies.jwtData : null, isServer };
+    return {
+      cookieJWTData: req && req.cookies ? req.cookies.jwtData : null,
+      isServer,
+    };
   }
 
   constructor(props) {
@@ -86,7 +124,7 @@ class Listings extends React.Component {
 
   onSubmitSearch = value => {
     console.log(value);
-  }
+  };
 
   render() {
     const { onSubmitSearch } = this;

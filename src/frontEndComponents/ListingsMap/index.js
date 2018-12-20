@@ -1,23 +1,25 @@
 import React, { Component } from 'react';
 import { observer } from 'mobx-react';
 import { withStyles } from 'material-ui/styles';
-import { GoogleMap, Marker, withScriptjs, withGoogleMap } from 'react-google-maps';
+import {
+  GoogleMap,
+  Marker,
+  withScriptjs,
+  withGoogleMap,
+} from 'react-google-maps';
 import CustomMapMarker from '../CustomMapMarker';
 
 const styles = theme => ({
-  root: {
-
-  },
+  root: {},
 });
-
 
 @observer
 @withStyles(styles)
 @withScriptjs
 @withGoogleMap
 class ListingsMap extends Component {
-  renderMapMarkers = listingItems => (
-    listingItems.map(listingItem => {
+  renderMapMarkers = listingItems =>
+    listingItems.map((listingItem,i) => {
       const { longitude, latitude, listingID } = listingItem;
 
       return (
@@ -25,10 +27,10 @@ class ListingsMap extends Component {
           longitude={longitude}
           latitude={latitude}
           listingID={listingID}
+          key={i}
         />
       );
-    })
-  )
+    });
 
   render() {
     const { classes, listings } = this.props;
