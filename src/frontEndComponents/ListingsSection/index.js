@@ -76,6 +76,12 @@ const sortingTypes = [
 @observer
 @withStyles(styles)
 class ListingsSection extends Component {
+  onSelectChange = event => {
+    const { value } = event.target;
+    console.log(value);
+
+    this.setState({ value });
+  };
   renderListings = listingItems =>
     listingItems.map(listingItem => {
       const {
@@ -95,7 +101,7 @@ class ListingsSection extends Component {
       } = listingItem;
 
       return (
-        <Grid key={id} item xs={12} md={6}>
+        // <Grid key={id} item xs={12} md={6}>
           <ListingCard
             featuredPhotoURL={featuredPhotoURL}
             otherPhotoURLs={otherPhotoURLs}
@@ -111,31 +117,58 @@ class ListingsSection extends Component {
             type={type}
             id={id}
           />
-        </Grid>
+        // </Grid>
       );
     });
 
   render() {
     const { classes, listings, setSortingType } = this.props;
     return (
-      <div className={classes.root}>
-        <div className={classes.lisingsOptions}>
-          <Select
-            defaultValue={sortingTypes[0]}
-            styles={selectStyles}
-            options={sortingTypes}
-            placeholder="Sort..."
-            blurInputOnSelect
-            isSearchable={false}
-            onInputChange={setSortingType}
-          />
-        </div>
-        <div className={classes.listingsWrapper}>
-          <Grid container spacing={24} component={containerComponent}>
-            {listings && this.renderListings(listings)}
-          </Grid>
+      <div className="city-middle">
+        <div className="city-detail">
+          <div class="head-sec">
+            <h4>
+              North Carolina - United States <span>1-20 z 589 Listings </span>
+            </h4>
+            <div class="choice-optin">
+              <label>sort by</label>
+              <select onChange={this.onSelectChange}>
+                {sortingTypes.map(item => {
+                  return <option value={item.value}>{item.label}</option>;
+                })}
+              </select>
+              {/* <Select
+                defaultValue={sortingTypes[0]}
+                styles={selectStyles}
+                options={sortingTypes}
+                placeholder="Sort..."
+                blurInputOnSelect
+                isSearchable={false}
+                onInputChange={setSortingType}
+              /> */}
+            </div>
+          </div>
+          {listings && this.renderListings(listings)}
         </div>
       </div>
+      // <div className={classes.root}>
+      //   <div className={classes.lisingsOptions}>
+      //     <Select
+      //       defaultValue={sortingTypes[0]}
+      //       styles={selectStyles}
+      //       options={sortingTypes}
+      //       placeholder="Sort..."
+      //       blurInputOnSelect
+      //       isSearchable={false}
+      //       onInputChange={setSortingType}
+      //     />
+      //   </div>
+      //   <div className={classes.listingsWrapper}>
+      //     <Grid container spacing={24} component={containerComponent}>
+      //       {listings && this.renderListings(listings)}
+      //     </Grid>
+      //   </div>
+      // </div>
     );
   }
 }

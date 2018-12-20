@@ -143,47 +143,92 @@ class ListingCard extends Component {
     const dealType = displayType(type);
 
     return (
-      <div className={classes.root}>
-        <div
-          className={classnames(classes.imageWrapper, imageWrapperClassName)}
-        >
-          <Link route="listing" params={{ id }}>
-            <img
-              src={featuredPhotoURL}
-              alt="listing"
-              className={classes.image}
-            />
-          </Link>
-          {renderNoticeTag()}
-        </div>
-
-        <div className={classes.infoContentWrapper}>
-          <Link route="listing" params={{ id }}>
-            <div className={classes.addressWrapper}>{address}</div>
-          </Link>
-          <div className={classes.neighborhoodWrapper}>
-            {dealType ? `${dealType} | ` : null} {neighborhood}
-          </div>
-          <div className={classes.priceWrapper}>
-            ${price ? price.toLocaleString() : null}
-          </div>
-          <div className={classes.miscInfo}>
-            {isStudio ? 'Studio' : `${beds} BD`} | {`${baths} BA`}
-          </div>
-        </div>
-
-        <div className={classes.footer}>
-          {isLiked ? (
-            <HeartIcon color="inherit" classes={{ root: classes.heartIcon }} />
-          ) : (
-            <HeartOutlineIcon
-              color="inherit"
-              classes={{ root: classes.heartIcon }}
-            />
-          )}{' '}
-          Favorite
-        </div>
+      <div className="rent-detail">
+        <hr />
+        <Link route="listing" params={{ id }}>
+          <figure>
+            <img src={featuredPhotoURL} />
+            <div className="for-rent">rent</div>
+          </figure>
+        </Link>
+        <figcaption>
+          <h3>608 Franklin Avenue #801</h3>
+          <p>
+            <i className="fa fa-map-marker" aria-hidden="true" /> 25 W. Lookout
+            St. Union City, NJ 07087
+          </p>
+          <span className="her-detail">
+            <i className="fa fa-heart-o" aria-hidden="true" />
+            01
+          </span>
+          <ul className="rent-se">
+            <li>
+              <a href="#">Rentals </a>
+            </li>
+            <li>
+              <a href="#">|</a>
+            </li>
+            <li>
+              <a href="#">Crown Heights</a>
+            </li>
+          </ul>
+          <ul className="rent-bed">
+            <li>
+              <img src="/static/css/listings/img/bed.png" />
+              <span>1 Bed</span>
+            </li>
+            <li>
+              <img src="/static/css/listings/img/beath.png" />
+              <span>1 bath</span>
+            </li>
+          </ul>
+          <h5 className="room-cost">
+            $3,025<span>/mo</span>
+          </h5>
+        </figcaption>
       </div>
+
+      // <div className={classes.root}>
+      //   <div
+      //     className={classnames(classes.imageWrapper, imageWrapperClassName)}
+      //   >
+      //     <Link route="listing" params={{ id }}>
+      //       <img
+      //         src={featuredPhotoURL}
+      //         alt="listing"
+      //         className={classes.image}
+      //       />
+      //     </Link>
+      //     {renderNoticeTag()}
+      //   </div>
+
+      //   <div className={classes.infoContentWrapper}>
+      //     <Link route="listing" params={{ id }}>
+      //       <div className={classes.addressWrapper}>{address}</div>
+      //     </Link>
+      //     <div className={classes.neighborhoodWrapper}>
+      //       {dealType ? `${dealType} | ` : null} {neighborhood}
+      //     </div>
+      //     <div className={classes.priceWrapper}>
+      //       ${price ? price.toLocaleString() : null}
+      //     </div>
+      //     <div className={classes.miscInfo}>
+      //       {isStudio ? 'Studio' : `${beds} BD`} | {`${baths} BA`}
+      //     </div>
+      //   </div>
+
+      //   <div className={classes.footer}>
+      //     {isLiked ? (
+      //       <HeartIcon color="inherit" classes={{ root: classes.heartIcon }} />
+      //     ) : (
+      //       <HeartOutlineIcon
+      //         color="inherit"
+      //         classes={{ root: classes.heartIcon }}
+      //       />
+      //     )}{' '}
+      //     Favorite
+      //   </div>
+      // </div>
     );
   }
 }

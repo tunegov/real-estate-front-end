@@ -14,15 +14,20 @@ class ListingsMapContainer extends Component {
       <ListingsMap
         googleMapURL={`https://maps.googleapis.com/maps/api/js?key=${GOOGLE_MAPS_API_KEY}&v=3.exp&libraries=geometry,drawing,places`}
         loadingElement={
-          <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%' }}>
-            <Loader
-              color="#f44336"
-              loading
-            />
+          <div
+            style={{
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              height: '100%',
+            }}
+          >
+            <Loader color="#f44336" loading />
           </div>
         }
         containerElement={<div style={{ height: `100%` }} />}
         mapElement={<div style={{ height: `100%` }} />}
+        listings={this.props.listings}
       />
     );
   }

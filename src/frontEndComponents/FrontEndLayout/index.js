@@ -74,6 +74,22 @@ class Layout extends Component {
             href="/static/css/vendor/nprogress.css"
           />
           <link
+            href="static/css/listings/css/font-awesome-4.7.0/css/font-awesome.css"
+            rel="stylesheet"
+          />
+          <link
+            href="static/css/listings/css/bootstrap.min.css"
+            rel="stylesheet"
+          />
+          <link
+            href="static/css/listings/css/style.css?v=1.7"
+            rel="stylesheet"
+          />
+          <link
+            href="static/css/listings/css/responsive.css?v=1.7"
+            rel="stylesheet"
+          />
+          <link
             href="https://fonts.googleapis.com/css?family=Alegreya|Alegreya+Sans"
             type="text/css"
             rel="stylesheet"
@@ -83,6 +99,10 @@ class Layout extends Component {
             type="text/css"
             rel="stylesheet"
           />
+          <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js" />
+
+          <script src="static/css/listings/js/bootstrap.min.js" />
+          <script src="static/css/listings/js/mobile-nav.js" />
           <style dangerouslySetInnerHTML={{ __html: globalStyles }} />
         </Head>
         {/* <DevTools position={{ top: 0, left: 30 }} /> */}

@@ -17,9 +17,8 @@ const styles = theme => ({
 });
 
 const containerComponent = ({ children, ...props }) => (
-  <div
-    style={{ height: '100%' }}
-    {...props}>{children}
+  <div style={{ height: '100%' }} {...props}>
+    {children}
   </div>
 );
 
@@ -28,14 +27,15 @@ const containerComponent = ({ children, ...props }) => (
 class MapAndListingsSection extends Component {
   render() {
     const { classes, listings } = this.props;
+    console.log(listings);
     return (
       <div className={classes.root}>
         <Grid container component={containerComponent}>
-          <Grid item xs={12} sm={6}>
-            <ListingsSection listings={listings} />
-          </Grid>
           <Grid item sm={6}>
             <ListingsMap listings={listings} />
+          </Grid>
+          <Grid item xs={12} sm={6}>
+            <ListingsSection listings={listings} />
           </Grid>
         </Grid>
       </div>

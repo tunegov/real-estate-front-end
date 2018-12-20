@@ -322,6 +322,10 @@ const styles = theme => ({
     display: 'flex !important',
     justifyContent: 'center !important',
   },
+  listingDescription: {
+    backgroundColor: 'rgba(0,0,0,.07)',
+    borderRadius: '5px 5px 0 0',
+  },
 });
 
 const radioInputAgentItems = [
@@ -1039,11 +1043,15 @@ class SubmitListingForm extends Component {
                   <Grid item xs={12}>
                     <div className={classes.formControlWrapper}>
                       <CustomTextField
+                        inputRootClassName={classes.listingDescription}
                         field="description"
                         id={uuid()}
                         label="Description"
                         fullWidth
                         multiline
+                        rows={4}
+                        rowsMax={12}
+                        shrink
                         disabled={submittedListing && !isEditingListing}
                       />
                     </div>
