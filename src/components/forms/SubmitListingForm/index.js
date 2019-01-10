@@ -42,7 +42,7 @@ import {
 } from '../../../constants/userTypes';
 import { padStringToDecimalString } from '../../../utils/Math';
 
-const MAPBOX_TOKEN = "YOUR MAPBOX ACCESS TOKEN HERE";
+const MAPBOX_TOKEN = "pk.eyJ1IjoicmV5ZXNlbHNhbWFkIiwiYSI6ImNqcWg3NWs0MDBpaXMzeHFqZGNpd2VnODEifQ.mLXE6QDGRc2bqLb7tx5ogw";
 const CustomTextField = MaterialCustomTextFieldWrapper;
 const MaterialCustomRadioInput = MaterialCustomRadioInputWrapper;
 const MaterialCustomSelectInput = MaterialCustomSelectInputWrapper;

@@ -3,7 +3,7 @@ import { observer } from 'mobx-react';
 import { BounceLoader } from 'react-spinners';
 
 import mapboxgl from 'mapbox-gl'
-mapboxgl.accessToken = 'YOUR MAPBOX ACCESS TOKEN HERE';
+mapboxgl.accessToken = 'pk.eyJ1IjoicmV5ZXNlbHNhbWFkIiwiYSI6ImNqcWg3NWs0MDBpaXMzeHFqZGNpd2VnODEifQ.mLXE6QDGRc2bqLb7tx5ogw';
 
 let map;
 
