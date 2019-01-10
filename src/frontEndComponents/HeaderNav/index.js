@@ -100,7 +100,7 @@ class HeaderNav extends React.Component {
             </Link>
           </Logo>
         }
-        {/* this.renderMiddleLinks() */}
+        { this.renderMiddleLinks() }
         {this.renderLinks()}
       </HeaderWrapper>
     );

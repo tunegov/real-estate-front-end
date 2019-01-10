@@ -113,6 +113,7 @@ const globalStyles = `
   .deal-table-wrapper div[class^="TableHeaderCell-container"] > div:not([class^="TableHeaderCell-content"]) {
     margin-right: 5px;
   }
+  #map { position:absolute; top: 108px; bottom:0; width:50%; }
   
 `;
 

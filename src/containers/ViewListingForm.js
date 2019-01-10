@@ -40,7 +40,12 @@ const viewListingFormQuery = gql`
         cooperativeOwn {
           maintenanceFee
         }
-        amenities
+        amenities,
+        coordinates
+        sqFootage
+        moveInDate
+        beds
+        baths
       }
     }
   }

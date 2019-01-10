@@ -25,17 +25,31 @@ const containerComponent = ({ children, ...props }) => (
 @observer
 @withStyles(styles)
 class MapAndListingsSection extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      selectedItem: null,
+      address: null
+    }
+  }
+  selectListings = selectedItem => {
+    this.setState({ selectedItem: selectedItem})
+  }
+  flyToStore = address => {
+    this.setState({ address, address });
+  }
   render() {
     const { classes, listings } = this.props;
+    const { selectListings } = this;
     console.log(listings);
     return (
       <div className={classes.root}>
         <Grid container component={containerComponent}>
           <Grid item sm={6}>
-            <ListingsMap listings={listings} />
+            <ListingsSection listings={listings} selectedItem={this.state.selectedItem} flyToStore={this.flyToStore}/>
           </Grid>
           <Grid item xs={12} sm={6}>
-            <ListingsSection listings={listings} />
+            <ListingsMap listings={listings} selectListings={this.selectListings} address={this.state.address}/>
           </Grid>
         </Grid>
       </div>
