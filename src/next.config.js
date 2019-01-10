@@ -13,7 +13,7 @@ if (isDev) {
 } else if (isStage) {
   WEBSITE_URL = 'https://stagging.reyeselsamad.com/api/graphql';
 } else {
-  WEBSITE_URL = 'https://reyeselsamad.com/api/graphql';
+  WEBSITE_URL = 'https://stagging.reyeselsamad.com/api/graphql';
 }
 
 // fix: prevents error when .css files are required by node
