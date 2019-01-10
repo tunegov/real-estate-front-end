@@ -59,6 +59,7 @@ class ListingsFilterAndSearchSectionContainer extends Component {
 
   render() {
     const { onSearchInputChange, getInput, onSearchKeyDown, onSearchKeyUp } = this;
+    const { onSubmit } = this.props;
     const { value } = this.state;
     return (
       <div>
@@ -68,6 +69,7 @@ class ListingsFilterAndSearchSectionContainer extends Component {
           getInput={getInput}
           onSearchKeyDown={onSearchKeyDown}
           onSearchKeyUp={onSearchKeyUp}
+          onFilterClick={onSubmit}
         />
       </div>
     );

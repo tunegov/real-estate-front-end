@@ -105,6 +105,8 @@ class ListingCard extends Component {
       type,
       id,
       imageWrapperClassName,
+      listingItem,
+      selectedItem,
     } = this.props;
 
     const displayType = dealType => {
@@ -143,7 +145,7 @@ class ListingCard extends Component {
     const dealType = displayType(type);
 
     return (
-      <div className="rent-detail">
+      <div className="rent-detail"  style={selectedItem===listingItem.properties.address?{border: '5px solid #dd5a5a'}:{}}>
         <hr />
         <Link route="listing" params={{ id }}>
           <figure>
@@ -152,7 +154,7 @@ class ListingCard extends Component {
           </figure>
         </Link>
         <figcaption>
-          <h3>608 Franklin Avenue #801</h3>
+          <h3>{address}</h3>
           <p>
             <i className="fa fa-map-marker" aria-hidden="true" /> 25 W. Lookout
             St. Union City, NJ 07087
@@ -175,15 +177,15 @@ class ListingCard extends Component {
           <ul className="rent-bed">
             <li>
               <img src="/static/css/listings/img/bed.png" />
-              <span>1 Bed</span>
+              <span>{beds} Bed</span>
             </li>
             <li>
               <img src="/static/css/listings/img/beath.png" />
-              <span>1 bath</span>
+              <span>{baths} bath</span>
             </li>
           </ul>
           <h5 className="room-cost">
-            $3,025<span>/mo</span>
+            ${price}<span>/mo</span>
           </h5>
         </figcaption>
       </div>

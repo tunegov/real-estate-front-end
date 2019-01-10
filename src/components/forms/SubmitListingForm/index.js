@@ -22,6 +22,12 @@ import Menu from 'material-ui/Menu';
 import MenuItem from 'material-ui/Menu/MenuItem';
 import Input, { InputLabel, InputAdornment } from 'material-ui/Input';
 import { FormControl } from 'material-ui/Form';
+
+import MapGL from "react-map-gl";
+import DeckGL, { GeoJsonLayer } from "deck.gl";
+import Geocoder from "react-map-gl-geocoder";
+import "mapbox-gl/dist/mapbox-gl.css";
+
 import MaterialCustomTextFieldWrapper from '../../MaterialCustomTextFieldWrapper';
 import MaterialCustomRadioInputWrapper from '../../MaterialCustomRadioInputWrapper';
 import MaterialCustomCheckboxInputWrapper from '../../MaterialCustomCheckboxInputWrapper';
@@ -36,6 +42,7 @@ import {
 } from '../../../constants/userTypes';
 import { padStringToDecimalString } from '../../../utils/Math';
 
+const MAPBOX_TOKEN = "pk.eyJ1IjoicmV5ZXNlbHNhbWFkIiwiYSI6ImNqcWg3NWs0MDBpaXMzeHFqZGNpd2VnODEifQ.mLXE6QDGRc2bqLb7tx5ogw";
 const CustomTextField = MaterialCustomTextFieldWrapper;
 const MaterialCustomRadioInput = MaterialCustomRadioInputWrapper;
 const MaterialCustomSelectInput = MaterialCustomSelectInputWrapper;
@@ -326,6 +333,9 @@ const styles = theme => ({
     backgroundColor: 'rgba(0,0,0,.07)',
     borderRadius: '5px 5px 0 0',
   },
+  datePicker: {
+    width: '100%'
+  }
 });
 
 const radioInputAgentItems = [
@@ -458,10 +468,53 @@ class SubmitListingForm extends Component {
       contractLeaseAnchorEl: null,
       agencyDisclosureAnchorEl: null,
       currentLightboxItem: [{ src: '' }],
+      moveInDate: "",
+      viewport: {
+        width: '100%',
+        height: 200,
+        latitude: 37.7577,
+        longitude: -122.4376,
+        zoom: 8
+      },
+      searchResultLayer: null
     };
   }
 
+  handleViewportChange = viewport => {
+    this.setState({
+      viewport: { ...this.state.viewport, ...viewport }
+    });
+  };
+
+
+  handleGeocoderViewportChange = viewport => {
+    const geocoderDefaultOverrides = { transitionDuration: 1000 };
+
+    return this.handleViewportChange({
+      ...viewport,
+      ...geocoderDefaultOverrides
+    });
+  };
+
+  handleOnResult = event => {
+    console.log("result",event.result.geometry.coordinates);
+    this.setState({coordinates: event.result.geometry.coordinates.toString()});
+    this.setState({
+      searchResultLayer: new GeoJsonLayer({
+        id: "search-result",
+        data: event.result.geometry,
+        getFillColor: [255, 0, 0, 128],
+        getRadius: 1000,
+        pointRadiusMinPixels: 10,
+        pointRadiusMaxPixels: 10,
+        coordinates: [],
+      })
+    });
+  };
+  
   componentDidMount() {
+
+    this.mapRef = React.createRef();
     imagePreloader([...this.returnContractLeaseURLS()]);
   }
 
@@ -594,6 +647,11 @@ class SubmitListingForm extends Component {
     this.setState({ agencyDisclosureAnchorEl: null });
   };
 
+  onChangeDate = (e) =>{
+    let moveInDate = new Date(e.target.value);
+    this.setState({ moveInDate: moveInDate })
+  }
+
   render() {
     const {
       classes,
@@ -617,6 +675,7 @@ class SubmitListingForm extends Component {
     } = this.props;
 
     const { contractLeaseAnchorEl, agencyDisclosureAnchorEl } = this.state;
+    const { viewport, searchResultLayer } = this.state;
 
     const managementCobrokeCompanies = [];
 
@@ -664,6 +723,11 @@ class SubmitListingForm extends Component {
         unitCount,
         floors,
         petPolicy,
+        coordinates,
+        sqFootage,
+        moveInDate,
+        beds,
+        baths,
       } = submittedListing;
       finalDefaultValues = {
         agent: agentName,
@@ -697,6 +761,11 @@ class SubmitListingForm extends Component {
         unitCount,
         floors,
         petPolicy,
+        coordinates,
+        sqFootage,
+        moveInDate,
+        beds,
+        baths,
       };
     }
 
@@ -772,7 +841,10 @@ class SubmitListingForm extends Component {
           validateOnMount
           onSubmit={values => {
             if (onSubmit) {
-              onSubmit(values);
+              let formItems = values;
+              formItems['coordinates'] = this.state.coordinates.split(",");
+              formItems['moveInDate'] = this.state.moveInDate;
+              onSubmit(formItems);
             }
           }}
           onSubmitFailure={this.props.onSubmitFailure}
@@ -866,7 +938,7 @@ class SubmitListingForm extends Component {
                       />
                     </div>
                   </Grid>
-                  <Grid item sm={6} xs={12}>
+                  <Grid item sm={6} xs={12} style={{height: '50px'}}>
                     <div className={classes.formControlWrapper}>
                       <MaterialCustomSelectInput
                         field="ownership"
@@ -1040,6 +1112,86 @@ class SubmitListingForm extends Component {
                       />
                     </div>
                   </Grid>
+
+                  <Grid item xs={6}>
+                    <div className={classes.formControlWrapper}>
+                      <CustomTextField
+                        field="beds"
+                        id={uuid()}
+                        label="Beds"
+                        noLetters
+                        disabled={submittedListing && !isEditingListing}
+                        fullWidth
+                      />
+                    </div>
+                  </Grid>
+                  <Grid item xs={6}>
+                    <div className={classes.formControlWrapper}>
+                      <CustomTextField
+                        field="baths"
+                        id={uuid()}
+                        label="Baths"
+                        noLetters
+                        disabled={submittedListing && !isEditingListing}
+                        fullWidth
+                      />
+                    </div>
+                  </Grid>
+                  <Grid item xs={6}>
+                    <div className={classes.formControlWrapper}>
+                      <CustomTextField
+                        field="sqFootage"
+                        id={uuid()}
+                        label="SQFT"
+                        noLetters
+                        disabled={submittedListing && !isEditingListing}
+                        fullWidth
+                      />
+                    </div>
+                  </Grid>
+                  <Grid item xs={6}>
+                    <div className={classes.formControlWrapper}>
+                       <input
+                        type="date"
+                        id={uuid()}
+                        onChange={this.onChangeDate}
+                        style={{width: '100%'}}
+                      />
+                    </div>
+                  </Grid>
+
+                  <Grid item xs={12}>
+                    <MapGL
+                      ref={this.mapRef}
+                      {...viewport}
+                      onViewportChange={this.handleViewportChange}
+                      mapboxApiAccessToken={MAPBOX_TOKEN}
+                    >
+                      <Geocoder
+                        mapRef={this.mapRef}
+                        onResult={this.handleOnResult}
+                        onViewportChange={this.handleGeocoderViewportChange}
+                        mapboxApiAccessToken={MAPBOX_TOKEN}
+                        position="top-left"
+                        style={{backgroundColor: 'transparent'}}
+                      />
+                      <DeckGL {...viewport} layers={[searchResultLayer]} />
+                    </MapGL>
+                  </Grid>
+
+                  <Grid item xs={6}>
+                    <div className={classes.formControlWrapper}>
+                      <CustomTextField
+                        field="coordinates"
+                        id={uuid()}
+                        label=""
+                        disabled={submittedListing && !isEditingListing}
+                        value={this.state.coordinates}
+                        fullWidth
+                      />
+                    </div>
+                  </Grid>
+
                   <Grid item xs={12}>
                     <div className={classes.formControlWrapper}>
                       <CustomTextField

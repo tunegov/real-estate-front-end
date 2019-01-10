@@ -76,53 +76,76 @@ const sortingTypes = [
 @observer
 @withStyles(styles)
 class ListingsSection extends Component {
+  componentWillReceiveProps(props) {
+    this.state = {
+      selectedItem: this.props.selectedItem
+    }
+  }
+  flyToStore(listingItem) {
+
+    this.setState({ selectedItem:listingItem.properties.address} )
+        
+    this.props.flyToStore(listingItem)
+  }
   onSelectChange = event => {
     const { value } = event.target;
     console.log(value);
 
     this.setState({ value });
   };
-  renderListings = listingItems =>
-    listingItems.map(listingItem => {
-      const {
-        featuredPhotoURL,
-        otherPhotoURLs,
-        address,
-        neighborhood,
-        price,
-        beds,
-        baths,
-        isLiked,
-        isNoFee,
-        monthsOfFreeRent,
-        sqFootage,
-        type,
-        id,
-      } = listingItem;
+  renderListings = (listingItems, selectedItem) =>
+  {
+    let that = this;
+    return(
+      listingItems.map(listingItem => {
+        const {
+          featuredPhotoURL,
+          otherPhotoURLs,
+          address,
+          neighborhood,
+          price,
+          beds,
+          baths,
+          isLiked,
+          isNoFee,
+          monthsOfFreeRent,
+          sqFootage,
+          type,
+          id,
+          images,
+        } = listingItem.properties;
+  
+        return (
+          // <Grid key={id} item xs={12} md={6}>
+            <ListingCard
+              featuredPhotoURL={images[0]}
+              otherPhotoURLs={otherPhotoURLs}
+              address={address}
+              neighborhood={neighborhood}
+              price={price}
+              beds={beds}
+              baths={baths}
+              isLiked={isLiked}
+              isNoFee={isNoFee}
+              monthsOfFreeRent={monthsOfFreeRent}
+              sqFootage={sqFootage}
+              type={type}
+              id={id}
 
-      return (
-        // <Grid key={id} item xs={12} md={6}>
-          <ListingCard
-            featuredPhotoURL={featuredPhotoURL}
-            otherPhotoURLs={otherPhotoURLs}
-            address={address}
-            neighborhood={neighborhood}
-            price={price}
-            beds={beds}
-            baths={baths}
-            isLiked={isLiked}
-            isNoFee={isNoFee}
-            monthsOfFreeRent={monthsOfFreeRent}
-            sqFootage={sqFootage}
-            type={type}
-            id={id}
-          />
-        // </Grid>
-      );
-    });
+              flyToStore={()=> that.flyToStore(listingItem)}
+              selectedItem={selectedItem}
+              listingItem={listingItem}
+            />
+          // </Grid>
+        );
+      })
+    )
+
+  }
+
 
   render() {
-    const { classes, listings, setSortingType } = this.props;
+    const { classes, listings, setSortingType, selectedItem } = this.props;
     return (
       <div className="city-middle">
         <div className="city-detail">
@@ -148,7 +171,7 @@ class ListingsSection extends Component {
               /> */}
             </div>
           </div>
-          {listings && this.renderListings(listings)}
+          {listings && this.renderListings(listings, selectedItem)}
         </div>
       </div>
       // <div className={classes.root}>
