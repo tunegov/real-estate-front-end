@@ -1,7 +1,6 @@
 const express = require('express');
 // const spdy = require('spdy');
 const helmet = require('helmet');
-var cors = require('cors')
 const morgan = require('morgan');
 const compress = require('compression');
 const cookieParser = require('cookie-parser');
@@ -18,9 +17,8 @@ helmet.hsts({
 
 // morgan logging function
 const skipMiscLogging = req => {
-  const isNextRelated =
-    req.url.includes('/_next/on-demand-entries-ping') ||
-    req.url.includes('/_next/webpack-hmr');
+  const isNextRelated = req.url.includes('/_next/on-demand-entries-ping')
+    || req.url.includes('/_next/webpack-hmr');
   return !!isNextRelated;
 };
 
@@ -29,7 +27,7 @@ app
   .then(() => {
     const server = express();
 
-    server.set('host', process.env.HOST);
+    server.set('host', 127.0.0.1);
     server.set('port', process.env.PORT);
 
     // sets some security minded headers
@@ -38,7 +36,7 @@ app
     server.use(express.json());
     server.use(express.urlencoded({ extended: true }));
     server.use(cookieParser());
-    server.use('*', cors());
+
     server.use(morgan('dev', { skip: skipMiscLogging }));
 
     server.use(router);

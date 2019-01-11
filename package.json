@@ -41,6 +41,7 @@
     "classnames": "^2.2.5",
     "compression": "^1.7.1",
     "cookie-parser": "^1.4.3",
+    "cors": "^2.8.5",
     "css-loader": "^0.28.11",
     "debounce": "^1.1.0",
     "deck.gl": "^6.3.3",
