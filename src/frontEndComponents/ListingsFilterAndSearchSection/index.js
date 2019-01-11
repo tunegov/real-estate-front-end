@@ -79,9 +79,13 @@ class ListingsFilterAndSearchSection extends Component {
       minSize: null,
       maxSize: null,
       pets: '',
-      date: null
-
+      date: null,
+      // isChecked: true,
     };
+  }
+
+  toggle() {
+    this.setState({addClass: !this.state.addClass});    
   }
 
   openDropDown=(dropDownID)=> {
@@ -91,6 +95,21 @@ class ListingsFilterAndSearchSection extends Component {
     } else {
       this.setState({dropDownID: ""})
     }
+    
+    // $('.city-navigation li.dropdown > a').click(function()
+    // { 
+    //     if($(this).hasClass('active')) 
+    //     { 
+    //         $(this).removeClass('active'); 
+    //         $(this).siblings('.dropdown-menu').slideUp('slow'); 
+    //     }     
+    //     else {  
+    //         $('.city-navigation li.dropdown > a').removeClass('active'); 
+    //         $('.city-navigation li.dropdown > a').siblings('.dropdown-menu').css('display', 'none');                                  
+    //         $(this).addClass('active');                  
+    //         $(this).siblings('.dropdown-menu').slideDown('slow');            
+    //     }           
+    // });
 
   }
 
@@ -277,59 +296,347 @@ class ListingsFilterAndSearchSection extends Component {
                   role="button"
                   aria-haspopup="true"
                   aria-expanded="false"
+                  onClick={()=>this.openDropDown('neighborhoods-dropdown')}
                 >
                   Neighborhoods{' '}
                   <i className="fa fa-angle-down" aria-hidden="true" />
                 </a>
-                <ul className="dropdown-menu">
-                  <li>
-                    <a href="#">Action</a>
-                  </li>
-                  <li>
-                    <a href="#">Another action</a>
-                  </li>
-                </ul>
-              </li>
-              <li className="dropdown">
-                <a
-                  href="#"
-                  className="dropdown-toggle"
-                  data-toggle="dropdown"
-                  role="button"
-                  aria-haspopup="true"
-                  aria-expanded="false"
-                  onClick={()=>this.openDropDown('size-dropdown')}
-                >
-                  SQFT <i className="fa fa-angle-down" aria-hidden="true" />
-                </a>
                 {/* <ul className="dropdown-menu"> */}
-                {this.state.dropDownID=="size-dropdown"&&
-                  <div className="dropdown-content" id="size-dropdown">
-                    <div className="listings-price" style={{width: '444px'}}>
-                      <div className="form-group-has-addons">
-                        <h3 style={{width: '100%', float: 'left', width: '100%', float: 'left', color: 'white', marginBottom: '0', borderBottom: '1px solid white'}}>SQFT</h3>
+                {this.state.dropDownID=="neighborhoods-dropdown"&&
+                  <div className="dropdown-content size">
+                    <div className="listings-price neighborhoods"> 
+                      {/* <div className="form-row listings-price-row"> */}
+                        <ul className="nav nav-tabs tabs-left sideways">
+                          <li className="active"><button data-target="#home-v" data-toggle="tab">Bronx</button></li>
+                          <li><button data-target="#profile-v" data-toggle="tab">Brooklyn</button></li>
+                          <li><button data-target="#messages-v" data-toggle="tab">Manhattan</button></li>
+                          <li><button data-target="#settings-v" data-toggle="tab">Queens</button></li>
+                          <li><button data-target="#Staten-v" data-toggle="tab">Staten Island</button></li>
+                        </ul>
+                        <div className="tab-content">
+                          <div className="tab-pane active" id="home-v">
+                            <div className="col-md-6">
+                              <form>
+                                <div className="form-group1"> <input type="checkbox" id="Annadale"/> <label for="Annadale">Annadale</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Arden"/> <label for="Arden">Arden Heights</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Arrochar"/> <label for="Arrochar">Arrochar</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Annadale1"/> <label for="Annadale1">Annadale</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Arden"/> <label for="Arden">Arden Heights</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Arrochar"/> <label for="Arrochar">Arrochar</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Annadale"/> <label for="Annadale">Annadale</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Arden"/> <label for="Arden">Arden Heights</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Arrochar"/> <label for="Arrochar">Arrochar</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Annadale"/> <label for="Annadale">Annadale</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Arden"/> <label for="Arden">Arden Heights</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Arrochar"/> <label for="Arrochar">Arrochar</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Annadale"/> <label for="Annadale">Annadale</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Arden"/> <label for="Arden">Arden Heights</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Arrochar"/> <label for="Arrochar">Arrochar</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Annadale"/> <label for="Annadale">Annadale</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Arden"/> <label for="Arden">Arden Heights</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Arrochar"/> <label for="Arrochar">Arrochar</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Annadale"/> <label for="Annadale">Annadale</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Arden"/> <label for="Arden">Arden Heights</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Arrochar"/> <label for="Arrochar">Arrochar</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Annadale"/> <label for="Annadale">Annadale</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Arden"/> <label for="Arden">Arden Heights</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Arrochar"/> <label for="Arrochar">Arrochar</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Annadale"/> <label for="Annadale">Annadale</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Arden"/> <label for="Arden">Arden Heights</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Arrochar"/> <label for="Arrochar">Arrochar</label> </div>
+                              </form>
+                            </div>
+                            <div className="col-md-6">
+                              <form>
+                                <div className="form-group1"> <input type="checkbox" id="Annadale"/> <label for="Annadale">Annadale</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Arden"/> <label for="Arden">Arden Heights</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Arrochar"/> <label for="Arrochar">Arrochar</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Annadale"/> <label for="Annadale">Annadale</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Arden"/> <label for="Arden">Arden Heights</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Arrochar"/> <label for="Arrochar">Arrochar</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Annadale"/> <label for="Annadale">Annadale</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Arden"/> <label for="Arden">Arden Heights</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Arrochar"/> <label for="Arrochar">Arrochar</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Annadale"/> <label for="Annadale">Annadale</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Arden"/> <label for="Arden">Arden Heights</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Arrochar"/> <label for="Arrochar">Arrochar</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Annadale"/> <label for="Annadale">Annadale</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Arden"/> <label for="Arden">Arden Heights</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Arrochar"/> <label for="Arrochar">Arrochar</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Annadale"/> <label for="Annadale">Annadale</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Arden"/> <label for="Arden">Arden Heights</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Arrochar"/> <label for="Arrochar">Arrochar</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Annadale"/> <label for="Annadale">Annadale</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Arden"/> <label for="Arden">Arden Heights</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Arrochar"/> <label for="Arrochar">Arrochar</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Annadale"/> <label for="Annadale">Annadale</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Arden"/> <label for="Arden">Arden Heights</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Arrochar"/> <label for="Arrochar">Arrochar</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Annadale"/> <label for="Annadale">Annadale</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Arden"/> <label for="Arden">Arden Heights</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Arrochar"/> <label for="Arrochar">Arrochar</label> </div>
+                              </form>
+                            </div>
+                          </div>
+                          <div className="tab-pane" id="profile-v">
+                            <div className="col-md-6">
+                              <form>     
+                                <div className="form-group1"> <input type="checkbox" id="Arden"/> <label for="Arden">Arden Heights</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Arrochar"/> <label for="Arrochar">Arrochar</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Annadale"/> <label for="Annadale">Annadale</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Arden"/> <label for="Arden">Arden Heights</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Arrochar"/> <label for="Arrochar">Arrochar</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Annadale"/> <label for="Annadale">Annadale</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Arden"/> <label for="Arden">Arden Heights</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Arrochar"/> <label for="Arrochar">Arrochar</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Annadale"/> <label for="Annadale">Annadale</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Arden"/> <label for="Arden">Arden Heights</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Arrochar"/> <label for="Arrochar">Arrochar</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Annadale"/> <label for="Annadale">Annadale</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Arden"/> <label for="Arden">Arden Heights</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Arrochar"/> <label for="Arrochar">Arrochar</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Annadale"/> <label for="Annadale">Annadale</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Arden"/> <label for="Arden">Arden Heights</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Arrochar"/> <label for="Arrochar">Arrochar</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Annadale"/> <label for="Annadale">Annadale</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Arden"/> <label for="Arden">Arden Heights</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Arrochar"/> <label for="Arrochar">Arrochar</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Annadale"/> <label for="Annadale">Annadale</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Arden"/> <label for="Arden">Arden Heights</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Arrochar"/> <label for="Arrochar">Arrochar</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Annadale"/> <label for="Annadale">Annadale</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Arden"/> <label for="Arden">Arden Heights</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Arrochar"/> <label for="Arrochar">Arrochar</label> </div>
+                              </form>
+                            </div>
+                            <div className="col-md-6">
+                              <form>
+                                <div className="form-group1"> <input type="checkbox" id="Arden"/> <label for="Arden">Arden Heights</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Arrochar"/> <label for="Arrochar">Arrochar</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Annadale"/> <label for="Annadale">Annadale</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Arden"/> <label for="Arden">Arden Heights</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Arrochar"/> <label for="Arrochar">Arrochar</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Annadale"/> <label for="Annadale">Annadale</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Arden"/> <label for="Arden">Arden Heights</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Arrochar"/> <label for="Arrochar">Arrochar</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Annadale"/> <label for="Annadale">Annadale</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Arden"/> <label for="Arden">Arden Heights</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Arrochar"/> <label for="Arrochar">Arrochar</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Annadale"/> <label for="Annadale">Annadale</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Arden"/> <label for="Arden">Arden Heights</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Arrochar"/> <label for="Arrochar">Arrochar</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Annadale"/> <label for="Annadale">Annadale</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Arden"/> <label for="Arden">Arden Heights</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Arrochar"/> <label for="Arrochar">Arrochar</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Annadale"/> <label for="Annadale">Annadale</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Arden"/> <label for="Arden">Arden Heights</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Arrochar"/> <label for="Arrochar">Arrochar</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Annadale"/> <label for="Annadale">Annadale</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Arden"/> <label for="Arden">Arden Heights</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Arrochar"/> <label for="Arrochar">Arrochar</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Annadale"/> <label for="Annadale">Annadale</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Arden"/> <label for="Arden">Arden Heights</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Arrochar"/> <label for="Arrochar">Arrochar</label> </div>
+                              </form>
+                            </div>
+                          </div>
+                          <div className="tab-pane" id="messages-v">
+                            <div className="col-md-6">
+                              <form>
+                                <div className="form-group1"> <input type="checkbox" id="Arden"/> <label for="Arden">Arden Heights</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Arrochar"/> <label for="Arrochar">Arrochar</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Annadale"/> <label for="Annadale">Annadale</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Arden"/> <label for="Arden">Arden Heights</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Arrochar"/> <label for="Arrochar">Arrochar</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Annadale"/> <label for="Annadale">Annadale</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Arden"/> <label for="Arden">Arden Heights</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Arrochar"/> <label for="Arrochar">Arrochar</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Annadale"/> <label for="Annadale">Annadale</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Arden"/> <label for="Arden">Arden Heights</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Arrochar"/> <label for="Arrochar">Arrochar</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Annadale"/> <label for="Annadale">Annadale</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Arden"/> <label for="Arden">Arden Heights</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Arrochar"/> <label for="Arrochar">Arrochar</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Annadale"/> <label for="Annadale">Annadale</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Arden"/> <label for="Arden">Arden Heights</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Arrochar"/> <label for="Arrochar">Arrochar</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Annadale"/> <label for="Annadale">Annadale</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Arden"/> <label for="Arden">Arden Heights</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Arrochar"/> <label for="Arrochar">Arrochar</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Annadale"/> <label for="Annadale">Annadale</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Arden"/> <label for="Arden">Arden Heights</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Arrochar"/> <label for="Arrochar">Arrochar</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Annadale"/> <label for="Annadale">Annadale</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Arden"/> <label for="Arden">Arden Heights</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Arrochar"/> <label for="Arrochar">Arrochar</label> </div>
+                              </form>
+                            </div>
+                            <div className="col-md-6">
+                              <form>
+                                <div className="form-group1"> <input type="checkbox" id="Annadale3"/> <label for="Annadale3">Midland Beach</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Arden"/> <label for="Arden">Arden Heights</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Arrochar"/> <label for="Arrochar">Arrochar</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Annadale"/> <label for="Annadale">Annadale</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Arden"/> <label for="Arden">Arden Heights</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Arrochar"/> <label for="Arrochar">Arrochar</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Annadale"/> <label for="Annadale">Annadale</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Arden"/> <label for="Arden">Arden Heights</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Arrochar"/> <label for="Arrochar">Arrochar</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Annadale"/> <label for="Annadale">Annadale</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Arden"/> <label for="Arden">Arden Heights</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Arrochar"/> <label for="Arrochar">Arrochar</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Annadale"/> <label for="Annadale">Annadale</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Arden"/> <label for="Arden">Arden Heights</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Arrochar"/> <label for="Arrochar">Arrochar</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Annadale"/> <label for="Annadale">Annadale</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Arden"/> <label for="Arden">Arden Heights</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Arrochar"/> <label for="Arrochar">Arrochar</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Annadale"/> <label for="Annadale">Annadale</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Arden"/> <label for="Arden">Arden Heights</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Arrochar"/> <label for="Arrochar">Arrochar</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Annadale"/> <label for="Annadale">Annadale</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Arden"/> <label for="Arden">Arden Heights</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Arrochar"/> <label for="Arrochar">Arrochar</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Annadale"/> <label for="Annadale">Annadale</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Arden"/> <label for="Arden">Arden Heights</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Arrochar"/> <label for="Arrochar">Arrochar</label> </div>
+                              </form>
+                            </div>
+                          </div>
+                          <div className="tab-pane" id="settings-v">
+                            <div className="col-md-6">
+                              <form>
+                                <div className="form-group1"> <input type="checkbox" id="Arden"/> <label for="Arden">Arden Heights</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Arrochar"/> <label for="Arrochar">Arrochar</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Annadale"/> <label for="Annadale">Annadale</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Arden"/> <label for="Arden">Arden Heights</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Arrochar"/> <label for="Arrochar">Arrochar</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Annadale"/> <label for="Annadale">Annadale</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Arden"/> <label for="Arden">Arden Heights</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Arrochar"/> <label for="Arrochar">Arrochar</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Annadale"/> <label for="Annadale">Annadale</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Arden"/> <label for="Arden">Arden Heights</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Arrochar"/> <label for="Arrochar">Arrochar</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Annadale"/> <label for="Annadale">Annadale</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Arden"/> <label for="Arden">Arden Heights</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Arrochar"/> <label for="Arrochar">Arrochar</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Annadale"/> <label for="Annadale">Annadale</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Arden"/> <label for="Arden">Arden Heights</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Arrochar"/> <label for="Arrochar">Arrochar</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Annadale"/> <label for="Annadale">Annadale</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Arden"/> <label for="Arden">Arden Heights</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Arrochar"/> <label for="Arrochar">Arrochar</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Annadale"/> <label for="Annadale">Annadale</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Arden"/> <label for="Arden">Arden Heights</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Arrochar"/> <label for="Arrochar">Arrochar</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Annadale"/> <label for="Annadale">Annadale</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Arden"/> <label for="Arden">Arden Heights</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Arrochar"/> <label for="Arrochar">Arrochar</label> </div>
+                              </form>
+                            </div>
+                            <div className="col-md-6">
+                              <form>
+                                <div className="form-group1"> <input type="checkbox" id="Annadale"/> <label for="Annadale">Midland Beach</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Arden"/> <label for="Arden">Arden Heights</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Arrochar"/> <label for="Arrochar">Arrochar</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Annadale"/> <label for="Annadale">Annadale</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Arden"/> <label for="Arden">Arden Heights</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Arrochar"/> <label for="Arrochar">Arrochar</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Annadale"/> <label for="Annadale">Annadale</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Arden"/> <label for="Arden">Arden Heights</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Arrochar"/> <label for="Arrochar">Arrochar</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Annadale"/> <label for="Annadale">Annadale</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Arden"/> <label for="Arden">Arden Heights</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Arrochar"/> <label for="Arrochar">Arrochar</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Annadale"/> <label for="Annadale">Annadale</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Arden"/> <label for="Arden">Arden Heights</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Arrochar"/> <label for="Arrochar">Arrochar</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Annadale"/> <label for="Annadale">Annadale</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Arden"/> <label for="Arden">Arden Heights</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Arrochar"/> <label for="Arrochar">Arrochar</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Annadale"/> <label for="Annadale">Annadale</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Arden"/> <label for="Arden">Arden Heights</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Arrochar"/> <label for="Arrochar">Arrochar</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Annadale"/> <label for="Annadale">Annadale</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Arden"/> <label for="Arden">Arden Heights</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Arrochar"/> <label for="Arrochar">Arrochar</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Annadale"/> <label for="Annadale">Annadale</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Arden"/> <label for="Arden">Arden Heights</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Arrochar"/> <label for="Arrochar">Arrochar</label> </div>
+                              </form>
+                            </div>
+                          </div>
+                          <div className="tab-pane" id="Staten-v">
+                            <div className="col-md-6">
+                              <form>
+                                <div className="form-group1"> <input type="checkbox" id="Annadale"/> <label for="Annadale">Annadale</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Arden"/> <label for="Arden">Arden Heights</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Arrochar"/> <label for="Arrochar">Arrochar</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Annadale"/> <label for="Annadale">Annadale</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Arden"/> <label for="Arden">Arden Heights</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Arrochar"/> <label for="Arrochar">Arrochar</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Annadale"/> <label for="Annadale">Annadale</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Arden"/> <label for="Arden">Arden Heights</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Arrochar"/> <label for="Arrochar">Arrochar</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Annadale"/> <label for="Annadale">Annadale</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Arden"/> <label for="Arden">Arden Heights</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Arrochar"/> <label for="Arrochar">Arrochar</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Annadale"/> <label for="Annadale">Annadale</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Arden"/> <label for="Arden">Arden Heights</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Arrochar"/> <label for="Arrochar">Arrochar</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Annadale"/> <label for="Annadale">Annadale</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Arden"/> <label for="Arden">Arden Heights</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Arrochar"/> <label for="Arrochar">Arrochar</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Annadale"/> <label for="Annadale">Annadale</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Arden"/> <label for="Arden">Arden Heights</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Arrochar"/> <label for="Arrochar">Arrochar</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Annadale"/> <label for="Annadale">Annadale</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Arden"/> <label for="Arden">Arden Heights</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Arrochar"/> <label for="Arrochar">Arrochar</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Annadale"/> <label for="Annadale">Annadale</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Arden"/> <label for="Arden">Arden Heights</label> </div>
+                                <div className="form-group1"> <input type="checkbox" id="Arrochar"/> <label for="Arrochar">Arrochar</label> </div>
+                              </form>
+                            </div>
+                            <div className="col-md-6">
+                              <form>
+                                  <div className="form-group1"> <input type="checkbox" id="Annadale"/> <label for="Annadale">Midland Beach</label> </div>
+                                  <div className="form-group1"> <input type="checkbox" id="Arden"/> <label for="Arden">Arden Heights</label> </div>
+                                  <div className="form-group1"> <input type="checkbox" id="Arrochar"/> <label for="Arrochar">Arrochar</label> </div>
+                                  <div className="form-group1"> <input type="checkbox" id="Annadale"/> <label for="Annadale">Annadale</label> </div>
+                                  <div className="form-group1"> <input type="checkbox" id="Arden"/> <label for="Arden">Arden Heights</label> </div>
+                                  <div className="form-group1"> <input type="checkbox" id="Arrochar"/> <label for="Arrochar">Arrochar</label> </div>
+                                  <div className="form-group1"> <input type="checkbox" id="Annadale"/> <label for="Annadale">Annadale</label> </div>
+                                  <div className="form-group1"> <input type="checkbox" id="Arden"/> <label for="Arden">Arden Heights</label> </div>
+                                  <div className="form-group1"> <input type="checkbox" id="Arrochar"/> <label for="Arrochar">Arrochar</label> </div>
+                                  <div className="form-group1"> <input type="checkbox" id="Annadale"/> <label for="Annadale">Annadale</label> </div>
+                                  <div className="form-group1"> <input type="checkbox" id="Arden"/> <label for="Arden">Arden Heights</label> </div>
+                                  <div className="form-group1"> <input type="checkbox" id="Arrochar"/> <label for="Arrochar">Arrochar</label> </div>
+                                  <div className="form-group1"> <input type="checkbox" id="Annadale"/> <label for="Annadale">Annadale</label> </div>
+                                  <div className="form-group1"> <input type="checkbox" id="Arden"/> <label for="Arden">Arden Heights</label> </div>
+                                  <div className="form-group1"> <input type="checkbox" id="Arrochar"/> <label for="Arrochar">Arrochar</label> </div>
+                                  <div className="form-group1"> <input type="checkbox" id="Annadale"/> <label for="Annadale">Annadale</label> </div>
+                                  <div className="form-group1"> <input type="checkbox" id="Arden"/> <label for="Arden">Arden Heights</label> </div>
+                                  <div className="form-group1"> <input type="checkbox" id="Arrochar"/> <label for="Arrochar">Arrochar</label> </div>
+                                  <div className="form-group1"> <input type="checkbox" id="Annadale"/> <label for="Annadale">Annadale</label> </div>
+                                  <div className="form-group1"> <input type="checkbox" id="Arden"/> <label for="Arden">Arden Heights</label> </div>
+                                  <div className="form-group1"> <input type="checkbox" id="Arrochar"/> <label for="Arrochar">Arrochar</label> </div>
+                                  <div className="form-group1"> <input type="checkbox" id="Annadale"/> <label for="Annadale">Annadale</label> </div>
+                                  <div className="form-group1"> <input type="checkbox" id="Arden"/> <label for="Arden">Arden Heights</label> </div>
+                                  <div className="form-group1"> <input type="checkbox" id="Arrochar"/> <label for="Arrochar">Arrochar</label> </div>
+                                  <div className="form-group1"> <input type="checkbox" id="Annadale"/> <label for="Annadale">Annadale</label> </div>
+                                  <div className="form-group1"> <input type="checkbox" id="Arden"/> <label for="Arden">Arden Heights</label> </div>
+                                  <div className="form-group1"> <input type="checkbox" id="Arrochar"/> <label for="Arrochar">Arrochar</label> </div>
+                                </form>
+                              </div>
+                            </div>
+                          </div>
+                        <div className="drop-footer"> <button className="clear">Clear</button> <button className="apply-cust">Apply</button> </div>
                       </div>
-                      <div className="form-group-has-addons">
-                        <div className="form-control-group">
-                          <label className="form-label">Min.</label>
-                          <input className="form-control" value={this.state.minSize} onChange={this.handleMinSize} ></input>
-                        </div>
-                        <div className="form-control-group">
-                          <button className="button-light" type="button">to</button>
-                        </div>
-                        <div className="form-control-group">
-                          <label className="form-label">Max.</label>
-                          <input className="form-control" value={this.state.maxSize} onChange={this.handleMaxSize} ></input>														
-                        </div>										
-                      </div>
-                      <div className="listings-action-group">
-                        <button className="button-outline-light-listings-action" type="button" onClick={this.clearSQF}>Clear</button>
-                        <button className="button-primary-listings-action" type="button" onClick={()=>this.makingQuery()}>Apply</button>
-                      </div>
-                    </div>							
-                  </div> } 
+                    {/* </div>						 */}
+                  </div> }
                 {/* </ul> */}
-              </li>
+              </li>              
               <li className="dropdown">
                 <a
                   href="#"
@@ -344,32 +651,17 @@ class ListingsFilterAndSearchSection extends Component {
                 </a>
                 {/* <ul className="dropdown-menu"> */}
                 {this.state.dropDownID=="price-dropdown"&&
-                    <div className="dropdown-content" id="price-dropdown">
+                    <div className="dropdown-content">
                       <div className="listings-price"> 
-                        <div className="form-group-has-addons">
-
-                          <div className="form-control-group">
-                            <button className="button-outline-light" type="button">$</button>
-                          </div>	
-                          <div className="form-control-group">											
-                            <button className="button-active-primary" type="button">PPSF</button>
-                          </div>
-                          <div className="form-control-group">
-                            <label className="form-label">Min.</label>
-                            <input className="form-control" value={this.state.minPrice} onChange={this.handleMinPrice} ></input>
-                          </div>
-                          <div className="form-control-group">
-                            <button className="button-light" type="button">to</button>
-                          </div>
-                          <div className="form-control-group">
-                            <label className="form-label">Max.</label>
-                            <input className="form-control" value={this.state.maxPrice} onChange={this.handleMaxPrice} ></input>														
-                          </div>										
+                        <div className="form-row listings-price-row">
+                            <div className="form-group form-group-has-addons">
+                                <div className="form-control-group"> <button className="button button-outline-light button-active-primary" type="button">$</button> </div>
+                                <div className="form-control-group"> <label className="form-label">Min.</label> <input className="form-control" value={this.state.minPrice} onChange={this.handleMinPrice} pattern="\d*" id="listings-min-price-input"/> </div>
+                                <div className="form-control-group"> <button className="button button-light button-static" type="button">to</button> </div>
+                                <div className="form-control-group"> <label className="form-label">Max.</label> <input className="form-control" value={this.state.maxPrice} onChange={this.handleMaxPrice} pattern="\d*"/> </div>
+                            </div>
                         </div>
-                        <div className="listings-action-group">
-                          <button className="button-outline-light-listings-action" type="button" onClick={this.clearPrice}>Clear</button>
-                          <button className="button-primary-listings-action" type="button" onClick={()=>this.makingQuery()}>Apply</button>
-                        </div>
+                        <div className="drop-footer"> <button className="clear" onClick={this.clearPrice}>Clear</button> <button className="apply-cust" onClick={()=>this.makingQuery()}>Apply</button> </div>
                       </div>							
                     </div> }
                 {/* </ul> */}
@@ -382,37 +674,41 @@ class ListingsFilterAndSearchSection extends Component {
                   role="button"
                   aria-haspopup="true"
                   aria-expanded="false"
+                  onClick={()=>this.openDropDown('size-dropdown')}
                 >
-                  Room <i className="fa fa-angle-down" aria-hidden="true" />
+                  SIZE <i className="fa fa-angle-down" aria-hidden="true" />
                 </a>
-                <ul className="dropdown-menu">
-                  <li>
-                    <a href="#">Action</a>
-                  </li>
-                  <li>
-                    <a href="#">Another action</a>
-                  </li>
-                </ul>
-              </li>
-              <li className="dropdown">
-                <a
-                  href="#"
-                  className="dropdown-toggle"
-                  data-toggle="dropdown"
-                  role="button"
-                  aria-haspopup="true"
-                  aria-expanded="false"
-                >
-                  bath <i className="fa fa-angle-down" aria-hidden="true" />
-                </a>
-                <ul className="dropdown-menu">
-                  <li>
-                    <a href="#">Action</a>
-                  </li>
-                  <li>
-                    <a href="#">Another action</a>
-                  </li>
-                </ul>
+                {/* <ul className="dropdown-menu"> */}
+                {this.state.dropDownID=="size-dropdown"&&
+                  <div className="dropdown-content" id="size-dropdown">
+                    <div className="listings-price">
+                      <h3>Bedrooms (Select all that apply)</h3>
+                      <div className="bed-room">
+                        <div className="checkbox"> <button for="bed1">1</button> </div>
+                        <div className="checkbox"> <button for="bed2">2</button></div>
+                        <div className="checkbox"> <button for="bed3">3</button></div>
+                        <div className="checkbox"> <button for="bed4">4+</button> </div>
+                      </div>
+                      <h3>Bathrooms (Select all that apply)</h3>
+                      <div className="bed-room">
+                        <div className="checkbox"> <button for="Bath">Any</button> </div>
+                        <div className="checkbox"> <button for="Bath1">1+</button> </div>
+                        <div className="checkbox"> <button for="Bath2">1.5+</button> </div>
+                        <div className="checkbox"> <button for="Bath3">2+</button> </div>
+                        <div className="checkbox"> <button for="Bath4">2.5+</button> </div>
+                        <div className="checkbox"> <button for="Bath5">3+</button> </div>
+                        <div className="checkbox"> <button for="Bath6">3.5+</button> </div>
+                      </div>   
+                      <h3>SQFT</h3>
+                      <div className="form-group form-group-has-addons">
+                          <div className="form-control-group"><label className="form-label">Min.</label><input className="form-control" type="number"/></div>
+                          <div className="form-control-group"><button className="button button-light button-static" type="button">to</button></div>
+                          <div className="form-control-group"><label className="form-label">Max.</label><input className="form-control" type="number"/></div>
+                      </div>
+                      <div className="drop-footer"> <button className="clear" onClick={this.clearSQF}>Clear</button> <button className="apply-cust" onClick={()=>this.makingQuery()}>Apply</button> </div>   
+                    </div>						
+                  </div> } 
+                {/* </ul> */}
               </li>
               <li className="dropdown">
                 <a
@@ -426,44 +722,37 @@ class ListingsFilterAndSearchSection extends Component {
                 </a>
                 {/* <ul className="dropdown-menu"> */}
                 {this.state.dropDownID=="more_filters"&&
-                  <div className="dropdown-content" id="price-dropdown">
+                  <div className="dropdown-content">
                     <div className="listings-price">
-                        <FormControl className={classes.formControl}>
-                          <InputLabel htmlFor="pets-simple" style={{color: 'white', fontSize: '17px'}}>Pets</InputLabel>
-                          <Select
-                            style={{color: 'white'}}
-                            value={this.state.pets}
-                            onChange={this.handlePets}
-                            inputProps={{
-                              name: 'Pets',
-                              id: 'pets-simple',
-                            }}
-                            style={{color: 'white', fontSize: '21px'}}
-                          >
-                            {petPolicySelectItems.map((item)=>
-                              <MenuItem value={item.value} style={{fontSize: '21px'}}>{item.label}</MenuItem>
-                            )}
-                          </Select>
-                        </FormControl>
-                        <div className="form-group-has-addons">
-                          <h3 style={{width: '100%', float: 'left', width: '100%', float: 'left', color: 'white', marginBottom: '0', borderBottom: '1px solid white'}}>Move in Date</h3>
+                      <div className="col-md-12">
+                        <h3>Pets</h3>
+                        <div className="outline">
+                          <div className="pets_redio">
+                            <button>Pets Allowed</button>
+                          </div>
+                          <div className="pets_redio">
+                            <button>Dogs Only</button>
+                          </div>
+                          <div className="pets_redio">
+                            <button>Dogs Only</button>
+                          </div>
                         </div>
-                        <div className="form-group-has-addons">
-                          <div className="form-control-group" style={{width: '100%'}}>
-                            <DatePicker
-                              className={classes.datePicker}
-                              onChange={this.onChangeDate}
-                              disabledDate={false}
-                              type="text"
-                              placeholder="Move in Date"
-                            />
-                          </div>										
+                        <h3>Available On or Before</h3>
+                        <div className="form-control-group" style={{width: '77%'}}>
+                          <DatePicker
+                            className={classes.datePicker}
+                            onChange={this.onChangeDate}
+                            disabledDate={false}
+                            type="text"
+                            placeholder="Move in Date"
+                          />
                         </div>
-                        <div className="listings-action-group">
-                          <button className="button-outline-light-listings-action" type="button" onClick={this.clearPets}>Clear</button>
-                          <button className="button-primary-listings-action" type="button" onClick={()=>this.makingQuery()}>Apply</button>
+                        <div className="drop-footer"> 
+                          <button className="clear" onClick={this.clearPets}>Clear</button> 
+                          <button className="apply-cust" onClick={()=>this.makingQuery()}>Apply</button> 
                         </div>
-                      </div>							
+                      </div>                                            
+                    </div>							
                   </div>               
                 }
 

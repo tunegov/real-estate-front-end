@@ -45,12 +45,12 @@ class MapAndListingsSection extends Component {
     return (
       <div className={classes.root}>
         <Grid container component={containerComponent}>
-          <Grid item sm={6}>
-            <ListingsSection listings={listings} selectedItem={this.state.selectedItem} flyToStore={this.flyToStore}/>
-          </Grid>
           <Grid item xs={12} sm={6}>
             <ListingsMap listings={listings} selectListings={this.selectListings} address={this.state.address}/>
           </Grid>
+          <Grid item sm={6}>
+            <ListingsSection listings={listings} selectedItem={this.state.selectedItem} flyToStore={this.flyToStore}/>
+          </Grid>          
         </Grid>
       </div>
     );

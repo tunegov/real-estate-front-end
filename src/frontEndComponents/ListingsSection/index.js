@@ -149,17 +149,21 @@ class ListingsSection extends Component {
     return (
       <div className="city-middle">
         <div className="city-detail">
-          <div class="head-sec">
+          <div className="head-sec">
             <h4>
               North Carolina - United States <span>1-20 z 589 Listings </span>
             </h4>
-            <div class="choice-optin">
-              <label>sort by</label>
-              <select onChange={this.onSelectChange}>
-                {sortingTypes.map(item => {
-                  return <option value={item.value}>{item.label}</option>;
-                })}
-              </select>
+            <div className="choice-optin">
+              <div className="all-list">
+                <button className="grid_view propertyView"><i className="fa fa-th" aria-hidden="true"></i></button>
+                <button id="music" className="list_view propertyView active"><i className="fa fa-list" aria-hidden="true"></i></button>
+                <label>sort by</label>
+                <select onChange={this.onSelectChange}>
+                  {sortingTypes.map(item => {
+                    return <option value={item.value}>{item.label}</option>;
+                  })}
+                </select>
+              </div>              
               {/* <Select
                 defaultValue={sortingTypes[0]}
                 styles={selectStyles}
@@ -171,7 +175,106 @@ class ListingsSection extends Component {
               /> */}
             </div>
           </div>
-          {listings && this.renderListings(listings, selectedItem)}
+          {/* <div className="rent-main">
+            {listings && this.renderListings(listings, selectedItem)}
+          </div>           */}
+          <div className="outer-table">
+            <div className="cust-sc">
+              <table id="musicinfo">
+                <thead>
+                  <tr>
+                    <th>Address</th>
+                    <th>Neighborhood</th>
+                    <th>Price</th>
+                    <th>Beds</th>
+                    <th>Baths</th>
+                    <th>Broker Fee</th>
+                    <th>Status</th>
+                    <th>Available On</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>25 W. Lookout St. Union City, NJ 07087</td>
+                    <td>Bedford Stuyvesant</td>
+                    <td>$2,210</td>
+                    <td>1 Bed</td>
+                    <td>1 Bath</td>
+                    <td>Fee</td>
+                    <td>Active</td>
+                    <td>Jan 15, 2019</td>
+                  </tr>
+                  <tr>
+                    <td>25 W. Lookout St. Union City, NJ 07087</td>
+                    <td>Bedford Stuyvesant</td>
+                    <td>$2,210</td>
+                    <td>1 Bed</td>
+                    <td>1 Bath</td>
+                    <td>Fee</td>
+                    <td>Active</td>
+                    <td>Jan 15, 2019</td>
+                  </tr><tr>
+                    <td>25 W. Lookout St. Union City, NJ 07087</td>
+                    <td>Bedford Stuyvesant</td>
+                    <td>$2,210</td>
+                    <td>1 Bed</td>
+                    <td>1 Bath</td>
+                    <td>Fee</td>
+                    <td>Active</td>
+                    <td>Jan 15, 2019</td>
+                  </tr>
+                  <tr>
+                    <td>25 W. Lookout St. Union City, NJ 07087</td>
+                    <td>Bedford Stuyvesant</td>
+                    <td>$2,210</td>
+                    <td>1 Bed</td>
+                    <td>1 Bath</td>
+                    <td>Fee</td>
+                    <td>Active</td>
+                    <td>Jan 15, 2019</td>
+                  </tr><tr>
+                    <td>25 W. Lookout St. Union City, NJ 07087</td>
+                    <td>Bedford Stuyvesant</td>
+                    <td>$2,210</td>
+                    <td>1 Bed</td>
+                    <td>1 Bath</td>
+                    <td>Fee</td>
+                    <td>Active</td>
+                    <td>Jan 15, 2019</td>
+                  </tr>
+                  <tr>
+                    <td>25 W. Lookout St. Union City, NJ 07087</td>
+                    <td>Bedford Stuyvesant</td>
+                    <td>$2,210</td>
+                    <td>1 Bed</td>
+                    <td>1 Bath</td>
+                    <td>Fee</td>
+                    <td>Active</td>
+                    <td>Jan 15, 2019</td>
+                  </tr><tr>
+                    <td>25 W. Lookout St. Union City, NJ 07087</td>
+                    <td>Bedford Stuyvesant</td>
+                    <td>$2,210</td>
+                    <td>1 Bed</td>
+                    <td>1 Bath</td>
+                    <td>Fee</td>
+                    <td>Active</td>
+                    <td>Jan 15, 2019</td>
+                  </tr>
+                  <tr>
+                    <td>25 W. Lookout St. Union City, NJ 07087</td>
+                    <td>Bedford Stuyvesant</td>
+                    <td>$2,210</td>
+                    <td>1 Bed</td>
+                    <td>1 Bath</td>
+                    <td>Fee</td>
+                    <td>Active</td>
+                    <td>Jan 15, 2019</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div> 
         </div>
       </div>
       // <div className={classes.root}>
