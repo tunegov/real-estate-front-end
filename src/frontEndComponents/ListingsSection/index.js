@@ -123,24 +123,24 @@ class ListingsSection extends Component {
         } = listingItem.properties;
   
         return (
-            <ListingCard
-              featuredPhotoURL={images[0]}
-              otherPhotoURLs={otherPhotoURLs}
-              address={address}
-              neighborhood={neighborhood}
-              price={price}
-              beds={beds}
-              baths={baths}
-              isLiked={isLiked}
-              isNoFee={isNoFee}
-              monthsOfFreeRent={monthsOfFreeRent}
-              sqFootage={sqFootage}
-              type={type}
-              id={id}
-              flyToStore={()=> that.flyToStore(listingItem)}
-              selectedItem={selectedItem}
-              listingItem={listingItem}
-            />
+          <ListingCard
+            featuredPhotoURL={images[0]}
+            otherPhotoURLs={otherPhotoURLs}
+            address={address}
+            neighborhood={neighborhood}
+            price={price}
+            beds={beds}
+            baths={baths}
+            isLiked={isLiked}
+            isNoFee={isNoFee}
+            monthsOfFreeRent={monthsOfFreeRent}
+            sqFootage={sqFootage}
+            type={type}
+            id={id}
+            flyToStore={()=> that.flyToStore(listingItem)}
+            selectedItem={selectedItem}
+            listingItem={listingItem}
+          />
         );
       })
     )
