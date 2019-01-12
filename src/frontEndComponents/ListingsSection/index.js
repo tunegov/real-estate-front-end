@@ -229,10 +229,10 @@ class ListingsSection extends Component {
           </div>
           {this.state.isCardType?
             <div className="rent-main">
-              {listings && this.renderListingCards(listings, selectedItem)}
+              {this.renderListingCards(listings, selectedItem)}
             </div>:
             <div className="outer-table">
-              {listings && this.renderListingTable(listings)}
+              {this.renderListingTable(listings)}
             </div> 
           }
         </div>

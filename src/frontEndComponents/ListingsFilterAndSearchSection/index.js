@@ -91,7 +91,6 @@ class ListingsFilterAndSearchSection extends Component {
 
     if ($('#'+dropDownID).hasClass('active')) {
       $('#'+dropDownID).removeClass('active'); 
-      // $('#'+dropDownID).siblings('.dropdown-content').slideUp('slow');
       $('#'+dropDownID).siblings('.dropdown-content').children('.listings-price').slideUp('slow');
     }
     else {
@@ -201,8 +200,6 @@ class ListingsFilterAndSearchSection extends Component {
     } else {
       query = '{}';
     }
-
-    alert(query);
     this.props.onFilterClick(query);
     this.setState({dropDownID: ""})
   }
