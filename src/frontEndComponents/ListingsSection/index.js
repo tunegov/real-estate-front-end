@@ -76,6 +76,13 @@ const sortingTypes = [
 @observer
 @withStyles(styles)
 class ListingsSection extends Component {
+
+  constructor(props) {
+    super(props)
+    this.state = {
+      isCardType: true
+    }
+  }
   componentWillReceiveProps(props) {
     this.state = {
       selectedItem: this.props.selectedItem
@@ -93,7 +100,7 @@ class ListingsSection extends Component {
 
     this.setState({ value });
   };
-  renderListings = (listingItems, selectedItem) =>
+  renderListingCards = (listingItems, selectedItem) =>
   {
     let that = this;
     return(
@@ -116,7 +123,6 @@ class ListingsSection extends Component {
         } = listingItem.properties;
   
         return (
-          // <Grid key={id} item xs={12} md={6}>
             <ListingCard
               featuredPhotoURL={images[0]}
               otherPhotoURLs={otherPhotoURLs}
@@ -131,18 +137,73 @@ class ListingsSection extends Component {
               sqFootage={sqFootage}
               type={type}
               id={id}
-
               flyToStore={()=> that.flyToStore(listingItem)}
               selectedItem={selectedItem}
               listingItem={listingItem}
             />
-          // </Grid>
         );
       })
     )
 
   }
 
+  renderListingTable = (listingItems) =>
+  {
+    let that = this;
+    return(
+      <div className="cust-sc">
+      <table id="musicinfo">
+        <thead>
+          <tr>
+            <th>Address</th>
+            <th>Neighborhood</th>
+            <th>Price</th>
+            <th>Beds</th>
+            <th>Baths</th>
+            <th>Broker Fee</th>
+            <th>Status</th>
+            <th>Available On</th>
+          </tr>
+        </thead>
+        <tbody>
+          {
+           listingItems.map(listingItem => {
+              const {
+                featuredPhotoURL,
+                otherPhotoURLs,
+                address,
+                neighborhood,
+                price,
+                beds,
+                baths,
+                isLiked,
+                isNoFee,
+                monthsOfFreeRent,
+                sqFootage,
+                type,
+                id,
+                images,
+                moveInDate
+              } = listingItem.properties;
+              return (
+                <tr>
+                  <td>{address}</td>
+                  <td>{neighborhood}</td>
+                  <td>${price}</td>
+                  <td>{beds} Bed</td>
+                  <td>{baths} Bath</td>
+                  <td>Fee</td>
+                  <td>Active</td>
+                  <td>{moveInDate}</td>
+                </tr>
+              );
+            }) 
+          }
+        </tbody>
+      </table>
+    </div>
+    )
+  }
 
   render() {
     const { classes, listings, setSortingType, selectedItem } = this.props;
@@ -155,8 +216,8 @@ class ListingsSection extends Component {
             </h4>
             <div className="choice-optin">
               <div className="all-list">
-                <button className="grid_view propertyView"><i className="fa fa-th" aria-hidden="true"></i></button>
-                <button id="music" className="list_view propertyView active"><i className="fa fa-list" aria-hidden="true"></i></button>
+                <button onClick={()=>this.setState({isCardType: true})} className={this.state.isCardType?"grid_view propertyView active":"grid_view propertyView"}><i className="fa fa-th" aria-hidden="true"></i></button>
+                <button onClick={()=>this.setState({isCardType: false})} id="music" className={this.state.isCardType?"list_view propertyView":"list_view propertyView active"}><i className="fa fa-list" aria-hidden="true"></i></button>
                 <label>sort by</label>
                 <select onChange={this.onSelectChange}>
                   {sortingTypes.map(item => {
@@ -164,137 +225,18 @@ class ListingsSection extends Component {
                   })}
                 </select>
               </div>              
-              {/* <Select
-                defaultValue={sortingTypes[0]}
-                styles={selectStyles}
-                options={sortingTypes}
-                placeholder="Sort..."
-                blurInputOnSelect
-                isSearchable={false}
-                onInputChange={setSortingType}
-              /> */}
             </div>
           </div>
-          {/* <div className="rent-main">
-            {listings && this.renderListings(listings, selectedItem)}
-          </div>           */}
-          <div className="outer-table">
-            <div className="cust-sc">
-              <table id="musicinfo">
-                <thead>
-                  <tr>
-                    <th>Address</th>
-                    <th>Neighborhood</th>
-                    <th>Price</th>
-                    <th>Beds</th>
-                    <th>Baths</th>
-                    <th>Broker Fee</th>
-                    <th>Status</th>
-                    <th>Available On</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>25 W. Lookout St. Union City, NJ 07087</td>
-                    <td>Bedford Stuyvesant</td>
-                    <td>$2,210</td>
-                    <td>1 Bed</td>
-                    <td>1 Bath</td>
-                    <td>Fee</td>
-                    <td>Active</td>
-                    <td>Jan 15, 2019</td>
-                  </tr>
-                  <tr>
-                    <td>25 W. Lookout St. Union City, NJ 07087</td>
-                    <td>Bedford Stuyvesant</td>
-                    <td>$2,210</td>
-                    <td>1 Bed</td>
-                    <td>1 Bath</td>
-                    <td>Fee</td>
-                    <td>Active</td>
-                    <td>Jan 15, 2019</td>
-                  </tr><tr>
-                    <td>25 W. Lookout St. Union City, NJ 07087</td>
-                    <td>Bedford Stuyvesant</td>
-                    <td>$2,210</td>
-                    <td>1 Bed</td>
-                    <td>1 Bath</td>
-                    <td>Fee</td>
-                    <td>Active</td>
-                    <td>Jan 15, 2019</td>
-                  </tr>
-                  <tr>
-                    <td>25 W. Lookout St. Union City, NJ 07087</td>
-                    <td>Bedford Stuyvesant</td>
-                    <td>$2,210</td>
-                    <td>1 Bed</td>
-                    <td>1 Bath</td>
-                    <td>Fee</td>
-                    <td>Active</td>
-                    <td>Jan 15, 2019</td>
-                  </tr><tr>
-                    <td>25 W. Lookout St. Union City, NJ 07087</td>
-                    <td>Bedford Stuyvesant</td>
-                    <td>$2,210</td>
-                    <td>1 Bed</td>
-                    <td>1 Bath</td>
-                    <td>Fee</td>
-                    <td>Active</td>
-                    <td>Jan 15, 2019</td>
-                  </tr>
-                  <tr>
-                    <td>25 W. Lookout St. Union City, NJ 07087</td>
-                    <td>Bedford Stuyvesant</td>
-                    <td>$2,210</td>
-                    <td>1 Bed</td>
-                    <td>1 Bath</td>
-                    <td>Fee</td>
-                    <td>Active</td>
-                    <td>Jan 15, 2019</td>
-                  </tr><tr>
-                    <td>25 W. Lookout St. Union City, NJ 07087</td>
-                    <td>Bedford Stuyvesant</td>
-                    <td>$2,210</td>
-                    <td>1 Bed</td>
-                    <td>1 Bath</td>
-                    <td>Fee</td>
-                    <td>Active</td>
-                    <td>Jan 15, 2019</td>
-                  </tr>
-                  <tr>
-                    <td>25 W. Lookout St. Union City, NJ 07087</td>
-                    <td>Bedford Stuyvesant</td>
-                    <td>$2,210</td>
-                    <td>1 Bed</td>
-                    <td>1 Bath</td>
-                    <td>Fee</td>
-                    <td>Active</td>
-                    <td>Jan 15, 2019</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div> 
+          {this.state.isCardType?
+            <div className="rent-main">
+              {listings && this.renderListingCards(listings, selectedItem)}
+            </div>:
+            <div className="outer-table">
+              {listings && this.renderListingTable(listings)}
+            </div> 
+          }
         </div>
       </div>
-      // <div className={classes.root}>
-      //   <div className={classes.lisingsOptions}>
-      //     <Select
-      //       defaultValue={sortingTypes[0]}
-      //       styles={selectStyles}
-      //       options={sortingTypes}
-      //       placeholder="Sort..."
-      //       blurInputOnSelect
-      //       isSearchable={false}
-      //       onInputChange={setSortingType}
-      //     />
-      //   </div>
-      //   <div className={classes.listingsWrapper}>
-      //     <Grid container spacing={24} component={containerComponent}>
-      //       {listings && this.renderListings(listings)}
-      //     </Grid>
-      //   </div>
-      // </div>
     );
   }
 }

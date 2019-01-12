@@ -65,6 +65,8 @@ let sqf_query = "";
 let price_query = "";
 let pets_query = "";
 let move_in_date_query = "";
+let beds_query = "";
+let baths_query = "";
 
 @observer
 @withStyles(styles)
@@ -80,37 +82,26 @@ class ListingsFilterAndSearchSection extends Component {
       maxSize: null,
       pets: '',
       date: null,
-      // isChecked: true,
+      beds: [],
+      baths: [],
     };
-  }
-
-  toggle() {
-    this.setState({addClass: !this.state.addClass});    
   }
 
   openDropDown=(dropDownID)=> {
 
-    if (dropDownID!==this.state.dropDownID) {
-      this.setState({dropDownID: dropDownID});
-    } else {
-      this.setState({dropDownID: ""})
+    if ($('#'+dropDownID).hasClass('active')) {
+      $('#'+dropDownID).removeClass('active'); 
+      // $('#'+dropDownID).siblings('.dropdown-content').slideUp('slow');
+      $('#'+dropDownID).siblings('.dropdown-content').children('.listings-price').slideUp('slow');
     }
-    
-    // $('.city-navigation li.dropdown > a').click(function()
-    // { 
-    //     if($(this).hasClass('active')) 
-    //     { 
-    //         $(this).removeClass('active'); 
-    //         $(this).siblings('.dropdown-menu').slideUp('slow'); 
-    //     }     
-    //     else {  
-    //         $('.city-navigation li.dropdown > a').removeClass('active'); 
-    //         $('.city-navigation li.dropdown > a').siblings('.dropdown-menu').css('display', 'none');                                  
-    //         $(this).addClass('active');                  
-    //         $(this).siblings('.dropdown-menu').slideDown('slow');            
-    //     }           
-    // });
-
+    else {
+      $('.dropdown a').removeClass('active'); 
+      $('.listings-price').css('display', 'none');
+      $('.dropdown-content').css('display', 'none');
+      $('#'+dropDownID).siblings('.dropdown-content').css('display', 'block');
+      $('#'+dropDownID).addClass('active');
+      $('#'+dropDownID).siblings('.dropdown-content').children('.listings-price').slideDown('slow');
+    }
   }
 
   handleMinPrice=(event)=> {
@@ -129,11 +120,14 @@ class ListingsFilterAndSearchSection extends Component {
     this.setState({maxSize: event.target.value});
   }
 
-  handlePets=(event)=> {
-    this.setState({pets: event.target.value});
+  handlePets(pet, button_id) {
+    $('.pets_redio button').removeClass('active');
+    $('#'+button_id).addClass('active');
+    this.setState({pets: pet});
   }
 
   makingQuery() {
+
     let query = "";
 
     if (this.state.minPrice>0 && this.state.maxPrice>0) {
@@ -182,12 +176,33 @@ class ListingsFilterAndSearchSection extends Component {
       query = move_in_date_query;
     }
 
+    if(this.state.beds.length>0) {
+      beds_query = '{"$or":[' + this.state.beds + ']}';
+    }
+
+    if (query!=""&&beds_query!="") {
+      query += "," + beds_query;      
+    } else if (beds_query!="") {
+      query = beds_query;
+    }
+
+    if(this.state.baths.length>0) {
+      baths_query = '{"$or":[' + this.state.baths + ']}';
+    }
+
+    if (query!=""&&baths_query!="") {
+      query += "," + baths_query;      
+    } else if (baths_query!="") {
+      query = baths_query;
+    }
+
     if (query!="") {
       query = '{ "$and": [ ' + query + '] }';
     } else {
       query = '{}';
     }
-    // alert(query);
+
+    alert(query);
     this.props.onFilterClick(query);
     this.setState({dropDownID: ""})
   }
@@ -203,7 +218,11 @@ class ListingsFilterAndSearchSection extends Component {
   clearSQF=()=> {
     this.setState({minSize: ""});
     this.setState({ maxSize: ""});
+    this.setState({beds: []});
+    this.setState({baths: []});
     sqf_query = "";
+    baths_query = "";
+    beds_query = "";
     this.makingQuery();
   }
 
@@ -229,6 +248,31 @@ class ListingsFilterAndSearchSection extends Component {
     return [year, month, day].join('-');
   }
 
+  onChangeBeds(bed, id) {
+    let beds = this.state.beds
+    $('#' + id).toggleClass('active');
+    if($('#' + id).hasClass('active')) {
+      beds.push('{"beds":' + bed + '}');
+    } else {
+      beds.pop('{"beds":' + bed + '}');
+    }
+
+    this.setState({beds: beds});
+
+  }
+
+  onChangeBaths(bath, id) {
+    $('#' + id).toggleClass('active');
+    let baths = this.state.baths
+    if($('#' + id).hasClass('active')) {
+      baths.push('{"baths":' + '{"$gte":' + bath + '}}');
+    } else {
+      baths.pop('{"baths":' + '{"$gte":' + bath + '}}');
+    }
+
+    this.setState({baths: baths});
+  }
+
   render() {
     const {
       classes,
@@ -239,16 +283,8 @@ class ListingsFilterAndSearchSection extends Component {
       onSearchKeyUp,
     } = this.props;
     return (
-      // <div className={classes.root}>
+
       <div className="city-top">
-        {/* <FineGrainListingFilters />
-        <ListingsSearchBar
-          onChange={onSearchInputChange}
-          value={value}
-          getInput={getInput}
-          onKeyDown={onSearchKeyDown}
-          onKeyUp={onSearchKeyUp}
-        /> */}
         <div className="mobile-menu hidden-md hidden-lg">
           <span>Filter listing</span>
           <i className="fa fa-bars" aria-hidden="true" />
@@ -263,13 +299,6 @@ class ListingsFilterAndSearchSection extends Component {
                 type="text"
                 placeholder="Search for features, property types, places, and more..."
               />
-              {/* <ListingsSearchBar
-                onChange={onSearchInputChange}
-                value={value}
-                getInput={getInput}
-                onKeyDown={onSearchKeyDown}
-                onKeyUp={onSearchKeyUp}
-              /> */}
               <button>
                 <i className="fa fa-search" aria-hidden="true" />
               </button>
@@ -280,7 +309,7 @@ class ListingsFilterAndSearchSection extends Component {
               <li>
                 <button
                   type="button"
-                  className="btn btn-toggle active"
+                  className="btn btn-toggle"
                   data-toggle="button"
                   aria-pressed="true"
                   autoComplete="off"
@@ -297,15 +326,13 @@ class ListingsFilterAndSearchSection extends Component {
                   aria-haspopup="true"
                   aria-expanded="false"
                   onClick={()=>this.openDropDown('neighborhoods-dropdown')}
+                  id="neighborhoods-dropdown"
                 >
                   Neighborhoods{' '}
                   <i className="fa fa-angle-down" aria-hidden="true" />
                 </a>
-                {/* <ul className="dropdown-menu"> */}
-                {this.state.dropDownID=="neighborhoods-dropdown"&&
                   <div className="dropdown-content size">
                     <div className="listings-price neighborhoods"> 
-                      {/* <div className="form-row listings-price-row"> */}
                         <ul className="nav nav-tabs tabs-left sideways">
                           <li className="active"><button data-target="#home-v" data-toggle="tab">Bronx</button></li>
                           <li><button data-target="#profile-v" data-toggle="tab">Brooklyn</button></li>
@@ -633,9 +660,7 @@ class ListingsFilterAndSearchSection extends Component {
                           </div>
                         <div className="drop-footer"> <button className="clear">Clear</button> <button className="apply-cust">Apply</button> </div>
                       </div>
-                    {/* </div>						 */}
-                  </div> }
-                {/* </ul> */}
+                  </div> 
               </li>              
               <li className="dropdown">
                 <a
@@ -646,11 +671,10 @@ class ListingsFilterAndSearchSection extends Component {
                   aria-haspopup="true"
                   aria-expanded="false"
                   onClick={()=>this.openDropDown('price-dropdown')}
+                  id="price-dropdown"
                 >
                   price <i className="fa fa-angle-down" aria-hidden="true" />
                 </a>
-                {/* <ul className="dropdown-menu"> */}
-                {this.state.dropDownID=="price-dropdown"&&
                     <div className="dropdown-content">
                       <div className="listings-price"> 
                         <div className="form-row listings-price-row">
@@ -663,8 +687,7 @@ class ListingsFilterAndSearchSection extends Component {
                         </div>
                         <div className="drop-footer"> <button className="clear" onClick={this.clearPrice}>Clear</button> <button className="apply-cust" onClick={()=>this.makingQuery()}>Apply</button> </div>
                       </div>							
-                    </div> }
-                {/* </ul> */}
+                    </div> 
               </li>
               <li className="dropdown">
                 <a
@@ -675,66 +698,64 @@ class ListingsFilterAndSearchSection extends Component {
                   aria-haspopup="true"
                   aria-expanded="false"
                   onClick={()=>this.openDropDown('size-dropdown')}
+                  id="size-dropdown"
+
                 >
                   SIZE <i className="fa fa-angle-down" aria-hidden="true" />
                 </a>
-                {/* <ul className="dropdown-menu"> */}
-                {this.state.dropDownID=="size-dropdown"&&
                   <div className="dropdown-content" id="size-dropdown">
                     <div className="listings-price">
                       <h3>Bedrooms (Select all that apply)</h3>
                       <div className="bed-room">
-                        <div className="checkbox"> <button for="bed1">1</button> </div>
-                        <div className="checkbox"> <button for="bed2">2</button></div>
-                        <div className="checkbox"> <button for="bed3">3</button></div>
-                        <div className="checkbox"> <button for="bed4">4+</button> </div>
+                        <div className="checkbox"> <button id="bed1" onClick={()=>this.onChangeBeds("1", "bed1")}>1</button> </div>
+                        <div className="checkbox"> <button id="bed2" onClick={()=>this.onChangeBeds("2", "bed2")} >2</button></div>
+                        <div className="checkbox"> <button id="bed3" onClick={()=>this.onChangeBeds("3", "bed3")} >3</button></div>
+                        <div className="checkbox"> <button id="bed4" onClick={()=>this.onChangeBeds("4", "bed4")} >4+</button> </div>
                       </div>
                       <h3>Bathrooms (Select all that apply)</h3>
                       <div className="bed-room">
-                        <div className="checkbox"> <button for="Bath">Any</button> </div>
-                        <div className="checkbox"> <button for="Bath1">1+</button> </div>
-                        <div className="checkbox"> <button for="Bath2">1.5+</button> </div>
-                        <div className="checkbox"> <button for="Bath3">2+</button> </div>
-                        <div className="checkbox"> <button for="Bath4">2.5+</button> </div>
-                        <div className="checkbox"> <button for="Bath5">3+</button> </div>
-                        <div className="checkbox"> <button for="Bath6">3.5+</button> </div>
+                        <div className="checkbox"> <button onClick={()=>this.onChangeBaths(0, "Bath")} id="Bath">Any</button> </div>
+                        <div className="checkbox"> <button onClick={()=>this.onChangeBaths(1, "Bath1")} id="Bath1">1+</button> </div>
+                        <div className="checkbox"> <button onClick={()=>this.onChangeBaths(1.5, "Bath2")} id="Bath2">1.5+</button> </div>
+                        <div className="checkbox"> <button onClick={()=>this.onChangeBaths(2, "Bath3")} id="Bath3">2+</button> </div>
+                        <div className="checkbox"> <button onClick={()=>this.onChangeBaths(2.5, "Bath4")} id="Bath4">2.5+</button> </div>
+                        <div className="checkbox"> <button onClick={()=>this.onChangeBaths(3, "Bath5")} id="Bath5">3+</button> </div>
+                        <div className="checkbox"> <button onClick={()=>this.onChangeBaths(3.5, "Bath6")} id="Bath6">3.5+</button> </div>
                       </div>   
                       <h3>SQFT</h3>
                       <div className="form-group form-group-has-addons">
-                          <div className="form-control-group"><label className="form-label">Min.</label><input className="form-control" type="number"/></div>
+                          <div className="form-control-group"><label className="form-label">Min.</label><input className="form-control" type="number" value={this.state.minSize} onChange={this.handleMinSize}/></div>
                           <div className="form-control-group"><button className="button button-light button-static" type="button">to</button></div>
-                          <div className="form-control-group"><label className="form-label">Max.</label><input className="form-control" type="number"/></div>
+                          <div className="form-control-group"><label className="form-label">Max.</label><input className="form-control" type="number" value={this.state.maxSize} onChange={this.handleMaxSize}/></div>
                       </div>
                       <div className="drop-footer"> <button className="clear" onClick={this.clearSQF}>Clear</button> <button className="apply-cust" onClick={()=>this.makingQuery()}>Apply</button> </div>   
                     </div>						
-                  </div> } 
-                {/* </ul> */}
+                  </div>
               </li>
               <li className="dropdown">
                 <a
                   href="#"
                   className="dropdown-toggle"
                   role="button"
-                  onClick={()=>this.openDropDown('more_filters')}
+                  onClick={()=>this.openDropDown('more-filters')}
+                  id="more-filters"
                 >
                   more filters{' '}
                   <i className="fa fa-angle-down" aria-hidden="true" />
                 </a>
-                {/* <ul className="dropdown-menu"> */}
-                {this.state.dropDownID=="more_filters"&&
                   <div className="dropdown-content">
                     <div className="listings-price">
                       <div className="col-md-12">
                         <h3>Pets</h3>
                         <div className="outline">
                           <div className="pets_redio">
-                            <button>Pets Allowed</button>
+                            <button id="pets" onClick={()=>this.handlePets("Pets Allowed", "pets")}>Pets Allowed</button>
                           </div>
                           <div className="pets_redio">
-                            <button>Dogs Only</button>
+                            <button id="dogs1" onClick={()=>this.handlePets("Dogs Only", "dogs1")}>Dogs Only</button>
                           </div>
                           <div className="pets_redio">
-                            <button>Dogs Only</button>
+                            <button id="dogs2" onClick={()=>this.handlePets("Dogs Only", "dogs2")}>Dogs Only</button>
                           </div>
                         </div>
                         <h3>Available On or Before</h3>
@@ -754,14 +775,10 @@ class ListingsFilterAndSearchSection extends Component {
                       </div>                                            
                     </div>							
                   </div>               
-                }
-
-                {/* </ul> */}
               </li>
             </ul>
           </div>
         </div>
-        {/* <MainListingFilters /> */}
       </div>
     );
   }

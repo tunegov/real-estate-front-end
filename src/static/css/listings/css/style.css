@@ -1992,6 +1992,9 @@ input:focus {
   display: inline-block;
   letter-spacing: 1px;
 }
+.city-top .city-navigation ul li.dropdown > a.active {
+  background: #2b2b2b;
+}
 .city-top .city-search span i.fa.fa-map-marker {
   color: #fff;
   font-size: 18px;
@@ -2019,8 +2022,9 @@ input:focus {
   right: 0;
   margin-top: -6px;
   margin-right: 0px;
+  display: none;
 }
-.dropdown-content::after {
+.listings-price::after {
   content: "";
   display: block;
   height: 0;
@@ -2446,6 +2450,10 @@ span.her-detail .fa {
   background: #dd5a5a;
   color: #fff;
 }
+.listings-price .bed-room button.active {
+  background: #dd5a5a;
+  color: #fff;
+}
 
 .listings-price h3 {
   color: rgb(47, 47, 47);
@@ -2526,6 +2534,10 @@ span.her-detail .fa {
   z-index: 1000;
 }
 .listings-price .outline .pets_redio button:hover {
+  background: #dd5a5a;
+  color: #fff;
+}  
+.listings-price .outline .pets_redio button.active {
   background: #dd5a5a;
   color: #fff;
 }  
