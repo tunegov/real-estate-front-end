@@ -1,3 +1,3 @@
-const siteKey = '6LeaeYsUAAAAAH1AolmVUiXqkYDKAQQ5mw_BFWmK';
+const siteKey = '6LcfCIwUAAAAAJBVM8vxq-et_1Sc723tUk6RLz2s';
 
 export default siteKey;

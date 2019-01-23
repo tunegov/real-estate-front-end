@@ -4,16 +4,16 @@ const withCSS = require('@zeit/next-css');
 const isDev = process.env.NODE_ENV === 'development';
 const isStage = process.env.APP_ENV === 'stage';
 
-const ENDPOINT = isDev ? 'http://localhost:4000/graphql' : '/api/graphql';
-const CREDENTIALS = isDev ? 'include' : 'same-origin';
+const ENDPOINT = 'http://ec2-3-17-146-51.us-east-2.compute.amazonaws.com/api/graphql';
+const CREDENTIALS = 'include';
 let WEBSITE_URL;
 
 if (isDev) {
-  WEBSITE_URL = 'http://localhost:4000/graphql';
+  WEBSITE_URL = 'http://ec2-3-17-146-51.us-east-2.compute.amazonaws.com/api/graphql';
 } else if (isStage) {
-  WEBSITE_URL = 'https://stagging.reyeselsamad.com/api/graphql';
+  WEBSITE_URL = 'http://ec2-3-17-146-51.us-east-2.compute.amazonaws.com/api/graphql';
 } else {
-  WEBSITE_URL = 'https://stagging.reyeselsamad.com/api/graphql';
+  WEBSITE_URL = 'http://ec2-3-17-146-51.us-east-2.compute.amazonaws.com/api/graphql';
 }
 
 // fix: prevents error when .css files are required by node
